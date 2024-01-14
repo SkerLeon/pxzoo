@@ -11,12 +11,6 @@ const router = createRouter({
       component: HomeView
     },
     {
-      // 這個我們沒有，之後刪掉
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
-    },
-    {
       path: '/ticket',
       name: 'ticket',
       component: () => import('../views/TicketView.vue')

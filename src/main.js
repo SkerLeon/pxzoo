@@ -6,9 +6,11 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+// 創建一個vue應用程式(主要配置在app.vue裡)
+const vueApp = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+vueApp.use(createPinia())
+vueApp.use(router)
 
-app.mount('#app')
+// 渲染在index.html裡面的div#app
+vueApp.mount('#app')
