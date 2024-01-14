@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <script>
-const imgUrl = new URL('../src/assets/images/讚.jpg', import.meta.url).href
+const imgUrl = new URL('../src/assets/images/index/讚.jpg', import.meta.url).href
 export default {
   data() {
     return {
@@ -28,6 +28,9 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        
+        <RouterLink to="/product">Product</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
       </nav>
     </div>
   </header>
