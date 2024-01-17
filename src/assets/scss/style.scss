@@ -1,5 +1,5 @@
 //變數
-@use 'sass:math';
+@use "sass:math";
 @import "base/var";
 @import "base/color";
 @import "base/font";
@@ -7,7 +7,6 @@
 
 //函式
 @import "mixin/mixin";
-
 
 //組件
 @import "components/grid";
@@ -18,12 +17,10 @@
 @import "components/card";
 @import "components/form";
 
-
 //layout
 @import "layout/header";
 @import "layout/footer";
 @import "layout/login";
-
 
 //page
 @import "page/animal";
@@ -38,7 +35,5 @@
 @import "page/vote";
 @import "page/home";
 
-
 //套件
 @import "plugin/bootstrap";
-
