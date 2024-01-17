@@ -1,11 +1,9 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
       <HelloWorld msg="WELCOME to PXZoO" />
 
@@ -26,20 +24,13 @@ import HelloWorld from './components/HelloWorld.vue'
   <!-- 頁面路由route渲染的地方 -->
   <RouterView />
 
-  <footer>
-    版權文字請貼這裡
-  </footer>
+  <footer>版權文字請貼這裡</footer>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
 }
 
 nav {

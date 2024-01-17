@@ -1,6 +1,91 @@
-.about {
-  h1 {
-    color: $secColorOrange;
-    font-size: $pcFontH2;
+section.loginPage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  background-color: $bgColorLightgray;
+  justify-content: center;
+  align-items: center;
+  .forgetPsw {
+    position: absolute;
+    bottom: 0;
+    right: 200px;
+    height: 100px;
+    width: 300px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      text-align: center;
+      left: 58px;
+      font-size: $pcFontH5;
+      position: absolute;
+      top: 10px;
+    }
+  }
+  .cloud {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    left: 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .cloudSun {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    right: 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .login {
+    border: 3px solid #000;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    .acc {
+      display: flex;
+      align-items: center;
+      img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+    .psw {
+      display: flex;
+      align-items: center;
+      img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+    .defaultBtn {
+      position: relative;
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0 #000;
+      width: 100px;
+      height: 30px;
+      &:hover {
+        background-color: $primaryColorYellow;
+      }
+      img {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        bottom: 3px;
+        right: 3px;
+      }
+    }
   }
 }
