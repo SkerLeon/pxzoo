@@ -6,8 +6,6 @@ import { RouterLink, RouterView } from "vue-router";
   <MainHeader/>
   <!-- <header>
     <div class="wrapper">
-      <HelloWorld msg="WELCOME to PXZoO" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/ticket">Ticket</RouterLink>
@@ -48,6 +46,28 @@ export default {
     
   },
   created(){},
-  methods:{},
+  methods:{}
 }
 </script>
+
+<style>
+  .textheader{
+    background-color: #f5efeb;
+  }
+  .wrapper{
+    width: 100%;
+  }
+  .wrapper nav{
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrapper nav a{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    color: #3f3f3f;
+  }
+  .wrapper nav a:hover{
+    color:#11a729;
+  }
+</style>
