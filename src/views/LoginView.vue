@@ -2,7 +2,7 @@
   <section class="loginPage">
     <div class="forgetPsw">
       <img src="@/assets/images/login/lion.svg" alt="" />
-      <p>歡迎阿<br />忘記密碼再問我</p>
+      <p class="pcInnerText">歡迎阿<br />忘記密碼再問我</p>
     </div>
     <div class="cloud">
       <img src="@/assets/images/login/cloudb.svg" alt="" />
@@ -21,7 +21,7 @@
       </div>
       <button class="login defaultBtn">
         <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-        登入
+        Log in
       </button>
     </section>
   </section>

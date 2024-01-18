@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Noto+Sans+TC:wght@500&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+//專題字體
+$font: "Montserrat", "Noto Sans TC";
+$decorateFont: "Press Start 2P", "Montserrat";
 //PC
 $pcFontH2: clamp(1.5rem, 2.5vw, 2.3rem);
 $pcFontH3: clamp(1.1rem, 1.5vw, 1.4rem);
@@ -10,6 +16,98 @@ $phFontH3: clamp(1.2rem, 1.6vw, 1.5rem);
 $phFontH4: clamp(1rem, 1.3vw, 1.2rem);
 $phFontH5: clamp(0.9rem, 1vw, 1rem);
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap");
+//----pc文字----
 
-//font
+//大標
+.pcBigTitle {
+  font-size: $pcFontH2;
+  font-family: $font;
+}
+
+//小標
+.pcSmTitle {
+  font-size: $pcFontH3;
+  font-family: $font;
+}
+//內文
+.pcInnerText {
+  font-size: $pcFontH4;
+  font-family: $font;
+}
+//註解
+.pcMarkText {
+  font-size: $pcFontH5;
+  font-family: $font;
+}
+
+//----手機文字----
+
+//大標
+.phBigTitle {
+  font-size: $phFontH2;
+  font-family: $font;
+}
+
+//小標
+.phSmTitle {
+  font-size: $phFontH3;
+  font-family: $font;
+}
+//內文
+.phInnerText {
+  font-size: $phFontH4;
+  font-family: $font;
+}
+//註解
+.phMarkText {
+  font-size: $phFontH5;
+  font-family: $font;
+}
+
+//--------------裝飾文字--------------
+
+//----pc裝飾文字----
+.pcDecBigTitle {
+  font-size: $pcFontH2;
+  font-family: $decorateFont;
+}
+
+//小標
+.pcDecSmTitle {
+  font-size: $pcFontH3;
+  font-family: $decorateFont;
+}
+//內文
+.pcDecInnerText {
+  font-size: $pcFontH4;
+  font-family: $decorateFont;
+}
+//註解
+.pcDecMarkText {
+  font-size: $pcFontH5;
+  font-family: $decorateFont;
+}
+
+//----手機裝飾文字----
+
+//大標
+.phDecBigTitle {
+  font-size: $phFontH2;
+  font-family: $decorateFont;
+}
+
+//小標
+.phDecSmTitle {
+  font-size: $phFontH3;
+  font-family: $decorateFont;
+}
+//內文
+.phDecInnerText {
+  font-size: $phFontH4;
+  font-family: $decorateFont;
+}
+//註解
+.phDecMarkText {
+  font-size: $phFontH5;
+  font-family: $decorateFont;
+}
