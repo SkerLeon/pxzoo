@@ -2,7 +2,6 @@
   <div class="about">
     <h1>This is an about page</h1>
   </div>
-  test
 </template>
 
 <script>
@@ -37,6 +36,3 @@
 };
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/page/park.scss";
-</style>
