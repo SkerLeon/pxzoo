@@ -1,11 +1,15 @@
 //PC
-$pcFontH2: clamp(1.5rem, 2.5vw, 2.3rem); 
+$pcFontH2: clamp(1.5rem, 2.5vw, 2.3rem);
 $pcFontH3: clamp(1.1rem, 1.5vw, 1.4rem);
-$pcFontH4: clamp(0.9rem, 1.2vw, 1.1rem); 
-$pcFontH5: clamp(0.8rem, 1vw, 0.9rem); 
+$pcFontH4: clamp(0.9rem, 1.2vw, 1.1rem);
+$pcFontH5: clamp(0.8rem, 1vw, 0.9rem);
 
 //Mobile
-$phFontH2: clamp(1.5rem, 2.5vw, 2.3rem); 
+$phFontH2: clamp(1.5rem, 2.5vw, 2.3rem);
 $phFontH3: clamp(1.2rem, 1.6vw, 1.5rem);
 $phFontH4: clamp(1rem, 1.3vw, 1.2rem);
 $phFontH5: clamp(0.9rem, 1vw, 1rem);
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap");
+
+//font
