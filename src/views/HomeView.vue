@@ -1,10 +1,14 @@
-<script setup>
+<!-- <script setup>
 import TheWelcome from '../components/TheWelcome.vue'
-</script>
+</script> -->
 
 <template>
-  <main>
-    testtesttest
-    <TheWelcome />
-  </main>
+  <section class="home">
+
+  </section>
 </template>
+
+<script>
+
+</script>
+

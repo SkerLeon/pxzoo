@@ -1,0 +1,18 @@
+.pk_content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .pk_map{
+        width: 100%;
+        height: 920px;
+        position: relative;
+        img{
+            width: 100%;
+            vertical-align: middle;
+        }
+    }
+    .pk_Tickets{}
+    .pk_origin{}
+    .pk_Park_information{}
+}
