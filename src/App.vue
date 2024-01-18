@@ -3,7 +3,8 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <header>
+  <MainHeader/>
+  <!-- <header>
     <div class="wrapper">
       <HelloWorld msg="WELCOME to PXZoO" />
 
@@ -19,11 +20,34 @@ import { RouterLink, RouterView } from "vue-router";
         <RouterLink to="/vote">Vote</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
   <!-- 頁面路由route渲染的地方 -->
   <RouterView />
 
+  <MainFooter/>
   <footer>版權文字請貼這裡</footer>
 </template>
 
+<script>
+import { RouterView } from 'vue-router'
+import MainHeader from '@/components/MainHeader.vue'
+import MainFooter from '@/components/MainFooter.vue'
+
+export default {
+  components:{
+    // RouterLink,
+    RouterView,
+    MainHeader,
+    MainFooter
+  },
+  data() {
+    return {
+      targetValue:0,
+    }
+    
+  },
+  created(){},
+  methods:{},
+}
+</script>
