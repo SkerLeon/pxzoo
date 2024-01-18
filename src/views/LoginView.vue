@@ -11,18 +11,39 @@
       <img src="/public/images/login/cloudsun.svg" alt="" />
     </div>
     <section class="login">
-      <div class="acc">
-        <img src="/public/images/login/icon/account.svg" alt="" />
-        <input type="text" placeholder="帳號" class="pcMarkText" />
+      <div class="loginBtnGroup">
+        <button class="loginBtn pcSmTitle active">會員登入</button>
+        <button class="signupBtn pcSmTitle">註冊會員</button>
       </div>
-      <div class="psw">
-        <img src="/public/images/login/icon/psw.svg" alt="" />
-        <input type="password" placeholder="密碼" />
+      <div class="loginInputGroup">
+        <div class="acc">
+          <div class="img">
+            <img src="/public/images/login/icon/account.svg" alt="" />
+          </div>
+
+          <input type="text" placeholder="帳號" class="pcMarkText" />
+        </div>
+        <div class="psw">
+          <div class="img">
+            <img src="/public/images/login/icon/psw.svg" alt="" />
+          </div>
+          <input type="password" placeholder="密碼" />
+        </div>
+        <myButton />
       </div>
-      <button class="login defaultBtn phSmTitle">
-        <img src="/public/images/login/icon/btnArrow.svg" alt="" />
-        登入
-      </button>
     </section>
   </section>
 </template>
+
+<script>
+import myButton from "@/components/btn.vue";
+export default {
+  components: {
+    myButton,
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+};
+</script>
