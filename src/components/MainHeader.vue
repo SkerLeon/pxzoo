@@ -3,6 +3,18 @@
     <div class="wrapper" id="app">
       <!-- <HelloWorld msg="WELCOME to PXZoO" /> -->
       <nav>
+        <div class="arrowleft"></div>
+        <div class="arrowright"></div>
+        <div class="arrowtopleft">
+          <div class="arrowtop"></div>
+          <div class="arrowtop"></div>
+          <div class="arrowtop"></div>
+        </div>
+        <div class="arrowtopright">
+          <div class="arrowtop"></div>
+          <div class="arrowtop"></div>
+          <div class="arrowtop"></div>
+        </div>
         <ul>
           <li class="headerbtn">
             <RouterLink to="/news">最新消息</RouterLink>
@@ -23,7 +35,7 @@
           </li>
 
           <li class="headerbtn pcInnerText">
-            <RouterLink to="/vote">人氣11投票</RouterLink>
+            <RouterLink to="/vote">人氣投票</RouterLink>
           </li>
 
           <li class="headerbtn">
