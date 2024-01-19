@@ -3,50 +3,68 @@ header{
     z-index: 999;
     width: 100%;
     box-sizing: border-box;
+    background-color: $bgColorLightgray;
 
     nav{
         background-color: #A67751;
         border-bottom: 3px #D0AE93 solid;
         width: 100%;
-        height: 45px;
+        height: 35px;
         position: absolute;
-        top: 1vw;
+        top: 23px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
     }
 
     ul{
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-evenly;
-        margin-left: 8.5%;
         width: 80%;
+        position: relative;
+        // padding-bottom: 7px;
+        // margin-left: 6.5%;
     }
 
     a{
         text-decoration: none;
         font-size: $pcFontH4;
-        color: $mainTextColor;
+        color: $bgColorWhite;
         // position: relative;
     }
 
+    .headerbtn{
+        padding-bottom: 7px;
+    }
+
     .logo{   
-        width: 165px;
-        height: 105px;
+        width: 180px;
+        height: 45px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1vw 0 0 0;
-        background-image: url(@/assets/images/header/header_logo_bg.svg);
+        padding: 15px 0 0 0 ;
+        background-image: url(/public/images/header/header_logo_bg.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
+        margin-top: 10px;
     }
     
     .logo img{
-        width: 161px;
-        height: 48px;
+        width: 105px;
+        // height: 48px;
         vertical-align: bottom;
+    }
+
+    .login{
+        position: absolute;
+        right: -50px;
+        padding-bottom: 4px;
+    }
+
+    .login img{
+        width: 14px;
     }
 }

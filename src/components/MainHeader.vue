@@ -19,7 +19,7 @@
 
                     <li class="logo">
                         <RouterLink to="/">
-                            <img src="@/assets/images/header/header_logo.svg" alt="logo" />
+                            <img src="/public/images/header/header_logo.svg" alt="logo" />
                         </RouterLink>
                     </li>
 
@@ -35,9 +35,9 @@
                         <RouterLink to="/ticket">立即購票</RouterLink>
                     </li>
 
-                    <li class="headerbtn">
+                    <li class="login">
                         <RouterLink to="/login">
-                            <img src="@/assets/images/header/header_member.svg" alt="member" />
+                            <img src="/public/images/header/header_member.svg" alt="member" />
                         </RouterLink>
                     </li>
                 </ul>

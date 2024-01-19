@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<!-- <style>
   .textheader{
     background-color: #f5efeb;
   }
@@ -70,4 +70,4 @@ export default {
   .wrapper nav a:hover{
     color:#11a729;
   }
-</style>
+</style> -->
