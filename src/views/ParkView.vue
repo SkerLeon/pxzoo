@@ -1,11 +1,10 @@
 <template>
-  <section class="pk_content">
+  <section class="pk_content forHeader">
     <section class="pk_map">
-      <img src="/public/images/park/pk_map_bg.png" alt="">
-      
-        <!-- 這裡要設定v-for 自動新增圖片.class.id -->
-        <div class="pk_animal_default pk_animal_icon$1" id="location_id$1">
-      </div>
+      <img src="/public/images/park/pk_map_bg.png" alt="" />
+
+      <!-- 這裡要設定v-for 自動新增圖片.class.id -->
+      <div class="pk_animal_default pk_animal_icon$1" id="location_id$1"></div>
     </section>
 
     <section class="pk_Tickets"></section>
@@ -15,8 +14,8 @@
 </template>
 
 <script>
-  export default {
-  name: 'YourComponentName', // 如果需要的話
+export default {
+  name: "YourComponentName", // 如果需要的話
   components: {
     // 組件
   },
@@ -33,6 +32,6 @@
   },
   methods: {
     // 函式
-  }
+  },
 };
 </script>
