@@ -1,7 +1,7 @@
 <template>
-  <section class="pk_content">
+  <section class="forHeader pk_content">
     <section class="pk_map">
-      <img src="/public/images/park/pk_map_bg.png" alt="">
+      <img src="/images/park/pk_map_bg.png" alt="">
       
         <!-- 這裡要設定v-for 自動新增圖片.class.id -->
         <div class="pk_animal_default pk_animal_icon$1" id="location_id$1">
