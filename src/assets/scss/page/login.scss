@@ -6,6 +6,7 @@ section.loginPage {
   background-color: $bgColorLightgray;
   justify-content: center;
   align-items: center;
+  border: 2px solid red;
   .active {
     color: $primaryColorGreen;
     background-color: $bgColorSecGray;
@@ -145,31 +146,6 @@ section.loginPage {
           bottom: 3px;
           right: 3px;
         }
-      }
-    }
-  }
-  .signup {
-    background-color: $bgColorSecGray;
-    border: 3px solid #000;
-    width: 50%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    .loginBtnGroup {
-      width: 100%;
-      height: 20%;
-      display: flex;
-      .loginBtn {
-        flex: 1;
-        border: transparent;
-      }
-      .signupBtn {
-        background-color: $bgColorLightgray;
-        flex: 1;
-        border-top: transparent;
-        border-right: transparent;
       }
     }
   }
