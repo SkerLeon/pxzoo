@@ -16,14 +16,14 @@
             <RouterLink to="/animal">動物資訊</RouterLink>
           </li>
 
-                    <li class="logo">
-                        <RouterLink to="/">
-                            <img src="/public/images/header/header_logo.svg" alt="logo" />
-                        </RouterLink>
-                    </li>
+          <li class="logo">
+            <RouterLink to="/">
+              <img src="/public/images/header/header_logo.svg" alt="logo" />
+            </RouterLink>
+          </li>
 
-          <li class="headerbtn">
-            <RouterLink to="/vote">人氣投票</RouterLink>
+          <li class="headerbtn pcInnerText">
+            <RouterLink to="/vote">人氣11投票</RouterLink>
           </li>
 
           <li class="headerbtn">
@@ -34,12 +34,12 @@
             <RouterLink to="/ticket">立即購票</RouterLink>
           </li>
 
-                    <li class="login">
-                        <RouterLink to="/login">
-                            <img src="/public/images/header/header_member.svg" alt="member" />
-                        </RouterLink>
-                    </li>
-                </ul>
+          <li class="login">
+            <RouterLink to="/login">
+              <img src="/public/images/header/header_member.svg" alt="member" />
+            </RouterLink>
+          </li>
+        </ul>
             <!-- 
             
             <RouterLink to="/member">Member</RouterLink> -->
