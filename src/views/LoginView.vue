@@ -42,10 +42,10 @@
       <input type="text" />
       <input type="password" />
       <input type="password" />
-      <button class="login defaultBtn phSmTitle">
+      <!-- <button class="login defaultBtn phSmTitle">
         <img src="/public/images/login/icon/btnArrow.svg" alt="" />
         註冊
-      </button>
+      </button> -->
     </form>
   </section>
 </template>
