@@ -37,7 +37,7 @@
       </div>
     </form>
 
-    <!-- <form class="signup" id="signForm" style="display: none">
+    <form class="signup" id="signForm" style="display: none">
       <div class="loginBtnGroup">
         <button class="loginBtn pcInnerText">會員登入</button>
         <button class="signupBtn pcSmTitle active">註冊會員</button>
