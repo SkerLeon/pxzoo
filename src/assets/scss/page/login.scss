@@ -1,3 +1,50 @@
+@keyframes cloud {
+  15% {
+    left: 15px;
+    top: 5px;
+  }
+  30% {
+    left: 25px;
+    top: -5px;
+  }
+  45% {
+    left: 35px;
+    top: 5px;
+  }
+  60% {
+    right: 25px;
+    top: -5px;
+  }
+  75% {
+    right: 15px;
+    top: 5px;
+  }
+  90% {
+    right: 5px;
+    top: -5px;
+  }
+}
+
+@keyframes sun {
+  15% {
+    top: 10px;
+  }
+  30% {
+    top: 15px;
+  }
+  45% {
+    top: 20px;
+  }
+  60% {
+    top: 15px;
+  }
+  75% {
+    top: 10px;
+  }
+  90% {
+    top: 5px;
+  }
+}
 section.loginPage {
   position: relative;
   width: 100%;
@@ -6,10 +53,10 @@ section.loginPage {
   background-color: $bgColorLightgray;
   justify-content: center;
   align-items: center;
-
   .active {
     color: $primaryColorGreen;
     background-color: $bgColorSecGray;
+    border: transparent;
   }
   .forgetPsw {
     position: absolute;
@@ -35,6 +82,7 @@ section.loginPage {
     height: 250px;
     top: 0;
     left: 5px;
+    animation: cloud 12s linear infinite;
     img {
       width: 100%;
       height: 100%;
@@ -46,16 +94,17 @@ section.loginPage {
     height: 250px;
     top: 0;
     right: 5px;
+    animation: sun 5s linear infinite;
     img {
       width: 100%;
       height: 100%;
     }
   }
-  .signup {
+  .loginSingupArea {
     background-color: $bgColorSecGray;
     border: 3px solid #000;
-    width: 50%;
-    height: 60%;
+    width: 50vw;
+    height: 30vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -75,76 +124,81 @@ section.loginPage {
         border-right: transparent;
       }
     }
-    .loginInputGroup {
+    .myLog {
       height: 80%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      .acc {
-        display: flex;
-        align-items: center;
-        width: 50%;
-        .img {
-          width: 25px;
-          height: 25px;
-          margin: 0 5px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
 
-        input {
-          height: 25px;
-          width: 100%;
-          background-color: $inputColor;
-          &::placeholder {
-            padding: 5px;
-            color: $inputTextColor;
-          }
-        }
-      }
-      .psw {
+      .loginInputGroup {
+        height: 80%;
+        width: 50vw;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        width: 50%;
-        .img {
-          width: 25px;
-          height: 25px;
-          margin: 0 5px;
-          img {
+        justify-content: space-around;
+        padding-top: 3vw;
+        .acc {
+          display: flex;
+          align-items: center;
+          width: 50%;
+          .img {
+            width: 25px;
+            height: 25px;
+            margin: 0 5px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          input {
+            height: 25px;
             width: 100%;
-            height: 100%;
+            background-color: $inputColor;
+            &::placeholder {
+              padding: 5px;
+              color: $inputTextColor;
+            }
           }
         }
-        input {
-          height: 25px;
-          width: 100%;
-          background-color: $inputColor;
-          &::placeholder {
-            padding: 5px;
-            color: $inputTextColor;
+        .psw {
+          display: flex;
+          align-items: center;
+          width: 50%;
+          .img {
+            width: 25px;
+            height: 25px;
+            margin: 0 5px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          input {
+            height: 25px;
+            width: 100%;
+            background-color: $inputColor;
+            &::placeholder {
+              padding: 5px;
+              color: $inputTextColor;
+            }
           }
         }
-      }
-      .defaultBtn {
-        position: relative;
-        border: 2px solid #000;
-        box-shadow: 2px 2px 0 #000;
-        width: 100px;
-        height: 30px;
-        cursor: pointer;
-        &:hover {
-          background-color: $primaryColorYellow;
-        }
-        img {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          bottom: 3px;
-          right: 3px;
+        .defaultBtn {
+          position: relative;
+          border: 2px solid #000;
+          box-shadow: 2px 2px 0 #000;
+          width: 100px;
+          height: 30px;
+          cursor: pointer;
+          &:hover {
+            background-color: $primaryColorYellow;
+          }
+          img {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            bottom: 3px;
+            right: 3px;
+          }
         }
       }
     }
