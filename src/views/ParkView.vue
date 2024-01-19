@@ -1,20 +1,10 @@
 <template>
-<<<<<<< HEAD
-  <section class="pk_content forHeader">
+  <section class="forHeader pk_content">
     <section class="pk_map">
-      <img src="/public/images/park/pk_map_bg.png" alt="" />
+      <img src="/images/park/pk_map_bg.png" alt="" />
 
       <!-- 這裡要設定v-for 自動新增圖片.class.id -->
       <div class="pk_animal_default pk_animal_icon$1" id="location_id$1"></div>
-=======
-  <section class="forHeader pk_content">
-    <section class="pk_map">
-      <img src="/images/park/pk_map_bg.png" alt="">
-      
-        <!-- 這裡要設定v-for 自動新增圖片.class.id -->
-        <div class="pk_animal_default pk_animal_icon$1" id="location_id$1">
-      </div>
->>>>>>> 2959fcb768015fe78d616ef1b8e7d3c6345cc76b
     </section>
 
     <section class="pk_Tickets"></section>

@@ -10,9 +10,9 @@
     <div class="cloudSun">
       <img src="/public/images/login/cloudsun.svg" alt="" />
     </div>
-    <form class="login" id="loginForm" style="display: none">
+    <form class="signup active" id="loginForm">
       <div class="loginBtnGroup">
-        <button class="loginBtn pcSmTitle">會員登入</button>
+        <button class="loginBtn pcSmTitle active">會員登入</button>
         <button class="signupBtn pcSmTitle">註冊會員</button>
       </div>
       <div class="loginInputGroup">
@@ -29,11 +29,15 @@
           </div>
           <input type="password" placeholder="密碼" />
         </div>
+        <button class="defaultBtn">
+          登入
+          <img src="/public/images/login/icon/btnArrow.svg" alt="" />
+        </button>
         <myButton />
       </div>
     </form>
 
-    <form class="signup" id="signForm">
+    <!-- <form class="signup" id="signForm" style="display: none">
       <div class="loginBtnGroup">
         <button class="loginBtn pcInnerText">會員登入</button>
         <button class="signupBtn pcSmTitle active">註冊會員</button>
@@ -42,11 +46,8 @@
       <input type="text" />
       <input type="password" />
       <input type="password" />
-      <button class="login defaultBtn phSmTitle">
-        <img src="/public/images/login/icon/btnArrow.svg" alt="" />
-        註冊
-      </button>
-    </form>
+      <myButton />
+    </form> -->
   </section>
 </template>
 
