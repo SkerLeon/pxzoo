@@ -1,6 +1,12 @@
-header{
-    position: fixed;
-    z-index: 999;
+header {
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+
+  nav {
+    background-color: #a67751;
+    border-bottom: 3px #d0ae93 solid;
     width: 100%;
     box-sizing: border-box;
     background-color: $bgColorLightgray;
