@@ -1,0 +1,165 @@
+.tick{
+    background-color: #F5EFEB;
+    color: $mainTextColor;
+    font-family: $font;
+    padding-top: 44px;
+    line-height: 1.5;
+    padding-bottom: 30px;
+    text-align: justify;
+
+    img{
+        vertical-align: bottom;
+        outline: 1px solid red;
+    }
+
+    h2{
+        font-size: $pcFontH3;
+        color: $primaryColorGreen;
+    }
+    p, li, button{
+        font-size: $pcFontH4;
+    }
+
+    .tickStep, main{
+        width: 74%;
+    }
+    main{
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+    hgroup{
+        width: 100%;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #3f3f3f;
+        // background-image: linear-gradient(to right, rgba(245, 239, 235, 0) 100%);
+        img{
+            width: 40px;
+        }
+    }
+    .tickJCSB{
+        justify-content: space-between;
+    }
+}
+.tick main, .tick div{
+    display: flex;
+}
+.tickStep{
+    margin: 44px auto 20px;
+    img{
+        height: 35px;
+        margin: 0 auto;
+    }
+};
+.tickBtn{
+    justify-content: space-between;
+
+    button{
+        margin: 44px auto;
+    }
+    .tickLBtn{
+        margin-right: 0;
+    }
+
+}
+
+
+// part0 購票須知(TickInfo.vue)
+.tickInfo{
+    width: 70%;
+    margin-right: 44px;
+
+    article{
+        margin: 44px auto auto;
+        position: relative;
+        z-index: 2;
+        width: 60%;
+    }
+    h2{
+        color: $primaryColorYellow;
+        text-align: center;
+        margin: 44px auto;
+    }
+    li{
+        color: $bgColorWhite;
+    }
+    ol{
+        list-style-type: decimal;
+    }
+    ul{
+        list-style-type: disc;
+    }
+}
+.tickBgc{
+    position: absolute;
+    top: 0;
+    right: 50%;
+    translate: 20% 145px;
+    .tickBoard{
+        width: 92%;
+        min-height: 480px;
+    }
+    .tickEagle{
+        // position: absolute;
+        z-index: 3;
+        width: 8vw;
+        margin: auto -8vw 0 0;
+        // top: 0;
+        // translate: 0 783px;
+    }
+}
+// part1 日曆(TickCalendar.vue)
+.tickCalendar{
+    width: 40%;
+
+    .fakeCalendar{
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 1835px){
+    .tickBgc{
+        translate: 22.5% 145px;
+    }
+}
+@media screen and (max-width: 1550px){
+    .tickCalendar{
+        width: 50%;
+    }    
+    .tickInfo{
+        width: 80%;
+
+        article{
+            width: 68%;
+        }
+        h2{
+            margin-bottom: 20px;
+        }
+    }
+}
+@media screen and (max-width: 1200px){
+    .tickCalendar{
+        width: 45%;
+    }    
+    .tickInfo{
+        width: 550px;
+
+        article{
+            width: 90%;
+            // margin-left: 10%;
+            margin-top: 20px;
+        }
+        .tickBoard{
+            width: 100%;
+        }
+        .tickBgc{
+            translate: 15% 145px;
+        }
+    }
+}
+
+
+
