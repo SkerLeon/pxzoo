@@ -33,12 +33,100 @@ header {
     }
   }
 
-  .arrowleft {
-    position: absolute;
-    left: 0;
-    border-bottom: 35px solid #ff730000;
-    border-left: 50px solid $bgColorLightgray;
-  }
+    
+    .arrowleft{
+        position: absolute;
+        left: 0;
+        border-bottom: 35px solid #ff730000;
+        border-left: 50px solid $bgColorLightgray;
+    }
+
+    .arrowright{
+        position: absolute;
+        right: 0;
+        border-bottom: 35px solid #ff730000;
+        border-right: 50px solid $bgColorLightgray;
+    }
+
+    .arrowtopleft{
+        position: absolute;
+        top: -10px;
+        left: 50px;
+        display: flex;
+    }
+
+    .arrowtopright{
+        position: absolute;
+        top: -10px;
+        right: 50px;
+        display: flex;
+        
+    }
+
+    .arrowtopr{
+        border-bottom: 10px solid #A67751;
+        border-right: 2px solid #a6775100;
+        border-left: 2px solid #a6775100;
+        margin-left: 12vw;
+    }
+
+    .arrowtopl{
+        border-bottom: 10px solid #A67751;
+        border-right: 2px solid #a6775100;
+        border-left: 2px solid #a6775100;
+        margin-right: 12vw;
+    }
+
+    ul{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-evenly;
+        width: 80%;
+        position: relative;
+        // padding-bottom: 7px;
+        // margin-left: 6.5%;
+
+    }
+
+    a{
+        text-decoration: none;
+        // font-size: $pcFontH4;
+        color: $bgColorWhite;
+        // position: relative;
+    }
+
+    .headerbtn{
+        padding-bottom: 7px;
+    }
+
+    .logo{   
+        width: 180px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 0 0 0 ;
+        background-image: url(/public/images/header/header_logo_bg.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        img{
+            width: 105px;
+            // height: 48px;
+            vertical-align: bottom;
+        }
+    }
+
+    .login{
+        position: absolute;
+        right: -50px;
+        padding-bottom: 4px;
+
+        img{
+            width: 14px;
+        }
+    }
 
   .arrowright {
     position: absolute;
