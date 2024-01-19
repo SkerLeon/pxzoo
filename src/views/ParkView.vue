@@ -1,10 +1,11 @@
 <template>
   <section class="forHeader pk_content">
     <section class="pk_map">
-      <img src="/images/park/pk_map_bg.png" alt="" />
+      <img class="pk_map_bg" src="/images/park/pk_map_bg.png" alt="園區地圖">
+      <div v-for="num in 40" :class="`pk_animal_default pk_animal_icon${num}`" :id="`location_id${num}`">
+        <img :src="`/images/park/pk_animal_icon${num}.png`" alt="園區動物icon">
+      </div>
 
-      <!-- 這裡要設定v-for 自動新增圖片.class.id -->
-      <div class="pk_animal_default pk_animal_icon$1" id="location_id$1"></div>
     </section>
 
     <section class="pk_Tickets"></section>
@@ -21,7 +22,7 @@ export default {
   },
   data() {
     return {
-      // 變數放這裡
+
     };
   },
   created() {

@@ -7,10 +7,18 @@
         width: 100%;
         height: 920px;
         position: relative;
-        img{
+        .pk_map_bg{
             width: 100%;
             vertical-align: middle;
         }
+        .pk_animal_default{
+            width: 70px;
+            height: 70px;
+            img{
+                width: 100%;
+            }
+        }
+
     }
     .pk_Tickets{}
     .pk_origin{}

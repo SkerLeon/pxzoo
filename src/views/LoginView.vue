@@ -46,8 +46,11 @@
       <input type="text" />
       <input type="password" />
       <input type="password" />
-      <myButton />
-    </form> -->
+      <button class="login defaultBtn phSmTitle">
+        <img src="/public/images/login/icon/btnArrow.svg" alt="" />
+        註冊
+      </button>
+    </form>
   </section>
 </template>
 
