@@ -5,7 +5,6 @@
 
       <!-- 這裡要設定v-for 自動新增圖片.class.id -->
       <div class="pk_animal_default pk_animal_icon$1" id="location_id$1"></div>
-      >>>>>>> 2959fcb768015fe78d616ef1b8e7d3c6345cc76b
     </section>
 
     <section class="pk_Tickets"></section>

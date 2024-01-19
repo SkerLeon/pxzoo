@@ -6,7 +6,7 @@ section.loginPage {
   background-color: $bgColorLightgray;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
+
   .active {
     color: $primaryColorGreen;
     background-color: $bgColorSecGray;
@@ -51,7 +51,7 @@ section.loginPage {
       height: 100%;
     }
   }
-  .login {
+  .signup {
     background-color: $bgColorSecGray;
     border: 3px solid #000;
     width: 50%;
@@ -133,8 +133,8 @@ section.loginPage {
         position: relative;
         border: 2px solid #000;
         box-shadow: 2px 2px 0 #000;
-        width: 10vw;
-        height: 2.5vw;
+        width: 100px;
+        height: 30px;
         cursor: pointer;
         &:hover {
           background-color: $primaryColorYellow;
