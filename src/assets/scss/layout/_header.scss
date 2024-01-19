@@ -16,6 +16,7 @@ header {
         display: flex;
         justify-content: center;
         align-items: flex-end;
+        
 
         &::before{
             content: "";
@@ -34,21 +35,21 @@ header {
                         0px 13.5px 0px #9A6234;
         }
 
-        &::after{
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+        // &::after{
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     // left: 0;
+        //     right: 0;
 
-            // width: 92.1%;
-            height: 0;
-            border-bottom: 35px solid #ff730000;
-            border-right: 50px solid #f5efeb;
+        //     // width: 92.1%;
+        //     height: 0;
+        //     border-bottom: 35px solid #ff730000;
+        //     border-right: 50px solid #f5efeb;
 
-            border-bottom: 35px solid #ff730000;
-            border-left: 50px solid #f5efeb;
-        }
+        //     border-bottom: 35px solid #ff730000;
+        //     border-left: 50px solid #f5efeb;
+        // }
 
         // &::after{
         //     content: "";
