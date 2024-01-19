@@ -16,15 +16,15 @@
           <div class="arrowtopr"></div>
         </div>
         <ul>
-          <li class="headerbtn">
+          <li class="headerbtn pcInnerText">
             <RouterLink to="/news">最新消息</RouterLink>
           </li>
 
-          <li class="headerbtn">
+          <li class="headerbtn pcInnerText">
             <RouterLink to="/park">園區介紹</RouterLink>
           </li>
 
-          <li class="headerbtn">
+          <li class="headerbtn pcInnerText">
             <RouterLink to="/animal">動物資訊</RouterLink>
           </li>
 
@@ -38,11 +38,11 @@
             <RouterLink to="/vote">人氣投票</RouterLink>
           </li>
 
-          <li class="headerbtn">
+          <li class="headerbtn pcInnerText">
             <RouterLink to="/school">知識學堂</RouterLink>
           </li>
 
-          <li class="headerbtn">
+          <li class="headerbtn pcInnerText">
             <RouterLink to="/ticket">立即購票</RouterLink>
           </li>
 
