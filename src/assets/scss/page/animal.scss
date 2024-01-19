@@ -1,0 +1,57 @@
+.animal_banner{
+    width: 100%;
+    vertical-align: middle;
+}
+.section{
+    max-width: 1920px;
+}
+.animal_overview{
+    max-width: calc(74% - 12%);
+    margin: auto;
+}
+.animal_park{
+    padding-top:3vw ;
+    .animal_park_name{
+        font-family: $font;
+        font-size: $pcFontH2;
+        color: $primaryColorGreen;
+}
+}
+.animal_park:first-child{
+    padding-top: 4.5vw;
+} 
+.animal_park:last-child{
+    padding-bottom: 4.2vw;
+}
+.animal_park_name{
+    padding-bottom: 1.5vw;
+}
+.animal_info{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3vw 3.6vw ;
+}
+
+@media screen and (max-width: 768px) {
+    .animal_info{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3vw 3.6vw ;
+    }
+}
+
+.animal_each{
+    img{
+        width: 100%;
+        vertical-align: middle;
+    }
+    .animal_name{
+        text-align: center;
+        font-family: $font;
+        font-size: $pcFontH3;
+        color: $primaryColorGreen;
+    }
+}
+
+
+
