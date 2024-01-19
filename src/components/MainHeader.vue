@@ -6,14 +6,14 @@
         <div class="arrowleft"></div>
         <div class="arrowright"></div>
         <div class="arrowtopleft">
-          <div class="arrowtop"></div>
-          <div class="arrowtop"></div>
-          <div class="arrowtop"></div>
+          <div class="arrowtopl"></div>
+          <div class="arrowtopl"></div>
+          <div class="arrowtopl"></div>
         </div>
         <div class="arrowtopright">
-          <div class="arrowtop"></div>
-          <div class="arrowtop"></div>
-          <div class="arrowtop"></div>
+          <div class="arrowtopr"></div>
+          <div class="arrowtopr"></div>
+          <div class="arrowtopr"></div>
         </div>
         <ul>
           <li class="headerbtn">
