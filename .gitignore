@@ -15,6 +15,7 @@ dist
 front
 dist-ssr
 coverage
+front
 *.local
 
 /cypress/videos/

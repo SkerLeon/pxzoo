@@ -106,7 +106,7 @@ header {
         align-items: center;
         justify-content: center;
         padding: 15px 0 0 0 ;
-        background-image: url(@/images/header/header_logo_bg.svg);
+        background-image: url("/src/assets/images/header/header_logo_bg.svg");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
@@ -169,7 +169,7 @@ header {
     align-items: center;
     justify-content: center;
     padding: 15px 0 0 0;
-    background-image: url(@/images/header/header_logo_bg.svg);
+    background-image: url("/src/assets/images/header/header_logo_bg.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
