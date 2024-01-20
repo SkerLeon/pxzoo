@@ -13,7 +13,7 @@
               <div class="podium_box">
                 <h2>{{podium.score}}</h2>
               </div>
-             <img class="sheep" src="../../public/images/vote/sheep.svg" alt="sheep" />
+             <img class="sheep" src="@/assets/images/vote/sheep.svg" alt="sheep" />
     </div>
   </div>
    </div>
@@ -39,9 +39,9 @@
           參與投票非常簡單！只需登入你的會員帳號，每天可投三票，不限館別。前往我們的動物園官網，點擊你最喜歡的動物，為它投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
         </p>
       </div>
-      <div class="cloud_6"><img src="../../public/images/vote/clouda_6.svg" alt="雲" /></div>
-      <div class="cloud_2"><img src="../../public/images/vote/clouda_2.svg" alt="雲" /></div>
-      <div class="squirrel_2"><img src="../../public/images/vote/squirrel_2.svg" alt="松鼠" /></div>
+      <div class="cloud_6"><img src="@/assets/images/vote/clouda_6.svg" alt="雲" /></div>
+      <div class="cloud_2"><img src="@/assets/images/vote/clouda_2.svg" alt="雲" /></div>
+      <div class="squirrel_2"><img src="@/assets/images/vote/squirrel_2.svg" alt="松鼠" /></div>
       <div class="AnimalSquirrel"></div>
     </section>
     <!-- 人氣投票TOP3 -->
@@ -79,19 +79,19 @@ export default{
     name: "琳達",
     // medal: "第二名獎牌",
     score: 197,
-    animal_img:"../../public/images/animal/small_pic/small_pic_giraffe.png",
+    animal_img:"@/assets/images/animal/small_pic/small_pic_giraffe.png",
   
   },
   {
     name: "艾迪",
     // medal: "第一名獎牌",
-    animal_img:"../../public/images/animal/small_pic/small_pic_elephant.png",
+    animal_img:"@/assets/images/animal/small_pic/small_pic_elephant.png",
     score: 205,
   },
   {
     name: "阿斯蘭",
     // medal: "第三名獎牌",
-    animal_img:"../../public/images/animal/small_pic/small_pic_lion.png",
+    animal_img:"@/assets/images/animal/small_pic/small_pic_lion.png",
     score: 146,
   },
 ],
@@ -100,19 +100,19 @@ ranking_list:[
     number: 1,
     name: "威廉",
     votes: 300,
-    animal_img: "../../public/images/animal/small_pic/small_pic_lion.png"
+    animal_img: "@/assets/images/animal/small_pic/small_pic_lion.png"
   },
 {
     number: 2,
     name: "琳達",
     votes: 250,
-    animal_img: "../../public/images/animal/small_pic/small_pic_giraffe.png"
+    animal_img: "@/assets/images/animal/small_pic/small_pic_giraffe.png"
   },
 {
     number: 3,
     name: "馬克",
     votes: 200,
-    animal_img: "../../public/images/animal/small_pic/small_pic_meerkat.png"
+    animal_img: "@/assets/images/animal/small_pic/small_pic_meerkat.png"
   },
 ]
 

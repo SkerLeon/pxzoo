@@ -6,10 +6,10 @@
         <article>
             <hgroup>
                 <h2>選擇日期</h2>
-                <img src="/images/ticket/refresh.svg">
+                <img src="@/assets/images/ticket/refresh.svg">
             </hgroup>
             <article>
-                <img src="/images/ticket/PHcalender.svg" alt="" class="fakeCalendar">
+                <img src="@/assets/images/ticket/PHcalender.svg" alt="" class="fakeCalendar">
             </article>
         </article>
         <div class="tickBtn">

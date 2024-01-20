@@ -5,7 +5,7 @@
     <!-- part2 選擇數量 -->
         <hgroup>
             <h2>選擇數量</h2>
-            <img src="/images/ticket/refresh.svg">
+            <img src="@/assets/images/ticket/refresh.svg">
         </hgroup>
 
         <article v-if="isMobile">

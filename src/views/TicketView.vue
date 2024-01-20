@@ -1,7 +1,7 @@
 <template>
   <section class="tick forheader">
     <div class="tickStep">
-      <img src="/images/ticket/PC0.svg" alt="立即購票進度條">
+      <img src="@/assets/images/ticket/PC0.svg" alt="立即購票進度條">
     </div>
 
     <!-- <main>

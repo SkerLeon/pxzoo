@@ -16,8 +16,8 @@
                 </div>
         </article>
         <div class="tickBgc">
-            <img src="/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
-            <img src="/images/ticket/PCinfo.svg" alt="購票須知布告欄" class="tickBoard">
+            <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
+            <img src="@/assets/images/ticket/PCinfo.svg" alt="購票須知布告欄" class="tickBoard">
         </div>
         <div class="tickBtn" v-if="isMobile">
             <button class="tickLBtn">選擇日期</button>
