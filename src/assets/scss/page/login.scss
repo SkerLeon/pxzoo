@@ -61,7 +61,7 @@ section.loginPage {
   .forgetPsw {
     position: absolute;
     bottom: 0;
-    right: 200px;
+    right: 400px;
     height: 100px;
     width: 300px;
     img {
@@ -71,9 +71,9 @@ section.loginPage {
     p {
       text-align: center;
       left: 58px;
-      font-size: $pcFontH5;
       position: absolute;
       top: 10px;
+      color: $mainTextColor;
     }
   }
   .cloud {
@@ -126,6 +126,12 @@ section.loginPage {
     }
     .myLog {
       height: 80%;
+      position: relative;
+      img.loginSigninBg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
 
       .loginInputGroup {
         height: 80%;
@@ -186,8 +192,9 @@ section.loginPage {
           position: relative;
           border: 2px solid #000;
           box-shadow: 2px 2px 0 #000;
-          width: 100px;
-          height: 30px;
+          width: 130px;
+          height: 35px;
+          text-align: center;
           cursor: pointer;
           &:hover {
             background-color: $primaryColorYellow;
