@@ -5,7 +5,7 @@
 
 }
 .vote_top .banner {
-    background-image: url(@/images/vote/tree.svg);
+    background-image: url("/src/assets/images/vote/tree.svg");
     background-color: #f5efeb;
 
     width: 100%;
@@ -106,7 +106,7 @@
   height: 748px;
   width: 100%;
   background-color: #11A729;
-  background-image: url(@/images/vote/grid.svg);
+  background-image: url("/src/assets/images/vote/grid.svg");
   background-repeat: no-repeat;
   background-position: center center;
 }
