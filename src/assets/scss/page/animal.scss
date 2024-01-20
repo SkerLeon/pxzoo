@@ -24,32 +24,50 @@
     padding-bottom: 4.2vw;
 }
 .animal_park_name{
+    margin-left: 2.1vw;
     padding-bottom: 1.5vw;
 }
 .animal_info{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3vw 3.6vw ;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2.6vw;
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // gap: 3vw 3.6vw ;
 }
 
-@media screen and (max-width: 768px) {
-    .animal_info{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3vw 3.6vw ;
-    }
-}
+// @media screen and (max-width: 768px) {
+//     .animal_info{
+//         display: grid;
+//         grid-template-columns: repeat(2, 1fr);
+//         gap: 3vw 3.6vw ;
+//     }
+// }
 
 .animal_each{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2.6vw;
     img{
-        width: 100%;
-        vertical-align: middle;
+        width: 12vw;
     }
     .animal_name{
         text-align: center;
-        font-family: $font;
-        font-size: $pcFontH3;
-        color: $primaryColorGreen;
+        padding-top: 1.45vw; 
+    }
+}
+[class*=col-] {
+    box-sizing: border-box;
+}
+.col-md-3 {
+    width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+    .col-sm-6 {
+    width: 50%;
     }
 }
 

@@ -1,54 +1,55 @@
-<template>
+<template>  
+<section class="forHeader">
   <div class="animal_banner">
     <img src="../../public/images/animal/banner_animal.png" alt="animal_banner">
   </div>
-  <section>
+
     <main class="animal_overview">
       <div class="animal_park">
-        <h2 class="animal_park_name">草原之聲</h2>
+        <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
         <div class="animal_info">
-          <div v-for="(animal, index) in animals_grass" :key="index" class="animal_each">
+          <div v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6">
               <img :src="animal.image" alt="Animal">
-              <h3 class="animal_name">{{ animal.name }}</h3>
+              <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
           </div>
         </div>
       </div>
 
       <div class="animal_park">
-        <h2 class="animal_park_name">極地秘境</h2>
+        <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
         <div class="animal_info">
-          <div v-for="(animal, index) in animals_polar" :key="index" class="animal_each">
+          <div v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6">
               <img :src="animal.image" alt="Animal">
-              <h3 class="animal_name">{{ animal.name }}</h3>
+              <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
           </div>
         </div>
       </div>
 
       <div class="animal_park">
-        <h2 class="animal_park_name">叢林奇蹟</h2>
+        <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
         <div class="animal_info">
-          <div v-for="(animal, index) in animals_jungle" :key="index" class="animal_each">
+          <div v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6">
               <img :src="animal.image" alt="Animal">
-              <h3 class="animal_name">{{ animal.name }}</h3>
+              <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
             </div>
           </div>
         </div>
 
       <div class="animal_park">
-        <h2 class="animal_park_name">鳥園樂章</h2>
+        <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
         <div class="animal_info">
-          <div v-for="(animal, index) in animals_birds" :key="index" class="animal_each">
+          <div v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6">
               <img :src="animal.image" alt="Animal">
-              <h3 class="animal_name">{{ animal.name }}</h3>
+              <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
           </div>
         </div>
       </div>
       <div class="animal_park">
-        <h2 class="animal_park_name">海洋奇觀</h2>
+        <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
         <div class="animal_info">
-          <div v-for="(animal, index) in animals_aqua" :key="index" class="animal_each">
+          <div v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6">
               <img :src="animal.image" alt="Animal">
-              <h3 class="animal_name">{{ animal.name }}</h3>
+              <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
           </div>
         </div>
       </div>
@@ -87,7 +88,7 @@ export default {
         { name: '孔雀', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
         { name: '紅鶴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
         { name: '丹頂鶴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '貓頭應', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        { name: '貓頭鷹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
         { name: '老鷹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
         { name: '巨嘴鳥', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
         { name: '鵜鶘', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
