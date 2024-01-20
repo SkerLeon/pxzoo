@@ -1,7 +1,7 @@
 <template>  
 <section class="forHeader">
   <div class="animal_banner">
-    <img src="../../public/images/animal/banner_animal.png" alt="animal_banner">
+    <img src="@/assets/images/animal/banner_animal.png" alt="animal_banner">
   </div>
 
     <main class="animal_overview">
@@ -62,43 +62,43 @@ export default {
   data() {
     return {
       animals_grass: [
-        {name: '獅子', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '長頸鹿', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '非洲象', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '獵豹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '斑馬', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '狐獴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        {name: '獅子', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '長頸鹿', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '非洲象', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '獵豹', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '斑馬', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '狐獴', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
     ],
     animals_polar: [
-        { name: '北極熊', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '國王企鵝', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '麥哲倫企鵝', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '北極狐', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '海豹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        { name: '北極熊', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '國王企鵝', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '麥哲倫企鵝', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '北極狐', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '海豹', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
     ],
     animals_jungle: [
-        {name: '水豚', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '馬來貘', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '紅毛猩猩', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '孟加拉虎', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '二趾樹懶', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '台灣獼猴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        {name: '水豚', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '馬來貘', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '紅毛猩猩', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '孟加拉虎', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '二趾樹懶', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '台灣獼猴', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
     ],
     animals_birds: [
-        { name: '孔雀', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '紅鶴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '丹頂鶴', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '貓頭鷹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '老鷹', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '巨嘴鳥', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        { name: '鵜鶘', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        { name: '孔雀', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '紅鶴', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '丹頂鶴', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '貓頭鷹', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '老鷹', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '巨嘴鳥', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        { name: '鵜鶘', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
     ],
     animals_aqua: [
-        {name: '魟魚', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '鯊魚', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '海鰻', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '小丑魚', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
-        {name: '章魚', image: '../../public/images/animal/small_pic/small_pic_lion.png' },
+        {name: '魟魚', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '鯊魚', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '海鰻', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '小丑魚', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
+        {name: '章魚', image: '@/assets/images/animal/small_pic/small_pic_lion.png' },
       ],
     };
   },

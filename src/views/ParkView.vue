@@ -1,9 +1,9 @@
 <template>
   <section class="forHeader pk_content">
     <section class="pk_map">
-      <img class="pk_map_bg" src="/images/park/pk_map_bg.png" alt="園區地圖">
+      <img class="pk_map_bg" src="@/assets/images/park/pk_map_bg.png" alt="園區地圖">
       <div v-for="num in 40" :class="`pk_animal_default pk_animal_icon${num}`" :id="`location_id${num}`">
-        <img :src="`/images/park/pk_animal_icon${num}.png`" alt="園區動物icon">
+        <img :src="getImageUrl(num)" alt="園區動物icon">
       </div>
 
     </section>
@@ -30,7 +30,9 @@ export default {
     // 生命週期鉤子
   },
   methods: {
-    // 函式
+    getImageUrl(paths){
+      return new URL(`../assets/images/park/pk_animal_icon${paths}.png`, import.meta.url).href
+    },
   },
 };
 </script>

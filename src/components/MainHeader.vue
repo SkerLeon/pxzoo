@@ -30,7 +30,7 @@
 
           <li class="logo">
             <RouterLink to="/">
-              <img src="/public/images/header/header_logo.svg" alt="logo" />
+              <img src="@/assets/images/header/header_logo.svg" alt="logo" />
             </RouterLink>
           </li>
 
@@ -48,7 +48,7 @@
 
           <li class="login">
             <RouterLink to="/login">
-              <img src="/public/images/header/header_member.svg" alt="member" />
+              <img src="@/assets/images/header/header_member.svg" alt="member" />
             </RouterLink>
           </li>
         </ul>
