@@ -4,7 +4,7 @@
       <img src="/images/ticket/PC0.svg" alt="立即購票進度條">
     </div>
 
-    <!-- <main>
+    <main>
       <article v-if="isMobile">
         <TickInfo/>
       </article>
@@ -12,7 +12,7 @@
         <TickInfo/>
         <TickCalendar/>
       </div>
-    </main> -->
+    </main>
 
     <main>
         <TickNum/>

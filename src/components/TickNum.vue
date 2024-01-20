@@ -55,9 +55,9 @@
 export default {
     components:{
         // RouterLink,
-
+        search: '',
     },
-    data() {
+    data(){
         return {
             isMobile: window.innerWidth <= 768,
             tickets:[
@@ -96,8 +96,7 @@ export default {
                     price: 60,
                     src: '/images/ticket/ticket5.svg'
                 },
-            ]
-            // targetValue:0,
+            ],
         }
     },
     created(){
@@ -107,6 +106,18 @@ export default {
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
         },
+    },
+    computed:{
+        // search(){}
+    },
+    watch:{
+        search(newSearch, oldSearch){
+            console.log(this.Search); // 監聽search的值            
+            console.log('new:', +newSearch);
+            console.log('old:', +oldSearch);
+            // 可以調用下面的函數
+            this.filterHandle();
+        }
     }
 }
 
