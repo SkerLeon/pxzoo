@@ -7,7 +7,6 @@
       </div>
 
     </section>
-
     <section class="pk_Tickets"></section>
     <section class="pk_origin"></section>
     <section class="pk_Park_information"></section>
@@ -16,7 +15,6 @@
 
 <script>
 export default {
-  name: "YourComponentName", // 如果需要的話
   components: {
     // 組件
   },

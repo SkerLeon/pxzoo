@@ -1,9 +1,9 @@
 <template>
   <section class="loginPage forHeader">
-    <div class="forgetPsw">
+    <a href="#" class="forgetPsw">
       <img src="/public/images/login/lion.svg" alt="" />
-      <p class="pcInnerText">歡迎阿<br />忘記密碼再問我</p>
-    </div>
+      <p class="pcInnerText">歡迎阿!!<br />忘記密碼再問我</p>
+    </a>
     <div class="cloud">
       <img src="/public/images/login/cloudb.svg" alt="" />
     </div>
@@ -29,10 +29,11 @@
           </button>
         </div>
         <form class="myLog" id="loginForm" v-show="activeTab === 'loginForm'">
-          <!-- <div class="loginBtnGroup">
-            <button class="loginBtn pcSmTitle active">會員登入</button>
-            <button class="signupBtn pcSmTitle">註冊會員</button>
-          </div> -->
+          <img
+            src="/images/login/login-bg/login.png"
+            alt=""
+            class="loginSigninBg"
+          />
           <div class="loginInputGroup">
             <div class="acc">
               <div class="img">
@@ -47,7 +48,7 @@
               </div>
               <input type="password" placeholder="密碼" />
             </div>
-            <button class="defaultBtn">
+            <button class="defaultBtn pcSmTitle">
               登入
               <img src="/public/images/login/icon/btnArrow.svg" alt="" />
             </button>
@@ -55,6 +56,11 @@
         </form>
 
         <form class="myLog" id="signForm" v-show="activeTab === 'signForm'">
+          <img
+            src="/images/login/login-bg/signup.png"
+            alt=""
+            class="loginSigninBg"
+          />
           <div class="loginInputGroup">
             <div class="acc">
               <div class="img">
@@ -82,7 +88,7 @@
               </div>
               <input type="password" placeholder="密碼" />
             </div>
-            <button class="defaultBtn">
+            <button class="defaultBtn pcSmTitle">
               註冊
               <img src="/public/images/login/icon/btnArrow.svg" alt="" />
             </button>
