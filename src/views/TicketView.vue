@@ -3,20 +3,38 @@
     <div class="tickStep">
       <img src="@/assets/images/ticket/PC0.svg" alt="立即購票進度條">
     </div>
+<!-- main:flex/space-between-->
+<!-- 按鈕main.tickBtn -->
+<!-- button.tickLBtn -->
+<!-- hgroup:flex/space-between -->
+<!-- div:flex $$ -->
 
+
+
+<!-- 0% -->
+    <!-- <article v-if="isMobile">
+      <TickInfo :open="TickInfoOpen" />
+mobile的info用燈箱 不用一個頁面
+    </article>
+    <main v-else>
+      <TickInfo :open="true" />
+      <TickCalendar />
+    </main> -->
+
+<!-- 30% -->
+    <!-- <main>
+        <TickNum />
+    </main> -->
+
+<!-- 60% -->
     <main>
-      <article v-if="isMobile">
-        <TickInfo/>
-      </article>
-      <div v-else class="tickJCSB">
-        <TickInfo/>
-        <TickCalendar/>
-      </div>
+      <TickPayway />
     </main>
 
-    <main>
-        <TickNum/>
-    </main>
+<!-- 100% -->
+    <!-- <main>
+      <TickFinished />
+    </main> -->
 
     <!-- <div class="tickBtn">
         <button>上一步</button>
@@ -37,6 +55,8 @@
 import TickInfo from '@/components/TickInfo.vue';
 import TickCalendar from '@/components/TickCalendar.vue';
 import TickNum from '@/components/TickNum.vue';
+import TickPayway from '@/components/TickPayway.vue';
+import TickFinished from '@/components/TickFinished.vue';
 
 export default {
   components:{
@@ -44,6 +64,8 @@ export default {
     TickInfo,
     TickCalendar,
     TickNum,
+    TickPayway,
+    TickFinished,
   },
   data() {
     return {

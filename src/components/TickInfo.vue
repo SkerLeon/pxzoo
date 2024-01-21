@@ -1,28 +1,21 @@
 <template>
+    <!-- part0 購票須知 -->
     <section class="tickInfo">
 
-
-    <!-- part0 購票須知 -->
-        <article class=""><!-- bgc,pc&ph不同 -->
+        <article>
             <h2>購票須知</h2>
-                <div>
-                    <ol>
-                        <li v-for="info in tickInfomation" :key="info.id">{{info.content}}
-                            <ul v-if="info.subRules">
-                                <li v-for="subInfo in info.subRules" :key="subInfo.id">{{subInfo.subContent}}</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
+                <ol>
+                    <li v-for="info in tickInfomation" :key="info.id">{{info.content}}
+                        <ul v-if="info.subRules">
+                            <li v-for="subInfo in info.subRules" :key="subInfo.id">{{subInfo.subContent}}</li>
+                        </ul>
+                    </li>
+                </ol>
         </article>
         <div class="tickBgc">
             <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
             <img src="@/assets/images/ticket/PCinfo.svg" alt="購票須知布告欄" class="tickBoard">
         </div>
-        <div class="tickBtn" v-if="isMobile">
-            <button class="tickLBtn">選擇日期</button>
-        </div>
-
 
     </section>
 </template>

@@ -1,8 +1,7 @@
 <template>
+    <!-- part2 選擇數量 -->
     <section class="tickNum">
 
-
-    <!-- part2 選擇數量 -->
         <hgroup>
             <h2>選擇數量</h2>
             <img src="@/assets/images/ticket/refresh.svg">
@@ -25,9 +24,9 @@
                 </div>
             </div>
         </article>
-        <div v-else>
+        <div v-else  class="tickOptionPC">
             <article v-for=" ticket in tickets" :key="ticket.id">
-                <!-- <img :src="getImageUrl(ticket)" :alt="ticket.name"> -->
+                <img :src="ticket.src" :alt="ticket.name">
                 <div>
                     <button>+</button>
                     <input type="number" name="0" id="tickNumber">
@@ -36,16 +35,15 @@
             </article>
         </div>
 
-        <div class="tickMoney"> <!-- 可以改成資料庫名稱 -->
+        <div class="price firstLine">
             <p>票券金額</p>
-            <p>NT$ </p>
-            <h2>260</h2>
+            <h2 class="important mixedFont"><p>NT$</p> 260</h2>
         </div>
 
-        <div class="tickBtn">
+        <main class="tickBtn">
             <button>上一步</button>
-            <button class="tickLBtn">票種數量</button>
-        </div>
+            <button class="tickLBtn">立即購票</button>
+        </main>
 
     
     </section>
@@ -66,35 +64,35 @@ export default {
                     name: '成人票',
                     rule: '18~64 歲',
                     price: 100,
-                    src: '/images/ticket/ticket1.svg'
+                    src: 'src/assets/images/ticket/ticket1.svg'
                 },
                 {
                     id: 2,
                     name: '兒童票',
                     rule: '4~11 歲',
                     price: 80,
-                    src: '/images/ticket/ticket2.svg'
+                    src: 'src/assets/images/ticket/ticket2.svg'
                 },
                 {
                     id: 3,
                     name: '學生票',
                     rule: '12 歲以上(含)持學生證者',
                     price: 40,
-                    src: '/images/ticket/ticket3.svg'
+                    src: 'src/assets/images/ticket/ticket3.svg'
                 },
                 {
                     id: 4,
                     name: '愛心票',
                     rule: '65 歲以上(含)',
                     price: 4100,
-                    src: '/images/ticket/ticket4.svg'
+                    src: 'src/assets/images/ticket/ticket4.svg'
                 },
                 {
                     id: 5,
                     name: '團體票',
                     rule: '15 人以上適用',
                     price: 60,
-                    src: '/images/ticket/ticket5.svg'
+                    src: 'src/assets/images/ticket/ticket5.svg'
                 },
             ],
         }
@@ -105,9 +103,6 @@ export default {
     methods:{
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
-        },
-        getImageUrl(number){
-            URL(`../assets/images/ticket/ticket${number}.svg`, import.meta.url).href;
         },
     },
     computed:{
