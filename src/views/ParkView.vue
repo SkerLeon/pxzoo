@@ -23,13 +23,13 @@
         </div>
       </div>
 
-      <aside class="Sidebar">
+      <aside class="Sidebar" @mouseenter="hover = true" @mouseleave="hover = false">
         <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.png" alt="螃蟹icon">
 
         <ul class="Sidebar_filter_btns">
           <li class="filter_btn_item" @click="showAnimalsAndFacilities()">
             <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-            <p class="pcInnerText">園區總攬</p>
+            <p class="pcInnerText">園區總覽</p>
           </li>
 
           <li class="filter_btn_item" @click="showFacilities()">
@@ -43,15 +43,56 @@
           </li>
         </ul>
 
-        <div class="Sidebar_guide">   
+        <div :class="['Sidebar_guide', { 'Sidebar_guide_rotate': hover }]" >   
           <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
       </aside>
     </section>
 
-    <section class="pk_Tickets"></section>
-    <section class="pk_origin"></section>
-    <section class="pk_Park_information"></section>
+    <section class="pk_content_bg">
+      <section class="pk_Tickets">
+        <div class="pk_Tickets_items">
+          <div class="pk_Tickets_item">
+            <img class="pk_Tickets_item_top" src="@/assets/images/park/pk_Tickets_item_top1.png" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" src="@/assets/images/park/pk_Tickets_item_mid1.png" alt="中間的擋板">
+            <img class="pk_Tickets_item_animal" src="@/assets/images/park/pk_Tickets_item_animal1.png" alt="中間的動物">
+            <img class="pk_Tickets_item_bottom" src="@/assets/images/park/pk_Tickets_item_bottom1.png" alt="門票下半部">
+          </div>
+
+          <div class="pk_Tickets_item">
+            <img class="pk_Tickets_item_top" src="@/assets/images/park/pk_Tickets_item_top2.png" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" src="@/assets/images/park/pk_Tickets_item_mid2.png" alt="中間的擋板">
+            <img class="pk_Tickets_item_animal" src="@/assets/images/park/pk_Tickets_item_animal2.png" alt="中間的動物">
+            <img class="pk_Tickets_item_bottom" src="@/assets/images/park/pk_Tickets_item_bottom2.png" alt="門票下半部">
+          </div>
+
+          <div class="pk_Tickets_item">
+            <img class="pk_Tickets_item_top" src="@/assets/images/park/pk_Tickets_item_top3.png" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" src="@/assets/images/park/pk_Tickets_item_mid3.png" alt="中間的擋板">
+            <img class="pk_Tickets_item_animal" src="@/assets/images/park/pk_Tickets_item_animal3.png" alt="中間的動物">
+            <img class="pk_Tickets_item_bottom" src="@/assets/images/park/pk_Tickets_item_bottom3.png" alt="門票下半部">
+          </div>
+
+          <div class="pk_Tickets_item">
+            <img class="pk_Tickets_item_top" src="@/assets/images/park/pk_Tickets_item_top4.png" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" src="@/assets/images/park/pk_Tickets_item_mid4.png" alt="中間的擋板">
+            <img class="pk_Tickets_item_animal" src="@/assets/images/park/pk_Tickets_item_animal4.png" alt="中間的動物">
+            <img class="pk_Tickets_item_bottom" src="@/assets/images/park/pk_Tickets_item_bottom4.png" alt="門票下半部">
+          </div>
+
+          <div class="pk_Tickets_item">
+            <img class="pk_Tickets_item_top" src="@/assets/images/park/pk_Tickets_item_top5.png" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" src="@/assets/images/park/pk_Tickets_item_mid5.png" alt="中間的擋板">
+            <img class="pk_Tickets_item_animal" src="@/assets/images/park/pk_Tickets_item_animal5.png" alt="中間的動物">
+            <img class="pk_Tickets_item_bottom" src="@/assets/images/park/pk_Tickets_item_bottom5.png" alt="門票下半部">
+          </div>
+
+        </div>
+      </section>
+
+      <section class="pk_Origin">
+      </section>
+    </section>
   </section>
 </template>
 
@@ -64,6 +105,7 @@ export default {
     return {
       show_animals:true,
       show_facilities:true,
+      hover : false,
     };
   },
   created() {

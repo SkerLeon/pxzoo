@@ -13,8 +13,8 @@ $Sidebar_icon_rigth:70px;
 //         <p class="pcInnerText">園區總攬</p>
 //         </li>
         
-        //導引按鈕(我還沒讓它收起來時可以自動變icon)
-//     <div class="Sidebar_guide">   
+        //導引按鈕
+//     <div :class="['Sidebar_guide', { 'Sidebar_guide_rotate': hover }]">   
 //         <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
 //     </div>
 // </aside>
@@ -93,5 +93,12 @@ $Sidebar_icon_rigth:70px;
             width: 1.1vw;
             height: 3.7vh;
         }
+        &:hover{
+            cursor: pointer;
+        }
     }
-}  
+}
+
+.Sidebar_guide_rotate {
+    transform: rotate(180deg);
+}
