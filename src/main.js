@@ -1,8 +1,12 @@
-import "./assets/scss/style.scss";
-// import "./assets/main.css";
-
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+
+import { 
+    Button, Input, Select, Space, Option, Upload, Calendar, DatePicker, InputNumber, 
+} from 'view-ui-plus'
+import 'view-ui-plus/dist/styles/viewuiplus.css'
+
+import "./assets/scss/style.scss";
 
 import App from "./App.vue";
 import router from "./router";
