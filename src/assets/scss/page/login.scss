@@ -48,7 +48,7 @@
 section.loginPage {
   position: relative;
   width: 100%;
-  height: 48vw;
+  height: 50vw;
   display: flex;
   background-color: $bgColorLightgray;
   justify-content: center;
@@ -61,19 +61,24 @@ section.loginPage {
   .forgetPsw {
     position: absolute;
     bottom: 0;
-    right: 400px;
-    height: 100px;
-    width: 300px;
+    right: 35vw;
+    height: 120px;
+    width: 250px;
     img {
       width: 100%;
       height: 100%;
     }
     p {
       text-align: center;
-      left: 58px;
+      line-height: 1.15rem;
+      letter-spacing: 2px;
+      left: 9px;
       position: absolute;
-      top: 10px;
+      top: 9px;
       color: $mainTextColor;
+      &:hover {
+        color: $primaryColorYellow;
+      }
     }
   }
   .cloud {
@@ -100,9 +105,10 @@ section.loginPage {
       height: 100%;
     }
   }
+
   .loginSingupArea {
-    background-color: $bgColorSecGray;
-    border: 3px solid #000;
+    position: absolute;
+    top: 6vw;
     width: 50vw;
     height: 30vw;
     display: flex;
@@ -113,15 +119,25 @@ section.loginPage {
       width: 100%;
       height: 20%;
       display: flex;
+      position: relative;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
       .loginBtn {
         flex: 1;
         border: transparent;
+        z-index: 3;
+        background-color: transparent;
+        cursor: pointer;
       }
       .signupBtn {
-        background-color: $bgColorLightgray;
+        cursor: pointer;
         flex: 1;
-        border-top: transparent;
-        border-right: transparent;
+        background-color: transparent;
+        border: transparent;
+        z-index: 3;
       }
     }
     .myLog {
@@ -141,10 +157,12 @@ section.loginPage {
         align-items: center;
         justify-content: space-around;
         padding-top: 3vw;
+        z-index: 20;
         .acc {
           display: flex;
           align-items: center;
           width: 50%;
+          z-index: 20;
           .img {
             width: 25px;
             height: 25px;
@@ -169,6 +187,7 @@ section.loginPage {
           display: flex;
           align-items: center;
           width: 50%;
+          z-index: 20;
           .img {
             width: 25px;
             height: 25px;
