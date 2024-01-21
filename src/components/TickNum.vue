@@ -27,7 +27,7 @@
         </article>
         <div v-else>
             <article v-for=" ticket in tickets" :key="ticket.id">
-                <img :src="ticket.src" :alt="ticket.name">
+                <!-- <img :src="getImageUrl(ticket)" :alt="ticket.name"> -->
                 <div>
                     <button>+</button>
                     <input type="number" name="0" id="tickNumber">
@@ -105,6 +105,9 @@ export default {
     methods:{
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
+        },
+        getImageUrl(number){
+            URL(`../assets/images/ticket/ticket${number}.svg`, import.meta.url).href;
         },
     },
     computed:{

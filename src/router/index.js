@@ -76,9 +76,17 @@ const router = createRouter({
       meta:{
         title:'人氣投票 | PxZoO'
       }
-    }
+    },
+    // 404頁面：沒有被配置的路由都會去NotFound
+    { 
+      path: '/:pathMatch(.*)*', 
+      name: 'NotFound', 
+      component: () => import('../views/NotFoundView.vue')
+    },
   ]
 })
+
+// 產生每一頁頁籤的title
 router.beforeEach(async (to, from) => {
   if( to.meta && to.meta.title){
       document.title = to.meta.title
