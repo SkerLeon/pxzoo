@@ -11,6 +11,7 @@
       <img src="@/assets/images/login/cloudsun.svg" alt="" />
     </div>
     <div class="loginSingupArea">
+      <RouterLink to="/member">member</RouterLink>
       <div class="loginBtnGroup">
         <img
           src="@/assets/images/login/login-bg/login_btn_area.png"
@@ -109,5 +110,6 @@ export default {
       activeTab: "loginForm",
     };
   },
+  components: {},
 };
 </script>

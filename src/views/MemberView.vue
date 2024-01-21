@@ -1,9 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <memLightBox />
 </template>
 
+<script>
+import memLightBox from "@/components/loginLightBox.vue";
+
+export default {
+  components: {
+    memLightBox,
+  },
+};
+</script>
 <style>
 @media (min-width: 1024px) {
   .about {
