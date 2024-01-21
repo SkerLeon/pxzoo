@@ -1,3 +1,11 @@
-div.notFound{
+.notFound{
     height: 80vh;
+    background-color: $bgColorSecGray;
+    text-align: center;
+    h1{
+        color: $secColorOrange;
+        
+        padding: 20vh 0 10vh;
+    }
+
 }
