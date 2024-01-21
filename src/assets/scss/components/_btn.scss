@@ -107,8 +107,8 @@ $Sidebar_icon_rigth: 70px;
 //css樣式
 .defaultBtn {
   position: relative;
-  border: 2px solid #000;
-  box-shadow: 4px 4px 0 #000;
+  border: 2px solid $mainTextColor;
+  box-shadow: 4px 4px 0 $mainTextColor;
   width: 120px;
   height: 35px;
   text-align: center;
