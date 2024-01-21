@@ -1,8 +1,7 @@
 <template>
+    <!-- part1 日曆 -->
     <section class="tickCalendar">
 
-
-    <!-- part1 日曆 -->
         <article>
             <hgroup>
                 <h2>選擇日期</h2>
@@ -12,10 +11,9 @@
                 <img src="@/assets/images/ticket/PHcalender.svg" alt="" class="fakeCalendar">
             </article>
         </article>
-        <div class="tickBtn">
-            <button  v-if="isMobile">上一步</button>
+        <main class="tickBtn">
             <button class="tickLBtn">票種數量</button>
-        </div>
+        </main>
 
     
     </section>
