@@ -96,6 +96,10 @@ $Sidebar_icon_rigth: 70px;
   }
 }
 
+.Sidebar_guide_rotate{
+  transform: rotate(180deg);
+}
+
 //按鈕scss(沒有icon版本)
 
 //html結構
@@ -126,3 +130,5 @@ $Sidebar_icon_rigth: 70px;
     right: 3px;
   }
 }
+
+
