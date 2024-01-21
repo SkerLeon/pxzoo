@@ -319,6 +319,9 @@
                     width: 251px;
                     height: 539px;
                     position: relative;
+                    :hover{
+                        cursor: pointer;
+                    }
                     .pk_Tickets_item_top{}
                     .pk_Tickets_item_mid{
                         position: absolute;
@@ -328,6 +331,15 @@
                     .pk_Tickets_item_animal{
                         position: absolute;
                         z-index: -2;
+                    }
+                    .pk_Tickets_item_text{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        position: absolute;
+                        bottom: 40px;
+                        gap: 10px;
+                        color: $mainTextColor;
                     }
                 }
             }
