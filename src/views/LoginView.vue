@@ -52,7 +52,7 @@
             </div>
             <input type="password" placeholder="密碼" />
           </div>
-          <button class="defaultBtn pcSmTitle">
+          <button class="defaultBtn pcInnerText">
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
@@ -92,7 +92,7 @@
             </div>
             <input type="password" placeholder="再次輸入密碼" />
           </div>
-          <button class="defaultBtn pcSmTitle">
+          <button class="defaultBtn pcInnerText">
             註冊
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>

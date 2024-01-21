@@ -207,25 +207,6 @@ section.loginPage {
             }
           }
         }
-        .defaultBtn {
-          position: relative;
-          border: 2px solid #000;
-          box-shadow: 2px 2px 0 #000;
-          width: 130px;
-          height: 35px;
-          text-align: center;
-          cursor: pointer;
-          &:hover {
-            background-color: $primaryColorYellow;
-          }
-          img {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            bottom: 3px;
-            right: 3px;
-          }
-        }
       }
     }
   }
