@@ -301,7 +301,37 @@
         }
         
     }
-    .pk_Tickets{}
-    .pk_origin{}
-    .pk_Park_information{}
+    .pk_content_bg{
+        width: 100%;
+        height: 2614px;
+        background-image: url("/src/assets/images/park/pk_content_bg.png");
+        background-repeat: no-repeat;
+        .pk_Tickets{
+            width: 74%;
+            margin: 234px auto;
+            .pk_Tickets_items{
+                display: flex;
+                gap: 28px;
+                .pk_Tickets_item{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 251px;
+                    height: 539px;
+                    position: relative;
+                    .pk_Tickets_item_top{}
+                    .pk_Tickets_item_mid{
+                        position: absolute;
+                        z-index: 10;
+                        top: 140px;
+                    }
+                    .pk_Tickets_item_animal{
+                        position: absolute;
+                        z-index: -2;
+                    }
+                }
+            }
+        }
+        .pk_Origin{}
+    }
 }
