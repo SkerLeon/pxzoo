@@ -1,0 +1,120 @@
+footer{
+    background-color: #4F3029;
+    position: relative;
+
+    .deco{
+        display: flex;
+        .grasses_1 img{
+            position: absolute;
+            top: -3.8vw;
+            left: 3.5vw;
+            width: 9vw;
+            vertical-align: bottom;
+        }
+        .grasses_9 img{
+            position: absolute;
+            top: -3.8vw;
+            left: 14.5vw;
+            width: 4vw;
+            vertical-align: bottom;
+        }
+        .grasses_5 img{
+            position: absolute;
+            top: -3.8vw;
+            right: 3.5vw;
+            width: 11vw;
+            vertical-align: bottom;
+        }
+        
+    }
+
+    .first{
+        width: 74%;
+        margin: auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0 0 2vw 0;
+
+        .front{
+            width: 20%;
+
+            .logo img{
+                width: 78%;
+                vertical-align: bottom;
+            }
+
+            .media{
+                width: 80%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                margin-top: 1vw;
+                img{
+                    width: 78%;
+                    vertical-align: bottom;
+                }
+            }
+        }
+
+        .info{
+            width: 60%;
+            color: $bgColorWhite;
+                
+            a{
+                color: $bgColorWhite;
+                text-decoration: none;
+            }
+        }
+
+        .tourists{
+            color: $bgColorWhite;
+        }
+    }
+
+    .line{
+        width: 74%;
+        height: 1px;
+        margin: auto;
+        background-color: $bgColorWhite;
+    }
+
+    .bottom{
+        width: 74%;
+        margin: auto;
+        color: $bgColorWhite;
+        padding: 2vw 0 2vw 0;
+        line-height: 25px;
+
+        a{
+            color: $bgColorWhite;
+            text-decoration: none;
+        }
+    }
+
+    .top{
+        position: absolute;
+        bottom: 2vw;
+        left: 3.5vw;
+        text-align: center;
+
+        a{
+            color: $bgColorWhite;
+            text-decoration: none;
+        }
+
+        img{
+            width: 5vw;
+            vertical-align: bottom;
+            padding-top: 0.5vw;
+        }
+        
+    }
+
+    .ground{
+        img{
+            width: 100%;
+            vertical-align: bottom;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.fixedvote{
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    right: 1vw;
+    width: 140px;
+    height: 200px;
+    background-image: url("/src/assets/images/fixedvote/fixedvote_pc.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    a{
+        text-decoration: none;
+        color: $bgColorWhite;
+        text-align: center;
+    }
+
+    .top{
+        position: absolute;
+        top: 50px;
+        left: 27px;
+    }
+
+    .bottom{
+        position: absolute;
+        top: 120px;
+        left: 30px;
+    }
+}

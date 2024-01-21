@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="wrapper" id="app">
-      <!-- <HelloWorld msg="WELCOME to PXZoO" /> -->
+      
       <nav>
         <div class="arrowleft"></div>
         <div class="arrowright"></div>

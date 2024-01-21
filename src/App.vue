@@ -4,6 +4,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <MainHeader/>
+  <MainFixedVote/>
   <!-- <header>
     <div class="wrapper">
       <nav>
@@ -24,12 +25,13 @@ import { RouterLink, RouterView } from "vue-router";
   <RouterView />
 
   <MainFooter/>
-  <footer>版權文字請貼這裡</footer>
+  <!-- <footer>版權文字請貼這裡</footer> -->
 </template>
 
 <script>
 import { RouterView } from 'vue-router'
 import MainHeader from '@/components/MainHeader.vue'
+import MainFixedVote from '@/components/MainFixedVote.vue'
 import MainFooter from '@/components/MainFooter.vue'
 
 export default {
@@ -37,6 +39,7 @@ export default {
     // RouterLink,
     RouterView,
     MainHeader,
+    MainFixedVote,
     MainFooter
   },
   data() {
