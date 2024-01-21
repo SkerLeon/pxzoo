@@ -1,3 +1,5 @@
+$Sidebar_icon_top:-60px;
+$Sidebar_icon_rigth:70px;
 //篩選按鈕側邊欄html結構
 //側邊欄主架構
 // <aside class="Sidebar">
@@ -24,16 +26,16 @@
     align-items: center;
     position: absolute;
     top: 228px;
-    left: -261px;
+    left: -261px; 
     transition: 0.3s;
     @media (max-width:1746px) {
         left: -237px;
     }
     @media (max-width:1536px) {
-        left: -208px;
+        left: -210px;
     }
     @media (max-width:1280px) {
-        left: -174px;
+        left: -178px;
     }
     &:hover{
         transition: 0.3s;
@@ -41,9 +43,21 @@
     }
     .Sidebar_icon{
         position: absolute;
-        top: -60px;
-        right: 70px;
+        top: $Sidebar_icon_top;
+        right: $Sidebar_icon_rigth;
         width: 4.2vw;
+        @media (max-width:1746px) {
+            top: $Sidebar_icon_top * 0.91;
+            right: $Sidebar_icon_rigth * 0.91;
+        }
+        @media (max-width:1536px) {
+            top: $Sidebar_icon_top * 0.8;
+            right: $Sidebar_icon_rigth * 0.8;
+        }
+        @media (max-width:1280px) {
+            top: $Sidebar_icon_top * 0.66;
+            right: $Sidebar_icon_rigth * 0.66;
+        }
     }
     .Sidebar_filter_btns{
         display: flex;
