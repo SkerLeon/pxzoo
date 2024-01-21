@@ -1,0 +1,146 @@
+.school{
+    background-image: url("/src/assets/images/school/banner.svg");
+    background-color: #fff;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+  
+}
+.school .school_title{
+    display: flex;
+    flex-direction: row;
+   
+
+}
+.school .school_title .number_8 img{
+    width: 111px;
+    height: 161px;
+    padding: 0 16px;
+}
+.school .school_title .number_n img{
+    width: 111px;
+    height: 161px;
+    padding: 0 16px;
+}
+.school .school_title .number_i img{
+    width: 86px;
+    height: 161px;
+    padding: 0 16px;
+}
+.school .school_title .number_m img{
+    width: 136px;
+    height: 161px;
+    padding: 0 16px;
+}
+.school .school_title .number_a img{
+    width: 111px;
+    height: 161px;
+    padding: 0 16px;
+}
+.school .school_title .number_l img{
+    width: 111px;
+    height: 161px;
+    padding: 0 16px;
+}
+
+.school .school_name{
+    color:#fff;
+    letter-spacing:20px;
+    margin-top: 74px;
+    margin-bottom:44px;
+    font-size: $pcFontH2;
+  font-family: $font;
+  font-weight: 500;
+}
+.school .school_button{
+    color: $mainTextColor;
+}
+.school .school_tree img{
+    position: absolute;
+    bottom: 0;
+}
+
+.school .school_tree .tree_3 img{
+    width: 208px;
+    height: 306px;
+    left: 0;
+    bottom: -2px;
+}
+.school .school_tree .tree_5 img{
+    width: 323px;
+    height: 280px;
+    left: 115px;
+    bottom: -2px;
+}
+.school .school_tree .grasses_6 img{
+    width: 209px;
+    height: 134px;
+    left: 448px;
+}
+.school .school_tree .grasses_7 img{
+    width: 217px;
+    height: 176px;
+    right: 409px;
+}
+.school .school_tree .tree_8 img{
+    width: 264px;
+    height: 301px;
+    right: 189px;
+    bottom: -2px;
+}
+.school .school_tree .tree_1 img{
+    width: 265px;
+    height: 338px;
+    right: 0px;
+}
+.school .school_tree .teacher img{
+    width: 250px;
+    height: 250px;
+    right: 550px;
+    bottom: -37px;
+}
+.school .school_content_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.school_button {
+    width: 180px;
+    height: 50px;
+    color: $mainTextColor;
+    text-decoration: none;
+}
+.school_button a{
+    color: $mainTextColor;
+    text-decoration: none;
+}
+
+
+.school .school_content_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.school .school_content_2 .title{
+    color: $primaryColorYellow;
+    text-align: center;
+}
+.school .school_content_2 .rule{
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+    padding: 44px 0;
+}

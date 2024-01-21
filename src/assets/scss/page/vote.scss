@@ -1,4 +1,8 @@
 //上個月投票結果
+.vote_top{
+  position: relative;
+
+}
 .vote_top .podium_img img{
     width: 170px;
     height: 170px;
@@ -14,40 +18,64 @@
     background-repeat: no-repeat;
     background-position: bottom center;
   }
+  .vote_top .banner .title {
+   color:$primaryColorGreen;
+   text-align: center;
+   line-height: 1.5;
+   padding-top: 43px;
+  }
   .vote_top .banner .sheep {
     position: absolute;
-    top: 790px;
+    bottom: 0px;
     left: 300px;
-    background-repeat: no-repeat;
+    transform: scaleX(-1);
     
   }
-  .vote_top .podium{
+ 
+  .vote_top .podium_no{
     display: flex;
     flex-direction: row;
     justify-content: center;
-   
+    position: absolute;
+    bottom: 0;
+  
   }
-
-  .vote_top .podium_no{
+  .vote_top .podium{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+   
+  
+  }
+  .vote_top .podium .podium_box{
+    width: 365px;
+    height: 310px;
+    // background-color: $primaryColorYellow;
+    text-align: center;
+  }
+ 
+
+  .vote_top .podium_no img{
+    width: 170px;
+    height: 170px;
   }
 
 //投票活動
 .vote_activity{
-    height: 810px;
+    height:710px;
     width: 100%;
     background-color: #fff;
     position: relative;
     padding-bottom: 211px;
 
+ 
    
 }
 .vote_activity h1{
     
-    color: #11A729;
+    color:$primaryColorGreen;
     text-align: center;
    line-height: 1.5;
    padding-top: 85px;
@@ -63,21 +91,21 @@
 .vote_activity .vote_rule{
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
+  padding: 15px 0;
+  align-items: flex-start;
   justify-content: flex-start;
-
   line-height: 1.5;
-  margin:0px 270px;
+  margin:0 270px;
+
 
 }
 .vote_activity .vote_rule .time{
-  
+  white-space: nowrap;
  
   padding-right: 56px;
 }
 .vote_activity .vote_rule p{
-
+  text-align: left;
   margin: 0;
  
 }
@@ -105,15 +133,165 @@
 .vote_popular{
   height: 748px;
   width: 100%;
-  background-color: #11A729;
+  background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
   background-repeat: no-repeat;
   background-position: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.vote_popular img{
+.vote_popular .title{
+  margin: 44px 0;
+  color: #fff;
+}
+.vote_popular .content img{
   width: 95px;
   height: 95px;
   border-radius: 50%;
+  margin: 20px;
+
+}
+.ranking {
+  display: flex;
+}
+.ranking .number{
+  width: 96px;
+  height: 135px;
+  background-color:$primaryColorYellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.ranking .content{
+  width: 1366px;
+  height: 135px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  color: $mainTextColor;
+}
+.ranking .content .name{
+  margin: 32px;
+}
+.ranking .content .votes{
+  margin-left: 536px;
 }
 
+.ranking .content button{
+  width: 180px;
+  height: 50px;
+  margin:0 81px;
+}
+
+.vote_popular .caterpillar img{
+  position: absolute;
+  height: 200px;
+  width:265px ;
+  bottom: 0;
+  right:25px ;
+}
+
+
 //投票列表
+.vote_overview_all{
+  background-color:$bgColorLightgray;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:space-around;
+  align-items:center;
+
+padding-top: 198px;
+  position: relative;
+}
+.vote_button{
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+justify-content:  space-between;
+align-items: center;
+}
+.vote_button button{
+  width: 250px;
+  height: 75px;
+}
+.vote_wrap{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  width: 100%;
+justify-content: flex-start;
+gap: 44px;
+align-items: center;
+
+
+
+
+}
+.vote_card img{
+  width: 327px;
+  height: 327px;
+}
+ .vote_icon img{
+  width: 27.81px;
+  height: 26px;
+}
+
+ .vote_card{
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:22px 0 ;
+  
+  
+}
+
+ .vote_card .vote_name{
+
+  margin-top: 30px;
+}
+.vote_card .vote_icon{
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  
+}
+ .vote_card .vote_icon img{
+  margin:0 10px;
+}
+ .vote_card button{
+  height: 50px;
+  width: 180px;
+
+}
+.vote_button button {
+
+  background-color:$primaryColorYellow;
+  
+}
+.vote_button button.hovered {
+
+  background-color: $primaryColorGreen;
+
+}
+
+.vote_overview_all .elephant1 img{
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  width: 196.87px;
+  right: 279px;
+}
