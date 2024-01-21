@@ -11,9 +11,9 @@
                 <img src="@/assets/images/ticket/PHcalender.svg" alt="" class="fakeCalendar">
             </article>
         </article>
-        <main class="tickBtn">
-            <button class="tickLBtn">票種數量</button>
-        </main>
+        <div class="tickBtn">
+            <button class="defaultBtn tickLBtn">票種數量</button>
+        </div>
 
     
     </section>

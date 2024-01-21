@@ -63,7 +63,7 @@
                         </main>
                         
                         <p>驗證碼</p>
-                        <input type="number" placeholder="請輸入卡片背後末三碼">
+                        <input type="text" placeholder="請輸入卡片背後末三碼" class="defaultInput">
                     </article>
 
 
@@ -73,8 +73,8 @@
         </main>
 
         <main class="tickBtn">
-            <button>上一步</button>
-            <button class="tickLBtn">送出訂單</button>
+            <button class="defaultBtn">上一步</button>
+            <button class="tickLBtn defaultBtn">送出訂單</button>
         </main>
     </section>
 </template>

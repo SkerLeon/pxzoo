@@ -7,7 +7,7 @@
             <img src="@/assets/images/ticket/refresh.svg">
         </hgroup>
 
-        <article v-if="isMobile">
+        <article v-if="isMobile"  class="tickOption PH">
             <div v-for=" ticket in tickets" :key="ticket.id">
                 <div>
                     <p>{{ ticket.name }}</p>
@@ -16,20 +16,24 @@
                 <div>
                     <h2>NT$ {{ ticket.price }}</h2>
                     <p>/ 人</p>
-                    <div>
-                    <button>+</button>
-                    <input type="number" name="0" id="tickNumber">
-                    <button>-</button>
-                </div>
+                    <div class="countBTN">
+                        <button>+</button>
+                        <form action="ticket.php" method="post">
+                            <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
+                        </form>
+                        <button>-</button>
+                    </div>
                 </div>
             </div>
         </article>
-        <div v-else  class="tickOptionPC">
+        <div v-else class="tickOption PC">
             <article v-for=" ticket in tickets" :key="ticket.id">
                 <img :src="ticket.src" :alt="ticket.name">
-                <div>
+                <div class="countBTN">
                     <button>+</button>
-                    <input type="number" name="0" id="tickNumber">
+                    <form action="ticket.php" method="post">
+                        <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
+                    </form>
                     <button>-</button>
                 </div>
             </article>
@@ -41,8 +45,8 @@
         </div>
 
         <main class="tickBtn">
-            <button>上一步</button>
-            <button class="tickLBtn">立即購票</button>
+            <button class="defaultBtn">上一步</button>
+            <button class="tickLBtn defaultBtn">立即購票</button>
         </main>
 
     
@@ -122,7 +126,5 @@ export default {
 </script>
 
 <style>
-
-
 
 </style>

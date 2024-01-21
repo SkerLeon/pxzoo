@@ -13,7 +13,7 @@
                 入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！
             </h2>
             <p>畫面將於 5 秒鐘後跳轉回首頁。</p>
-            <button>返回首頁</button>
+            <button @click="useGoHome" class="defaultBtn">返回首頁</button>
         </section>
 
         <main>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import {goHome} from '@/stores/common.js';
 export default {
     components:{
         // RouterLink,
@@ -127,6 +128,9 @@ export default {
     methods:{
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
+        },
+        useGoHome(){
+            goHome(this);
         },
     },
     computed:{
