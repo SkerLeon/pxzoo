@@ -23,27 +23,27 @@
         </div>
       </div>
 
-      <aside class="pk_Sidebar">
-        <img class="pk_Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.png" alt="螃蟹icon">
+      <aside class="Sidebar">
+        <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.png" alt="螃蟹icon">
 
-        <ul class="pk_Sidebar_filter_btns">
-          <li class="pk_filter_btn_item" @click="showAnimalsAndFacilities()">
+        <ul class="Sidebar_filter_btns">
+          <li class="filter_btn_item" @click="showAnimalsAndFacilities()">
             <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
             <p class="pcInnerText">園區總攬</p>
           </li>
 
-          <li class="pk_filter_btn_item" @click="showFacilities()">
+          <li class="filter_btn_item" @click="showFacilities()">
             <img src="@/assets/images/park/pk_filter_icon_facility.svg" alt="篩選icon">
             <p class="pcInnerText">園區設施</p>
           </li>
 
-          <li class="pk_filter_btn_item" @click="showAnimals()">
+          <li class="filter_btn_item" @click="showAnimals()">
             <img src="@/assets/images/park/pk_filter_icon_Vector.svg" alt="篩選icon">
             <p class="pcInnerText">動物分館</p>
           </li>
         </ul>
 
-        <div class="pk_Sidebar_guide">   
+        <div class="Sidebar_guide">   
           <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
       </aside>

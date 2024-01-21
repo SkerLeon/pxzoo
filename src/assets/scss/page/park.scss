@@ -299,69 +299,7 @@
                 @include icon-right-location(800px);
             }
         }
-        .pk_Sidebar{
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            position: absolute;
-            top: 228px;
-            left: -261px;
-            transition: 0.3s;
-            @media (max-width:1746px) {
-                left: -237px;
-            }
-            @media (max-width:1536px) {
-                left: -208px;
-            }
-            @media (max-width:1280px) {
-                left: -174px;
-            }
-            &:hover{
-                transition: 0.3s;
-                left: 0px;
-            }
-            .pk_Sidebar_icon{
-                position: absolute;
-                top: -60px;
-                right: 70px;
-                width: 4.2vw;
-            }
-            .pk_Sidebar_filter_btns{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                .pk_filter_btn_item{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 19px;
-                    width: 13.6vw;
-                    height: 6.2vh;
-                    background-color: $bgColorSecGray;
-                    color: $mainTextColor;
-                    &:hover{
-                        cursor: pointer;
-                        color: $primaryColorGreen;
-                    }
-                    img{
-                        width: 1.47vw;
-                        height: 2.5vh;
-                    }
-                }
-            }
-            .pk_Sidebar_guide{
-                width: 3.31vw;
-                height: 6.01vh;
-                background-color: $bgColorSecGray;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                img{
-                    width: 1.1vw;
-                    height: 3.7vh;
-                }
-            }
-        }   
+        
     }
     .pk_Tickets{}
     .pk_origin{}
