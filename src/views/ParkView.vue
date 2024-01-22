@@ -49,7 +49,7 @@
       </aside>
     </section>
 
-    <section class="pk_content_bg">
+    <div class="pk_content_bg">
       <section class="pk_Tickets">
         <div class="pk_Tickets_items">
           <RouterLink v-for="(ticket, index) in tickets" :key="index" to="/ticket" class="pk_Tickets_item">
@@ -69,7 +69,7 @@
 
       <section class="pk_Origin">
       </section>
-    </section>
+    </div>
   </section>
 </template>
 
