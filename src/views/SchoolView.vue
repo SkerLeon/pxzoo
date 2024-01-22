@@ -24,7 +24,7 @@
         <img src="@/assets/images/school/teacher.svg" alt="teacher">
       </div>
     </div>
-    <div :class="{ 'content1': isContent1, 'content2': !isContent1 }">
+    <div :class="{ 'content1': isContent1}">
       <div v-if="isContent1" class="school_content_1">
         <div class="school_title forHeader">
           <div class="number_8">
@@ -47,8 +47,8 @@
           </div>
         </div>
 
-        <div class="school_name">動物小學堂</div>
-        <button @click="toggleContent" class="school_button pcInnerText">進入學堂</button>
+        <div class="school_name pcBigTitle" >動物小學堂</div>
+        <button @click="toggleContent" class="school_button pcInnerText defaultBtn">進入學堂</button>
       </div>
 
       <div v-else class="school_content_2">
@@ -56,11 +56,13 @@
         <div class="rule pcSmTitle">遊戲規則<br>
           總共有十個問題，每個問題都與動物有關<br>
           答對八題以上即可獲得門票折價優惠券</div>
-        <button  class="school_button pcInnerText">
+        <button  @click="startgame"  class="school_button pcInnerText defaultBtn">
           開始
         </button>
       </div>
     </div>
+
+
 
   </section>
 </template> 
@@ -73,7 +75,7 @@ export default {
   data() {
     return {
       isContent1: true,
-      isContent2: true,
+    
 
     };
 
@@ -82,13 +84,11 @@ export default {
     toggleContent() {
       this.isContent1 = !this.isContent1;
     },
-    toggleContent2() {
-      this.isContent2 = !this.isContent2;
-    }
   }
 };
 
 </script>
+
 
 <!-- <style>
 @media (min-width: 1024px) {
