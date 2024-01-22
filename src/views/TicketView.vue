@@ -25,7 +25,7 @@
       <TickCalendar />
     </article>
     <main v-else>
-      <!-- <TickInfo :open="true" /> -->
+      <TickInfo :open="true" />
       <TickCalendar />
     </main>
 
