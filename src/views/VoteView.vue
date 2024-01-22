@@ -59,7 +59,7 @@
         <img :src="getImageUrl(ranking.animal_img)" alt="Animal">
         <div class="name pcSmTitle">{{ ranking.name }}</div>
         <div class="votes phSmTitle">{{ ranking.votes }}票</div>
-        <button class="phInnerText">立即投票</button>
+        <button class="phInnerText defaultBtn">立即投票</button>
       </div>
     </div>
     <div class="caterpillar"><img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" /></div>
@@ -92,7 +92,7 @@
           <img :src="getImageUrl(voteItem.animal_img)" alt="Animal">
           <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
           <div class="vote_icon pcInnerText"><img src="@/assets/images/vote/star.svg" alt="">{{ voteItem.point }}票</div>
-          <button class="phInnerText">立即投票</button>
+          <button class="phInnerText defaultBtn">立即投票</button>
         </div>
       </div>
     </div>

@@ -57,8 +57,6 @@
     letter-spacing:20px;
     margin-top: 74px;
     margin-bottom:44px;
-    font-size: $pcFontH2;
-  font-family: $font;
   font-weight: 500;
 }
 .school .school_button{
@@ -102,11 +100,18 @@
     height: 338px;
     right: 0px;
 }
+// .school .school_tree .teacher img{
+//     width: 250px;
+//     height: 250px;
+//     right: 550px;
+//     bottom: -37px;
+// }
 .school .school_tree .teacher img{
-    width: 250px;
-    height: 250px;
-    right: 550px;
-    bottom: -37px;
+    width: 9vw;
+    // height: 250px;
+    right: 450px;
+    // bottom: -30px;
+   
 }
 .school .school_content_1{
     display: flex;
