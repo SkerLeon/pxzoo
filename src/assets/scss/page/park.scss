@@ -69,6 +69,67 @@
     }
 }
 
+//雲朵動畫及位置縮放函式
+$time:10s;
+@mixin pk_cloud1($top, $left, $pk_animation_name) {
+    @include icon-top-location($top);
+    @include icon-left-location($left);
+    @keyframes #{$pk_animation_name} {
+        0% {
+            top: $top;
+            left: $left;
+        }
+        25% {
+            top: $top +20;
+            left: $left ;
+        }       
+        50% {
+            top: $top ;
+            left: $left ;
+        }
+        75% {
+            top: $top+20;
+            left: $left ;
+        }       
+        100% {
+            top: $top;
+            left: $left;
+        }
+    }
+}
+@mixin pk_cloud2($top, $right, $pk_animation_name) {
+    @include icon-top-location($top);
+    @include icon-right-location($right);
+    @keyframes #{$pk_animation_name} {
+        0% {
+            top: $top;
+            right: $right;
+        }
+        25% {
+            top: $top +20;
+            right: $right ;
+        }       
+        50% {
+            top: $top ;
+            right: $right ;
+        }
+        75% {
+            top: $top+20;
+            right: $right ;
+        }       
+        100% {
+            top: $top;
+            right: $right;
+        }
+    }
+}
+
+
+
+
+
+
+
 
 .pk_content{
     width: 100%;
@@ -316,9 +377,12 @@
         background-image: url("/src/assets/images/park/pk_content_bg.png");
         background-repeat: no-repeat;
         position: relative;
+        overflow: hidden;
         .pk_Tickets{
             width: 74%; 
             margin: 234px auto 54px;
+            position: relative;
+            z-index: 5;
             .pk_Tickets_items{
                 display: flex;
                 gap: 28px;
@@ -332,15 +396,18 @@
                     :hover{
                         cursor: pointer;
                     }
-                    .pk_Tickets_item_top{}
+                    .pk_Tickets_item_top{
+                        position: relative;
+                        z-index: 10;
+                    }
                     .pk_Tickets_item_mid{
                         position: absolute;
                         z-index: 10;
                         top: 140px;
                     }
                     .pk_Tickets_item_animal{
-                        position: absolute;
-                        z-index: -2;
+                        position: relative;
+                        z-index: 5;
                     }
                     .pk_Tickets_item_text{
                         display: flex;
@@ -357,6 +424,7 @@
         .pk_Origin{
             width: 100%;
             position: relative;
+            z-index: 5;
             img{
                 width: 100%;
             }
@@ -420,20 +488,47 @@
         .pk_content_bg_cloud{
             width: 100%;
             height: 100%;
-            position: relative;
+            position: absolute;
+            top: 0;
+            z-index: 3;
             .pk_content_bg_cloud_default{
                 position: absolute;
                 bottom: 0;
             }
             .pk_content_bg_cloud1{
-                @include icon-top-location(126px);
-                @include icon-left-location(820px);
+                @include pk_cloud1(126px,820px,'cloud1-animation');
+                animation: cloud1-animation $time infinite;
             }
-            .pk_content_bg_cloud2{}
-            .pk_content_bg_cloud3{}
-            .pk_content_bg_cloud4{}
-            .pk_content_bg_cloud5{}
-            .pk_content_bg_cloud6{}
+            .pk_content_bg_cloud2{
+                @include pk_cloud1(1745px,-150px,'cloud2-animation');
+                animation: cloud2-animation $time+1 infinite;
+            }
+            .pk_content_bg_cloud3{
+                @include pk_cloud1(656px,10px,'cloud3-animation');
+                animation: cloud3-animation $time+4 infinite;
+            }
+            .pk_content_bg_cloud4{
+                @include pk_cloud1(1895px,1600px,'cloud4-animation');
+                animation: cloud4-animation $time+3 infinite;
+            }
+            .pk_content_bg_cloud5{
+                @include pk_cloud2(474px,-300px,'cloud5-animation');
+                animation: cloud5-animation $time+4 infinite;
+            }
+            .pk_content_bg_cloud6{
+                @include pk_cloud2(1206px,654px,'cloud6-animation');
+                animation: cloud6-animation $time+1 infinite;
+            }
+        }
+        .pk_content_bg_eagle{
+            position: absolute;
+            top: 0;
+            left: 350px;
+            width: 291px;
+            height: 219px;
+            img{
+                width: 100%;
+            }
         }
     }
 }
