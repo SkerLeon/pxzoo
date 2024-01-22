@@ -50,7 +50,7 @@
     </section>
 
     <section class="pk_content_bg">
-      <!-- <section class="pk_Tickets">
+      <section class="pk_Tickets">
         <div class="pk_Tickets_items">
           <RouterLink v-for="(ticket, index) in tickets" :key="index" to="/ticket" class="pk_Tickets_item">
             <img class="pk_Tickets_item_top" :src="getItemTopUrl(index+1)" alt="門票上半部">
@@ -99,7 +99,7 @@
 
       <div class="pk_content_bg_tree">
         <img src="@/assets/images/park/pk_content_bg_tree.png" alt="造景樹">
-      </div> -->
+      </div>
 
       <div class="pk_content_bg_cloud">
         <img v-for="num in 4" :class="`pk_content_bg_cloud_default pk_content_bg_cloud${num}`" src="@/assets/images/park/pk_content_bg_cloud1.png" alt="背景雲">
