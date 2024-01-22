@@ -86,8 +86,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/animalsDetail',
-      name: 'animalsDetail',
+      path: '/animalDetail',
+      name: 'animalDetail',
       component: () => import('../views/AnimalDetailView.vue'),
       meta:{
         title:'動物詳細資訊 | PxZoO'//暫定
