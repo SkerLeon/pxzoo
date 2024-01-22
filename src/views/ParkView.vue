@@ -78,6 +78,7 @@
         <div class="pk_information_bulletin_board">
           <img src="@/assets/images/park/pk_information_bulletin_board.png" alt="入園需知布告欄">
           <p class="pcInnerText">進入園區需要注意以下幾點<br>
+            <!-- 以下建議用li排，SEO較好 -->
           1. 不觸摸動物、不投食物給動物、不攀爬圍欄<br>
           2. 不要帶入寵物動物，因為這可能會對動物園的居住動物造成壓力或風險<br>
           3. 請勿靠近動物園的籠舍或圍欄，並遵循指示牌<br>

@@ -20,10 +20,10 @@
                 </div>
 
                 <div class="footer_media">
-                    <RouterLink to="https://www.facebook.com/"><img src="@/assets/images/footer/footer_fb.svg" alt="fb" /></RouterLink>
-                    <RouterLink to="https://www.instagram.com/"><img src="@/assets/images/footer/footer_ig.svg" alt="ig" /></RouterLink>
-                    <RouterLink to="https://line.me/tw/"><img src="@/assets/images/footer/footer_line.svg" alt="line" /></RouterLink>
-                    <RouterLink to="https://www.youtube.com/"><img src="@/assets/images/footer/footer_yt.svg" alt="yt" /></RouterLink>
+                    <a target="_blank" href="https://www.facebook.com/"><img src="@/assets/images/footer/footer_fb.svg" alt="fb" /></a>
+                    <a target="_blank" href="https://www.instagram.com/"><img src="@/assets/images/footer/footer_ig.svg" alt="ig" /></a>
+                    <a target="_blank" href="https://line.me/tw/"><img src="@/assets/images/footer/footer_line.svg" alt="line" /></a>
+                    <a target="_blank" href="https://www.youtube.com/"><img src="@/assets/images/footer/footer_yt.svg" alt="yt" /></a>
                 </div>
             </div>
 
@@ -64,11 +64,11 @@
         </div>
 
         <div class="footer_top pcDecMarkText">
-            <RouterLink to="#app">
+            <button @click="scrollToTop">
                 <span>TOP</span>
                 <br>
                 <img src="@/assets/images/vetor/vetor_animal_frog.svg" alt="top">
-            </RouterLink>
+            </button>
         </div>
 
         
@@ -84,10 +84,19 @@ export default {
     },
     data() {
         return {
-        targetValue: 0,
+        // targetValue: 0,
         };
     },
     created() {},
-    methods: {},
+    methods: {
+        scrollToTop(){
+            console.log(1);
+            // 使用 window.scrollTo() 滾動到頂部
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth', // 使用平滑滾動效果
+            });
+        }
+    },
 };
 </script>
