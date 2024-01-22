@@ -27,7 +27,7 @@
           </div>
           <input type="password" placeholder="密碼" />
         </div>
-        <a href="#" class="LBForget">忘記密碼?</a>
+        <a href="#" class="LBForget pcMarkText">忘記密碼?</a>
       </div>
       <div class="LBBtnArea">
         <button class="defaultBtn pcInnerText">
