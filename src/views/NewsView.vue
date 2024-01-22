@@ -5,11 +5,14 @@
         <img src="@/assets/images/news/banner_news.png" alt="news_banner">
     </div>
 
-    <!-- 動物列表 -->
+    <!-- 新聞列表 -->
     <main class="news_overview">
       <!-- select(mb) -->
-      <Select class="news_select" v-model="model" style="width:200px">
-          <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
+      <Select class="news_select" 
+      v-model="model" 
+      default-label="ALL"
+      style="width:200px">
+          <Option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
       <!-- menu button(pc) -->
       <div class="news_pc_sidebar">
@@ -48,25 +51,17 @@ export default {
                   label: 'All'
               },
               {
-                  value: 'grassLand',
-                  label: '草原之聲'
+                  value: 'new_activity',
+                  label: '最新活動'
               },
               {
-                  value: 'polar',
-                  label: '極地秘境'
+                  value: 'zoo_news',
+                  label: '園區動態'
               },
               {
-                  value: 'jungle',
-                  label: '叢林奇蹟'
+                  value: 'animal_knowledge',
+                  label: '動物知識'
               },
-              {
-                  value: 'birds',
-                  label: '鳥園樂章'
-              },
-              {
-                  value: 'aqua',
-                  label: '海洋奇觀'
-              }
           ],
       };
   },

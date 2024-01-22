@@ -117,6 +117,7 @@
     }
     .animal_name{
         @extend .pcSmTitle;
+        color:$mainTextColor;
         text-align: center;
         padding-top: 1.45vw; 
     }
