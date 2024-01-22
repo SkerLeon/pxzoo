@@ -1,53 +1,38 @@
 <template>
   <section class="forHeader">
       <!-- banner -->
-      <div class="news_banner">
-          <img src="@/assets/images/news/banner_news.png" alt="news_banner">
-      </div>
+    <div class="news_banner">
+        <img src="@/assets/images/news/banner_news.png" alt="news_banner">
+    </div>
 
+    <!-- 動物列表 -->
+    <main class="news_overview">
+      <!-- select(mb) -->
+      <Select class="news_select" v-model="model" style="width:200px">
+          <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
+      </Select>
       <!-- menu button(pc) -->
-      <div class="animal_pc_sidebar">
-          <aside class="Sidebar no_slide">
-              <!-- 側邊欄上方動物icon -->
-              <img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
+      <div class="news_pc_sidebar">
+        
+      </div> 
 
-              <!-- ul裡面的li是主要存放按鈕的區塊 -->
-              <ul class="Sidebar_filter_btns">
-                  <li class="filter_btn_item">
-                  <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                  <p class="pcInnerText">草原之聲</p>
-                  </li>
-                  <li class="filter_btn_item">
-                  <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                  <p class="pcInnerText">極地秘境</p>
-                  </li>
-                  <li class="filter_btn_item">
-                  <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                  <p class="pcInnerText">叢林奇蹟</p>
-                  </li>
-                  <li class="filter_btn_item">
-                  <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                  <p class="pcInnerText">鳥園樂章</p>
-                  </li>
-                  <li class="filter_btn_item">
-                  <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                  <p class="pcInnerText">海洋奇觀</p>
-                  </li>
-              </ul>
-
-              <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon) -->
-          </aside>
-      </div>
-
-      <!-- 動物列表 -->
-      <main class="news_overview">
-          <!-- select(mb) -->
-          <Select class="news_select" v-model="model" style="width:200px">
-              <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
-          </Select>
-
-          
-      </main>
+      <div class="news_section">
+        <img src="" alt="上方裝飾線">
+        <img src="" alt="下方裝飾線">
+        <div class="news-info">
+          <img src="" alt="news圖">
+          <div class="news-text">
+            <div class="news_tag_time">
+              <div class="time"></div>
+              <div class="tag"></div>
+            </div>
+            <div class="news_title">
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </main>
   </section>
 </template>
 

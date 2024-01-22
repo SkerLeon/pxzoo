@@ -10,6 +10,10 @@
     position: relative;
 
     .no_slide{
+        @media (max-width: 1920px) {
+            left: 0px;
+            top: 12vw;
+            }
         @media (max-width: 1746px) {
         left: 0px;
         top: 12vw;
@@ -30,6 +34,9 @@
             top: -2.5vw;
             right: 0vw;
         }
+    }
+    @media (max-width: 768px) {
+        display: none;
     }
 }
 
@@ -74,8 +81,8 @@
         }
     }
 }
-.animal_park:first-child{
-    padding-top: 4.5vw;
+.animal_park:nth-child(2){
+    padding-top: 4.6vw;
 } 
 .animal_park:last-child{
     padding-bottom: 4.2vw;
