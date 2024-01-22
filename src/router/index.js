@@ -77,6 +77,22 @@ const router = createRouter({
         title:'人氣投票 | PxZoO'
       }
     },
+    {
+      path: '/newsDetail',
+      name: 'newsDetail',
+      component: () => import('../views/NewsDetailView.vue'),
+      meta:{
+        title:'最新詳細消息 | PxZoO'//暫定
+      }
+    },
+    {
+      path: '/animalsDetail',
+      name: 'animalsDetail',
+      component: () => import('../views/AnimalsDetailView.vue'),
+      meta:{
+        title:'動物詳細資訊 | PxZoO'//暫定
+      }
+    },
     // 404頁面：沒有被配置的路由都會去NotFound
     { 
       path: '/:pathMatch(.*)*', 
