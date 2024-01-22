@@ -373,7 +373,7 @@
                 p{
                     width: 355px;
                     color: $bgColorLightgray;
-                    line-height: 180%;
+                    line-height: 220%;
                     letter-spacing: 2px;
                 }
             }
@@ -416,6 +416,24 @@
             img{
                 width: 100%;
             }
+        }
+        .pk_content_bg_cloud{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .pk_content_bg_cloud_default{
+                position: absolute;
+                bottom: 0;
+            }
+            .pk_content_bg_cloud1{
+                @include icon-top-location(126px);
+                @include icon-left-location(820px);
+            }
+            .pk_content_bg_cloud2{}
+            .pk_content_bg_cloud3{}
+            .pk_content_bg_cloud4{}
+            .pk_content_bg_cloud5{}
+            .pk_content_bg_cloud6{}
         }
     }
 }
