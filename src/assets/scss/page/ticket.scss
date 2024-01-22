@@ -4,13 +4,13 @@
     font-family: $font;
     padding-top: 44px;
     line-height: 1.5;
-    padding-bottom: 30px;
+    // padding-bottom: 30px; //info會浮起來
     text-align: justify;
     // min-height: 820px;
 
     img{
         vertical-align: bottom;
-        outline: 1px solid red;
+        // outline: 1px solid red;
     }
     h2{
         font-size: $pcFontH3;
@@ -115,6 +115,7 @@
 .tickInfo{
     width: 70%;
     margin-right: 44px;
+    position: relative;
 
     article{
         margin: 44px auto auto;
@@ -135,22 +136,18 @@
     ul{ list-style-type: disc; }
 }
 .tickBgc{
+    bottom: 0;
     position: absolute;
-    top: 0;
-    right: 50%;
-    translate: 20% 20%;
+    translate: 5% 0;
     
     .tickBoard{
-        width: 92%;
-        min-height: 480px;
+        height: 36.5vw;
+        width: auto;
     }
     .tickEagle{
-        // position: absolute;
         z-index: 3;
         width: 8vw;
         margin: auto -8vw 0 0;
-        // top: 0;
-        // translate: 0 783px;
     }
 }
 
@@ -165,19 +162,16 @@
         justify-content: end;
     }
 }
-@media screen and (max-width: 1835px){
-    .tickBgc{
-        translate: 22.5% 18%;
-    }
-}
-@media screen and (max-width: 1615px){
-    .tickBgc{
-        translate: 22.5% 20%;
+@media screen and (max-width: 1730px){
+    .tickBgc{        
+        .tickBoard{
+            height: 37.5vw;
+        }
     }
 }
 @media screen and (max-width: 1550px){
     .tickBgc{
-        translate: 22.5% 25%;
+        // translate: 22.5% 25%;
     }
     .tickCalendar{
         width: 50%;
@@ -195,7 +189,7 @@
 }
 @media screen and (max-width: 1420px){
     .tickBgc{
-        translate: 22.5% 25%;
+        // translate: 22.5% 25%;
     }
 }
 @media screen and (max-width: 1390px){
@@ -216,7 +210,7 @@
             margin-top: 20px;
         }
         .tickBoard{
-            width: 100%;
+            // width: 100%;
         }
         .tickBgc{
             // translate: 15% 145px;
