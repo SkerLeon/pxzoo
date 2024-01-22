@@ -122,7 +122,7 @@
         position: relative;
         z-index: 2;
         width: 60%;
-        height: 50vh;
+        // height: 50vh;
     }
     h2{
         color: $primaryColorYellow;
@@ -162,62 +162,82 @@
         justify-content: end;
     }
 }
-@media screen and (max-width: 1730px){
-    .tickBgc{        
+@media screen and (max-width: 1810px){
+    .tickBgc{
+        translate: 5.5% 0;
         .tickBoard{
             height: 37.5vw;
+        }
+        .tickEagle{
+            translate: -2.5vw 0;
+        }
+    }
+}
+@media screen and (max-width: 1675px){
+    .tickBgc{
+        translate: 7% 0;
+//         .tickBoard{
+//             height: 39vw;
+//         }
+        .tickEagle{
+            width: 7vw;
+        }
+    }
+    .tickInfo{
+        article{
+            width: 65%;
         }
     }
 }
 @media screen and (max-width: 1550px){
     .tickBgc{
-        // translate: 22.5% 25%;
-    }
-    .tickCalendar{
-        width: 50%;
-    }    
-    .tickInfo{
-        width: 80%;
-
-        article{
-            width: 68%;
-        }
-        h2{
-            margin-bottom: 20px;
+        translate: 4% 0;
+        .tickBoard{
+            height: 39vw;
         }
     }
-}
-@media screen and (max-width: 1420px){
-    .tickBgc{
-        // translate: 22.5% 25%;
-    }
-}
-@media screen and (max-width: 1390px){
-    .tickBgc{
-        // translate: 22.5% 30%;
-    }
-}
-@media screen and (max-width: 1200px){
-    .tickCalendar{
-        width: 45%;
-    }    
     .tickInfo{
-        width: 550px;
-
         article{
-            width: 90%;
-            // margin-left: 10%;
+            width: 70%;
             margin-top: 20px;
         }
+    }
+}
+@media screen and (max-width: 1350px){
+    .tickBgc{
+        translate: 2% 0;
         .tickBoard{
-            // width: 100%;
-        }
-        .tickBgc{
-            // translate: 15% 145px;
+            height: 41vw;
         }
     }
 }
-
+@media screen and (max-width: 1270px){
+    .tickBgc{
+        translate: 0% 0;
+        .tickBoard{
+            height: 42.5vw;
+        }
+    }
+    .tickInfo{
+        article{
+            width: 75%;
+        }
+    }
+}
+@media screen and (max-width: 1115px){
+    .tickBgc{
+        translate: -4% 0;
+        .tickBoard{
+            height: 45vw;
+        }
+    }
+    .tickInfo{
+        article{
+            width: 83%;
+            h2{ margin-bottom: 10px; }
+        }
+    }
+}
 // part2 選擇數量
 .tickNum{
     width: 100%;
