@@ -33,7 +33,7 @@
           註冊會員
         </button>
       </div>
-      <form class="myLog" id="loginForm" v-show="activeTab === 'loginForm'">
+      <form class="myLog" id="loginForm" v-show="activeTab === 'loginForm'" @submit.prevent="userLogin">
         <img
           src="@/assets/images/login/login-bg/login_input.png"
           alt=""
@@ -45,15 +45,15 @@
               <img src="@/assets/images/login/icon/account.svg" alt="" />
             </div>
 
-            <input type="text" placeholder="帳號" class="pcMarkText" />
+            <input type="text" placeholder="帳號" class="pcMarkText" v-model="loginAccount" />
           </div>
           <div class="psw">
             <div class="img">
               <img src="@/assets/images/login/icon/psw.svg" alt="" />
             </div>
-            <input type="password" placeholder="密碼" />
+            <input type="password" placeholder="密碼" v-model="loginPassword" />
           </div>
-          <button class="defaultBtn pcInnerText">
+          <button type="submit" class="defaultBtn pcInnerText">
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
@@ -108,8 +108,16 @@ export default {
   data() {
     return {
       activeTab: "loginForm",
+      loginAccount: '',
+      loginPassword: '',
     };
   },
   components: {},
+  methods:{
+    userLogin(){
+      console.log(this.loginAccount);
+      console.log(this.loginPassword);
+    }
+  }
 };
 </script>

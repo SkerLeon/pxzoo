@@ -12,10 +12,11 @@
                 <img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
 
                 <!-- ul裡面的li是主要存放按鈕的區塊 -->
+                <!-- 之後想優化程式碼把這邊變成v-for -->
                 <ul class="Sidebar_filter_btns">
-                    <li class="filter_btn_item">
-                    <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                    <p class="pcInnerText">草原之聲</p>
+                    <li class="filter_btn_item" @click="scrollTo('grassLand')">
+                        <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="草原之聲">
+                        <p class="pcInnerText">草原之聲</p>
                     </li>
                     <li class="filter_btn_item">
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
@@ -29,7 +30,7 @@
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
                     <p class="pcInnerText">鳥園樂章</p>
                     </li>
-                    <li class="filter_btn_item">
+                    <li class="filter_btn_item" @click="scrollTo('aqua')">
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
                     <p class="pcInnerText">海洋奇觀</p>
                     </li>
@@ -49,7 +50,7 @@
                 <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
             </Select>
 
-            <div class="animal_park">
+            <div class="animal_park" ref="grassLand">
                 <!-- 分館名稱 -->
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info">
@@ -90,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="animal_park">
+            <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name">海洋奇觀</h2>
                 <div class="animal_info">
                     <div v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6">
@@ -181,6 +182,16 @@ export default {
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
         },
+        scrollTo(el){
+            const scrollTarget = this.$refs[el]
+            if (scrollTarget) {
+                // 使用 nextTick 來確保 DOM 已經更新
+                this.$nextTick(() => {
+                    // 使用 scrollIntoView 滾動到頂部
+                    scrollTarget.scrollIntoView({ behavior: 'smooth' })
+                })
+            }
+        }
     },
     created() {
     },

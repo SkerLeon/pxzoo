@@ -97,10 +97,14 @@ footer{
         bottom: 2vw;
         left: 3.5vw;
         text-align: center;
-
-        a{
+        
+        button{
+            background-color: transparent;
+            outline: none;
+            border: none;
             color: $bgColorWhite;
             text-decoration: none;
+            cursor: pointer;
         }
 
         img{

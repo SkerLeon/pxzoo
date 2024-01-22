@@ -2,6 +2,7 @@
   <!-- 上個月投票結果 -->
   <section class="vote_top forHeader">
     <div class="banner">
+      <!-- 月份看資料庫設計，如果要做到月份統計這邊要寫動態的 -->
       <h1 class="title pcBigTitle">12月動物人氣投票冠軍揭曉！<br />前三名登場！</h1>
       <div class="podium_no">
         <div v-for="podium in podium_list" class="podium">
@@ -59,15 +60,16 @@
         <img :src="getImageUrl(ranking.animal_img)" alt="Animal">
         <div class="name pcSmTitle">{{ ranking.name }}</div>
         <div class="votes phSmTitle">{{ ranking.votes }}票</div>
-        <button class="phInnerText defaultBtn">立即投票</button>
+        <button class="phInnerText defaultBtn" @click="voteTop3(ranking)">立即投票</button>
       </div>
     </div>
+    <!-- 蟲在平板大小會蓋到，讓他移動XD -->
     <div class="caterpillar"><img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" /></div>
   </section>
 
   <!-- 投票列表 -->
 
-  <sertion class="vote_overview_all">
+  <section class="vote_overview_all">
     <div class="vote_button">
       <button @click="showContent('vote_grass')" @mouseover="setHoverState('vote_grass')"
         class="animals_grass pcInnerText" 
@@ -96,8 +98,10 @@
         </div>
       </div>
     </div>
-    <div class="elephant1"><img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" /></div>
-  </sertion>
+    <div class="elephant1">
+      <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
+    </div>
+  </section>
 </template>
 
 
@@ -202,14 +206,25 @@ export default {
       return new URL(`../assets/images/animal/small_pic/small_pic_${img}.png`, import.meta.url).href
     },
 
+    voteTop3(animal){
+      console.log(animal);
+    },
+  
     showContent(content) {
       this.currentContent = content;
     },
+
+    setHoverState(content){
+      // 如果只是要變樣式，沒有要做其他js程序，不要用vue用css就好了
+      this.currentContent = content;
+    }
   },
   created() {
   },
   computed: {
     currentVoteList() {
+      // 除非資料庫存五張類型動物的tabla，可以這樣寫
+      // 如果是同一張table記得要用filter類型，不然之後會寫不出來
       switch (this.currentContent) {
         case 'vote_grass':
           return this.vote_grass_list;

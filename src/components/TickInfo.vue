@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            isMobile: window.innerWidth <= 768,
+            isMobile: true,
             tickInfomation: [
                 {
                     id: 1,
@@ -65,6 +65,8 @@ export default {
         }
     },
     created(){
+        // 不要寫在data有時候會出錯，這裡可以初始化
+        this.windowSize()
         window.addEventListener('resize', this.windowSize);
     },
     methods:{
