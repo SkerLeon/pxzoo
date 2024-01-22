@@ -6,7 +6,7 @@
     line-height: 1.5;
     padding-bottom: 30px;
     text-align: justify;
-    min-height: 820px;
+    // min-height: 820px;
 
     img{
         vertical-align: bottom;
@@ -33,7 +33,7 @@
     div{
         display: flex;
     }
-    main{
+    main, .tickBtn{
         display: flex;
         margin: 0 auto;
         justify-content: space-between;
@@ -64,13 +64,14 @@
     input[type=number] {
         -moz-appearance:textfield;
     }
-    input, .countBTN>button{
+    input, .countBTN>button, select, option{
         height: 35px;
         border: 2px solid $mainTextColor;
         vertical-align: bottom;
         background-color: $bgColorWhite;
+        border-radius: 0;
     }
-    input{
+    input, select{
         padding-inline: 8px;
     }
 }
@@ -84,7 +85,6 @@
 };
 .tickBtn{
     width: 100%;
-    justify-content: end;
     button{ margin: 44px 0; }
     .tickLBtn{ margin-right: 0;}
 }
@@ -108,7 +108,7 @@
 .firstLine{
     border-top: 2px solid #3f3f3f;
     padding-top: 20px;
-    margin-top: 44px;
+    margin-top: 20px;
 }
 
 // part0 購票須知(TickInfo.vue)
@@ -121,11 +121,12 @@
         position: relative;
         z-index: 2;
         width: 60%;
+        height: 50vh;
     }
     h2{
         color: $primaryColorYellow;
         text-align: center;
-        margin: 44px auto;
+        margin: 20px auto;
     }
     ol{
         list-style-type: decimal;
@@ -137,7 +138,8 @@
     position: absolute;
     top: 0;
     right: 50%;
-    translate: 20% 145px;
+    translate: 20% 20%;
+    
     .tickBoard{
         width: 92%;
         min-height: 480px;
@@ -159,13 +161,24 @@
     .fakeCalendar{
         width: 100%;
     }
+    .tickBtn{
+        justify-content: end;
+    }
 }
 @media screen and (max-width: 1835px){
     .tickBgc{
-        translate: 22.5% 145px;
+        translate: 22.5% 18%;
+    }
+}
+@media screen and (max-width: 1615px){
+    .tickBgc{
+        translate: 22.5% 20%;
     }
 }
 @media screen and (max-width: 1550px){
+    .tickBgc{
+        translate: 22.5% 25%;
+    }
     .tickCalendar{
         width: 50%;
     }    
@@ -178,6 +191,16 @@
         h2{
             margin-bottom: 20px;
         }
+    }
+}
+@media screen and (max-width: 1420px){
+    .tickBgc{
+        translate: 22.5% 25%;
+    }
+}
+@media screen and (max-width: 1390px){
+    .tickBgc{
+        // translate: 22.5% 30%;
     }
 }
 @media screen and (max-width: 1200px){
@@ -196,7 +219,7 @@
             width: 100%;
         }
         .tickBgc{
-            translate: 15% 145px;
+            // translate: 15% 145px;
         }
     }
 }
@@ -210,6 +233,7 @@
 }
 
 .countBTN{
+    display: flex;
     justify-content: center;
     input{
         width: 60px;
@@ -275,7 +299,7 @@
     }
     .choosed{
         gap: 44px;
-        margin-top: 44px;
+        margin-top: 20px;
         div{
             align-items: flex-end;
             gap: 20px;
@@ -294,9 +318,9 @@
 // part3-2 優惠券&付款方式
 .pay{
     hgroup{
-        margin-top: 44px;
+        margin-top: 20px;
     }
-    article>*{
+    article>*:not(:first-child){
         margin-top: 20px;
         width: 100%;
 

@@ -30,7 +30,13 @@
                     <hgroup>
                         <h2>優惠折扣</h2>
                         <p v-if="noCoupon">目前沒有優惠券</p>
-                        <select v-else name="" id=""></select>
+
+                        <select v-else name="payway[]" id="payway" placeholder="請選擇優惠券">
+                            <option value="noUse">不使用優惠券</option>
+                            <option value="coupon1">付款金額 9 折</option>
+                            <option value="coupon2">付款金額 95 折</option>
+                        </select>
+
                     </hgroup>
                     <div class="price">
                         <span>優惠金額</span>
@@ -46,7 +52,13 @@
                 <article class="pay">
                     <hgroup>
                         <h2>付款方式</h2>
-                        <select name="" id=""></select>
+
+                        <select name="payway[]" id="payway" placeholder="請選擇付款方式">
+                            <option value="card">信用卡</option>
+                            <option value="cash">現場付款</option>
+                        </select>
+
+
                     </hgroup>
                     <div class="price">
                         <p>票券型態</p>

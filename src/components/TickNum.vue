@@ -16,26 +16,26 @@
                 <div>
                     <h2>NT$ {{ ticket.price }}</h2>
                     <p>/ 人</p>
-                    <div class="countBTN">
+                    <form class="countBTN">
                         <button>+</button>
                         <form action="ticket.php" method="post">
                             <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
                         </form>
                         <button>-</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </article>
         <div v-else class="tickOption PC">
             <article v-for=" ticket in tickets" :key="ticket.id">
                 <img :src="ticket.src" :alt="ticket.name">
-                <div class="countBTN">
+                <form class="countBTN">
                     <button>+</button>
                     <form action="ticket.php" method="post">
                         <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
                     </form>
                     <button>-</button>
-                </div>
+                </form>
             </article>
         </div>
 
@@ -44,10 +44,10 @@
             <h2 class="important mixedFont"><p>NT$</p> 260</h2>
         </div>
 
-        <main class="tickBtn">
+        <form class="tickBtn">
             <button class="defaultBtn">上一步</button>
-            <button class="tickLBtn defaultBtn">立即購票</button>
-        </main>
+            <button type="submit" class="tickLBtn defaultBtn">立即購票</button>
+        </form>
 
     
     </section>

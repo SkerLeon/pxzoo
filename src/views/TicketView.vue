@@ -3,23 +3,32 @@
     <div class="tickStep">
       <img src="@/assets/images/ticket/PC0.svg" alt="立即購票進度條">
     </div>
-<!-- main:flex/space-between-->
-<!-- 按鈕main.tickBtn -->
-<!-- button.tickLBtn -->
-<!-- hgroup:flex/space-between -->
-<!-- div:flex $$ -->
 
+    <!-- 安安 小龜老師，我是一畫 -->
+    <!-- 還深陷排版泥沼，寫不到太多vue的東東......
+      排版的問題可否請教您: 
 
+      1. PHP上課說"需要把資料傳到後端的，要用<form>包"，請問所有<input>、<select>、<option>...都要用<form>包嗎？
+      （降我排版要全部重新檢查了）
+      2. 請問下拉式選單中option的樣式設計，我研究了一下，option能寫的樣式極少，一般建議用div>ul>li來做......請教您：是這樣嗎？如果用div>ul>li在後續抓資料上會比較麻煩嗎？（還不太懂怎麼抓資料、傳到後端><）
+      3. TickInfo的背景圖...R起來好難，想請老師指點迷津TAT
+
+      目前對立即購票執行的規劃&理解:
+        (1) 這個檔案只有進度條&接渲染資料，預計每次下一頁時，更改進度條的圖片檔案。
+        (2) 使用者選擇的資料先都存在local host，直到TickFinished資料才存到後端。
+        (3) 所有頁面的js會另開一個ticket.js，按鈕控制&各種條件篩選會寫在那裏。
+        (4) 後面且戰且走orz
+      -->
 
 <!-- 0% -->
-    <!-- <article v-if="isMobile">
+    <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
-mobile的info用燈箱 不用一個頁面
+      <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main> -->
+    </main>
 
 <!-- 30% -->
     <!-- <main>
@@ -27,27 +36,15 @@ mobile的info用燈箱 不用一個頁面
     </main> -->
 
 <!-- 60% -->
-    <main>
+    <!-- <main>
       <TickPayway />
-    </main>
+    </main> -->
 
 <!-- 100% -->
     <!-- <main>
       <TickFinished />
     </main> -->
 
-    <!-- <div class="tickBtn">
-        <button>上一步</button>
-        <button class="tickLBtn">票種數量</button>
-    </div> -->
-    <!-- button 兩個都設定變數:
-        1. 隱藏這個componet
-        2. 渲染下一個componet-->
-    <!-- init PH的按鈕是選擇日期，PC的按鈕比他多一階段，是票種數量 -->
-    <!-- init PH的按鈕功能: 
-        1.隱藏購票須知
-        2.show進度條
-        3.渲染calender-->
   </section>
 </template>
 
