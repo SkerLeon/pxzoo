@@ -3,42 +3,51 @@
     @media (max-width:1920px) {
         top: $location;
     }
-    @media (max-width:1746px) {
-        top: $location * 0.91;
+    @media (max-width:1710px) {
+        top: $location * 0.89;
     }
-    @media (max-width:1536px) {
-        top: $location * 0.8;
+    @media (max-width:1600px) {
+        top: $location * 0.83;
+    }
+    @media (max-width:1440px) {
+        top: $location * 0.74;
     }
     @media (max-width:1280px) {
-        top: $location * 0.66;
+        top: $location * 0.65;
     }
 }
 @mixin icon-left-location($location) {
     @media (max-width:1920px) {
         left: $location ;
     }
-    @media (max-width:1746px) {
-        left: $location * 0.91;
+    @media (max-width:1710px) {
+        left: $location * 0.89;
     }
-    @media (max-width:1536px) {
-        left: $location * 0.8;
+    @media (max-width:1600px) {
+        left: $location * 0.83;
+    }
+    @media (max-width:1440px) {
+        left: $location * 0.74;
     }
     @media (max-width:1280px) {
-        left: $location * 0.66;
+        left: $location * 0.65;
     }
 }
 @mixin icon-right-location($location) {
     @media (max-width:1920px) {
         right: $location;
     }
-    @media (max-width:1746px) {
-        right: $location * 0.91;
+    @media (max-width:1710px) {
+        right: $location * 0.89;
     }
-    @media (max-width:1536px) {
-        right: $location * 0.8;
+    @media (max-width:1600px) {
+        right: $location * 0.83;
+    }
+    @media (max-width:1440px) {
+        right: $location * 0.74;
     }
     @media (max-width:1280px) {
-        right: $location * 0.66;
+        right: $location * 0.65;
     }
 }
 @mixin icon-size($wsize,$hsize){
@@ -46,11 +55,11 @@
         width: $wsize;
         height: $hsize;
     }
-    @media (max-width:1746px) {
+    @media (max-width:1600px) {
         width: $wsize*0.92;
         height: $hsize*0.92;
     }
-    @media (max-width:1536px) {
+    @media (max-width:1440px) {
         width: $wsize*0.84;
         height: $hsize*0.84;
     }
@@ -307,7 +316,7 @@
         background-image: url("/src/assets/images/park/pk_content_bg.png");
         background-repeat: no-repeat;
         .pk_Tickets{
-            width: 74%;
+            width: 74%; 
             margin: 234px auto;
             .pk_Tickets_items{
                 display: flex;

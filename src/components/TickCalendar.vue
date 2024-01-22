@@ -11,9 +11,10 @@
                 <img src="@/assets/images/ticket/PHcalender.svg" alt="" class="fakeCalendar">
             </article>
         </article>
-        <div class="tickBtn">
-            <button class="defaultBtn tickLBtn">票種數量</button>
-        </div>
+        <form class="tickBtn" action="ticket.php" method="post">
+            <button type="submit" class="defaultBtn tickLBtn">票種數量</button>
+
+        </form>
 
     
     </section>

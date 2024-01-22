@@ -1,21 +1,78 @@
+
 .animal_banner{
-    width: 100%;
-    vertical-align: middle;
+    img{
+        width: 100%;
+        vertical-align: middle;
+    }   
 }
+
+.animal_pc_sidebar{
+    position: relative;
+
+    .no_slide{
+        @media (max-width: 1746px) {
+        left: 0px;
+        top: 12vw;
+        }
+        @media (max-width: 1536px) {
+        left: 0px;
+        top: 12vw;
+        }
+        @media (max-width: 1280px) {
+        left: 0px;
+        top: 12vw;
+        }
+        .hidden_buttom{
+            display: none;
+        }
+        .octopus{
+            position: absolute;
+            top: -2.5vw;
+            right: 0vw;
+        }
+    }
+}
+
 .section{
     max-width: 1920px;
 }
+
 .animal_overview{
     max-width: calc(74% - 12%);
     margin: auto;
+    .animal_select{
+        display: none;
+    }
 }
+@media screen and (max-width: 768px) {
+    .section{
+        max-width: 768px;
+    }
+    .animal_overview{
+        max-width: 90%;
+        margin: auto;
+
+        .animal_select{
+            display: block;
+            margin-left: 2.1vw;
+            margin-top:6.5vw ;
+        }
+    }
+}
+
 .animal_park{
     padding-top:3vw ;
     .animal_park_name{
-        font-family: $font;
-        font-size: $pcFontH2;
+        @extend .pcBigTitle;
         color: $primaryColorGreen;
-}
+        @media screen and (max-width: 768px) {
+            .phBigTitle {
+                font-size: $phFontH2;
+                font-family: $font;
+                font-weight: 900;
+            }
+        }
+    }
 }
 .animal_park:first-child{
     padding-top: 4.5vw;
@@ -23,6 +80,15 @@
 .animal_park:last-child{
     padding-bottom: 4.2vw;
 }
+@media screen and (max-width: 768px) {
+    .animal_park{
+        padding-top:6.5vw ;
+    }
+    .animal_park:last-child{
+        padding-bottom: 18.6vw;
+    }
+}
+
 .animal_park_name{
     margin-left: 2.1vw;
     padding-bottom: 1.5vw;
@@ -31,18 +97,7 @@
     display: flex;
     flex-wrap: wrap;
     padding-top: 2.6vw;
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // gap: 3vw 3.6vw ;
 }
-
-// @media screen and (max-width: 768px) {
-//     .animal_info{
-//         display: grid;
-//         grid-template-columns: repeat(2, 1fr);
-//         gap: 3vw 3.6vw ;
-//     }
-// }
 
 .animal_each{
     display: flex;
@@ -54,6 +109,7 @@
         width: 12vw;
     }
     .animal_name{
+        @extend .pcSmTitle;
         text-align: center;
         padding-top: 1.45vw; 
     }
@@ -66,6 +122,21 @@
 }
 
 @media screen and (max-width: 768px) {
+    .animal_each{
+        padding-bottom: 5.2vw;
+        img{
+            width: 40vw;
+        }
+        .animal_name{
+            text-align: center;
+            padding-top: 4vw; 
+            .phSmTitle {
+                font-size: $phFontH3;
+                font-family: $font;
+                font-weight: 700;
+            }
+        }
+    }
     .col-sm-6 {
     width: 50%;
     }
