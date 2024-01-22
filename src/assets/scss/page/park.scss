@@ -315,9 +315,10 @@
         height: 2614px;
         background-image: url("/src/assets/images/park/pk_content_bg.png");
         background-repeat: no-repeat;
+        position: relative;
         .pk_Tickets{
             width: 74%; 
-            margin: 234px auto;
+            margin: 234px auto 54px;
             .pk_Tickets_items{
                 display: flex;
                 gap: 28px;
@@ -353,6 +354,68 @@
                 }
             }
         }
-        .pk_Origin{}
+        .pk_Origin{
+            width: 100%;
+            position: relative;
+            img{
+                width: 100%;
+            }
+            .pk_Origin_text_bg{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 450px;
+                height: 839px;
+                background-color: #231F20BB;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p{
+                    width: 355px;
+                    color: $bgColorLightgray;
+                    line-height: 180%;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+        .pk_information{
+            width: 74%;
+            margin: 73px auto 0 ;
+            display: flex;
+            .pk_information_bulletin_board{
+                width: 790px;
+                height: 875px;
+                position: relative;
+                z-index: 10;
+                img{
+                    width: 100%;
+                }
+                p{
+                    position: absolute;
+                    top: 130px;
+                    right: 55px;
+                    color: $bgColorLightgray;
+                    line-height: 250%;
+                    letter-spacing: 1px;
+                }
+            }
+            .pk_information_img_Billboard{
+                width: 567px;
+                height: 883px;
+                position: relative;
+                z-index: 10;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        .pk_content_bg_tree{
+            width: 100%;
+            position: absolute;
+            bottom: -3px;
+            img{
+                width: 100%;
+            }
+        }
     }
 }

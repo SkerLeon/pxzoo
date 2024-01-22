@@ -49,7 +49,7 @@
       </aside>
     </section>
 
-    <div class="pk_content_bg">
+    <section class="pk_content_bg">
       <section class="pk_Tickets">
         <div class="pk_Tickets_items">
           <RouterLink v-for="(ticket, index) in tickets" :key="index" to="/ticket" class="pk_Tickets_item">
@@ -68,8 +68,39 @@
       </section>
 
       <section class="pk_Origin">
+        <img src="@/assets/images/park/pk_Origin_bg.png" alt="緣起背景圖">
+        <div class="pk_Origin_text_bg">
+          <p class="pcInnerText">PXZoO結合了樂高積木、像素風以及動物園這三大元素，我們將動物園的魅力與創意相結合，為您呈現一場獨一無二的動物冒險之旅。我們的目標是打造一個充滿樂趣、富有教育性的環境，讓來訪的每位訪客都能在玩樂中學習，同時擁有難忘的體驗。歡迎加入PXZoO大家庭，一同探索奇妙的動物王國，啟發心靈，創造美好時光。    </p>
+        </div>
       </section>
-    </div>
+
+      <section class="pk_information">
+        <div class="pk_information_bulletin_board">
+          <img src="@/assets/images/park/pk_information_bulletin_board.png" alt="入園需知布告欄">
+          <p class="pcInnerText">進入園區需要注意以下幾點<br>
+          1. 不觸摸動物、不投食物給動物、不攀爬圍欄<br>
+          2. 不要帶入寵物動物，因為這可能會對動物園的居住動物造成壓力或風險<br>
+          3. 請勿靠近動物園的籠舍或圍欄，並遵循指示牌<br>
+          4. 請不要騷擾動物，以確保它們在舒適的環境中生活<br>
+          5. 將垃圾投放到指定的垃圾桶中，以確保動物園的乾淨和衛生<br>
+          6. 若攜帶兒童參觀要特別注意，以確保不會受到危險<br>
+          7. 請遵守動物園的攝影規定不要使用閃光燈<br>
+          8. 在夏天參觀時要注意防曬及飲水<br>
+          9. 請注意園區的開放時間和閉館時間，以保護您的人身安全<br>
+          10. 觸摸過公共設施或動物互動區後，應洗手或使用消毒液，以預防疾病傳播。<br>
+          11. 大部分動物園內都是禁煙區域，請遵守相關規定以保護動物和其他遊客的健康。
+          </p>
+        </div>
+
+        <div class="pk_information_img_Billboard">
+          <img class="pk_information_img_Billboard" src="@/assets/images/park/pk_information_Billboard.png" alt="告示牌">
+        </div>
+      </section>
+
+      <div class="pk_content_bg_tree">
+        <img src="@/assets/images/park/pk_content_bg_tree.png" alt="造景樹">
+      </div>
+    </section>
   </section>
 </template>
 
