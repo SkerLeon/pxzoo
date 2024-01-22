@@ -2,7 +2,7 @@ footer{
     background-color: #4F3029;
     position: relative;
 
-    .deco{
+    .footer_deco{
         display: flex;
         .grasses_1 img{
             position: absolute;
@@ -28,7 +28,7 @@ footer{
         
     }
 
-    .first{
+    .footer_first{
         width: 74%;
         margin: auto;
         display: flex;
@@ -36,7 +36,7 @@ footer{
         justify-content: space-between;
         padding: 0 0 2vw 0;
 
-        .front{
+        .footer_front{
             width: 20%;
 
             .logo img{
@@ -44,7 +44,7 @@ footer{
                 vertical-align: bottom;
             }
 
-            .media{
+            .footer_media{
                 width: 80%;
                 display: flex;
                 align-items: flex-end;
@@ -57,7 +57,7 @@ footer{
             }
         }
 
-        .info{
+        .footer_info{
             width: 60%;
             color: $bgColorWhite;
                 
@@ -67,19 +67,19 @@ footer{
             }
         }
 
-        .tourists{
+        .footer_tourists{
             color: $bgColorWhite;
         }
     }
 
-    .line{
+    .footer_line{
         width: 74%;
         height: 1px;
         margin: auto;
         background-color: $bgColorWhite;
     }
 
-    .bottom{
+    .footer_bottom{
         width: 74%;
         margin: auto;
         color: $bgColorWhite;
@@ -92,7 +92,7 @@ footer{
         }
     }
 
-    .top{
+    .footer_top{
         position: absolute;
         bottom: 2vw;
         left: 3.5vw;
@@ -111,7 +111,7 @@ footer{
         
     }
 
-    .ground{
+    .footer_ground{
         img{
             width: 100%;
             vertical-align: bottom;

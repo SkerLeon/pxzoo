@@ -1,4 +1,4 @@
-.fixedvote{
+.fixed_vote{
     z-index: 999;
     position: fixed;
     bottom: 0;
@@ -16,13 +16,13 @@
         text-align: center;
     }
 
-    .top{
+    .fixed_top{
         position: absolute;
         top: 50px;
         left: 27px;
     }
 
-    .bottom{
+    .fixed_bottom{
         position: absolute;
         top: 120px;
         left: 30px;

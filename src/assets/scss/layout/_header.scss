@@ -11,7 +11,7 @@ header {
     background-color: #a67751;
     border-bottom: 3px #d0ae93 solid;
     width: 100%;
-    height: 35px;
+    height: 40px;
     position: absolute;
     top: 23px;
     display: flex;
@@ -34,15 +34,17 @@ header {
 
     .arrowleft{
       position: absolute;
+      top: 0;
       left: 0;
-      border-bottom: 35px solid #ff730000;
+      border-bottom: 40px solid #ff730000;
       border-left: 50px solid $bgColorLightgray;
     }
 
     .arrowright{
       position: absolute;
+      top: 0;
       right: 0;
-      border-bottom: 35px solid #ff730000;
+      border-bottom: 40px solid #ff730000;
       border-right: 50px solid $bgColorLightgray;
     }
 
@@ -90,15 +92,19 @@ header {
       // font-size: $pcFontH4;
       color: $bgColorWhite;
       // position: relative;
+      &:hover{
+        color: $primaryColorYellow;
+      }
     }
 
-    .headerbtn{
+    .header_btn{
       padding-bottom: 7px;
+
     }
 
-    .logo{   
+    .header_logo{   
       width: 180px;
-      height: 42px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -115,27 +121,198 @@ header {
       }
     }
 
-    .login{
+    .header_login{
       position: absolute;
-      right: -50px;
+      right: -4vw;
       padding-bottom: 4px;
 
-      img{
-        width: 14px;
+      .icon img{
+        width: 15px;
+      }
+
+      .header_login_hover{
+        position: absolute;
+        top: -30px;
+        right: -1.5vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 15px;
+          left: -18px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover .header_login_hover img{
+        display: block;
+        top: 0px;
       }
     }
 
-    .arrowright {
-      position: absolute;
-      right: 0;
-      border-bottom: 35px solid #ff730000;
-      border-right: 50px solid $bgColorLightgray;
+    .header_news{
+      .header_news_hover{
+        position: absolute;
+        top: 3px;
+        left: 5vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
     }
 
-    .login {
-      position: absolute;
-      right: -50px;
-      padding-bottom: 4px;
+    .header_park{
+      .header_park_hover{
+        position: absolute;
+        top: 3px;
+        left: 15vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
     }
+
+    .header_animal{
+      .header_animal_hover{
+        position: absolute;
+        top: 3px;
+        left: 24.5vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
+    }
+
+    .header_vote{
+      .header_vote_hover{
+        position: absolute;
+        top: 3px;
+        left: 51vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
+    }
+
+    .header_school{
+      .header_school_hover{
+        position: absolute;
+        top: 3px;
+        left: 60.8vw;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
+    }
+
+    .header_ticket{
+      .header_ticket_hover{
+        position: absolute;
+        top: 3px;
+        left: 1060px;
+        width: 60px;
+        height: 20px;
+        overflow: hidden;
+
+        img {
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          top: 18px;
+          left: -15px;
+          vertical-align: bottom;
+          transition: .5s ease-in-out;
+        }
+      }
+      
+      &:hover img{
+        display: block;
+        top: 0px;
+      }
+    }
+      
   }
+
+
+  
 }

@@ -1,7 +1,39 @@
 <template>
   <section class="home">
+    <div id="bannersliderBoard">
+      <ul id="banner">
+        <li>
+          <div class="banner1"></div>
+        </li>
+        
+        <li>
+          <div class="banner2"></div>
+        </li>
+
+        <li>
+          <div class="banner3"></div>
+        </li>
+
+        <li>
+          <div class="banner4"></div>
+        </li>
+      </ul>
+
+      <ul id="bannerButton">
+        <!-- <li class="clicked"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li> -->
+      </ul>
+    </div>
+
     
-  </section>
+
+</section>
 </template>
 
 <script>
