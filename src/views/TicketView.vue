@@ -29,14 +29,14 @@
       -->
 
 <!-- 0% -->
-    <!-- <article v-if="isMobile">
+    <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main> -->
+    </main>
 
 <!-- 30% -->
     <!-- <main>
@@ -57,8 +57,7 @@
 </template>
 
 <script>
-// import TickInfo from '@/components/tick/TickInfo.vue';
-// 把以下這些組件移到tick目錄裡
+// 🐢:把以下這些組件移到tick目錄裡
 import TickInfo from '@/components/tick/TickInfo.vue';
 import TickCalendar from '@/components/tick/TickCalendar.vue';
 import TickNum from '@/components/tick/TickNum.vue';

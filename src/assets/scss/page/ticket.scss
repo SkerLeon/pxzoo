@@ -113,7 +113,7 @@
 
 // part0 購票須知(TickInfo.vue)
 .tickInfo{
-    width: 70%;
+    // width: 70%;
     margin-right: 44px;
     position: relative;
 
@@ -121,13 +121,13 @@
         margin: 44px auto auto;
         position: relative;
         z-index: 2;
-        width: 60%;
+        width: 55%;
         // height: 50vh;
     }
     h2{
         color: $primaryColorYellow;
         text-align: center;
-        margin: 20px auto;
+        margin: 44px auto 20px;
     }
     ol{
         list-style-type: decimal;
@@ -138,22 +138,22 @@
 .tickBgc{
     bottom: 0;
     position: absolute;
-    translate: 5% 0;
+    transform: translate(2%, 0);
     
     .tickBoard{
-        height: 36.5vw;
+        height: 31vw;
         width: auto;
     }
     .tickEagle{
         z-index: 3;
         width: 8vw;
-        margin: auto -8vw 0 0;
+        margin: auto -4vw 0 0;
     }
 }
 
 // part1 日曆(TickCalendar.vue)
 .tickCalendar{
-    width: 40%;
+    width: 60%;
     div{
         display: block;
     }
@@ -165,110 +165,139 @@
     }
 }
 .calendar{
-    height: 350px;
+    height: 400px;
     overflow: hidden;
-    // width: 366px;
-    outline: #3f3f3f 1px solid;
     text-align: center;
-    background-image: url(../images/ticket/calenderbg.svg);
     background-size: cover;
-    padding: 8px;
+    color: #3f3f3f;
 
     table{
-        // background-color: $bgColorWhite;
+        background-color: $bgColorWhite;
         font-size: $pcFontH3;
     }
     .ivu-calendar-header{
         padding: 0;
     }
+    // 區間按鈕
+    .ivu-calendar-header-action{
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $mainTextColor;
+        font-family: $font;
+    }
+    // 當前月份
     .ivu-calendar-header-title{
         font-size: $pcFontH3;
         padding-top: 9px;
-        height: 50px;
+        height: 40px;
         font-weight: 700;
-        // background-color: $primaryColorYellow;
+        background-color: $primaryColorYellow;
     }
     .ivu-calendar-table thead th, td{
         padding: 8px;
         height: 40px;
         width: 4vw;
         text-align: center;
+        color: $mainTextColor;
+    }
+    .ivu-calendar-table-day-other{
+        color: $inputHintColor;
     }
     
 }
-@media screen and (max-width: 1810px){
-    .tickBgc{
-        translate: 5.5% 0;
-        .tickBoard{
-            height: 37.5vw;
-        }
-        .tickEagle{
-            translate: -2.5vw 0;
-        }
-    }
-}
-@media screen and (max-width: 1675px){
-    .tickBgc{
-        translate: 7% 0;
-//         .tickBoard{
-//             height: 39vw;
+
+// @mixin tickInfo(){
+//     @for $i from 1 through 9 {
+//         $maxWidth: 1920 - 100*$i;
+//         $tranX: -5% - 1.5%*$i;
+//         $height: 36 + 0.25*$i*$i*$i;
+//         $width: 65% + 1.75%*$i;
+//         $h2mt: 60 - 4*$i*$i;
+
+//         @media screen and (max-width: #{$maxWidth}px){
+//             .tickBgc{
+//                 transform: translate($tranX, 0);
+//                 .tickBoard{
+//                     height: #{$height}vw;
+//                 }
+//             }
+//             .tickInfo{
+//                 article{
+//                     width: $width;
+//                 }
+//                 h2{
+//                 margin-top: #{$h2mt}px;
+//                 }
+//             }
 //         }
-        .tickEagle{
-            width: 7vw;
-        }
+//     }
+// }
+// @include tickInfo();
+@media screen and (max-width: 1850px){
+    .tickBgc{
+        transform: translate(0%, 0);
+        .tickBoard{ height: 33vw; }
+    }
+    .tickInfo{
+        article{ width: 60%; }
+    }
+}
+@media screen and (max-width: 1750px){
+    .tickBgc{
+        transform: translate(-4%, 0);
+        .tickBoard{ height: 35vw; }
+    }
+    .tickInfo{
+        article{ width: 65%; }
+    }
+}
+@media screen and (max-width: 1640px){
+    .tickBgc{
+        transform: translate(-6%, 0);
+        .tickBoard{ height: 37vw; }
+    }
+}
+@media screen and (max-width: 1540px){
+    .tickBgc{
+        transform: translate(-8%, 0);
+        .tickBoard{ height: 39vw; }
+    }
+    .tickInfo{
+        article{ width: 72%; }
+    }
+}
+@media screen and (max-width: 1490px){
+    .tickBgc{
+        transform: translate(-10%, 0);
+        .tickBoard{ height: 41vw; }
+    }
+    .tickInfo{
+        h2{ margin-top: 50px; }
+    }
+}
+@media screen and (max-width: 1400px){
+    .tickBgc{
+        transform: translate(-13%, 0);
+        .tickBoard{ height: 43vw; }
     }
     .tickInfo{
         article{
-            width: 65%;
+            width: 81%;
+            h2{ margin-top: 55px; }
         }
     }
 }
-@media screen and (max-width: 1550px){
+@media screen and (max-width: 1320px){
     .tickBgc{
-        translate: 4% 0;
-        .tickBoard{
-            height: 39vw;
-        }
+        transform: translate(-13%, 0);
+        .tickBoard{ height: 45vw; }
     }
     .tickInfo{
         article{
-            width: 70%;
-            margin-top: 20px;
-        }
-    }
-}
-@media screen and (max-width: 1350px){
-    .tickBgc{
-        translate: 2% 0;
-        .tickBoard{
-            height: 41vw;
-        }
-    }
-}
-@media screen and (max-width: 1270px){
-    .tickBgc{
-        translate: 0% 0;
-        .tickBoard{
-            height: 42.5vw;
-        }
-    }
-    .tickInfo{
-        article{
-            width: 75%;
-        }
-    }
-}
-@media screen and (max-width: 1115px){
-    .tickBgc{
-        translate: -4% 0;
-        .tickBoard{
-            height: 45vw;
-        }
-    }
-    .tickInfo{
-        article{
-            width: 83%;
-            h2{ margin-bottom: 10px; }
+            width: 81%;
+
         }
     }
 }
