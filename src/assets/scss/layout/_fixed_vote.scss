@@ -3,8 +3,10 @@
     position: fixed;
     bottom: 0;
     right: 1vw;
-    width: 140px;
-    height: 200px;
+    // width: 140px;
+    // height: 200px;
+    width: 10vw;
+    height: 14vw;
     background-image: url("/src/assets/images/fixedvote/fixedvote_pc.svg");
     background-size: contain;
     background-repeat: no-repeat;
@@ -18,13 +20,13 @@
 
     .fixed_top{
         position: absolute;
-        top: 50px;
-        left: 27px;
+        top: 3.5vw;
+        left: 2.2vw;
     }
 
     .fixed_bottom{
         position: absolute;
-        top: 120px;
-        left: 30px;
+        top: 8.3vw;
+        left: 2.5vw;
     }
 }

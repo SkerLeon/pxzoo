@@ -77,20 +77,20 @@
       <section class="pk_information">
         <div class="pk_information_bulletin_board">
           <img src="@/assets/images/park/pk_information_bulletin_board.png" alt="入園需知布告欄">
-          <p class="pcInnerText">進入園區需要注意以下幾點<br>
-            <!-- 以下建議用li排，SEO較好 -->
-          1. 不觸摸動物、不投食物給動物、不攀爬圍欄<br>
-          2. 不要帶入寵物動物，因為這可能會對動物園的居住動物造成壓力或風險<br>
-          3. 請勿靠近動物園的籠舍或圍欄，並遵循指示牌<br>
-          4. 請不要騷擾動物，以確保它們在舒適的環境中生活<br>
-          5. 將垃圾投放到指定的垃圾桶中，以確保動物園的乾淨和衛生<br>
-          6. 若攜帶兒童參觀要特別注意，以確保不會受到危險<br>
-          7. 請遵守動物園的攝影規定不要使用閃光燈<br>
-          8. 在夏天參觀時要注意防曬及飲水<br>
-          9. 請注意園區的開放時間和閉館時間，以保護您的人身安全<br>
-          10. 觸摸過公共設施或動物互動區後，應洗手或使用消毒液，以預防疾病傳播。<br>
-          11. 大部分動物園內都是禁煙區域，請遵守相關規定以保護動物和其他遊客的健康。
-          </p>
+          <ul class="pcInnerText">
+            進入園區需要注意以下幾點
+            <li>1. 不觸摸動物、不投食物給動物、不攀爬圍欄</li>
+            <li>2. 不要帶入寵物動物，因為這可能會對動物園的居住動物造成壓力或風險</li>
+            <li>3. 請勿靠近動物園的籠舍或圍欄，並遵循指示牌</li>
+            <li>4. 請不要騷擾動物，以確保它們在舒適的環境中生活</li>
+            <li>5. 將垃圾投放到指定的垃圾桶中，以確保動物園的乾淨和衛生</li>
+            <li>6. 若攜帶兒童參觀要特別注意，以確保不會受到危險</li>
+            <li>7. 請遵守動物園的攝影規定不要使用閃光燈</li>
+            <li>8. 在夏天參觀時要注意防曬及飲水</li>
+            <li>9. 請注意園區的開放時間和閉館時間，以保護您的人身安全</li>
+            <li>10. 觸摸過公共設施或動物互動區後，應洗手或使用消毒液，以預防疾病傳播。</li>
+            <li>11. 大部分動物園內都是禁煙區域，請遵守相關規定以保護動物和其他遊客的健康。</li>
+          </ul>
         </div>
 
         <div class="pk_information_img_Billboard">
@@ -106,6 +106,11 @@
         <img v-for="num in 4" :class="`pk_content_bg_cloud_default pk_content_bg_cloud${num}`" src="@/assets/images/park/pk_content_bg_cloud1.png" alt="背景雲">
         <img v-for="num in 2" :class="`pk_content_bg_cloud_default pk_content_bg_cloud${num+4}`" src="@/assets/images/park/pk_content_bg_cloud2.png" alt="背景雲">
       </div>
+
+      <div class="pk_content_bg_eagle">
+        <img src="@/assets/images/park/pk_content_bg_eagle.png" alt="老鷹圖片">
+      </div>
+
     </section>
   </section>
 </template>
