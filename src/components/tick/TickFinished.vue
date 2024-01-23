@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import {goHome} from '@/assets/js/common';
+import {goHome} from '@/assets/js/common.js';
 export default {
     components:{
         // RouterLink,
@@ -82,7 +82,6 @@ export default {
     },
     data(){
         return {
-            isMobile: window.innerWidth <= 768,
             tickets:[
                 {
                     id: 1,
@@ -123,6 +122,7 @@ export default {
         }
     },
     created(){
+        this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
     methods:{
@@ -134,16 +134,10 @@ export default {
         },
     },
     computed:{
-        // search(){}
+
     },
     watch:{
-        search(newSearch, oldSearch){
-            console.log(this.Search); // 監聽search的值            
-            console.log('new:', +newSearch);
-            console.log('old:', +oldSearch);
-            // 可以調用下面的函數
-            this.filterHandle();
-        }
+
     }
 }
 

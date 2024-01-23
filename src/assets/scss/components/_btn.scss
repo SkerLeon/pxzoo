@@ -25,21 +25,12 @@ $Sidebar_icon_rigth: 70px;
   gap: 10px;
   align-items: center;
   position: absolute;
-  top: 228px;
-  left: -261px;
+  top: 24.7%;
+  left: -13.7%;
   transition: 0.3s;
-  @media (max-width: 1746px) {
-    left: -237px;
-  }
-  @media (max-width: 1536px) {
-    left: -210px;
-  }
-  @media (max-width: 1280px) {
-    left: -178px;
-  }
   &:hover {
     transition: 0.3s;
-    left: 0px;
+    left: 0;
   }
   .Sidebar_icon {
     position: absolute;
