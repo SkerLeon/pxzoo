@@ -1,17 +1,18 @@
+@use 'sass:math';
 //位置 px換算%數
 @mixin icon-top-location($location) {
-    top:$location/1px/923*100*1%;
+    top: math.div(math.div($location, 1px), 923) * 100 * 1%;
 }
 @mixin icon-left-location($location) {
-    left:$location/1px/1920*100*1%;
+    left: math.div(math.div($location, 1px), 1920) * 100 * 1%;
 }
 @mixin icon-right-location($location) {
-    right:$location/1px/1920*100*1%;
+    right: math.div(math.div($location, 1px), 1920) * 100 * 1%;
 }
 //高度寬度px換算%數
 @mixin mapicon-px-percentage-size($wsize,$hsize){  
-    width: $wsize/1px/1920*100*1%;
-    height: $hsize/1px/923*100*1%; 
+    width: math.div(math.div($wsize, 1px), 1920) * 100 * 1%;
+    height: math.div(math.div($hsize, 1px), 923) * 100 * 1%; 
 }
 //雲朵動畫函式
 $time:10s;
@@ -22,7 +23,7 @@ $time:10s;
             left: $left;
         }
         25% {
-            top: $top +0.76;
+            top: $top + 0.76;
             left: $left ;
         }       
         50% {
@@ -30,7 +31,7 @@ $time:10s;
             left: $left ;
         }
         75% {
-            top: $top+0.76;
+            top: $top+ 0.76;
             left: $left ;
         }       
         100% {
@@ -46,7 +47,7 @@ $time:10s;
             right: $right;
         }
         25% {
-            top: $top +0.76;
+            top: $top + 0.76;
             right: $right ;
         }       
         50% {
@@ -54,7 +55,7 @@ $time:10s;
             right: $right ;
         }
         75% {
-            top: $top+0.76;
+            top: $top+ 0.76;
             right: $right ;
         }       
         100% {
