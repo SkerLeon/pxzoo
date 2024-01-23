@@ -9,8 +9,8 @@
             </hgroup>
             <article></article>
 
-                <Calendar v-model="value" type="year" cell-height="40" class="calendar">
-                    <template #month="{date, data}">
+                <Calendar v-model="value"  cell-height="40" class="calendar">
+                    <template #year="{date, data}">
                         <!-- <div>
                             <Badge status="warning" text="看苹果发布会" v-if="data.day === '2019-09-11'" />
                             <Badge status="success" text="中秋节" v-if="data.day === '2019-09-13'" />
