@@ -53,6 +53,9 @@ section.loginPage {
   background-color: $bgColorLightgray;
   justify-content: center;
   align-items: center;
+  @media (width <= 768px) {
+    height: 60vw;
+  }
   .active {
     color: $primaryColorGreen;
     background-color: $bgColorSecGray;
@@ -64,6 +67,11 @@ section.loginPage {
     right: 35vw;
     height: 120px;
     width: 250px;
+    @media (width <= 768px) {
+      right: 30vw;
+      height: 90px;
+      width: 190px;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -76,8 +84,18 @@ section.loginPage {
       position: absolute;
       top: 9px;
       color: $mainTextColor;
+      font-size: $pcFontH4;
+      font-family: $font;
+      font-weight: 500;
       &:hover {
         color: $primaryColorYellow;
+      }
+      @media (width <= 768px) {
+        letter-spacing: 1px;
+        line-height: 1rem;
+        top: 5px;
+        font-size: 12px;
+        left: 7px;
       }
     }
   }
@@ -88,6 +106,11 @@ section.loginPage {
     top: 0;
     left: 5px;
     animation: cloud 12s linear infinite;
+    @media (width <= 768px) {
+      left: 5px;
+      width: 150px;
+      height: 80px;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -100,6 +123,12 @@ section.loginPage {
     top: 0;
     right: 5px;
     animation: sun 5s linear infinite;
+    @media (width <= 768px) {
+      width: 150px;
+      height: 80px;
+      top: -5px;
+      right: 0px;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -115,11 +144,18 @@ section.loginPage {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    @media (width <= 768px) {
+      width: 50%;
+      height: 65%;
+    }
     .loginBtnGroup {
       width: 100%;
       height: 20%;
       display: flex;
       position: relative;
+      @media (width <= 768px) {
+        height: 15%;
+      }
       img {
         position: absolute;
         width: 100%;
@@ -141,8 +177,14 @@ section.loginPage {
       }
     }
     .myLog {
+      width: 100%;
       height: 80%;
+      display: flex;
+      align-items: center;
       position: relative;
+      @media (width <= 768px) {
+        height: 85%;
+      }
       img.loginSigninBg {
         width: 100%;
         height: 100%;
@@ -156,17 +198,27 @@ section.loginPage {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        padding-top: 3vw;
+
         z-index: 20;
+        @media (width <= 768px) {
+          width: 100%;
+        }
         .acc {
           display: flex;
           align-items: center;
           width: 50%;
           z-index: 20;
+          @media (width <= 768px) {
+            width: 70%;
+          }
           .img {
             width: 25px;
             height: 25px;
             margin: 0 5px;
+            @media (width <= 768px) {
+              width: 20px;
+              height: 20px;
+            }
             img {
               width: 100%;
               height: 100%;
@@ -177,6 +229,9 @@ section.loginPage {
             height: 35px;
             width: 100%;
             background-color: $inputColor;
+            @media (width <= 768px) {
+              height: 25px;
+            }
             &::placeholder {
               padding: 5px;
               color: $inputTextColor;
@@ -188,10 +243,17 @@ section.loginPage {
           align-items: center;
           width: 50%;
           z-index: 20;
+          @media (width <= 768px) {
+            width: 70%;
+          }
           .img {
             width: 25px;
             height: 25px;
             margin: 0 5px;
+            @media (width <= 768px) {
+              width: 20px;
+              height: 20px;
+            }
             img {
               width: 100%;
               height: 100%;
@@ -201,6 +263,9 @@ section.loginPage {
             height: 35px;
             width: 100%;
             background-color: $inputColor;
+            @media (width <= 768px) {
+              height: 25px;
+            }
             &::placeholder {
               padding: 5px;
               color: $inputTextColor;
