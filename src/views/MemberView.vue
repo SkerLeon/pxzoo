@@ -1,16 +1,16 @@
 <template>
   <main class="memPage forHeader">
     <aside class="memSidebar">
-      <img
-        src="../assets/images/member/chameleon_2.svg"
-        alt=""
-        class="chameleon"
-      />
       <ul>
         <li
           @click="activeTab = 'info'"
           :class="{ active: activeTab === 'info' }"
         >
+          <img
+            src="../assets/images/member/chameleon_2.svg"
+            alt=""
+            class="chameleon"
+          />
           <img src="../assets/images/member/memicon/1.svg" alt="" />
           <p class="pcInnerText">會員資訊</p>
         </li>
@@ -35,7 +35,7 @@
           <img src="../assets/images/member/memicon/4.svg" alt="" />
           <p class="pcInnerText">會員評論</p>
         </li>
-        <li>
+        <li @click="toHomePage()">
           <img src="../assets/images/member/memicon/5.svg" alt="" />
           <p class="pcInnerText">會員登出</p>
         </li>
@@ -101,21 +101,21 @@
         <div class="couponGroup">
           <div class="coupon">
             <img src="../assets/images/member/discount10.svg" alt="" />
-            <button class="defaultBtn pcInnerText">
+            <button class="couponBtn pcInnerText">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
           </div>
           <div class="coupon">
             <img src="../assets/images/member/discount15.svg" alt="" />
-            <button class="defaultBtn pcInnerText">
+            <button class="couponBtn pcInnerText">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
           </div>
           <div class="coupon">
             <img src="../assets/images/member/discount20.svg" alt="" />
-            <button class="defaultBtn pcInnerText">
+            <button class="couponBtn pcInnerText">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
@@ -134,18 +134,39 @@
         <h2 class="pcBigTitle">會員評論</h2>
         <div class="commentGroup">
           <div class="comment">
-            <button class="defaultBtn pcInnerText">
+            <img
+              src="@/assets/images/member/papper.png"
+              alt="commentBg"
+              class="commentBg"
+            />
+            <img
+              src="../assets/images/member/commentPic.png"
+              alt="commentPic"
+              class="commentPic"
+            />
+            <div class="commentArea">
+              <p class="commentTitle pcSmTitle">Emily L.</p>
+              <p class="commentText pcInnerText">
+                我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
+              </p>
+            </div>
+            <button class="defaultBtn pcInnerText commentBtn">
               修改評論
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
+            <img
+              src="../assets/images/member/memicon/green_close.svg"
+              alt="green_close"
+              class="greenClose"
+            />
           </div>
         </div>
       </div>
-      <!-- <img
-        src="@/assets/images/member/elephant_1.svg"
-        alt="elephant"
-        class="elephant"
-      /> -->
+      <img
+        src="../assets/images/member/flamingo.svg"
+        alt="flamingo"
+        class="flamingo"
+      />
     </section>
   </main>
 </template>
@@ -212,7 +233,11 @@ export default {
   components: {
     login,
   },
-  methods: {},
+  methods: {
+    toHomePage() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 <style>

@@ -30,6 +30,11 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH3;
   font-family: $font;
   font-weight: 700;
+  @media (width <= 768px) {
+    font-size: $phFontH3;
+    font-family: $font;
+    font-weight: 700;
+  }
 }
 //內文
 .pcInnerText {
