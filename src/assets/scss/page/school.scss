@@ -13,6 +13,8 @@
     align-items: center;
 
     position: relative;
+    
+   color: $mainTextColor#000;
   
 }
 .school .school_title{
@@ -118,6 +120,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+ 
 }
 
 .school_button {
@@ -132,20 +135,96 @@
 }
 
 
-.school .school_content_2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .school .school_content_2 .title{
     color: $primaryColorYellow;
     text-align: center;
+   
 }
 .school .school_content_2 .rule{
     color: #fff;
     text-align: center;
     line-height: 1.5;
     padding: 44px 0;
+    
+}
+.school .school_content_2 {
+    text-align: center;
+}
+
+// 題目
+.school_content_2 img{
+    width: 250px;
+    height: 250px;
+   
+}
+
+.school_content_2 .question{
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+.option_all{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    color: $bgColorWhite;
+ 
+    .option-image-container{
+        padding: 40px 0;
+        
+    }
+
+  
+}
+
+.correct_answer{
+    margin: 40px 0;
+}
+
+.explanation{
+    margin: 30px 0;
+}
+
+.option  input{
+    display: none;
+
+ 
+}
+
+.option-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/src/assets/images/school/img_border.svg");
+    // background-color: $mainTextColor; /* 使用你的變量或具體的顏色值 */
+    width: 250px;
+    height: 250px;
+  margin: 40px 0;
+}
+
+.option-image-container img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain; /* 使圖片等比例縮放並填滿容器 */
+}
+.option_inputl {
+
+  cursor: pointer; /* 顯示手指指標 */
+}
+
+
+
+
+.option_input{
+    background-image: url("/src/assets/images/school/btn_option.svg");
+    background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 35px 86px;
+  width: 100%;
 }
