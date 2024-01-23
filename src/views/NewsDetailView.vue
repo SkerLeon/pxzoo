@@ -55,25 +55,3 @@ export default {
 };
 </script>
 
-<style scoped>
-/* 在這裡添加樣式 */
-</style>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
-
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

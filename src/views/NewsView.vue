@@ -63,6 +63,17 @@
         </div>
       </div>
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
+
+      <!-- 分頁 -->
+      <div class="news_pagination">
+        <li><a href="#">|<</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">|></a></li>
+      </div>
     </div>     
     </main>
   </section>

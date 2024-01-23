@@ -1,6 +1,4 @@
-*{
-    color: $mainTextColor;
-}
+
 .news_banner, .newsDetail_banner{
     img{
         width: 100%;
@@ -115,6 +113,13 @@ ul.news_pc_filter li{
 
     }
 
+}
+
+.news_pagination{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    @extend .pcInnerText
 }
 
 
