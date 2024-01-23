@@ -99,7 +99,6 @@ export default {
     },
     data(){
         return {
-            isMobile: window.innerWidth <= 768,
             tickets:[
                 {
                     id: 1,
@@ -140,6 +139,7 @@ export default {
         }
     },
     created(){
+        this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
     methods:{
