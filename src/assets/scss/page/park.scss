@@ -1,86 +1,28 @@
-//建立動物icon位置及icon大小 RWD函式 
+//位置 px換算%數
 @mixin icon-top-location($location) {
-    @media (max-width:1920px) {
-        top: $location;
-    }
-    @media (max-width:1710px) {
-        top: $location * 0.89;
-    }
-    @media (max-width:1600px) {
-        top: $location * 0.83;
-    }
-    @media (max-width:1440px) {
-        top: $location * 0.74;
-    }
-    @media (max-width:1280px) {
-        top: $location * 0.65;
-    }
+    top:$location/1px/923*100*1%;
 }
 @mixin icon-left-location($location) {
-    @media (max-width:1920px) {
-        left: $location ;
-    }
-    @media (max-width:1710px) {
-        left: $location * 0.89;
-    }
-    @media (max-width:1600px) {
-        left: $location * 0.83;
-    }
-    @media (max-width:1440px) {
-        left: $location * 0.74;
-    }
-    @media (max-width:1280px) {
-        left: $location * 0.65;
-    }
+    left:$location/1px/1920*100*1%;
 }
 @mixin icon-right-location($location) {
-    @media (max-width:1920px) {
-        right: $location;
-    }
-    @media (max-width:1710px) {
-        right: $location * 0.89;
-    }
-    @media (max-width:1600px) {
-        right: $location * 0.83;
-    }
-    @media (max-width:1440px) {
-        right: $location * 0.74;
-    }
-    @media (max-width:1280px) {
-        right: $location * 0.65;
-    }
+    right:$location/1px/1920*100*1%;
 }
-@mixin icon-size($wsize,$hsize){
-    @media (max-width:1920px) {
-        width: $wsize;
-        height: $hsize;
-    }
-    @media (max-width:1600px) {
-        width: $wsize*0.92;
-        height: $hsize*0.92;
-    }
-    @media (max-width:1440px) {
-        width: $wsize*0.84;
-        height: $hsize*0.84;
-    }
-    @media (max-width:1280px) {
-        width: $wsize*0.75;
-        height: $hsize*0.75;
-    }
+//高度寬度px換算%數
+@mixin mapicon-px-percentage-size($wsize,$hsize){  
+    width: $wsize/1px/1920*100*1%;
+    height: $hsize/1px/923*100*1%; 
 }
-
-//雲朵動畫及位置縮放函式
+//雲朵動畫函式
 $time:10s;
 @mixin pk_cloud1($top, $left, $pk_animation_name) {
-    @include icon-top-location($top);
-    @include icon-left-location($left);
     @keyframes #{$pk_animation_name} {
         0% {
             top: $top;
             left: $left;
         }
         25% {
-            top: $top +20;
+            top: $top +0.76;
             left: $left ;
         }       
         50% {
@@ -88,7 +30,7 @@ $time:10s;
             left: $left ;
         }
         75% {
-            top: $top+20;
+            top: $top+0.76;
             left: $left ;
         }       
         100% {
@@ -98,15 +40,13 @@ $time:10s;
     }
 }
 @mixin pk_cloud2($top, $right, $pk_animation_name) {
-    @include icon-top-location($top);
-    @include icon-right-location($right);
     @keyframes #{$pk_animation_name} {
         0% {
             top: $top;
             right: $right;
         }
         25% {
-            top: $top +20;
+            top: $top +0.76;
             right: $right ;
         }       
         50% {
@@ -114,7 +54,7 @@ $time:10s;
             right: $right ;
         }
         75% {
-            top: $top+20;
+            top: $top+0.76;
             right: $right ;
         }       
         100% {
@@ -123,12 +63,6 @@ $time:10s;
         }
     }
 }
-
-
-
-
-
-
 
 
 .pk_content{
@@ -146,7 +80,7 @@ $time:10s;
         .pk_animal_icon{
             .pk_animal_default{
                 position: absolute;
-                @include icon-size(60px,60px);
+                @include mapicon-px-percentage-size(60px,60px);
                 transition: 0.3s;
                 img{
                     width: 100%;
@@ -313,7 +247,7 @@ $time:10s;
         .pk_Store_icon{
             .pk_Store_default{
                 position: absolute;
-                @include icon-size(75px,75px);
+                @include mapicon-px-percentage-size(75px,75px);
                 img{
                     width: 100%;
                 }
@@ -496,27 +430,27 @@ $time:10s;
                 bottom: 0;
             }
             .pk_content_bg_cloud1{
-                @include pk_cloud1(126px,820px,'cloud1-animation');
+                @include pk_cloud1(4.82%,42.7%,'cloud1-animation');
                 animation: cloud1-animation $time infinite;
             }
             .pk_content_bg_cloud2{
-                @include pk_cloud1(1745px,-150px,'cloud2-animation');
+                @include pk_cloud1(66.7%,-7.81%,'cloud2-animation');
                 animation: cloud2-animation $time+1 infinite;
             }
             .pk_content_bg_cloud3{
-                @include pk_cloud1(656px,10px,'cloud3-animation');
+                @include pk_cloud1(25%,0.52%,'cloud3-animation');
                 animation: cloud3-animation $time+4 infinite;
             }
             .pk_content_bg_cloud4{
-                @include pk_cloud1(1895px,1600px,'cloud4-animation');
+                @include pk_cloud1(72.4%,83.3%,'cloud4-animation');
                 animation: cloud4-animation $time+3 infinite;
             }
             .pk_content_bg_cloud5{
-                @include pk_cloud2(474px,-300px,'cloud5-animation');
+                @include pk_cloud2(18.1%,-15.6%,'cloud5-animation');
                 animation: cloud5-animation $time+4 infinite;
             }
             .pk_content_bg_cloud6{
-                @include pk_cloud2(1206px,654px,'cloud6-animation');
+                @include pk_cloud2(46.1%,34%,'cloud6-animation');
                 animation: cloud6-animation $time+1 infinite;
             }
         }
