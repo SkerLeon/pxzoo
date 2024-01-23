@@ -29,14 +29,14 @@
       -->
 
 <!-- 0% -->
-    <article v-if="isMobile">
+    <!-- <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main>
+    </main> -->
 
 <!-- 30% -->
     <!-- <main>
@@ -45,13 +45,13 @@
 
 <!-- 60% -->
     <!-- <main>
-      <TickPayway />
+      <TickCheck />
     </main> -->
 
 <!-- 100% -->
-    <!-- <main>
+    <main>
       <TickFinished />
-    </main> -->
+    </main>
 
   </section>
 </template>
