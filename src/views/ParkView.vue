@@ -106,6 +106,11 @@
         <img v-for="num in 4" :class="`pk_content_bg_cloud_default pk_content_bg_cloud${num}`" src="@/assets/images/park/pk_content_bg_cloud1.png" alt="背景雲">
         <img v-for="num in 2" :class="`pk_content_bg_cloud_default pk_content_bg_cloud${num+4}`" src="@/assets/images/park/pk_content_bg_cloud2.png" alt="背景雲">
       </div>
+
+      <div class="pk_content_bg_eagle">
+        <img src="@/assets/images/park/pk_content_bg_eagle.png" alt="老鷹圖片">
+      </div>
+
     </section>
   </section>
 </template>
