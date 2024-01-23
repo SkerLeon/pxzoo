@@ -29,14 +29,14 @@
       -->
 
 <!-- 0% -->
-    <article v-if="isMobile">
+    <!-- <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main>
+    </main> -->
 
 <!-- 30% -->
     <!-- <main>
@@ -62,7 +62,7 @@
 import TickInfo from '@/components/tick/TickInfo.vue';
 import TickCalendar from '@/components/tick/TickCalendar.vue';
 import TickNum from '@/components/tick/TickNum.vue';
-import TickPayway from '@/components/tick/TickPayway.vue';
+import TickCheck from '@/components/tick/TickCheck.vue';
 import TickFinished from '@/components/tick/TickFinished.vue';
 
 export default {
@@ -71,19 +71,19 @@ export default {
     TickInfo,
     TickCalendar,
     TickNum,
-    TickPayway,
+    TickCheck,
     TickFinished,
   },
   data() {
     return {
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
-      isMobile: window.innerWidth <= 768,
       // targetValue:0,
     }
     
   },
   created(){
+    this.windowSize();
     window.addEventListener('resize', this.windowSize);
   },
   methods:{
