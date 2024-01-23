@@ -52,10 +52,12 @@
     <section class="pk_content_bg">
       <section class="pk_Tickets">
         <div class="pk_Tickets_items">
-          <RouterLink v-for="(ticket, index) in tickets" :key="index" to="/ticket" class="pk_Tickets_item">
-            <img class="pk_Tickets_item_top" :src="getItemTopUrl(index+1)" alt="門票上半部">
-            <img class="pk_Tickets_item_mid" :src="getItemMidUrl(index+1)" alt="中間的擋板">
-            <img class="pk_Tickets_item_animal" :src="getItemAnimalUrl(index+1)" alt="中間的動物">
+          <RouterLink v-for="(ticket, index) in tickets" :key="index" to="/ticket" class="pk_Tickets_item"  @mouseenter="handleMouseEnter(index)" @mouseleave="handleMouseLeave(index)">
+            <img class="pk_Tickets_item_top" :class="{ 'pk_Tickets_item_location': hoverStatus[index] }" :src="getItemTopUrl(index+1)" alt="門票上半部">
+            <img class="pk_Tickets_item_mid" :class="{ 'pk_Tickets_item_hide': hoverStatus[index] }" :src="getItemMidUrl(index+1)" alt="中間的擋板">
+            <div class="pk_Tickets_item_animal">
+              <img :src="getItemAnimalUrl(index+1)" alt="中間的動物">
+            </div>
             <img class="pk_Tickets_item_bottom" :src="getItemBottomUrl(index+1)" alt="門票下半部">
             <div class="pk_Tickets_item_text">
               <h1 class="pcSmTitle">{{ticket.title}}</h1>
@@ -145,7 +147,8 @@ export default {
         title:"愛心票",
         rule:"65歲以上(含)",
         price:"40",
-      }]
+      }],
+      hoverStatus:{}
     };
   },
   created() {
@@ -165,7 +168,7 @@ export default {
       return new URL(`../assets/images/park/pk_Tickets_item_mid${paths}.png`, import.meta.url).href
     },
     getItemAnimalUrl(paths){
-      return new URL(`../assets/images/park/pk_Tickets_item_animal1${paths}.png`, import.meta.url).href
+      return new URL(`../assets/images/park/pk_Tickets_item_animal${paths}.png`, import.meta.url).href
     },
     getItemBottomUrl(paths){
       return new URL(`../assets/images/park/pk_Tickets_item_bottom${paths}.png`, import.meta.url).href
@@ -181,6 +184,12 @@ export default {
     showAnimalsAndFacilities(){
       this.show_animals = true
       this.show_facilities = true
+    },
+    handleMouseEnter(index) {
+      this.hoverStatus[index] = true;
+    },
+    handleMouseLeave(index) {
+      this.hoverStatus[index] = false;
     }
   },
 };
