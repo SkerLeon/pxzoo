@@ -154,13 +154,47 @@
 // part1 日曆(TickCalendar.vue)
 .tickCalendar{
     width: 40%;
-
+    div{
+        display: block;
+    }
     .fakeCalendar{
         width: 100%;
     }
     .tickBtn{
         justify-content: end;
     }
+}
+.calendar{
+    height: 350px;
+    overflow: hidden;
+    // width: 366px;
+    outline: #3f3f3f 1px solid;
+    text-align: center;
+    background-image: url(../images/ticket/calenderbg.svg);
+    background-size: cover;
+    padding: 8px;
+
+    table{
+        // background-color: $bgColorWhite;
+        font-size: $pcFontH3;
+    }
+    .ivu-calendar-header{
+        padding: 0;
+    }
+    .ivu-calendar-header-title{
+        font-size: $pcFontH3;
+        padding-top: 9px;
+        height: 50px;
+        font-weight: 700;
+        // background-color: $primaryColorYellow;
+    }
+    .ivu-calendar-table thead th, td{
+        padding: 8px;
+        height: 40px;
+        width: 4vw;
+        text-align: center;
+    }
+    
 }
 @media screen and (max-width: 1810px){
     .tickBgc{

@@ -10,8 +10,7 @@
 
       排版的問題可否請教您: 
 
-      1. PHP上課說"需要把資料傳到後端的，要用<form>包"，請問所有<input>、<select>、<option>...都要用<form>包嗎？
-      （降我排版要全部重新檢查了）
+      1. PHP上課說"需要把資料傳到後端的，要用<form>包"，請問所有<input>、<select>、<option>...都要用<form>包嗎？（降我排版要全部重新檢查了）
         🐢：不要用form包，傳資料可以用axios裡的post就好了(用chartGPT問一下範例)
 
       2. 請問下拉式選單中option的樣式設計，我研究了一下，option能寫的樣式極少，一般建議用div>ul>li來做......請教您：是這樣嗎？如果用div>ul>li在後續抓資料上會比較麻煩嗎？（還不太懂怎麼抓資料、傳到後端><）
@@ -30,14 +29,14 @@
       -->
 
 <!-- 0% -->
-    <article v-if="isMobile">
+    <!-- <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main>
+    </main> -->
 
 <!-- 30% -->
     <!-- <main>
@@ -60,11 +59,11 @@
 <script>
 // import TickInfo from '@/components/tick/TickInfo.vue';
 // 把以下這些組件移到tick目錄裡
-import TickInfo from '@/components/TickInfo.vue';
-import TickCalendar from '@/components/TickCalendar.vue';
-import TickNum from '@/components/TickNum.vue';
-import TickPayway from '@/components/TickPayway.vue';
-import TickFinished from '@/components/TickFinished.vue';
+import TickInfo from '@/components/tick/TickInfo.vue';
+import TickCalendar from '@/components/tick/TickCalendar.vue';
+import TickNum from '@/components/tick/TickNum.vue';
+import TickCheck from '@/components/tick/TickCheck.vue';
+import TickFinished from '@/components/tick/TickFinished.vue';
 
 export default {
   components:{
@@ -72,19 +71,19 @@ export default {
     TickInfo,
     TickCalendar,
     TickNum,
-    TickPayway,
+    TickCheck,
     TickFinished,
   },
   data() {
     return {
-      // 之後組件中的資料可以放在這邊，用props傳進去
-      // 組件中資料填寫完成，用emit傳過來
-      isMobile: window.innerWidth <= 768,
+      // 🐢:之後組件中的資料可以放在這邊，用props傳進去
+      // 🐢:組件中資料填寫完成，用emit傳過來
       // targetValue:0,
     }
     
   },
   created(){
+    this.windowSize();
     window.addEventListener('resize', this.windowSize);
   },
   methods:{

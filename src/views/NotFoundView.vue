@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {goHome} from '@/assets/js/common';
+import {goHome} from '@/assets/js/common.js';
 
 export default {
     data () {
