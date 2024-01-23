@@ -74,17 +74,18 @@
               <div class="option_all">
                 <div v-for="(option, optionIndex) in question.options" :key="optionIndex" class="option pcInnerText">
                   <div v-if="option.image" class="option-image-container">
-                   
-                      <img :src="getImageUrl(option.image)" alt="option-image" class="option-image" />
-                  
+
+                    <img :src="getImageUrl(option.image)" alt="option-image" class="option-image" />
+
                   </div>
 
-                  <div>
+                  
                     <label class="option_input">
-                      <input type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text">
-                      <span class="custom-radio-text">{{ option.text }}</span>
+                      <input type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
+                        style="display: none;">
+                      {{ option.text }}
                     </label>
-                  </div>
+                  
                 </div>
               </div>
 
@@ -141,10 +142,10 @@ export default {
         {
           text: "2.樹懶需要幾星期消化食物?", image: 'sloth',
           options: [
-            { text: "A 一個星期", image: '' },
-            { text: "B 兩個星期", image: '' },
-            { text: "C 三個星期", image: '' },
-            { text: "D 四個星期", image: '' },
+            { text: "A 一個星期", image: 'sloth' },
+            { text: "B 兩個星期", image: 'sloth' },
+            { text: "C 三個星期", image: 'sloth' },
+            { text: "D 四個星期", image: 'sloth' },
 
           ],
           correctAnswer: "B 兩個星期",
@@ -219,10 +220,10 @@ export default {
         {
           text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: 'sloth',
           options: [
-            { text: "A 兩倍", image: '' },
-            { text: "B 三倍", image: '' },
-            { text: "C 四倍", image: '' },
-            { text: "D 五倍", image: '' },
+            { text: "A 兩倍", image: 'cheetah' },
+            { text: "B 三倍", image: 'cheetah' },
+            { text: "C 四倍", image: 'cheetah' },
+            { text: "D 五倍", image: 'cheetah' },
           ],
           correctAnswer: "B 三倍",
           explanation: "解析9",

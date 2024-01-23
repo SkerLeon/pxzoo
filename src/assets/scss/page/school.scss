@@ -139,6 +139,8 @@
 .school .school_content_2 .title{
     color: $primaryColorYellow;
     text-align: center;
+    display: flex;
+    margin-bottom: 30px;
    
 }
 .school .school_content_2 .rule{
@@ -212,10 +214,6 @@
     height: 220px;
     object-fit: contain; /* 使圖片等比例縮放並填滿容器 */
 }
-.option_inputl {
-
-  cursor: pointer; /* 顯示手指指標 */
-}
 
 
 
@@ -227,4 +225,8 @@
   background-position: center center;
   padding: 35px 86px;
   width: 100%;
+  color: $bgColorWhite;
+
+  margin: 20px 0;
+  
 }
