@@ -1,79 +1,209 @@
 .home{
-    #bannersliderBoard{
+    .home_bannergroup{
+        position: relative;
         overflow: hidden; 
         height: 100vh;
 
-        #banner{
+        .home_banner_deco{
+            position: absolute;
+            display: flex;
             width: 100%;
-            height: 100vh;
-            position: relative;
-
-            li{
-                float: left;
-            }
-
-            .banner1{
-                width: 100%;
-                height: 100vh;
-                background-size: cover;
-                background-image: url(../image/banner_index.jpg);
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-            
-            .banner2{
-                width: 100%;
-                height: 100vh;
-                background-size: cover;
-                background-image: url(../image/banner_index2.jpg);
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-            
-            .banner3{
-                width: 100%;
-                height: 100vh;
-                background-size: cover;
-                background-image: url(../image/banner_index3.jpg);
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-
-            .banner4{
-                width: 100%;
-                height: 100vh;
-                background-size: cover;
-                background-image: url(../image/banner_index3.jpg);
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-
-            #bannerButton{
+            bottom: 0;
+            .tree_2 img{
                 position: absolute;
                 bottom: 2vw;
-                left: 0;
-                right: 0;
-                text-align: center;
-                /* width: 100%; */
-                /* height: 50px; */
-
-                li{
-                    width: 1vw;
-                    height: 1vw;
-                    border-radius: 50%;
-                
-                    background-color: #ccc;
-                    display: inline-block;
-                    margin: 8px 8px 0 8px;
-                    box-shadow: 0 0 1vw rgba(0, 0, 0, 80);
-
-                    ＆:clicked{
-                        background-color: var(--orange-color);
-                    }
-                }
+                left: -4vw;
+                width: 13vw;
+                vertical-align: bottom;
+            }
+            .tree_4 img{
+                position: absolute;
+                bottom: 0;
+                left: 6vw;
+                width: 6vw;
+                vertical-align: bottom;
+            }
+            .tree_8 img{
+                position: absolute;
+                bottom: 0;
+                right: -4vw;
+                width: 17vw;
+                vertical-align: bottom;
+            }
+            .squirrel_1 img{
+                position: absolute;
+                bottom: 0;
+                left: 2vw;
+                width: 7vw;
+                vertical-align: bottom;
+            }
+            .ostrich img{
+                position: absolute;
+                bottom: 0;
+                right: 9vw;
+                width: 8vw;
+                vertical-align: bottom;
             }
         }
 
-
+        .banner1{
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-image: url("/src/assets/images/home/home_banner_1.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
     }
+    // .home_bannersliderBoard{
+    //     overflow: hidden; 
+    //     height: 100vh;
+
+    //     .home_banner{
+    //         width: 100%;
+    //         height: 100vh;
+    //         position: relative;
+
+    //         li{
+    //             float: left;
+    //         }
+
+    //         .banner1{
+    //             width: 100%;
+    //             height: 100vh;
+    //             background-size: cover;
+    //             background-image: url("/src/assets/images/home/home_banner_1.jpg");
+    //             background-repeat: no-repeat;
+    //             background-position: center center;
+    //         }
+            
+    //         .banner2{
+    //             width: 100%;
+    //             height: 100vh;
+    //             background-size: cover;
+    //             background-image: url(../image/banner_index2.jpg);
+    //             background-repeat: no-repeat;
+    //             background-position: center center;
+    //         }
+            
+    //         .banner3{
+    //             width: 100%;
+    //             height: 100vh;
+    //             background-size: cover;
+    //             background-image: url(../image/banner_index3.jpg);
+    //             background-repeat: no-repeat;
+    //             background-position: center center;
+    //         }
+
+    //         .banner4{
+    //             width: 100%;
+    //             height: 100vh;
+    //             background-size: cover;
+    //             background-image: url(../image/banner_index3.jpg);
+    //             background-repeat: no-repeat;
+    //             background-position: center center;
+    //         }
+
+    //         #bannerButton{
+    //             position: absolute;
+    //             bottom: 2vw;
+    //             left: 0;
+    //             right: 0;
+    //             text-align: center;
+    //             /* width: 100%; */
+    //             /* height: 50px; */
+
+    //             li{
+    //                 width: 1vw;
+    //                 height: 1vw;
+    //                 border-radius: 50%;
+                
+    //                 background-color: #ccc;
+    //                 display: inline-block;
+    //                 margin: 8px 8px 0 8px;
+    //                 box-shadow: 0 0 1vw rgba(0, 0, 0, 80);
+
+    //                 ＆:clicked{
+    //                     background-color: var(--orange-color);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+
+    // }
+
+    .home_qkmnu{
+        margin: auto;
+        padding: 10px;
+        .home_qkmnu_btn{
+            width: 300px;
+            height: 120px;
+            border: none;
+            background-size: cover;
+            background-image: url("/src/assets/images/home/home_btnbkg.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+
+    // button.hovered{
+    //         background-color: bisque;
+    //     }
+    // button{
+    //     background-color: aquamarine; 
+    // }
+
+    //縱向滾動
+    // .home_news{
+    //     width: 600px;
+    //     height: 200px;
+    //     background-color: azure;
+    //     margin: auto;
+    //     overflow: auto;
+    //     // display: flex;
+
+    //     &::-webkit-scrollbar{
+    //         width: 0;
+    //         // background-color: azure;
+    //     }
+    //     &::-webkit-scrollbar-track{
+    //         overflow: hidden;
+    //     }
+    //     .news{
+    //         width: 100px;
+    //         height: 100px;
+    //         background-color: black;
+    //         margin: 10px;
+            
+    //     }
+    // }
+
+    //橫向滾動
+    // .home_news{
+    //     width: 600px;
+    //     height: 200px;
+    //     background-color: azure;
+    //     margin: auto;
+    //     overflow-x: auto;
+
+    //     &::-webkit-scrollbar{
+    //         width: 0;
+    //         // background-color: azure;
+    //     }
+    //     &::-webkit-scrollbar-track{
+    //         overflow: hidden;
+    //     }
+    //     .news{
+    //         width: 100px;
+    //         height: 100px;
+    //         background-color: black;
+    //         margin: 10px;
+            
+    //     }
+    //     .newsgroup{
+    //         width: 1000px;
+    //         display: flex;
+    //     }
+    // }
 }
