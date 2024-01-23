@@ -110,16 +110,10 @@ export default {
         },
     },
     computed:{
-        // search(){}
+
     },
     watch:{
-        search(newSearch, oldSearch){
-            console.log(this.Search); // 監聽search的值            
-            console.log('new:', +newSearch);
-            console.log('old:', +oldSearch);
-            // 可以調用下面的函數
-            this.filterHandle();
-        }
+
     }
 }
 
