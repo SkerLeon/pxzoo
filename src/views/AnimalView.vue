@@ -18,15 +18,15 @@
                         <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="草原之聲">
                         <p class="pcInnerText">草原之聲</p>
                     </li>
-                    <li class="filter_btn_item">
+                    <li class="filter_btn_item" @click="scrollTo('polar')">
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
                     <p class="pcInnerText">極地秘境</p>
                     </li>
-                    <li class="filter_btn_item">
+                    <li class="filter_btn_item" @click="scrollTo('jungle')">
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
                     <p class="pcInnerText">叢林奇蹟</p>
                     </li>
-                    <li class="filter_btn_item">
+                    <li class="filter_btn_item" @click="scrollTo('birds')">
                     <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
                     <p class="pcInnerText">鳥園樂章</p>
                     </li>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="animal_park">
+            <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name">極地秘境</h2>
                 <div class="animal_info">
                     <div v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="animal_park">
+            <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name">叢林奇蹟</h2>
                 <div class="animal_info">
                     <div v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6">
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="animal_park">
+            <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name">鳥園樂章</h2>
                 <div class="animal_info">
                     <div v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6">

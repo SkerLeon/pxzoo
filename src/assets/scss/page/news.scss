@@ -1,7 +1,122 @@
-
+*{
+    color: $mainTextColor;
+}
 .news_banner, .newsDetail_banner{
     img{
         width: 100%;
         vertical-align: middle;
     }   
 }
+.section{
+    max-width: 1920px;
+    @media screen and (max-width: 768px) {
+        .section{
+            max-width: 768px;
+        }
+    }
+}
+
+.news_overview{
+    max-width: 74%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 2vw;
+    .news_select{
+        display: none;
+    }
+    .news_pc_filter{
+        display: block;
+        margin-right: 2.7vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    .news_overview{
+        max-width: 90%;
+        flex-direction: column;
+        padding-top: 0;
+        .news_select{
+            display: block;
+            margin-top: 6.25vw;
+        }    
+        .news_pc_filter{
+            display: none;
+        }
+    }
+}
+
+ul.news_pc_filter li{
+    margin-bottom: 0.8vw;
+}
+
+.news_section{
+    width: 60vw;
+    @media screen and (max-width: 768px) {
+        padding-top: 3vw;
+        width: 100%;
+    }
+}
+.news_line{
+    width: 60vw;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.news_info{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 1vw 0;
+    padding-left: 1vw;
+    img{
+        width: 11vw;
+        vertical-align: middle;
+    }
+    .news-text{
+        padding-left: 1.3vw;
+        @extend .pcInnerText ;
+        .news_tag_time{
+            padding-bottom: 0.8vw;
+            .time{
+                padding-right: 1.6vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .news_info{
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        padding: 3.6vw 0;
+        padding-left: 1vw;
+        img{
+            width: 100%;
+            vertical-align: middle;
+        }
+        .news-text{
+            padding: 0 4.6vw;
+            padding-top : 3.6vw;
+            font-size: $phFontH3;
+            font-family: $font;
+            font-weight: 700;
+            .news_tag_time{
+                padding-bottom: 3vw;
+                display: flex;
+                justify-content: space-between;
+                font-size: $phFontH4;
+                font-family: $font;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+}
+
+
+
+
