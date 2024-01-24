@@ -79,28 +79,64 @@
 
                   </div>
 
-                  
-                    <label class="option_input">
-                      <input type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
-                        style="display: none;">
-                      {{ option.text }}
-                    </label>
-                  
+
+                  <label class="option_input">
+                    <input type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
+                      style="display: none;">
+                    {{ option.text }}
+                  </label>
+
+
+
                 </div>
+
+
+              </div>
+              <div class="eat_coin">
+                <div class="chimpanzees">
+                  <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
+                </div>
+                <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  <div class="coin">
+                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                </div>  
               </div>
 
-              <div v-if="showAnswer[index]">
-                <!-- 顯示正確答案跟解析 -->
-                <div class="correct_answer pcSmTitle">正確答案：{{ question.correctAnswer }}</div>
-                <div class="explanation pcSmTitle">解析：{{ question.explanation }}</div>
-                <button v-if="currentQuestionIndex < questions.length - 1" @click="showNextQuestion"
-                  class="pcInnerText defaultBtn">下一題</button>
+              <div v-if="showAnswer[index]" class="lightbox">
+                <div class="lightbox-content">
+                  <div class="correct_answer pcSmTitle">正確答案：{{ question.correctAnswer }}</div>
+                  <div class="user_answer pcSmTitle" v-if="userSelectedOption">
+                    你的答案：{{ userSelectedOption }}
+                    <span v-if="userSelectedOption === question.correctAnswer" style="color: green;">（正確）</span>
+                    <span v-else style="color: red;">（錯誤）</span>
+                  </div>
+                  <div class="explanation pcSmTitle">解析：{{ question.explanation }}</div>
+                  <button @click="showNextQuestion" class="pcInnerText defaultBtn">下一題</button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div v-if="isGameFinished">
-            <div class="result">
+
+          <div v-if="isGameFinished" class="result_all">
+            <div class="result phDecBigTitle">
               {{ successfulQuestionsCount >= 8 ? '破關成功！' : '破關失敗' }}
               <br>
               總分：{{ totalScore }}
@@ -125,6 +161,7 @@ export default {
       successfulQuestionsCount: 0,
       currentQuestionIndex: 0,
       totalScore: 0,
+      userSelectedOption: null,
       questions: [
         // 問題列表
         {
@@ -254,6 +291,7 @@ export default {
     checkAnswer(index, selectedOption) {
       if (!this.showAnswer[index]) {
         const correctAnswer = this.questions[index].correctAnswer;
+        this.userSelectedOption = selectedOption.text; // 存儲使用者選擇的答案
         this.showAnswer[index] = true;
 
         if (selectedOption.text === correctAnswer) {
@@ -268,9 +306,16 @@ export default {
         }
       }
     },
+    closeLightbox() {
+      // 重置相關狀態，關閉燈箱
+      this.showAnswer[this.currentQuestionIndex] = false;
+      this.userSelectedOption = null;
+    },
 
-    showNextQuestion(index) {
-      this.showAnswer[index] = false;
+    showNextQuestion() {
+      // 重置相關狀態，顯示下一題
+      this.showAnswer[this.currentQuestionIndex] = false;
+      this.userSelectedOption = null;
 
       if (this.currentQuestionIndex < this.questions.length - 1) {
         // 如果問題不是最後一題，切換到下一題
@@ -280,6 +325,7 @@ export default {
         this.isGameFinished = true;
       }
     },
+
     resetGame() {
       this.isGameStarted = false;
       this.isGameFinished = false;
