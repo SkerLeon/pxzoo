@@ -16,6 +16,7 @@
                 <div>
                     <h2>NT$ {{ ticket.price }}</h2>
                     <p>/ 人</p>
+                    <!-- pc ph是否可以按鈕一組就好? -->
                     <form class="countBTN">
                         <button>+</button>
                         <form action="ticket.php" method="post">
@@ -44,10 +45,16 @@
             <h2 class="important mixedFont"><p>NT$</p> 260</h2>
         </div>
 
-        <form class="tickBtn">
-            <button class="defaultBtn">上一步</button>
-            <button type="submit" class="tickLBtn defaultBtn">立即購票</button>
-        </form>
+        <main class="tickBtn">
+            <button class="defaultBtn" @click="previousStep">
+                上一步
+                <img src="@/assets/images/login/icon/btnArrow.svg">
+            </button>
+            <button type="button" class="tickLBtn defaultBtn" @click="nextStep">
+                立即購票
+                <img src="@/assets/images/login/icon/btnArrow.svg">
+            </button>
+        </main>
 
     
     </section>
@@ -59,6 +66,10 @@ export default {
         // RouterLink,
         search: '',
     },
+    props:[
+        // 丟資料的key值
+        'tickStep',
+    ],
     data(){
         return {
             tickets:[
@@ -108,6 +119,13 @@ export default {
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
         },
+        nextStep(){
+            // 999寫確認有選票券的判斷式
+            this.$emit('nextStep');
+        },
+        previousStep(){
+            this.$emit('previousStep');
+        }
     },
     computed:{
 

@@ -85,8 +85,14 @@
         </main>
 
         <main class="tickBtn">
-            <button class="defaultBtn">上一步</button>
-            <button class="tickLBtn defaultBtn">送出訂單</button>
+            <button class="defaultBtn" @click="previousStep">
+                上一步
+                <img src="@/assets/images/login/icon/btnArrow.svg">
+            </button>
+            <button class="tickLBtn defaultBtn" @click="nextStep">
+                送出訂單
+                <img src="@/assets/images/login/icon/btnArrow.svg">
+            </button>
         </main>
     </section>
 </template>
@@ -97,6 +103,10 @@ export default {
         // RouterLink,
         search: '',
     },
+    props:[
+        // 丟資料的key值
+        'tickStep',
+    ],
     data(){
         return {
             tickets:[
@@ -146,6 +156,14 @@ export default {
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
         },
+        nextStep(){
+            // 999寫確認有選付款方式的判斷式
+            // 999寫確認信用卡的判斷式
+            this.$emit('nextStep');
+        },
+        previousStep(){
+            this.$emit('previousStep');
+        }
     },
     computed:{
     },

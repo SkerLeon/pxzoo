@@ -13,7 +13,10 @@
                 入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！
             </h2>
             <p>畫面將於 5 秒鐘後跳轉回首頁。</p>
-            <button @click="useGoHome" class="defaultBtn">返回首頁</button>
+            <button @click="useGoHome" class="defaultBtn">
+                返回首頁
+                <img src="@/assets/images/login/icon/btnArrow.svg">
+            </button>
         </section>
 
         <main>

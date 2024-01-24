@@ -1,7 +1,10 @@
 <template>
     <div class="notFound forHeader">
         <h1 class="pcDecBigTitle phDecBigTitle">404</h1>
-        <Button type="info" @click="useGoHome" class="defaultBtn">返回首頁</Button>
+        <Button type="info" @click="useGoHome" class="pcInnerText defaultBtn">
+            返回首頁
+            <img src="@/assets/images/login/icon/btnArrow.svg">
+        </Button>
     </div>
 </template>
 
