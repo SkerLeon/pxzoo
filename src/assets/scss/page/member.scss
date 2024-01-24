@@ -1,3 +1,20 @@
+@mixin defaultMemSize() {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 40vw;
+  @media (width <= 768px) {
+    height: 65vw;
+  }
+}
+
+@mixin defaultMemH2() {
+  color: $primaryColorGreen;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
 .memPage {
   position: relative;
   background-color: $bgColorLightgray;
@@ -9,30 +26,53 @@
     top: 10vw;
     left: 0;
     z-index: 20;
+    @media (width <= 768px) {
+      position: static;
+    }
     .chameleon {
       position: absolute;
       width: 200px;
       height: 60px;
-      top: -3.5vw;
-      left: 3vw;
+      top: -45px;
+      left: 50px;
+      @media (width <= 768px) {
+        display: none;
+      }
     }
     ul {
       display: flex;
       flex-direction: column;
       gap: 5px;
+      @media (width <= 768px) {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+      }
       li {
+        position: relative;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 19px;
-        width: 13.6vw;
-        height: 6.2vh;
+        width: 175px;
+        height: 41px;
         background-color: $bgColorSecGray;
         color: $mainTextColor;
+        @media (width <= 768px) {
+          gap: 5px;
+          margin-top: 20px;
+          width: 100px;
+          height: 30px;
+        }
+        &:hover {
+          color: $primaryColorYellow;
+        }
         img {
           width: 1.47vw;
           height: 2.5vh;
+          @media (width <= 768px) {
+          }
         }
       }
     }
@@ -46,22 +86,37 @@
       align-items: center;
       flex-direction: column;
       width: 60%;
+      height: 100%;
+      @media (width <= 768px) {
+        row-gap: 20px;
+      }
       h2 {
         @include defaultMemH2();
       }
       .memInfo {
         width: 100%;
         display: flex;
-        //border: 2px solid greenyellow;
+        @media (width <= 768px) {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          row-gap: 20px;
+        }
         .picArea {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 50%;
-          //border: 2px solid red;
+          @media (width <= 768px) {
+            height: 40%;
+          }
           .picFrame {
             width: 300px;
             height: 300px;
+            @media (width <= 768px) {
+              width: 200px;
+              height: 200px;
+            }
           }
         }
         .info {
@@ -71,10 +126,17 @@
           justify-content: space-around;
           width: 50%;
           color: $mainTextColor;
+          @media (width <= 768px) {
+            height: 60%;
+          }
           .infoBtn {
             position: absolute;
             right: 0;
             bottom: -40px;
+            @media (width <= 768px) {
+              bottom: -8vw;
+              right: 80px;
+            }
           }
         }
       }
@@ -85,8 +147,14 @@
       right: 50vw;
       height: 120px;
       width: 250px;
+      @media (width <= 768px) {
+        width: 180px;
+        height: 80px;
+        right: 10vw;
+      }
     }
   }
+
   //購票紀錄
   .ticketArea {
     @include defaultMemSize();
@@ -96,6 +164,9 @@
       align-items: center;
       flex-direction: column;
       width: 60%;
+      @media (width <= 768px) {
+        width: 80%;
+      }
       h2 {
         @include defaultMemH2();
       }
@@ -106,6 +177,7 @@
         justify-content: space-around;
         align-items: center;
         margin: 2vw 0 4.5vw 0;
+        color: $mainTextColor;
         ::after {
           content: "";
           height: 2px;
@@ -122,6 +194,7 @@
         justify-content: space-around;
         align-items: center;
         margin-bottom: 3vw;
+        color: $mainTextColor;
       }
     }
     .ticketCrocodile {
@@ -161,6 +234,27 @@
           img {
             width: 100%;
           }
+          .couponBtn {
+            position: relative;
+            border: 2px solid $mainTextColor;
+            box-shadow: 4px 4px 0 $mainTextColor;
+            width: 120px;
+            height: 35px;
+            text-align: center;
+            cursor: pointer;
+            background-color: $bgColorWhite;
+            color: $mainTextColor;
+            &:hover {
+              background-color: $primaryColorYellow;
+            }
+            img {
+              position: absolute;
+              width: 8px;
+              height: 8px;
+              bottom: 0.3vw;
+              right: 0.3vw;
+            }
+          }
         }
       }
     }
@@ -176,5 +270,75 @@
   //會員評論
   .commentArea {
     @include defaultMemSize();
+    .innerComment {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      h2 {
+        @include defaultMemH2();
+      }
+      .commentGroup {
+        width: 60%;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .comment {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2vw;
+          width: 100%;
+          height: 20vw;
+          .commentBg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+          }
+          .commentPic {
+            z-index: 1;
+            height: 70%;
+          }
+          .commentArea {
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 3.5vw;
+            z-index: 3;
+            .commentTitle {
+              color: $mainTextColor;
+            }
+            .commentText {
+              line-height: 2vw;
+              color: $mainTextColor;
+            }
+          }
+          .greenClose {
+            position: absolute;
+            z-index: 1;
+            right: 3.2vw;
+            top: 2.7vw;
+            height: 2vw;
+            width: 2vw;
+          }
+          .commentBtn {
+            position: absolute;
+            bottom: -4vw;
+            right: 2vw;
+          }
+        }
+      }
+    }
+    .flamingo {
+      position: absolute;
+      bottom: 0px;
+      right: 50vw;
+      height: 120px;
+      width: 100px;
+    }
   }
 }

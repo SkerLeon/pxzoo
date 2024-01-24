@@ -1,5 +1,5 @@
 <template>
-  <section class="forHeader">
+  <section class="forHeader news_section">
       <!-- banner -->
     <div class="news_banner">
         <img src="@/assets/images/news/banner_news.png" alt="news_banner">
@@ -14,29 +14,12 @@
       style="width:200px">
           <Option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
       </Select>
+
       <!-- menu button(pc) -->
       <ul class="news_pc_filter">
-        <li>
+        <li v-for="category in newsCategory">
           <button class="defaultBtn pcInnerText">
-          ALL
-          <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-          </button>
-        </li>
-        <li>
-          <button class="defaultBtn pcInnerText">
-          最新活動
-          <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-          </button>
-        </li>
-        <li>
-          <button class="defaultBtn pcInnerText">
-          園區動態
-          <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-          </button>
-        </li>
-        <li>
-          <button class="defaultBtn pcInnerText">
-          動物知識
+          {{category.label}}
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
         </li>
@@ -44,11 +27,12 @@
 
       <!-- news -->
       <div class="news_section">
-        <div class="news-each"
+        <a class="news-each"
         v-for="item in news_info"
       :key="item ">
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
-          <div class="news_info">
+          <div class="news_info"
+          @click="toNewsDetail()">
             <img :src="getImageUrl(item.img)" alt="news圖">
             <div class="news-text">
               <div class="news_tag_time">
@@ -61,8 +45,19 @@
               </div>
             </div>
         </div>
-      </div>
+      </a>
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
+
+      <!-- 分頁 -->
+      <div class="news_pagination">
+        <li><a href="#">|</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">>|</a></li>
+      </div>
     </div>     
     </main>
   </section>
@@ -77,7 +72,7 @@ export default {
           newsCategory: [
               {
                   value: 'All',
-                  label: 'All'
+                  label: 'ALL'
               },
               {
                   value: 'new_activity',
@@ -92,6 +87,9 @@ export default {
                   label: '動物知識'
               },
           ],
+
+          //fliter
+
 
           //news
           news_info:[
@@ -159,22 +157,16 @@ export default {
       getImageUrl(paths) {
           return new URL(`../assets/images/news/${paths}.png`, import.meta.url).href
       },//改網址
+
+      toNewsDetail(){
+        console.log('page');
+        this.$router.push({
+          path:'./NewsDetail',
+      })
+      }
   },
   created() {
   },
 };
 </script>
 
-<style scoped>
-/* 在這裡添加樣式 */
-</style>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

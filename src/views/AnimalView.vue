@@ -1,5 +1,5 @@
 <template>
-    <section class="forHeader">
+    <section class="forHeader animal_section">
         <!-- banner -->
         <div class="animal_banner">
             <img src="@/assets/images/animal/banner_animal.png" alt="animal_banner">
@@ -14,25 +14,11 @@
                 <!-- ul裡面的li是主要存放按鈕的區塊 -->
                 <!-- 之後想優化程式碼把這邊變成v-for -->
                 <ul class="Sidebar_filter_btns">
-                    <li class="filter_btn_item" @click="scrollTo('grassLand')">
-                        <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="草原之聲">
-                        <p class="pcInnerText">草原之聲</p>
-                    </li>
-                    <li class="filter_btn_item" @click="scrollTo('polar')">
-                    <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                    <p class="pcInnerText">極地秘境</p>
-                    </li>
-                    <li class="filter_btn_item" @click="scrollTo('jungle')">
-                    <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                    <p class="pcInnerText">叢林奇蹟</p>
-                    </li>
-                    <li class="filter_btn_item" @click="scrollTo('birds')">
-                    <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                    <p class="pcInnerText">鳥園樂章</p>
-                    </li>
-                    <li class="filter_btn_item" @click="scrollTo('aqua')">
-                    <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-                    <p class="pcInnerText">海洋奇觀</p>
+                    <li class="filter_btn_item"
+                    v-for="category in animalsCategoryPc"
+                    @click="scrollTo('category.value')">
+                    <img :src="getIconUrl(category.icon)" alt="category.label">
+                        <p class="pcInnerText">{{category.label}}</p>
                     </li>
                 </ul>
 
@@ -47,7 +33,7 @@
         <main class="animal_overview">
             <!-- select(mb) -->
             <Select class="animal_select" v-model="model" style="width:200px">
-                <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
+                <Option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</Option>
             </Select>
 
             <div class="animal_park" ref="grassLand">
@@ -55,49 +41,54 @@
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info">
                     <!-- 個別動物種類名+圖片 -->
-                    <div v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6">
+                    <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6"
+                    @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name">極地秘境</h2>
                 <div class="animal_info">
-                    <div v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6">
+                    <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6"
+                    @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name">叢林奇蹟</h2>
                 <div class="animal_info">
-                    <div v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6">
+                    <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6"
+                    @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name">鳥園樂章</h2>
                 <div class="animal_info">
-                    <div v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6">
+                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6"
+                    @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name">海洋奇觀</h2>
                 <div class="animal_info">
-                    <div v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6">
+                    <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6"
+                    @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
+                    </a>
                 </div>
             </div>
         </main>
@@ -149,11 +140,11 @@ export default {
                 { species: 'octopus', name: '章魚' },
             ],
 
-            //select
-            animalsCategory: [
+            //select ph
+            animalsCategoryPh: [
                 {
                     value: 'All',
-                    label: 'All'
+                    label: 'ALL'
                 },
                 {
                     value: 'grassLand',
@@ -176,11 +167,43 @@ export default {
                     label: '海洋奇觀'
                 }
             ],
+
+            //pc
+            animalsCategoryPc: [
+                {
+                    value: 'grassLand',
+                    label: '草原之聲',
+                    icon: 'giraffe'
+                },
+                {
+                    value: 'polar',
+                    label: '極地秘境',
+                    icon: 'penguin'
+                },
+                {
+                    value: 'jungle',
+                    label: '叢林奇蹟',
+                    icon: 'monkey'
+                },
+                {
+                    value: 'birds',
+                    label: '鳥園樂章',
+                    icon: 'flamingo'
+                },
+                {
+                    value: 'aqua',
+                    label: '海洋奇觀',
+                    icon: 'fish'
+                }
+            ],
         };
     },
     methods: {
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
+        },
+        getIconUrl(paths) {
+            return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
         },
         scrollTo(el){
             const scrollTarget = this.$refs[el]
@@ -191,7 +214,13 @@ export default {
                     scrollTarget.scrollIntoView({ behavior: 'smooth' })
                 })
             }
-        }
+        },
+        toAnimalDetail(){
+        console.log('page');
+        this.$router.push({
+        path:'./AnimalDetail',
+    })
+    }
     },
     created() {
     },

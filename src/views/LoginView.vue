@@ -2,7 +2,7 @@
   <section class="loginPage forHeader">
     <a href="#" class="forgetPsw">
       <img src="@/assets/images/login/lion1.png" alt="" />
-      <p class="pcInnerText">歡迎阿!!<br />忘記密碼再問我</p>
+      <p>歡迎阿!!<br />忘記密碼再問我</p>
     </a>
     <div class="cloud">
       <img src="@/assets/images/login/cloudb.svg" alt="" />
@@ -11,7 +11,6 @@
       <img src="@/assets/images/login/cloudsun.svg" alt="" />
     </div>
     <div class="loginSingupArea">
-      <RouterLink to="/member">member</RouterLink>
       <div class="loginBtnGroup">
         <img
           src="@/assets/images/login/login-bg/login_btn_area.png"
@@ -33,7 +32,12 @@
           註冊會員
         </button>
       </div>
-      <form class="myLog" id="loginForm" v-show="activeTab === 'loginForm'" @submit.prevent="userLogin">
+      <form
+        class="myLog"
+        id="loginForm"
+        v-show="activeTab === 'loginForm'"
+        @submit.prevent="userLogin"
+      >
         <img
           src="@/assets/images/login/login-bg/login_input.png"
           alt=""
@@ -45,7 +49,12 @@
               <img src="@/assets/images/login/icon/account.svg" alt="" />
             </div>
 
-            <input type="text" placeholder="帳號" class="pcMarkText" v-model="loginAccount" />
+            <input
+              type="text"
+              placeholder="帳號"
+              class="pcMarkText"
+              v-model="loginAccount"
+            />
           </div>
           <div class="psw">
             <div class="img">
@@ -53,14 +62,22 @@
             </div>
             <input type="password" placeholder="密碼" v-model="loginPassword" />
           </div>
-          <button type="submit" class="defaultBtn pcInnerText">
+          <button
+            type="submit"
+            class="defaultBtn pcInnerText"
+            @click="toMemberPage()"
+          >
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
         </div>
       </form>
 
-      <form class="myLog" id="signForm" v-show="activeTab === 'signForm'">
+      <form
+        class="myLog forSignup"
+        id="signForm"
+        v-show="activeTab === 'signForm'"
+      >
         <img
           src="@/assets/images/login/login-bg/login_input.png"
           alt=""
@@ -108,16 +125,19 @@ export default {
   data() {
     return {
       activeTab: "loginForm",
-      loginAccount: '',
-      loginPassword: '',
+      loginAccount: "",
+      loginPassword: "",
     };
   },
   components: {},
-  methods:{
-    userLogin(){
+  methods: {
+    userLogin() {
       console.log(this.loginAccount);
       console.log(this.loginPassword);
-    }
-  }
+    },
+    toMemberPage() {
+      this.$router.push("member");
+    },
+  },
 };
 </script>

@@ -23,7 +23,7 @@ $time:10s;
             left: $left;
         }
         25% {
-            top: $top + 0.76;
+            top: $top + 0.5;
             left: $left ;
         }       
         50% {
@@ -31,7 +31,7 @@ $time:10s;
             left: $left ;
         }
         75% {
-            top: $top+ 0.76;
+            top: $top + 0.5;
             left: $left ;
         }       
         100% {
@@ -308,56 +308,79 @@ $time:10s;
     }
     .pk_content_bg{
         width: 100%;
-        height: 2614px;
-        background-image: url("/src/assets/images/park/pk_content_bg.png");
-        background-repeat: no-repeat;
+        background-color: #9BD3ED;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .pk_Tickets{
             width: 74%; 
-            margin: 234px auto 54px;
+            height: 20.6%;
+            margin-top: 12%;
             position: relative;
             z-index: 5;
             .pk_Tickets_items{
                 display: flex;
-                gap: 28px;
+                gap: 1.45%;
                 .pk_Tickets_item{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 251px;
-                    height: 539px;
+                    width: 18.37%;
                     position: relative;
                     :hover{
                         cursor: pointer;
                     }
                     .pk_Tickets_item_top{
+                        width: 100%;
                         position: relative;
                         z-index: 10;
                     }
                     .pk_Tickets_item_mid{
+                        width: 98%;
                         position: absolute;
                         z-index: 10;
-                        top: 140px;
+                        top: 25.9%;
                     }
                     .pk_Tickets_item_animal{
-                        position: relative;
+                        width: 60%;
+                        text-align: center;
+                        position: absolute;
+                        top: 8%;
                         z-index: 5;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .pk_Tickets_item_bottom{
+                        width: 100%;
+                        position: relative;
+                        z-index: 9;
                     }
                     .pk_Tickets_item_text{
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         position: absolute;
-                        bottom: 40px;
+                        z-index: 11;
+                        bottom: 7.42%;
                         gap: 10px;
                         color: $mainTextColor;
+                    }
+                    .pk_Tickets_item_location{
+                        bottom: 20.4%;
+                    }
+                    .pk_Tickets_item_hide{
+                        display: none;
                     }
                 }
             }
         }
         .pk_Origin{
             width: 100%;
+            height: 100%;
+            margin: 2% 0;
             position: relative;
             z-index: 5;
             img{
@@ -367,8 +390,8 @@ $time:10s;
                 position: absolute;
                 top: 0;
                 right: 0;
-                width: 450px;
-                height: 839px;
+                width: 23.4%;
+                height: 99.8%;
                 background-color: #231F20BB;
                 display: flex;
                 align-items: center;
@@ -383,7 +406,6 @@ $time:10s;
         }
         .pk_information{
             width: 74%;
-            margin: 73px auto 0 ;
             display: flex;
             .pk_information_bulletin_board{
                 width: 790px;
@@ -458,9 +480,9 @@ $time:10s;
         .pk_content_bg_eagle{
             position: absolute;
             top: 0;
-            left: 350px;
-            width: 291px;
-            height: 219px;
+            left: 18.2%;
+            width: 15.1%;
+            height: 8.3%;
             img{
                 width: 100%;
             }
