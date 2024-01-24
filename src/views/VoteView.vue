@@ -48,7 +48,7 @@
 
   <section class="vote_popular">
 
-    <div class="title  pcBigTitle">
+    <div class="title  phDecInnerText">
       <h1>目前人氣<span>TOP3</span></h1>
     </div>
 
@@ -59,8 +59,8 @@
         <div class="number pcDecBigTitle">{{ ranking.number }}</div>
         <img :src="getImageUrl(ranking.animal_img)" alt="Animal">
         <div class="name pcSmTitle">{{ ranking.name }}</div>
-        <div class="votes phSmTitle">{{ ranking.votes }}票</div>
-        <button class="phInnerText defaultBtn" @click="voteTop3(ranking)">立即投票</button>
+        <div class="votes phSmTitle">{{ ranking.point }}票</div>
+        <button class="phInnerText defaultBtn" @click="voteTop3(ranking)">立即投票<img src="@/assets/images/login/icon/btnArrow.svg" alt="" /></button>
       </div>
     </div>
     <!-- 蟲在平板大小會蓋到，讓他移動XD -->
@@ -89,7 +89,9 @@
           <img :src="getImageUrl(voteItem.animal_img)" alt="Animal">
           <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
           <div class="vote_icon pcInnerText"><img src="@/assets/images/vote/star.svg" alt="">{{ voteItem.point }}票</div>
-          <button class="phInnerText defaultBtn">立即投票</button>
+          <button class="phInnerText defaultBtn">立即投票
+            <!-- <img src="@/assets/images/login/icon/btnArrow.svg" alt="" /> -->
+          </button>
         </div>
       </div>
     </div>
@@ -132,19 +134,19 @@ export default {
         {
           number: 1,
           name: "威廉",
-          votes: 300,
+          point: 300,
           animal_img: 'lion',
         },
         {
           number: 2,
           name: "琳達",
-          votes: 250,
+          point: 250,
           animal_img: 'giraffe',
         },
         {
           number: 3,
           name: "馬克",
-          votes: 200,
+          point: 200,
           animal_img: 'meerkat',
         },
       ],
@@ -209,7 +211,7 @@ export default {
       this.currentContent = content;
     },
 
-    setHoverState(content) {
+    setHoverState(content) {                           
       // 如果只是要變樣式，沒有要做其他js程序，不要用vue用css就好了
       this.currentContent = content;
     }
