@@ -5,8 +5,11 @@
         vertical-align: middle;
     }   
 }
-.section{
+.news_section{
     max-width: 1920px;
+    a{
+        color: $mainTextColor;
+    }
     @media screen and (max-width: 768px) {
         .section{
             max-width: 768px;
@@ -49,7 +52,6 @@ ul.news_pc_filter li{
 }
 
 .news_section{
-    width: 60vw;
     @media screen and (max-width: 768px) {
         padding-top: 3vw;
         width: 100%;
@@ -119,9 +121,36 @@ ul.news_pc_filter li{
     list-style: none;
     display: flex;
     justify-content: center;
-    @extend .pcInnerText
+    @extend .pcInnerText;
+    padding-top: 4.5vw;
+    padding-bottom: 7.5vw;
+    li{ 
+        padding: 0 0.5vw;
+        a{
+            @extend .pcInnerText;
+            color: $mainTextColor;
+            padding: 0 0.8vw;
+        }
+    }
 }
+@media screen and (max-width:786px){
+    .news_pagination{
 
+        padding-top: 5.8vw;
+        padding-bottom: 15vw;
+        li{ 
+            padding: 0 0.5vw;
+            a{
+                font-size: $phFontH4;
+                font-family: $font;
+                font-weight: 500;
+
+                color: $mainTextColor;
+                padding: 0 0.8vw;
+            }
+        }
+    }
+}
 
 
 

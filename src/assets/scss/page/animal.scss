@@ -8,7 +8,9 @@
 
 .animal_pc_sidebar{
     position: relative;
-
+    .filter_btn_item img{
+        width: 2vw;
+    }
     .no_slide{
         @media (max-width: 1920px) {
             left: 0px;
@@ -40,7 +42,7 @@
     }
 }
 
-.section{
+.animal_section{
     max-width: 1920px;
 }
 
