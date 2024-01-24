@@ -26,23 +26,17 @@
         (4) 後面且戰且走orz
             🐢：寫完這一頁再說吧
 
-<<<<<<< HEAD
-    <article v-if="isMobile">
-=======
-      -->
 
-<!-- 0% -->
-    <!-- <article v-if="isMobile">
->>>>>>> 23739896a61349e359a798108fd9fe42d890d631
+    <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main> -->
+    </main>
 
-      -->
+-->
 
 <!-- 0% -->
 <!-- 每一組都加v-if，要用數字帶，全域統一 -->
@@ -57,21 +51,12 @@
     </main>
 
 <!-- 60% -->
-<<<<<<< HEAD
     <main v-else-if="tickStep === 2">
       <TickCheck @nextStep="showNextStep" @previousStep="backPreviousStep" />
     </main>
 
 <!-- 100% -->
     <main v-else="tickStep === 3">
-=======
-    <!-- <main>
-      <TickCheck />
-    </main> -->
-
-<!-- 100% -->
-    <main>
->>>>>>> 23739896a61349e359a798108fd9fe42d890d631
       <TickFinished />
     </main>
 
