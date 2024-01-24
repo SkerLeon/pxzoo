@@ -134,21 +134,31 @@
     // }
 
     .home_qkmnu{
+        display: flex;
+        justify-content: space-between;
+        width: 74%;
         margin: auto;
-        padding: 10px;
+        
         .home_qkmnu_btn{
-            width: 300px;
-            height: 120px;
+            color: $mainTextColor;
+            width: 17vw;
+            height: 6.5vw;
             border: none;
             background-size: cover;
             background-image: url("/src/assets/images/home/home_btnbkg.svg");
             background-repeat: no-repeat;
             background-position: center center;
+            background-color: rgba(255, 255, 255, 0);  
+            &:hover{
+                background-image: url("/src/assets/images/home/home_btnbkg_hover.svg");
+            }
         }
+
+
     }
 
     // button.hovered{
-    //         background-color: bisque;
+    //         background-color: bisque$primaryColorYellow;
     //     }
     // button{
     //     background-color: aquamarine; 
