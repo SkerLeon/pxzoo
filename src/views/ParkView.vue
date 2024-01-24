@@ -94,8 +94,10 @@
           </ul>
         </div>
 
-        <div class="pk_information_img_Billboard">
+        <div class="pk_information_Billboard">
           <img class="pk_information_img_Billboard" src="@/assets/images/park/pk_information_Billboard.svg" alt="告示牌">
+          <img class="pk_information_img_monkey" src="@/assets/images/park/pk_information_img_monkey.svg" alt="像素猴子圖片">
+          <img class="pk_information_img_orangutan" src="@/assets/images/park/pk_information_img_orangutan.svg" alt="像素猩猩圖片">
         </div>
       </section>
 
@@ -132,7 +134,7 @@ export default {
         price:"100",
       },{
         title:"學生票",
-        rule:"12歲以上(含)持學生證者",
+        rule:"12歲以上持學生證者",
         price:"80",
       },{
         title:"團體票",
@@ -145,7 +147,7 @@ export default {
         price:"40",
       },{
         title:"愛心票",
-        rule:"65歲以上(含)",
+        rule:"65歲以上",
         price:"40",
       }],
       hoverStatus:{}
