@@ -5,20 +5,45 @@
 
       <div v-show="show_facilities" class="pk_Store_icon">
         <div v-for="num in 2" :class="`pk_Store_default pk_Store_icon_VC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcSmTitle">遊客中心</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon1.svg" alt="遊客中心icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_WC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcSmTitle">美食餐廳</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon2.svg" alt="餐廳icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_RC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcSmTitle">男女廁所</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon3.svg" alt="廁所icon">
         </div>
       </div>
       
       <div v-show="show_animals" class="pk_animal_icon">
         <div v-for="num in 38" :class="`pk_animal_default pk_animal_icon${num}`" :id="`location_id${num}`">
+          <div class="pk_animal_icon_dialog_content">
+            <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
+            <div class="pk_animal_icon_dialog_content_text">
+              <p class="pcMarkText">草原之聲</p>
+              <p class="pcMarkText">豹豹</p>
+            </div>
+          </div>
           <img :src="getAnimalIconUrl(num)" alt="園區動物icon的圖片">
         </div>
       </div>
