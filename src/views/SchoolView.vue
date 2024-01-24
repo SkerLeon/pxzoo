@@ -49,7 +49,8 @@
         </div>
         <!-- 遊戲規則 -->
         <div class="school_name pcBigTitle">動物小學堂</div>
-        <button @click="toggleContent" class="school_button pcInnerText defaultBtn">進入學堂</button>
+        <button @click="toggleContent" class="school_button pcInnerText defaultBtn">進入學堂<img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+        </button>
       </div>
       <div v-else class="school_content_2">
         <div v-if="!isGameStarted">
@@ -98,25 +99,34 @@
                 </div>
                 <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  <div class="coin">
+                </div>
+                <div class="coin">
                   <img src="@/assets/images/school/coin.svg" alt="teacher">
-                </div>  
+                </div>
               </div>
 
               <div v-if="showAnswer[index]" class="lightbox">

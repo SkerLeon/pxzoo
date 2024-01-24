@@ -29,7 +29,6 @@
       height: 310px;
       // background-color: $primaryColorYellow;
       text-align: center;
-      border: darkblue solid;
     }
   }
 
@@ -73,10 +72,10 @@
     color: $primaryColorGreen;
     text-align: center;
     line-height: 1.5;
-    padding-top: 85px;
+    padding-top: 5%;
   }
   p {
-    margin: 50px 270px;
+    margin: 2% 14%;
     text-align: left;
     line-height: 1.5;
   }
@@ -86,34 +85,40 @@
     left: 8%;
     background-repeat: no-repeat;
     img {
-      width: 65%;
+      width: 8vw;
     }
   }
   .cloud_2 {
     position: absolute;
-    top: 85px;
-    right: 93px;
+    top: 2%;
+    right: 5%;
     background-repeat: no-repeat;
+    img {
+      width: 12vw;
+    }
   }
   .squirrel_2 {
     position: absolute;
     bottom: 0;
-    left: 105px;
+    left: 5%;
     background-repeat: no-repeat;
+    img {
+      width: 10vw;
+    }
   }
   .vote_rule {
     display: flex;
     flex-direction: row;
-    padding: 15px 0;
+    padding: 1% 0;
     align-items: flex-start;
     justify-content: flex-start;
     line-height: 1.5;
-    margin: 0 270px;
+    margin: 0 14%;
 
-    time {
+    .time {
       white-space: nowrap;
 
-      padding-right: 56px;
+      padding-right: 3%;
     }
     p {
       text-align: left;
@@ -124,7 +129,7 @@
 
 //人氣投票TOP3
 .vote_popular {
-  height: 748px;
+  height: 80vh;
   width: 100%;
   background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
@@ -133,60 +138,49 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   position: relative;
   color: $mainTextColor;
+  padding-top: 4%;
+
   .title {
-    margin: 44px 0;
+    margin-bottom: 2%;
     color: #fff;
+    display: flex;
   }
   .content img {
-    width: 95px;
-    height: 95px;
+    width: 7%;
     border-radius: 50%;
-    margin: 20px;
+    margin: 1%;
   }
-  .ranking {
-    display: flex;
-    .content {
-      width: 1366px;
-      height: 135px;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      margin: 10px 0;
-    }
-  }
-}
-.vote_popular {
   .caterpillar img {
     position: absolute;
-    height: 200px;
-    width: 265px;
+    width: 13vw;
     bottom: 0;
-    right: 25px;
+    right: 0;
   }
-  .ranking {
+  .ranking .content {
+    width: 75vw;
+    height: 15vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    margin: 0.7% 0;
+    white-space: nowrap;
     .number {
-      width: 96px;
-      height: 135px;
+      padding: 0 1.6%;
+      height: 100%;
       background-color: $primaryColorYellow;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .content {
-      .name {
-        margin: 32px;
-      }
-      .votes {
-        margin-left: 536px;
-      }
-      button {
-        width: 180px;
-        height: 50px;
-        margin: 0 81px;
-      }
+    .name {
+      margin: 3%;
+    }
+    .votes {
+      margin-left: 42%;
+      margin-right: 7%;
     }
   }
 }
@@ -202,63 +196,66 @@
   justify-content: space-around;
   align-items: center;
   color: $mainTextColor;
-
-  padding-top: 198px;
-  padding-bottom: 170px;
+  padding-top: 10%;
+  padding-bottom: 11%;
   position: relative;
   .elephant1 img {
     position: absolute;
     bottom: 0;
-    height: 150px;
-    width: 196.87px;
-    right: 279px;
+    width: 10vw;
+    right: 16%;
   }
   .vote_button {
-    max-width: 1440px;
+    max-width: 71.4%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     button {
-      width: 250px;
-      height: 75px;
+      width: 100%;
+      height: 8vh;
       background-color: $primaryColorYellow;
+      margin: 0 1%;
+
+      color: $mainTextColor;
     }
     button.hovered {
       background-color: $primaryColorGreen;
+      color: $bgColorWhite;
     }
   }
   .vote_wrap {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    max-width: 1440px;
+    max-width: 70%;
     width: 100%;
     justify-content: flex-start;
-    gap: 44px;
+    gap: 2%;
     align-items: center;
     .vote_card {
-      height: 500px;
+      // height: 10%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 22px 0;
+      margin-top: 13%;
+
       .vote_name {
-        margin-top: 30px;
+        margin-top: 7%;
       }
       img {
-        width: 327px;
-        height: 327px;
+        width: 16.2vw;
       }
       .vote_icon {
-        margin: 20px 0;
+        margin: 5% 0;
         display: flex;
         flex-direction: row;
         align-items: center;
+        color: $primaryColorGreen;
         img {
-          width: 27.81px;
-          height: 26px;
+          width: 1.5vw;
           margin: 0 10px;
         }
       }
