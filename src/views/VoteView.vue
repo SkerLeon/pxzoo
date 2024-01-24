@@ -72,20 +72,15 @@
   <section class="vote_overview_all">
     <div class="vote_button">
       <button @click="showContent('vote_grass')" @mouseover="setHoverState('vote_grass')"
-        class="animals_grass pcInnerText" 
-        :class="{ 'hovered': currentContent === 'vote_grass' }">草原之聲</button>
-      <button @click="showContent('vote_polar') " @mouseover="setHoverState('vote_polar')"
-      class="animals_polar pcInnerText"
-      :class="{ 'hovered': currentContent === 'vote_polar' }">極地秘境</button>
-      <button @click="showContent('vote_jungle')"  @mouseover="setHoverState('vote_jungle')"
-      class="animals_jungle pcInnerText"
-      :class="{ 'hovered': currentContent === 'vote_jungle' }">叢林奇蹟</button>
-      <button @click="showContent('vote_birds')"  @mouseover="setHoverState('vote_birds')"
-      class="animals_birds pcInnerText"
-      :class="{ 'hovered': currentContent === 'vote_birds' }">鳥園樂章</button>
-      <button @click="showContent('vote_aqua')" @mouseover="setHoverState('vote_aqua')"
-      class="animals_aqua pcInnerText"
-      :class="{ 'hovered': currentContent === 'vote_aqua' }">海洋奇觀</button>
+        class="animals_grass pcInnerText" :class="{ 'hovered': currentContent === 'vote_grass' }">草原之聲</button>
+      <button @click="showContent('vote_polar')" @mouseover="setHoverState('vote_polar')"
+        class="animals_polar pcInnerText" :class="{ 'hovered': currentContent === 'vote_polar' }">極地秘境</button>
+      <button @click="showContent('vote_jungle')" @mouseover="setHoverState('vote_jungle')"
+        class="animals_jungle pcInnerText" :class="{ 'hovered': currentContent === 'vote_jungle' }">叢林奇蹟</button>
+      <button @click="showContent('vote_birds')" @mouseover="setHoverState('vote_birds')"
+        class="animals_birds pcInnerText" :class="{ 'hovered': currentContent === 'vote_birds' }">鳥園樂章</button>
+      <button @click="showContent('vote_aqua')" @mouseover="setHoverState('vote_aqua')" class="animals_aqua pcInnerText"
+        :class="{ 'hovered': currentContent === 'vote_aqua' }">海洋奇觀</button>
     </div>
 
     <div class="vote_wrap">
@@ -206,15 +201,15 @@ export default {
       return new URL(`../assets/images/animal/small_pic/small_pic_${img}.png`, import.meta.url).href
     },
 
-    voteTop3(animal){
+    voteTop3(animal) {
       console.log(animal);
     },
-  
+
     showContent(content) {
       this.currentContent = content;
     },
 
-    setHoverState(content){
+    setHoverState(content) {
       // 如果只是要變樣式，沒有要做其他js程序，不要用vue用css就好了
       this.currentContent = content;
     }

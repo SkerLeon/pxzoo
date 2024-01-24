@@ -47,7 +47,8 @@
         border-bottom: 2px solid #3f3f3f;
         // background-image: linear-gradient(to right, rgba(245, 239, 235, 0) 100%);
         img{
-            width: 40px;
+            min-width: 30px;
+            width: 1.5vw;
         }
     }
     .mixedFont>p{
@@ -77,7 +78,7 @@
 }
 .tickStep{
     width: 100%;
-    margin: 44px auto 20px;
+    margin: 3vw auto 1.5vw;
     img{
         height: 35px;
         margin: 0 auto;
@@ -85,7 +86,7 @@
 };
 .tickBtn{
     width: 100%;
-    button{ margin: 44px 0; }
+    button{ margin: 1.5vw 0; }
     .tickLBtn{ margin-right: 0;}
 }
 .price{
@@ -113,21 +114,18 @@
 
 // part0 購票須知(TickInfo.vue)
 .tickInfo{
-    // width: 70%;
-    margin-right: 44px;
     position: relative;
 
     article{
-        margin: 44px auto auto;
+        margin: 20px 5vw auto;
         position: relative;
         z-index: 2;
-        width: 55%;
-        // height: 50vh;
+        width: 550px;
     }
     h2{
         color: $primaryColorYellow;
         text-align: center;
-        margin: 44px auto 20px;
+        margin: 30px auto 20px;
     }
     ol{
         list-style-type: decimal;
@@ -138,22 +136,22 @@
 .tickBgc{
     bottom: 0;
     position: absolute;
-    transform: translate(2%, 0);
+    transform: translate(-14%, 0);
     
     .tickBoard{
-        height: 31vw;
+        height: 540px;
         width: auto;
     }
     .tickEagle{
         z-index: 3;
         width: 8vw;
-        margin: auto -4vw 0 0;
+        margin: auto -2vw 0 0;
     }
 }
 
 // part1 日曆(TickCalendar.vue)
 .tickCalendar{
-    width: 60%;
+    width: 40%;
     div{
         display: block;
     }
@@ -162,10 +160,18 @@
     }
     .tickBtn{
         justify-content: end;
+        .tickLBtn{
+            z-index: 999;
+        }
+    }
+    hgroup{
+        border: 0;
+        padding-bottom: 0;
+        margin-bottom: 1vw;
     }
 }
 .calendar{
-    height: 400px;
+    height: 405px;
     overflow: hidden;
     text-align: center;
     background-size: cover;
@@ -187,11 +193,25 @@
         color: $mainTextColor;
         font-family: $font;
     }
+    .ivu-btn, .ivu-ml>.ivu-radio-wrapper{
+        border-radius: 0;
+        border: $bgColorSecGray solid 1px;
+        width: 44px;
+        height: 35px;
+    }
+    .ivu-btn:nth-of-type(2){
+        width: 60px;
+        padding: 0;
+    }
+    .ivu-btn>span, .ivu-radio-group-button .ivu-radio-wrapper{
+        font-size: $pcFontH4;
+        color: $mainTextColor;
+    }
     // 當前月份
     .ivu-calendar-header-title{
         font-size: $pcFontH3;
         padding-top: 9px;
-        height: 40px;
+        height: 44px;
         font-weight: 700;
         background-color: $primaryColorYellow;
     }
@@ -202,10 +222,19 @@
         text-align: center;
         color: $mainTextColor;
     }
+    td{
+        border: $bgColorSecGray solid 1px;
+    }
+    .ivu-calendar-table-day{
+        padding: 0;
+    }
     .ivu-calendar-table-day-other{
         color: $inputHintColor;
     }
-    
+    // 休園標籤
+    .ivu-badge-count{
+        background-color: #ff6100;
+    }
 }
 
 // @mixin tickInfo(){
@@ -235,72 +264,42 @@
 //     }
 // }
 // @include tickInfo();
-@media screen and (max-width: 1850px){
-    .tickBgc{
-        transform: translate(0%, 0);
-        .tickBoard{ height: 33vw; }
-    }
-    .tickInfo{
-        article{ width: 60%; }
-    }
-}
-@media screen and (max-width: 1750px){
-    .tickBgc{
-        transform: translate(-4%, 0);
-        .tickBoard{ height: 35vw; }
-    }
-    .tickInfo{
-        article{ width: 65%; }
-    }
-}
 @media screen and (max-width: 1640px){
     .tickBgc{
-        transform: translate(-6%, 0);
-        .tickBoard{ height: 37vw; }
+        transform: translate(-12%, 0);
+        .tickEagle{
+            margin-right: -5vw;
+        }
+    }
+    .tickInfo{
+        article{
+            margin: 20px 3vw auto;
+            width: 570px;
+        }
+        h2{
+            margin-top: 30px;
+        }
     }
 }
 @media screen and (max-width: 1540px){
-    .tickBgc{
-        transform: translate(-8%, 0);
-        .tickBoard{ height: 39vw; }
-    }
     .tickInfo{
-        article{ width: 72%; }
-    }
-}
-@media screen and (max-width: 1490px){
-    .tickBgc{
-        transform: translate(-10%, 0);
-        .tickBoard{ height: 41vw; }
-    }
-    .tickInfo{
-        h2{ margin-top: 50px; }
+        article{
+            margin: 20px 3vw auto;
+            width: 530px;
+        }
     }
 }
 @media screen and (max-width: 1400px){
-    .tickBgc{
-        transform: translate(-13%, 0);
-        .tickBoard{ height: 43vw; }
-    }
     .tickInfo{
         article{
-            width: 81%;
-            h2{ margin-top: 55px; }
+            width: 440px;
+            margin: 20px 3.5vw auto;
         }
+        h2{ margin-top: 20px; }
     }
 }
-@media screen and (max-width: 1320px){
-    .tickBgc{
-        transform: translate(-13%, 0);
-        .tickBoard{ height: 45vw; }
-    }
-    .tickInfo{
-        article{
-            width: 81%;
 
-        }
-    }
-}
+
 // part2 選擇數量
 .tickNum{
     width: 100%;

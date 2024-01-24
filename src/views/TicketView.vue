@@ -1,7 +1,7 @@
 <template>
   <section class="tick forheader">
     <div class="tickStep">
-      <img src="@/assets/images/ticket/PC0.svg" alt="立即購票進度條">
+      <img :src="getImagePath()" alt="立即購票進度條">
     </div>
 
     <!-- 安安 小龜老師，我是一畫 -->
@@ -26,30 +26,37 @@
         (4) 後面且戰且走orz
             🐢：寫完這一頁再說吧
 
-      -->
 
-<!-- 0% -->
-    <!-- <article v-if="isMobile">
+    <article v-if="isMobile">
       <TickInfo :open="TickInfoOpen" />
       <TickCalendar />
     </article>
     <main v-else>
       <TickInfo :open="true" />
       <TickCalendar />
-    </main> -->
+    </main>
+
+-->
+
+<!-- 0% -->
+<!-- 每一組都加v-if，要用數字帶，全域統一 -->
+    <main v-if="tickStep === 0">
+      <TickInfo />
+      <TickCalendar @nextStep="showNextStep" />
+    </main>
 
 <!-- 30% -->
-    <!-- <main>
-        <TickNum />
-    </main> -->
+    <main v-else-if="tickStep === 1">
+        <TickNum @nextStep="showNextStep" @previousStep="backPreviousStep" />
+    </main>
 
 <!-- 60% -->
-    <!-- <main>
-      <TickCheck />
-    </main> -->
+    <main v-else-if="tickStep === 2">
+      <TickCheck @nextStep="showNextStep" @previousStep="backPreviousStep" />
+    </main>
 
 <!-- 100% -->
-    <main>
+    <main v-else="tickStep === 3">
       <TickFinished />
     </main>
 
@@ -75,6 +82,8 @@ export default {
   },
   data() {
     return {
+      tickStep: 0,
+      device: 'PC',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
       // targetValue:0,
@@ -89,6 +98,15 @@ export default {
     windowSize(){
       this.isMobile = window.innerWidth <= 768;
     },
+    getImagePath(){
+      return `src/assets/images/ticket/${this.device}${this.tickStep}.svg`;
+    },
+    showNextStep(){
+      this.tickStep++;
+    },
+    backPreviousStep(){
+      this.tickStep--;
+    }
   }
 }
 

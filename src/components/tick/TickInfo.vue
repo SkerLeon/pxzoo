@@ -13,8 +13,11 @@
                 </ol>
         </article>
         <div class="tickBgc">
+            <!-- 111之後補手機板燈箱 -->
             <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
-            <img src="@/assets/images/ticket/PCinfo.svg" alt="購票須知布告欄" class="tickBoard">
+            <img v-if="isSmallPC" src="@/assets/images/ticket/PCinfoS.svg" alt="購票須知布告欄" class="tickBoard"/>
+            <img v-else-if="isMidPC" src="@/assets/images/ticket/PCinfoM.svg" alt="購票須知布告欄" class="tickBoard"/>
+            <img v-else src="@/assets/images/ticket/PCinfoL.svg"  alt="購票須知布告欄" class="tickBoard"/>
         </div>
 
     </section>
@@ -28,7 +31,6 @@ export default {
     },
     data() {
         return {
-            isMobile: true,
             tickInfomation: [
                 {
                     id: 1,
@@ -69,18 +71,19 @@ export default {
         this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
+    },
     methods:{
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
+            this.isSmallPC = window.innerWidth <= 1400;
+            this.isMidPC = window.innerWidth <= 1540;
         },
+        getInfoImage(name){
+            // 999無效，有空再解
+            // return `src/assets/images/ticket/${name}.svg`;
+        }
     }
 }
-
-
 </script>
-
-<style>
-
-
-
-</style>

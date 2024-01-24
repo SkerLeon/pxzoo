@@ -1,106 +1,100 @@
-.school{
-    background-image: url("/src/assets/images/school/banner.svg");
-    background-color: #fff;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-    
-   color: $mainTextColor#000;
-  
+.school {
+  background-image: url("/src/assets/images/school/banner.svg");
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: $mainTextColor#000;
 }
-.school .school_title{
-    display: flex;
-    flex-direction: row;
-   
-
+.school .school_title {
+  display: flex;
+  flex-direction: row;
 }
-.school .school_title .number_8 img{
-    width: 111px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_8 img {
+  width: 111px;
+  height: 161px;
+  padding: 0 16px;
 }
-.school .school_title .number_n img{
-    width: 111px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_n img {
+  width: 111px;
+  height: 161px;
+  padding: 0 16px;
 }
-.school .school_title .number_i img{
-    width: 86px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_i img {
+  width: 86px;
+  height: 161px;
+  padding: 0 16px;
 }
-.school .school_title .number_m img{
-    width: 136px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_m img {
+  width: 136px;
+  height: 161px;
+  padding: 0 16px;
 }
-.school .school_title .number_a img{
-    width: 111px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_a img {
+  width: 111px;
+  height: 161px;
+  padding: 0 16px;
 }
-.school .school_title .number_l img{
-    width: 111px;
-    height: 161px;
-    padding: 0 16px;
+.school .school_title .number_l img {
+  width: 111px;
+  height: 161px;
+  padding: 0 16px;
 }
 
-.school .school_name{
-    color:#fff;
-    letter-spacing:20px;
-    margin-top: 74px;
-    margin-bottom:44px;
+.school .school_name {
+  color: #fff;
+  letter-spacing: 20px;
+  margin-top: 74px;
+  margin-bottom: 44px;
   font-weight: 500;
 }
-.school .school_button{
-    color: $mainTextColor;
+.school .school_button {
+  color: $mainTextColor;
 }
-.school .school_tree img{
-    position: absolute;
-    bottom: 0;
+.school .school_tree img {
+  position: absolute;
+  bottom: 0;
 }
 
-.school .school_tree .tree_3 img{
-    width: 208px;
-    height: 306px;
-    left: 0;
-    bottom: -2px;
+.school .school_tree .tree_3 img {
+  width: 208px;
+  height: 306px;
+  left: 0;
+  bottom: -2px;
 }
-.school .school_tree .tree_5 img{
-    width: 323px;
-    height: 280px;
-    left: 115px;
-    bottom: -2px;
+.school .school_tree .tree_5 img {
+  width: 323px;
+  height: 280px;
+  left: 115px;
+  bottom: -2px;
 }
-.school .school_tree .grasses_6 img{
-    width: 209px;
-    height: 134px;
-    left: 448px;
+.school .school_tree .grasses_6 img {
+  width: 209px;
+  height: 134px;
+  left: 448px;
 }
-.school .school_tree .grasses_7 img{
-    width: 217px;
-    height: 176px;
-    right: 409px;
+.school .school_tree .grasses_7 img {
+  width: 217px;
+  height: 176px;
+  right: 409px;
 }
-.school .school_tree .tree_8 img{
-    width: 264px;
-    height: 301px;
-    right: 189px;
-    bottom: -2px;
+.school .school_tree .tree_8 img {
+  width: 264px;
+  height: 301px;
+  right: 189px;
+  bottom: -2px;
 }
-.school .school_tree .tree_1 img{
-    width: 265px;
-    height: 338px;
-    right: 0px;
+.school .school_tree .tree_1 img {
+  width: 265px;
+  height: 338px;
+  right: 0px;
 }
 // .school .school_tree .teacher img{
 //     width: 250px;
@@ -108,125 +102,157 @@
 //     right: 550px;
 //     bottom: -37px;
 // }
-.school .school_tree .teacher img{
-    width: 9vw;
-    // height: 250px;
-    right: 450px;
-    // bottom: -30px;
-   
+.school .school_tree .teacher img {
+  width: 9vw;
+  // height: 250px;
+  right: 450px;
+  // bottom: -30px;
 }
-.school .school_content_1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
- 
+.school .school_content_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .school_button {
-    width: 180px;
-    height: 50px;
-    color: $mainTextColor;
-    text-decoration: none;
+  width: 180px;
+  height: 50px;
+  color: $mainTextColor;
+  text-decoration: none;
 }
-.school_button a{
-    color: $mainTextColor;
-    text-decoration: none;
+.school_button a {
+  color: $mainTextColor;
+  text-decoration: none;
 }
 
-
-
-.school .school_content_2 .title{
-    color: $primaryColorYellow;
-    text-align: center;
-    display: flex;
-    margin-bottom: 30px;
-   
+.school .school_content_2 .title {
+  color: $primaryColorYellow;
+  text-align: center;
+  display: flex;
+  margin-bottom: 30px;
 }
-.school .school_content_2 .rule{
-    color: #fff;
-    text-align: center;
-    line-height: 1.5;
-    padding: 44px 0;
-    
+.school .school_content_2 .rule {
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+  padding: 44px 0;
 }
 .school .school_content_2 {
-    text-align: center;
+  text-align: center;
 }
 
 // 題目
-.school_content_2 img{
-    width: 250px;
-    height: 250px;
-   
+.school_content_2 img {
+  width: 250px;
+  height: 250px;
 }
 
-.school_content_2 .question{
-    display: flex;
-    flex-direction: column;
-
-    
+.school_content_2 .question {
+  display: flex;
+  flex-direction: column;
 }
 
-.option_all{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 45px;
-    color: $bgColorWhite;
- 
-    .option-image-container{
-        padding: 40px 0;
-        
-    }
+.option_all {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  color: $bgColorWhite;
 
-  
+  .option-image-container {
+    padding: 40px 0;
+  }
 }
 
-.correct_answer{
-    margin: 40px 0;
+// .correct_answer {
+// margin: 10px 0;
+// }
+
+.explanation {
+  margin: 30px 0;
 }
 
-.explanation{
-    margin: 30px 0;
-}
-
-.option  input{
-    display: none;
-
- 
+.option input {
+  display: none;
 }
 
 .option-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("/src/assets/images/school/img_border.svg");
-    // background-color: $mainTextColor; /* 使用你的變量或具體的顏色值 */
-    width: 250px;
-    height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/src/assets/images/school/img_border.svg");
+  // background-color: $mainTextColor; /* 使用你的變量或具體的顏色值 */
+  width: 250px;
+  height: 250px;
   margin: 40px 0;
 }
 
 .option-image-container img {
-    width: 220px;
-    height: 220px;
-    object-fit: contain; /* 使圖片等比例縮放並填滿容器 */
+  width: 220px;
+  height: 220px;
+  object-fit: contain; /* 使圖片等比例縮放並填滿容器 */
 }
 
-
-
-
-.option_input{
-    background-image: url("/src/assets/images/school/btn_option.svg");
-    background-size: contain;
+.option_input {
+  background-image: url("/src/assets/images/school/btn_option.svg");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
   padding: 35px 86px;
   width: 100%;
   color: $bgColorWhite;
-
   margin: 20px 0;
-  
+}
+.correct_answer_box {
+  background-image: url("/src/assets/images/school/school_lightbox.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 110px 86px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.result {
+  gap: 10px;
+}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.lightbox button {
+  margin-top: 10px;
+}
+.eat_coin {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+.eat_coin .coin img {
+  width: 50%;
+}
+.chimpanzees img {
+  position: absolute;
+  left: 1%;
+  transform: scaleX(-1);
 }
