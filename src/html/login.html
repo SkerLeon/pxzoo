@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -137,4 +137,40 @@
       }
     </script>
   </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员资料</title>
+    <!-- 引入 Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="memberName" type="text" placeholder="会员名">
+        <button @click="saveData">保存</button>
+        <p>会员名: {{ memberName }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                memberName: '' // 初始会员名为空
+            },
+            methods: {
+                saveData() {
+                    // 这里可以将数据发送到后端保存
+                    // 例如，可以使用 axios 或 fetch 发送 POST 请求
+                    // 后端将更新会员名后，再将新的会员名返回
+                    // 这里仅为示例，没有后端交互
+                    alert('数据已保存：' + this.memberName);
+                }
+            }
+        });
+    </script>
+</body>
 </html>
+

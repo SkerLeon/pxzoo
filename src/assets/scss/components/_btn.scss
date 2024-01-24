@@ -91,7 +91,7 @@ $Sidebar_icon_rigth: 70px;
   transform: rotate(180deg);
 }
 
-//按鈕scss(沒有icon版本)
+//------按鈕scss(沒有icon版本)------
 
 //html結構
 // <button class="defaultBtn pcInnerText">
@@ -126,7 +126,7 @@ $Sidebar_icon_rigth: 70px;
   }
 }
 
-//含有icon的按鈕
+//------含有icon的按鈕------
 
 //html結構
 
@@ -178,5 +178,61 @@ $Sidebar_icon_rigth: 70px;
       width: 16px;
       height: 16px;
     }
+  }
+}
+
+//------消息頁&投票頁外文字外框------
+
+// 1.橘色外框(含投票時間、投票方式)
+// <div class="newsFrame">
+// <img
+//   src="../assets/images/news/newsFrame/orangeFrame.svg"
+//   alt="orangeFrame"
+//   class="newsFramePic"
+// />
+// <p class="newsFrameText pcInnerText">最新消息</p>
+// </div>
+
+// 2.綠色外框
+// <div class="newsFrame">
+//     <img
+//       src="../assets/images/news/newsFrame/greenFrame.svg"
+//       alt="greenFrame"
+//       class="newsFramePic"
+//     />
+//     <p class="newsFrameText pcInnerText">園區動態</p>
+//   </div>
+
+// 3.藍色外框
+// <div class="newsFrame">
+// <img
+//   src="../assets/images/news/newsFrame/blueFrame.svg"
+//   alt="blueFrame"
+//   class="newsFramePic"
+// />
+// <p class="newsFrameText pcInnerText">動物知識</p>
+// </div>
+
+.newsFrame {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  .newsFramePic {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .newsFrameText {
+    letter-spacing: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 0.6vw;
+    color: #fff;
+    z-index: 2;
   }
 }

@@ -81,11 +81,11 @@
           :key="ticketDetail"
           class="listInfo"
         >
-          <p>{{ detail.id }}</p>
-          <p>{{ detail.date }}</p>
-          <p>{{ detail.pay }}</p>
-          <p>{{ detail.total }}</p>
-          <p>{{ detail.type }}</p>
+          <p class="pcInnerText">{{ detail.id }}</p>
+          <p class="pcInnerText">{{ detail.date }}</p>
+          <p class="pcInnerText">{{ detail.pay }}</p>
+          <p class="pcInnerText">{{ detail.total }}</p>
+          <p class="pcInnerText">{{ detail.type }}</p>
           <p>{{ detail.status }}</p>
         </div>
       </div>
@@ -172,7 +172,7 @@
 </template>
 
 <script>
-import login from "@/components/loginLightBox.vue";
+import btn from "@/components/btn.vue";
 export default {
   data() {
     return {
@@ -231,7 +231,7 @@ export default {
     };
   },
   components: {
-    login,
+    btn,
   },
   methods: {
     toHomePage() {
