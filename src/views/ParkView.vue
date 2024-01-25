@@ -5,21 +5,46 @@
 
       <div v-show="show_facilities" class="pk_Store_icon">
         <div v-for="num in 2" :class="`pk_Store_default pk_Store_icon_VC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcMarkText">遊客中心</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon1.svg" alt="遊客中心icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_WC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcMarkText">美食餐廳</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon2.svg" alt="餐廳icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_RC${num}`">
+          <div class="pk_Store_icon_dialog_content">
+            <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
+            <div class="pk_Store_icon_dialog_content_text">
+              <p class="pcMarkText">男女廁所</p>
+            </div>
+          </div>
           <img src="@/assets/images/park/pk_Store_icon3.svg" alt="廁所icon">
         </div>
       </div>
       
       <div v-show="show_animals" class="pk_animal_icon">
-        <div v-for="num in 38" :class="`pk_animal_default pk_animal_icon${num}`" :id="`location_id${num}`">
-          <img :src="getAnimalIconUrl(num)" alt="園區動物icon的圖片">
+        <div v-for="(animal,index) in icon_animals" :class="`pk_animal_default pk_animal_icon${index+1}`" :id="`location_id${index+1}`">
+          <div v-if="!isHidden(index)" class="pk_animal_icon_dialog_content">
+            <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
+            <div class="pk_animal_icon_dialog_content_text">
+              <p class="pcMarkText">{{ animal.Library }}</p>
+              <p class="pcMarkText">{{ animal.name }}</p>
+            </div>
+          </div>
+          <img v-if="!isHidden(index)" :src="getAnimalIconUrl(index+1)" alt="園區動物icon的圖片">
         </div>
       </div>
 
@@ -47,6 +72,33 @@
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
       </aside>
+    </section>
+
+    <section class="pk_Animal_details">
+      
+      <div class="pk_Animal_details_content_align">
+        <h1>草原之聲</h1>
+        <div class="pk_Animal_details_closure_icon">
+          <img class="pk_Animal_details_closure_icon" src="@/assets/images/park/pk_Animal_details_closure_icon.svg" alt="關閉按鈕">
+        </div>
+      </div>
+
+      <div class="pk_Animal_details_img">
+        <img src="@/assets/images/animal/small_pic/small_pic_lion.png" alt="動物照片">
+
+        <div class="pk_Animal_details_frame">
+          <img src="@/assets/images/park/pk_Animal_details_frame.svg" alt="像素邊框">
+        </div>
+      </div>
+
+      <p class="pcInnerText">威廉</p>
+
+      <button class="pk_button defaultBtn pcInnerText">
+        查看詳細資料
+        <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+      </button>
+
+      
     </section>
 
     <section class="pk_content_bg">
@@ -93,7 +145,7 @@
             <li>11. 大部分動物園內都是禁煙區域，請遵守相關規定以保護動物和其他遊客的健康。</li>
           </ul>
         </div>
-
+        
         <div class="pk_information_Billboard">
           <img class="pk_information_img_Billboard" src="@/assets/images/park/pk_information_Billboard.svg" alt="告示牌">
           <img class="pk_information_img_monkey" src="@/assets/images/park/pk_information_img_monkey.svg" alt="像素猴子圖片">
@@ -119,9 +171,10 @@
 </template>
 
 <script>
+
 export default {
   components: {
-    // 組件
+    
   },
   data() {
     return {
@@ -150,7 +203,122 @@ export default {
         rule:"65歲以上",
         price:"40",
       }],
-      hoverStatus:{}
+      hoverStatus:{},
+      icon_animals:[{
+        Library:"草原之聲",
+        name:"曼陀"
+      },{
+        Library:"草原之聲",
+        name:"蘇菲"
+      },{
+        Library:"草原之聲",
+        name:"空位置"
+      },{
+        Library:"草原之聲",
+        name:"斑斑"
+      },{
+        Library:"草原之聲",
+        name:"空位置"
+      },{
+        Library:"草原之聲",
+        name:"威廉"
+      },{
+        Library:"草原之聲",
+        name:"索拉"
+      },{
+        Library:"草原之聲",
+        name:"蒙奇"
+      },{
+        Library:"極地秘境",
+        name:"亞當"
+      },{
+        Library:"極地秘境",
+        name:"空位置"
+      },{
+        Library:"極地秘境",
+        name:"空位置"
+      },{
+        Library:"極地秘境",
+        name:"寶拉"
+      },{
+        Library:"極地秘境",
+        name:"小雪"
+      },{
+        Library:"極地秘境",
+        name:"空位置"
+      },{
+        Library:"極地秘境",
+        name:"雪球"
+      },{
+        Library:"極地秘境",
+        name:"波比"
+      },{
+        Library:"鳥園樂章",
+        name:"小瑜"
+      },{
+        Library:"鳥園樂章",
+        name:"曉曉"
+      },{
+        Library:"鳥園樂章",
+        name:"阿翔"
+      },{
+        Library:"鳥園樂章",
+        name:"艾妮"
+      },{
+        Library:"鳥園樂章",
+        name:"晴空"
+      },{
+        Library:"鳥園樂章",
+        name:"嘟嘟"
+      },{
+        Library:"鳥園樂章",
+        name:"空位置"
+      },{
+        Library:"海洋奇觀",
+        name:"海妞"
+      },{
+        Library:"海洋奇觀",
+        name:"空位置"
+      },{
+        Library:"海洋奇觀",
+        name:"巴奇"
+      },{
+        Library:"海洋奇觀",
+        name:"空位置"
+      },{
+        Library:"海洋奇觀",
+        name:"馬林"
+      },{
+        Library:"海洋奇觀",
+        name:"藍波"
+      },{
+        Library:"海洋奇觀",
+        name:"燈燈"
+      },{
+        Library:"叢林奇蹟",
+        name:"空位置"
+      },{
+        Library:"叢林奇蹟",
+        name:"空位置"
+      },{
+        Library:"叢林奇蹟",
+        name:"栗栗"
+      },{
+        Library:"叢林奇蹟",
+        name:"珍珍"
+      },{
+        Library:"叢林奇蹟",
+        name:"中中"
+      },{
+        Library:"叢林奇蹟",
+        name:"曼曼"
+      },{
+        Library:"叢林奇蹟",
+        name:"瑪雅"
+      },{
+        Library:"叢林奇蹟",
+        name:"狄恩"
+      }]
     };
   },
   created() {
@@ -192,7 +360,11 @@ export default {
     },
     handleMouseLeave(index) {
       this.hoverStatus[index] = false;
-    }
+    },isHidden(index) {
+      const hiddenIndexes = [3, 5, 10, 11, 14, 23, 25, 27, 32, 31];
+      //includes會返回一個bool值 主要偵測陣列裡有沒有對應的值
+      return hiddenIndexes.includes(index + 1);
+    },
   },
 };
 </script>

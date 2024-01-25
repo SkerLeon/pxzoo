@@ -23,6 +23,10 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH2;
   font-family: $font;
   font-weight: 900;
+  @media (width <= 768px) {
+    //ph尺寸
+    font-size: $phFontH2;
+  }
 }
 
 //小標
@@ -31,9 +35,8 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-family: $font;
   font-weight: 700;
   @media (width <= 768px) {
+    //ph尺寸
     font-size: $phFontH3;
-    font-family: $font;
-    font-weight: 700;
   }
 }
 //內文
@@ -41,12 +44,20 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH4;
   font-family: $font;
   font-weight: 500;
+  @media (width <= 768px) {
+    //ph尺寸
+    font-size: $phFontH4;
+  }
 }
 //註解
 .pcMarkText {
   font-size: $pcFontH5;
   font-family: $font;
   font-weight: 500;
+  @media (width <= 768px) {
+    //ph尺寸
+    font-size: $phFontH5;
+  }
 }
 
 //----手機文字----
