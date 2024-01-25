@@ -1,11 +1,11 @@
 <template>
-    <!-- part0 購票須知 -->
+    <!-- part0-1 購票須知 -->
     <section class="tickInfo">
 
         <article>
-            <h2>購票須知</h2>
+            <h2 class="pcSmTitle">購票須知</h2>
                 <ol>
-                    <li v-for="info in tickInfomation" :key="info.id">{{info.content}}
+                    <li v-for="info in tickInfomation" :key="info.id" class="pcInnerText">{{info.content}}
                         <ul v-if="info.subRules">
                             <li v-for="subInfo in info.subRules" :key="subInfo.id">{{subInfo.subContent}}</li>
                         </ul>

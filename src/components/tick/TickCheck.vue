@@ -1,22 +1,30 @@
 <template>
     <!-- part2 付款頁 -->
     <section class="tickCheck">
-        <h2>請確認您的訂單資訊</h2>
-        <hgroup>
+        <h2 class="pcSmTitle">請確認您的訂單資訊</h2>
+        <hgroup class="pcInnerText">
             <p>票卷日期</p>
-            <h2 class="mixedFont">2024 <p>年</p> 01 <p>月</p> 12 <p>日</p> </h2>
+            <h2 class="pcSmTitle mixedFont">2024 
+                <p class="pcInnerText">年</p>
+                 01  
+                <p class="pcInnerText">月</p>
+                 12 
+                 <p class="pcInnerText">日</p>
+            </h2>
         </hgroup>
         <article class="choosed">
             <main v-for=" ticket in tickets" :key="ticket.id">
                 <div>
-                    <p>{{ ticket.name }}</p>
-                    <span>{{ ticket.rule }}</span>
+                    <p class="pcInnerText">{{ ticket.name }}</p>
+                    <span class="pcMarkText">{{ ticket.rule }}</span>
                 </div>
-                <h2>1 <span>張</span></h2>
+                <h2 class="pcSmTitle">1 
+                    <span class="pcMarkText">張</span>
+                </h2>
             </main>
         </article>
-        <hgroup class="coupon">
-            <h2>優惠折扣</h2>
+        <hgroup class="coupon pcInnerText">
+            <h2 class="pcSmTitle">優惠折扣</h2>
             <p v-if="noCoupon">目前沒有優惠券</p>
             <select v-else name="payway[]" id="payway" placeholder="請選擇優惠券">
                 <option value="noUse">不使用優惠券</option>
@@ -26,35 +34,44 @@
         </hgroup>
         <div class="price">
             <span>票券金額</span>
-            <span class="mixedFont">NT$ <p>260</p></span>
+            <p class="pcInnerText">
+                <span class="pcMarkText">NT$ </span>
+                260
+            </p>
         </div>
         <div class="price">
             <span>優惠金額</span>
-            <span class="mixedFont">NT$ <p>26</p></span>
+            <p class="pcInnerText">
+                <span class="pcMarkText">NT$ </span>
+                26
+            </p>
         </div>
-        <div class="price">
-            <p>付款金額</p>
-            <h2 class="important mixedFont"><p>NT$</p> 234</h2>
+        <div class="price important">
+            <p class="pcInnerText">付款金額</p>
+            <h2 class="mixedFont pcSmTitle">
+                <p class="pcInnerText">NT$</p> 
+                234
+            </h2>
         </div>
         <article class="payWay">
             <hgroup>
-                <h2>付款方式</h2>
+                <h2 class="pcSmTitle">付款方式</h2>
 
-                <select name="payway[]" id="payway" placeholder="請選擇付款方式">
+                <select name="payway[]" id="payway" placeholder="請選擇付款方式" class="pcInnerText">
                     <option value="card">信用卡</option>
                     <option value="cash">現場付款</option>
                 </select>
 
             </hgroup>
-            <div class="price">
+            <div class="price pcInnerText important">
                 <p>票券型態</p>
-                <p class="important">實體票券</p>
+                <p>實體票券</p>
             </div>
-            <main>
+            <main class="pcInnerText">
                 <p>信用卡卡號</p>
                 <input type="number" placeholder="請輸入卡號">
             </main>
-            <main>
+            <main class="pcInnerText">
                 <p>有效日期</p>
                 <main>
                     <input type="number" placeholder="請輸入信用卡月">
@@ -62,18 +79,18 @@
                     <input type="number" placeholder="請輸入信用卡年">
                 </main>
             </main>
-            <main>
+            <main class="pcInnerText">
                 <p>驗證碼</p>
                 <input type="text" placeholder="請輸入卡片背後末三碼" class="defaultInput">
             </main>
         </article>
 
         <main class="tickBtn">
-            <button class="defaultBtn" @click="previousStep">
+            <button class="defaultBtn pcInnerText" @click="previousStep">
                 上一步
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
-            <button class="tickLBtn defaultBtn" @click="nextStep">
+            <button class="tickLBtn defaultBtn pcInnerText" @click="nextStep">
                 送出訂單
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>

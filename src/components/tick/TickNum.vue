@@ -1,56 +1,51 @@
 <template>
-    <!-- part2 選擇數量 -->
+    <!-- part1 選擇數量 -->
     <section class="tickNum">
 
         <hgroup>
-            <h2>選擇數量</h2>
+            <h2 class="pcSmTitle">選擇數量</h2>
+    <!-- 999reset -->
             <img src="@/assets/images/ticket/refresh.svg">
         </hgroup>
-
-        <article v-if="isMobile"  class="tickOption PH">
-            <div v-for=" ticket in tickets" :key="ticket.id">
-                <div>
-                    <p>{{ ticket.name }}</p>
-                    <p>{{ ticket.rule }}</p>
-                </div>
-                <div>
-                    <h2>NT$ {{ ticket.price }}</h2>
-                    <p>/ 人</p>
-                    <!-- pc ph是否可以按鈕一組就好? -->
-                    <form class="countBTN">
-                        <button>+</button>
-                        <form action="ticket.php" method="post">
-                            <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
-                        </form>
-                        <button>-</button>
-                    </form>
-                </div>
-            </div>
-        </article>
-        <div v-else class="tickOption PC">
+        <main>
             <article v-for=" ticket in tickets" :key="ticket.id">
-                <img :src="ticket.src" :alt="ticket.name">
-                <form class="countBTN">
-                    <button>+</button>
-                    <form action="ticket.php" method="post">
-                        <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" min="0" max="999">
-                    </form>
-                    <button>-</button>
-                </form>
+                <div v-if="isMobile" class="tickOption PH pcInnerText">
+                    <div>
+                        <p>{{ ticket.name }}</p>
+                        <p class="pcMarkText">{{ ticket.rule }}</p>
+                    </div>
+                    <div>
+                        <h2  class="pcSmTitle">NT$ {{ ticket.price }}</h2>
+                        <p>/ 人</p>
+                    </div>
+                </div>
+                <article v-else class="tickOption PC">
+                    <img :src="ticket.src" :alt="ticket.name">
+                </article>
+                <div class="countBTN">
+<!-- +-btn -->
+                    <button class="pcDecMarkText">+</button>
+                    <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
+                    <button class="pcDecMarkText">-</button>
+                </div>
             </article>
-        </div>
+        </main>
 
-        <div class="price firstLine">
+        <div class="price firstLine pcInnerText important">
             <p>票券金額</p>
-            <h2 class="important mixedFont"><p>NT$</p> 260</h2>
+<!-- 999sum of tickets -->
+            <h2 class="pcSmTitle">
+                <p>NT$</p> 
+                260
+            </h2>
         </div>
 
         <main class="tickBtn">
-            <button class="defaultBtn" @click="previousStep">
+            <button class="defaultBtn pcInnerText" @click="previousStep">
                 上一步
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
-            <button type="button" class="tickLBtn defaultBtn" @click="nextStep">
+            <button type="button" class="tickLBtn defaultBtn pcInnerText" @click="nextStep">
                 立即購票
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
@@ -64,7 +59,6 @@
 export default {
     components:{
         // RouterLink,
-        search: '',
     },
     props:[
         // 丟資料的key值
@@ -114,6 +108,9 @@ export default {
     created(){
         this.windowSize();
         window.addEventListener('resize', this.windowSize);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
     },
     methods:{
         windowSize(){

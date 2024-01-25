@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      tickStep: 0,
+      tickStep: 2,
       device: 'PC',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
@@ -93,6 +93,9 @@ export default {
   created(){
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
+  },
+  beforeDestroy() {
+      window.removeEventListener('resize', this.windowSize);
   },
   methods:{
     windowSize(){
