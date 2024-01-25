@@ -1,5 +1,5 @@
 <template>
-    <!-- part4 購票完成 -->
+    <!-- part3 購票完成 -->
     <section class="tickFinished">
 
         <section>
@@ -19,18 +19,17 @@
             </button>
         </section>
 
-        <main>
-            <!-- part4-1 訂單資訊1 -->
-            <article class="checkOrder">
-                <hgroup>
-                    <p>訂單編號</p>
-                    <h2>1</h2>
-                </hgroup>
-                <hgroup>
-                    <p>票卷日期</p>
-                    <h2 class="mixedFont">2024 <p>年</p> 01 <p>月</p> 12 <p>日</p> </h2>
-                </hgroup>
-                <main v-for=" ticket in tickets" :key="ticket.id" class="choosed">
+        <article>
+            <hgroup>
+                <p>訂單編號</p>
+                <h2 class="important">1</h2>
+            </hgroup>
+            <hgroup>
+                <p>票卷日期</p>
+                <h2 class="mixedFont">2024 <p>年</p> 01 <p>月</p> 12 <p>日</p> </h2>
+            </hgroup>
+            <article class="choosed">
+                <main v-for="ticket in tickets" :key="ticket.id">
                     <div>
                         <p>{{ ticket.name }}</p>
                         <span>{{ ticket.rule }}</span>
@@ -38,41 +37,37 @@
                     <h2>1 <span>張</span></h2>
                 </main>
             </article>
-
-            <!-- part4-2 訂單資訊2 -->
-            <article class="checkOrder">
-                <hgroup>
-                    <p>優惠折扣</p>
-                    <p>付款金額 9 折</p>
-                </hgroup>
+            <hgroup class="coupon">
+                <p>優惠折扣</p>
+                <p>付款金額 9 折</p>
+            </hgroup>
+            <div class="price">
+                <span>票券金額</span>
+                <span class="mixedFont">NT$ <p>260</p></span>
+            </div>
+            <div class="price">
+                <span>優惠金額</span>
+                <span class="mixedFont">NT$ <p>26</p></span>
+            </div>
+            <div class="price">
+                <p>付款金額</p>
+                <h2 class="important mixedFont"><p>NT$</p> 234</h2>
+            </div>
+            <article class="payWay">
                 <hgroup>
                     <p>付款方式</p>
                     <p>信用卡</p>
                 </hgroup>
-                <hgroup>
+                <div class="price">
                     <p>票券型態</p>
-                    <p>數位票卷</p>
-                </hgroup>
-                <hgroup>
+                    <p class="important">實體票券</p>
+                </div>
+                <div class="price">
                     <p>處理狀態</p>
-                    <p>未用票</p>
-                </hgroup>
-                <div class="price">
-                    <p>票券金額</p>
-                    <p>NT$ 260</p>
-                </div>
-                <div class="price">
-                    <p>優惠金額</p>
-                    <p>NT$ 26</p>
-                </div>
-                <div class="price">
-                    <p>付款金額</p>
-                    <h2 class="important mixedFont"><p>NT$</p> 234</h2>
+                    <p class="important">未用票</p>
                 </div>
             </article>
-
-        </main>
-
+        </article>
     </section>
 </template>
 
@@ -81,7 +76,6 @@ import {goHome} from '@/assets/js/common.js';
 export default {
     components:{
         // RouterLink,
-        search: '',
     },
     data(){
         return {
@@ -125,13 +119,8 @@ export default {
         }
     },
     created(){
-        this.windowSize();
-        window.addEventListener('resize', this.windowSize);
     },
     methods:{
-        windowSize(){
-            this.isMobile = window.innerWidth <= 768;
-        },
         useGoHome(){
             goHome(this);
         },
