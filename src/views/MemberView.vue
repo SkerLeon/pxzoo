@@ -1,5 +1,8 @@
 <template>
   <main class="memPage forHeader">
+    <div class="qrCodeLb" v-if="showQRCode" @click="closeQRCode">
+      <qrcodeLB @close-qrcode="closeQRCode" />
+    </div>
     <aside class="memSidebar">
       <ul>
         <li
@@ -54,8 +57,15 @@
             <input type="file" style="display: none" />
           </div>
           <div class="info pcSmTitle">
-            <p v-for="infoItem in info">{{ infoItem }}</p>
-            <button type="submit" class="defaultBtn pcInnerText infoBtn">
+            <div v-for="(field, key) in fields" :key="key">
+              <label>{{ field.label }}:</label>
+              <input v-model="profile[key]" />
+            </div>
+            <button
+              type="submit"
+              @click="saveProfile()"
+              class="defaultBtn pcInnerText infoBtn"
+            >
               修改資料
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
@@ -81,12 +91,12 @@
           :key="ticketDetail"
           class="listInfo"
         >
-          <p class="pcInnerText">{{ detail.id }}</p>
+          <p class="pcInnerText idColor" @click="openQRCode">{{ detail.id }}</p>
           <p class="pcInnerText">{{ detail.date }}</p>
           <p class="pcInnerText">{{ detail.pay }}</p>
           <p class="pcInnerText">{{ detail.total }}</p>
           <p class="pcInnerText">{{ detail.type }}</p>
-          <p>{{ detail.status }}</p>
+          <p class="pcInnerText">{{ detail.status }}</p>
         </div>
       </div>
       <img
@@ -173,11 +183,26 @@
 
 <script>
 import btn from "@/components/btn.vue";
+import qrcodeLB from "@/components/QRcodeLightBox.vue";
 export default {
   data() {
     return {
       activeTab: "info",
-      info: ["姓名", "稱謂", "生日", "信箱", "電話"],
+      showQRCode: false,
+      profile: {
+        name: "",
+        title: "",
+        birthday: "",
+        email: "",
+        phone: "",
+      },
+      fields: [
+        { key: "name", label: "姓名" },
+        { key: "title", label: "稱謂" },
+        { key: "birthday", label: "生日" },
+        { key: "email", label: "信箱" },
+        { key: "phone", label: "電話" },
+      ],
       ticketsTitle: [
         "訂單編號",
         "票券日期",
@@ -232,20 +257,43 @@ export default {
   },
   components: {
     btn,
+    qrcodeLB,
+  },
+  created() {
+    for (const field of this.fields) {
+      const savedValue = localStorage.getItem(`profile${field.key}`);
+      if (savedValue) {
+        this.profile[field.key] = savedValue;
+      }
+    }
   },
   methods: {
     toHomePage() {
       this.$router.push("/");
     },
+    closeQRCode() {
+      this.showQRCode = false;
+      document.body.style.overflow = "auto";
+    },
+    openQRCode() {
+      this.showQRCode = true;
+      document.body.style.overflow = "hidden";
+    },
+    saveProfile() {
+      // 假设保存成功后，手动将各个字段保存到 localStorage
+      for (const field of this.fields) {
+        const key = `profile${field.key}`;
+        const value = this.profile[field.key];
+
+        // 检查是否为空字符串，如果是就不进行 JSON 字符串化
+        if (value !== "") {
+          localStorage.setItem(key, JSON.stringify(value));
+        } else {
+          localStorage.setItem(key, ""); // 存储空字符串
+        }
+      }
+      alert("更新成功");
+    },
   },
 };
 </script>
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

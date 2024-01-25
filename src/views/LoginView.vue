@@ -12,21 +12,23 @@
     </div>
     <div class="loginSingupArea">
       <div class="loginBtnGroup">
-        <img
-          src="@/assets/images/login/login-bg/login_btn_area.png"
-          alt=""
-          class="loginSigninBg"
-        />
+        <img :src="currentImage" alt="" class="loginSigninBg" />
         <button
           class="loginBtn pcSmTitle"
-          @click="activeTab = 'loginForm'"
+          @click="
+            activeTab = 'loginForm';
+            changeImage(1);
+          "
           :class="{ active: activeTab === 'loginForm' }"
         >
           會員登入
         </button>
         <button
           class="signupBtn pcSmTitle"
-          @click="activeTab = 'signForm'"
+          @click="
+            activeTab = 'signForm';
+            changeImage(2);
+          "
           :class="{ active: activeTab === 'signForm' }"
         >
           註冊會員
@@ -127,6 +129,7 @@ export default {
       activeTab: "loginForm",
       loginAccount: "",
       loginPassword: "",
+      currentImage: "/src/assets/images/login/login-bg/login_btn_area.png",
     };
   },
   components: {},
@@ -137,6 +140,15 @@ export default {
     },
     toMemberPage() {
       this.$router.push("member");
+    },
+    changeImage(imageNumber) {
+      if (imageNumber === 1) {
+        this.currentImage =
+          "/src/assets/images/login/login-bg/login_btn_area.png";
+      } else if (imageNumber === 2) {
+        this.currentImage =
+          "/src/assets/images/login/login-bg/signin_btn_area.png";
+      }
     },
   },
 };
