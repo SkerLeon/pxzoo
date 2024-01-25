@@ -2,42 +2,147 @@
 .vote_top {
   position: relative;
   color: $mainTextColor;
-  .podium_img img {
-    width: 170px;
-    height: 170px;
-  }
+  width: 100%;
   .podium_no {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-
-    img {
-      width: 170px;
-      height: 170px;
+    .vote_img {
+      width: 9vw;
+      height: auto;
+      border: $primaryColorYellow solid 4px;
     }
-  }
-  .podium {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    .podium_box {
-      width: 365px;
-      height: 310px;
-      // background-color: $primaryColorYellow;
-      text-align: center;
+    .podium1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 40%;
+      position: absolute;
+      bottom: 0;
+      .vote_name {
+        margin: 6% 0 15% 0;
+      }
+
+      .podium_box {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 20vw;
+        height: 50vh;
+        background: rgb(254, 208, 1);
+        background: linear-gradient(
+          180deg,
+          rgba(254, 208, 1, 1) 0%,
+          rgba(254, 208, 1, 0.38716736694677867) 41%,
+          rgba(254, 208, 1, 0) 85%
+        );
+        /* 新增 border 相關屬性 */
+        border-left: 4px solid transparent; /* 透明的左邊框 */
+        border-image: linear-gradient(
+          to bottom,
+          $bgColorLightgray 60%,
+          rgba(255, 255, 255, 0) 85%
+        );
+
+        border-image-slice: 1;
+
+        z-index: 3;
+        .NO {
+          width: 3vw;
+          height: auto;
+          position: absolute;
+          top: -6%;
+        }
+        .score {
+          position: absolute;
+          top: 15%;
+        }
+      }
+    }
+    .podium2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 23%;
+      position: absolute;
+      bottom: 0;
+      .vote_name {
+        margin: 6% 0 15% 0;
+      }
+      .podium_box {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 20vw;
+        height: 35vh;
+        background: rgb(254, 208, 1);
+        background: linear-gradient(
+          180deg,
+          rgba(254, 208, 1, 1) 0%,
+          rgba(254, 208, 1, 0.38716736694677867) 41%,
+          rgba(254, 208, 1, 0) 85%
+        );
+        z-index: 2;
+        .NO {
+          width: 3vw;
+          height: auto;
+          position: absolute;
+          top: -8%;
+        }
+        .score {
+          position: absolute;
+          top: 20%;
+        }
+      }
+    }
+    .podium3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 57%;
+      position: absolute;
+      bottom: 0;
+      .vote_name {
+        margin: 6% 0 15% 0;
+        left: 55%;
+      }
+      .podium_box {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 20vw;
+        height: 30vh;
+        background: rgb(254, 208, 1);
+        background: linear-gradient(
+          180deg,
+          rgba(254, 208, 1, 1) 0%,
+          rgba(254, 208, 1, 0.38716736694677867) 41%,
+          rgba(254, 208, 1, 0) 85%
+        );
+        z-index: 1;
+        .NO {
+          width: 3vw;
+          height: auto;
+          position: absolute;
+          top: -10%;
+        }
+        .score {
+          position: absolute;
+          top: 20%;
+        }
+      }
     }
   }
 
   .banner {
     background-image: url("/src/assets/images/vote/tree.svg");
-    background-color: #f5efeb;
+    background-color: $bgColorLightgray;
 
-    width: 100vw;
-    height: 95vh;
+    width: 100%;
+    height: 100vh;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
@@ -46,7 +151,7 @@
       color: $primaryColorGreen;
       text-align: center;
       line-height: 1.5;
-      padding-top: 3%;
+      padding-top: 1.5%;
     }
 
     .sheep {
@@ -55,29 +160,30 @@
       left: 20%;
       transform: scaleX(-1);
       width: 8vw;
+      z-index: 10;
     }
   }
 }
 
 //投票活動
 .vote_activity {
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   background-color: #fff;
   position: relative;
-  padding-bottom: 211px;
+  // padding-bottom: 211px;
   color: $mainTextColor;
 
   h1 {
     color: $primaryColorGreen;
     text-align: center;
     line-height: 1.5;
-    padding-top: 5%;
+    padding: 5% 0 1% 0;
   }
   p {
-    margin: 2% 14%;
     text-align: left;
     line-height: 1.5;
+    margin: 0 14%;
   }
   .cloud_6 {
     position: absolute;
@@ -99,7 +205,7 @@
   }
   .squirrel_2 {
     position: absolute;
-    bottom: 0;
+    bottom: -0.5%;
     left: 5%;
     background-repeat: no-repeat;
     img {
@@ -108,28 +214,22 @@
   }
   .vote_rule {
     display: flex;
-    flex-direction: row;
-    padding: 1% 0;
-    align-items: flex-start;
-    justify-content: flex-start;
-    line-height: 1.5;
+    // flex-direction: row;
+    padding: 2% 0;
+
+    // line-height: 1.5;
     margin: 0 14%;
 
-    .time {
-      white-space: nowrap;
-
-      padding-right: 3%;
-    }
     p {
-      text-align: left;
-      margin: 0;
+      width: 100%;
+      margin: 0 3%;
     }
   }
 }
 
 //人氣投票TOP3
 .vote_popular {
-  height: 80vh;
+  // height: 80vh;
   width: 100%;
   background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
@@ -157,7 +257,7 @@
     position: absolute;
     width: 13vw;
     bottom: 0;
-    right: 0;
+    right: 1%;
   }
   .ranking .content {
     width: 75vw;

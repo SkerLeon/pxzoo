@@ -1,6 +1,7 @@
 .school {
   background-image: url("/src/assets/images/school/banner.svg");
   background-color: #fff;
+  max-width: 1920px;
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -24,28 +25,34 @@
     }
     .tree_5 img {
       width: 17vw;
+      height: auto;
       left: 6%;
       bottom: -2px;
     }
     .grasses_6 img {
       width: 11vw;
+      height: auto;
       left: 24%;
     }
     .grasses_7 img {
       width: 10vw;
+      height: auto;
       right: 22%;
     }
     .tree_8 img {
       width: 12vw;
+      height: auto;
       right: 12%;
       bottom: -2px;
     }
     .tree_1 img {
       width: 12vw;
+      height: auto;
       right: 0%;
     }
     .teacher img {
       width: 8vw;
+      height: auto;
       right: 30%;
       bottom: -1%;
       z-index: 99;
@@ -65,21 +72,27 @@
       gap: 5%;
       .number_8 img {
         width: 6vw;
+        height: auto;
       }
       .number_n img {
         width: 6vw;
+        height: auto;
       }
       .number_i img {
         width: 5vw;
+        height: auto;
       }
       .number_m img {
-        width: 8vw;
+        width: 7.8vw;
+        height: auto;
       }
       .number_a img {
-        width: 6.7vw;
+        width: 6.5vw;
+        height: auto;
       }
       .number_l img {
-        width: 6.7vw;
+        width: 6.5vw;
+        height: auto;
       }
     }
     .school_name {
