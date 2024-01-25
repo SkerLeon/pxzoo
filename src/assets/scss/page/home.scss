@@ -1,4 +1,5 @@
 .home{
+    //banner
     .home_bannergroup{
         position: relative;
         overflow: hidden; 
@@ -133,14 +134,20 @@
 
     // }
 
+    //快速選單 選單
     .home_qkmnu{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1vw;
         display: flex;
         justify-content: space-between;
         width: 74%;
         margin: auto;
-        
-        .home_qkmnu_btn{
+
+        &_btn{
             color: $mainTextColor;
+            padding-bottom: 10px;
             width: 17vw;
             height: 6.5vw;
             border: none;
@@ -149,20 +156,360 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-color: rgba(255, 255, 255, 0);  
-            &:hover{
-                background-image: url("/src/assets/images/home/home_btnbkg_hover.svg");
+        }
+
+        button.hovered{
+            background-image: url("/src/assets/images/home/home_btnbkg_hover.svg");
+        }
+    }
+
+    //快速選單 內頁
+    .home_qkpage{
+        width: 74%;
+        height: 40vw;
+        margin: auto;
+
+        &_time{
+            padding: 11% 0;
+            .time{
+                display: flex;
+                justify-content: space-between;
+                text-align: center;
+                align-self: center;
+
+                .timeitem{
+                    width: 32%;
+                    border: 2px $primaryColorGreen solid;
+                    align-items: center;
+
+                    .title{
+                        color: $primaryColorYellow;
+                        background-color: $primaryColorGreen;
+                        height: 50%;
+                        padding-top: 8%;
+                        padding-bottom: 8%;
+                    }
+
+                    .clock{
+                        color: $mainTextColor;
+                        height: 50%;
+                        padding-top: 8%;
+                        padding-bottom: 8%;
+                    }
+                    
+                }
+            }
+
+            .notice{
+                margin-top: 2vw;
+                h2{
+                    color: $secColorblue;
+                }
+
+                ul{
+                    margin-top: 1vw;
+                }
+
+                li{
+                    color: $mainTextColor;
+                    line-height: 30px;
+                }
             }
         }
 
+        &_ticket{
+            padding: 8% 0;
+            display: flex;
+            justify-content: space-between;
+            color: $mainTextColor;
+            text-align: center;
+            
+            .ticket_heading{
+                width: 15%;
+                p{
+                    &:nth-child(1){
+                        padding: 5.5vw 0;
+                    }
+                    &:nth-child(2){
+                        padding: 1vw 0;
+                    }
+                    &:nth-child(3){
+                        padding: 5.5vw 0;
+                    }
+                }
+                
+            }
 
+            .ticket_type{
+                width: 15%;
+                height: 400px;
+                position: relative;
+                .ticket_bg{
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                .ticket_text{
+                    position: absolute;
+                    left: 14%;
+                    width: 70%;
+                    h2{
+                        padding: 5vw 0 3vw 0;
+                    }
+                    .ticket_price{
+                        padding: 3vw 0;
+                    }
+                    .line{
+                        width: 100%;
+                        height: 1.5px;
+                        background-color: $mainTextColor;
+                    }
+                    .ticket_rule{
+                        padding: 3vw 0 5vw 0;
+                        line-height: 1.5vw;
+                    }
+
+                    
+                }
+                
+            }
+            
+        }
+
+        &_park{}
+
+        &_traffic{
+            padding: 8% 0;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+
+            .traffic_btn{
+                display: flex;
+                flex-direction: column;
+                padding: 7% 0;
+                button{
+                    margin-top: 2vw;
+                    &:nth-child(3){
+                        .iconText {
+                            padding: 0 0.8vw;
+                            gap: 0.1vw;
+                            img{
+                                width: 150px;
+                            }
+                        }
+                    }
+                }
+                .iconBtn.hovered{
+                    background-color: $primaryColorYellow;
+                }
+            }
+
+            .traffic_page{
+                position: relative;
+
+                &_map_mapimg {
+                    img{
+                        position: absolute;
+                        width: 100%;
+                        vertical-align: bottom;
+                    }
+                }
+                .traffic_page_deco{
+                    position: absolute;
+                    display: flex;
+                    width: 100%;
+                    // z-index: 2;
+
+                    .cloud_6 img{
+                        position: absolute;
+                        top: -2vw;
+                        left: -4vw;
+                        width: 13vw;
+                        vertical-align: bottom;
+                    }
+
+                    .cloud_2 img{
+                        position: absolute;
+                        bottom: -30vw;
+                        right: 0vw;
+                        width: 15vw;
+                        vertical-align: bottom;
+                    }
+
+                    .hedgehog img{
+                        position: absolute;
+                        bottom: -28.5vw;
+                        right: 10vw;
+                        width: 6vw;
+                        vertical-align: bottom;
+                    }
+                }
+                // position: relative;
+                width: 85%;
+                
+                &_map_location{
+                    position: absolute;
+                    .ground img{
+                        position: absolute;
+                        top: 9.85vw;
+                        left: 27.6vw;
+                        width: 4.5vw;
+                        vertical-align: bottom;
+                        }
+                    .location img{
+                        position: absolute;
+                        top: 7vw;
+                        left: 27.6vw;
+                        width: 4.5vw;
+                        vertical-align: bottom;
+                    }
+                    .ladybug img{
+                        position: absolute;
+                        top: 9vw;
+                        left: 29vw;
+                        width: 1.2vw;
+                        vertical-align: bottom;
+                    }
+                    .conversation img{
+                        position: absolute;
+                        top: 7.3vw;
+                        left: 26.5vw;
+                        width: 3vw;
+                        vertical-align: bottom;
+                    }
+                }
+
+
+                &_train img{
+                    position: absolute;
+                    bottom: 3.5vw;
+                    left: 32.5vw;
+                    width: 2.3vw;
+                    vertical-align: bottom;
+                }
+
+                &_bus img{
+                    position: absolute;
+                    width: 2.3vw;
+                    vertical-align: bottom;
+                    &:nth-child(1){
+                        bottom: 9vw;
+                        left: 46vw;
+                    }
+                    &:nth-child(2){
+                        bottom: 7.5vw;
+                        left: 39vw;
+                    }
+                    &:nth-child(3){
+                        bottom: 5vw;
+                        left: 34.5vw;
+                    }
+                    &:nth-child(4){
+                        bottom: 1vw;
+                        left: 27vw;
+                    }
+                    &:nth-child(5){
+                        bottom: 11vw;
+                        left: 33vw;
+                    }
+                    &:nth-child(6){
+                        bottom: 10vw;
+                        left: 28vw;
+                    }
+                    &:nth-child(7){
+                        bottom: 6.5vw;
+                        left: 21vw;
+                    }
+                    &:nth-child(8){
+                        bottom: 2.5vw;
+                        left: 11vw;
+                    }
+                    &:nth-child(9){
+                        bottom: 13.5vw;
+                        left: 28vw;
+                    }
+                    &:nth-child(10){
+                        bottom: 11.5vw;
+                        left: 23.5vw;
+                    }
+                    &:nth-child(11){
+                        bottom: 15vw;
+                        left: 21vw;
+                    }
+                    &:nth-child(12){
+                        bottom: 19.5vw;
+                        left: 34vw;
+                    }
+                    &:nth-child(13){
+                        bottom: 23vw;
+                        left: 30.5vw;
+                    }
+                    &:nth-child(14){
+                        bottom: 22.5vw;
+                        left: 24vw;
+                    }
+                    &:nth-child(15){
+                        bottom: 18.5vw;
+                        left: 13vw;
+                    }
+                }
+
+                &_ubike img{
+                    position: absolute;
+                    width: 2.3vw;
+                    vertical-align: bottom;
+                    &:nth-child(1){
+                        bottom: 4.5vw;
+                        left: 34.5vw;
+                    }
+                    &:nth-child(2){
+                        bottom: 21vw;
+                        left: 30.5vw;
+                    }
+                }
+
+                &_parking img{
+                    position: absolute;
+                    width: 2.3vw;
+                    vertical-align: bottom;
+                    &:nth-child(1){
+                        bottom: 4.5vw;
+                        left: 27vw;
+                    }
+                    &:nth-child(2){
+                        bottom: 6vw;
+                        left: 23vw;
+                    }
+                    &:nth-child(3){
+                        bottom: 4.5vw;
+                        left: 34.5vw;
+                    }
+                    &:nth-child(4){
+                        bottom: 12vw;
+                        left: 34vw;
+                    }
+                    &:nth-child(5){
+                        bottom: 14vw;
+                        left: 28.5vw;
+                    }
+                    &:nth-child(6){
+                        bottom: 18.5vw;
+                        left: 32vw;
+                    }
+                }
+            }
+        }
     }
 
-    // button.hovered{
-    //         background-color: bisque$primaryColorYellow;
-    //     }
-    // button{
-    //     background-color: aquamarine; 
-    // }
+
+
+
+
+
+
+    
 
     //縱向滾動
     // .home_news{
