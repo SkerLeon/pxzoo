@@ -72,15 +72,7 @@
 .animal_park{
     padding-top:3vw ;
     .animal_park_name{
-        @extend .pcBigTitle;
         color: $primaryColorGreen;
-        @media screen and (max-width: 768px) {
-            .phBigTitle {
-                font-size: $phFontH2;
-                font-family: $font;
-                font-weight: 900;
-            }
-        }
     }
 }
 .animal_park:nth-child(2){
@@ -118,7 +110,6 @@
         width: 12vw;
     }
     .animal_name{
-        @extend .pcSmTitle;
         color:$mainTextColor;
         text-align: center;
         padding-top: 1.45vw; 
@@ -140,11 +131,6 @@
         .animal_name{
             text-align: center;
             padding-top: 4vw; 
-            .phSmTitle {
-                font-size: $phFontH3;
-                font-family: $font;
-                font-weight: 700;
-            }
         }
     }
     .col-sm-6 {

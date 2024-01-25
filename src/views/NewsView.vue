@@ -36,12 +36,12 @@
             <img :src="getImageUrl(item.img)" alt="news圖">
             <div class="news-text">
               <div class="news_tag_time">
-                <span class="time">{{ item.date }}</span>
+                <span class="time pcInnerText">{{ item.date }}</span>
                 <span class="tag" 
                 :class="item.tag_class">{{ item.tag }}</span>
               </div>
               <div class="news_title">
-                <h4>{{item.title}}</h4>
+                <h4 class="pcSmTitle">{{item.title}}</h4>
               </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
 
       <!-- 分頁 -->
-      <div class="news_pagination">
+      <div class="news_pagination pcInnerText">
         <li><a href="#">|</a></li>
         <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>

@@ -16,7 +16,7 @@
                 <ul class="Sidebar_filter_btns">
                     <li class="filter_btn_item"
                     v-for="category in animalsCategoryPc"
-                    @click="scrollTo('category.value')">
+                    @click="scrollTo(category.value)">
                     <img :src="getIconUrl(category.icon)" alt="category.label">
                         <p class="pcInnerText">{{category.label}}</p>
                     </li>
@@ -44,50 +44,50 @@
                     <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="polar">
-                <h2 class="animal_park_name">極地秘境</h2>
+                <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="jungle">
-                <h2 class="animal_park_name">叢林奇蹟</h2>
+                <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
 
             <div class="animal_park" ref="birds">
-                <h2 class="animal_park_name">鳥園樂章</h2>
+                <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
             <div class="animal_park" ref="aqua">
-                <h2 class="animal_park_name">海洋奇觀</h2>
+                <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
@@ -216,7 +216,6 @@ export default {
             }
         },
         toAnimalDetail(){
-        console.log('page');
         this.$router.push({
         path:'./AnimalDetail',
     })

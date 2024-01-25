@@ -1,69 +1,80 @@
 <template>
-    <section class="forHeader">
-        <!-- banner -->
-        <div class="animal_banner">
-            <img src="@/assets/images/animal/banner_animal.png" alt="animal_banner">
+    <section class="forHeader animal_detail_section">
+         <!-- menu button -->
+         <div class="animal_pc_sidebar">
+            <aside class="Sidebar no_slide">
+                <!-- 側邊欄上方動物icon -->
+                <img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
+
+                <!-- ul裡面的li是主要存放按鈕的區塊 -->
+                <!-- 之後想優化程式碼把這邊變成v-for -->
+                <ul class="Sidebar_filter_btns">
+                    <li class="filter_btn_item"
+                    v-for="category in animalsCategoryPc"
+                    @click="scrollTo(category.value)">
+                    <img :src="getIconUrl(category.icon)" alt="category.label">
+                        <p class="pcInnerText">{{category.label}}</p>
+                    </li>
+                </ul>
+
+                <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon) -->
+                <div class="Sidebar_guide hidden_buttom">   
+                    <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
+                </div>
+            </aside>
         </div>
-        <!-- menu button(pc) -->
-
-        <!-- 動物列表 -->
-        <main class="animal_overview">
-            <!-- select(mb) -->
-            <Select class="animal_select" v-model="model" style="width:200px">
-                <Option v-for="category in animalsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
-            </Select>
-
-            <div class="animal_park">
-                <!-- 分館名稱 -->
-                <h2 class="animal_park_name pcBigTitle phBigTitle">草原之聲</h2>
-                <div class="animal_info">
-                    <!-- 個別動物種類名+圖片 -->
-                    <div v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
+        <div class="animal_detail_overview">
+            <div class="animal_detail_info">
+                <div class="animal_detail_text">
+                    <div class="animal_detail_title">
+                        <h2 class="animal_detail_species">獅子</h2>
+                        <div class="animal_detail_sound">
+                            <img src="../assets/images/animal/icon/Sound.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="animal_detail_sec-section">
+                        <div class="animal_detail_name">
+                            <h5>名字</h5>
+                            <p>威廉</p>
+                        </div>
+                        <div class="animal_detail_life">
+                            <h5>平均壽命</h5>
+                            <p>10-14年</p>
+                        </div>
+                    </div>
+                    <div class="animal_detail_live">
+                        <h5>分布地區</h5>
+                        <p>主要分布在非洲和印度次大陸</p>
+                    </div>
+                    <div class="animal_detail_food">
+                        <h5>食性</h5>
+                        <p>獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物</p>
+                    </div>
+                    <div class="animal_detail_feature">
+                        <h5>特徵</h5>
+                        <p>獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵</p>
+                    </div>
+                </div>
+                <div class="animal_detail_img_list">
+                    <div class="big_pic">
+                        <img src="https://picsum.photos/673/600/?random=10">
+                    </div>
+                    <div class="small_pic">
+                        <img src="https://picsum.photos/211/180/?random=10">
+                        <img src="https://picsum.photos/211/180/?random=10">
+                        <img src="https://picsum.photos/211/180/?random=10">
                     </div>
                 </div>
             </div>
+            <div class="animal_detail_intro">
+                <div class="animal_detail__icon">
+                    <img src="../assets/images/park/pk_animal_icon6.png" alt="lion">
+                </div>
+                <p> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
+            </div>
+        </div>
 
-            <div class="animal_park">
-                <h2 class="animal_park_name pcBigTitle phBigTitle">極地秘境</h2>
-                <div class="animal_info">
-                    <div v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
-                </div>
-            </div>
 
-            <div class="animal_park">
-                <h2 class="animal_park_name pcBigTitle phBigTitle">叢林奇蹟</h2>
-                <div class="animal_info">
-                    <div v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="animal_park">
-                <h2 class="animal_park_name pcBigTitle phBigTitle">鳥園樂章</h2>
-                <div class="animal_info">
-                    <div v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="animal_park">
-                <h2 class="animal_park_name pcBigTitle phBigTitle">海洋奇觀</h2>
-                <div class="animal_info">
-                    <div v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle phSmTitle">{{ animal.name }}</h3>
-                    </div>
-                </div>
-            </div>
-        </main>
     </section>
 </template>
 
