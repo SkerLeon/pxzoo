@@ -23,6 +23,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH2;
   font-family: $font;
   font-weight: 900;
+  line-height: 150%;
   @media (width <= 768px) {
     //ph尺寸
     font-size: $phFontH2;
@@ -34,6 +35,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH3;
   font-family: $font;
   font-weight: 700;
+  line-height: 150%;
   @media (width <= 768px) {
     //ph尺寸
     font-size: $phFontH3;
@@ -44,9 +46,11 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH4;
   font-family: $font;
   font-weight: 500;
+  line-height: 150%;
   @media (width <= 768px) {
     //ph尺寸
     font-size: $phFontH4;
+    line-height: 180%;
   }
 }
 //註解
@@ -54,6 +58,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH5;
   font-family: $font;
   font-weight: 500;
+  line-height: 150%;
   @media (width <= 768px) {
     //ph尺寸
     font-size: $phFontH5;
@@ -67,6 +72,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $phFontH2;
   font-family: $font;
   font-weight: 900;
+  line-height: 150%;
 }
 
 //小標
@@ -74,18 +80,21 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $phFontH3;
   font-family: $font;
   font-weight: 700;
+  line-height: 150%;
 }
 //內文
 .phInnerText {
   font-size: $phFontH4;
   font-family: $font;
   font-weight: 500;
+  line-height: 180%;
 }
 //註解
 .phMarkText {
   font-size: $phFontH5;
   font-family: $font;
   font-weight: 500;
+  line-height: 150%;
 }
 
 //--------------裝飾文字--------------
@@ -95,6 +104,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH2;
   font-family: $decorateFont;
   font-weight: 900;
+  line-height: 150%;
 }
 
 //小標
@@ -102,18 +112,21 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $pcFontH3;
   font-family: $decorateFont;
   font-weight: 700;
+  line-height: 150%;
 }
 //內文
 .pcDecInnerText {
   font-size: $pcFontH4;
   font-family: $decorateFont;
   font-weight: 500;
+  line-height: 150%;
 }
 //註解
 .pcDecMarkText {
   font-size: $pcFontH5;
   font-family: $decorateFont;
   font-weight: 500;
+  line-height: 150%;
 }
 
 //----手機裝飾文字----
@@ -123,6 +136,7 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $phFontH2;
   font-family: $decorateFont;
   font-weight: 900;
+  line-height: 150%;
 }
 
 //小標
@@ -130,16 +144,19 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-size: $phFontH3;
   font-family: $decorateFont;
   font-weight: 700;
+  line-height: 150%;
 }
 //內文
 .phDecInnerText {
   font-size: $phFontH4;
   font-family: $decorateFont;
   font-weight: 500;
+  line-height: 150%;
 }
 //註解
 .phDecMarkText {
   font-size: $phFontH5;
   font-family: $decorateFont;
   font-weight: 500;
+  line-height: 150%;
 }
