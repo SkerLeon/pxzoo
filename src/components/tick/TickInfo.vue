@@ -12,13 +12,16 @@
                     </li>
                 </ol>
         </article>
-        <div class="tickBgc">
-            <!-- 111之後補手機板燈箱 -->
+        <div v-if="isMobile" class="tickBgc tickLightbox">
+            <!-- <img src="@/assets/images/ticket/PHinfoL.svg" alt="購票須知布告欄" class="tickBoard"/>
+            <button @click="closeLightbox" type="button"></button> -->
+        </div>
+        <!-- <div v-else class="tickBgc">
             <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
             <img v-if="isSmallPC" src="@/assets/images/ticket/PCinfoS.svg" alt="購票須知布告欄" class="tickBoard"/>
             <img v-else-if="isMidPC" src="@/assets/images/ticket/PCinfoM.svg" alt="購票須知布告欄" class="tickBoard"/>
             <img v-else src="@/assets/images/ticket/PCinfoL.svg"  alt="購票須知布告欄" class="tickBoard"/>
-        </div>
+        </div> -->
 
     </section>
 </template>
@@ -27,7 +30,7 @@
 export default {
     components:{
         // RouterLink,
-
+        showLightbox: true,
     },
     data() {
         return {
@@ -66,14 +69,6 @@ export default {
             // targetValue:0,
         }
     },
-    created(){
-        // 🐢:不要寫在data有時候會出錯，這裡可以初始化
-        this.windowSize();
-        window.addEventListener('resize', this.windowSize);
-    },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.windowSize);
-    },
     methods:{
         windowSize(){
             this.isMobile = window.innerWidth <= 768;
@@ -83,7 +78,18 @@ export default {
         getInfoImage(name){
             // 999無效，有空再解
             // return `src/assets/images/ticket/${name}.svg`;
+        },
+        closeLightbox(){
+            this.showLightbox=false;
         }
-    }
+    },
+    created(){
+        // 🐢:不要寫在data有時候會出錯，這裡可以初始化
+        this.windowSize();
+        window.addEventListener('resize', this.windowSize);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
+    },
 }
 </script>

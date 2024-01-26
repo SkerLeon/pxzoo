@@ -4,7 +4,7 @@
 
         <hgroup>
             <h2 class="pcSmTitle">選擇數量</h2>
-    <!-- 999reset -->
+    <!-- 999reset input的reset必須跟對象在同個form，因此無法使用-->
             <img src="@/assets/images/ticket/refresh.svg">
         </hgroup>
         <main>
@@ -24,9 +24,9 @@
                 </article>
                 <div class="countBTN">
 <!-- +-btn -->
-                    <button class="pcDecMarkText">+</button>
-                    <input type="number" :name="ticket.name" :id="ticket.id" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
-                    <button class="pcDecMarkText">-</button>
+                    <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
+                    <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999" value="0" readonly>
+                    <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
                 </div>
             </article>
         </main>
@@ -36,7 +36,7 @@
 <!-- 999sum of tickets -->
             <h2 class="pcSmTitle">
                 <p>NT$</p> 
-                260
+                {{tiprice}}
             </h2>
         </div>
 
@@ -72,45 +72,44 @@ export default {
                     name: '成人票',
                     rule: '18~64 歲',
                     price: 100,
-                    src: 'src/assets/images/ticket/ticket1.svg'
+                    src: 'src/assets/images/ticket/ticket1.svg',
+                    qty: 0,
                 },
                 {
                     id: 2,
-                    name: '兒童票',
-                    rule: '4~11 歲',
+                    name: '學生票',
+                    rule: '12 歲以上(含)持學生證者',
                     price: 80,
-                    src: 'src/assets/images/ticket/ticket2.svg'
+                    src: 'src/assets/images/ticket/ticket2.svg',
+                    qty: 0,
                 },
                 {
                     id: 3,
-                    name: '學生票',
-                    rule: '12 歲以上(含)持學生證者',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket3.svg'
-                },
-                {
-                    id: 4,
-                    name: '愛心票',
-                    rule: '65 歲以上(含)',
-                    price: 4100,
-                    src: 'src/assets/images/ticket/ticket4.svg'
-                },
-                {
-                    id: 5,
                     name: '團體票',
                     rule: '15 人以上適用',
                     price: 60,
-                    src: 'src/assets/images/ticket/ticket5.svg'
+                    src: 'src/assets/images/ticket/ticket3.svg',
+                    qty: 0,
+                },
+                {
+                    id: 4,
+                    name: '兒童票',
+                    rule: '4~11 歲',
+                    price: 40,
+                    src: 'src/assets/images/ticket/ticket4.svg',
+                    qty: 0,
+                },
+                {
+                    id: 5,
+                    name: '愛心票',
+                    rule: '65 歲以上(含)',
+                    price: 40,
+                    src: 'src/assets/images/ticket/ticket5.svg',
+                    qty: 0,
                 },
             ],
+            tiprice: 0,
         }
-    },
-    created(){
-        this.windowSize();
-        window.addEventListener('resize', this.windowSize);
-    },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.windowSize);
     },
     methods:{
         windowSize(){
@@ -122,14 +121,80 @@ export default {
         },
         previousStep(){
             this.$emit('previousStep');
+        },
+        increase(ticketId){
+            let ticket = this.tickets.find(
+                (tick) => tick.id === ticketId
+            );
+
+            if(ticket.qty<999){
+                ticket.qty++;
+                return ticket.qty;
+            }
+        },
+        decrease(ticketId){
+            let ticket = this.tickets.find(
+                (tick) => tick.id === ticketId
+            );
+
+            if(ticket.qty>0){
+                ticket.qty--;
+                return ticket.qty;
+            }
+        },
+        alterQty(ticketId){
+            let ticket = this.tickets.find(
+                (tick) => tick.id === ticketId
+            );
+
+            console.log(ticket.qty);
+            console.log(typeof ticket.qty); // 因為HTML設定input type="number"，所以這邊用typeof都會得到"number"，但事實上所有input都是字串
+
+
+            // newQty=ticket.qty.replace(/[^\d]/g, '');
+            // console.log(newQty);
+            // return newQty // 正規表示式抓出非數字字元
+
+            // console.log(e);
+            // console.log(this);
+
+            // for(let i=0; i<qty.length; i++){
+            //     let t =qty.charAt(i);
+            //     if(t = /[^\d]/g)
+            // }
+
+
+            // let f=qty.charAt(0);
+
+            // if(qty>999){
+            //     qty=999;
+            //     return qty;
+            // }
+
+            // return qty;
         }
     },
     computed:{
-
+        tiprice(){
+            return this.tickets.reduce(
+                (sum, ticket)=>
+                sum + ticket.qty* ticket.price,
+            0);
+        // arr.reduce(function(accumulator, currentValue, index, array) {
+            // Do stuff with accumulator and currentValue (index, array, and initialValue are optional)
+        // }, initialValue);
+        },
     },
     watch:{
 
-    }
+    },
+    created(){
+        this.windowSize();
+        window.addEventListener('resize', this.windowSize);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
+    },
 }
 
 </script>

@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      tickStep: 2,
+      tickStep: 0,
       device: 'PC',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
@@ -109,7 +109,7 @@ export default {
     },
     backPreviousStep(){
       this.tickStep--;
-    }
+    },
   }
 }
 

@@ -60,6 +60,18 @@
     select{
         width: 280px;
     }
+    .price{
+        justify-content: end;
+        align-items: flex-end;
+        text-align: right;
+    
+        >*>*{ display: inline-block; }
+        span{ color: $mainTextColor; }
+        :nth-child(2){ width: 180px;}
+    }
+    .firstLine{
+        @include tickBorder(top);
+    }
 }
 
 .tickStep{
@@ -78,18 +90,7 @@
     }
     .tickLBtn{ margin-right: 0;}
 }
-.price{
-    justify-content: end;
-    align-items: flex-end;
-    text-align: right;
 
-    >*>*{ display: inline-block; }
-    span{ color: $mainTextColor; }
-    :nth-child(2){ width: 180px;}
-}
-.firstLine{
-    @include tickBorder(top);
-}
 
 // part0-1 購票須知(TickInfo.vue)
 .tickInfo{
@@ -251,26 +252,26 @@
 }
 
 
+
 // part1 選擇數量
 .tickNum{
     width: 100%;
     >div{ gap: 1vw; }
     >.tickOption.PC{ gap: 4vw; }
-}
-
-.countBTN{
-    display: flex;
-    justify-content: center;
-    input{
-        width: 55px;
-        text-align: right;
-    }
-    button{
-        width: 44px;
-        cursor: pointer;
-        color: $mainTextColor;
-        &:hover {
-            background-color: $primaryColorYellow;
+    .countBTN{
+        display: flex;
+        justify-content: center;
+        input{
+            width: 55px;
+            text-align: right;
+        }
+        button{
+            width: 44px;
+            cursor: pointer;
+            color: $mainTextColor;
+            &:hover {
+                background-color: $primaryColorYellow;
+            }
         }
     }
 }
@@ -340,4 +341,29 @@
         }
     }
     hgroup>:first-of-type{ font-weight: 700; }
+}
+
+@media screen and (max-width:768){
+    .tick{
+        >article, >main{ width: 90%; }
+        main{
+            display: block;
+        }
+    }
+    .tickInfo{
+        background-color: rgba(63, 63, 63, 70%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        article{
+            width: 100%;
+            margin: auto;
+            background-image: url("../../images/ticket/PHinfoL.svg");
+        }
+    }
 }
