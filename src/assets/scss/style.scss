@@ -24,6 +24,7 @@
 @import "layout/fixed_vote";
 @import "layout/_login_light_box";
 @import "layout/debug";
+@import "layout/QRcodeLightBox";
 
 //page
 @import "page/animal";
@@ -37,7 +38,6 @@
 @import "page/vote";
 @import "page/home";
 @import "page/notFound";
-
 
 //套件
 @import "plugin/bootstrap";

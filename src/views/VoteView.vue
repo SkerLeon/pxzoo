@@ -5,16 +5,37 @@
       <!-- 月份看資料庫設計，如果要做到月份統計這邊要寫動態的 -->
       <h1 class="title pcBigTitle">12月動物人氣投票冠軍揭曉！<br />前三名登場！</h1>
       <div class="podium_no">
-        <div v-for="podium in podium_list" class="podium">
+        <!-- <div v-for="podium in podium_list" class="podium"> -->
 
-          <img :src="getImageUrl(podium.animal_img)" alt="Animal">
+        <!-- <img :src="getImageUrl(podium.animal_img)" alt="Animal">
           <h2>{{ podium.name }}</h2>
-          <div class="podium_box">
-            <h2>{{ podium.score }}</h2>
-          </div>
 
+          <h2>{{ podium.score }}</h2> -->
+        <div class="podium2">
+          <img class="vote_img" src="@/assets/images/animal/small_pic/small_pic_giraffe.png" alt="giraffe" />
+          <div class="vote_name  pcDecSmTitle">琳達</div>
+          <div class="podium_box"> <img class="NO" src="@/assets/images/vote/NO2.svg" alt="NO1" />
+            <div class="score pcDecSmTitle">197</div>
+          </div>
         </div>
+        <div class="podium1">
+          <img class="vote_img" src="@/assets/images/animal/small_pic/small_pic_elephant.png" alt="sheep" />
+          <div class="vote_name  pcDecSmTitle">艾迪</div>
+          <div class="podium_box">
+            <img class="NO" src="@/assets/images/vote/NO1.svg" alt="NO1" /> <div class="score pcDecSmTitle">205</div>
+          </div>
+        </div>
+        <div class="podium3">
+          <img class="vote_img" src="@/assets/images/animal/small_pic/small_pic_lion.png" alt="sheep" />
+          <div class="vote_name  pcDecSmTitle">阿斯蘭</div>
+          <div class="podium_box"> <img class="NO" src="@/assets/images/vote/NO3.svg" alt="NO1" /> <div class="score pcDecSmTitle">146</div>
+          </div>
+        </div>
+
       </div>
+     
+
+      <!-- </div> -->
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
     </div>
 
@@ -27,14 +48,18 @@
     <p class="pcInnerText">
       大象以其智慧和巨大的魅力蟬聯人氣王！長頸鹿優雅的身姿總是令人難以忘懷。而獅子勇猛的王者氣質讓人讚嘆。這些動物都擁有獨特的故事和魅力，誰將在本月成為動物園之星？你最喜歡哪一種動物？快來投票選你最愛的動物！
     </p>
-    <div class="vote_rule pcInnerText">
-      <div class="time ">投票時間</div>
-      <img src="" alt="">
+    <div class="vote_rule">
+      <div class=" pcInnerText newsFrame">
+        <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+        <div class="time newsFrameText pcInnerText">投票時間</div>
+      </div>
       <p class="pcInnerText">即日起~<span>1</span>月<span>31</span>日<span>23:59</span>截止</p>
     </div>
-    <div class="vote_rule pcInnerText">
-      <div class="time">投票方式</div>
-      <img src="" alt="">
+    <div class="vote_rule ">
+      <div class=" pcInnerText newsFrame">
+        <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+        <div class="time newsFrameText pcInnerText">投票方式</div>
+      </div>
       <p class="pcInnerText">
         參與投票非常簡單！只需登入你的會員帳號，每天可投三票，不限館別。前往我們的動物園官網，點擊你最喜歡的動物，為它投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
       </p>
@@ -60,7 +85,8 @@
         <img :src="getImageUrl(ranking.animal_img)" alt="Animal">
         <div class="name pcSmTitle">{{ ranking.name }}</div>
         <div class="votes phSmTitle">{{ ranking.point }}票</div>
-        <button class="phInnerText defaultBtn" @click="voteTop3(ranking)">立即投票<img src="@/assets/images/login/icon/btnArrow.svg" alt="" /></button>
+        <button class="phInnerText defaultBtn" @click="voteTop3(ranking)">立即投票<img
+            src="@/assets/images/login/icon/btnArrow.svg" alt="" /></button>
       </div>
     </div>
     <!-- 蟲在平板大小會蓋到，讓他移動XD -->
@@ -89,8 +115,8 @@
           <img :src="getImageUrl(voteItem.animal_img)" alt="Animal">
           <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
           <div class="vote_icon pcInnerText"><img src="@/assets/images/vote/star.svg" alt="">{{ voteItem.point }}票</div>
-          <button class="phInnerText defaultBtn">立即投票
-            <!-- <img src="@/assets/images/login/icon/btnArrow.svg" alt="" /> -->
+          <button class="pcInnerText defaultBtn">立即投票
+            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
         </div>
       </div>
@@ -110,25 +136,25 @@ export default {
       currentContent: 'vote_grass',
 
       podium_list: [
-        {
-          name: "琳達",
-          // medal: "第二名獎牌",
-          score: 197,
-          animal_img: 'giraffe',
+        // {
+        //   name: "琳達",
+        //   // medal: "第二名獎牌",
+        //   score: 197,
+        //   animal_img: 'giraffe',
 
-        },
-        {
-          name: "艾迪",
-          // medal: "第一名獎牌",
-          animal_img: 'elephant',
-          score: 205,
-        },
-        {
-          name: "阿斯蘭",
-          // medal: "第三名獎牌",
-          animal_img: 'lion',
-          score: 146,
-        },
+        // },
+        // {
+        //   name: "艾迪",
+        //   // medal: "第一名獎牌",
+        //   animal_img: 'elephant',
+        //   score: 205,
+        // },
+        // {
+        //   name: "阿斯蘭",
+        //   // medal: "第三名獎牌",
+        //   animal_img: 'lion',
+        //   score: 146,
+        // },
       ],
       ranking_list: [
         {
@@ -211,7 +237,7 @@ export default {
       this.currentContent = content;
     },
 
-    setHoverState(content) {                           
+    setHoverState(content) {
       // 如果只是要變樣式，沒有要做其他js程序，不要用vue用css就好了
       this.currentContent = content;
     }
