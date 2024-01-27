@@ -129,7 +129,7 @@ export default {
       activeTab: "loginForm",
       loginAccount: "",
       loginPassword: "",
-      currentImage: "/src/assets/images/login/login-bg/login_btn_area.png",
+      currentImage: `/src/assets/images/login/login-bg/login_btn_area.png`,
     };
   },
   components: {},
@@ -143,11 +143,9 @@ export default {
     },
     changeImage(imageNumber) {
       if (imageNumber === 1) {
-        this.currentImage =
-          "/src/assets/images/login/login-bg/login_btn_area.png";
+        this.currentImage = `/src/assets/images/login/login-bg/login_btn_area.png`;
       } else if (imageNumber === 2) {
-        this.currentImage =
-          "/src/assets/images/login/login-bg/signin_btn_area.png";
+        this.currentImage = `/src/assets/images/login/login-bg/signin_btn_area.png`;
       }
     },
   },

@@ -15,32 +15,32 @@
             class="chameleon"
           />
           <img src="../assets/images/member/memicon/1.svg" alt="" />
-          <p class="pcInnerText">會員資訊</p>
+          <p class="sidebarText">會員資訊</p>
         </li>
         <li
           @click="activeTab = 'ticket'"
           :class="{ active: activeTab === 'ticket' }"
         >
           <img src="../assets/images/member/memicon/2.svg" alt="" />
-          <p class="pcInnerText">購票紀錄</p>
+          <p class="sidebarText">購票紀錄</p>
         </li>
         <li
           @click="activeTab = 'coupon'"
           :class="{ active: activeTab === 'coupon' }"
         >
           <img src="../assets/images/member/memicon/3.svg" alt="" />
-          <p class="pcInnerText">優惠票券</p>
+          <p class="sidebarText">優惠票券</p>
         </li>
         <li
           @click="activeTab = 'comment'"
           :class="{ active: activeTab === 'comment' }"
         >
           <img src="../assets/images/member/memicon/4.svg" alt="" />
-          <p class="pcInnerText">會員評論</p>
+          <p class="sidebarText">會員評論</p>
         </li>
         <li @click="toHomePage()">
           <img src="../assets/images/member/memicon/5.svg" alt="" />
-          <p class="pcInnerText">會員登出</p>
+          <p class="sidebarText">會員登出</p>
         </li>
       </ul>
     </aside>
@@ -59,7 +59,7 @@
           <div class="info pcSmTitle">
             <div v-for="(field, key) in fields" :key="key">
               <label>{{ field.label }}:</label>
-              <input v-model="profile[key]" />
+              <input v-model="profile[key]" class="infoInput" />
             </div>
             <button
               type="submit"
@@ -77,26 +77,49 @@
     <section class="ticketArea" id="ticket" v-show="activeTab === 'ticket'">
       <div class="innerTicket">
         <h2 class="pcBigTitle">購票紀錄</h2>
-        <div class="listTitle">
-          <p
-            v-for="ticket in ticketsTitle"
-            :key="ticketsTitle"
-            class="pcSmTitle"
-          >
-            {{ ticket }}
-          </p>
+        <div class="buyHistory">
+          <div class="listTitle">
+            <p
+              v-for="ticket in ticketsTitle"
+              :key="ticketsTitle"
+              class="listTitle pcSmTitle"
+            >
+              {{ ticket }}
+            </p>
+          </div>
+
+          <div class="listInfo">
+            <p class="pcInnerText idColor" @click="openQRCode">
+              {{ ticketDetail[0].id }}
+            </p>
+            <p class="pcInnerText">{{ ticketDetail[0].date }}</p>
+            <p class="pcInnerText">{{ ticketDetail[0].pay }}</p>
+            <p class="pcInnerText">{{ ticketDetail[0].total }}</p>
+            <p class="pcInnerText">{{ ticketDetail[0].type }}</p>
+            <p class="pcInnerText">{{ ticketDetail[0].status }}</p>
+          </div>
         </div>
-        <div
-          v-for="detail in ticketDetail"
-          :key="ticketDetail"
-          class="listInfo"
-        >
-          <p class="pcInnerText idColor" @click="openQRCode">{{ detail.id }}</p>
-          <p class="pcInnerText">{{ detail.date }}</p>
-          <p class="pcInnerText">{{ detail.pay }}</p>
-          <p class="pcInnerText">{{ detail.total }}</p>
-          <p class="pcInnerText">{{ detail.type }}</p>
-          <p class="pcInnerText">{{ detail.status }}</p>
+        <div class="buyHistory">
+          <div class="listTitle">
+            <p
+              v-for="ticket in ticketsTitle"
+              :key="ticketsTitle"
+              class="listTitle pcSmTitle"
+            >
+              {{ ticket }}
+            </p>
+          </div>
+
+          <div class="listInfo">
+            <p class="pcInnerText idColor" @click="openQRCode">
+              {{ ticketDetail[1].id }}
+            </p>
+            <p class="pcInnerText">{{ ticketDetail[1].date }}</p>
+            <p class="pcInnerText">{{ ticketDetail[1].pay }}</p>
+            <p class="pcInnerText">{{ ticketDetail[1].total }}</p>
+            <p class="pcInnerText">{{ ticketDetail[1].type }}</p>
+            <p class="pcInnerText">{{ ticketDetail[1].status }}</p>
+          </div>
         </div>
       </div>
       <img
@@ -156,7 +179,7 @@
             />
             <div class="commentArea">
               <p class="commentTitle pcSmTitle">Emily L.</p>
-              <p class="commentText pcInnerText">
+              <p class="commentText">
                 我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
               </p>
             </div>
@@ -204,12 +227,12 @@ export default {
         { key: "phone", label: "電話" },
       ],
       ticketsTitle: [
-        "訂單編號",
-        "票券日期",
-        "付款金額",
-        "總票數",
-        "票券型態",
-        "處理狀態",
+        "訂單編號:",
+        "票券日期:",
+        "付款金額:",
+        "總票數:",
+        "票券型態:",
+        "處理狀態:",
       ],
       ticketDetail: [
         {
@@ -221,7 +244,7 @@ export default {
           status: "已用票",
         },
         {
-          id: "1",
+          id: "2",
           date: "2023/12/30",
           pay: "NT$300",
           total: "4",
@@ -229,7 +252,7 @@ export default {
           status: "已用票",
         },
         {
-          id: "1",
+          id: "3",
           date: "2023/12/30",
           pay: "NT$300",
           total: "4",
@@ -237,7 +260,7 @@ export default {
           status: "已用票",
         },
         {
-          id: "1",
+          id: "4",
           date: "2023/12/30",
           pay: "NT$300",
           total: "4",
@@ -245,7 +268,7 @@ export default {
           status: "已用票",
         },
         {
-          id: "1",
+          id: "5",
           date: "2023/12/30",
           pay: "NT$300",
           total: "4",

@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body main {
+  max-width: 1920px;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../../page/frontPageBG.svg");
+  background-size: cover;
+  background-position: center 90%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+body main .pageLogo {
+  position: absolute;
+  width: 380px;
+  top: 5vw;
+  right: 36vw;
+}
+body main .dirArea {
+  width: 200px;
+  height: 400px;
+  position: absolute;
+  bottom: 3.5vw;
+  right: 43vw;
+}
+body main .dirArea .front {
+  font-weight: 700;
+  line-height: 150%;
+  font-family: "Montserrat", "Noto Sans TC";
+  font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+  position: absolute;
+  top: 112px;
+  right: 70px;
+  color: #fff;
+  text-decoration: none;
+}
+body main .dirArea .front:hover {
+  color: #fed001;
+}
+body main .dirArea .back {
+  font-weight: 700;
+  line-height: 150%;
+  font-family: "Montserrat", "Noto Sans TC";
+  font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+  position: absolute;
+  bottom: 138px;
+  right: 70px;
+  color: #fff;
+  text-decoration: none;
+}
+body main .dirArea .back:hover {
+  color: #fed001;
+}
+body main .dirArea .dirSign {
+  width: 100%;
+  height: 100%;
+}
+body main .unhappybee {
+  position: absolute;
+  width: 270px;
+  height: 120px;
+  top: 17vw;
+  right: 22vw;
+}
+body main .unhappybee .unhappybeeText {
+  position: absolute;
+  top: 10px;
+  right: 87px;
+  font-family: "Montserrat", "Noto Sans TC";
+}
+body main .unhappybee .unhappybeeImg {
+  width: 100%;
+  height: 100%;
+}
+body main .cloud3 {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  top: 2vw;
+  left: 2vw;
+}
+body main .cloud5 {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  right: 10vw;
+  top: 5vw;
+}
+body main .grasses8 {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  bottom: 7.5vw;
+  right: 3vw;
+}
+body main .grasses9 {
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  bottom: 7.5vw;
+  right: 15vw;
+}
+body main .natureTree7 {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  bottom: 7.5vw;
+  left: 0.5vw;
+}
+body main .giraffe {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  bottom: 7.5vw;
+  left: 13vw;
+}
+body main .kangaroo {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  bottom: 7.5vw;
+  right: 8vw;
+}
+body main .chimpanzees {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  bottom: 7vw;
+  right: 24vw;
+}
+body main .crab {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  bottom: 7.6vw;
+  left: 32vw;
+}/*# sourceMappingURL=frontPage.css.map */

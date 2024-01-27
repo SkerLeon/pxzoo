@@ -54,7 +54,7 @@ section.loginPage {
   justify-content: center;
   align-items: center;
   @media (width <= 768px) {
-    height: 60vw;
+    height: 450px;
   }
   .active {
     color: $primaryColorGreen;
@@ -68,7 +68,7 @@ section.loginPage {
     height: 120px;
     width: 250px;
     @media (width <= 768px) {
-      right: 30vw;
+      right: 15vw;
       height: 90px;
       width: 190px;
     }
@@ -145,7 +145,8 @@ section.loginPage {
     justify-content: space-evenly;
     align-items: center;
     @media (width <= 768px) {
-      width: 50%;
+      top: 60px;
+      width: 80%;
       height: 65%;
     }
     .loginBtnGroup {
@@ -154,7 +155,7 @@ section.loginPage {
       display: flex;
       position: relative;
       @media (width <= 768px) {
-        height: 15%;
+        height: 18%;
       }
       img {
         position: absolute;
@@ -183,7 +184,7 @@ section.loginPage {
       align-items: center;
       position: relative;
       @media (width <= 768px) {
-        height: 85%;
+        height: 82%;
       }
       img.loginSigninBg {
         width: 100%;
