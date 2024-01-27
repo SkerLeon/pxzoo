@@ -176,7 +176,7 @@
 </template>
 
 <script>
-import ParkMap from '@/components/park/ParkMapView.vue'
+import ParkMap from '@/components/park/ParkMap.vue'
 
 export default {
   components: {
