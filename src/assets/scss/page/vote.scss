@@ -3,6 +3,33 @@
   position: relative;
   color: $mainTextColor;
   width: 100%;
+  height: 100vh;
+  .banner {
+    background-image: url("/src/assets/images/vote/tree.svg");
+    background-color: $bgColorLightgray;
+
+    width: 100%;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+
+    .title {
+      color: $primaryColorGreen;
+      text-align: center;
+      line-height: 1.5;
+      padding: 1% 0;
+    }
+
+    .sheep {
+      position: absolute;
+      bottom: 0px;
+      left: 20%;
+      transform: scaleX(-1);
+      width: 8vw;
+      z-index: 10;
+    }
+  }
   .podium_no {
     display: flex;
     flex-direction: row;
@@ -54,10 +81,11 @@
           position: absolute;
           top: -6%;
         }
-        .score {
-          position: absolute;
-          top: 15%;
-        }
+      }
+      .score {
+        position: absolute;
+        top: 50%;
+        z-index: 12;
       }
     }
     .podium2 {
@@ -91,10 +119,11 @@
           position: absolute;
           top: -8%;
         }
-        .score {
-          position: absolute;
-          top: 20%;
-        }
+      }
+      .score {
+        position: absolute;
+        top: 60%;
+        z-index: 12;
       }
     }
     .podium3 {
@@ -129,38 +158,12 @@
           position: absolute;
           top: -10%;
         }
-        .score {
-          position: absolute;
-          top: 20%;
-        }
       }
-    }
-  }
-
-  .banner {
-    background-image: url("/src/assets/images/vote/tree.svg");
-    background-color: $bgColorLightgray;
-
-    width: 100%;
-    height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-
-    .title {
-      color: $primaryColorGreen;
-      text-align: center;
-      line-height: 1.5;
-      padding-top: 1.5%;
-    }
-
-    .sheep {
-      position: absolute;
-      bottom: 0px;
-      left: 20%;
-      transform: scaleX(-1);
-      width: 8vw;
-      z-index: 10;
+      .score {
+        position: absolute;
+        top: 65%;
+        z-index: 12;
+      }
     }
   }
 }
@@ -229,8 +232,9 @@
 
 //人氣投票TOP3
 .vote_popular {
-  // height: 80vh;
+  height: 90vh;
   width: 100%;
+  max-width: 1920px;
   background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
   background-repeat: no-repeat;
@@ -238,7 +242,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
+  justify-content: center;
   position: relative;
   color: $mainTextColor;
   padding-top: 4%;
@@ -248,25 +252,21 @@
     color: #fff;
     display: flex;
   }
-  .content img {
-    width: 7%;
-    border-radius: 50%;
-    margin: 1%;
-  }
-  .caterpillar img {
-    position: absolute;
-    width: 13vw;
-    bottom: 0;
-    right: 1%;
-  }
   .ranking .content {
-    width: 75vw;
+    width: 90vw;
     height: 15vh;
     background-color: #fff;
     display: flex;
     align-items: center;
+
     margin: 0.7% 0;
     white-space: nowrap;
+
+    .img img {
+      width: 5vw;
+      border-radius: 50%;
+      margin: 0 20%;
+    }
     .number {
       padding: 0 1.6%;
       height: 100%;
@@ -276,12 +276,21 @@
       align-items: center;
     }
     .name {
-      margin: 3%;
+      margin: 0 5%;
     }
     .votes {
       margin-left: 42%;
       margin-right: 7%;
     }
+    button {
+      margin-right: 2%;
+    }
+  }
+  .caterpillar img {
+    position: absolute;
+    width: 12vw;
+    bottom: 0;
+    right: 1%;
   }
 }
 
@@ -342,12 +351,14 @@
       align-items: center;
       margin-top: 13%;
 
+      .vote_wrap_animal img {
+        width: 16.2vw;
+      }
+
       .vote_name {
         margin-top: 7%;
       }
-      img {
-        width: 16.2vw;
-      }
+
       .vote_icon {
         margin: 5% 0;
         display: flex;

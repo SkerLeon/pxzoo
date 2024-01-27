@@ -13,49 +13,52 @@
   align-items: center;
   position: relative;
   color: $mainTextColor#000;
+
+  .teacher img {
+    position: absolute;
+    width: 8vw;
+    height: auto;
+    right: 30%;
+    bottom: -1%;
+    z-index: 99;
+  }
+
   .school_tree img {
     position: absolute;
     bottom: 0;
   }
   .school_tree {
     .tree_3 img {
-      width: 11vw;
+      width: 10vw;
       left: 0;
       bottom: -2px;
     }
     .tree_5 img {
-      width: 17vw;
+      width: 15vw;
       height: auto;
       left: 6%;
-      bottom: -2px;
+      bottom: 0%;
     }
     .grasses_6 img {
-      width: 11vw;
+      width: 10vw;
       height: auto;
       left: 24%;
     }
     .grasses_7 img {
-      width: 10vw;
+      width: 7vw;
       height: auto;
       right: 22%;
     }
     .tree_8 img {
-      width: 12vw;
+      width: 10vw;
       height: auto;
       right: 12%;
       bottom: -2px;
     }
     .tree_1 img {
-      width: 12vw;
+      width: 10vw;
       height: auto;
       right: 0%;
-    }
-    .teacher img {
-      width: 8vw;
-      height: auto;
-      right: 30%;
-      bottom: -1%;
-      z-index: 99;
     }
   }
   .school_content_1 {
@@ -63,6 +66,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .school_title {
       display: flex;
       flex-direction: row;
@@ -101,6 +105,7 @@
       margin: 10% 0;
       font-weight: 500;
     }
+
     .school_button {
       color: $mainTextColor;
     }
@@ -110,8 +115,6 @@
     .title {
       color: $primaryColorYellow;
       text-align: center;
-      display: flex;
-      margin-bottom: 30px;
     }
     .rule {
       color: #fff;
@@ -133,11 +136,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 45px;
+  gap: 4%;
   color: $bgColorWhite;
 
   .option-image-container {
-    padding: 40px 0;
+    padding: 8% 0;
   }
 }
 
@@ -145,9 +148,9 @@
 // margin: 10px 0;
 // }
 
-.explanation {
-  margin: 30px 0;
-}
+// .explanation {
+//   margin: 0 10%;
+// }
 
 .option input {
   display: none;
@@ -159,14 +162,17 @@
   align-items: center;
   background-image: url("/src/assets/images/school/img_border.svg");
   // background-color: $mainTextColor; /* 使用你的變量或具體的顏色值 */
-  width: 250px;
-  height: 250px;
-  margin: 40px 0;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 14vw;
+  height: auto;
+  margin: 25% 0;
 }
 
 .option-image-container img {
-  width: 220px;
-  height: 220px;
+  width: 12vw;
+  height: auto;
   object-fit: contain; /* 使圖片等比例縮放並填滿容器 */
 }
 
@@ -175,10 +181,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  padding: 35px 86px;
+  padding: 10% 28%;
   width: 100%;
+
   color: $bgColorWhite;
-  margin: 20px 0;
 }
 .correct_answer_box {
   background-image: url("/src/assets/images/school/school_lightbox.svg");
@@ -193,9 +199,7 @@
   align-items: center;
   margin: 20px 0;
 }
-.result {
-  gap: 10px;
-}
+
 .lightbox {
   position: fixed;
   top: 0;
@@ -222,12 +226,26 @@
   display: flex;
   position: absolute;
   bottom: 0;
+  left: 16vw;
+  gap: 15%;
 }
-.eat_coin .coin img {
-  width: 50%;
+.eat_coin .coin {
+  img {
+    width: 3vw;
+  }
 }
 .chimpanzees img {
   position: absolute;
-  left: 1%;
+
   transform: scaleX(-1);
+  bottom: 0;
+  left: -5vw;
+  width: 7vw;
+  z-index: 12;
+}
+.result_all {
+  margin: 6% 0;
+  .result {
+    line-height: 150%;
+  }
 }

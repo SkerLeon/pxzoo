@@ -1,6 +1,7 @@
 <template>
   <section class="school">
     <!-- 背景 -->
+   
     <div class="school_tree">
       <div class="tree_3">
         <img src="@/assets/images/vetor/nature_tree_3.svg" alt="tree">
@@ -20,9 +21,7 @@
       <div class="tree_1">
         <img src="@/assets/images/vetor/nature_tree_1.svg" alt="tree">
       </div>
-      <div class="teacher">
-        <img src="@/assets/images/school/teacher.svg" alt="teacher">
-      </div>
+
     </div>
     <!-- 初始畫面 -->
     <div :class="{ 'content1': isContent1 }">
@@ -46,12 +45,16 @@
           <div class="number_l">
             <img src="@/assets/images/vetor/number_l.svg" alt="l">
           </div>
+
         </div>
         <!-- 遊戲規則 -->
         <div class="school_name pcBigTitle">動物小學堂</div>
         <button @click="toggleContent" class="school_button pcInnerText defaultBtn">進入學堂<img
             src="@/assets/images/login/icon/btnArrow.svg" alt="" />
         </button>
+        <div class="teacher">
+          <img src="@/assets/images/school/teacher.svg" alt="teacher">
+        </div>
       </div>
       <div v-else class="school_content_2">
         <div v-if="!isGameStarted">
@@ -59,7 +62,13 @@
           <div class="rule pcSmTitle">
             遊戲規則<br>總共有十個問題，每個問題都與動物有關<br>答對八題以上即可獲得門票折價優惠券
           </div>
-          <button @click="startGame" class="school_button pcInnerText defaultBtn">開始</button>
+          <button @click="startGame" class="school_button pcInnerText defaultBtn">開始<img
+              src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+          </button>
+
+          <div class="teacher">
+            <img src="@/assets/images/school/teacher.svg" alt="teacher">
+          </div>
         </div>
         <div v-else>
           <!-- 開始進行遊戲畫面 -->
@@ -94,6 +103,7 @@
 
               </div>
               <div class="eat_coin">
+
                 <div class="chimpanzees">
                   <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
                 </div>
@@ -138,7 +148,8 @@
                     <span v-else style="color: red;">（錯誤）</span>
                   </div>
                   <div class="explanation pcSmTitle">解析：{{ question.explanation }}</div>
-                  <button @click="showNextQuestion" class="pcInnerText defaultBtn">下一題</button>
+                  <button @click="showNextQuestion" class="pcInnerText defaultBtn"><img
+                      src="@/assets/images/login/icon/btnArrow.svg" alt="" />下一題</button>
                 </div>
               </div>
             </div>
@@ -146,12 +157,17 @@
 
 
           <div v-if="isGameFinished" class="result_all">
-            <div class="result phDecBigTitle">
-              {{ successfulQuestionsCount >= 8 ? '破關成功！' : '破關失敗' }}
+            <div class="result pcSmTitle">
+              {{ successfulQuestionsCount >= 8 ?
+                '破關成功！'
+                :
+                '破關失敗'
+              }}
               <br>
               總分：{{ totalScore }}
             </div>
-            <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn">重新開始</button>
+            <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn"><img
+                src="@/assets/images/login/icon/btnArrow.svg" alt="" />重新開始</button>
           </div>
         </div>
       </div>
@@ -172,6 +188,7 @@ export default {
       currentQuestionIndex: 0,
       totalScore: 0,
       userSelectedOption: null,
+   
       questions: [
         // 問題列表
         {
@@ -187,7 +204,7 @@ export default {
           explanation: "解析1",
         },
         {
-          text: "2.樹懶需要幾星期消化食物?", image: 'sloth',
+          text: "2.樹懶需要幾星期消化食物?", image: '',
           options: [
             { text: "A 一個星期", image: 'sloth' },
             { text: "B 兩個星期", image: 'sloth' },
@@ -204,10 +221,10 @@ export default {
             { text: "A 斑馬", image: 'zebra' },
             { text: "B 獅子", image: 'lion' },
             { text: "C 大象", image: 'elephant' },
-            { text: "D 以上皆是", image: '' },
+            { text: "D 無尾熊", image: 'koala' },
           ],
           correctAnswer: "C 大象",
-          explanation: "解析3",
+          // explanation: "大象不會跳的原因主要與它們的身體結構和體重有關。大象是非常大型且重量龐大的動物，牠們的身體組成並不適合進行跳躍動作。大象的骨架、肌肉和關節都是為了支撐巨大的體重而設計，這種結構並不適合做高強度的運動",
         },
         {
           text: "4.什麼動物的指紋跟人類非常相似，難以分辨?", image: '',
@@ -221,18 +238,18 @@ export default {
           explanation: "解析4",
         },
         {
-          text: "5.為什麼蛇要一直吐舌頭?", image: 'snake',
+          text: "5.為什麼蛇要一直吐舌頭?", image: '',
           options: [
-            { text: "A 為了聞氣味", image: 'odor' },
-            { text: "B 為了釋放毒液", image: 'liquid' },
-            { text: "C 為了與同類傳達訊息", image: 'message' },
-            { text: "D 為了散熱", image: 'heat' },
+            { text: "A 聞氣味", image: 'odor' },
+            { text: "B 釋放毒液", image: 'liquid' },
+            { text: "C 傳達訊息", image: 'message' },
+            { text: "D 散熱", image: 'heat' },
           ],
-          correctAnswer: "A 為了聞氣味",
+          correctAnswer: "A 聞氣味",
           explanation: "解析5",
         },
         {
-          text: "6.哪一個動物不會游泳?", image: 'swim',
+          text: "6.哪一個動物不會游泳?", image: '',
           options: [
             { text: "A 河馬", image: 'hippo' },
             { text: "B 鱷魚", image: 'Crocodile' },
@@ -265,7 +282,7 @@ export default {
           explanation: "解析8",
         },
         {
-          text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: 'sloth',
+          text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: '',
           options: [
             { text: "A 兩倍", image: 'cheetah' },
             { text: "B 三倍", image: 'cheetah' },
@@ -292,6 +309,8 @@ export default {
     };
   },
   methods: {
+    
+    
     toggleContent() {
       this.isContent1 = !this.isContent1;
     },
@@ -331,10 +350,11 @@ export default {
         // 如果問題不是最後一題，切換到下一題
         this.currentQuestionIndex++;
       } else {
-        // 如果問題是最後一題，標記遊戲結束
-        this.isGameFinished = true;
+        // 如果問題是最後一題，不觸發遊戲結束，而是顯示結果燈箱
+        this.showResultLightbox();
       }
     },
+    
 
     resetGame() {
       this.isGameStarted = false;
