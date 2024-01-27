@@ -35,8 +35,10 @@
         </div>
       </div>
       
-      <div v-show="show_animals" class="pk_animal_icon">
-        <div v-for="(animal,index) in icon_animals" :class="`pk_animal_default pk_animal_icon${index+1}`" :id="`location_id${index+1}`">
+      <div v-show="show_animals"  class="pk_animal_icon">
+        <div v-for="(animal,index) in icon_animals" 
+        @click="Animal_details_open"
+        :class="`pk_animal_default pk_animal_icon${index+1}`" :id="`location_id${index+1}`">
           <div v-if="!isHidden(index)" class="pk_animal_icon_dialog_content">
             <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
             <div class="pk_animal_icon_dialog_content_text">
@@ -44,7 +46,7 @@
               <p class="pcMarkText">{{ animal.name }}</p>
             </div>
           </div>
-          <img v-if="!isHidden(index)" :src="getAnimalIconUrl(index+1)" alt="園區動物icon的圖片">
+          <img v-if="!isHidden(index)" :src="getAnimalIconUrl(animal.icon)" alt="園區動物icon的圖片">
         </div>
       </div>
 
@@ -74,12 +76,11 @@
       </aside>
     </section>
 
-    <section class="pk_Animal_details">
-      
+    <section v-show="AnimalDetails" class="pk_Animal_details">
       <div class="pk_Animal_details_content_align">
         <h1>草原之聲</h1>
         <div class="pk_Animal_details_closure_icon">
-          <img class="pk_Animal_details_closure_icon" src="@/assets/images/park/pk_Animal_details_closure_icon.svg" alt="關閉按鈕">
+          <img @click="Animal_details_closure" class="pk_Animal_details_closure_icon" src="@/assets/images/park/pk_Animal_details_closure_icon.svg" alt="關閉按鈕">
         </div>
       </div>
 
@@ -91,9 +92,12 @@
         </div>
       </div>
 
-      <p class="pcInnerText">威廉</p>
+      <div class="pk_Animal_details-text">
+        <p class="pcInnerText">獅子</p>
+        <p class="pcInnerText">威廉</p>
+      </div>
 
-      <button class="pk_button defaultBtn pcInnerText">
+      <button @click="link_animal_information" class="pk_button defaultBtn pcInnerText">
         查看詳細資料
         <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
       </button>
@@ -206,119 +210,158 @@ export default {
       hoverStatus:{},
       icon_animals:[{
         Library:"草原之聲",
-        name:"曼陀"
+        name:"曼陀",
+        icon:"animal_icon_zebra"
       },{
         Library:"草原之聲",
-        name:"蘇菲"
+        name:"蘇菲",
+        icon:"animal_icon_giraffe",
       },{
         Library:"草原之聲",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"草原之聲",
-        name:"斑斑"
+        name:"斑斑",
+        icon:"animal_icon_cheetah",
       },{
         Library:"草原之聲",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"草原之聲",
-        name:"威廉"
+        name:"威廉",
+        icon:"animal_icon_lion",
       },{
         Library:"草原之聲",
-        name:"索拉"
+        name:"索拉",
+        icon:"animal_icon_elephant",
       },{
         Library:"草原之聲",
-        name:"蒙奇"
+        name:"馬克",
+        icon:"animal_icon_meerkat",
       },{
         Library:"極地秘境",
-        name:"亞當"
+        name:"亞當",
+        icon:"animal_icon_magellanicPenguin",
       },{
         Library:"極地秘境",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"極地秘境",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"極地秘境",
-        name:"寶拉"
+        name:"寶拉",
+        icon:"animal_icon_polarBear",
       },{
         Library:"極地秘境",
-        name:"小雪"
+        name:"小雪",
+        icon:"animal_icon_kingPenguin",
       },{
         Library:"極地秘境",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"極地秘境",
-        name:"雪球"
+        name:"雪球",
+        icon:"animal_icon_arcticFox",
       },{
         Library:"極地秘境",
-        name:"波比"
+        name:"波比",
+        icon:"animal_icon_seal",
       },{
         Library:"鳥園樂章",
-        name:"小瑜"
+        name:"小瑜",
+        icon:"animal_icon_pelican",
       },{
         Library:"鳥園樂章",
-        name:"曉曉"
+        name:"曉曉",
+        icon:"animal_icon_flamingo",
       },{
         Library:"鳥園樂章",
-        name:"阿翔"
+        name:"阿翔",
+        icon:"animal_icon_peacock",
       },{
         Library:"鳥園樂章",
-        name:"艾妮"
+        name:"艾妮",
+        icon:"animal_icon_owl",
       },{
         Library:"鳥園樂章",
-        name:"晴空"
+        name:"晴空",
+        icon:"animal_icon_japaneseCrane",
       },{
         Library:"鳥園樂章",
-        name:"嘟嘟"
+        name:"嘟嘟",
+        icon:"animal_icon_toucan",
       },{
         Library:"鳥園樂章",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"海洋奇觀",
-        name:"海妞"
+        name:"海妞",
+        icon:"animal_icon_shark",
       },{
         Library:"海洋奇觀",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"海洋奇觀",
-        name:"巴奇"
+        name:"巴奇",
+        icon:"animal_icon_octopus",
       },{
         Library:"海洋奇觀",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"海洋奇觀",
-        name:"馬林"
+        name:"馬林",
+        icon:"animal_icon_clownFish",
       },{
         Library:"海洋奇觀",
-        name:"藍波"
+        name:"藍波",
+        icon:"animal_icon_stingray",
       },{
         Library:"海洋奇觀",
-        name:"燈燈"
+        name:"燈燈",
+        icon:"animal_icon_eel",
       },{
         Library:"叢林奇蹟",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"叢林奇蹟",
-        name:"空位置"
+        name:"空位置",
+        icon:"animal_icon_default",
       },{
         Library:"叢林奇蹟",
-        name:"栗栗"
+        name:"栗栗",
+        icon:"animal_icon_malayanTapir",
       },{
         Library:"叢林奇蹟",
-        name:"珍珍"
+        name:"珍珍",
+        icon:"animal_icon_capybara",
       },{
         Library:"叢林奇蹟",
-        name:"中中"
+        name:"中中",
+        icon:"animal_icon_monkey",
       },{
         Library:"叢林奇蹟",
-        name:"曼曼"
+        name:"曼曼",
+        icon:"animal_icon_sloth",
       },{
         Library:"叢林奇蹟",
-        name:"瑪雅"
+        name:"瑪雅",
+        icon:"animal_icon_tiger",
       },{
         Library:"叢林奇蹟",
-        name:"狄恩"
-      }]
+        name:"狄恩",
+        icon:"animal_icon_orangutan",
+      }],
+      AnimalDetails:false,
     };
   },
   created() {
@@ -329,7 +372,7 @@ export default {
   },
   methods: {
     getAnimalIconUrl(paths){
-      return new URL(`../assets/images/park/pk_animal_icon${paths}.png`, import.meta.url).href
+      return new URL(`../assets/images/animal/animal_icon/${paths}.png`, import.meta.url).href
     },
     getItemTopUrl(paths){
       return new URL(`../assets/images/park/pk_Tickets_item_top${paths}.png`, import.meta.url).href
@@ -360,11 +403,20 @@ export default {
     },
     handleMouseLeave(index) {
       this.hoverStatus[index] = false;
-    },isHidden(index) {
+    },
+    isHidden(index) {
       const hiddenIndexes = [3, 5, 10, 11, 14, 23, 25, 27, 32, 31];
-      //includes會返回一個bool值 主要偵測陣列裡有沒有對應的值
       return hiddenIndexes.includes(index + 1);
     },
+    Animal_details_closure(){
+      this.AnimalDetails = false
+    },
+    Animal_details_open(){
+      this.AnimalDetails = true
+    },
+    link_animal_information(){
+      this.$router.push('/animalDetail');
+    }
   },
 };
 </script>
