@@ -39,10 +39,9 @@
 -->
 
 <!-- 0% -->
-<!-- 每一組都加v-if，要用數字帶，全域統一 -->
-    <main v-if="tickStep === 0">
-      <TickInfo />
-      <TickCalendar @nextStep="showNextStep" />
+    <main v-if="tickStep === 0" class="tickFrame">
+      <TickInfo v-if="!isBoard || !TickCalendar" @TickCalendar="showTickCalendar" />
+      <TickCalendar v-if="!isBoard ||TickCalendar" @nextStep="showNextStep" />
     </main>
 
 <!-- 30% -->
@@ -82,24 +81,19 @@ export default {
   },
   data() {
     return {
-      tickStep: 0,
+      tickStep: 1,
       device: 'PC',
+      TickCalendar: false,
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
       // targetValue:0,
     }
     
   },
-  created(){
-    this.windowSize();
-    window.addEventListener('resize', this.windowSize);
-  },
-  beforeDestroy() {
-      window.removeEventListener('resize', this.windowSize);
-  },
   methods:{
     windowSize(){
       this.isMobile = window.innerWidth <= 768;
+      this.isBoard = window.innerWidth < 1200;
     },
     getImagePath(){
       return `src/assets/images/ticket/${this.device}${this.tickStep}.svg`;
@@ -110,7 +104,17 @@ export default {
     backPreviousStep(){
       this.tickStep--;
     },
-  }
+    showTickCalendar(){
+      this.TickCalendar=true;
+    }
+  },
+  created(){
+    this.windowSize();
+    window.addEventListener('resize', this.windowSize);
+  },
+  beforeDestroy() {
+      window.removeEventListener('resize', this.windowSize);
+  },
 }
 
 </script>

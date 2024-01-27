@@ -9,7 +9,7 @@
         </hgroup>
         <main>
             <article v-for=" ticket in tickets" :key="ticket.id">
-                <div v-if="isMobile" class="tickOption PH pcInnerText">
+                <div v-if="isBoard" class="tickOption PH pcInnerText">
                     <div>
                         <p>{{ ticket.name }}</p>
                         <p class="pcMarkText">{{ ticket.rule }}</p>
@@ -23,8 +23,8 @@
                     <img :src="ticket.src" :alt="ticket.name">
                 </article>
                 <div class="countBTN">
-<!-- +-btn -->
                     <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
+<!-- 999有空寫: input框寫JS限定 -->
                     <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999" value="0" readonly>
                     <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
                 </div>
@@ -33,7 +33,6 @@
 
         <div class="price firstLine pcInnerText important">
             <p>票券金額</p>
-<!-- 999sum of tickets -->
             <h2 class="pcSmTitle">
                 <p>NT$</p> 
                 {{tiprice}}
@@ -113,7 +112,8 @@ export default {
     },
     methods:{
         windowSize(){
-            this.isMobile = window.innerWidth <= 768;
+            // this.isMobile = window.innerWidth <= 768;
+            this.isBoard = window.innerWidth < 1200;
         },
         nextStep(){
             // 999寫確認有選票券的判斷式

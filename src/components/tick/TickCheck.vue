@@ -71,17 +71,17 @@
                 <p>信用卡卡號</p>
                 <input type="number" placeholder="請輸入卡號">
             </main>
-            <main class="pcInnerText">
+            <main class="pcInnerText carddate">
                 <p>有效日期</p>
                 <main>
-                    <input type="number" placeholder="請輸入信用卡月">
+                    <input type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
                     <p> / </p> 
-                    <input type="number" placeholder="請輸入信用卡年">
+                    <input type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
                 </main>
             </main>
             <main class="pcInnerText">
                 <p>驗證碼</p>
-                <input type="text" placeholder="請輸入卡片背後末三碼" class="defaultInput">
+                <input type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
             </main>
         </article>
 
@@ -146,9 +146,8 @@ export default {
                     src: 'src/assets/images/ticket/ticket5.svg'
                 },
             ],
+            isSmallPH: false,
         }
-    },
-    created(){
     },
     methods:{
         nextStep(){
@@ -158,12 +157,18 @@ export default {
         },
         previousStep(){
             this.$emit('previousStep');
-        }
+        },
+        windowSize(){
+            this.isSmallPH = window.innerWidth <= 430;
+        },
     },
-    computed:{
+    created(){
+        this.windowSize();
+        window.addEventListener('resize', this.windowSize);
     },
-    watch:{
-    }
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
+    },
 }
 
 </script>

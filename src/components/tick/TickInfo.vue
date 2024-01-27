@@ -3,25 +3,28 @@
     <section class="tickInfo">
 
         <article>
+
             <h2 class="pcSmTitle">購票須知</h2>
-                <ol>
-                    <li v-for="info in tickInfomation" :key="info.id" class="pcInnerText">{{info.content}}
-                        <ul v-if="info.subRules">
-                            <li v-for="subInfo in info.subRules" :key="subInfo.id">{{subInfo.subContent}}</li>
-                        </ul>
-                    </li>
-                </ol>
+            <ol>
+                <li v-for="info in tickInfomation" :key="info.id" class="pcInnerText">{{info.content}}
+                    <ul v-if="info.subRules">
+                        <li v-for="subInfo in info.subRules" :key="subInfo.id">{{subInfo.subContent}}</li>
+                    </ul>
+                </li>
+            </ol>
         </article>
-        <div v-if="isMobile" class="tickBgc tickLightbox">
-            <!-- <img src="@/assets/images/ticket/PHinfoL.svg" alt="購票須知布告欄" class="tickBoard"/>
-            <button @click="closeLightbox" type="button"></button> -->
+        <div v-if="isBoard" class="tickLightbox">
+            <img v-if="isMidPH" src="@/assets/images/ticket/PHinfoXS.svg" alt="購票須知布告欄" class=""/>
+            <img v-else src="@/assets/images/ticket/PHinfoL.svg" alt="購票須知布告欄" class=""/>
+            
+            <img @click="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.svg" alt="關閉按鈕">
         </div>
-        <!-- <div v-else class="tickBgc">
+        <div v-else class="tickBgc">
             <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
             <img v-if="isSmallPC" src="@/assets/images/ticket/PCinfoS.svg" alt="購票須知布告欄" class="tickBoard"/>
             <img v-else-if="isMidPC" src="@/assets/images/ticket/PCinfoM.svg" alt="購票須知布告欄" class="tickBoard"/>
             <img v-else src="@/assets/images/ticket/PCinfoL.svg"  alt="購票須知布告欄" class="tickBoard"/>
-        </div> -->
+        </div>
 
     </section>
 </template>
@@ -30,8 +33,10 @@
 export default {
     components:{
         // RouterLink,
-        showLightbox: true,
     },
+    prps:[
+        'TickCalendar',
+    ],
     data() {
         return {
             tickInfomation: [
@@ -71,7 +76,11 @@ export default {
     },
     methods:{
         windowSize(){
+            // this.isXSmallPH = window.innerWidth <= 370;
+            this.isSmallPH = window.innerWidth <= 430;
+            this.isMidPH = window.innerWidth <= 470;
             this.isMobile = window.innerWidth <= 768;
+            this.isBoard = window.innerWidth < 1200;
             this.isSmallPC = window.innerWidth <= 1400;
             this.isMidPC = window.innerWidth <= 1540;
         },
@@ -79,8 +88,8 @@ export default {
             // 999無效，有空再解
             // return `src/assets/images/ticket/${name}.svg`;
         },
-        closeLightbox(){
-            this.showLightbox=false;
+        TickCalendar(){
+            this.$emit('TickCalendar');
         }
     },
     created(){

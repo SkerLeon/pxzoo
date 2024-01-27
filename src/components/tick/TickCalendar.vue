@@ -5,8 +5,7 @@
         <article>
             <hgroup>
                 <h2 class="pcSmTitle">選擇日期</h2>
-    <!-- 999加一隻動物取代reset的位置 -->
-                <!-- <img src="@/assets/images/ticket/refresh.svg"> -->
+                <img src="@/assets/images/vetor/vetor_animal_fox.svg" alt="ticket">
             </hgroup>
 
                 <Calendar v-model="value" cell-height="40" class="calendar">
@@ -30,7 +29,7 @@
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
         </main>
-    
+        <img v-if="isBoard" src="@/assets/images/vetor/vetor_animal_squirrel_1.svg" alt="eagle">
     </section>
 </template>
 
@@ -51,21 +50,22 @@ export default {
             // targetValue:0,
         }
     },
-    created(){
-        // this.windowSize();
-        // window.addEventListener('resize', this.windowSize);
-    },
     methods:{
-        // windowSize(){
-        //     this.isMobile = window.innerWidth <= 768;
-        //     this.isSmallPC = window.innerWidth <= 1350;
-        // },
+        windowSize(){
+            this.isBoard = window.innerWidth < 1200;
+        },
         nextStep(){
             // 999寫確認有選日期的判斷式
             this.$emit('nextStep');
         }
-
-    }
+    },
+    created(){
+        this.windowSize();
+        window.addEventListener('resize', this.windowSize);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.windowSize);
+    },
 }
 
 </script>
