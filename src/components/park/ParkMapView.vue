@@ -223,7 +223,7 @@ export default {
     height: math.div(math.div($hsize, 1px), 923) * 100 * 1%; 
 }
 .pk_com_map{
-        width:50%;
+        width:100%;
         position: relative;
         .pk_com_map_bg{
             width: 100%;
