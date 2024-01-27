@@ -1,25 +1,25 @@
 <template>
   <div class="qrCodeArea">
     <img
-      src="../assets/images/member/memicon/green_close.svg"
+      src="@/assets/images/member/memicon/green_close.svg"
       alt="greenCross"
       class="qrGc"
       id="qrGc"
       @click="hideQRCode"
     />
     <img
-      src="../assets/images/member/qr_code 1.svg"
+      src="@/assets/images/member/qr_code 1.svg"
       alt="qrcode"
       class="qrImg"
     />
     <h3 class="pcSmTitle">訂單編號:<span>0000000</span></h3>
     <div class="newsFrame">
       <img
-        src="../assets/images/news/newsFrame/orangeFrame.svg"
+        src="@/assets/images/news/newsFrame/orangeFrame.svg"
         alt="orangeFrame"
         class="newsFramePic"
       />
-      <p class="newsFrameText pcInnerText">票券核銷</p>
+      <p class="newsFrameText">票券核銷</p>
     </div>
     <div class="useNote pcInnerText">
       <p v-for="note in notes" :key="note">{{ note }}</p>
