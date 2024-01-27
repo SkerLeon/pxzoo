@@ -1,14 +1,13 @@
 <template>
-    <!-- part1 日曆 -->
+    <!-- part10-2 日曆 -->
     <section class="tickCalendar">
 
         <article>
             <hgroup>
-                <h2>選擇日期</h2>
+                <h2 class="pcSmTitle">選擇日期</h2>
     <!-- 999加一隻動物取代reset的位置 -->
                 <!-- <img src="@/assets/images/ticket/refresh.svg"> -->
             </hgroup>
-            <article></article>
 
                 <Calendar v-model="value" cell-height="40" class="calendar">
                     <template #month="{date, data}">
@@ -26,7 +25,7 @@
             用div去控制步驟就好了
         -->
         <main class="tickBtn">
-            <button type="button" class="defaultBtn tickLBtn" @click="nextStep">
+            <button type="button" class="defaultBtn tickLBtn pcInnerText" @click="nextStep">
                 票種數量
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
@@ -53,14 +52,14 @@ export default {
         }
     },
     created(){
-        this.windowSize();
-        window.addEventListener('resize', this.windowSize);
+        // this.windowSize();
+        // window.addEventListener('resize', this.windowSize);
     },
     methods:{
-        windowSize(){
-            this.isMobile = window.innerWidth <= 768;
-            this.isSmallPC = window.innerWidth <= 1350;
-        },
+        // windowSize(){
+        //     this.isMobile = window.innerWidth <= 768;
+        //     this.isSmallPC = window.innerWidth <= 1350;
+        // },
         nextStep(){
             // 999寫確認有選日期的判斷式
             this.$emit('nextStep');

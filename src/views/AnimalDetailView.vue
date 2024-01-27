@@ -1,13 +1,11 @@
 <template>
     <section class="forHeader animal_detail_section">
-         <!-- menu button -->
-         <div class="animal_pc_sidebar">
+        <!-- menu button -->
+       <!-- <div class="animal_pc_sidebar">
             <aside class="Sidebar no_slide">
-                <!-- 側邊欄上方動物icon -->
-                <img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
+                 側邊欄上方動物icon -->
+                <!--<img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
 
-                <!-- ul裡面的li是主要存放按鈕的區塊 -->
-                <!-- 之後想優化程式碼把這邊變成v-for -->
                 <ul class="Sidebar_filter_btns">
                     <li class="filter_btn_item"
                     v-for="category in animalsCategoryPc"
@@ -17,13 +15,15 @@
                     </li>
                 </ul>
 
-                <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon) -->
+                 導引按鈕(我還沒讓它收起來時可以自動變icon) 
                 <div class="Sidebar_guide hidden_buttom">   
                     <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
                 </div>
             </aside>
-        </div>
-        <div class="animal_detail_overview">
+        </div>--> 
+
+        <main class="animal_detail_overview">
+        <!-- 上方介紹區塊 -->           
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
@@ -34,43 +34,57 @@
                     </div>
                     <div class="animal_detail_sec-section">
                         <div class="animal_detail_name">
-                            <h5>名字</h5>
-                            <p>威廉</p>
+                            <h5 class="pcMarkText">名字</h5>
+                            <p class="pcInnerText">威廉</p>
                         </div>
                         <div class="animal_detail_life">
-                            <h5>平均壽命</h5>
-                            <p>10-14年</p>
+                            <h5 class="pcMarkText">平均壽命</h5>
+                            <p class="pcInnerText">10-14年</p>
                         </div>
                     </div>
                     <div class="animal_detail_live">
-                        <h5>分布地區</h5>
-                        <p>主要分布在非洲和印度次大陸</p>
+                        <h5 class="pcMarkText">分布地區</h5>
+                        <p class="pcInnerText">主要分布在非洲和印度次大陸</p>
                     </div>
                     <div class="animal_detail_food">
-                        <h5>食性</h5>
-                        <p>獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物</p>
+                        <h5 class="pcMarkText">食性</h5>
+                        <p class="pcInnerText">獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物</p>
                     </div>
                     <div class="animal_detail_feature">
-                        <h5>特徵</h5>
-                        <p>獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵</p>
+                        <h5 class="pcMarkText">特徵</h5>
+                        <p class="pcInnerText">獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵</p>
                     </div>
                 </div>
+
+                <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                        <img src="https://picsum.photos/673/600/?random=10">
+                        <img src="../assets/images/animal/animal_pic/pic1_lion.png" alt="pic1_lion">
                     </div>
                     <div class="small_pic">
-                        <img src="https://picsum.photos/211/180/?random=10">
-                        <img src="https://picsum.photos/211/180/?random=10">
-                        <img src="https://picsum.photos/211/180/?random=10">
+                        <img src="../assets/images/animal/animal_pic/pic1_lion.png" alt="pic1_lion">
+                        <img src="../assets/images/animal/animal_pic/pic2_lion.png" alt="pic2_lion">
+                        <img src="../assets/images/animal/animal_pic/pic3_lion.png" alt="pic3_lion">
                     </div>
                 </div>
             </div>
+
+            <!-- 下方介紹 -->
             <div class="animal_detail_intro">
-                <div class="animal_detail__icon">
-                    <img src="../assets/images/park/pk_animal_icon6.png" alt="lion">
+                <div class="animal_detail_icon">
+                    <img src="../assets/images/animal/animal_icon/animal_icon_lion.png" alt="lion">
                 </div>
-                <p> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
+                <div class="animal_detail_bg">
+                    <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
+                </div>
+            </div>
+        </main>
+        <div class="animal_detail_intro_ph">
+            <div class="animal_detail_intro_content">
+                <div class="animal_detail_icon">
+                    <img src="../assets/images/animal/animal_icon/animal_icon_lion.png" alt="lion">
+                </div>
+                <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
             </div>
         </div>
 

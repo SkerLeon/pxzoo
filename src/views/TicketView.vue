@@ -94,6 +94,9 @@ export default {
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
   },
+  beforeDestroy() {
+      window.removeEventListener('resize', this.windowSize);
+  },
   methods:{
     windowSize(){
       this.isMobile = window.innerWidth <= 768;
@@ -106,7 +109,7 @@ export default {
     },
     backPreviousStep(){
       this.tickStep--;
-    }
+    },
   }
 }
 

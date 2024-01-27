@@ -128,7 +128,6 @@ export default {
                 { species: 'flamingo', name: '紅鶴' },
                 { species: 'japaneseCrane', name: '丹頂鶴' },
                 { species: 'owl', name: '貓頭鷹' },
-                { species: 'eagle', name: '老鷹' },
                 { species: 'toucan', name: '巨嘴鳥' },
                 { species: 'pelican', name: '鵜鶘' },
             ],

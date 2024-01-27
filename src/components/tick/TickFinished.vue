@@ -1,78 +1,90 @@
 <template>
-    <!-- part4 購票完成 -->
+    <!-- part3 購票完成 -->
     <section class="tickFinished">
 
         <section>
-            <h2 v-if="cash">
+            <h2 v-if="cash" class="pcSmTitle">
                 訂單完成，訂單編號請見：會員中心 - 購票記錄，<br>
                 入園當天請至服務台「快速通道」告知訂單編號，將由專人協助您，<br>
                 PXZoO 的獨家動物冒險之旅，等您來探索！
             </h2>
-            <h2 v-else>
+            <h2 v-else class="pcSmTitle">
                 付款完成，數位票券已發送至：會員中心 - 購票記錄，<br>
                 入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！
             </h2>
-            <p>畫面將於 5 秒鐘後跳轉回首頁。</p>
-            <button @click="useGoHome" class="defaultBtn">
+            <p class="pcInnerText">畫面將於 5 秒鐘後跳轉回首頁。</p>
+            <button @click="useGoHome" class="defaultBtn pcInnerText">
                 返回首頁
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
         </section>
 
-        <main>
-            <!-- part4-1 訂單資訊1 -->
-            <article class="checkOrder">
-                <hgroup>
-                    <p>訂單編號</p>
-                    <h2>1</h2>
-                </hgroup>
-                <hgroup>
-                    <p>票卷日期</p>
-                    <h2 class="mixedFont">2024 <p>年</p> 01 <p>月</p> 12 <p>日</p> </h2>
-                </hgroup>
-                <main v-for=" ticket in tickets" :key="ticket.id" class="choosed">
+        <article>
+            <hgroup class="important">
+                <p class="pcInnerText">訂單編號</p>
+                <h2 class="pcSmTitle">1</h2>
+            </hgroup>
+            <hgroup>
+                <p class="pcInnerText">票卷日期</p>
+                <h2 class="mixedFont pcSmTitle">2024 
+                    <p class="pcInnerText">年</p>
+                     01 
+                    <p class="pcInnerText">月</p>
+                     12 
+                    <p class="pcInnerText">日</p>
+                </h2>
+            </hgroup>
+            <article class="choosed">
+                <main v-for=" ticket in tickets" :key="ticket.id">
                     <div>
-                        <p>{{ ticket.name }}</p>
-                        <span>{{ ticket.rule }}</span>
+                        <p class="pcInnerText">{{ ticket.name }}</p>
+                        <span class="pcMarkText">{{ ticket.rule }}</span>
                     </div>
-                    <h2>1 <span>張</span></h2>
+                    <h2 class="pcSmTitle">1 
+                        <span class="pcMarkText">張</span>
+                    </h2>
                 </main>
             </article>
-
-            <!-- part4-2 訂單資訊2 -->
-            <article class="checkOrder">
-                <hgroup>
-                    <p>優惠折扣</p>
-                    <p>付款金額 9 折</p>
-                </hgroup>
+            <hgroup class="coupon pcInnerText">
+                <p>優惠折扣</p>
+                <p>付款金額 9 折</p>
+            </hgroup>
+            <div class="price">
+            <span>票券金額</span>
+                <p class="pcInnerText">
+                    <span class="pcMarkText">NT$ </span>
+                    260
+                </p>
+            </div>
+            <div class="price">
+                <span>優惠金額</span>
+                <p class="pcInnerText">
+                    <span class="pcMarkText">NT$ </span>
+                    26
+                </p>
+            </div>
+            <div class="price important">
+                <p class="pcInnerText">付款金額</p>
+                <h2 class="mixedFont pcSmTitle">
+                    <p class="pcInnerText">NT$</p> 
+                    234
+                </h2>
+            </div>
+            <article class="payWay pcInnerText">
                 <hgroup>
                     <p>付款方式</p>
                     <p>信用卡</p>
                 </hgroup>
-                <hgroup>
+                <div class="price important">
                     <p>票券型態</p>
-                    <p>數位票卷</p>
-                </hgroup>
-                <hgroup>
+                    <p>數位票券</p>
+                </div>
+                <div class="price important">
                     <p>處理狀態</p>
                     <p>未用票</p>
-                </hgroup>
-                <div class="price">
-                    <p>票券金額</p>
-                    <p>NT$ 260</p>
-                </div>
-                <div class="price">
-                    <p>優惠金額</p>
-                    <p>NT$ 26</p>
-                </div>
-                <div class="price">
-                    <p>付款金額</p>
-                    <h2 class="important mixedFont"><p>NT$</p> 234</h2>
                 </div>
             </article>
-
-        </main>
-
+        </article>
     </section>
 </template>
 
@@ -81,7 +93,6 @@ import {goHome} from '@/assets/js/common.js';
 export default {
     components:{
         // RouterLink,
-        search: '',
     },
     data(){
         return {
@@ -125,13 +136,8 @@ export default {
         }
     },
     created(){
-        this.windowSize();
-        window.addEventListener('resize', this.windowSize);
     },
     methods:{
-        windowSize(){
-            this.isMobile = window.innerWidth <= 768;
-        },
         useGoHome(){
             goHome(this);
         },

@@ -42,7 +42,7 @@
     }
 }
 
-.animal_section{
+.animal_section, .animal_detail_section{
     max-width: 1920px;
 }
 
@@ -54,7 +54,7 @@
     }
 }
 @media screen and (max-width: 768px) {
-    .section{
+    .animal_section, .animal_detail_section{
         max-width: 768px;
     }
     .animal_overview{
@@ -137,6 +137,177 @@
     width: 50%;
     }
 }
+
+
+//動物詳細頁面
+.animal_detail_overview{
+    max-width: 74%;
+    margin: auto;
+    padding-left: 6vw; 
+    padding-top: 4.2vw;
+    p{
+        color:$mainTextColor;
+        line-height: 150%;
+    }
+    @media screen and (max-width: 768px) {
+        max-width: 90%;
+        padding-left: 0;
+    }
+}
+
+.animal_detail_info{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .animal_detail_text{
+        display: flex;
+        flex-direction: column;
+        width: 24vw;
+        gap: 3vw;
+        h5{
+            padding-bottom: 1.2vw;
+            color: $primaryColorGreen;
+        }
+    }
+    .animal_detail_img_list{
+        .big_pic img{
+            vertical-align: middle;
+            width: 36vw;
+        }
+        .small_pic{
+            display: flex;
+            padding-top: 1vw;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            img{
+                vertical-align: middle;
+                width: 11vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .animal_detail_info{
+        flex-direction: column;
+        .animal_detail_img_list{
+            order:-1;
+            .big_pic img{
+                vertical-align: middle;
+                width: 100%;
+            }
+            .small_pic{
+                display: flex;
+                padding-top: 2.6vw;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                img{
+                    vertical-align: middle;
+                    width: 28vw
+                }
+            }
+        }
+        .animal_detail_text{
+            width: 100%;
+            gap: 5.2vw;
+        }
+    }
+
+}
+
+.animal_detail_title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vw;
+    h2{
+        color: $primaryColorGreen;
+        padding-right: 0.8vw;
+    }
+    img{
+        width: 32px;
+    }
+}
+.animal_detail_sec-section{
+    display: flex;
+    .animal_detail_name{
+        padding-right: 10.4vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .animal_detail_title{
+        justify-content: center;
+        margin:5.6vw 0 2vw 0;
+    }
+    .animal_detail_sec-section{
+        .animal_detail_name{
+            padding-right: 36vw;
+        }
+    }
+}
+
+
+.animal_detail_intro{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3.2vw;
+    padding-bottom: 5.2vw;
+    .animal_detail_icon{
+        img{
+            width: 15.6vw;  
+        }
+    }
+    .animal_detail_bg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url(/src/assets/images/animal/papper.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 10vw;
+    }
+    p{
+        padding: 2.3vw 1.5vw;
+    }
+}
+.animal_detail_intro_ph{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .animal_detail_intro{
+        display: none;
+    } 
+    .animal_detail_intro_ph{
+        display: block;
+        width: 100%;
+        background-color: $primaryColorGreen;
+        .animal_detail_intro_content{
+            width: 90%; 
+            margin: auto;
+            margin-top: 5vw ;
+            margin-bottom: 16vw ;
+            display: flex;
+            flex-direction: column;
+            padding: 5.2vw 0;   
+            .animal_detail_icon{   
+                text-align: center;
+                img{   
+                    width: 40vw;     
+                }   
+            }   
+            p{     
+                padding-top: 2.6vw;
+                color: $bgColorLightgray;   
+                line-height: 150%;  
+            }    
+        }   
+        
+    } 
+    
+} 
 
 
 
