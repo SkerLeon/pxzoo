@@ -81,7 +81,7 @@ $time:10s;
         .pk_animal_icon{
             .pk_animal_default{
                 position: absolute;
-                @include mapicon-px-percentage-size(65px,65px);
+                @include mapicon-px-percentage-size(75px,75px);
                 transition: 0.3s;
                 img{
                     width: 100%;
@@ -108,13 +108,13 @@ $time:10s;
                         width: 200%;
                         height: 140%;
                         position: absolute;
-                        top: 18%;
+                        top: 14%;
                         right: -58%;
-                        color: $mainTextColor;
+                        color: #FFFFFF;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        gap: 7%;
+                        gap: 2%;
                         font-weight: bold;
                         p{
                             @media (max-width:1280px) and (min-width:768px) {
@@ -306,9 +306,9 @@ $time:10s;
                     top: -65%;
                     .pk_Store_icon_dialog_content_text{
                         position: absolute;
-                        top: 28%;
+                        top: 25%;
                         left: 10%;
-                        color: $bgColorSecGray;
+                        color: #FFFFFF;
                         font-weight: bold;
                         p{
                             @media (max-width:1280px) and (min-width:768px) {
@@ -326,8 +326,8 @@ $time:10s;
                 }
             }
             .pk_Store_icon_VC1{
-                @include icon-top-location(600px);
-                @include icon-left-location(380px);
+                @include icon-top-location(490px);
+                @include icon-left-location(440px);
             }
             .pk_Store_icon_VC2{
                 @include icon-top-location(340px);
@@ -335,8 +335,8 @@ $time:10s;
             }
 
             .pk_Store_icon_WC1{
-                @include icon-top-location(660px);
-                @include icon-left-location(420px);
+                @include icon-top-location(550px);
+                @include icon-left-location(450px);
             }
             .pk_Store_icon_WC2{
                 @include icon-top-location(320px);
@@ -379,17 +379,19 @@ $time:10s;
     }
     .pk_Animal_details{
         position: absolute;
-        z-index: 999;
+        z-index: 998;
         top: 30%;
         width: 16.8%;
         height: 49.8%;
         background-image: url("/src/assets/images/park/pk_Animal_details_bg.png");
+        background-position:center ;
         background-repeat: no-repeat;
+        background-size:100% auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 5%;
+        gap: 1.5%;
         .pk_Animal_details_content_align{
             width: 90%;
             display: flex;
@@ -397,7 +399,17 @@ $time:10s;
             justify-content: center;
             gap: 25%;
             h1{
+                font-size: 32px;
                 color: $primaryColorGreen;
+                @media (max-width:1280px)  {
+                    font-size: 24px;
+                }
+                @media (min-width:1440px) {
+                    font-size: 28px;
+                }  
+                @media (min-width:1600px) {
+                    font-size: 32px;
+                } 
             }
             .pk_Animal_details_closure_icon{
                 width: 18.75%;
@@ -420,12 +432,24 @@ $time:10s;
                 top: 0;
             }
         }
-        p{
-            font-size: 24px;
+        .pk_Animal_details-text{  
+            p{
+                font-size: 24px;
+                @media (max-width:1280px)  {
+                    font-size: 18px;
+                }
+                @media (min-width:1440px) {
+                    font-size: 20px;
+                }  
+                @media (min-width:1600px) {
+                    font-size: 22px;
+                } 
+            }
         }
         button{
             width: 56.2%;
             height: 10.9%;
+
         }
     }
     .pk_content_bg{
@@ -487,8 +511,30 @@ $time:10s;
                         position: absolute;
                         z-index: 11;
                         bottom: 7.42%;
-                        gap: 10px;
+                        gap: 2%;
                         color: $mainTextColor;
+                        h1{
+                            @media (max-width:1280px)  {
+                                font-size: 24px;
+                            }
+                            @media (min-width:1440px) {
+                                font-size: 28px;
+                            }  
+                            @media (min-width:1600px) {
+                                font-size: 32px;
+                            }  
+                        }
+                        p{
+                            @media (max-width:1280px)  {
+                                font-size: 16px;
+                            }
+                            @media (min-width:1440px) {
+                                font-size: 18px;
+                            }  
+                            @media (min-width:1600px) {
+                                font-size: 20px;
+                            } 
+                        }
                     }
                     .pk_Tickets_item_location{
                         bottom: 17.3%;
@@ -522,7 +568,16 @@ $time:10s;
                     width: 79.7%;
                     color: $bgColorLightgray;
                     line-height: 220%;
-                    letter-spacing: 2px;
+                    letter-spacing: 1px;
+                    @media (max-width:1280px)  {
+                        font-size: 16px;
+                    }
+                    @media (min-width:1440px) {
+                        font-size: 18px;
+                    }  
+                    @media (min-width:1600px) {
+                        font-size: 20px;
+                    } 
                 }
             }
         }
