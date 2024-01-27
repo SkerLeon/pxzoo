@@ -38,7 +38,7 @@
       <div v-show="show_animals"  class="pk_animal_icon">
         <div v-for="(animal,index) in icon_animals" 
         @click="Animal_details_open"
-        :class="`pk_animal_default pk_animal_icon${index+1}`" :id="`location_id${index+1}`">
+        :class="`pk_animal_default pk_animal_icon${index+1}`">
           <div v-if="!isHidden(index)" class="pk_animal_icon_dialog_content">
             <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
             <div class="pk_animal_icon_dialog_content_text">
@@ -172,13 +172,15 @@
 
     </section>
   </section>
+  <ParkMap/>
 </template>
 
 <script>
+import ParkMap from '@/components/park/ParkMapView.vue'
 
 export default {
   components: {
-    
+    ParkMap
   },
   data() {
     return {
