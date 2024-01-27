@@ -215,8 +215,8 @@ $Sidebar_icon_rigth: 70px;
 
 .newsFrame {
   position: relative;
-  width: 100px;
-  height: 30px;
+  width: 120px;
+  height: 35px;
   .newsFramePic {
     position: absolute;
     width: 100%;
@@ -226,7 +226,7 @@ $Sidebar_icon_rigth: 70px;
   .newsFrameText {
     letter-spacing: 2px;
     position: absolute;
-    top: 0;
+    top: -4px;
     left: 0;
     width: 100%;
     height: 100%;

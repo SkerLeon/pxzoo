@@ -97,6 +97,10 @@ header {
       }
     }
 
+    .pcInnerText{
+        line-height: normal;
+    }
+
     .header_btn{
       padding-bottom: 7px;
 
@@ -152,6 +156,7 @@ header {
       &:hover .header_login_hover img{
         display: block;
         top: 0px;
+        
       }
     }
 
