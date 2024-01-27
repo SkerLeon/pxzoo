@@ -41,7 +41,7 @@
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info">
                     <!-- 個別動物種類名+圖片 -->
-                    <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-3 col-sm-6"
+                    <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
@@ -52,7 +52,7 @@
             <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
                 <div class="animal_info">
-                    <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-3 col-sm-6"
+                    <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
@@ -63,7 +63,7 @@
             <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
                 <div class="animal_info">
-                    <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-3 col-sm-6"
+                    <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
@@ -74,7 +74,7 @@
             <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
                 <div class="animal_info">
-                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-3 col-sm-6"
+                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
@@ -84,7 +84,7 @@
             <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
                 <div class="animal_info">
-                    <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-3 col-sm-6"
+                    <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>

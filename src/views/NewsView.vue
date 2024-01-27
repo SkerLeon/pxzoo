@@ -8,12 +8,17 @@
     <!-- 新聞列表 -->
     <main class="news_overview">
       <!-- select(mb) -->
-      <Select class="news_select" 
+      <!-- <Select class="" 
       v-model="model" 
       default-label="ALL"
       style="width:200px">
           <Option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
-      </Select>
+      </Select> -->
+
+      <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText news_select">
+        <option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</option>
+      </select>
+
 
       <!-- menu button(pc) -->
       <ul class="news_pc_filter">
@@ -37,8 +42,14 @@
             <div class="news-text">
               <div class="news_tag_time">
                 <span class="time pcInnerText">{{ item.date }}</span>
-                <span class="tag" 
-                :class="item.tag_class">{{ item.tag }}</span>
+                <div class="newsFrame">
+                    <img
+                    :src="getTagUrl(item.color)"
+                    alt="orangeFrame"
+                    class="newsFramePic"
+                    />
+                    <p class="newsFrameText pcInnerText">{{item.tag}}</p>
+                </div>
               </div>
               <div class="news_title">
                 <h4 class="pcSmTitle">{{item.title}}</h4>
@@ -60,6 +71,20 @@
       </div>
     </div>     
     </main>
+    <!-- 背景 -->
+    <div class="news_bg">
+      <img class="cloud_bg cloud_2" src="../assets/images/vetor/nature_cloud_2.svg" alt="bg-雲2">
+      <img class="cloud_bg cloud_4" src="../assets/images/vetor/nature_cloud_4.svg" alt="bg-雲4">
+
+      <img class="news_bg_palnt grass_2" src="../assets/images/vetor/nature_grass_2.svg" alt="bg-grass2">
+      <img class="news_bg_palnt grass_5" src="../assets/images/vetor/nature_grass_5.svg" alt="bg-grass5">
+
+      <img class="news_bg_palnt tree_4" src="../assets/images/vetor/nature_tree_4.svg" alt="bg-tree4">
+      <img class="news_bg_palnt tree_7" src="../assets/images/vetor/nature_tree_7.svg" alt="bg-tree7">
+
+      <img class="alpaca" src="../assets/images/vetor/vetor_animal_alpaca.svg" alt="bg-羊駝">
+
+    </div>
   </section>
 </template>
 
@@ -96,6 +121,7 @@ export default {
             {
               date:'2024.01.02',
               tag:'最新活動',
+              color:'orange',
               tag_class:'new_activity',
               title:'動物明星新一輪投票即將啟動！',
               img:'new_activity_1',
@@ -103,6 +129,7 @@ export default {
             {
               date:'2024.01.04',
               tag:'園區消息',
+              color:'green',
               tag_class:'zoo_news',
               title:'動物園為家人共度佳節與動物提供寧靜休息環境，宣布農曆新年休假',
               img:'zoo_news_1',
@@ -110,6 +137,7 @@ export default {
             {
               date:'2023.12.29',
               tag:'最新消息',
+              color:'orange',
               tag_class:'new_activity',
               title:'兒童攝影大賽：小攝影師們快來動物園捕捉最美瞬間，贏得豐富獎品',
               img:'new_activity_2',
@@ -117,6 +145,7 @@ export default {
             {
               date:'2023.12.28',
               tag:'動物知識',
+              color:'blue',
               tag_class:'animal_knowledge',
               title:'貓頭鷹的生活習性和獵食技巧，揭開夜間狩獵的神秘面紗',
               img:'animal_knowledge_1',
@@ -124,6 +153,7 @@ export default {
             {
               date:'2023.12.22',
               tag:'園區消息',
+              color:'green',
               tag_class:'zoo_news',
               title:'新生兒象寶寶在動物園誕生，展現可愛模樣',
               img:'zoo_news_2',
@@ -131,6 +161,7 @@ export default {
             {
               date:'2023.12.21',
               tag:'動物知識',
+              color:'blue',
               tag_class:'animal_knowledge',
               title:'北極熊的生態適應，面對氣候變遷的挑戰',
               img:'animal_knowledge_2',
@@ -138,6 +169,7 @@ export default {
             {
               date:'2023.12.18',
               tag:'動物知識',
+              color:'blue',
               tag_class:'animal_knowledge',
               title:'大象的家庭結構和保護幼象的感人故事',
               img:'animal_knowledge_3',
@@ -145,6 +177,7 @@ export default {
             {
               date:'2023.12.15',
               tag:'最新消息',
+              color:'orange',
               tag_class:'new_activity',
               title:'動物園歡樂跨年 共度美好時光',
               img:'new_activity_3',
@@ -157,6 +190,10 @@ export default {
       getImageUrl(paths) {
           return new URL(`../assets/images/news/${paths}.png`, import.meta.url).href
       },//改網址
+
+      getTagUrl(paths){
+        return new URL(`../assets/images/news/newsFrame/${paths}Frame.svg`, import.meta.url).href
+      },
 
       toNewsDetail(){
         console.log('page');

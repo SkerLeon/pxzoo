@@ -46,6 +46,13 @@
 
             </div>
         </main>
+            <!-- 背景 -->
+        <div class="news_detail_bg">
+            <img class="cloud_bg cloud_2" src="../assets/images/vetor/nature_cloud_2.svg" alt="bg-雲2">
+            <img class="cloud_bg cloud_4" src="../assets/images/vetor/nature_cloud_4.svg" alt="bg-雲4">
+            <img class="cloud_bg cloud_4_2" src="../assets/images/vetor/nature_cloud_4.svg" alt="bg-雲4">
+
+        </div>
     </section>
 </template>
 
