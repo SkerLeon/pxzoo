@@ -1,6 +1,7 @@
 <template>
     <!-- part0-1 購票須知 -->
-    <section class="tickInfo">
+    <section class="tickInfo" @click.self="TickCalendar" >
+    <!-- 修飾符.self 的作用，只會觸發元素自己的事件行為，由子層元素傳遞來的事件則不會觸發。 -->
 
         <article>
 
@@ -34,9 +35,9 @@ export default {
     components:{
         // RouterLink,
     },
-    prps:[
-        'TickCalendar',
-    ],
+    props:{
+        // 'TickCalendar': { type: Boolean },
+    },
     data() {
         return {
             tickInfomation: [
@@ -80,6 +81,7 @@ export default {
             this.isSmallPH = window.innerWidth <= 430;
             this.isMidPH = window.innerWidth <= 470;
             this.isMobile = window.innerWidth <= 768;
+            this.isSmallBoard = window.innerWidth < 860;
             this.isBoard = window.innerWidth < 1200;
             this.isSmallPC = window.innerWidth <= 1400;
             this.isMidPC = window.innerWidth <= 1540;
@@ -89,7 +91,9 @@ export default {
             // return `src/assets/images/ticket/${name}.svg`;
         },
         TickCalendar(){
-            this.$emit('TickCalendar');
+            if(window.innerWidth < 1200){
+                this.$emit('TickCalendar');
+            }
         }
     },
     created(){

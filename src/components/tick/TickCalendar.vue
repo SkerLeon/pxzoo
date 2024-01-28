@@ -8,7 +8,7 @@
                 <img src="@/assets/images/vetor/vetor_animal_fox.svg" alt="ticket">
             </hgroup>
 
-                <Calendar v-model="value" cell-height="40" class="calendar">
+                <Calendar cell-height="40" class="calendar">
                     <template #month="{date, data}">
                         <div>
     <!-- 999休園日: 1.不能被選擇 2.游標禁止樣式 3.處理特殊開園日 -->
@@ -40,10 +40,14 @@ export default {
         tickStep:1,
 
     },
-    props:[
+    props:{
         // 丟資料的key值
-        'tickStep',
-    ],
+        'tickStep':{ type: Number },
+        // 'tidate': {
+        //     type: date,
+        //     required: true,
+        // },
+    },
     data() {
         return {
             // TickNumOpen: true,

@@ -54,6 +54,12 @@
         background-color: $bgColorWhite;
         border-radius: 0;
     }
+    .countBTN>button:first-of-type{
+        border-right: 0;
+    }
+    .countBTN>button:last-of-type{
+        border-left: 0;
+    }
     input, select{
         padding-inline: 8px;
     }
@@ -63,12 +69,19 @@
     }
     .price{
         justify-content: end;
-        align-items: flex-end;
+        align-items: center;
         text-align: right;
-    
-        >*>*{ display: inline-block; }
+        // gap: 20px;
+        p{ line-height: 150%; }
         span{ color: $mainTextColor; }
-        :nth-child(2){ width: 180px;}
+        >:nth-child(2){ width: 180px;}
+        div{
+            justify-content: end;
+            align-items: flex-end;
+            >:last-child{ width: 50% }
+        }
+        h2{ color: $secColorblue; }
+
     }
     .firstLine{
         @include tickBorder(top);
@@ -292,8 +305,8 @@
     .defaultBtn{ margin: 4vw 0;}
     .payWay{
         margin-top: 2vw;
-        >main:first-of-type{ margin-top: 2vw; }
-        >main>p{ width: 120px; }
+        article>main:first-of-type{ margin-top: 2vw; }
+        article>main>p{ width: 120px; }
         main{
             margin-top: 0.5vw;
             align-items: center;
@@ -304,6 +317,7 @@
         width: 100%;
         margin: 0;
     }
+
 }
 .tickFinished{
     margin-bottom: 2vw;
@@ -445,6 +459,30 @@
                 .ivu-calendar-header-title{
                     font-size: $phFontH3;
                 }
+    }
+    .tickNum{
+        >main:first-of-type{ display: block; }
+        article{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        >article{
+            gap: 8px;
+        }
+    }
+    .tickOption{
+        align-items: center;
+        margin: 1vw 0;
+    }
+    div.tickOption{ gap: 20px; }
+    main.tickOption{
+        justify-content: flex-end;
+        margin-right: 8px;
+        h2{
+            color: $mainTextColor;
+            margin-right: 8px;
+        }
     }
     .tickCheck, .tickFinished{
         min-width: 100%;
@@ -598,6 +636,14 @@
             right: 11vw;
         }
     }
+    .tickNum{
+        >main>article{
+            display: block;
+            margin: 3vw 0;
+        }
+        .price{ padding-top: 3vw; }
+        .tickBtn button{ margin: 5vw 0 8vw; }
+    }
 }
 @media screen and (max-width:520px){
     .tickFrame{
@@ -653,6 +699,12 @@
             right: 11vw;
         }
     }
+    .tickCheck{
+        input, select{ width: 80%; }
+        .coupon h2, .payWay h2{ width: 120px; }
+        .coupon, .payWay{ gap: 2vw; }
+        .carddate>main{ width: 80%; }
+    }
 }
 @media screen and (max-width:430px){
     .tickFrame{
@@ -682,12 +734,6 @@
         }
     }
     .tickCheck, .tickFinished{
-        select, input, .carddate>main{
-            width: calc(100% - 2vw - 120px );
-        }
-        .carddate input{
-            width: 100%;
-        }
         .coupon{
             margin-top: 20px;
         }

@@ -56,7 +56,7 @@
 
 <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished />
+      <TickFinished  />
     </main>
 
   </section>
@@ -79,16 +79,17 @@ export default {
     TickCheck,
     TickFinished,
   },
+  props:{},
   data() {
     return {
-      tickStep: 1,
+      tickStep: 0,
       device: 'PC',
       TickCalendar: false,
+      tiprice: 0,
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
       // targetValue:0,
     }
-    
   },
   methods:{
     windowSize(){
@@ -106,11 +107,26 @@ export default {
     },
     showTickCalendar(){
       this.TickCalendar=true;
-    }
+    },
   },
+  // watch: {
+  //   tiprice: {
+  //   handler(newVal, oldVal) {
+  //     this.$nextTick(() => {
+  //       console.log('tiprice 更新，新值:', newVal);
+  //     });
+  //   },
+  //   deep: true,
+  //   immediate: true,
+  // },
+  // },
   created(){
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
+    // console.log('Vue 主頁面 created，tiprice 值:', this.tiprice);
+  },
+  mounted() {
+    // console.log('Vue 主頁面 mounted，tiprice 值:', this.tiprice);
   },
   beforeDestroy() {
       window.removeEventListener('resize', this.windowSize);

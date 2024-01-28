@@ -9,34 +9,35 @@
         </hgroup>
         <main>
             <article v-for=" ticket in tickets" :key="ticket.id">
-                <div v-if="isBoard" class="tickOption PH pcInnerText">
-                    <div>
-                        <p>{{ ticket.name }}</p>
-                        <p class="pcMarkText">{{ ticket.rule }}</p>
-                    </div>
-                    <div>
-                        <h2  class="pcSmTitle">NT$ {{ ticket.price }}</h2>
+                <div v-if="isBoard" class="tickOption pcInnerText">
+                    <p>{{ ticket.name }}</p>
+                    <span class="pcMarkText">{{ ticket.rule }}</span>
+                </div>
+                <article>
+                    <main v-if="isBoard" class="tickOption pcInnerText">
+                        <h2 class="pcSmTitle">NT$ {{ ticket.price }}</h2>
                         <p>/ 人</p>
+                    </main>
+                    <article v-else class="tickOption PC">
+                        <img :src="ticket.src" :alt="ticket.name">
+                    </article>
+                    <div class="countBTN">
+                        <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
+    <!-- 999有空寫: input框寫JS限定 -->
+                        <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999" value="0" readonly>
+                        <!-- v-model與:value 不建議同時存在 -->
+                        <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
                     </div>
-                </div>
-                <article v-else class="tickOption PC">
-                    <img :src="ticket.src" :alt="ticket.name">
                 </article>
-                <div class="countBTN">
-                    <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
-<!-- 999有空寫: input框寫JS限定 -->
-                    <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999" value="0" readonly>
-                    <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
-                </div>
             </article>
         </main>
 
         <div class="price firstLine pcInnerText important">
             <p>票券金額</p>
-            <h2 class="pcSmTitle">
+            <div class="pcSmTitle">
                 <p>NT$</p> 
-                {{tiprice}}
-            </h2>
+                <h2>{{tiprice}}</h2>
+            </div>
         </div>
 
         <main class="tickBtn">
@@ -59,10 +60,16 @@ export default {
     components:{
         // RouterLink,
     },
-    props:[
+    props:{
         // 丟資料的key值
-        'tickStep',
-    ],
+        'tickStep':{ type: Number },
+        // 'tiprice': {
+        //     type: Number,
+        //     required: true,
+        //     // 驗證規則內不可讀取 data. computed 屬性
+        //     // validator: value => value>0,
+        // },
+    },
     data(){
         return {
             tickets:[
@@ -107,7 +114,6 @@ export default {
                     qty: 0,
                 },
             ],
-            tiprice: 0,
         }
     },
     methods:{
@@ -172,10 +178,17 @@ export default {
             // }
 
             // return qty;
-        }
+        },
+
     },
     computed:{
+    // computed 不需 $emit 傳遞值，會自動被 Vue 監聽，當值發生變化時，它會通知使用這個值的地方進行更新
+
         tiprice(){
+            console.log(this.tickets.reduce(
+                (sum, ticket)=>
+                sum + ticket.qty* ticket.price,
+            0));
             return this.tickets.reduce(
                 (sum, ticket)=>
                 sum + ticket.qty* ticket.price,
