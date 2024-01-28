@@ -1,11 +1,12 @@
 <template>
   <section class="forHeader pk_content">
+    
     <section class="pk_map">
       <img class="pk_map_bg" src="@/assets/images/park/pk_map_bg.png" alt="園區地圖">
 
       <div v-show="show_facilities" class="pk_Store_icon">
         <div v-for="num in 2" :class="`pk_Store_default pk_Store_icon_VC${num}`">
-          <div class="pk_Store_icon_dialog_content">
+          <div class="pk_Store_icon_dialog_content pk_vc_top">
             <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
             <div class="pk_Store_icon_dialog_content_text">
               <p class="pcMarkText">遊客中心</p>
@@ -39,18 +40,18 @@
         <div v-for="(animal,index) in icon_animals" 
         @click="Animal_details_open"
         :class="`pk_animal_default pk_animal_icon${index+1}`">
-          <div v-if="!isHidden(index)" class="pk_animal_icon_dialog_content">
+          <div v-show="!isHidden(index)" class="pk_animal_icon_dialog_content">
             <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
             <div class="pk_animal_icon_dialog_content_text">
               <p class="pcMarkText">{{ animal.Library }}</p>
               <p class="pcMarkText">{{ animal.name }}</p>
             </div>
           </div>
-          <img v-if="!isHidden(index)" :src="getAnimalIconUrl(animal.icon)" alt="園區動物icon的圖片">
+          <img v-show="!isHidden(index)" :src="getAnimalIconUrl(animal.icon)" alt="園區動物icon的圖片">
         </div>
       </div>
 
-      <aside class="Sidebar" @mouseenter="hover = true" @mouseleave="hover = false">
+      <aside class="Sidebar pk_Sidebar" @mouseenter="hover = true" @mouseleave="hover = false">
         <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
 
         <ul class="Sidebar_filter_btns">
@@ -170,17 +171,19 @@
         <img src="@/assets/images/park/pk_content_bg_eagle.svg" alt="老鷹圖片">
       </div>
 
+      <div class="pk_content_bg_owl">
+        <img src="@/assets/images/park/pk_content_bg_owl.svg" alt="老鷹圖片">
+      </div>
     </section>
   </section>
-  <ParkMap/>
 </template>
 
 <script>
-import ParkMap from '@/components/park/ParkMap.vue'
+
 
 export default {
   components: {
-    ParkMap
+    
   },
   data() {
     return {

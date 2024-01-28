@@ -2,17 +2,22 @@
 //位置 px換算%數
 @mixin icon-top-location($location) {
     top: math.div(math.div($location, 1px), 923) * 100 * 1%;
+    @media (max-width:768px) {
+        top: math.div(math.div($location, 1px), 923) * 100 * 1%;
+    }
 }
 @mixin icon-left-location($location) {
     left: math.div(math.div($location, 1px), 1920) * 100 * 1%;
-}
-@mixin icon-right-location($location) {
-    right: math.div(math.div($location, 1px), 1920) * 100 * 1%;
+    @media (max-width:768px) {
+        left: math.div(math.div($location, 1px), 923) * 100 * 1.08%;
+    }
 }
 //高度寬度px換算%數
-@mixin mapicon-px-percentage-size($wsize,$hsize){  
+@mixin mapicon-px-percentage-size($wsize){  
     width: math.div(math.div($wsize, 1px), 1920) * 100 * 1%;
-    height: math.div(math.div($hsize, 1px), 923) * 100 * 1%; 
+    @media (max-width:768px) {
+        width: math.div(math.div($wsize, 1px), 1920) * 100 * 2.3%;
+    }
 }
 //雲朵動畫函式
 $time:10s;
@@ -66,6 +71,7 @@ $time:10s;
 }
 
 
+
 .pk_content{
     width: 100%;
     display: flex;
@@ -74,24 +80,33 @@ $time:10s;
     .pk_map{
         width: 100%;
         position: relative;
+        @media (max-width:768px) {
+            max-height: 826px;
+            overflow-x: auto;
+        }
         .pk_map_bg{
             width: 100%;
             vertical-align: middle;
+            @media (max-width:768px) {
+                width: 224%;
+            }
         }
         .pk_animal_icon{
             .pk_animal_default{
                 position: absolute;
-                @include mapicon-px-percentage-size(75px,75px);
+                @include mapicon-px-percentage-size(75px);
                 transition: 0.3s;
                 img{
                     width: 100%;
                 }
                 &:hover{
-                    transition: 0.3s;
-                    transform: scale(1.3);
-                    cursor: pointer;
-                    .pk_animal_icon_dialog_content {
-                        display: block; 
+                    @media (min-width:769px) {
+                        cursor: pointer;
+                        transition: 0.3s;
+                        transform: scale(1.3);
+                        .pk_animal_icon_dialog_content {
+                            display: block; 
+                        }   
                     }
                 }
                 .pk_animal_icon_dialog_content{
@@ -159,96 +174,96 @@ $time:10s;
                 @include icon-left-location(520px);
             }
             .pk_animal_icon8{
-                @include icon-top-location(260px);
+                @include icon-top-location(240px);
                 @include icon-left-location(410px);
             }
             .pk_animal_icon9{
                 @include icon-top-location(200px);
-                @include icon-right-location(800px);
+                @include icon-left-location(1070px);
             }
             .pk_animal_icon10{
                 @include icon-top-location(140px);
-                @include icon-right-location(750px);
+                @include icon-left-location(1150px);
             }
             .pk_animal_icon11{
                 @include icon-top-location(230px);
-                @include icon-right-location(680px);
+                @include icon-left-location(1160px);
             }
             .pk_animal_icon12{
                 @include icon-top-location(200px);
-                @include icon-right-location(580px);
+                @include icon-left-location(1270px);
             }
             .pk_animal_icon13{
                 @include icon-top-location(160px);
-                @include icon-right-location(480px);
+                @include icon-left-location(1360px);
             }
             .pk_animal_icon14{
                 @include icon-top-location(280px);
-                @include icon-right-location(560px);
+                @include icon-left-location(1280px);
             }
             .pk_animal_icon15{
                 @include icon-top-location(300px);
-                @include icon-right-location(690px);
+                @include icon-left-location(1160px);
             }
             .pk_animal_icon16{
-                @include icon-top-location(310px);
-                @include icon-right-location(780px);
+                @include icon-top-location(300px);
+                @include icon-left-location(1080px);
             }
             .pk_animal_icon17{
                 @include icon-top-location(490px);
-                @include icon-right-location(650px);
+                @include icon-left-location(1180px);
             }
             .pk_animal_icon18{
                 @include icon-top-location(430px);
-                @include icon-right-location(580px);
+                @include icon-left-location(1250px);
             }
             .pk_animal_icon19{
                 @include icon-top-location(420px);
-                @include icon-right-location(510px);
+                @include icon-left-location(1340px);
             }
             .pk_animal_icon20{
                 @include icon-top-location(380px);
-                @include icon-right-location(440px);
+                @include icon-left-location(1410px);
             }
             .pk_animal_icon21{
                 @include icon-top-location(420px);
-                @include icon-right-location(370px);
+                @include icon-left-location(1480px);
             }
             .pk_animal_icon22{
                 @include icon-top-location(470px);
-                @include icon-right-location(450px);
+                @include icon-left-location(1410px);
             }
             .pk_animal_icon23{
                 @include icon-top-location(500px);
-                @include icon-right-location(550px);
+                @include icon-left-location(1290px);
             }
             .pk_animal_icon24{
                 @include icon-top-location(640px);
-                @include icon-right-location(790px);
+                @include icon-left-location(1060px);
             }
             .pk_animal_icon25{
-                @include icon-top-location(580px);
-                @include icon-right-location(730px);
+                @include icon-top-location(570px);
+                @include icon-left-location(1100px);
             }
             .pk_animal_icon26{
                 @include icon-top-location(570px);
-                @include icon-right-location(580px);
+                @include icon-left-location(1250px);
             }
             .pk_animal_icon27{
                 @include icon-top-location(630px);
-                @include icon-right-location(640px);
+                @include icon-left-location(1210px);
             }
             .pk_animal_icon28{
-                @include icon-top-location(730px);
-                @include icon-right-location(530px);
+                @include icon-top-location(710px);
+                @include icon-left-location(1310px);
             }
             .pk_animal_icon29{
-                @include icon-top-location(770px);
-                @include icon-right-location(600px);
+                @include icon-top-location(760px);
+                @include icon-left-location(1250px);
             }
             .pk_animal_icon30{
                 @include icon-top-location(700px);
-                @include icon-right-location(660px);
+                @include icon-left-location(1200px);
             }
             .pk_animal_icon31{
                 @include icon-top-location(650px);
@@ -287,23 +302,25 @@ $time:10s;
             .pk_Store_default{
                 position: absolute;
                 transition: 0.3s;
-                @include mapicon-px-percentage-size(75px,75px);
+                @include mapicon-px-percentage-size(75px);
                 img{
                     width: 100%;
                 }
                 &:hover{
-                    transition: 0.3s;
-                    transform: scale(1.3);
                     z-index: 999;
                     cursor: pointer;
                     .pk_Store_icon_dialog_content{
                         display: block;
+                    }       
+                    @media (min-width:769px) {
+                        transition: 0.3s;
+                        transform: scale(1.3);
                     }
                 }
                 .pk_Store_icon_dialog_content{
                     display: none;
                     position:absolute;
-                    top: -65%;
+                    top: -40%;
                     .pk_Store_icon_dialog_content_text{
                         position: absolute;
                         top: 25%;
@@ -311,7 +328,7 @@ $time:10s;
                         color: #FFFFFF;
                         font-weight: bold;
                         p{
-                            @media (max-width:1280px) and (min-width:768px) {
+                            @media (max-width:1280px) {
                                 font-size: 10px;
                             }
                             @media (min-width:1440px) {
@@ -320,9 +337,15 @@ $time:10s;
                             @media (min-width:1600px) {
                                 font-size: 15px;
                             }  
+                            @media (max-width:768px) {
+                                font-size: 14px;
+                            } 
                         }
                     }
 
+                }
+                .pk_vc_top{
+                    top: -65%;
                 }
             }
             .pk_Store_icon_VC1{
@@ -331,7 +354,7 @@ $time:10s;
             }
             .pk_Store_icon_VC2{
                 @include icon-top-location(340px);
-                @include icon-right-location(620px);
+                @include icon-left-location(1230px);
             }
 
             .pk_Store_icon_WC1{
@@ -344,15 +367,15 @@ $time:10s;
             }
             .pk_Store_icon_WC3{
                 @include icon-top-location(420px);
-                @include icon-right-location(730px);
+                @include icon-left-location(1120px);
             }
             .pk_Store_icon_WC4{
                 @include icon-top-location(510px);
-                @include icon-right-location(470px);
+                @include icon-left-location(1380px);
             }
             .pk_Store_icon_WC5{
                 @include icon-top-location(730px);
-                @include icon-right-location(730px);
+                @include icon-left-location(1120px);
             }
             
             .pk_Store_icon_RC1{
@@ -365,15 +388,20 @@ $time:10s;
             }
             .pk_Store_icon_RC3{
                 @include icon-top-location(345px);
-                @include icon-right-location(700px);
+                @include icon-left-location(1150px);
             }
             .pk_Store_icon_RC4{
                 @include icon-top-location(520px);
-                @include icon-right-location(400px);
+                @include icon-left-location(1470px);
             }
             .pk_Store_icon_RC5{
                 @include icon-top-location(750px);
-                @include icon-right-location(800px);
+                @include icon-left-location(1050px);
+            }
+        }
+        .pk_Sidebar{
+            @media (max-width:768px) {
+                display: none;
             }
         }
     }
@@ -391,7 +419,11 @@ $time:10s;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1.5%;
+        gap: 0.5%;
+        @media (max-width:768px) {
+            width: 35%;
+            height: 70%;
+        }
         .pk_Animal_details_content_align{
             width: 90%;
             display: flex;
@@ -466,15 +498,31 @@ $time:10s;
             margin-top: 12%;
             position: relative;
             z-index: 5;
+            @media (max-width:768px) {
+                width: 76.5%;
+                height: 234.9vh;
+            }
             .pk_Tickets_items{
                 display: flex;
                 gap: 1.45%;
+                width: 100%;
+                height: 100%;
+                @media (max-width:768px) {
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    gap: 1.35%;
+                    justify-content: space-evenly;
+                    align-items: center;
+                }
                 .pk_Tickets_item{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     width: 18.37%;
                     position: relative;
+                    @media (max-width:768px) {
+                        width: 45%;;
+                    }
                     :hover{
                         cursor: pointer;
                     }
@@ -488,6 +536,10 @@ $time:10s;
                         position: absolute;
                         z-index: 10;
                         top: 26%;
+                        @media (max-width:768px) {
+                            width: 97.4%;
+                            top: 25.9%;
+                        }
                     }
                     .pk_Tickets_item_animal{
                         width: 60%;
@@ -522,7 +574,10 @@ $time:10s;
                             }  
                             @media (min-width:1600px) {
                                 font-size: 32px;
-                            }  
+                            }
+                            @media (max-width:768px)  {
+                                font-size: 32px;
+                            }
                         }
                         p{
                             @media (max-width:1280px)  {
@@ -534,6 +589,9 @@ $time:10s;
                             @media (min-width:1600px) {
                                 font-size: 20px;
                             } 
+                            @media (max-width:768px)  {
+                                font-size: 22px;
+                            }
                         }
                     }
                     .pk_Tickets_item_location{
@@ -551,8 +609,15 @@ $time:10s;
             margin: 2% 0 5%;
             position: relative;
             z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6.133vh;
             img{
                 width: 100%;
+                @media (max-width:768px) {
+                    width: 200%;
+                }
             }
             .pk_Origin_text_bg{
                 position: absolute;
@@ -564,6 +629,12 @@ $time:10s;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                @media (max-width:768px) {
+                    position: static;
+                    width: 86.97%;
+                    height: 430px;
+                    background-color: #231F2088;
+                }
                 p{
                     width: 79.7%;
                     color: $bgColorLightgray;
@@ -577,7 +648,10 @@ $time:10s;
                     }  
                     @media (min-width:1600px) {
                         font-size: 20px;
-                    } 
+                    }
+                    @media (max-width:768px) {
+                        font-size: 22px;
+                    }
                 }
             }
         }
@@ -585,10 +659,17 @@ $time:10s;
             width: 74%;
             display: flex;
             gap: 10px;
+            @media (max-width:768px) {
+                width: 100%;
+            }
             .pk_information_bulletin_board{
                 width: 60.1%;
                 position: relative;
                 z-index: 10;
+                @media (max-width:768px) {
+                    margin: auto;
+                    width: 90%;
+                }
                 img{
                     width: 100%;
                 }
@@ -612,12 +693,19 @@ $time:10s;
                         font-size: 14px;
                         line-height: 190%;
                     }
+                    @media (max-width:768px) {
+                        font-size: 20px;
+                        line-height: 150%;
+                    }
                 }
             }
             .pk_information_Billboard{
                 width: 40.2%;
                 position: relative;
                 z-index: 10;
+                @media (max-width:768px) {
+                    display: none;
+                }
                 img{
                     width: 100%;
                 }
@@ -641,6 +729,9 @@ $time:10s;
             bottom: -1%;
             img{
                 width: 100%;
+            }
+            @media (max-width:768px) {
+                bottom: -0.2%;
             }
         }
         .pk_content_bg_cloud{
@@ -687,6 +778,27 @@ $time:10s;
             height: 8.3%;
             img{
                 width: 100%;
+                @media (max-width:768px) {
+                    transform: scaleX(-1);
+                }
+            }
+            @media (max-width:768px) {
+                width: 280px;
+                top: 43%;
+                left: 50%;
+                z-index: 1000;
+            }
+        }
+        .pk_content_bg_owl{
+            @media (max-width:1920px) {
+                display: none;
+            }
+            @media (max-width:768px) {
+                display: block;
+                position: absolute;
+                z-index: 999;
+                top: 2.5%;
+                left: 60%;
             }
         }
     }
