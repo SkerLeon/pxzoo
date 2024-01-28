@@ -105,6 +105,10 @@ $phFontH5: clamp(0.9rem, 1vw, 1rem);
   font-family: $decorateFont;
   font-weight: 900;
   line-height: 150%;
+  @media (width <= 768px) {
+    //ph尺寸
+    font-size: $phFontH2;
+  }
 }
 
 //小標

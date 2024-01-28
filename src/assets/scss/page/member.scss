@@ -129,12 +129,46 @@
           row-gap: 20px;
         }
         .picArea {
+          position: relative;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           width: 50%;
           @media (width <= 768px) {
             height: 40%;
+          }
+          input {
+            top: 100px;
+            position: absolute;
+            opacity: 0;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            cursor: pointer;
+            @media (width <= 768px) {
+              width: 90px;
+              height: 90px;
+              top: 40px;
+            }
+            @media (width <= 450px) {
+              top: 67px;
+            }
+          }
+          .memPic {
+            top: 100px;
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            @media (width <= 768px) {
+              width: 90px;
+              height: 90px;
+              top: 40px;
+            }
+            @media (width <= 450px) {
+              top: 67px;
+            }
           }
           .picFrame {
             width: 300px;
@@ -427,6 +461,9 @@
             right: 2vw;
             @media (width <= 768px) {
               bottom: -10vw;
+            }
+            &:hover {
+              background-color: $primaryColorYellow;
             }
           }
         }

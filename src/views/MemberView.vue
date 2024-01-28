@@ -54,12 +54,13 @@
               alt="picFrame"
               class="picFrame"
             />
-            <input type="file" style="display: none" />
+            <img :src="imgUrl" alt="" class="memPic" />
+            <input type="file" @change="imgChange" accept="image/*" />
           </div>
           <div class="info pcSmTitle">
-            <div v-for="(field, key) in fields" :key="key">
+            <div v-for="field in fields" :key="field.key">
               <label>{{ field.label }}:</label>
-              <input v-model="profile[key]" class="infoInput" />
+              <input v-model="field.value" class="infoInput" />
             </div>
             <button
               type="submit"
@@ -74,6 +75,7 @@
       </div>
       <img src="@/assets/images/member/camel.svg" alt="camel" class="camel" />
     </section>
+
     <section class="ticketArea" id="ticket" v-show="activeTab === 'ticket'">
       <div class="innerTicket">
         <h2 class="pcBigTitle">購票紀錄</h2>
@@ -128,27 +130,28 @@
         class="ticketCrocodile"
       />
     </section>
+
     <section class="couponArea" id="coupon" v-show="activeTab === 'coupon'">
       <div class="innerCoupon">
         <h2 class="pcBigTitle">優惠票券</h2>
         <div class="couponGroup">
           <div class="coupon">
             <img src="../assets/images/member/discount10.svg" alt="" />
-            <button class="couponBtn pcInnerText">
+            <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
           </div>
           <div class="coupon">
             <img src="../assets/images/member/discount15.svg" alt="" />
-            <button class="couponBtn pcInnerText">
+            <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
           </div>
           <div class="coupon">
             <img src="../assets/images/member/discount20.svg" alt="" />
-            <button class="couponBtn pcInnerText">
+            <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
@@ -205,13 +208,13 @@
 </template>
 
 <script>
-import btn from "@/components/btn.vue";
 import qrcodeLB from "@/components/QRcodeLightBox.vue";
 export default {
   data() {
     return {
       activeTab: "info",
       showQRCode: false,
+      imgUrl: "",
       profile: {
         name: "",
         title: "",
@@ -246,10 +249,10 @@ export default {
         {
           id: "2",
           date: "2023/12/30",
-          pay: "NT$300",
+          pay: "NT$800",
           total: "4",
-          type: "電子票",
-          status: "已用票",
+          type: "實體票",
+          status: "未取票",
         },
         {
           id: "3",
@@ -279,20 +282,23 @@ export default {
     };
   },
   components: {
-    btn,
     qrcodeLB,
   },
+  //抓取使用者在input輸入的內容
   created() {
-    for (const field of this.fields) {
-      const savedValue = localStorage.getItem(`profile${field.key}`);
+    this.fields.forEach((field) => {
+      const savedValue = localStorage.getItem(`member${field.key}`);
       if (savedValue) {
-        this.profile[field.key] = savedValue;
+        field.value = savedValue;
       }
-    }
+    });
   },
   methods: {
     toHomePage() {
       this.$router.push("/");
+    },
+    toTicketPage() {
+      this.$router.push("ticket");
     },
     closeQRCode() {
       this.showQRCode = false;
@@ -302,21 +308,41 @@ export default {
       this.showQRCode = true;
       document.body.style.overflow = "hidden";
     },
-    saveProfile() {
-      // 假设保存成功后，手动将各个字段保存到 localStorage
-      for (const field of this.fields) {
-        const key = `profile${field.key}`;
-        const value = this.profile[field.key];
+    imgChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        //限定尺寸
+        const size = 1024;
+        if (file.size <= size * 1024) {
+          const reader = new FileReader();
 
-        // 检查是否为空字符串，如果是就不进行 JSON 字符串化
-        if (value !== "") {
-          localStorage.setItem(key, JSON.stringify(value));
+          reader.onload = (e) => {
+            this.imgUrl = e.target.result;
+            this.saveImg();
+          };
+          reader.readAsDataURL(file);
         } else {
-          localStorage.setItem(key, ""); // 存储空字符串
+          alert("檔案過大");
+          imgUrl = "";
         }
       }
-      alert("更新成功");
     },
+    //將圖片存入localStorage
+    saveImg() {
+      localStorage.setItem("uploadedImage", this.imgUrl);
+    },
+    //點擊修改btn會先將值存入localStorage
+    saveProfile() {
+      this.fields.forEach((field) => {
+        localStorage.setItem(`member${field.key}`, field.value);
+      });
+      alert("資料修改成功");
+    },
+  },
+  mounted() {
+    //開啟頁面時，會自動將存在localStorage的圖片顯示在葉面上
+    const saveImg = localStorage.getItem("uploadedImage");
+    this.imgUrl = saveImg;
   },
 };
 </script>

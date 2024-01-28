@@ -1,3 +1,49 @@
+@keyframes cloud3 {
+  15% {
+    left: 15px;
+    top: 5px;
+  }
+  30% {
+    left: 25px;
+    top: -5px;
+  }
+  45% {
+    left: 35px;
+    top: 5px;
+  }
+  60% {
+    right: 25px;
+    top: -5px;
+  }
+  75% {
+    right: 15px;
+    top: 5px;
+  }
+  90% {
+    right: 5px;
+    top: -5px;
+  }
+}
+@keyframes cloud5 {
+  15% {
+    top: 10px;
+  }
+  30% {
+    top: 15px;
+  }
+  45% {
+    top: 20px;
+  }
+  60% {
+    top: 15px;
+  }
+  75% {
+    top: 10px;
+  }
+  90% {
+    top: 5px;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -68,7 +114,8 @@ body main .unhappybee {
 body main .unhappybee .unhappybeeText {
   position: absolute;
   top: 10px;
-  right: 87px;
+  right: 95px;
+  font-size: 14px;
   font-family: "Montserrat", "Noto Sans TC";
 }
 body main .unhappybee .unhappybeeImg {
@@ -81,13 +128,15 @@ body main .cloud3 {
   height: 150px;
   top: 2vw;
   left: 2vw;
+  animation: cloud3 12s linear infinite;
 }
 body main .cloud5 {
   position: absolute;
   width: 300px;
   height: 150px;
-  right: 10vw;
-  top: 5vw;
+  right: 8vw;
+  top: 3vw;
+  animation: cloud5 12s linear infinite;
 }
 body main .grasses8 {
   position: absolute;
@@ -137,4 +186,13 @@ body main .crab {
   height: 50px;
   bottom: 7.6vw;
   left: 32vw;
+}
+body main .copyRight {
+  width: 70%;
+  position: absolute;
+  bottom: 1vw;
+  left: 15vw;
+  color: #fff;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  font-family: "Montserrat", "Noto Sans TC";
 }/*# sourceMappingURL=frontPage.css.map */

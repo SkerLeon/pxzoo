@@ -123,17 +123,47 @@
 </template>
 
 <script>
+// import axios from "axios";
+import { mapActions } from "pinia";
+import userStore from "@/stores/auth";
 export default {
   data() {
     return {
       activeTab: "loginForm",
-      loginAccount: "",
-      loginPassword: "",
+      loginAccount: "mor_2314",
+      loginPassword: "83r5^_",
       currentImage: `/src/assets/images/login/login-bg/login_btn_area.png`,
     };
   },
   components: {},
   methods: {
+    //(我要調用的js檔案,調用裡面的哪些函式)
+    ...mapActions(userStore, ["updateToken", "updateName", "checkLogin"]),
+    signin() {
+      axios
+        .post(
+          "https://fakestoreapi.com/auth/login",
+          {
+            // username: "mor_2314",
+            // password: "83r5^_"
+            username: this.username,
+            password: this.pswdddv,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data && response.data.token) {
+            // localStorage.setItem('token', response.data.token)
+            this.updateToken(response.data.token);
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => console.error(error));
+    },
     userLogin() {
       console.log(this.loginAccount);
       console.log(this.loginPassword);
