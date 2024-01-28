@@ -12,7 +12,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  color: $mainTextColor#000;
 
   .teacher img {
     position: absolute;
@@ -119,7 +118,7 @@
     .rule {
       color: #fff;
       text-align: center;
-      line-height: 1.5;
+
       padding: 44px 0;
     }
   }
@@ -138,10 +137,8 @@
   align-items: center;
   gap: 4%;
   color: $bgColorWhite;
-
-  .option-image-container {
-    padding: 8% 0;
-  }
+  margin: auto;
+  padding: auto;
 }
 
 // .correct_answer {
@@ -160,6 +157,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   background-image: url("/src/assets/images/school/img_border.svg");
   // background-color: $mainTextColor; /* 使用你的變量或具體的顏色值 */
   background-size: 100%;
@@ -168,6 +166,7 @@
   width: 14vw;
   height: auto;
   margin: 25% 0;
+  padding: 8% 0;
 }
 
 .option-image-container img {
@@ -177,13 +176,14 @@
 }
 
 .option_input {
-  background-image: url("/src/assets/images/school/btn_option.svg");
-  background-size: contain;
+  // background-image: url("/src/assets/images/school/btn_option.svg");
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  padding: 10% 28%;
+  padding: 10% 28%; /* 使用百分比值 */
+  white-space: nowrap;
   width: 100%;
-
+  background-color: $mainTextColor;
   color: $bgColorWhite;
 }
 .correct_answer_box {
@@ -198,6 +198,13 @@
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+}
+
+.option_input:hover {
+  /* 在這裡指定 hover 時的樣式 */
+  background-color: $primaryColorYellow; /* 例如改變背景顏色 */
+  cursor: pointer; /* 讓滑鼠變成手指指示可點擊 */
+  color: $mainTextColor;
 }
 
 .lightbox {
@@ -217,6 +224,7 @@
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  width: 70vw;
 }
 
 .lightbox button {
@@ -227,7 +235,8 @@
   position: absolute;
   bottom: 0;
   left: 16vw;
-  gap: 15%;
+  gap: 12%;
+  z-index: 5;
 }
 .eat_coin .coin {
   img {
@@ -246,6 +255,45 @@
 .result_all {
   margin: 6% 0;
   .result {
-    line-height: 150%;
+    // line-height: 150%;
+  }
+}
+
+@media screen and (width < 770px) {
+  .option-image-container {
+    width: 20vw;
+    height: auto;
+    // margin: 25% 0;
+    // padding: 8% 0;
+    z-index: 50;
+  }
+
+  .option-image-container img {
+    width: 17vw;
+  }
+  .option_all {
+    gap: 5%;
+  }
+  .option_input {
+    padding: 12% 24%;
+    white-space: nowrap;
+  }
+}
+@media screen and (width < 480px) {
+  .option-image-container {
+    width: 32vw;
+    margin: 20% 0;
+  }
+
+  .option-image-container img {
+    width: 28vw;
+  }
+  .option_all {
+    flex-wrap: wrap;
+
+    gap: 10%;
+  }
+  .option_input {
+    padding: 12% 24%;
   }
 }

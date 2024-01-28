@@ -3,7 +3,12 @@
   position: relative;
   color: $mainTextColor;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  height: auto;
+
   .banner {
     background-image: url("/src/assets/images/vote/tree.svg");
     background-color: $bgColorLightgray;
@@ -32,11 +37,24 @@
   }
   .podium_no {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     .vote_img {
       width: 9vw;
       height: auto;
       border: $primaryColorYellow solid 4px;
+    }
+    .NO {
+      width: 3vw;
+      height: auto;
+      position: absolute;
+      top: -1.5vw;
+    }
+    .score {
+      position: absolute;
+      top: 20vw;
+      z-index: 10;
     }
 
     .podium1 {
@@ -66,6 +84,7 @@
         );
         /* 新增 border 相關屬性 */
         border-left: 4px solid transparent; /* 透明的左邊框 */
+        border-right: 4px solid transparent; /* 透明的右邊框 */
         border-image: linear-gradient(
           to bottom,
           $bgColorLightgray 60%,
@@ -75,17 +94,6 @@
         border-image-slice: 1;
 
         z-index: 3;
-        .NO {
-          width: 3vw;
-          height: auto;
-          position: absolute;
-          top: -6%;
-        }
-      }
-      .score {
-        position: absolute;
-        top: 50%;
-        z-index: 12;
       }
     }
     .podium2 {
@@ -113,17 +121,6 @@
           rgba(254, 208, 1, 0) 85%
         );
         z-index: 2;
-        .NO {
-          width: 3vw;
-          height: auto;
-          position: absolute;
-          top: -8%;
-        }
-      }
-      .score {
-        position: absolute;
-        top: 60%;
-        z-index: 12;
       }
     }
     .podium3 {
@@ -152,17 +149,57 @@
           rgba(254, 208, 1, 0) 85%
         );
         z-index: 1;
-        .NO {
-          width: 3vw;
-          height: auto;
-          position: absolute;
-          top: -10%;
-        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 480px) {
+  .vote_top {
+    height: 90vh;
+    .banner {
+      width: 100%;
+      height: auto;
+
+      .title {
+        padding: 5% 0;
+      }
+    }
+    .podium_no {
+      .vote_img {
+        width: 15vw;
+        height: auto;
+        border: $primaryColorYellow solid 4px;
+      }
+      .NO {
+        width: 5vw;
+        height: auto;
+        position: absolute;
+        top: -1.5vw;
       }
       .score {
         position: absolute;
-        top: 65%;
-        z-index: 12;
+        top: 40vw;
+        z-index: 10;
+      }
+
+      .podium1 {
+        left: 35%;
+        .podium_box {
+          width: 30vw;
+        }
+      }
+      .podium2 {
+        left: 10%;
+        .podium_box {
+          width: 30vw;
+        }
+      }
+      .podium3 {
+        left: 60%;
+        .podium_box {
+          width: 30vw;
+        }
       }
     }
   }
@@ -170,90 +207,161 @@
 
 //投票活動
 .vote_activity {
-  height: 90vh;
+  height: auto;
+  padding-bottom: 10%;
   width: 100%;
   background-color: #fff;
   position: relative;
   // padding-bottom: 211px;
   color: $mainTextColor;
+  .newsFrame .newsFrameText {
+    top: 0;
+  }
+  .vote_activity_wrap {
+    z-index: 3;
+    width: 70%;
+    margin: auto;
+  }
 
   h1 {
     color: $primaryColorGreen;
     text-align: center;
-    line-height: 1.5;
+
     padding: 5% 0 1% 0;
   }
   p {
     text-align: left;
-    line-height: 1.5;
-    margin: 0 14%;
   }
   .cloud_6 {
+    animation: cloudMove 20s linear infinite;
     position: absolute;
-    top: 20%;
-    left: 8%;
+    top: 15%;
+    left: 6%;
     background-repeat: no-repeat;
     img {
       width: 8vw;
     }
   }
   .cloud_2 {
+    animation: cloudMove2 5s linear infinite;
     position: absolute;
-    top: 2%;
+    top: 5%;
     right: 5%;
     background-repeat: no-repeat;
     img {
-      width: 12vw;
+      max-width: 12vw;
+      width: 100%;
     }
   }
+  @keyframes cloudMove {
+    0%,
+    100% {
+      transform: translateX(0); /* 云的初始位置和结束位置 */
+    }
+    50% {
+      transform: translateX(calc(100% - 200px)); /* 云的中间位置 */
+    }
+  }
+  @keyframes cloudMove2 {
+    0%,
+    100% {
+      transform: translateY(0); /* 开始和结束位置 */
+    }
+    50% {
+      transform: translateY(-20px); /* 上升 */
+    }
+  }
+
   .squirrel_2 {
     position: absolute;
-    bottom: -0.5%;
+    bottom: 6%;
     left: 5%;
     background-repeat: no-repeat;
     img {
       width: 10vw;
     }
   }
+
+  .conversation-vote-text {
+    position: absolute;
+    bottom: 3%; /* 距离蟲头的距离，根据需要调整 */
+    left: 11%; /* 将文字框居中 */
+    transform: translateX(-50%); /* 使用负的自身宽度的一半来水平居中 */
+    background-color: $primaryColorYellow;
+    text-align: center;
+    padding: 0.4% 1.6%; /* 根据需要调整内边距 */
+    border-radius: 5px; /* 根据需要调整圆角 */
+    z-index: 1;
+    animation: moveLeftRight 5s linear infinite;
+  }
+  @keyframes moveLeftRight {
+    0% {
+      left: 10%; /* 初始位置 */
+    }
+    50% {
+      left: 8.5%; /* 左移动到的位置 */
+    }
+    100% {
+      left: 10%; /* 回到初始位置 */
+    }
+  }
   .vote_rule {
-    display: flex;
-    // flex-direction: row;
-    padding: 2% 0;
+    .time_text {
+      margin: 1.5% 0;
+    }
+    .time {
+      margin: 1.5% 0;
+    }
+  }
+}
 
-    // line-height: 1.5;
-    margin: 0 14%;
+@media screen and (width < 480px) {
+  .vote_activity {
+    height: auto;
 
-    p {
-      width: 100%;
-      margin: 0 3%;
+    .vote_activity_wrap {
+      width: 90%;
+
+      .vote_rule {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
 
 //人氣投票TOP3
 .vote_popular {
-  height: 90vh;
+  height: auto;
+  padding: 8%;
   width: 100%;
   max-width: 1920px;
+  box-sizing: border-box;
   background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: cover;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   color: $mainTextColor;
-  padding-top: 4%;
-
+  padding: auto;
+  box-sizing: border-box;
   .title {
-    margin-bottom: 2%;
+    padding-bottom: 4%;
+    // margin-bottom: 3%;
     color: #fff;
     display: flex;
   }
   .ranking .content {
-    width: 90vw;
+    width: 70vw;
+
     height: 15vh;
     background-color: #fff;
     display: flex;
@@ -263,9 +371,12 @@
     white-space: nowrap;
 
     .img img {
-      width: 5vw;
+      max-width: 20%;
+
       border-radius: 50%;
-      margin: 0 20%;
+      margin: 0 10%; // 使用相對單位
+      height: auto;
+      margin-right: auto;
     }
     .number {
       padding: 0 1.6%;
@@ -276,29 +387,70 @@
       align-items: center;
     }
     .name {
-      margin: 0 5%;
+      margin-left: auto;
+      margin: 0 5%; /* 使用相對單位 */
     }
     .votes {
-      margin-left: 42%;
-      margin-right: 7%;
+      margin-left: auto; /* 將左側 margin 設為 auto，使其具有彈性 */
+      margin-right: 2%; /* 使用相對單位 */
     }
     button {
-      margin-right: 2%;
+      margin-right: 5%;
     }
   }
+
   .caterpillar img {
     position: absolute;
     width: 12vw;
+    max-width: 100%;
+    height: auto;
     bottom: 0;
     right: 1%;
+    animation: moveLeft 50s linear infinite;
+    overflow: hidden;
+  }
+
+  @keyframes moveLeft {
+    0% {
+      left: 90%; /* 初始位置在容器的右侧 */
+    }
+    100% {
+      left: -100%; /* 结束位置在容器的左侧（超出容器的部分） */
+    }
   }
 }
 
+@media screen and (width < 768px) {
+  .vote_popular {
+    .ranking .content {
+      width: 90vw;
+      height: 10vh;
+      .img img {
+        max-width: 5vw;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (width < 480px) {
+  .vote_popular {
+    .ranking .content {
+      width: 90vw;
+      height: 10vh;
+      .img img {
+        max-width: 8vw;
+        width: 100%;
+      }
+    }
+  }
+}
 //投票列表
 .vote_overview_all {
   background-color: $bgColorLightgray;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: bottom;
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -308,66 +460,143 @@
   padding-top: 10%;
   padding-bottom: 11%;
   position: relative;
-  .elephant1 img {
-    position: absolute;
-    bottom: 0;
-    width: 10vw;
-    right: 16%;
-  }
-  .vote_button {
-    max-width: 71.4%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  height: auto;
+  .animals_grass {
+    position: relative;
+    .animals_grass_hover {
+      overflow: hidden;
+      position: relative;
+      img {
+        position: absolute;
+        vertical-align: bottom;
+        transition: 0.5s ease-in-out;
+      }
 
-    button {
-      width: 100%;
-      height: 8vh;
-      background-color: $primaryColorYellow;
-      margin: 0 1%;
-
-      color: $mainTextColor;
-    }
-    button.hovered {
-      background-color: $primaryColorGreen;
-      color: $bgColorWhite;
+      &:hover img {
+        display: block;
+        top: 0px;
+      }
     }
   }
-  .vote_wrap {
+
+  .vote_overview_content {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    padding: auto;
     max-width: 70%;
     width: 100%;
-    justify-content: flex-start;
-    gap: 2%;
-    align-items: center;
-    .vote_card {
-      // height: 10%;
+
+    .elephant1 img {
+      position: absolute;
+      bottom: 0;
+      width: 10vw;
+      right: 16%;
+    }
+    .vote_button {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      margin-top: 13%;
+      gap: 2%;
+      button {
+        width: 100%;
+        height: 8vh;
+        background-color: $primaryColorYellow;
 
-      .vote_wrap_animal img {
-        width: 16.2vw;
+        color: $mainTextColor;
       }
-
-      .vote_name {
-        margin-top: 7%;
+      button.hovered {
+        background-color: $primaryColorGreen;
+        color: $bgColorWhite;
       }
+    }
+    .vote_wrap {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
 
-      .vote_icon {
-        margin: 5% 0;
+      width: 100%;
+
+      gap: 2%;
+
+      .vote_card {
+        // height: 10%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        color: $primaryColorGreen;
-        img {
-          width: 1.5vw;
-          margin: 0 10px;
+        margin-top: 13%;
+
+        .vote_wrap_animal img {
+          max-width: 16.2vw;
+          height: auto;
+        }
+
+        .vote_name {
+          margin-top: 7%;
+        }
+
+        .vote_icon {
+          margin: 5% 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: $primaryColorGreen;
+          img {
+            min-width: 1.5vw;
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+  }
+}
+//投票列表-手機版
+@media screen and (width < 768px) {
+  .vote_overview_all {
+    .vote_overview_content {
+      .vote_button {
+        gap: 1%;
+        button {
+          height: auto;
+        }
+      }
+      .vote_wrap {
+        .vote_card {
+          .vote_wrap_animal img {
+            max-width: 34vw;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 480px) {
+  .vote_overview_all {
+    .vote_overview_content {
+      max-width: 90%;
+      .vote_button {
+        flex-direction: column;
+
+        button {
+          height: auto;
+          margin: 1% 0;
+        }
+      }
+      .vote_wrap {
+        justify-content: center;
+
+        .vote_card {
+          .vote_wrap_animal img {
+            border: 0;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+          }
         }
       }
     }

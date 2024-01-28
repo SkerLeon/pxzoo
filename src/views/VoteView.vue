@@ -7,16 +7,17 @@
         12月動物人氣投票冠軍揭曉！<br />前三名登場！
       </h1>
       <div class="podium_no">
-     
+
         <div v-for="podium in podium_list" :class="podium.class">
           <img class="vote_img" :src="getImageUrl(podium.animal_img)" alt="Animal" />
           <div class="vote_name pcDecSmTitle">{{ podium.name }}</div>
           <div class="podium_box">
-            <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" /></div>
-            <div class="score pcDecSmTitle">{{ podium.score}}</div>
+            <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
           </div>
+          <div class="score pcDecSmTitle">{{ podium.score }}</div>
         </div>
-        <!-- <div class="podium1">
+      </div>
+      <!-- <div class="podium1">
           <img class="vote_img" src="@/assets/images/animal/small_pic/small_pic_elephant.png" alt="sheep" />
           <div class="vote_name pcDecSmTitle">艾迪</div>
           <div class="podium_box">
@@ -24,49 +25,53 @@
             <div class="score pcDecSmTitle">205</div>
           </div>
         </div> -->
-        <!-- </div> -->
-        <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
-      </div>
+      <!-- </div> -->
+      <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
+    </div>
   </section>
   <!-- 投票規則 -->
   <section class="vote_activity">
-    <h1 class="pcBigTitle">探索動物奇蹟<br />2024年1月動物園之星投票大賽！</h1>
-    <p class="pcInnerText">
-      大象以其智慧和巨大的魅力蟬聯人氣王！長頸鹿優雅的身姿總是令人難以忘懷。而獅子勇猛的王者氣質讓人讚嘆。這些動物都擁有獨特的故事和魅力，誰將在本月成為動物園之星？你最喜歡哪一種動物？快來投票選你最愛的動物！
-    </p>
-    <div class="vote_rule">
-      <div class="pcInnerText newsFrame">
-        <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
-        <div class="time newsFrameText pcInnerText">投票時間</div>
-      </div>
+
+    <div class="vote_activity_wrap">
+      <h1 class="pcBigTitle">探索動物奇蹟<br />2024年1月動物園之星投票大賽！</h1>
       <p class="pcInnerText">
-        即日起~<span>1</span>月<span>31</span>日<span>23:59</span>截止
+        大象以其智慧和巨大的魅力蟬聯人氣王！長頸鹿優雅的身姿總是令人難以忘懷。而獅子勇猛的王者氣質讓人讚嘆。這些動物都擁有獨特的故事和魅力，誰將在本月成為動物園之星？你最喜歡哪一種動物？快來投票選你最愛的動物！
       </p>
-    </div>
-    <div class="vote_rule">
-      <div class="pcInnerText newsFrame">
-        <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
-        <div class="time newsFrameText pcInnerText">投票方式</div>
+      <div class="vote_rule">
+        <div class="time pcInnerText newsFrame">
+          <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+          <div class=" newsFrameText pcInnerText">投票時間</div>
+        </div>
+        <p class="time_text pcInnerText">
+          即日起~<span>1</span>月<span>31</span>日<span>23:59</span>截止
+        </p>
       </div>
-      <p class="pcInnerText">
-        參與投票非常簡單！只需登入你的會員帳號，每天可投三票，不限館別。前往我們的動物園官網，點擊你最喜歡的動物，為它投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
-      </p>
+      <div class="vote_rule">
+        <div class="time pcInnerText newsFrame">
+          <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+          <div class="newsFrameText pcInnerText">投票方式</div>
+        </div>
+        <p class="time_text pcInnerText">
+          參與投票非常簡單！只需登入你的會員帳號，每天可投三票，不限館別。前往我們的動物園官網，點擊你最喜歡的動物，為它投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
+        </p>
+      </div>
     </div>
-    <div class="cloud_6">
+    <div class="cloud_6" >
       <img src="@/assets/images/vote/clouda_6.svg" alt="雲" />
     </div>
     <div class="cloud_2">
       <img src="@/assets/images/vote/clouda_2.svg" alt="雲" />
     </div>
-    <div class="squirrel_2">
+    <div class="squirrel_2" >
       <img src="@/assets/images/vote/squirrel_2.svg" alt="松鼠" />
     </div>
+    <div class="conversation-vote-text pcSmTitle">快來投票</div>
     <div class="AnimalSquirrel"></div>
   </section>
   <!-- 人氣投票TOP3 -->
 
   <section class="vote_popular">
-    <div class="title phDecInnerText">
+    <div class="title pcInnerText">
       <h1>目前人氣<span>TOP3</span></h1>
     </div>
 
@@ -87,17 +92,22 @@
     <!-- 蟲在平板大小會蓋到，讓他移動XD -->
     <div class="caterpillar">
       <img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" />
-    </div>
+    </div> 
+  
   </section>
 
   <!-- 投票列表 -->
 
   <section class="vote_overview_all">
+    <div class="vote_overview_content">
     <div class="vote_button">
       <button @click="showContent('vote_grass')" @mouseover="setHoverState('vote_grass')"
         class="animals_grass pcInnerText" :class="{ hovered: currentContent === 'vote_grass' }">
         草原之聲
+         
       </button>
+     
+     
       <button @click="showContent('vote_polar')" @mouseover="setHoverState('vote_polar')"
         class="animals_polar pcInnerText" :class="{ hovered: currentContent === 'vote_polar' }">
         極地秘境
@@ -129,15 +139,16 @@
               voteItem.point
             }}票
           </div>
-          <button class="pcInnerText defaultBtn">
-            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />立即投票
-          </button>
+          <button @click="vote_animal(voteItem)" class="pcInnerText defaultBtn">
+  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+  立即投票
+</button>
         </div>
       </div>
     </div>
     <div class="elephant1">
       <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
-    </div>
+    </div></div>
   </section>
 </template>
 
@@ -145,6 +156,7 @@
 export default {
   data() {
     return {
+      votedCount: 0,
       currentContent: "vote_grass",
 
       podium_list: [
@@ -153,7 +165,7 @@ export default {
           // medal: "第二名獎牌",
           score: 197,
           animal_img: 'giraffe',
-          NO:'2',
+          NO: '2',
           class: 'podium2'
         },
         {
@@ -195,51 +207,51 @@ export default {
       ],
 
       vote_grass_list: [
-        { animal_img: "lion", name: "獅子", point: "10" },
-        { animal_img: "giraffe", name: "長頸鹿", point: "23" },
-        { animal_img: "elephant", name: "非洲象", point: "12" },
-        { animal_img: "cheetah", name: "獵豹", point: "123" },
-        { animal_img: "zebra", name: "斑馬", point: "263" },
-        { animal_img: "meerkat", name: "狐獴", point: "237" },
+        { animal_img: "lion", name: "威廉", point: "10" },
+        { animal_img: "giraffe", name: "琳達", point: "23" },
+        { animal_img: "elephant", name: "索拉", point: "12" },
+        { animal_img: "cheetah", name: "豹哥", point: "123" },
+        { animal_img: "zebra", name: "小班", point: "263" },
+        { animal_img: "meerkat", name: "馬克", point: "237" },
       ],
 
       vote_polar_list: [
-        { animal_img: "polarBear", name: "北極熊", point: "1223" },
-        { animal_img: "kingPenguin", name: "國王企鵝", point: "13" },
-        { animal_img: "magellanicPenguin", name: "麥哲倫企鵝", point: "1423" },
-        { animal_img: "arcticFox", name: "北極狐", point: "13" },
-        { animal_img: "seal", name: "海豹", point: "113" },
+        { animal_img: "polarBear", name: "寶拉", point: "1223" },
+        { animal_img: "kingPenguin", name: "小雪", point: "13" },
+        { animal_img: "magellanicPenguin", name: "亞當", point: "1423" },
+        { animal_img: "arcticFox", name: "雪球", point: "13" },
+        { animal_img: "seal", name: "波比", point: "113" },
       ],
 
       vote_jungle_list: [
-        { animal_img: "capybara", name: "水豚", point: "120" },
-        { animal_img: "malayanTapir", name: "馬來貘", point: "178" },
-        { animal_img: "orangutan", name: "紅毛猩猩", point: "124" },
-        { animal_img: "tiger", name: "孟加拉虎", point: "423" },
-        { animal_img: "sloth", name: "二趾樹懶", point: "43" },
-        { animal_img: "monkey", name: "台灣獼猴", point: "123" },
+        { animal_img: "capybara", name: "珍珍", point: "120" },
+        { animal_img: "malayanTapir", name: "栗栗", point: "178" },
+        { animal_img: "orangutan", name: "狄恩", point: "124" },
+        { animal_img: "tiger", name: "瑪雅", point: "423" },
+        { animal_img: "sloth", name: "曼曼", point: "43" },
+        { animal_img: "monkey", name: "中中", point: "123" },
       ],
 
       vote_birds_list: [
-        { animal_img: "peacock", name: "孔雀", point: "235" },
-        { animal_img: "flamingo", name: "紅鶴", point: "13" },
-        { animal_img: "japaneseCrane", name: "丹頂鶴", point: "23" },
-        { animal_img: "owl", name: "貓頭鷹", point: "32" },
-        { animal_img: "eagle", name: "老鷹", point: "98" },
-        { animal_img: "toucan", name: "巨嘴鳥", point: "100" },
-        { animal_img: "pelican", name: "鵜鶘", point: "78" },
+       { animal_img: "flamingo", name: "阿翔", point: "13" },
+        { animal_img: "japaneseCrane", name: "曉曉", point: "23" },
+        { animal_img: "owl", name: "晴空", point: "32" },
+        { animal_img: "eagle", name: "艾妮", point: "98" },
+        { animal_img: "toucan", name: "嘟嘟", point: "100" },
+        { animal_img: "pelican", name: "小瑜", point: "78" },
       ],
 
       vote_aqua_list: [
-        { animal_img: "stingray", name: "魟魚", point: "95" },
-        { animal_img: "shark", name: "鯊魚", point: "456" },
-        { animal_img: "eel", name: "海鰻", point: "37" },
-        { animal_img: "clownfish", name: "小丑魚", point: "1" },
-        { animal_img: "octopus", name: "章魚", point: "0" },
+        { animal_img: "stingray", name: "藍波", point: "95" },
+        { animal_img: "shark", name: "海妞", point: "456" },
+        { animal_img: "eel", name: "燈燈", point: "37" },
+        { animal_img: "clownfish", name: "馬林", point: "1" },
+        { animal_img: "octopus", name: "巴奇", point: "0" },
       ],
     };
   },
   methods: {
+   
     getImageUrl(img) {
       return new URL(
         `../assets/images/animal/small_pic/small_pic_${img}.png`,
@@ -255,8 +267,51 @@ export default {
     },
 
     voteTop3(animal) {
-      console.log(animal);
-    },
+      // 檢查用戶是否已經投過三票
+      if (this.votedCount >= 3) {
+        console.log("你今天已經投過三票了！");
+            // 在界面上顯示訊息
+    alert("你今天已經投過三票了！");
+
+        return; // 如果已經投過三票，退出方法
+      }
+      
+      // 在 ranking_list 中找到被選中動物的索引
+      const index = this.ranking_list.findIndex(item => item.name === animal.name);
+      // 如果找到該動物
+      if (index !== -1) {
+        // 增加票數
+        this.ranking_list[index].point++;
+        // 更新已經投票的次數
+        this.votedCount++;
+        console.log("投票成功！");
+      } else {
+        console.error("未找到該動物！");
+      }
+  },
+  vote_animal(animal2) {
+  // 檢查用戶是否已經投過三票
+  if (this.votedCount >= 3) {
+    console.log("你今天已經投過三票了！");
+        // 在界面上顯示訊息
+        alert("你今天已經投過三票了！");
+
+    return; // 如果已經投過三票，退出方法
+  }
+
+  // 在 currentVoteList 中找到被選中動物的索引
+  const index = this.currentVoteList.findIndex(item => item.name === animal2.name);
+  // 如果找到該動物
+  if (index !== -1) {
+    // 增加票數
+    this.currentVoteList[index].point++;
+    // 更新已經投票的次數
+    this.votedCount++;
+    console.log("投票成功！");
+  } else {
+    console.error("未找到該動物！");
+  }
+},
 
     showContent(content) {
       this.currentContent = content;
