@@ -494,13 +494,12 @@ $time:10s;
         align-items: center;
         .pk_Tickets{
             width: 74%; 
-            height: 20.6%;
             margin-top: 12%;
             position: relative;
             z-index: 5;
             @media (max-width:768px) {
                 width: 76.5%;
-                height: 234.9vh;
+                height: 1762px;
             }
             .pk_Tickets_items{
                 display: flex;
@@ -796,7 +795,7 @@ $time:10s;
             @media (max-width:768px) {
                 display: block;
                 position: absolute;
-                z-index: 999;
+                z-index: 998;
                 top: 2.5%;
                 left: 60%;
             }
