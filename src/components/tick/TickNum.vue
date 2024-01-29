@@ -136,11 +136,11 @@ export default {
                 (sum, ticket)=>
                 sum + ticket.qty* ticket.price,
             0);
-
+            
             if(isNaN(newTiprice)){
                 newTiprice = 0;
             }
-            
+
             this.$emit('newTiprice', newTiprice);
             return newTiprice;
             // arr.reduce(function(accumulator, currentValue, index, array) {
