@@ -74,6 +74,7 @@ $time:10s;
 
 .pk_content{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -362,6 +363,9 @@ $time:10s;
                             @media (max-width:600px) {
                                 font-size: 16px;
                             } 
+                            @media (max-width:480px) {
+                                font-size: 13px;
+                            } 
                             @media (max-width:375px) {
                                 font-size: 12px;
                             } 
@@ -443,7 +447,7 @@ $time:10s;
         position: absolute;
         z-index: 500;
         top: 30%;
-        width: 16.8%;
+        width: 320px;
         height: 49.8%;
         background-image: url("/src/assets/images/park/pk_Animal_details_bg.png");
         background-position:center ;
@@ -455,24 +459,14 @@ $time:10s;
         align-items: center;
         gap: 0.5%;
         @media (max-width:768px) {
-            width: 40%;
             height: 70%;
-        }
-        @media (max-width:600px) {
-            width: 50%;
-            height: 70%;
-            top: 20%;
+            top: 20vh;
         }
         @media (max-width:480px) {
-            top: 5%;
+            width: 300px;
         }
         @media (max-width:375px) {
-            width: 60%;
-            top: 0%;
-        }
-        @media (max-width:320px) {
-            width: 70%;
-            top: -4%;
+            width: 280px;
         }
         .pk_Animal_details_content_align{
             width: 90%;
@@ -483,15 +477,6 @@ $time:10s;
             h1{
                 font-size: 32px;
                 color: $primaryColorGreen;
-                @media (max-width:1280px)  {
-                    font-size: 24px;
-                }
-                @media (min-width:1440px) {
-                    font-size: 28px;
-                }  
-                @media (min-width:1600px) {
-                    font-size: 32px;
-                } 
             }
             .pk_Animal_details_closure_icon{
                 width: 18.75%;
@@ -517,15 +502,6 @@ $time:10s;
         .pk_Animal_details-text{  
             p{
                 font-size: 24px;
-                @media (max-width:1280px)  {
-                    font-size: 18px;
-                }
-                @media (min-width:1440px) {
-                    font-size: 20px;
-                }  
-                @media (min-width:1600px) {
-                    font-size: 22px;
-                } 
             }
         }
         button{
@@ -538,6 +514,7 @@ $time:10s;
     }
     .pk_content_bg{
         width: 100%;
+        height: 74.43%;
         background-color: #9BD3ED;
         position: relative;
         overflow: hidden;
@@ -545,23 +522,22 @@ $time:10s;
         flex-direction: column;
         align-items: center;
         .pk_Tickets{
-            width: 74%; 
+            width: 74%;
+            height: 20.75%;
             margin-top: 12%;
             position: relative;
             z-index: 5;
             @media (max-width:768px) {
-                width: 76.5%;
                 height: 1762px;
             }
             @media (max-width:480px) {
-                width: 76.5%;
-                height: 1200px;
+                height: 1000px;
             }
             @media (max-width:375px) {
-                height: 800px;
+                height: 900px;
             }
             @media (max-width:320px) {
-                height: 700px;
+                height: 800px;
             }
             .pk_Tickets_items{
                 display: flex;
@@ -569,10 +545,10 @@ $time:10s;
                 width: 100%;
                 height: 100%;
                 @media (max-width:768px) {
-                    flex-direction: column;
+                    flex-direction: row;
                     flex-wrap: wrap;
                     gap: 1.35%;
-                    justify-content: space-evenly;
+                    justify-content: space-between;
                     align-items: center;
                 }
                 .pk_Tickets_item{
@@ -583,9 +559,6 @@ $time:10s;
                     position: relative;
                     @media (max-width:768px) {
                         width: 45%;
-                    }
-                    @media (max-width:375px) {
-                        width: 40%;
                     }
                     :hover{
                         cursor: pointer;
@@ -607,12 +580,12 @@ $time:10s;
                         }
                         @media (max-width:480px)  {
                             width: 97.4%;
-                            top: 25.8%;
-                            height: 5px;
+                            top: 25.5%;
+                            height: 5.3px;
                         }
                         @media (max-width:375px) {
-                            width: 97.2%;
-                            height: 4.3px;
+                            width: 97.5%;
+                            height: 5px;
                             top: 25.6%;
                         }
                         
@@ -640,8 +613,11 @@ $time:10s;
                         z-index: 11;
                         bottom: 7.42%;
                         color: $mainTextColor;
+                        @media (max-width:768px)  {
+                            bottom:3%
+                        }
                         @media (max-width:600px)  {
-                            bottom:6%
+                            bottom:4%
                         }
                         @media (max-width:375px)  {
                             bottom:5%
@@ -663,7 +639,7 @@ $time:10s;
                                 font-size: 28px;
                             }
                             @media (max-width:480px)  {
-                                font-size: 24px;
+                                font-size: 18px;
                             }
                             @media (max-width:375px)  {
                                 font-size: 16px;
@@ -689,7 +665,7 @@ $time:10s;
                                 font-size: 18px;
                             }
                             @media (max-width:480px)  {
-                                font-size: 14px;
+                                font-size: 12px;
                             }
                             @media (max-width:375px)  {
                                 font-size: 10px;
@@ -757,8 +733,11 @@ $time:10s;
                     @media (max-width:768px) {
                         font-size: 22px;
                     }
-                    @media (max-width:768px) {
+                    @media (max-width:600px) {
                         font-size: 20px;
+                    }
+                    @media (max-width:480px) {
+                        font-size: 18px;
                     }
                     @media (max-width:375px) {
                         font-size: 16px;
@@ -814,10 +793,10 @@ $time:10s;
                         line-height: 180%;
                     }
                     @media (max-width:480px) {
-                        font-size: 12px;
+                        font-size: 10px;
                         line-height: 160%;
                     }
-                    @media (max-width:375px) {
+                    @media (max-width:390px) {
                         font-size: 10px;
                         line-height: 140%;
                     }
@@ -912,21 +891,21 @@ $time:10s;
             }
             @media (max-width:768px) {
                 width: 280px;
-                top: 43%;
+                top: 37%;
                 left: 50%;
                 z-index: 1000;
             }
             @media (max-width:600px)  {
                 width: 37%;
-                top: 45%;
+                top: 41%;
             }
             @media (max-width:480px)  {
                 width: 37%;
-                top: 41%;
+                top: 35%;
             }
             @media (max-width:375px) {
                 width: 40%;;
-                top: 35.8%;
+                top: 34%;
             }
             @media (max-width:320px) {
                 width: 35%;;
@@ -934,38 +913,12 @@ $time:10s;
                 left: 53%;
             }
         }
-        .pk_content_bg_owl{
-            @media (max-width:1920px) {
-                display: none;
-            }
-            @media (max-width:768px) {
-                display: block;
-                position: absolute;
-                z-index: 998;
-                top: 2.5%;
-                left: 60%;
-            }
-            @media (max-width:600px) {
-                top: 4.4%;
-            }
-            @media (max-width:480px) {
-                top: 0.6%;
-                left: 55%;
-            }
-            @media (max-width:375px) {
-                top: 1.2%;
-                left: 58%;
-                img{
-                    width: 60%;
-                }
-            }
-            @media (max-width:320px) {
-                top:1.5%;
-                left: 60%;
-                img{
-                    width: 55%;
-                }
-            }
+
+    }
+
+    .ph_Sidebar{
+        @media (min-width:769px) {
+            display: none;
         }
     }
 }
