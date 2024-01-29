@@ -66,6 +66,18 @@
     justify-content: center;
     align-items: center;
 
+    .school_title > div {
+      animation: jumpup 1s infinite alternate; /* 添加跳動動畫效果 */
+    }
+
+    @keyframes jumpup {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-20px);
+      }
+    }
     .school_title {
       display: flex;
       flex-direction: row;
@@ -221,10 +233,10 @@
 
 .lightbox-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 4%;
   border-radius: 10px;
   text-align: center;
-  width: 70vw;
+  width: 80vw;
 }
 
 .lightbox button {
@@ -291,9 +303,13 @@
   .option_all {
     flex-wrap: wrap;
 
-    gap: 10%;
+    gap: 8%;
   }
   .option_input {
     padding: 12% 24%;
+  }
+  .lightbox-content {
+    margin-top: 10%;
+    width: 90vw;
   }
 }
