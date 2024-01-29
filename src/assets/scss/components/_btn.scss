@@ -28,9 +28,23 @@ $Sidebar_icon_rigth: 70px;
   top: 24.7%;
   left: -14%;
   transition: 0.3s;
+  @media (max-width:768px) {
+    width: 300px;
+    height: 80px;
+    top: 50%;
+    left: -29.5%;
+  }
+  @media (max-width:480px) {
+    width: 163px;
+    height: 80px;
+    top: 25%;
+    left: -29.5%;
+  }
   &:hover {
-    transition: 0.3s;
-    left: 0;
+    @media (min-width:1280px) {
+      transition: 0.3s;
+      left: 0;
+    }
   }
   .Sidebar_icon {
     position: absolute;
@@ -49,6 +63,16 @@ $Sidebar_icon_rigth: 70px;
       top: $Sidebar_icon_top * 0.66;
       right: $Sidebar_icon_rigth * 0.66;
     }
+    @media (max-width: 768px) {
+      width: 12vw;
+      top: -22vh;
+      right: 13vw;
+    }
+    @media (max-width: 480px) {
+      width: 13vw;
+      top: -9vh;
+      right: 14vw;
+    }
   }
   .Sidebar_filter_btns {
     display: flex;
@@ -63,13 +87,41 @@ $Sidebar_icon_rigth: 70px;
       height: 6.2vh;
       background-color: $bgColorSecGray;
       color: $mainTextColor;
+      @media (max-width:768px) {
+        width: 200px;
+        height: 12vh;
+        gap: 10px;
+      }
+      @media (max-width:480px) {
+        justify-content: start;
+        width: 110px;
+        height: 6vh;
+        gap: 10px;
+      }
       &:hover {
-        cursor: pointer;
-        color: $primaryColorGreen;
+        @media (min-width:1280px) {
+          cursor: pointer;
+          color: $primaryColorGreen;
+        }
       }
       img {
         width: 1.47vw;
         height: 2.5vh;
+        @media (max-width:768px) {
+          width: 4vw;
+          height: 4vh;
+        }
+        @media (max-width:480px) {
+          width: 5vw;
+        }
+      }
+      p{
+        @media (max-width:768px) {
+          font-size: 20px;
+        }
+        @media (max-width:480px) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -83,6 +135,22 @@ $Sidebar_icon_rigth: 70px;
     img {
       width: 1.1vw;
       height: 3.7vh;
+    }
+    @media (max-width:768px) {
+      width: 300px;
+      height: 12vh;
+      img {
+        width: 6vw;
+        height: 6vh;
+      }
+    }
+    @media (max-width:480px) {
+      width: 60px;
+      height: 6vh;
+      img {
+        width: 3.5vw;
+        height: 3.5vh;
+      }
     }
   }
 }
