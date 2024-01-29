@@ -120,6 +120,7 @@ export default {
     },
     data(){
         return {
+            noCoupon: false, // 等界接後noCoupon的值會是從後台出來
             isSmallPH: false,
             selectedCoupon: '',
             selectedPay: '',

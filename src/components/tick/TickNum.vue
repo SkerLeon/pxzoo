@@ -4,8 +4,9 @@
 
         <hgroup>
             <h2 class="pcSmTitle">選擇數量</h2>
-    <!-- 999reset input的reset必須跟對象在同個form，因此無法使用-->
-            <img src="@/assets/images/ticket/refresh.svg">
+            <button @click="tickReset">
+                <img src="@/assets/images/ticket/refresh.svg">
+            </button>
         </hgroup>
         <main>
             <article v-for=" ticket in ticketsData" :key="ticket.id">
@@ -23,8 +24,7 @@
                     </article>
                     <div class="countBTN">
                         <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
-    <!-- 999有空寫: input框寫JS限定 -->
-                        <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999" value="0" readonly>
+                        <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
                         <!-- v-model與:value 不建議同時存在 -->
                         <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
                     </div>
@@ -45,13 +45,21 @@
                 上一步
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
+            <main v-show="cantNextPage">
+                <article class="pcInnerText">
+                    <p>票券數量,</p> 
+                    <p>請選擇!</p>
+                </article>
+                <img v-if="isSmallPH" src="@/assets/images/ticket/tickConversation_1s.svg" alt="提示訊息">
+                <img v-else src="@/assets/images/ticket/tickConversation_1.svg" alt="提示訊息">
+            </main>
+
             <button type="button" class="tickLBtn defaultBtn pcInnerText" @click="nextStep">
                 立即購票
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
-        </main>
 
-    
+        </main>    
     </section>
 </template>
 
@@ -76,16 +84,29 @@ export default {
     },
     data(){
         return {
+            cantNextPage: false,
         }
     },
     methods:{
         windowSize(){
             // this.isMobile = window.innerWidth <= 768;
+            this.isSmallPH = window.innerWidth <= 430;
             this.isBoard = window.innerWidth < 1200;
+        },
+        tickReset(){
+            this.ticketsData.forEach((ticket) => {
+                ticket.qty = 0;
+            });
+            this.tipriceCalculate();
         },
         nextStep(){
             // 999寫確認有選票券的判斷式
-            this.$emit('goNextStep');
+            if(this.tipriceData > 0){
+                this.$emit('goNextStep');
+            }else{
+                console.log("請至少選擇一張票券");
+                this.cantNextPage=true;
+            }
         },
         previousStep(){
             this.$emit('goPreviousStep');
@@ -115,6 +136,10 @@ export default {
                 (sum, ticket)=>
                 sum + ticket.qty* ticket.price,
             0);
+
+            if(isNaN(newTiprice)){
+                newTiprice = 0;
+            }
             
             this.$emit('newTiprice', newTiprice);
             return newTiprice;
@@ -126,32 +151,25 @@ export default {
             let ticket = this.ticketsData.find(
                 (tick) => tick.id === ticketId
             );
-
             console.log(ticket.qty);
             console.log(typeof ticket.qty); // 因為HTML設定input type="number"，所以這邊用typeof都會得到"number"，但事實上所有input都是字串
 
+            if(isNaN(ticket.qty)){
+                console.log(ticket.qty);
+                ticket.qty = 0;
+                console.log(ticket.qty);
+            }
 
-            // newQty=ticket.qty.replace(/[^\d]/g, '');
-            // console.log(newQty);
-            // return newQty // 正規表示式抓出非數字字元
+            // 單票種上限
+            if(parseInt(ticket.qty) >999){
+                ticket.qty = 999;
+                console.log("max", ticket.qty);
+            }
 
-            // console.log(e);
-            // console.log(this);
+            // 將數值轉為整數數字
+            ticket.qty = parseInt(ticket.qty);
 
-            // for(let i=0; i<qty.length; i++){
-            //     let t =qty.charAt(i);
-            //     if(t = /[^\d]/g)
-            // }
-
-
-            // let f=qty.charAt(0);
-
-            // if(qty>999){
-            //     qty=999;
-            //     return qty;
-            // }
-
-            // return qty;
+            this.tipriceCalculate();
         },
 
     },
