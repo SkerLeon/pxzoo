@@ -223,7 +223,7 @@ export default {
             { text: "D 四個", image: 'sloth' },
 
           ],
-          correctAnswer: "B 兩個星期",
+          correctAnswer: "B 兩個",
           explanation: "樹懶是擁有非常緩慢的新陳代謝的動物，因此它們需要相當長的時間來消化食物。",
         },
         {
