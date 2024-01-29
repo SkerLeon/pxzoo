@@ -102,6 +102,12 @@ const router = createRouter({
   ]
 })
 
+//跳轉頁面時跳到頂端
+router.afterEach(() => {
+  window.scrollTo(0, 0);
+});
+
+
 // 產生每一頁頁籤的title
 router.beforeEach(async (to, from) => {
   if( to.meta && to.meta.title){
