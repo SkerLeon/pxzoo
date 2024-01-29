@@ -172,6 +172,32 @@
       </div>
 
     </section>
+
+    <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
+        <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
+
+        <ul class="Sidebar_filter_btns">
+          <li class="filter_btn_item" @click="showAnimalsAndFacilities()">
+            <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
+            <p class="pcInnerText">園區總覽</p>
+          </li>
+
+          <li class="filter_btn_item" @click="showFacilities()">
+            <img src="@/assets/images/park/pk_filter_icon_facility.svg" alt="篩選icon">
+            <p class="pcInnerText">園區設施</p>
+          </li>
+
+          <li class="filter_btn_item" @click="showAnimals()">
+            <img src="@/assets/images/park/pk_filter_icon_Vector.svg" alt="篩選icon">
+            <p class="pcInnerText">動物分館</p>
+          </li>
+        </ul>
+
+        <div class="Sidebar_guide" >   
+          <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
+        </div>
+      </aside>
+
   </section>
 </template>
 
@@ -418,6 +444,10 @@ export default {
     },
     link_animal_information(){
       this.$router.push('/animalDetail');
+    }, 
+    Mobile_filtering() {
+      this.hover = !this.hover; 
+      this.$refs.Sidebar.style.left = this.hover ? '0px' : '-29.5%';
     }
   },
 };
