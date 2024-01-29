@@ -455,15 +455,24 @@ $time:10s;
         align-items: center;
         gap: 0.5%;
         @media (max-width:768px) {
-            width: 45%;
+            width: 40%;
             height: 70%;
         }
         @media (max-width:600px) {
             width: 50%;
             height: 70%;
+            top: 20%;
         }
         @media (max-width:480px) {
             top: 5%;
+        }
+        @media (max-width:375px) {
+            width: 60%;
+            top: 0%;
+        }
+        @media (max-width:320px) {
+            width: 70%;
+            top: -4%;
         }
         .pk_Animal_details_content_align{
             width: 90%;
