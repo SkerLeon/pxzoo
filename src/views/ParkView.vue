@@ -12,7 +12,7 @@
               <p class="pcMarkText">遊客中心</p>
             </div>
           </div>
-          <img src="@/assets/images/park/pk_Store_icon1.svg" alt="遊客中心icon">
+          <img src="@/assets/images/park/pk_Store_icon1.png" alt="遊客中心icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_WC${num}`">
@@ -22,7 +22,7 @@
               <p class="pcMarkText">美食餐廳</p>
             </div>
           </div>
-          <img src="@/assets/images/park/pk_Store_icon2.svg" alt="餐廳icon">
+          <img src="@/assets/images/park/pk_Store_icon2.png" alt="餐廳icon">
         </div>
 
         <div v-for="num in 5" :class="`pk_Store_default pk_Store_icon_RC${num}`">
@@ -32,7 +32,7 @@
               <p class="pcMarkText">男女廁所</p>
             </div>
           </div>
-          <img src="@/assets/images/park/pk_Store_icon3.svg" alt="廁所icon">
+          <img src="@/assets/images/park/pk_Store_icon3.png" alt="廁所icon">
         </div>
       </div>
       
@@ -171,9 +171,6 @@
         <img src="@/assets/images/park/pk_content_bg_eagle.svg" alt="老鷹圖片">
       </div>
 
-      <div class="pk_content_bg_owl">
-        <img src="@/assets/images/park/pk_content_bg_owl.svg" alt="老鷹圖片">
-      </div>
     </section>
   </section>
 </template>

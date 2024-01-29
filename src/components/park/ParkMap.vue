@@ -4,15 +4,15 @@
 
         <div class="pk_com_Store_icon">
             <div v-for="num in 2" :class="`pk_com_Store_default pk_com_Store_icon_VC${num}`">
-                <img src="@/assets/images/park/pk_Store_icon1.svg" alt="遊客中心icon">
+                <img src="@/assets/images/park/pk_Store_icon1.png" alt="遊客中心icon">
             </div>
 
             <div v-for="num in 5" :class="`pk_com_Store_default pk_com_Store_icon_WC${num}`">
-                <img src="@/assets/images/park/pk_Store_icon2.svg" alt="餐廳icon">
+                <img src="@/assets/images/park/pk_Store_icon2.png" alt="餐廳icon">
             </div>
 
             <div v-for="num in 5" :class="`pk_com_Store_default pk_com_Store_icon_RC${num}`">
-                <img src="@/assets/images/park/pk_Store_icon3.svg" alt="廁所icon">
+                <img src="@/assets/images/park/pk_Store_icon3.png" alt="廁所icon">
             </div>
         </div>
         
