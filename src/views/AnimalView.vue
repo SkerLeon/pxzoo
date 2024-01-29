@@ -28,70 +28,87 @@
                 </div>
             </aside>
         </div>
-
+        <section class="grassland">
         <!-- 動物列表 -->
-        <main class="animal_overview">
-            <!-- select(mb) -->
-            <Select class="animal_select" v-model="model" style="width:200px">
-                <Option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</Option>
-            </Select>
-
-            <div class="animal_park" ref="grassLand">
+            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select">
+                <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
+            </select>
+            <div class="animal_park grassLand" ref="grassLand">
                 <!-- 分館名稱 -->
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info">
                     <!-- 個別動物種類名+圖片 -->
                     <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        <div class="animal_frame">
+                            <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        </div>
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
+        </section>
 
+        <section class="polar">
             <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
+                    <div class="animal_frame">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
-                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
+                    </div>                            
+                    <h3 class="animal_name pcSmTitle">
+                            {{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
+        </section>
 
+        <section class="jungle">
             <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
+                    <div class="animal_frame">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                    </div>   
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
+        </section>
 
+        <section class="birds">
             <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
+                    <div class="animal_frame">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                    </div>   
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
+        </section>
+
+        <section class="aqua">
             <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
                 <div class="animal_info">
                     <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
+                    <div class="animal_frame">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                    </div>   
                         <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
                     </a>
                 </div>
             </div>
-        </main>
+        </section>
     </section>
 </template>
 
