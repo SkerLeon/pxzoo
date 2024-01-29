@@ -31,7 +31,7 @@
       </ul> 
 
       <!-- news -->
-      <div class="news_section">
+      <div class="news_content">
         <a class="news-each"
         v-for="item in news_info"
       :key="item ">
@@ -61,13 +61,19 @@
 
       <!-- 分頁 -->
       <div class="news_pagination pcInnerText">
-        <li><a href="#">|</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">>|</a></li>
+        <li><a href="#" class="news_page_num onpage">1
+        </a>
+        <img src="../assets/images/news/onpage.svg" alt="page-num">
+        </li>
+        
+        <li v-for="(pageNumber, index) in pageNumbers" :key="index">
+          <a href="#" class="news_page_num default" 
+          @mouseenter="toggleImage(index,ishover)" @mouseleave="toggleImage(index,ishover)">
+          {{ pageNumber }}
+        </a>
+        <img :src="ishover[index] ? '/src/assets/images/news/onpage.svg' : '/src/assets/images/news/default.svg'" 
+        alt="page-num">
+        </li>
       </div>
     </div>     
     </main>
@@ -92,6 +98,9 @@
 export default {
   data() {
       return {
+
+        pageNumbers: [2, 3, 4, 5, '>|'], // 假设有5个页码
+        ishover: new Array(5).fill(false) ,
           
           //select
           newsCategory: [
@@ -196,10 +205,13 @@ export default {
       },
 
       toNewsDetail(){
-        console.log('page');
         this.$router.push({
           path:'./NewsDetail',
       })
+      },
+      toggleImage(index,ishover){
+        // console.log(ishover[index]);
+        ishover[index] = !ishover[index];
       }
   },
   created() {
