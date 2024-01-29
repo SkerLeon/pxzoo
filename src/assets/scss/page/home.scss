@@ -1,15 +1,17 @@
 .home{
     //banner
-    .home_bannergroup{
+    .home_banner{
         position: relative;
         overflow: hidden; 
-        height: 100vh;
+        // height: 100vh;
+        
 
-        .home_banner_deco{
+        &_deco{
             position: absolute;
             display: flex;
             width: 100%;
             bottom: 0;
+            z-index: 2;
             .tree_2 img{
                 position: absolute;
                 bottom: 2vw;
@@ -47,93 +49,60 @@
                 vertical-align: bottom;
             }
         }
-
-        .banner1{
-            width: 100%;
+        
+        &_carousel{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            background-size: cover;
-            background-image: url("/src/assets/images/home/home_banner_1.jpg");
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-    }
-    // .home_bannersliderBoard{
-    //     overflow: hidden; 
-    //     height: 100vh;
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            &_img {
+                img{
+                    height: auto;
+                    width: 100%;
+                }
+            }
 
-    //     .home_banner{
-    //         width: 100%;
-    //         height: 100vh;
-    //         position: relative;
-
-    //         li{
-    //             float: left;
-    //         }
-
-    //         .banner1{
-    //             width: 100%;
-    //             height: 100vh;
-    //             background-size: cover;
-    //             background-image: url("/src/assets/images/home/home_banner_1.jpg");
-    //             background-repeat: no-repeat;
-    //             background-position: center center;
-    //         }
-            
-    //         .banner2{
-    //             width: 100%;
-    //             height: 100vh;
-    //             background-size: cover;
-    //             background-image: url(../image/banner_index2.jpg);
-    //             background-repeat: no-repeat;
-    //             background-position: center center;
-    //         }
-            
-    //         .banner3{
-    //             width: 100%;
-    //             height: 100vh;
-    //             background-size: cover;
-    //             background-image: url(../image/banner_index3.jpg);
-    //             background-repeat: no-repeat;
-    //             background-position: center center;
-    //         }
-
-    //         .banner4{
-    //             width: 100%;
-    //             height: 100vh;
-    //             background-size: cover;
-    //             background-image: url(../image/banner_index3.jpg);
-    //             background-repeat: no-repeat;
-    //             background-position: center center;
-    //         }
-
-    //         #bannerButton{
-    //             position: absolute;
-    //             bottom: 2vw;
-    //             left: 0;
-    //             right: 0;
-    //             text-align: center;
-    //             /* width: 100%; */
-    //             /* height: 50px; */
-
-    //             li{
-    //                 width: 1vw;
-    //                 height: 1vw;
-    //                 border-radius: 50%;
+            &_controls {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                button {
+                    background-color: #ffffff00;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    filter:drop-shadow(0px 0px 0.3vw rgba(0,0,0,60));
+                    padding: 0 1vw;
+                    img{
+                        width: 1.2vw;
+                    }
+                }
                 
-    //                 background-color: #ccc;
-    //                 display: inline-block;
-    //                 margin: 8px 8px 0 8px;
-    //                 box-shadow: 0 0 1vw rgba(0, 0, 0, 80);
+            }
+        }
+        
 
-    //                 ＆:clicked{
-    //                     background-color: var(--orange-color);
-    //                 }
-    //             }
-    //         }
-    //     }
+        
 
 
-    // }
+        // .banner1{
+        //     width: 100%;
+        //     height: 100vh;
+        //     background-size: cover;
+        //     background-image: url("/src/assets/images/home/home_banner_1.jpg");
+        //     background-repeat: no-repeat;
+        //     background-position: center center;
+        // }
+    }
+    
+
+    
 
     //快速選單 選單
     .home_qkmnu{
@@ -145,9 +114,12 @@
         justify-content: space-between;
         width: 74%;
         margin: auto;
+        z-index: 3;
         .home_qkmnu_btn{
             position: relative;
             
+            
+            // cursor: pointer;
             .home_qkmnu_btn_img{
                 position: absolute;
                 width: 17vw;
@@ -171,6 +143,7 @@
         }
         
         button{
+            cursor: pointer;
             color: $mainTextColor;
             padding-bottom: 10px;
             width: 17vw;
@@ -307,14 +280,16 @@
         }
 
         &_park{
-            display: flex;
-            justify-content: center;
+            width: 80%;
+            margin: auto;
             padding: 7% 0;
-            img{
-                width: 80%;
-                vertical-align: bottom;
-
-            }
+            // display: flex;
+            // justify-content: center;
+            // padding: 7% 0;
+            // img{
+            //     width: 80%;
+            //     vertical-align: bottom;
+            // }
         }
 
         &_traffic{
@@ -539,12 +514,157 @@
                 }
             }
         }
+
+        &_deco{
+            position: absolute;
+            display: flex;
+            width: 100%;
+            z-index: 2;
+            .bee{
+                position: absolute;
+                top: 0.5vw;
+                left: 1vw;
+                animation: beeconver 15s linear infinite;
+                .beeimg img{
+                    position: absolute;
+                    top: -28vw;
+                    left: 3vw;
+                    width: 6vw;
+                    vertical-align: bottom;
+                    transform:scaleX(-1);
+                }
+                
+                .beeconversation {
+                    position: relative;
+                    top: -32vw;
+                    left: 3vw;
+                    &_text{
+                        position: absolute;
+                        top: 0.5vw;
+                        left: 0.77vw;
+                        z-index: 4;
+                        color: $mainTextColor;
+                    }
+
+                    img{
+                        width: 8vw;
+                        vertical-align: bottom;
+                    }
+                }
+
+                @keyframes beeconver {
+                    15% {
+                        top: 1vw;
+                        left: 1.5vw;
+                    }
+                    30% {
+                        top: -2vw;
+                        left: 1vw;
+                    }
+                    45% {
+                        top: 1vw;
+                        left: 0.5vw;
+                    }
+                    60% {
+                        top: 0vw;
+                        left: 1vw;
+                    }
+                    75% {
+                        top: 1vw;
+                        left: 1.5vw;
+                    }
+                    90% {
+                        top: -2vw;
+                        left: 1vw;
+                    }
+                }
+            }
+            
+
+            .chameleon_1 img{
+                position: absolute;
+                top: -4vw;
+                right: 0;
+                width: 9vw;
+                vertical-align: bottom;
+            }
+            
+            .chameleonconversation {
+                position: relative;
+                top: 3vw;
+                right: -86vw;
+                
+                &_text{
+                    position: absolute;
+                    top: 2.1vw;
+                    right: 1vw;
+                    z-index: 4;
+                    color: $mainTextColor;
+                }
+
+                img{
+                    width: 8vw;
+                    vertical-align: bottom;
+                }
+            }
+
+        }
+    }
+
+    .home_animalfoot{
+        position: relative;
+        top: 8vw;
+
+        .foot1{
+            position: absolute;
+        }
+        .foot2{
+            position: absolute;
+            top: -4vw;
+            left: 4vw;
+        }
+        .foot3{
+            position: absolute;
+            top: -7vw;
+            left: 10vw;
+        }
+        .foot4{
+            position: absolute;
+            top: -8vw;
+            left: 17vw;
+        }
+        .foot5{
+            position: absolute;
+            top: -7.5vw;
+            left: 24.5vw;
+        }
+        .foot6{
+            position: absolute;
+            top: -7vw;
+            left: 31vw;
+        }
+        .foot7{
+            position: absolute;
+            top: -7vw;
+            left: 36.5vw;
+        }
+        .foot8{
+            position: absolute;
+            top: -7.5vw;
+            left: 42.5vw;
+        }
+        .foot9{
+            position: absolute;
+            top: -9vw;
+            left: 48vw;
+        }
     }
 
     //天氣 最新消息
     .home_wn{        
-        padding-bottom: 10vw;
+        padding-bottom: 13vw;
         position: relative;
+        margin-top: 18vw;
 
         &_section{
             display: flex;
@@ -555,6 +675,7 @@
         &_weather{
             width: 35%;
             text-align: center;
+            cursor: pointer;
             h2{
                 color: $secColorblue;
             }
@@ -586,7 +707,7 @@
 
             &_section{
                 margin-top: 2vw;
-                height: 16vw;
+                height: 16.5vw;
                 overflow: auto;
                 // display: flex;
 
@@ -681,6 +802,74 @@
                 bottom: 0;
                 width: 12vw;
                 vertical-align: bottom;
+            }
+        }
+        
+        //天氣燈箱
+        .weatherlb {
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            @media (width <= 768px) {
+                align-items: flex-start;
+            }
+        }
+
+        .moreweather{
+            position: relative;
+            overflow: hidden;
+            top: 20px;
+            display: flex;
+            justify-content: space-between;
+            // flex-direction: column;
+            align-items: center;
+            width: 70vw;
+            height: 20vw;
+            padding: 5vw;
+            // @media (width <= 768px) {
+            //     width: 80%;
+            //     height: 60%;
+            // }
+        
+            background-size: cover;
+            background-image: url("/src/assets/images/home/home_weather_papper.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+            
+
+            &_content{
+                display: flex;
+                justify-content: space-between;
+                
+                &_day{
+                    color: $mainTextColor;
+                    h3{
+                        
+                        
+                    }
+                    img{
+                        width: 80%;
+                        vertical-align: bottom;
+                        padding: 0 0 1.5vw 0;
+                    }
+                }
             }
         }
     }
@@ -862,7 +1051,7 @@
                     right: -4vw;
                     top: 10vw;
                 }
-                }
+            }
 
             @keyframes cloud_6 {
                 15% {
@@ -889,7 +1078,7 @@
                     right: 30vw;
                     top: -2vw;
                 }
-                }
+            }
 
             @keyframes cloud_3 {
                 15% {
@@ -916,7 +1105,7 @@
                     right: 4vw;
                     top: 7vw;
                 }
-                }
+            }
         }
 
         &_decoground{
@@ -971,18 +1160,18 @@
     //留言板
     .home_comment{
         position: relative;
-        height: 800px;
+        // height: ÷00px;
         background-color: $primaryColorGreen;
         text-align: center;
-        padding: 5vw 0;
-        h2{
+        padding: 7vw 0;
+        &_title{
             color: $primaryColorYellow;
         }
         h3{
             color: $bgColorWhite;
             padding: 0.1vw 0 1vw 0;
         }
-        .home_comment_section{
+        &_section{
             overflow-x: auto;
 
             &::-webkit-scrollbar{
@@ -997,30 +1186,89 @@
                 width: 3500px;
                 padding: 3vw 0;
                 display: flex;
-
                 .comment{
-                    background-color: $bgColorWhite;
-                    
+                    background-color: $bgColorWhite;    
                     border: 3px $primaryColorGreen solid;
                     padding: 15px;
-                    width: 23vw;
+                    width: 340px;
+                    position: relative;
+                    
+                    .comment_report{
+                        cursor: pointer;
+                        .before{
+                            position: absolute;
+                            top: 25px;
+                            left: 25px;
+                            filter:drop-shadow(0px 0px 0.3vw rgba(0,0,0,60));
+                        }
+                        
+                        .hover{
+                            display: none;
+                            .hover_report{
+                                position: absolute;
+                                top: 25px;
+                                left: 25px;
+                                filter:drop-shadow(0px 0px 0.6vw rgba(0,0,0,60));
+                            }
+                            .hover_conversation{
+                                position: absolute;
+                                top: -30px;
+                                left: -12px;
+                                width: 100px;
+                                &_img{
+                                    width: 100px;
+                                }
 
-                    img{
+                                &_text{
+                                    color: $mainTextColor;
+                                    position: absolute;
+                                    top: 4px;
+                                    left: 4px;
+                                }
+                            }
+                            
+                            
+                        }
+
+                        &:hover .hover{
+                            display: block;
+                        }
+                    }
+
+                    .comment_img{
                         vertical-align: bottom;
-                        width: 100%;
+                        width: 100%; 
                     }
                     &_content{
                         color: $mainTextColor;
-                        padding-top: 1vw;
+                        padding-top: 0.6vw;
                         text-align: justify;
                     }
                 }
-                .comm1{transform:rotate(-5deg); margin-left: -0.3vw;}
-                .comm2{transform:rotate(4deg); margin-left: 0.3vw;}
-                .comm3{transform:rotate(-6deg); margin-left: -0.6vw;}
-                .comm4{transform:rotate(4deg);}
+                .comm1{
+                    transform:rotate(-5deg); 
+                    margin-left: -0.3vw;
+                    .hover_conversation{transform:rotate(5deg); }
+                }
+                .comm2{
+                    transform:rotate(4deg); 
+                    margin-left: 0.3vw;
+                    .hover_conversation{transform:rotate(-4deg); }
+                }
+                .comm3{
+                    transform:rotate(-6deg); 
+                    margin-left: -0.6vw;
+                    .hover_conversation{transform:rotate(6deg); }
+                }
+                .comm4{
+                    transform:rotate(4deg);
+                    .hover_conversation{transform:rotate(-4deg); }
+                }
             }
+        }
 
+        .iconBtn{
+            width: 135px;
         }
 
         &_decotop{
@@ -1029,52 +1277,55 @@
             top: 0;
             .alpaca img{
                 position: absolute;
-                top: 10vw;
-                left: -4vw;
-                width: 14vw;
+                top: 4vw;
+                left: -2vw;
+                width: 7vw;
                 vertical-align: bottom;
+                transform:scaleX(-1);
             }
             .tree_4 img{
                 position: absolute;
-                top: -2vw;
-                left: 30vw;
-                width: 11vw;
+                top: 9vw;
+                left: 8vw;
+                width: 7vw;
                 vertical-align: bottom;
             }
             .grasses_1 img{
                 position: absolute;
-                top: 5vw;
-                right: 4vw;
-                width: 14vw;
+                top: 7vw;
+                left: 25vw;
+                width: 6vw;
                 vertical-align: bottom;
             }
             .grasses_5 img{
                 position: absolute;
-                top: 5vw;
-                right: 4vw;
-                width: 14vw;
+                top: 3vw;
+                right: 28vw;
+                width: 6vw;
                 vertical-align: bottom;
             }
-            .chimpanzees img{
+            .chimpanzee img{
                 position: absolute;
-                top: 5vw;
-                right: 4vw;
-                width: 14vw;
+                top: 4.5vw;
+                right: 24vw;
+                width: 7vw;
                 vertical-align: bottom;
             }
             .tree_6 img{
                 position: absolute;
-                top: 5vw;
-                right: 4vw;
-                width: 14vw;
+                top: -8vw;
+                right: 5vw;
+                width: 6vw;
                 vertical-align: bottom;
+                z-index: 1;
             }
             .tree_7 img{
                 position: absolute;
-                top: 5vw;
-                right: 4vw;
-                width: 14vw;
+                top: 1vw;
+                right: 9vw;
+                width: 8vw;
                 vertical-align: bottom;
+                z-index: 1;
             }
 
             
@@ -1087,31 +1338,31 @@
             .tree_1 img{
                 position: absolute;
                 bottom: 0;
-                left: -2vw;
-                width: 6vw;
+                left: -4vw;
+                width: 10vw;
                 vertical-align: bottom;
             }
             .grasses_2 img{
                 position: absolute;
-                bottom: 0;
-                left: 15vw;
-                width: 16vw;
+                bottom: 11vw;
+                left: 21vw;
+                width: 6vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
             }
             .duck img{
                 position: absolute;
-                left: 20vw;
+                left: 28vw;
                 bottom: 4.5vw;
-                width: 3vw;
+                width: 4vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
             }
             .tree_2 img{
                 position: absolute;
-                left: 20vw;
-                bottom: 4.5vw;
-                width: 3vw;
+                right: 20vw;
+                bottom: 8vw;
+                width: 8vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
             }
@@ -1119,11 +1370,44 @@
             
             
         }
+
+        //留言燈箱
+        .commlb {
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            @media (width <= 768px) {
+                align-items: flex-start;
+            }
+        }
     }
 
 
 
-    
+
+
+
+
+
+    // <div class="home_news">
+    //   <div class="newsgroup">
+    //     <div class="news">1</div>
+    //     <div class="news">2</div>
+    //     <div class="news">3</div>
+    //     <div class="news">4</div>
+    //     <div class="news">5</div>
+    //     <div class="news">6</div>
+    //     <div class="news">7</div>
+    //   </div>
+    // </div>
 
     // 縱向滾動
     // .home_news{

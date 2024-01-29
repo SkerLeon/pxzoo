@@ -1,6 +1,6 @@
 <template>
   <section class="home">
-    <div class="home_bannergroup">
+    <div class="home_banner">
       <div class="home_banner_deco">
         <div class="tree_2"><img src="@/assets/images/vetor/nature_tree_2.svg" alt="tree_2"></div>
         <div class="tree_4"><img src="@/assets/images/vetor/nature_tree_4.svg" alt="tree_4"></div>
@@ -9,42 +9,15 @@
         <div class="ostrich"><img src="@/assets/images/vetor/vetor_animal_ostrich.svg" alt="ostrich"></div>
       </div>
 
-      <div class="banner1"></div>
+      <div class="home_banner_carousel">
+        <img class="home_banner_carousel_img" :src="currentImage" alt="Carousel Image"/>
+        <div class="home_banner_carousel_controls">
+          <button @click="prev"><img calss="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow"></button>
+          <button @click="next"><img calss="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow"></button>
+        </div>
+      </div>
       
     </div>
-
-    <!-- <div id="bannersliderBoard" class="home_bannersliderBoard">
-      
-
-      <ul id="banner" class="home_banner">
-        <li>
-          <div class="banner1"></div>
-        </li>
-        
-        <li>
-          <div class="banner2"></div>
-        </li>
-
-        <li>
-          <div class="banner3"></div>
-        </li>
-
-        <li>
-          <div class="banner4"></div>
-        </li>
-      </ul>
-
-      <ul id="bannerButton">
-        <li class="clicked"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div> -->
 
     <div class="home_qkmnu">
       <!-- @mouseover="setHoverState('home_qkpage_time')"
@@ -156,7 +129,8 @@
       </div>
 
       <div class="home_qkpage_park"  v-if="currentContent === 'home_qkpage_park'">
-        <img src="@/assets/images/home/home_map.jpg" alt="map">
+        <parkmap/>
+        <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
       </div>
 
       <div class="home_qkpage_traffic"  v-if="currentContent === 'home_qkpage_traffic'">
@@ -292,16 +266,52 @@
           </div>
         </div>
       </div>
+
+      
       
     </div>
+    
+    <div class="home_qkpage_deco">
+      <div class="bee">
+        <div class="beeconversation">
+          <img src="@/assets/images/home/home_qkpage_beeconversation.svg" alt="conversation">
+          <span class="beeconversation_text pcInnerText">WELCOME</span>
+        </div>
+        <div class="beeimg"><img src="@/assets/images/vetor/vetor_animal_bee.svg" alt="bee"></div>
+      </div>
 
+      <div class="chameleonconversation">
+          <img src="@/assets/images/home/home_qkpage_chameleonconversation.svg" alt="conversation">
+          <span class="chameleonconversation_text pcInnerText">HELLOOO</span>
+      </div>
+      <div class="chameleon_1"><img src="@/assets/images/vetor/vetor_animal_chameleon_1.svg" alt="chameleon_1"></div>
+    </div>
+
+    <div class="home_animalfoot">
+      <img class="foot1" src="@/assets/images/home/home_animalfoot_1.svg" alt="foot">
+      <img class="foot2" src="@/assets/images/home/home_animalfoot_2.svg" alt="foot">
+      <img class="foot3" src="@/assets/images/home/home_animalfoot_3.svg" alt="foot">
+      <img class="foot4" src="@/assets/images/home/home_animalfoot_4.svg" alt="foot">
+      <img class="foot5" src="@/assets/images/home/home_animalfoot_5.svg" alt="foot">
+      <img class="foot6" src="@/assets/images/home/home_animalfoot_6.svg" alt="foot">
+      <img class="foot7" src="@/assets/images/home/home_animalfoot_7.svg" alt="foot">
+      <img class="foot8" src="@/assets/images/home/home_animalfoot_8.svg" alt="foot">
+      <img class="foot9" src="@/assets/images/home/home_animalfoot_9.svg" alt="foot">
+    </div>
     <div class="home_wn">
       <div class="home_wn_section">
+        <!-- v-if="now_area" -->
         <div class="home_wn_weather">
-        <h2 class="title pcBigTitle">園區天氣</h2>
-        <span class="city pcSmTitle">Taoyuan, TW</span>
-        <div class="weatherimg"><img src="@/assets/images/home/home_weather_2.svg" alt="weather"></div>
-        <span class="temperature pcDecBigTitle">20°C</span>
+          <div class="weatherlb" v-if="showMoreWeather">
+            <moreweather @close-moreweather="closeMoreWeather" />
+          </div>
+          <h2 class="title pcBigTitle">園區天氣</h2>
+          <span class="city pcSmTitle">Taoyuan, TW</span>
+          <!-- <span class="city pcSmTitle">{{weather.name}}</span> -->
+          <div class="weatherimg" @click="openMoreWeather"><img src="@/assets/images/home/home_weather_mostly_clear.svg" alt="weather"></div>
+          <!-- <div class="weatherimg">{{weather.weather[0].main}}</div> -->
+          <span class="temperature pcDecBigTitle">20°C</span>
+          <!-- <span class="temperature pcDecBigTitle">{{Math.round(weather.main.temp)}}°C</span> -->
         </div>
 
         <div class="home_wn_news">
@@ -344,7 +354,8 @@
     </div>
 
     <div class="home_park">
-      <img src="@/assets/images/home/home_map.jpg" alt="map">
+      <parkmap/>
+      <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
     </div>
     
     <div class="home_vote">
@@ -400,241 +411,342 @@
     </div>
 
     <div class="home_comment">
-      <h2 class="pcBigTitle">動物園探險家</h2>
+      <!-- @click="closeWriteComm" -->
+      <div class="commlb" v-if="showWriteComm">
+        <writecomm @close-writecomm="closeWriteComm" />
+      </div>
+      <div class="commlb" v-if="showReportComm">
+        <reportcomm @close-reportcomm="closeReportComm" />
+      </div>
+      <div class="home_comment_decotop">
+        <div class="alpaca"><img src="@/assets/images/vetor/vetor_animal_alpaca.svg" alt="alpaca"></div>
+        <div class="tree_4"><img src="@/assets/images/vetor/nature_tree_4.svg" alt="tree_4"></div>
+        <div class="grasses_1"><img src="@/assets/images/vetor/nature_grasses_1.svg" alt="grasses_1"></div>
+        <div class="grasses_5"><img src="@/assets/images/vetor/nature_grasses_5.svg" alt="grasses_5"></div>
+        <div class="chimpanzee"><img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees"></div>
+        <div class="tree_6"><img src="@/assets/images/vetor/nature_tree_6.svg" alt="tree_6"></div>
+        <div class="tree_7"><img src="@/assets/images/vetor/nature_tree_7.svg" alt="tree_7"></div>
+      </div>
+
+      <div class="home_comment_decobottom">
+        <div class="tree_1"><img src="@/assets/images/vetor/nature_tree_1.svg" alt="tree_1"></div>
+        <div class="grasses_2"><img src="@/assets/images/vetor/nature_grasses_2.svg" alt="grasses_2"></div>
+        <div class="duck"><img src="@/assets/images/vetor/vetor_animal_duck.svg" alt="duck"></div>
+        <div class="tree_2"><img src="@/assets/images/vetor/nature_tree_2.svg" alt="tree_2"></div>
+      </div>
+
+      <h2 class="home_comment_title pcBigTitle">動物園探險家</h2>
       <h3 class="pcSmTitle">探索奇妙，與大自然共享驚喜！</h3>
 
       <div class="home_comment_section">
         <div class="comment_group">
           <div class="comment" v-for="comment in comment_list" :class="comment.class">
+            <div class="comment_report">
+              <div class="before">
+                <img src="@/assets/images/home/home_icon_report1.svg" alt="report">
+              </div>
+              <div class="hover"  @click="openReportComm">
+                <img src="@/assets/images/home/home_icon_report2.svg" alt="report" class="hover_report">
+                <div class="hover_conversation">
+                  <img src="@/assets/images/home/home_comm_conversation.svg" alt="conversation" class="hover_conversation_img">
+                  <span class="hover_conversation_text pcMarkText">檢舉不當言論</span>
+                </div>
+              </div>
+            </div>
             <img class="comment_img" :src="getCommUrl(comment.img)" alt="comment" />
-            <p class="comment_content pcInnerText">{{ comment.content }}</p>
+            <p class="comment_content pcMarkText">{{ comment.content }}</p>
           </div>
         </div>
-        
       </div>
 
-      <!-- <div class="home_comment_decotop">
-        <div class="alpaca"><img src="@/assets/images/vetor/vetor_animal_alpaca.svg" alt="alpaca"></div>
-        <div class="tree_4"><img src="@/assets/images/vetor/nature_tree_4.svg" alt="tree_4"></div>
-        <div class="grasses_1"><img src="@/assets/images/vetor/nature_grasses_1.svg" alt="grasses_1"></div>
-        <div class="grasses_5"><img src="@/assets/images/vetor/nature_grasses_5.svg" alt="grasses_5"></div>
-        <div class="chimpanzees"><img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees"></div>
-        <div class="tree_6"><img src="@/assets/images/vetor/nature_tree_6.svg" alt="tree_6"></div>
-        <div class="tree_7"><img src="@/assets/images/vetor/nature_tree_7.svg" alt="tree_7"></div>
-      </div> -->
-
-      <!-- <div class="home_comment_decobottom">
-        <div class="tree_1"><img src="@/assets/images/vetor/nature_tree_1.svg" alt="tree_1"></div>
-        <div class="grasses_2"><img src="@/assets/images/vetor/nature_grasses_2.svg" alt="grasses_2"></div>
-        <div class="duck"><img src="@/assets/images/vetor/vetor_animal_duck.svg" alt="duck"></div>
-        <div class="tree_2"><img src="@/assets/images/vetor/nature_tree_2.svg" alt="tree_2"></div>
-      </div> -->
+      <button class="iconBtn pcInnerText" @click="openWriteComm">
+        <p class="iconText">
+          <img
+            src="@/assets/images/home/home_icon_comment.svg"
+            alt=""
+            class="buttonIcon"
+          />
+          我要留言
+        </p>
+        <img
+          src="@/assets/images/login/icon/btnArrow.svg"
+          alt=""
+          class="arrowIcon"
+        />
+      </button>
     </div>
-
-
-
-
-
-
-
-
-    <!-- <div class="home_news">
-      <div class="newsgroup">
-        <div class="news">1</div>
-        <div class="news">2</div>
-        <div class="news">3</div>
-        <div class="news">4</div>
-        <div class="news">5</div>
-        <div class="news">6</div>
-        <div class="news">7</div>
-      </div>
-    </div> -->
-
-    
-
-
-
-    
 
 </section>
 </template>
 
 <script>
 import { RouterLink } from "vue-router";
+import parkmap from "@/components/park/ParkMap.vue";
+import writecomm from "@/components/home/WriteComm.vue";
+import reportcomm from "@/components/home/ReportComm.vue";
+import moreweather from "@/components/home/MoreWeather.vue";
 export default {
   components: {
       RouterLink,
+      parkmap,
+      writecomm,
+      reportcomm,
+      moreweather,
   },
   data() {
-      return {
-        //快速選單
-        currentContent: 'home_qkpage_time', // 初始值可以是空字串或其他適合的值
+    return {
+      //banner
+      images: [
+        '/src/assets/images/home/home_banner_1.jpg',
+        '/src/assets/images/home/home_banner_2.jpg',
+        '/src/assets/images/home/home_banner_3.jpg',
+        '/src/assets/images/home/home_banner_4.jpg',
+        // Add more image URLs as needed
+      ],
+      currentIndex: 0,
+      intervalId: null,
+      autoPlay: true, // Set to false if you want to disable auto play
+      intervalDuration: 4000, // Set the interval duration in milliseconds (3 seconds in this example)
 
-        //快速選單 交通
-        currentSection: 'traffic_page_train',
+      //快速選單
+      currentContent: 'home_qkpage_time', // 初始值可以是空字串或其他適合的值
 
-        //快速選單 門票
-        tickets:[{
-          title:"成人票",
-          price:"100",
-          rule:"18~64歲",
-        },{
-          title:"學生票",
-          price:"80",
-          rule:"12歲以上(含)持學生證者",
-        },{
-          title:"兒童票",
-          price:"40",
-          rule:"4~11歲",
-        },{
-          title:"愛心票",
-          price:"40",
-          rule:"65歲以上(含)",
-        },{
-          title:"團體票",
-          price:"60",
-          rule:"15人以上適用",
-        }],
+      //快速選單 交通
+      currentSection: 'traffic_page_train',
 
-        //最新消息
-        news_info:[
-          {
-            date:'2024.01.02',
-            tag:'最新活動',
-            img:'orangeFrame',
-            title:'動物明星新一輪投票即將啟動！',
-          },
-          {
-            date:'2024.01.04',
-            tag:'園區動態',
-            img:'greenFrame',
-            title:'動物園為家人共度佳節與動物提供寧靜休息環境，宣布農曆新年休假',
-          },
-          {
-            date:'2023.12.29',
-            tag:'最新活動',
-            img:'orangeFrame',
-            title:'兒童攝影大賽：小攝影師們快來動物園捕捉最美瞬間，贏得豐富獎品',
-          },
-          {
-            date:'2023.12.28',
-            tag:'動物知識',
-            img:'blueFrame',
-            title:'貓頭鷹的生活習性和獵食技巧，揭開夜間狩獵的神秘面紗',
-          },
-          {
-            date:'2023.12.22',
-            tag:'園區動態',
-            img:'greenFrame',
-            title:'新生兒象寶寶在動物園誕生，展現可愛模樣',
-          },
-          {
-            date:'2023.12.21',
-            tag:'動物知識',
-            img:'blueFrame',
-            title:'北極熊的生態適應，面對氣候變遷的挑戰',
-          },
-          {
-            date:'2023.12.18',
-            tag:'動物知識',
-            img:'blueFrame',
-            title:'大象的家庭結構和保護幼象的感人故事',
-          },
-          {
-            date:'2023.12.15',
-            tag:'最新活動',
-            img:'orangeFrame',
-            title:'動物園歡樂跨年 共度美好時光',
-          },
+      //快速選單 門票
+      tickets:[{
+        title:"成人票",
+        price:"100",
+        rule:"18~64歲",
+      },{
+        title:"學生票",
+        price:"80",
+        rule:"12歲以上(含)持學生證者",
+      },{
+        title:"兒童票",
+        price:"40",
+        rule:"4~11歲",
+      },{
+        title:"愛心票",
+        price:"40",
+        rule:"65歲以上(含)",
+      },{
+        title:"團體票",
+        price:"60",
+        rule:"15人以上適用",
+      }],
 
-        ],
+      //天氣
+      // api_key: 'CWA-6404EFA0-8D5B-4848-89E4-F7F963901914',
+      // base_url: 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-6404EFA0-8D5B-4848-89E4-F7F963901914/',
+      // query: 'Taoyuan',
+      // weather: {},
+      // date: '',
 
-        //人氣投票
-        podium_list: [
-          {
-            name: "琳達",
-            // medal: "第二名獎牌",
-            score: 197,
-            animal_img: 'giraffe',
-            NO:'2',
-            class: 'podium2'
-          },
-          {
-            name: "艾迪",
-            // medal: "第一名獎牌",
-            animal_img: 'elephant',
-            score: 205,
-            NO: '1',
-            class: 'podium1'
-          },
-          {
-            name: "阿斯蘭",
-            // medal: "第三名獎牌",
-            animal_img: 'lion',
-            score: 146,
-            NO: '3',
-            class: 'podium3'
-          },
-        ],
+      //最新消息
+      news_info:[
+        {
+          date:'2024.01.02',
+          tag:'最新活動',
+          img:'orangeFrame',
+          title:'動物明星新一輪投票即將啟動！',
+        },
+        {
+          date:'2024.01.04',
+          tag:'園區動態',
+          img:'greenFrame',
+          title:'動物園為家人共度佳節與動物提供寧靜休息環境，宣布農曆新年休假',
+        },
+        {
+          date:'2023.12.29',
+          tag:'最新活動',
+          img:'orangeFrame',
+          title:'兒童攝影大賽：小攝影師們快來動物園捕捉最美瞬間，贏得豐富獎品',
+        },
+        {
+          date:'2023.12.28',
+          tag:'動物知識',
+          img:'blueFrame',
+          title:'貓頭鷹的生活習性和獵食技巧，揭開夜間狩獵的神秘面紗',
+        },
+        {
+          date:'2023.12.22',
+          tag:'園區動態',
+          img:'greenFrame',
+          title:'新生兒象寶寶在動物園誕生，展現可愛模樣',
+        },
+        {
+          date:'2023.12.21',
+          tag:'動物知識',
+          img:'blueFrame',
+          title:'北極熊的生態適應，面對氣候變遷的挑戰',
+        },
+        {
+          date:'2023.12.18',
+          tag:'動物知識',
+          img:'blueFrame',
+          title:'大象的家庭結構和保護幼象的感人故事',
+        },
+        {
+          date:'2023.12.15',
+          tag:'最新活動',
+          img:'orangeFrame',
+          title:'動物園歡樂跨年 共度美好時光',
+        },
 
-        //留言板
-        comment_list: [
-          {
-            class: "comm1",
-            img: "comm_1",
-            content: '這是我第三次造訪這個動物園，每次都有不同的驚喜！孩子們特別喜歡互動區，能近距離觀察動物真是太棒了！',
-          },
-          {
-            class: "comm2",
-            img: "comm_2",
-            content: '這個動物園的設施很棒，動物品種豐富多樣，但有些地方需要更多資訊牌，讓遊客更了解動物的生態習性。',
-          },
-          {
-            class: "comm3",
-            img: "comm_3",
-            content: '我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！',
-          },
-          {
-            class: "comm4",
-            img: "comm_4",
-            content: '看到這麼多種類的動物很值得。我特別喜歡他們的猩猩區，能夠近距離觀察猩猩的行為真是太有趣了！',
-          },
-          {
-            class: "comm1",
-            img: "comm_5",
-            content: '這個動物園真的很適合家庭遊玩，有許多互動體驗讓孩子們玩得很開心。但是建議增加一些休息區域，讓遊客可以休息片刻再繼續探索。',
-          },
-          {
-            class: "comm2",
-            img: "comm_6",
-            content: '動物園的環境很美，但是有些動物的展示區可能需要擴建。不過整體來說，是個不錯的地方，特別是他們的教育活動非常有意義。',
-          },
-          {
-            class: "comm3",
-            img: "comm_7",
-            content: '這是我第一次來這個動物園，我完全愛上了！工作人員很親切，動物看起來都很幸福，這裡的氛圍令人感到愉悅。',
-          },
-          {
-            class: "comm4",
-            img: "comm_8",
-            content: '動物園的設施和種類都很豐富，但是人流量有些大，特別是在假日。建議增加一些導覽團或者提供更多資訊，幫助遊客更好地欣賞動物。',
-          },
-          {
-            class: "comm1",
-            img: "comm_9",
-            content: '這裡的設施非常乾淨整潔，動物看起來都很健康。但希望能增加一些飲料站或者小吃亭，方便遊客在觀賞動物時能夠休息補充能量。',
-          },
-          {
-            class: "comm2",
-            img: "comm_10",
-            content: '我是動物愛好者，這個動物園真的讓我感到驚艷！看到這麼多種類的動物，學到了很多新知識。下次還會再來！',
-          },
-        ],
-        
-      };
+      ],
+
+      //人氣投票
+      podium_list: [
+        {
+          name: "琳達",
+          // medal: "第二名獎牌",
+          score: 197,
+          animal_img: 'giraffe',
+          NO:'2',
+          class: 'podium2'
+        },
+        {
+          name: "艾迪",
+          // medal: "第一名獎牌",
+          animal_img: 'elephant',
+          score: 205,
+          NO: '1',
+          class: 'podium1'
+        },
+        {
+          name: "阿斯蘭",
+          // medal: "第三名獎牌",
+          animal_img: 'lion',
+          score: 146,
+          NO: '3',
+          class: 'podium3'
+        },
+      ],
+
+      //留言板
+      comment_list: [
+        {
+          class: "comm1",
+          img: "comm_1",
+          content: '這是我第三次造訪這個動物園，每次都有不同的驚喜！孩子們特別喜歡互動區，能近距離觀察動物真是太棒了！',
+        },
+        {
+          class: "comm2",
+          img: "comm_2",
+          content: '這個動物園的設施很棒，動物品種豐富多樣，但有些地方需要更多資訊牌，讓遊客更了解動物的生態習性。',
+        },
+        {
+          class: "comm3",
+          img: "comm_3",
+          content: '我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！',
+        },
+        {
+          class: "comm4",
+          img: "comm_4",
+          content: '看到這麼多種類的動物很值得。我特別喜歡他們的猩猩區，能夠近距離觀察猩猩的行為真是太有趣了！',
+        },
+        {
+          class: "comm1",
+          img: "comm_5",
+          content: '這個動物園真的很適合家庭遊玩，有許多互動體驗讓孩子們玩得很開心。但是建議增加一些休息區域，讓遊客可以休息片刻再繼續探索。',
+        },
+        {
+          class: "comm2",
+          img: "comm_6",
+          content: '動物園的環境很美，但是有些動物的展示區可能需要擴建。不過整體來說，是個不錯的地方，特別是他們的教育活動非常有意義。',
+        },
+        {
+          class: "comm3",
+          img: "comm_7",
+          content: '這是我第一次來這個動物園，我完全愛上了！工作人員很親切，動物看起來都很幸福，這裡的氛圍令人感到愉悅。',
+        },
+        {
+          class: "comm4",
+          img: "comm_8",
+          content: '動物園的設施和種類都很豐富，但是人流量有些大，特別是在假日。建議增加一些導覽團或者提供更多資訊，幫助遊客更好地欣賞動物。',
+        },
+        {
+          class: "comm1",
+          img: "comm_9",
+          content: '這裡的設施非常乾淨整潔，動物看起來都很健康。但希望能增加一些飲料站或者小吃亭，方便遊客在觀賞動物時能夠休息補充能量。',
+        },
+        {
+          class: "comm2",
+          img: "comm_10",
+          content: '我是動物愛好者，這個動物園真的讓我感到驚艷！看到這麼多種類的動物，學到了很多新知識。下次還會再來！',
+        },
+      ],
+      showWriteComm: false,
+      showReportComm: false,
+      showMoreWeather: false,
+    };
   },
-  created() {},
+
+  computed: {
+    //banner
+    currentImage() {
+      return this.images[this.currentIndex];
+    },
+
+    //天氣
+    // currentDate() {
+    //   return moment().format('MMMM Do YYYY')
+    // },
+  },
+
+  mounted() {
+    //banner
+    if (this.autoPlay) {
+      this.startAutoPlay();
+    }
+
+
+    //天氣
+    // this.fetchWeatherData();
+
+    // axios.get(url).then(data => {
+    //     console.log(data)
+    //     this.weather_data = data.data.cwbopendata.dataset.locations.location
+    // })
+
+    // paths = document.querySelectorAll('path');
+    // let _this = this
+    // paths.forEach(e => {
+    //     e.onmouseover = function () {
+    //         _this.filter = this.dataset.nameZh
+    //     }
+    // })
+  },
+
+  beforeDestroy() {
+    //banner
+    this.stopAutoPlay();
+  },
+  
+  created() {
+    //天氣
+    // this.fetchWeather();
+  },
+
   methods: {
+    //banner
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    },
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    },
+    startAutoPlay() {
+      this.intervalId = setInterval(() => {
+        this.next();
+      }, this.intervalDuration);
+    },
+    stopAutoPlay() {
+      clearInterval(this.intervalId);
+    },
+    
     //快速選單
     showContent(Content) {
       this.currentContent = Content;
@@ -651,6 +763,20 @@ export default {
     //快速選單 交通
     showSection(content){
       this.currentSection = content;
+    },
+
+    //天氣
+    // async fetchWeather() {
+    //   const data = await fetch(`${this.base_url}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+    //   this.weather = await data.json()
+    // },
+    openMoreWeather() {
+      this.showMoreWeather = true;
+      document.body.style.overflow = "hidden";
+    },
+    closeMoreWeather() {
+      this.showMoreWeather = false;
+      document.body.style.overflow = "auto";
     },
 
     //最新消息
@@ -678,6 +804,23 @@ export default {
     getCommUrl(paths) {
       return new URL(`../assets/images/home/comm/${paths}.jpg`, import.meta.url).href
     },//改網址
+    openWriteComm() {
+      this.showWriteComm = true;
+      document.body.style.overflow = "hidden";
+    },
+    closeWriteComm() {
+      this.showWriteComm = false;
+      document.body.style.overflow = "auto";
+    },
+    openReportComm() {
+      this.showReportComm = true;
+      document.body.style.overflow = "hidden";
+    },
+    closeReportComm() {
+      this.showReportComm = false;
+      document.body.style.overflow = "auto";
+    },
+    
   }
 }
 </script>
