@@ -35,13 +35,24 @@ footer{
         align-items: flex-end;
         justify-content: space-between;
         padding: 0 0 2vw 0;
-
+        @media (max-width:768px) {
+            flex-direction: column;
+            align-items: start;
+            width: 87.1%;
+        }
         .footer_front{
             width: 20%;
-
-            .footer_logo img{
-                width: 80%;
-                vertical-align: bottom;
+            @media (max-width:768px) {
+                width: 30%;
+            }
+            .footer_logo {
+                @media (max-width:768px) {
+                    order: 1;
+                }
+                img{
+                    width: 80%;
+                    vertical-align: bottom;
+                }
             }
 
             .footer_media{
@@ -50,6 +61,9 @@ footer{
                 align-items: flex-end;
                 justify-content: space-between;
                 margin-top: 1vw;
+                @media (max-width:768px) {
+                    align-items: center;
+                }
                 img{
                     width: 78%;
                     vertical-align: bottom;
@@ -60,11 +74,14 @@ footer{
         .footer_info{
             width: 60%;
             color: $bgColorWhite;
-                
+            @media (max-width:768px) {
+                width: 100%;
+                order: 3;
+                margin-top: 10px;
+            }
             a{
                 color: $bgColorWhite;
                 text-decoration: none;
-                
             }
 
             .pcInnerText{
@@ -74,6 +91,10 @@ footer{
 
         .footer_tourists{
             color: $bgColorWhite;
+            @media (max-width:768px) {
+                margin-top: 10px;
+                order: 2;
+            }
         }
     }
 
@@ -82,6 +103,9 @@ footer{
         height: 1px;
         margin: auto;
         background-color: $bgColorWhite;
+        @media (max-width:768px) {
+            width: 87.1%;
+        }
     }
 
     .footer_bottom{
@@ -90,7 +114,9 @@ footer{
         color: $bgColorWhite;
         padding: 2vw 0 2vw 0;
         line-height: 25px;
-
+        @media (max-width:768px) {
+            width: 87.1%;
+        }
         a{
             color: $bgColorWhite;
             text-decoration: none;
@@ -102,7 +128,31 @@ footer{
         bottom: 2vw;
         left: 3.5vw;
         text-align: center;
-        
+        @media (max-width:768px) {
+            left: 86%;
+            bottom:30%;
+        }
+        @media (max-width:666px) {
+            bottom:35%;
+        }
+        @media (max-width:600px) {
+            bottom:36%;
+        }
+        @media (max-width:504px) {
+            bottom:41%;
+        }
+        @media (max-width:440px) {
+            bottom:42%;
+        }
+        @media (max-width:420px) {
+            bottom:45%;
+        }
+        @media (max-width:410px) {
+            bottom:46%;
+        }
+        @media (max-width:375px) {
+            bottom:53%;
+        }
         button{
             background-color: transparent;
             outline: none;
@@ -116,6 +166,10 @@ footer{
             width: 5vw;
             vertical-align: bottom;
             padding-top: 0.5vw;
+            @media (max-width:768px) {
+                width: 8vw;
+                transform: scaleX(-1);
+            }
         }
         
     }
