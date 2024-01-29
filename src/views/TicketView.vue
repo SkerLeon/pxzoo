@@ -46,8 +46,8 @@
       />
       <TickCalendar 
       v-if="!isBoard ||TickCalendar" 
-
-      @nextStep="showNextStep" />
+      @goNextStep="showNextStep" 
+      />
     </main>
 
 <!-- 30% -->
@@ -56,8 +56,8 @@
       :ticketsData="tickets" 
       :tipriceData="tiprice" 
       @newTiprice="updateTiprice"
-      @nextStep="showNextStep" 
-      @previousStep="backPreviousStep" 
+      @goNextStep="showNextStep" 
+      @goPreviousStep="backPreviousStep" 
       />
     </main>
 
@@ -66,8 +66,8 @@
       <TickCheck 
       :ticketsData="tickets" 
       :tipriceData="tiprice" 
-      @nextStep="showNextStep" 
-      @previousStep="backPreviousStep" 
+      @goNextStep="showNextStep" 
+      @goPreviousStep="backPreviousStep" 
       />
     </main>
 
@@ -103,8 +103,6 @@ export default {
     return {
       tickStep: 0,
       TickCalendar: false,
-      // tidate: new Date(),
-      // dateFormat: 'YYYY-MM-DD',
       tiprice: 0,
       tickets:[
                 {

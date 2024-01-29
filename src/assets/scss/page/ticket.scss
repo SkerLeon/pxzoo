@@ -147,11 +147,9 @@
     div{
         display: block;
     }
-    .fakeCalendar{
-        width: 100%;
-    }
     .tickBtn{
         justify-content: end;
+        margin: 1vw 0 calc(1vw + 60px);
     }
     hgroup{
         border: 0;
@@ -171,7 +169,7 @@
     }
 }
 .calendar{
-    height: 400px;
+    height: 312px;
     overflow: hidden;
     text-align: center;
     background-size: cover;
@@ -216,11 +214,12 @@
     }
     .ivu-calendar-table thead th, td{
         padding: 8px;
-        height: 40px;
         width: 4vw;
         text-align: center;
         color: $mainTextColor;
-
+    }
+    .ivu-calendar-table thead th{
+        padding: 4px 8px;
     }
     td,.ivu-calendar-table tr:first-child td{
         border: $bgColorSecGray solid 1px;
@@ -346,10 +345,10 @@
         article{ margin: 20px 4vw auto; }
     }
 }
-@media screen and (max-width: 1540px){
+@media screen and (max-width: 1550px){
     .tickBgc{
-        transform: translate(-11%, 0);
-        .tickBoard{ height: 525px; }
+        transform: translate(-16%, 0);
+        .tickBoard{ height: 510px; }
     }
     .tickInfo{
         article{
@@ -360,6 +359,7 @@
 }
 @media screen and (max-width: 1400px){
     .tickBgc{
+        transform: translate(-11.5%, 0);
         .tickBoard{ height: 515px; }
         .tickEagle{ width: 8vw;}
     }

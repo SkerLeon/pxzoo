@@ -108,12 +108,12 @@ export default {
         // 丟資料的key值
         // validator 驗證規則內不可讀取 data. computed 屬性
         // validator: value => value>0,
-        'tickStep':{ type: Number },
-        'ticketsData': {
+        tickStep:{ type: Number },
+        ticketsData: {
             type: Array,
             required: true,
         },
-        'tipriceData': {
+        tipriceData: {
             type: Number,
             required: true,
         },
@@ -160,10 +160,10 @@ export default {
         nextStep(){
             // 999寫確認有選付款方式的判斷式
             // 999寫確認信用卡的判斷式
-            this.$emit('nextStep');
+            this.$emit('goNextStep');
         },
         previousStep(){
-            this.$emit('previousStep');
+            this.$emit('goPreviousStep');
         },
         windowSize(){
             this.isSmallPH = window.innerWidth <= 430;

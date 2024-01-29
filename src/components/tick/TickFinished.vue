@@ -4,7 +4,6 @@
 
         <section>
             <h2 v-html=" cashFinished " class="pcSmTitle"></h2>
-            <!-- <h2 v-html=" selectedPay.value === 'card'? 'cardFinished' : 'cashFinished' " class="pcSmTitle"></h2> -->
             <p class="pcInnerText">畫面將於 5 秒鐘後跳轉回首頁。</p>
             <button @click="useGoHome" class="defaultBtn pcInnerText">
                 返回首頁
@@ -92,11 +91,11 @@ export default {
         // 丟資料的key值
         // validator 驗證規則內不可讀取 data. computed 屬性
         // validator: value => value>0,
-        'ticketsData': {
+        ticketsData: {
             type: Array,
             required: true,
         },
-        'tipriceData': {
+        tipriceData: {
             type: Number,
             required: true,
         },

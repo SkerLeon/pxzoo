@@ -35,9 +35,7 @@ export default {
     components:{
         // RouterLink,
     },
-    props:{
-        // 'TickCalendar': { type: Boolean },
-    },
+    props:{},
     data() {
         return {
             tickInfomation: [
