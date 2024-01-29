@@ -321,6 +321,25 @@ $time:10s;
                     display: none;
                     position:absolute;
                     top: -40%;
+                    @media (max-width:768px) {
+                        width: 130%;
+                        top: -50%;
+                    } 
+                    @media (max-width:600px) {
+                        width: 150%;
+                        top: -65%;
+                        left: -15%;
+                    } 
+                    @media (max-width:480px) {
+                        width: 180%;
+                        top: -75%;
+                        left: -25%;
+                    } 
+                    @media (max-width:320px) {
+                        width: 180%;
+                        top: -75%;
+                        left: -25%;
+                    } 
                     .pk_Store_icon_dialog_content_text{
                         position: absolute;
                         top: 25%;
@@ -338,7 +357,16 @@ $time:10s;
                                 font-size: 15px;
                             }  
                             @media (max-width:768px) {
-                                font-size: 14px;
+                                font-size: 18px;
+                            } 
+                            @media (max-width:600px) {
+                                font-size: 16px;
+                            } 
+                            @media (max-width:375px) {
+                                font-size: 12px;
+                            } 
+                            @media (max-width:320px) {
+                                font-size: 10px;
                             } 
                         }
                     }
@@ -346,6 +374,12 @@ $time:10s;
                 }
                 .pk_vc_top{
                     top: -65%;
+                    @media (max-width:600px) {
+                        top: -85%;
+                    } 
+                    @media (max-width:480px) {
+                        top: -100%;
+                    } 
                 }
             }
             .pk_Store_icon_VC1{
@@ -407,7 +441,7 @@ $time:10s;
     }
     .pk_Animal_details{
         position: absolute;
-        z-index: 998;
+        z-index: 500;
         top: 30%;
         width: 16.8%;
         height: 49.8%;
@@ -421,8 +455,24 @@ $time:10s;
         align-items: center;
         gap: 0.5%;
         @media (max-width:768px) {
-            width: 35%;
+            width: 40%;
             height: 70%;
+        }
+        @media (max-width:600px) {
+            width: 50%;
+            height: 70%;
+            top: 20%;
+        }
+        @media (max-width:480px) {
+            top: 5%;
+        }
+        @media (max-width:375px) {
+            width: 60%;
+            top: 0%;
+        }
+        @media (max-width:320px) {
+            width: 70%;
+            top: -4%;
         }
         .pk_Animal_details_content_align{
             width: 90%;
@@ -481,7 +531,9 @@ $time:10s;
         button{
             width: 56.2%;
             height: 10.9%;
-
+            @media (max-width:480px) {    
+                height: 8%;
+            } 
         }
     }
     .pk_content_bg{
@@ -494,13 +546,22 @@ $time:10s;
         align-items: center;
         .pk_Tickets{
             width: 74%; 
-            height: 20.6%;
             margin-top: 12%;
             position: relative;
             z-index: 5;
             @media (max-width:768px) {
                 width: 76.5%;
-                height: 234.9vh;
+                height: 1762px;
+            }
+            @media (max-width:480px) {
+                width: 76.5%;
+                height: 1200px;
+            }
+            @media (max-width:375px) {
+                height: 800px;
+            }
+            @media (max-width:320px) {
+                height: 700px;
             }
             .pk_Tickets_items{
                 display: flex;
@@ -521,7 +582,10 @@ $time:10s;
                     width: 18.37%;
                     position: relative;
                     @media (max-width:768px) {
-                        width: 45%;;
+                        width: 45%;
+                    }
+                    @media (max-width:375px) {
+                        width: 40%;
                     }
                     :hover{
                         cursor: pointer;
@@ -538,8 +602,20 @@ $time:10s;
                         top: 26%;
                         @media (max-width:768px) {
                             width: 97.4%;
-                            top: 25.9%;
+                            top: 25.8%;
+                            height: 10px;
                         }
+                        @media (max-width:480px)  {
+                            width: 97.4%;
+                            top: 25.8%;
+                            height: 5px;
+                        }
+                        @media (max-width:375px) {
+                            width: 97.2%;
+                            height: 4.3px;
+                            top: 25.6%;
+                        }
+                        
                     }
                     .pk_Tickets_item_animal{
                         width: 60%;
@@ -563,8 +639,13 @@ $time:10s;
                         position: absolute;
                         z-index: 11;
                         bottom: 7.42%;
-                        gap: 2%;
                         color: $mainTextColor;
+                        @media (max-width:600px)  {
+                            bottom:6%
+                        }
+                        @media (max-width:375px)  {
+                            bottom:5%
+                        }
                         h1{
                             @media (max-width:1280px)  {
                                 font-size: 24px;
@@ -577,6 +658,18 @@ $time:10s;
                             }
                             @media (max-width:768px)  {
                                 font-size: 32px;
+                            }
+                            @media (max-width:600px)  {
+                                font-size: 28px;
+                            }
+                            @media (max-width:480px)  {
+                                font-size: 24px;
+                            }
+                            @media (max-width:375px)  {
+                                font-size: 16px;
+                            }
+                            @media (max-width:320px)  {
+                                font-size: 14px;
                             }
                         }
                         p{
@@ -591,6 +684,18 @@ $time:10s;
                             } 
                             @media (max-width:768px)  {
                                 font-size: 22px;
+                            }
+                            @media (max-width:600px)  {
+                                font-size: 18px;
+                            }
+                            @media (max-width:480px)  {
+                                font-size: 14px;
+                            }
+                            @media (max-width:375px)  {
+                                font-size: 10px;
+                            }
+                            @media (max-width:320px)  {
+                                font-size: 8px;
                             }
                         }
                     }
@@ -652,6 +757,13 @@ $time:10s;
                     @media (max-width:768px) {
                         font-size: 22px;
                     }
+                    @media (max-width:768px) {
+                        font-size: 20px;
+                    }
+                    @media (max-width:375px) {
+                        font-size: 16px;
+                    }
+                    
                 }
             }
         }
@@ -695,6 +807,22 @@ $time:10s;
                     }
                     @media (max-width:768px) {
                         font-size: 20px;
+                        line-height: 150%;
+                    }
+                    @media (max-width:600px) {
+                        font-size: 14px;
+                        line-height: 180%;
+                    }
+                    @media (max-width:480px) {
+                        font-size: 12px;
+                        line-height: 160%;
+                    }
+                    @media (max-width:375px) {
+                        font-size: 10px;
+                        line-height: 140%;
+                    }
+                    @media (max-width:320px) {
+                        font-size: 8px;
                         line-height: 150%;
                     }
                 }
@@ -788,6 +916,23 @@ $time:10s;
                 left: 50%;
                 z-index: 1000;
             }
+            @media (max-width:600px)  {
+                width: 37%;
+                top: 45%;
+            }
+            @media (max-width:480px)  {
+                width: 37%;
+                top: 41%;
+            }
+            @media (max-width:375px) {
+                width: 40%;;
+                top: 35.8%;
+            }
+            @media (max-width:320px) {
+                width: 35%;;
+                top: 35%;
+                left: 53%;
+            }
         }
         .pk_content_bg_owl{
             @media (max-width:1920px) {
@@ -796,9 +941,30 @@ $time:10s;
             @media (max-width:768px) {
                 display: block;
                 position: absolute;
-                z-index: 999;
+                z-index: 998;
                 top: 2.5%;
                 left: 60%;
+            }
+            @media (max-width:600px) {
+                top: 4.4%;
+            }
+            @media (max-width:480px) {
+                top: 0.6%;
+                left: 55%;
+            }
+            @media (max-width:375px) {
+                top: 1.2%;
+                left: 58%;
+                img{
+                    width: 60%;
+                }
+            }
+            @media (max-width:320px) {
+                top:1.5%;
+                left: 60%;
+                img{
+                    width: 55%;
+                }
             }
         }
     }
