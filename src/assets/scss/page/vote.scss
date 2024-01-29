@@ -7,13 +7,12 @@
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
-  height: auto;
-
+  background-color: $bgColorLightgray;
   .banner {
-    background-image: url("/src/assets/images/vote/tree.svg");
-    background-color: $bgColorLightgray;
     width: 100%;
     height: 100vh;
+    background-image: url("/src/assets/images/vote/tree.svg");
+
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
@@ -55,7 +54,7 @@
 
       .score {
         position: absolute;
-        top: 20vw;
+        top: 21vw;
         z-index: 10;
       }
 
@@ -174,54 +173,54 @@
     .banner {
       width: 100%;
       height: auto;
+      // background-image: url("/src/assets/images/vote/pc-tree.svg");
+      .podium_no {
+        .vote_img {
+          width: 15vw;
+          height: auto;
+          border: $primaryColorYellow solid 4px;
+        }
+
+        .NO {
+          width: 5vw;
+          height: auto;
+          position: absolute;
+          top: -1.5vw;
+        }
+
+        .score {
+          position: absolute;
+          top: 40vw;
+          z-index: 10;
+        }
+
+        .podium1 {
+          left: 35%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+
+        .podium2 {
+          left: 10%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+
+        .podium3 {
+          left: 60%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+      }
 
       .title {
         padding: 5% 0;
-      }
-    }
-
-    .podium_no {
-      .vote_img {
-        width: 15vw;
-        height: auto;
-        border: $primaryColorYellow solid 4px;
-      }
-
-      .NO {
-        width: 5vw;
-        height: auto;
-        position: absolute;
-        top: -1.5vw;
-      }
-
-      .score {
-        position: absolute;
-        top: 40vw;
-        z-index: 10;
-      }
-
-      .podium1 {
-        left: 35%;
-
-        .podium_box {
-          width: 30vw;
-        }
-      }
-
-      .podium2 {
-        left: 10%;
-
-        .podium_box {
-          width: 30vw;
-        }
-      }
-
-      .podium3 {
-        left: 60%;
-
-        .podium_box {
-          width: 30vw;
-        }
       }
     }
   }
