@@ -10,11 +10,14 @@
       </div>
 
       <div class="home_banner_carousel">
-        <img class="home_banner_carousel_img" :src="currentImage" alt="Carousel Image"/>
-        <div class="home_banner_carousel_controls">
-          <button @click="prev"><img calss="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow"></button>
-          <button @click="next"><img calss="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow"></button>
+        <!-- <img class="home_banner_carousel_img" :src="currentImage" alt="Carousel Image"/> -->
+        <div class="home_banner_carousel_img" :style="{ backgroundImage: `url(${currentImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
+          <div class="home_banner_carousel_controls">
+            <button @click="prev"><img class="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow"></button>
+            <button @click="next"><img class="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow"></button>
+          </div>
         </div>
+        
       </div>
       
     </div>
@@ -298,6 +301,7 @@
       <img class="foot8" src="@/assets/images/home/home_animalfoot_8.svg" alt="foot">
       <img class="foot9" src="@/assets/images/home/home_animalfoot_9.svg" alt="foot">
     </div>
+
     <div class="home_wn">
       <div class="home_wn_section">
         <!-- v-if="now_area" -->
@@ -345,7 +349,7 @@
 
       <div class="home_wn_deco">
         <div class="tree_7"><img src="@/assets/images/vetor/nature_tree_7.svg" alt="tree_7"></div>
-        <div class="giraffe"><img src="@/assets/images/vetor/vetor_animal_giraffe.svg" alt="giraffe"></div>
+        <div class="giraffe"><img src="@/assets/images/home/home_weather_giraffe.svg" alt="giraffe"></div>
         <div class="grass_1"><img src="@/assets/images/vetor/nature_grass_1.svg" alt="grass_1"></div>
         <div class="grass_3"><img src="@/assets/images/vetor/nature_grass_3.svg" alt="grass_3"></div>
         <div class="grass_5"><img src="@/assets/images/vetor/nature_grass_5.svg" alt="grass_5"></div>

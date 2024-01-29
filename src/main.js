@@ -10,12 +10,26 @@ import "./assets/scss/style.scss";
 
 import App from "./App.vue";
 import router from "./router";
+import VueNativeSock from 'vue-native-websocket';
 
 // 創建一個vue應用程式(主要配置在app.vue裡)
 const vueApp = createApp(App);
 
 vueApp.use(createPinia());
 vueApp.use(router);
+// 配置WebSocket連接
+// vueApp.use(VueNativeSock, 'ws://localhost:3000', {
+//     format: 'json',
+//     reconnection: true, //自動重新連接
+//     reconnectionAttempts: 5, //重新連接嘗試次數
+//     reconnectionDelay: 3000, //重新連接時間間隔
+//     passToStoreHandler: function (eventName, event) {
+//       if (!eventName.startsWith('SOCKET_')) {
+//         return true;
+//       }
+//       return false;
+//     },
+//   });
 
 vueApp.component('Button', Button)
 vueApp.component('Input', Input)
