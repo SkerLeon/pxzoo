@@ -40,23 +40,42 @@
 
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
-      <TickInfo v-if="!isBoard || !TickCalendar" @TickCalendar="showTickCalendar" />
-      <TickCalendar v-if="!isBoard ||TickCalendar" @nextStep="showNextStep" />
+      <TickInfo 
+      v-if="!isBoard || !TickCalendar" 
+      @TickCalendar="showTickCalendar" 
+      />
+      <TickCalendar 
+      v-if="!isBoard ||TickCalendar" 
+
+      @nextStep="showNextStep" />
     </main>
 
 <!-- 30% -->
     <main v-else-if="tickStep === 1">
-        <TickNum @nextStep="showNextStep" @previousStep="backPreviousStep" />
+      <TickNum 
+      :ticketsData="tickets" 
+      :tipriceData="tiprice" 
+      @newTiprice="updateTiprice"
+      @nextStep="showNextStep" 
+      @previousStep="backPreviousStep" 
+      />
     </main>
 
 <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck @nextStep="showNextStep" @previousStep="backPreviousStep" />
+      <TickCheck 
+      :ticketsData="tickets" 
+      :tipriceData="tiprice" 
+      @nextStep="showNextStep" 
+      @previousStep="backPreviousStep" 
+      />
     </main>
 
 <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished  />
+      <TickFinished  :ticketsData="tickets" 
+      :tipriceData="tiprice" 
+      />
     </main>
 
   </section>
@@ -83,9 +102,52 @@ export default {
   data() {
     return {
       tickStep: 0,
-      device: 'PC',
       TickCalendar: false,
+      // tidate: new Date(),
+      // dateFormat: 'YYYY-MM-DD',
       tiprice: 0,
+      tickets:[
+                {
+                    id: 1,
+                    name: '成人票',
+                    rule: '18~64 歲',
+                    price: 100,
+                    src: 'src/assets/images/ticket/ticket1.svg',
+                    qty: 0,
+                },
+                {
+                    id: 2,
+                    name: '學生票',
+                    rule: '12 歲以上(含)持學生證者',
+                    price: 80,
+                    src: 'src/assets/images/ticket/ticket2.svg',
+                    qty: 0,
+                },
+                {
+                    id: 3,
+                    name: '團體票',
+                    rule: '15 人以上適用',
+                    price: 60,
+                    src: 'src/assets/images/ticket/ticket3.svg',
+                    qty: 0,
+                },
+                {
+                    id: 4,
+                    name: '兒童票',
+                    rule: '4~11 歲',
+                    price: 40,
+                    src: 'src/assets/images/ticket/ticket4.svg',
+                    qty: 0,
+                },
+                {
+                    id: 5,
+                    name: '愛心票',
+                    rule: '65 歲以上(含)',
+                    price: 40,
+                    src: 'src/assets/images/ticket/ticket5.svg',
+                    qty: 0,
+                },
+            ],
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
       // targetValue:0,
@@ -97,7 +159,7 @@ export default {
       this.isBoard = window.innerWidth < 1200;
     },
     getImagePath(){
-      return `src/assets/images/ticket/${this.device}${this.tickStep}.svg`;
+      return `src/assets/images/ticket/PC${this.tickStep}.svg`;
     },
     showNextStep(){
       this.tickStep++;
@@ -107,6 +169,14 @@ export default {
     },
     showTickCalendar(){
       this.TickCalendar=true;
+    },
+    // updateDate(newDate){
+    //   console.log(newDate);
+    //   this.tidate = newDate;
+    //   console.log(this.tidate);
+    // },
+    updateTiprice(newTiprice){
+      this.tiprice = newTiprice;
     },
   },
   // watch: {

@@ -8,7 +8,7 @@
             <img src="@/assets/images/ticket/refresh.svg">
         </hgroup>
         <main>
-            <article v-for=" ticket in tickets" :key="ticket.id">
+            <article v-for=" ticket in ticketsData" :key="ticket.id">
                 <div v-if="isBoard" class="tickOption pcInnerText">
                     <p>{{ ticket.name }}</p>
                     <span class="pcMarkText">{{ ticket.rule }}</span>
@@ -36,7 +36,7 @@
             <p>票券金額</p>
             <div class="pcSmTitle">
                 <p>NT$</p> 
-                <h2>{{tiprice}}</h2>
+                <h2>{{tipriceData}}</h2>
             </div>
         </div>
 
@@ -62,58 +62,20 @@ export default {
     },
     props:{
         // 丟資料的key值
-        'tickStep':{ type: Number },
-        // 'tiprice': {
-        //     type: Number,
-        //     required: true,
-        //     // 驗證規則內不可讀取 data. computed 屬性
-        //     // validator: value => value>0,
-        // },
+        // validator 驗證規則內不可讀取 data. computed 屬性
+        // validator: value => value>0,
+        'tickStep':{ type: Number, },
+        'ticketsData': {
+            type: Array,
+            required: true,
+        },
+        'tipriceData': {
+            type: Number,
+            required: true,
+        },
     },
     data(){
         return {
-            tickets:[
-                {
-                    id: 1,
-                    name: '成人票',
-                    rule: '18~64 歲',
-                    price: 100,
-                    src: 'src/assets/images/ticket/ticket1.svg',
-                    qty: 0,
-                },
-                {
-                    id: 2,
-                    name: '學生票',
-                    rule: '12 歲以上(含)持學生證者',
-                    price: 80,
-                    src: 'src/assets/images/ticket/ticket2.svg',
-                    qty: 0,
-                },
-                {
-                    id: 3,
-                    name: '團體票',
-                    rule: '15 人以上適用',
-                    price: 60,
-                    src: 'src/assets/images/ticket/ticket3.svg',
-                    qty: 0,
-                },
-                {
-                    id: 4,
-                    name: '兒童票',
-                    rule: '4~11 歲',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket4.svg',
-                    qty: 0,
-                },
-                {
-                    id: 5,
-                    name: '愛心票',
-                    rule: '65 歲以上(含)',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket5.svg',
-                    qty: 0,
-                },
-            ],
         }
     },
     methods:{
@@ -129,27 +91,39 @@ export default {
             this.$emit('previousStep');
         },
         increase(ticketId){
-            let ticket = this.tickets.find(
+            let ticket = this.ticketsData.find(
                 (tick) => tick.id === ticketId
             );
-
             if(ticket.qty<999){
                 ticket.qty++;
+                this.tipriceCalculate();
                 return ticket.qty;
             }
         },
         decrease(ticketId){
-            let ticket = this.tickets.find(
+            let ticket = this.ticketsData.find(
                 (tick) => tick.id === ticketId
             );
-
             if(ticket.qty>0){
                 ticket.qty--;
+                this.tipriceCalculate();
                 return ticket.qty;
             }
         },
+        tipriceCalculate(){
+            let newTiprice=this.ticketsData.reduce(
+                (sum, ticket)=>
+                sum + ticket.qty* ticket.price,
+            0);
+            
+            this.$emit('newTiprice', newTiprice);
+            return newTiprice;
+            // arr.reduce(function(accumulator, currentValue, index, array) {
+                // Do stuff with accumulator and currentValue (index, array, and initialValue are optional)
+            // }, initialValue);
+        },
         alterQty(ticketId){
-            let ticket = this.tickets.find(
+            let ticket = this.ticketsData.find(
                 (tick) => tick.id === ticketId
             );
 
@@ -184,19 +158,7 @@ export default {
     computed:{
     // computed 不需 $emit 傳遞值，會自動被 Vue 監聽，當值發生變化時，它會通知使用這個值的地方進行更新
 
-        tiprice(){
-            console.log(this.tickets.reduce(
-                (sum, ticket)=>
-                sum + ticket.qty* ticket.price,
-            0));
-            return this.tickets.reduce(
-                (sum, ticket)=>
-                sum + ticket.qty* ticket.price,
-            0);
-        // arr.reduce(function(accumulator, currentValue, index, array) {
-            // Do stuff with accumulator and currentValue (index, array, and initialValue are optional)
-        // }, initialValue);
-        },
+
     },
     watch:{
 
