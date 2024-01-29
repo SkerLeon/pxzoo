@@ -13,12 +13,13 @@
             </h2>
         </hgroup>
         <article class="choosed">
-            <main v-for=" ticket in tickets" :key="ticket.id">
+            <main v-for=" ticket in ticketsData" :key="ticket.id">
                 <div>
                     <p class="pcInnerText">{{ ticket.name }}</p>
                     <span class="pcMarkText">{{ ticket.rule }}</span>
                 </div>
-                <h2 class="pcSmTitle">1 
+                <h2 class="pcSmTitle">
+                        {{ ticket.qty }} 
                     <span class="pcMarkText">張</span>
                 </h2>
             </main>
@@ -35,7 +36,7 @@
             <span>票券金額</span>
             <div class="pcInnerText">
                 <span class="pcMarkText">NT$</span>
-                <p>260</p>
+                <p>{{tipriceData}}</p>
             </div>
         </div>
         <div class="price">
@@ -105,47 +106,20 @@ export default {
     },
     props:{
         // 丟資料的key值
+        // validator 驗證規則內不可讀取 data. computed 屬性
+        // validator: value => value>0,
         'tickStep':{ type: Number },
+        'ticketsData': {
+            type: Array,
+            required: true,
+        },
+        'tipriceData': {
+            type: Number,
+            required: true,
+        },
     },
     data(){
         return {
-            tickets: [
-                {
-                    id: 1,
-                    name: '成人票',
-                    rule: '18~64 歲',
-                    price: 100,
-                    src: 'src/assets/images/ticket/ticket1.svg'
-                },
-                {
-                    id: 2,
-                    name: '兒童票',
-                    rule: '4~11 歲',
-                    price: 80,
-                    src: 'src/assets/images/ticket/ticket2.svg'
-                },
-                {
-                    id: 3,
-                    name: '學生票',
-                    rule: '12 歲以上(含)持學生證者',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket3.svg'
-                },
-                {
-                    id: 4,
-                    name: '愛心票',
-                    rule: '65 歲以上(含)',
-                    price: 4100,
-                    src: 'src/assets/images/ticket/ticket4.svg'
-                },
-                {
-                    id: 5,
-                    name: '團體票',
-                    rule: '15 人以上適用',
-                    price: 60,
-                    src: 'src/assets/images/ticket/ticket5.svg'
-                },
-            ],
             isSmallPH: false,
             selectedCoupon: '',
             selectedPay: '',
