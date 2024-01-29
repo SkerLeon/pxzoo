@@ -1,9 +1,15 @@
 <template>
     <footer class="mainFooter">
         <div class="footer_deco">
-            <div class="grasses_1"><img src="@/assets/images/vetor/nature_grasses_1.svg" alt="grasses_1"></div>
-            <div class="grasses_9"><img src="@/assets/images/vetor/nature_grasses_9.svg" alt="grasses_9"></div>
-            <div class="grasses_5"><img src="@/assets/images/vetor/nature_grasses_5.svg" alt="grasses_5"></div>
+            <div class="grasses_1">
+                <img src="@/assets/images/vetor/nature_grasses_1.svg" alt="grasses_1">
+            </div>
+            <div class="grasses_9">
+                <img src="@/assets/images/vetor/nature_grasses_9.svg" alt="grasses_9">
+            </div>
+            <div class="grasses_5">
+                <img src="@/assets/images/vetor/nature_grasses_5.svg" alt="grasses_5">
+            </div>
             
         </div>
 
@@ -20,10 +26,18 @@
                 </div>
 
                 <div class="footer_media">
-                    <a target="_blank" href="https://www.facebook.com/"><img src="@/assets/images/footer/footer_fb.svg" alt="fb" /></a>
-                    <a target="_blank" href="https://www.instagram.com/"><img src="@/assets/images/footer/footer_ig.svg" alt="ig" /></a>
-                    <a target="_blank" href="https://line.me/tw/"><img src="@/assets/images/footer/footer_line.svg" alt="line" /></a>
-                    <a target="_blank" href="https://www.youtube.com/"><img src="@/assets/images/footer/footer_yt.svg" alt="yt" /></a>
+                    <a target="_blank" href="https://www.facebook.com/">
+                        <img src="@/assets/images/footer/footer_fb.svg" alt="fb" />
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/">
+                        <img src="@/assets/images/footer/footer_ig.svg" alt="ig" />
+                    </a>
+                    <a target="_blank" href="https://line.me/tw/">
+                        <img src="@/assets/images/footer/footer_line.svg" alt="line" />
+                    </a>
+                    <a target="_blank" href="https://www.youtube.com/">
+                        <img src="@/assets/images/footer/footer_yt.svg" alt="yt" />
+                    </a>
                 </div>
             </div>
 

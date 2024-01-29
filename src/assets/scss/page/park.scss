@@ -448,7 +448,7 @@ $time:10s;
         z-index: 500;
         top: 30%;
         width: 320px;
-        height: 49.8%;
+        height: 456px;
         background-image: url("/src/assets/images/park/pk_Animal_details_bg.png");
         background-position:center ;
         background-repeat: no-repeat;
@@ -459,6 +459,7 @@ $time:10s;
         align-items: center;
         gap: 0.5%;
         @media (max-width:768px) {
+            width: 320px;
             height: 70%;
             top: 20vh;
         }
@@ -893,7 +894,7 @@ $time:10s;
                 width: 280px;
                 top: 37%;
                 left: 50%;
-                z-index: 1000;
+                z-index: 998;
             }
             @media (max-width:600px)  {
                 width: 37%;
