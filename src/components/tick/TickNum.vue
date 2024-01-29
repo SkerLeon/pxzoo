@@ -142,7 +142,7 @@ export default {
             }
 
             this.$emit('newTiprice', newTiprice);
-            return newTiprice;
+
             // arr.reduce(function(accumulator, currentValue, index, array) {
                 // Do stuff with accumulator and currentValue (index, array, and initialValue are optional)
             // }, initialValue);

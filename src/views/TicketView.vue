@@ -31,7 +31,13 @@
     <main v-else-if="tickStep === 2">
       <TickCheck 
       :ticketsData="tickets" 
-      :tipriceData="tiprice" 
+      :tipriceData="tiprice"
+      :couponsData="coupons"
+      :couponOpData="selectedCouOp" 
+      :couponValData="selectedCouVal" 
+      :coupriceData="couprice" 
+      :paypriceData = "payprice" 
+      @newCoupon="updateCoupon" 
       @goNextStep="showNextStep" 
       @goPreviousStep="backPreviousStep" 
       />
@@ -40,7 +46,8 @@
 <!-- 100% -->
     <main v-else="tickStep === 3">
       <TickFinished  :ticketsData="tickets" 
-      :tipriceData="tiprice" 
+      :tipriceData="tiprice"
+      :coupriceData="couprice"  
       />
     </main>
 
@@ -68,6 +75,10 @@ export default {
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
+      selectedCouOp: '', 
+      selectedCouVal: 0, 
+      couprice: 0,
+      payprice: 0,
       tickets:[
           {
             id: 1,
@@ -110,6 +121,23 @@ export default {
             qty: 0,
           },
       ],
+      coupons: [
+        { 
+          id: 1,
+          option: '不使用優惠券',
+          value: 1,
+        },
+        {
+          id: 2,
+          option: '付款金額 9 折',
+          value: 0.9,
+        },
+        { 
+          id: 3,
+          option: '付款金額 95 折',
+          value: 0.95,
+        },
+      ],
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
     }
@@ -138,6 +166,12 @@ export default {
     // },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
+    },
+    updateCoupon(newCouponOp, newCouponVal, newCouprice, newPayprice){
+      this.selectedCouOp = newCouponOp;
+      this.selectedCouVal = newCouponVal;
+      this.couprice = newCouprice;
+      this.payprice = newPayprice;
     },
   },
   // watch: {

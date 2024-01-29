@@ -27,9 +27,10 @@
         <hgroup class="coupon pcInnerText">
             <h2 class="pcSmTitle">優惠折扣</h2>
             <p v-if="noCoupon">目前沒有優惠券</p>
-            <select v-else name="" id="coupon" v-model="selectedCoupon">
-                <option value="" disabled selected hidden>請選擇優惠券</option>
-                <option v-for="(coupon, couponIndex) in couponList" :key="coupon.Id" :value="coupon.value">{{ coupon.option }}</option>
+            <select v-else name="" id="coupon" v-model="selectedCoupon" 
+            @change="chooseCoupon()">
+                <option value="null" disabled default hidden>請選擇優惠券</option>
+                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon">{{ coupon.option }}</option>
             </select>
         </hgroup>
         <div class="price">
@@ -43,14 +44,14 @@
             <span>優惠金額</span>
             <div class="pcInnerText">
                 <span class="pcMarkText">NT$</span>
-                <p>26</p>
+                <p>{{coupriceData}}</p>
             </div>
         </div>
         <div class="price important">
             <p class="pcInnerText">付款金額</p>
             <div class="mixedFont pcSmTitle">
                 <p class="pcInnerText">NT$</p>
-                <h2>234</h2>
+                <h2>{{paypriceData}}</h2>
             </div>
         </div>
         <article class="payWay">
@@ -117,30 +118,33 @@ export default {
             type: Number,
             required: true,
         },
+        couponsData: {
+            type: Array,
+            required: true,
+        },
+        couponOpData: {
+            type: String,
+            required: true,
+        },
+        couponValData: {
+            type: Number,
+            required: true,
+        },
+        coupriceData: {
+            type: Number,
+            required: true,
+        },
+        paypriceData: {
+            type: Number,
+            required: true,
+        },
     },
     data(){
         return {
-            noCoupon: false, // 等界接後noCoupon的值會是從後台出來
+            noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
             isSmallPH: false,
-            selectedCoupon: '',
+            selectedCoupon: null,
             selectedPay: '',
-            couponList: [
-                { 
-                    id: 1,
-                    option: '不使用優惠券',
-                    value: 1,
-                },
-                {
-                    id: 2,
-                    option: '付款金額 9 折',
-                    value: 0.9,
-                },
-                { 
-                    id: 3,
-                    option: '付款金額 95 折',
-                    value: 0.95,
-                },
-            ],
             paywayList: [
                 { 
                     id: 1,
@@ -169,14 +173,19 @@ export default {
         windowSize(){
             this.isSmallPH = window.innerWidth <= 430;
         },
+        chooseCoupon(){
+            // 不可直接修改props值
+            // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進製表示浮點數)
+            let coupriceCal =  parseInt(
+                (this.tipriceData * (1 - this.selectedCoupon.value)).toFixed(2)
+            );
+            let paypriceCal = this.tipriceData - coupriceCal;
+
+            this.$emit("newCoupon", this.selectedCoupon.option, this.selectedCoupon.value, coupriceCal, paypriceCal);
+        },
     },
     computed:{},
     watch:{
-        selectedCoupon(newValue){
-            console.log("當前Coupon", newValue);
-            
-            this.$emit("transferCoupon", this.selectedCoupon);
-        },
         selectedPay(newValue){
             console.log("當前Pay", newValue);
             console.log("當前Pay", newValue.value);
