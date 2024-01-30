@@ -919,10 +919,10 @@ export default {
     return {
       //banner
       images: [
-        "/public/images/home/home_banner_1.jpg",
-        "/public/images/home/home_banner_2.jpg",
-        "/public/images/home/home_banner_3.jpg",
-        "/public/images/home/home_banner_4.jpg",
+        "/images/home/home_banner_1.jpg",
+        "/images/home/home_banner_2.jpg",
+        "/images/home/home_banner_3.jpg",
+        "/images/home/home_banner_4.jpg",
         // Add more image URLs as needed
       ],
       currentIndex: 0,
