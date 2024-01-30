@@ -5,7 +5,6 @@
         overflow: hidden; 
         // height: 100vh;
         
-
         &_deco{
             position: absolute;
             display: flex;
@@ -18,6 +17,11 @@
                 left: -4vw;
                 width: 13vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    bottom: 30vw;
+                    left: -8vw;
+                    width: 30vw;
+                }
             }
             .tree_4 img{
                 position: absolute;
@@ -25,6 +29,9 @@
                 left: 6vw;
                 width: 6vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    display: none;
+                }
             }
             .tree_8 img{
                 position: absolute;
@@ -32,6 +39,9 @@
                 right: -4vw;
                 width: 17vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    width: 30vw;
+                }
             }
             .squirrel_1 img{
                 position: absolute;
@@ -40,6 +50,11 @@
                 width: 7vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                @media (width <= 768px) {
+                    bottom: 20vw;
+                    left: 2vw;
+                    width: 20vw;
+                }
             }
             .ostrich img{
                 position: absolute;
@@ -47,6 +62,11 @@
                 right: 9vw;
                 width: 8vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    bottom: 20vw;
+                    right: 15vw;
+                    width: 16vw;
+                }
             }
         }
         
@@ -91,18 +111,20 @@
                     cursor: pointer;
                     filter:drop-shadow(0px 0px 0.3vw rgba(0,0,0,60));
                     padding: 0 1vw;
+                    @media (width <= 768px) {
+                        padding: 0 4vw;
+                    }
                     img{
                         width: 1.2vw;
+                        @media (width <= 768px) {
+                            width: 4vw;
+                        }
                     }
                 }
                 
             }
         }
         
-
-        
-
-
         // .banner1{
         //     width: 100%;
         //     height: 100vh;
@@ -112,9 +134,6 @@
         //     background-position: center center;
         // }
     }
-    
-
-    
 
     //快速選單 選單
     .home_qkmnu{
@@ -127,11 +146,13 @@
         width: 74%;
         margin: auto;
         z-index: 3;
+        @media (width <= 768px) {
+            bottom: 5vw;
+            width: 90%;
+        }
         .home_qkmnu_btn{
             position: relative;
-            
-            
-            // cursor: pointer;
+
             .home_qkmnu_btn_img{
                 position: absolute;
                 width: 17vw;
@@ -165,15 +186,31 @@
             background-image: url("/src/assets/images/home/home_btnbkg.svg");
             background-repeat: no-repeat;
             background-position: center center;
-            background-color: rgba(255, 255, 255, 0);  
+            background-color: rgba(255, 255, 255, 0);
+            
+            @media (width <= 768px) {
+                padding-bottom: 7px;
+                width: 21vw;
+                height: 15.5vw;
+                background-image: url("/src/assets/images/home/home_btnbkg_ph.svg");
+            }  
+            
             &:hover{
                 background-image: url("/src/assets/images/home/home_btnbkg_hover.svg");
+                @media (width <= 768px) {
+                    background-image: url("/src/assets/images/home/home_btnbkg_hover_ph.svg");;
+                }
             }
+
+            
 
         }
 
         button.hovered{
             background-image: url("/src/assets/images/home/home_btnbkg_hover.svg");
+            @media (width <= 768px) {
+                background-image: url("/src/assets/images/home/home_btnbkg_hover_ph.svg");;
+            }
         }
     }
 
@@ -182,6 +219,9 @@
         width: 74%;
         height: 40vw;
         margin: auto;
+        @media (width <= 768px) {
+            width: 90%;
+        }
 
         &_time{
             padding: 11% 0;
@@ -190,11 +230,18 @@
                 justify-content: space-between;
                 text-align: center;
                 align-self: center;
+                @media (width <= 768px) {
+                    flex-direction: column;
+                }
 
                 .timeitem{
                     width: 32%;
                     border: 2px $primaryColorGreen solid;
                     align-items: center;
+                    @media (width <= 768px) {
+                        width: 100%;
+                        margin: 2vw 0;
+                    }
 
                     .title{
                         color: $primaryColorYellow;
@@ -202,6 +249,10 @@
                         height: 50%;
                         padding-top: 8%;
                         padding-bottom: 8%;
+                        @media (width <= 768px) {
+                            padding-top: 2%;
+                            padding-bottom: 2%;
+                        }
                     }
 
                     .clock{
@@ -209,6 +260,10 @@
                         height: 50%;
                         padding-top: 8%;
                         padding-bottom: 8%;
+                        @media (width <= 768px) {
+                            padding-top: 2%;
+                            padding-bottom: 2%;
+                        }
                     }
                     
                 }
@@ -237,6 +292,11 @@
             justify-content: space-between;
             color: $mainTextColor;
             text-align: center;
+            @media (width <= 768px) {
+                flex-direction: column;
+                padding: 6% 0;
+                
+            }
             
             .ticket_heading{
                 width: 15%;
@@ -251,28 +311,95 @@
                         padding: 5.5vw 0;
                     }
                 }
+                @media (width <= 768px) {
+                    display: none;
+                }
                 
+            }
+
+            .adult{
+                @media (width <= 768px) {
+                    border: 4px #5EA4C0 solid;
+                    .line{
+                        background-color: #5EA4C0;
+                    }
+                }
+            }
+            .student{
+                @media (width <= 768px) {
+                    border: 4px #FED001 solid;
+                }
+            }
+            .kid{
+                @media (width <= 768px) {
+                    border: 4px #11A729 solid;
+                }
+            }
+            .heart{
+                @media (width <= 768px) {
+                    border: 4px #FF6100 solid;
+                }
+            }
+            .group{
+                @media (width <= 768px) {
+                    border: 4px #008FC8 solid;
+                }
             }
 
             .ticket_type{
                 width: 15%;
                 height: 400px;
                 position: relative;
+                @media (width <= 768px) {
+                    width: 100%;
+                    height: 95px;
+                    margin: 1.5vw 0;
+                    
+                }
                 .ticket_bg{
                     width: 100%;
                     position: absolute;
                     left: 0;
                     top: 0;
+                    @media (width <= 768px) {
+                        display: none;
+                    }
                 }
                 .ticket_text{
                     position: absolute;
                     left: 14%;
                     width: 70%;
+                    @media (width <= 768px) {
+                        left: 2%;
+                        width: 95%;
+                        text-align: start;
+                        margin: auto;
+                    }
+                    &_title{
+                        @media (width <= 768px) {
+                            display: flex;
+                            align-items: flex-end;
+                            justify-content: space-between;
+                        }
+                        .line{
+                            @media (width <= 768px) {
+                                display: none;
+                            }
+                        }
+                    }
+                    
                     h2{
                         padding: 5vw 0 3vw 0;
+                        @media (width <= 768px) {
+                            padding: 2vw 0 3vw 0;
+                        }
                     }
                     .ticket_price{
                         padding: 3vw 0;
+                        @media (width <= 768px) {
+                            padding: 2vw 0 3vw 0;
+                        }
+
                     }
                     .line{
                         width: 100%;
@@ -283,7 +410,7 @@
                         padding: 3vw 0 5vw 0;
                         line-height: 1.5vw;
                     }
-
+                    
                     
                 }
                 
@@ -292,6 +419,7 @@
         }
 
         &_park{
+            // position: relative;
             width: 80%;
             margin: auto;
             padding: 7% 0;
@@ -302,6 +430,48 @@
             //     width: 80%;
             //     vertical-align: bottom;
             // }
+            @media (width <= 768px) {
+                width: 100%;
+                overflow: auto;
+
+                &::-webkit-scrollbar{
+                    width: 0;
+                }
+                &::-webkit-scrollbar-track{
+                    overflow: hidden;
+                }
+
+                .parkgroup{
+                    width: 280%;
+                    text-align: center;
+                    justify-content: center;
+                }
+            }
+
+            .parkmark{
+                position: absolute;
+                left: 35%;
+                right: 0;
+                bottom: -120vw;
+                z-index: 1;
+                background-color: #000000aa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5vw 1vw;
+                width: 28vw;
+                display: none;
+                img{
+                    width: 2vw;
+                }
+                span{
+                    color: $bgColorWhite;
+                    padding: 0 2vw;
+                }
+                @media (width <= 768px) {
+                    display: flex;
+                }
+            }
         }
 
         &_traffic{
@@ -309,11 +479,22 @@
             display: flex;
             justify-content: space-between;
             align-content: center;
+            @media (width <= 768px) {
+                flex-direction: column;
+                width: 98%;
+                padding: 0;
+            }
 
             .traffic_btn{
                 display: flex;
                 flex-direction: column;
                 padding: 7% 0;
+
+                @media (width <= 768px) {
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                }
+
                 button{
                     margin-top: 2vw;
                     &:nth-child(3){
@@ -322,6 +503,26 @@
                             gap: 0.1vw;
                             img{
                                 width: 150px;
+                            }
+                            @media (width <= 768px) {
+                                padding-top: 2vw;
+                                gap: 0.4vw;
+                            }
+                        }
+                    }
+
+                    @media (width <= 768px) {
+                        width: 65px;
+                        height: 65px;
+                        margin-top: 0vw;
+                        .iconText{
+                            display: flex;
+                            flex-direction: column;
+                            padding-top: 2vw;
+                            gap: 0.4vw;
+                            .buttonIcon {
+                                width: 20px;
+                                height: 20px;
                             }
                         }
                     }
@@ -333,14 +534,34 @@
 
             .traffic_page{
                 position: relative;
+                width: 85%;
+
+                @media (width <= 768px) {
+                    width: 90%;
+                    margin: auto;
+                    left: -8%;
+                }
 
                 &_map_mapimg {
                     img{
-                        position: absolute;
+                        position: relative;
                         width: 100%;
                         vertical-align: bottom;
                     }
+                    .phmap{
+                        display: none;
+                        left: 10%;
+                    }
+                    @media (width <= 768px) {
+                        .pcmap{
+                            display: none;
+                        }
+                        .phmap{
+                            display: block;
+                        }
+                    }
                 }
+
                 .traffic_page_deco{
                     position: absolute;
                     display: flex;
@@ -349,135 +570,234 @@
 
                     .cloud_6 img{
                         position: absolute;
-                        top: -2vw;
+                        top: -31vw;
                         left: -4vw;
                         width: 13vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            top: -120vw;
+                            left: -7vw;
+                            width: 26vw;
+                        }
                     }
 
                     .cloud_2 img{
                         position: absolute;
-                        bottom: -30vw;
+                        bottom: 0vw;
                         right: 0vw;
                         width: 15vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            bottom: -0vw;
+                            right: -20vw;
+                            width: 35vw;
+                        }
                     }
 
                     .hedgehog img{
                         position: absolute;
-                        bottom: -28.5vw;
+                        bottom: 0vw;
                         right: 10vw;
                         width: 6vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            bottom: 0vw;
+                            right: 5vw;
+                            width: 13vw;
+                        }
                     }
                 }
-                // position: relative;
-                width: 85%;
+                
                 
                 &_map_location{
                     position: absolute;
                     .ground img{
                         position: absolute;
-                        top: 9.85vw;
+                        top: -18.7vw;
                         left: 27.6vw;
                         width: 4.5vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            top: -67.5vw;
+                            left: 41.6vw;
+                            width: 12.3vw;
                         }
+                    }
                     .location img{
                         position: absolute;
-                        top: 7vw;
+                        top: -22vw;
                         left: 27.6vw;
                         width: 4.5vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            top: -78vw;
+                            left: 40vw;
+                            width: 15vw;
+                        }
                     }
                     .ladybug img{
                         position: absolute;
-                        top: 9vw;
+                        top: -20vw;
                         left: 29vw;
                         width: 1.2vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            top: -70vw;
+                            left: 46vw;
+                            width: 3vw;
+                        }
                     }
                     .conversation img{
                         position: absolute;
-                        top: 7.3vw;
+                        top: -22vw;
                         left: 26.5vw;
                         width: 3vw;
                         vertical-align: bottom;
+                        @media (width <= 768px) {
+                            top: -78vw;
+                            left: 37vw;
+                            width: 10vw;
+                        }
                     }
                 }
 
 
                 &_train img{
                     position: absolute;
-                    bottom: 3.5vw;
+                    bottom: 5vw;
                     left: 32.5vw;
                     width: 2.3vw;
                     vertical-align: bottom;
+                    @media (width <= 768px) {
+                        bottom: 27vw;
+                        left: 54vw;
+                        width: 7vw;
+                    }
                 }
 
                 &_bus img{
                     position: absolute;
                     width: 2.3vw;
                     vertical-align: bottom;
+                    @media (width <= 768px) {
+                        width: 7vw;
+                    }
                     &:nth-child(1){
-                        bottom: 9vw;
+                        bottom: 11.5vw;
                         left: 46vw;
+                        @media (width <= 768px) {
+                            display: none;
+                        }
                     }
                     &:nth-child(2){
-                        bottom: 7.5vw;
+                        bottom: 10vw;
                         left: 39vw;
+                        @media (width <= 768px) {
+                            bottom: 33vw;
+                            left: 60vw;
+                        }
                     }
                     &:nth-child(3){
-                        bottom: 5vw;
+                        bottom: 7.5vw;
                         left: 34.5vw;
+                        @media (width <= 768px) {
+                            bottom: 39.5vw;
+                            left: 72vw;
+                        }
                     }
                     &:nth-child(4){
-                        bottom: 1vw;
+                        bottom: 3.5vw;
                         left: 27vw;
+                        @media (width <= 768px) {
+                            bottom: 22.5vw;
+                            left: 40.5vw;
+                        }
                     }
                     &:nth-child(5){
-                        bottom: 11vw;
+                        bottom: 13.5vw;
                         left: 33vw;
+                        @media (width <= 768px) {
+                            bottom: 47.5vw;
+                            left: 58vw;
+                        }
                     }
                     &:nth-child(6){
-                        bottom: 10vw;
+                        bottom: 12.5vw;
                         left: 28vw;
+                        @media (width <= 768px) {
+                            bottom: 43.5vw;
+                            left: 40vw;
+                        }
                     }
                     &:nth-child(7){
-                        bottom: 6.5vw;
+                        bottom: 9vw;
                         left: 21vw;
+                        @media (width <= 768px) {
+                            bottom: 38vw;
+                            left: 22vw;
+                        }
                     }
                     &:nth-child(8){
-                        bottom: 2.5vw;
+                        bottom: 5vw;
                         left: 11vw;
+                        @media (width <= 768px) {
+                            display: none;
+                        }
                     }
                     &:nth-child(9){
-                        bottom: 13.5vw;
+                        bottom: 16vw;
                         left: 28vw;
+                        @media (width <= 768px) {
+                            bottom: 55vw;
+                            left: 41vw;
+                        }
                     }
                     &:nth-child(10){
-                        bottom: 11.5vw;
+                        bottom: 14vw;
                         left: 23.5vw;
+                        @media (width <= 768px) {
+                            bottom: 49vw;
+                            left: 30vw;
+                        }
                     }
                     &:nth-child(11){
-                        bottom: 15vw;
+                        bottom: 17.5vw;
                         left: 21vw;
+                        @media (width <= 768px) {
+                            bottom: 60vw;
+                            left: 23vw;
+                        }
                     }
                     &:nth-child(12){
-                        bottom: 19.5vw;
+                        bottom: 22vw;
                         left: 34vw;
+                        @media (width <= 768px) {
+                            bottom: 73.5vw;
+                            left: 57vw;
+                        }
                     }
                     &:nth-child(13){
-                        bottom: 23vw;
+                        bottom: 25.5vw;
                         left: 30.5vw;
+                        @media (width <= 768px) {
+                            bottom: 80.5vw;
+                            left: 49.5vw;
+                        }
                     }
                     &:nth-child(14){
-                        bottom: 22.5vw;
+                        bottom: 25vw;
                         left: 24vw;
+                        @media (width <= 768px) {
+                            bottom: 80vw;
+                            left: 30vw;
+                        }
                     }
                     &:nth-child(15){
-                        bottom: 18.5vw;
+                        bottom: 21vw;
                         left: 13vw;
+                        @media (width <= 768px) {
+                            display: none;
+                        }
                     }
                 }
 
@@ -485,13 +805,24 @@
                     position: absolute;
                     width: 2.3vw;
                     vertical-align: bottom;
+                    @media (width <= 768px) {
+                        width: 7vw;
+                    }
                     &:nth-child(1){
-                        bottom: 4.5vw;
+                        bottom: 7vw;
                         left: 34.5vw;
+                        @media (width <= 768px) {
+                            bottom: 78vw;
+                            left: 48.5vw;
+                        }
                     }
                     &:nth-child(2){
-                        bottom: 21vw;
+                        bottom: 23.5vw;
                         left: 30.5vw;
+                        @media (width <= 768px) {
+                            bottom: 31.5vw;
+                            left: 60.5vw;
+                        }
                     }
                 }
 
@@ -499,29 +830,62 @@
                     position: absolute;
                     width: 2.3vw;
                     vertical-align: bottom;
+                    @media (width <= 768px) {
+                        width: 7vw;   
+                    }
                     &:nth-child(1){
-                        bottom: 4.5vw;
+                        bottom: 6vw;
                         left: 27vw;
+                        @media (width <= 768px) {
+                            bottom: 30vw;
+                            left: 39vw;
+                        }
                     }
                     &:nth-child(2){
-                        bottom: 6vw;
+                        bottom: 7.5vw;
                         left: 23vw;
+                        @media (width <= 768px) {
+                            bottom: 34.5vw;
+                            left: 27vw;
+                        }
                     }
                     &:nth-child(3){
-                        bottom: 4.5vw;
+                        bottom: 6vw;
                         left: 34.5vw;
+                        display: none;
                     }
                     &:nth-child(4){
-                        bottom: 12vw;
+                        bottom: 13.5vw;
                         left: 34vw;
+                        @media (width <= 768px) {
+                            bottom: 50.5vw;
+                            left: 60vw;
+                        }
                     }
                     &:nth-child(5){
-                        bottom: 14vw;
+                        bottom: 15.5vw;
                         left: 28.5vw;
+                        @media (width <= 768px) {
+                            bottom: 55.5vw;
+                            left: 43.5vw;
+                        }
+                        
                     }
                     &:nth-child(6){
-                        bottom: 18.5vw;
+                        bottom: 20vw;
                         left: 32vw;
+                        @media (width <= 768px) {
+                            bottom: 68.5vw;
+                            left: 55.5vw;
+                        }
+                    }
+                    &:nth-child(7){
+                        bottom: 24vw;
+                        left: 27vw;
+                        @media (width <= 768px) {
+                            bottom: 84vw;
+                            left: 41vw;
+                        }
                     }
                 }
             }
@@ -537,6 +901,11 @@
                 top: 0.5vw;
                 left: 1vw;
                 animation: beeconver 15s linear infinite;
+                @media (width <= 768px) {
+                    top: 185vw;
+                    left: 1vw;
+                    animation: beeconverph 15s linear infinite;
+                }
                 .beeimg img{
                     position: absolute;
                     top: -28vw;
@@ -544,6 +913,9 @@
                     width: 6vw;
                     vertical-align: bottom;
                     transform:scaleX(-1);
+                    @media (width <= 768px) {
+                        width: 13vw;
+                    }
                 }
                 
                 .beeconversation {
@@ -561,6 +933,9 @@
                     img{
                         width: 8vw;
                         vertical-align: bottom;
+                    }
+                    @media (width <= 768px) {
+                        display: none; 
                     }
                 }
 
@@ -590,6 +965,33 @@
                         left: 1vw;
                     }
                 }
+
+                @keyframes beeconverph {
+                    15% {
+                        top: 186vw;
+                        left: 2.5vw;
+                    }
+                    30% {
+                        top: 187vw;
+                        left: 1vw;
+                    }
+                    85% {
+                        top: 186vw;
+                        left: 0.5vw;
+                    }
+                    60% {
+                        top: 185vw;
+                        left: 1vw;
+                    }
+                    75% {
+                        top: 186vw;
+                        left: 2.5vw;
+                    }
+                    90% {
+                        top: 187vw;
+                        left: 1vw;
+                    }
+                }
             }
             
 
@@ -599,6 +1001,10 @@
                 right: 0;
                 width: 9vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    top: 110vw;
+                    width: 20vw;
+                }
             }
             
             .chameleonconversation {
@@ -618,6 +1024,9 @@
                     width: 8vw;
                     vertical-align: bottom;
                 }
+                @media (width <= 768px) {
+                    display: none;  
+                }
             }
 
         }
@@ -626,82 +1035,103 @@
     .home_animalfoot{
         position: relative;
         top: 8vw;
-        // animation: name duration timing-function delay iteration-count direction fill-mode;
-
+        @media (width <= 768px) {
+            top: 145vw;
+        }
         img{
             transform: scale(0);
             animation: 8000ms foot infinite;
+            width: 7vw;
+            @media (width <= 768px) {
+                width: 13vw;
+            }
         }
 
         .foot1{
             position: absolute;
-            width: 8vw;
-            // opacity: 0;
-            // animation: foot 9s .2s 5 normal forwards;
+            @media (width <= 768px) {
+                left: -3vw;
+            }
         }
         .foot2{
             position: absolute;
-            // opacity: 0;
             top: -4vw;
             left: 4vw;
             animation-delay: 200ms;
-            // animation: foot 8.7s .8s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -8vw;
+                left: 3vw;
+            }
         }
         .foot3{
             position: absolute;
-            // opacity: 0;
             top: -7vw;
             left: 10vw;
             animation-delay: 400ms;
-            // animation: foot 8.4s 1.1s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -15vw;
+                left: 10vw;   
+            }
         }
         .foot4{
             position: absolute;
-            // opacity: 0;
             top: -8vw;
             left: 17vw;
             animation-delay: 600ms;
-            // animation: foot 8.1s 1.4s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -21vw;
+                left: 18vw;
+            }
         }
         .foot5{
             position: absolute;
-            // opacity: 0;
             top: -7.5vw;
             left: 24.5vw;
             animation-delay: 800ms;
-            // animation: foot 7.8s 1.7s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -24vw;
+                left: 28vw;   
+            }
         }
         .foot6{
             position: absolute;
-            // opacity: 0;
             top: -7vw;
             left: 31vw;
             animation-delay: 1000ms;
-            // animation: foot 7.5s 2s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -26vw;
+                left: 38vw;
+            }
         }
         .foot7{
             position: absolute;
-            // opacity: 0;
             top: -7vw;
             left: 36.5vw;
             animation-delay: 1200ms;
-            // animation: foot 7.2s 2.3s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -26vw;
+                left: 49vw;   
+            }
         }
         .foot8{
             position: absolute;
-            // opacity: 0;
             top: -7.5vw;
             left: 42.5vw;
             animation-delay: 1400ms;
-            // animation: foot 6.9s 2.6s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -28vw;
+                left: 58vw;   
+            }
         }
         .foot9{
             position: absolute;
-            // opacity: 0;
             top: -9vw;
             left: 48vw;
             animation-delay: 1600ms;
-            // animation: foot 6.6s 2.9s 5 normal forwards;
+            @media (width <= 768px) {
+                top: -32vw;
+                left: 68vw;
+            }
         }
 
     
@@ -727,38 +1157,67 @@
         padding-bottom: 13vw;
         position: relative;
         margin-top: 18vw;
+        
+        @media (width <= 768px) {
+            margin-top: 140vw;  
+            padding-bottom: 40vw;
+            overflow: hidden;
+        }
 
         &_section{
             display: flex;
             width: 74%;
             margin: auto;
+            @media (width <= 768px) {
+                flex-direction: column;
+                width: 90%;
+            }
         }
 
         &_weather{
             width: 35%;
             text-align: center;
             cursor: pointer;
+            @media (width <= 768px) {
+                width: 100%; 
+            }
+
             h2{
                 color: $secColorblue;
             }
             .city{
                 color: $mainTextColor;
                 line-height: 5vw;
+                @media (width <= 768px) {
+                    line-height: 15vw;
+                }
             }
+
             .weatherimg{
 
                 img{
                     width: 13vw;
+                    @media (width <= 768px) {
+                        width: 32vw;
+                    }
                 }
             }
             .temperature{
                 color: $mainTextColor;
                 line-height: 5vw;
+                @media (width <= 768px) {
+                    line-height: 15vw;
+                }
             }
         }
 
         &_news{
             width: 65%;
+            @media (width <= 768px) {
+                width: 100%;
+                margin-top: 20vw;
+                z-index: 2;
+            }
             &_heading{
                 display: flex;
                 justify-content: space-between;
@@ -772,6 +1231,9 @@
                 height: 16.5vw;
                 overflow: auto;
                 // display: flex;
+                @media (width <= 768px) {
+                    height: 65.5vw;
+                }
 
                 &::-webkit-scrollbar{
                     width: 0;
@@ -787,6 +1249,16 @@
                     &:last-child{
                         border-bottom: 1px $mainTextColor solid;
                     }
+                    @media (width <= 768px) {
+                        padding: 3vw 1.5vw;
+
+                        .newsFrame {
+                            width: 90px;
+                            .newsFrameText {
+                                top: -0px;
+                            }
+                        }
+                    }
 
                     .news_datetag{
                         display: flex;
@@ -797,13 +1269,20 @@
                         }
                         .news_tag{
                             margin: 0 2vw;
+                            @media (width <= 768px) {
+                                margin: 0 18vw;
+                            }
                         }
+
                     }
                     
                     
                     .news_title{
                         color: $mainTextColor;
                         width: 60%;
+                        @media (width <= 768px) {
+                            width: 100%;
+                        }
                         p{
                             //自動...
                             overflow:hidden;
@@ -822,12 +1301,17 @@
             display: flex;
             width: 100%;
             bottom: 0;
+            
             .tree_7 img{
                 position: absolute;
                 bottom: 0;
                 left: -4vw;
                 width: 12vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    left: -4vw;
+                    width: 20vw;
+                }
             }
             .giraffe img{
                 position: absolute;
@@ -835,7 +1319,12 @@
                 left: 3vw;
                 width: 10vw;
                 vertical-align: bottom;
-                // transform:scaleX(-1);
+                @media (width <= 768px) {
+                    transform:scaleX(-1);
+                    left: 86vw;
+                    width: 35vw;
+                }
+                
             }
             .grass_1 img{
                 position: absolute;
@@ -843,6 +1332,10 @@
                 left: 14vw;
                 width: 4vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    left: 20vw;
+                    width: 7vw;
+                }
             }
             .grass_3 img{
                 position: absolute;
@@ -850,6 +1343,10 @@
                 left: 20vw;
                 width: 2.5vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    left: 33vw;
+                    width: 5vw;
+                }
             }
             .grass_5 img{
                 position: absolute;
@@ -857,6 +1354,10 @@
                 right: 15vw;
                 width: 5vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    right: 15vw;
+                    width: 9vw;
+                }
             }
             .tree_1 img{
                 position: absolute;
@@ -864,6 +1365,10 @@
                 bottom: 0;
                 width: 12vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    right: -4vw;
+                    width: 21vw;
+                }
             }
         }
         
@@ -891,20 +1396,24 @@
             top: 20px;
             display: flex;
             justify-content: space-between;
-            // flex-direction: column;
             align-items: center;
             width: 70vw;
             height: 20vw;
             padding: 5vw;
-            // @media (width <= 768px) {
-            //     width: 80%;
-            //     height: 60%;
-            // }
         
             background-size: cover;
             background-image: url("/src/assets/images/home/home_weather_papper.svg");
             background-repeat: no-repeat;
             background-position: center center;
+            @media (width <= 768px) {
+                top: 15%;
+                width: 85vw;
+                height: 135vw;
+                flex-direction: column;
+                
+                padding: 13vw 5vw;
+                background-image: url("/src/assets/images/home/home_weather_papper_ph.svg");
+            }
 
             .close {
                 position: absolute;
@@ -913,6 +1422,10 @@
                 width: 30px;
                 height: 30px;
                 cursor: pointer;
+                @media (width <= 768px) {
+                    top: 30px;
+                    right: 30px;
+                }
             }
             
 
@@ -920,17 +1433,50 @@
                 display: flex;
                 justify-content: space-between;
                 
+                @media (width <= 768px) {
+                    width: 80%;
+                }
                 &_day{
                     color: $mainTextColor;
+                    @media (width <= 768px) {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                    }
+
+
+                    p{
+                        @media (width <= 768px) {
+                            width: 40%;
+                            text-align: center;
+                        }
+                        
+                    }
                     h3{
+                        @media (width <= 768px) {
+                            width: 30%;
+                            text-align: start;
+                        }
                         
-                        
+                    }
+                    .weather{
+                        width: 25%;
+                        margin: auto;
                     }
                     img{
                         width: 80%;
                         vertical-align: bottom;
                         padding: 0 0 1.5vw 0;
+                        text-align: center;
+                        @media (width <= 768px) {
+                            // width: 30%;
+                            padding: 0;
+                            margin: auto;
+                            // text-align: start;
+                        }
                     }
+                    
                 }
             }
         }
@@ -938,9 +1484,52 @@
 
     //園區地圖
     .home_park{
-        img{
+        // position: relative;
+        margin: auto;
+        @media (width <= 768px) {
             width: 100%;
-            vertical-align: bottom;
+            overflow: auto;
+            
+            &::-webkit-scrollbar{
+                width: 0;
+            }
+            &::-webkit-scrollbar-track{
+                overflow: hidden;
+            }
+
+            .parkgroup{
+                width: 280%;
+                img{
+                    vertical-align: bottom;
+                }
+                // text-align: center;
+                // justify-content: center;
+            }
+        }
+
+        .parkmark{
+            position: absolute;
+            left: 35%;
+            right: 0;
+            bottom: -500vw;
+            z-index: 1;
+            background-color: #000000aa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5vw 1vw;
+            width: 28vw;
+            display: none;
+            img{
+                width: 2vw;
+            }
+            span{
+                color: $bgColorWhite;
+                padding: 0 2vw;
+            }
+            @media (width <= 768px) {
+                display: flex;
+            }
         }
     }
 
@@ -949,23 +1538,36 @@
         background-color: $bgColorLightgray;
         position: relative;
         padding-top: 5vw;
-        
+        @media (width <= 768px) {
+            margin-top: -5vw;
+            padding-top: 25vw;
+        }
         &_section{
             width: 74%;
             margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;  
+            @media (width <= 768px) {
+                flex-direction: column;
+                width: 90%;
+            }
         }
 
         &_text{
             padding-bottom: 7vw;
+            @media (width <= 768px) {
+                text-align: center;
+            }
             h2{
                 color: $primaryColorGreen;
             }
             h3{
                 color: $mainTextColor;
                 padding: 0.1vw 0 1vw 0;
+                @media (width <= 768px) {
+                    padding: 2vw 0 4vw 0;
+                }
             }
         }
 
@@ -973,9 +1575,17 @@
             position: relative;
             height: 600px;
             width: 55%;
+            @media (width <= 768px) {
+                height: 500px;
+                width: 90%;
+            }
+
             .vote_img {
                 width: 9vw;
                 border: $primaryColorYellow solid 3px;
+                @media (width <= 768px) {
+                    width: 20vw;
+                }
             }
 
             //共用樣式
@@ -984,10 +1594,15 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                
                 .vote_name {
                     margin: 1vw 0 2vw 0;
                     color: $mainTextColor;
+                    @media (width <= 768px) {
+                        margin: 3vw 0 5vw 0;
+                    }
                 }
+
                 .podium_box{
                     display: flex;
                     justify-content: center;
@@ -1000,18 +1615,29 @@
                         rgba(254, 208, 1, 0.38716736694677867) 41%,
                         rgba(254, 208, 1, 0) 85%
                     );
+
+                    @media (width <= 768px) {
+                        width: 30vw;
+                    }
                 }
                 .NO {
                     width: 2.3vw;
                     height: auto;
                     position: absolute;
-                    top: -1vw
+                    top: -1vw;
+                    @media (width <= 768px) {
+                        width: 6.3vw;
+                        top: -3vw;
+                    }
                 }
                 .score{
                     color: $mainTextColor;
                     position: absolute;
                     top: 2.5vw;
                     z-index: 10;
+                    @media (width <= 768px) {
+                        top: 6.5vw;
+                    }
                 }
             }
         
@@ -1020,6 +1646,9 @@
                 left: 0;
                 right: 0;
                 bottom: -4vw;
+                @media (width <= 768px) {
+                    bottom: -10vw;
+                }
                 .podium_box {
                     height: 25vw;
                     z-index: 3;
@@ -1033,6 +1662,9 @@
                         rgba(255, 255, 255, 0) 85%
                     );
                     border-image-slice: 1;
+                    @media (width <= 768px) {
+                        height: 80vw;
+                    }
                 }
             }
             
@@ -1040,9 +1672,15 @@
                 left: 0;
                 position: absolute;
                 bottom: -4vw;
+                @media (width <= 768px) {
+                    bottom: -10vw;
+                }
                 .podium_box {
                     height: 20vw;
                     z-index: 2;
+                    @media (width <= 768px) {
+                        height: 65vw;
+                    }
                 }
             }
 
@@ -1050,9 +1688,15 @@
                 right: 0;
                 position: absolute;
                 bottom: -4vw;
+                @media (width <= 768px) {
+                    bottom: -10vw;
+                }
                 .podium_box {
                     height: 15vw;
                     z-index: 1;
+                    @media (width <= 768px) {
+                        height: 50vw;
+                    }
                 }
             }
             
@@ -1070,6 +1714,11 @@
                 width: 14vw;
                 vertical-align: bottom;
                 animation: cloud_4 12s linear infinite;
+                @media (width <= 768px) {
+                    animation: cloud_4_ph 12s linear infinite;
+                    top: 52vw;
+                    width: 30vw;
+                }
             }
             .cloud_6 img{
                 position: absolute;
@@ -1078,6 +1727,12 @@
                 width: 11vw;
                 vertical-align: bottom;
                 animation: cloud_6 17s linear infinite;
+                @media (width <= 768px) {
+                    animation: cloud_6_ph 17s linear infinite;
+                    top: -4vw;
+                    left: 60vw;
+                    width: 23vw;
+                }
             }
             .cloud_3 img{
                 position: absolute;
@@ -1086,6 +1741,12 @@
                 width: 14vw;
                 vertical-align: bottom;
                 animation: cloud_3 15s linear infinite;
+                @media (width <= 768px) {
+                    animation: cloud_3_ph 15s linear infinite;
+                    top: 70vw;
+                    right: 0vw;
+                    width: 26vw;
+                }
             }
 
             @keyframes cloud_4 {
@@ -1112,6 +1773,33 @@
                 90% {
                     right: -4vw;
                     top: 10vw;
+                }
+            }
+            
+            @keyframes cloud_4_ph {
+                15% {
+                    left: -3vw;
+                    top: 53vw;
+                }
+                30% {
+                    left: -2vw;
+                    top: 52vw;
+                }
+                45% {
+                    left: -1vw;
+                    top: 53vw;
+                }
+                60% {
+                    right: -2vw;
+                    top: 52vw;
+                }
+                75% {
+                    right: -3vw;
+                    top: 53vw;
+                }
+                90% {
+                    right: -4vw;
+                    top: 52vw;
                 }
             }
 
@@ -1142,6 +1830,33 @@
                 }
             }
 
+            @keyframes cloud_6_ph {
+                15% {
+                    left: 61vw;
+                    top: -4vw;
+                }
+                30% {
+                    left: 62vw;
+                    top: -3vw;
+                }
+                45% {
+                    left: 63vw;
+                    top: -4vw;
+                }
+                60% {
+                    right: 62vw;
+                    top: -3vw;
+                }
+                75% {
+                    right: 61vw;
+                    top: -3vw;
+                }
+                90% {
+                    right: 60vw;
+                    top: -4vw;
+                }
+            }
+
             @keyframes cloud_3 {
                 15% {
                     right: 3vw;
@@ -1168,6 +1883,33 @@
                     top: 7vw;
                 }
             }
+
+            @keyframes cloud_3_ph {
+                15% {
+                    right: 1vw;
+                    top: 71vw;
+                }
+                30% {
+                    right: 2vw;
+                    top: 72vw;
+                }
+                45% {
+                    right: 3vw;
+                    top: 71vw;
+                }
+                60% {
+                    right: 2vw;
+                    top: 70vw;
+                }
+                75% {
+                    right: 1vw;
+                    top: 71vw;
+                }
+                90% {
+                    right: 0vw;
+                    top: 72vw;
+                }
+            }
         }
 
         &_decoground{
@@ -1180,6 +1922,10 @@
                 left: -2vw;
                 width: 6vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    width: 11vw;
+                    left: 5vw;
+                }
             }
             .crocodile img{
                 position: absolute;
@@ -1188,6 +1934,11 @@
                 width: 16vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                z-index: 5;
+                @media (width <= 768px) {
+                    left: 22vw;
+                    width: 33vw;
+                }
             }
             .meerkat img{
                 position: absolute;
@@ -1196,6 +1947,12 @@
                 width: 3vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                z-index: 5;
+                @media (width <= 768px) {
+                    left: 32vw;
+                    bottom: 10vw;
+                    width: 8vw;
+                }
             }
             .conversation {
                 &_text{
@@ -1213,6 +1970,10 @@
                     width: 7vw;
                     vertical-align: bottom;
                 }
+
+                @media (width <= 768px) {
+                    display: none;
+                }
             }
             
             
@@ -1226,12 +1987,19 @@
         background-color: $primaryColorGreen;
         text-align: center;
         padding: 7vw 0;
+        @media (width <= 768px) {
+            padding: 20vw 0;
+        }
+
         &_title{
             color: $primaryColorYellow;
         }
         h3{
             color: $bgColorWhite;
             padding: 0.1vw 0 1vw 0;
+            @media (width <= 768px) {
+                padding: 2vw 0 8vw 0;
+            }
         }
         &_section{
             overflow-x: auto;
@@ -1248,6 +2016,9 @@
                 width: 3500px;
                 padding: 3vw 0;
                 display: flex;
+                @media (width <= 768px) {
+                    padding: 5vw 0;
+                }
                 .comment{
                     background-color: $bgColorWhite;    
                     border: 3px $primaryColorGreen solid;
@@ -1306,6 +2077,9 @@
                         color: $mainTextColor;
                         padding-top: 0.6vw;
                         text-align: justify;
+                        @media (width <= 768px) {
+                            padding: 2vw 0;
+                        }
                     }
                 }
                 .comm1{
@@ -1332,6 +2106,12 @@
 
         .iconBtn{
             width: 135px;
+            @media (width <= 768px) {
+                width: 105px;
+                .iconText{
+                    padding: 0 2vw;
+                }
+            }
         }
 
         &_decotop{
@@ -1345,6 +2125,11 @@
                 width: 7vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                @media (width <= 768px) {
+                    top: 12vw;
+                    left: -2vw;
+                    width: 12vw;
+                }
             }
             .tree_4 img{
                 position: absolute;
@@ -1352,6 +2137,11 @@
                 left: 8vw;
                 width: 7vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    top: 42vw;
+                    left: 4vw;
+                    width: 10vw;
+                }
             }
             .grasses_1 img{
                 position: absolute;
@@ -1359,6 +2149,10 @@
                 left: 25vw;
                 width: 6vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    left: 30vw;
+                    width: 11vw;
+                }
             }
             .grasses_5 img{
                 position: absolute;
@@ -1366,6 +2160,9 @@
                 right: 28vw;
                 width: 6vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    display: none;
+                }
             }
             .chimpanzee img{
                 position: absolute;
@@ -1373,6 +2170,11 @@
                 right: 24vw;
                 width: 7vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    top: 36vw;
+                    right: 0vw;
+                    width: 16vw;
+                }
             }
             .tree_6 img{
                 position: absolute;
@@ -1381,6 +2183,11 @@
                 width: 6vw;
                 vertical-align: bottom;
                 z-index: 1;
+                @media (width <= 768px) {
+                    top: -23vw;
+                    right: 5vw;
+                    width: 11vw;
+                }
             }
             .tree_7 img{
                 position: absolute;
@@ -1389,6 +2196,11 @@
                 width: 8vw;
                 vertical-align: bottom;
                 z-index: 1;
+                @media (width <= 768px) {
+                    top: -8vw;
+                    right: 12vw;
+                    width: 14vw;
+                }
             }
 
             
@@ -1404,6 +2216,9 @@
                 left: -4vw;
                 width: 10vw;
                 vertical-align: bottom;
+                @media (width <= 768px) {
+                    width: 16vw;
+                }
             }
             .grasses_2 img{
                 position: absolute;
@@ -1412,6 +2227,11 @@
                 width: 6vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                @media (width <= 768px) {
+                    bottom: 7vw;
+                    left: 60vw;
+                    width: 9vw;
+                }
             }
             .duck img{
                 position: absolute;
@@ -1420,6 +2240,11 @@
                 width: 4vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                @media (width <= 768px) {
+                    left: 18vw;
+                    bottom: 15vw;
+                    width: 9vw;
+                }
             }
             .tree_2 img{
                 position: absolute;
@@ -1428,6 +2253,11 @@
                 width: 8vw;
                 vertical-align: bottom;
                 transform:scaleX(-1);
+                @media (width <= 768px) {
+                    right: 10vw;
+                    bottom: 29vw;
+                    width: 15vw;
+                }
             }
             
             

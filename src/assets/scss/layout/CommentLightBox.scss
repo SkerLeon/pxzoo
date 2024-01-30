@@ -11,7 +11,9 @@
     padding: 5vw 0 8vw 0;
     @media (width <= 768px) {
         width: 80%;
-        height: 60%;
+        padding: 12vw 0 25vw 0;
+        // height: 60%;
+        top: 10%;
     }
 
     .close {
@@ -21,6 +23,10 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
+        @media (width <= 768px) {
+            top: 20px;
+            right: 20px;
+        }
     }
 
     .comm_title{
@@ -31,6 +37,11 @@
         padding-top: 1vw;
         // display: flex;
         width: 100%;
+        @media (width <= 768px) {
+            display: flex;
+            text-align: start;
+            padding: 0 4vw;
+        }
         
         label{
             color: $mainTextColor;
@@ -52,12 +63,21 @@
                 &::placeholder{
                     color: $inputTextColor;
                 }
+                @media (width <= 768px) {
+                    width: 112%;
+                    padding: 2vw;
+                    margin-left: 0vw;
+                }
             }
 
             .numLimit{
                 position: absolute;
                 top: 2vw;
                 left: 0vw;
+                @media (width <= 768px) {
+                    top: 0vw;
+                    left: 62vw;
+                }
             }
         }
     }
@@ -67,7 +87,13 @@
         padding-top: 0.85vw;
         display: flex;
         justify-content: space-between;
-
+        @media (width <= 768px) {
+            flex-direction: column;
+            
+            text-align: start;
+            padding-top: 3vw;
+            width: 90%;
+        }
         label{
             color: $mainTextColor;
             margin: auto;
@@ -76,22 +102,18 @@
                 position: relative;
                 left: 0;
                 text-align: left;
+                @media (width <= 768px) {
+                    width: 100%;
+                }
                 
             }
             
             span {
-                // padding: 0.5vw 0.5vw;
-                // background-color: $bgColorWhite;
-                // border: 2px $mainTextColor solid;
                 width: 85%;
-                // // flex-grow:1;
                 margin-left: 1vw;
-                // outline: none;
-                // vertical-align: top;
-                // border-radius: 0;
-                // appearance: none;
-                // -moz-appearance: none;
-                // -webkit-appearance: none;
+                @media (width <= 768px) {
+                    width: 100%;
+                }
             }
             
             input[type="file"] {
@@ -102,6 +124,10 @@
 
     .submitbtn{
         margin-top: 0.85vw;
+        @media (width <= 768px) {
+            margin-top: 3vw;
+        }
+        
     }
 
     .writecomm_deco{
@@ -114,6 +140,10 @@
             bottom: 0;
             width: 6vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: 14vw;
+                width: 13vw;
+            }
         }
         .tree_1 img{
             position: absolute;
@@ -121,6 +151,10 @@
             bottom: 0;
             width: 9vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: -2vw;
+                width: 17vw;
+            }
         }
     }
 

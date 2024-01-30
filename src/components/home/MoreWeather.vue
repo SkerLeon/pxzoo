@@ -9,11 +9,10 @@
             />
             <div class="moreweather_content"  v-for="weather in weather_list">
                 <div class="moreweather_content_day">
-                    <img
-                    :src="getWeatherUrl(weather.img)"
-                    alt="weather"
-                    class="weather"
-                    />
+                    <div class="weather">
+                        <img :src="getWeatherUrl(weather.img)" alt="weather"/>
+                    </div>
+                    
                     <p class="pcInnerText">{{ weather.weekday }}</p>
                     <h3 class="pcSmTitle">{{ weather.temp }}°C</h3>
                 </div>

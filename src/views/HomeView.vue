@@ -115,15 +115,17 @@
           <p>適用對象</p>
         </div>
 
-        <div class="ticket_type" v-for="(ticket, index) in tickets" :key="index">
+        <div class="ticket_type" v-for="(ticket, index) in tickets" :key="index" :class="ticket.class">
           <img class="ticket_bg" :src="getTicketUrl(index+1)" alt="ticketbg">
           
           <div class="ticket_text">
-            <h2 class="pcSmTitle">{{ticket.title}}</h2>
-            <div class="line"></div>
-            <div class="ticket_price">
-              <span class="pcInnerText">NT$</span>
-              <span class="pcSmTitle">{{ticket.price}}</span>
+            <div class="ticket_text_title">
+              <h2 class="pcSmTitle">{{ticket.title}}</h2>
+              <div class="line"></div>
+              <div class="ticket_price">
+                <span class="pcInnerText">NT$</span>
+                <span class="pcSmTitle">{{ticket.price}}</span>
+              </div>
             </div>
             <div class="line"></div>
             <p class="ticket_rule pcInnerText">{{ticket.rule}}</p>
@@ -132,7 +134,15 @@
       </div>
 
       <div class="home_qkpage_park"  v-if="currentContent === 'home_qkpage_park'">
-        <parkmap/>
+        <div class="parkmark">
+          <img class="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow">
+          <span class="pcMarkText">左右滑動</span>
+          <img class="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow">
+        </div>
+        <div class="parkgroup">
+          <parkmap/>
+        </div>
+        
         <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
       </div>
 
@@ -213,7 +223,11 @@
 
         <div class="traffic_page">
           <div class="traffic_page_map_mapimg">
-            <img src="@/assets/images/home/home_traffic_map.svg" alt="map">
+            <img class="pcmap" src="@/assets/images/home/home_traffic_map.svg" alt="map">
+            <img class="phmap" src="@/assets/images/home/home_traffic_map_ph.svg" alt="map">
+            <div class="traffic_page_train" v-if="currentSection === 'traffic_page_train'">
+            <img src="@/assets/images/home/home_traffic_mark_train.svg" alt="trainmark" class="trainmark_1">
+          </div>
           </div>
 
           <div class="traffic_page_deco">
@@ -231,9 +245,7 @@
             <div class="conversation"><img src="@/assets/images/home/home_traffic_conversation.svg" alt="conversation"></div>
           </div>
           
-          <div class="traffic_page_train" v-if="currentSection === 'traffic_page_train'">
-            <img src="@/assets/images/home/home_traffic_mark_train.svg" alt="trainmark" class="trainmark_1">
-          </div>
+          
 
           <div class="traffic_page_bus" v-if="currentSection === 'traffic_page_bus'">
             <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_1">
@@ -250,7 +262,7 @@
             <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_12">
             <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_13">
             <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_14">
-            <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_15">
+            <!-- <img src="@/assets/images/home/home_traffic_mark_bus.svg" alt="busmark" class="busmark_15"> -->
           </div>
 
           <div class="traffic_page_ubike" v-if="currentSection === 'traffic_page_ubike'">
@@ -265,13 +277,10 @@
             <img src="@/assets/images/home/home_traffic_mark_parking.svg" alt="parkingmark" class="parkingmark_4">
             <img src="@/assets/images/home/home_traffic_mark_parking.svg" alt="parkingmark" class="parkingmark_5">
             <img src="@/assets/images/home/home_traffic_mark_parking.svg" alt="parkingmark" class="parkingmark_6">
-            <!-- <img src="@/assets/images/home/home_traffic_mark_parking.svg" alt="parkingmark" class="parkingmark_7"> -->
+            <img src="@/assets/images/home/home_traffic_mark_parking.svg" alt="parkingmark" class="parkingmark_7">
           </div>
         </div>
       </div>
-
-      
-      
     </div>
     
     <div class="home_qkpage_deco">
@@ -310,12 +319,10 @@
             <moreweather @close-moreweather="closeMoreWeather" />
           </div>
           <h2 class="title pcBigTitle">園區天氣</h2>
-          <span class="city pcSmTitle">Taoyuan, TW</span>
-          <!-- <span class="city pcSmTitle">{{weather.name}}</span> -->
-          <div class="weatherimg" @click="openMoreWeather"><img src="@/assets/images/home/home_weather_mostly_clear.svg" alt="weather"></div>
-          <!-- <div class="weatherimg">{{weather.weather[0].main}}</div> -->
-          <span class="temperature pcDecBigTitle">20°C</span>
-          <!-- <span class="temperature pcDecBigTitle">{{Math.round(weather.main.temp)}}°C</span> -->
+          <span class="city pcSmTitle" ref="location"></span>
+          <!-- <div class="weatherimg" @click="openMoreWeather"><img src="@/assets/images/home/home_weather_mostly_clear.svg" alt="weather"></div> -->
+          <div class="weatherimg" @click="openMoreWeather"><img v-if="weatherIcon" :src="weatherIcon" alt="weather icon"></div>
+          <span class="temperature pcDecBigTitle" ref="airTemperature"></span>
         </div>
 
         <div class="home_wn_news">
@@ -358,8 +365,14 @@
     </div>
 
     <div class="home_park">
-      <parkmap/>
-      <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
+      <div class="parkmark">
+        <img class="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow">
+        <span class="pcMarkText">左右滑動</span>
+        <img class="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow">
+      </div>
+      <div class="parkgroup">
+        <parkmap/>
+      </div>
     </div>
     
     <div class="home_vote">
@@ -523,30 +536,34 @@ export default {
         title:"成人票",
         price:"100",
         rule:"18~64歲",
+        class:"adult"
       },{
         title:"學生票",
         price:"80",
         rule:"12歲以上(含)持學生證者",
+        class:"student"
       },{
         title:"兒童票",
         price:"40",
         rule:"4~11歲",
+        class:"kid"
       },{
         title:"愛心票",
         price:"40",
         rule:"65歲以上(含)",
+        class:"heart"
       },{
         title:"團體票",
         price:"60",
         rule:"15人以上適用",
+        class:"group"
       }],
 
       //天氣
+      // 新增：用於存放天氣圖片的路徑
+      weatherIcon: null, 
       // api_key: 'CWA-6404EFA0-8D5B-4848-89E4-F7F963901914',
       // base_url: 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-6404EFA0-8D5B-4848-89E4-F7F963901914/',
-      // query: 'Taoyuan',
-      // weather: {},
-      // date: '',
 
       //最新消息
       news_info:[
@@ -693,11 +710,6 @@ export default {
     currentImage() {
       return this.images[this.currentIndex];
     },
-
-    //天氣
-    // currentDate() {
-    //   return moment().format('MMMM Do YYYY')
-    // },
   },
 
   mounted() {
@@ -708,20 +720,8 @@ export default {
 
 
     //天氣
-    // this.fetchWeatherData();
-
-    // axios.get(url).then(data => {
-    //     console.log(data)
-    //     this.weather_data = data.data.cwbopendata.dataset.locations.location
-    // })
-
-    // paths = document.querySelectorAll('path');
-    // let _this = this
-    // paths.forEach(e => {
-    //     e.onmouseover = function () {
-    //         _this.filter = this.dataset.nameZh
-    //     }
-    // })
+    // 呼叫 getWeather 方法
+    this.getWeather();
   },
 
   beforeDestroy() {
@@ -770,10 +770,147 @@ export default {
     },
 
     //天氣
-    // async fetchWeather() {
-    //   const data = await fetch(`${this.base_url}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
-    //   this.weather = await data.json()
-    // },
+    async getWeather() {
+      try {
+        // 將 API 密鑰放到標頭中
+        let result = await fetch('https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-6404EFA0-8D5B-4848-89E4-F7F963901914');
+        let data = await result.json();
+        console.log(data);
+
+        // 使用 ref 屬性取得 DOM 元素
+        const locationWeather = data.records.Station[35].WeatherElement.Weather;
+        const location = data.records.Station[35].GeoInfo.CountyName;
+        
+        //將 airTemperature 取整數
+        const airTemperature = Math.round(data.records.Station[35].WeatherElement.AirTemperature);
+
+        // 選擇天氣圖片
+        this.chooseWeatherIcon(locationWeather);
+
+        //確保 $refs 元素存在
+        if (this.$refs.weather) {
+          this.$refs.weather.innerHTML = locationWeather;
+        }
+        if (this.$refs.location) {
+          this.$refs.location.innerHTML = location ;
+        }
+
+        if (this.$refs.airTemperature) {
+          this.$refs.airTemperature.innerHTML = airTemperature + "°C";
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    chooseWeatherIcon(weatherCondition) {
+    const weatherConditions = {
+      '晴': 'sunny',
+      '晴天': 'sunny',
+
+      '晴時多雲': 'mostly_clear',
+      '多雲時晴': 'mostly_clear',
+
+
+
+      '多雲有靄': 'cloudy',
+      '多雲': 'cloudy',
+      '有霧': 'cloudy',
+      '陰有靄': 'cloudy',
+      '多雲時陰': 'cloudy',
+      '陰時多雲': 'cloudy',
+
+      '多雲陣雨': 'cloudrain',
+      '多雲短暫雨': 'cloudrain',
+      '多雲短暫陣雨': 'cloudrain',
+      '午後短暫陣雨': 'cloudrain',
+      '短暫陣雨': 'cloudrain',
+      '多雲時晴短暫陣雨': 'cloudrain',
+      '多雲時晴短暫雨': 'cloudrain',
+      '晴時多雲短暫陣雨': 'cloudrain',
+      '晴短暫陣雨': 'cloudrain',
+      '短暫雨': 'cloudrain',
+      '多雲時陰短暫雨': 'cloudrain',
+      '多雲時陰短暫陣雨': 'cloudrain',
+      '陰時多雲短暫雨': 'cloudrain',
+      '陰時多雲短暫陣雨': 'cloudrain',
+      '多雲時陰有雨': 'cloudrain',
+      '多雲時陰陣雨': 'cloudrain',
+      '晴時多雲陣雨': 'cloudrain',
+      '多雲時晴陣雨': 'cloudrain',
+
+      
+      '陰': 'dark_clouds',
+      '陰天': 'dark_clouds',
+
+      '陰有雨': 'rain',
+      '雨天': 'rain',
+      '晴午後陰短暫雨': 'rain',
+      '晴午後陰短暫陣雨': 'rain',
+      '陰短暫雨': 'rain',
+      '陰短暫陣雨': 'rain',
+      '陰午後短暫陣雨': 'rain',
+      '陰時多雲有雨': 'rain',
+      '陰時多雲有陣雨': 'rain',
+      '陰時多雲陣雨': 'rain',
+      '陰有雨': 'rain',
+      '陰有陣雨': 'rain',
+      '陰雨': 'rain',
+      '陰陣雨': 'rain',
+      '陣雨': 'rain',
+      '午後陣雨': 'rain',
+      '有雨': 'rain',
+
+
+      '多雲陣雨或雷雨': 'storm',
+      '多雲短暫陣雨或雷雨': 'storm',
+      '多雲短暫雷陣雨': 'storm',
+      '多雲雷陣雨': 'storm',
+      '短暫陣雨或雷雨後多雲': 'storm',
+      '短暫雷陣雨後多雲': 'storm',
+      '短暫陣雨或雷雨': 'storm',
+      '晴時多雲短暫陣雨或雷雨': 'storm',
+      '晴短暫陣雨或雷雨': 'storm',
+      '多雲時晴短暫陣雨或雷雨': 'storm',
+      '午後短暫雷陣雨': 'storm',
+      '多雲時陰陣雨或雷雨': 'storm',
+      '多雲時陰短暫陣雨或雷雨': 'storm',
+      '多雲時陰短暫雷陣雨': 'storm',
+      '多雲時陰雷陣雨': 'storm',
+      '晴陣雨或雷雨': 'storm',
+      '晴時多雲陣雨或雷雨': 'storm',
+      '多雲時晴陣雨或雷雨': 'storm',
+      '陰時多雲有雷陣雨': 'storm',
+      '陰時多雲陣雨或雷雨': 'storm',
+      '陰時多雲短暫陣雨或雷雨': 'storm',
+      '陰時多雲短暫雷陣雨': 'storm',
+      '陰時多雲雷陣雨': 'storm',
+      '陰有陣雨或雷雨': 'storm',
+      '陰有雷陣雨': 'storm',
+      '陰陣雨或雷雨': 'storm',
+      '陰雷陣雨': 'storm',
+      '晴午後陰短暫陣雨或雷雨': 'storm',
+      '晴午後陰短暫雷陣雨': 'storm',
+      '陰短暫陣雨或雷雨': 'storm',
+      '陰短暫雷陣雨': 'storm',
+      '雷雨': 'storm',
+      '陣雨或雷雨後多雲': 'storm',
+      '陰陣雨或雷雨後多雲': 'storm',
+      '陰短暫陣雨或雷雨後多雲': 'storm',
+      '陰短暫雷陣雨後多雲': 'storm',
+      '陰雷陣雨後多雲': 'storm',
+      '雷陣雨後多雲': 'storm',
+      '陣雨或雷雨': 'storm',
+      '雷陣雨': 'storm',
+      '午後雷陣雨': 'storm',
+    };
+
+    // 修改：使用小寫比對
+    const condition = weatherCondition.toLowerCase();
+
+    // 修改：檢查是否有對應的天氣圖片
+    this.weatherIcon = weatherConditions[condition] ? `/src/assets/images/home/home_weather_${weatherConditions[condition]}.svg` : null;
+  },
+
     openMoreWeather() {
       this.showMoreWeather = true;
       document.body.style.overflow = "hidden";
