@@ -26,6 +26,8 @@
           </div>
         </div> -->
       <!-- </div> -->
+      <img class="tree_bg" src="@/assets/images/vote/tree.svg" alt="tree_bg" />
+ 
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
     </div>
   </section>
