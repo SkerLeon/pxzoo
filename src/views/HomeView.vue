@@ -907,6 +907,12 @@ import parkmap from "@/components/park/ParkMap.vue";
 import writecomm from "@/components/home/WriteComm.vue";
 import reportcomm from "@/components/home/ReportComm.vue";
 import moreweather from "@/components/home/MoreWeather.vue";
+
+import Image01 from "/images/home/home_banner_1.jpg"
+import Image02 from "/images/home/home_banner_2.jpg"
+import Image03 from "/images/home/home_banner_3.jpg"
+import Image04 from "/images/home/home_banner_4.jpg"
+
 export default {
   components: {
     RouterLink,
@@ -919,10 +925,10 @@ export default {
     return {
       //banner
       images: [
-        "/images/home/home_banner_1.jpg",
-        "/images/home/home_banner_2.jpg",
-        "/images/home/home_banner_3.jpg",
-        "/images/home/home_banner_4.jpg",
+      Image01,
+      Image02,
+      Image03,
+      Image04,
         // Add more image URLs as needed
       ],
       currentIndex: 0,
