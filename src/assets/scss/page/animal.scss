@@ -5,7 +5,11 @@
         vertical-align: middle;
     }   
 }
-
+.animal_pc_sidebar{
+    .no_slide{
+        position: fixed;
+    }
+}
 .animal_pc_sidebar,.animal_detail_pc_sidebar{
     position: relative;
     z-index: 3;
@@ -81,6 +85,9 @@
                 @media (max-width: 768px) {
                     width: 2.6vw;
                 }
+            }
+            .arrow_rotate{
+                transform: rotate(180deg);
             }
         }
         
@@ -231,7 +238,7 @@ section.aqua{
     }
     img{
         width: 17vw;
-        padding:0.35vw 0.3vw 0.3vw 0.3vw;
+        padding:0.45vw 0.3vw 0.3vw 0.3vw;
     }
     .animal_name{
         color:$mainTextColor;
@@ -289,6 +296,7 @@ section.aqua{
         flex-direction: column;
         width: 24vw;
         gap: 2vw;
+        
         h5{
             padding-bottom: 1.2vw;
             color: $primaryColorGreen;
@@ -348,8 +356,15 @@ section.aqua{
         color: $primaryColorGreen;
         padding-right: 0.8vw;
     }
-    img{
-        width: 32px;
+    .animal_detail_sound{
+        img{
+            width: 2vw;
+            transition: scale 0.3s ease;
+            &:hover{
+                scale: 1.2;
+
+            }
+        }
     }
 }
 .animal_detail_sec-section{
@@ -447,18 +462,88 @@ section.aqua{
     .cloud_4{
         top: 8%; 
         left: 0%;
-        width: 25%;      
+        width: 25%;
+        animation: animalCloud4 20s infinite linear;      
+    }
+
+    @keyframes animalCloud4{
+        20%{
+            top: 7%; 
+            left: 0%;
+        }
+        40%{
+            top: 8%; 
+            left: 1%;
+        }
+        60%{
+            top: 7%; 
+            left: 3%;
+        }
+        80%{
+            top: 6%; 
+            left: 2%;
+        }
+        100%{
+            top: 8%; 
+            left: 0%;
+        }
     }
     .cloud_6{   
         top: 15%;      
         right: 0%;  
         width: 20%;   
+        animation: animalCloud6 20s infinite linear;    
+    }
+    @keyframes animalCloud6{
+        20%{
+            top: 14%;      
+            right: 1%; 
+        }
+        40%{
+            top: 13%; 
+            right: 0%;
+        }
+        60%{
+            top: 14%; 
+            right: 1%;
+        }
+        80%{
+            top: 14%; 
+            right: 2%;
+        }
+        100%{
+            top: 15%; 
+            right: 0%;
+        }
     }
     .cloud_7{
         top: 15%; 
         left: 46%;
         width: 10%;
+        animation: animalCloud7 20s infinite linear;  
     }
+    @keyframes animalCloud7{
+        20%{
+            top: 14%;      
+            left: 47%;
+        }
+        40%{
+            top: 13%; 
+            left: 47%;
+        }
+        60%{
+            top: 14%; 
+            left: 48%;
+        }
+        80%{
+            top: 14%; 
+            left: 48%;
+        }
+        100%{
+            top: 15%; 
+            left: 46%;
+        }
+    }   
     .animal_bg_animal{
         position: absolute;
         z-index: 0;

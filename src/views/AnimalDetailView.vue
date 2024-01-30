@@ -17,7 +17,7 @@
                         <img :src="getIconUrl(category.icon)" alt="category.label">
                         <p class="pcInnerText">{{ category.park }}</p>
                         <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow"
-                            :class="{ arrow_rotate: category.isShow }">
+                        :class="{ arrow_rotate: category.isShow }">
                         </div>
                         <!-- 子層 -->
                         <ul class="animaldetail_sub_menu" v-show="category.isShow">
