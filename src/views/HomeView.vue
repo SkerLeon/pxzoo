@@ -919,10 +919,10 @@ export default {
     return {
       //banner
       images: [
-        "/src/assets/images/home/home_banner_1.jpg",
-        "/src/assets/images/home/home_banner_2.jpg",
-        "/src/assets/images/home/home_banner_3.jpg",
-        "/src/assets/images/home/home_banner_4.jpg",
+        "/public/images/home/home_banner_1.jpg",
+        "/public/images/home/home_banner_2.jpg",
+        "/public/images/home/home_banner_3.jpg",
+        "/public/images/home/home_banner_4.jpg",
         // Add more image URLs as needed
       ],
       currentIndex: 0,
@@ -1405,9 +1405,6 @@ export default {
         多雲短暫雷陣雨有霧: "cloudstorm",
         多雲雷陣雨有霧: "cloudstorm",
         多雲時晴短暫陣雨或雷雨有霧: "cloudstorm",
-        // '': 'cloudstorm',
-        // '': 'cloudstorm',
-        // '': 'cloudstorm',
 
         多雲陣雨或雷雨: "storm",
         多雲短暫陣雨或雷雨: "storm",
@@ -1498,25 +1495,6 @@ export default {
         "陰短暫陣雨或雷雨有霧	": "storm",
         "陰短暫雷陣雨有霧	": "storm",
         "雷陣雨有霧	": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
-        "": "storm",
       };
 
       // 修改：使用小寫比對
