@@ -34,14 +34,10 @@ export default {
     },
     props:{
         // 丟資料的key值
-        tickStep:{
-            type: Number,
-            default: 1,
-        },
+        tickStep:{ type: Number, },
     },
     data() {
         return {
-            tickStep: 1,
             // date: new Date(),
             // dateFormat: 'YYYY-MM-DD',
             // TickNumOpen: true,

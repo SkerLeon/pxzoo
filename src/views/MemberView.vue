@@ -295,7 +295,7 @@ export default {
   },
   methods: {
     toHomePage() {
-      this.$router.push("/");
+      this.$router.push("login");
     },
     toTicketPage() {
       this.$router.push("ticket");

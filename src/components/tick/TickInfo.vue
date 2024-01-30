@@ -32,9 +32,6 @@
 
 <script>
 export default {
-    components:{
-        // RouterLink,
-    },
     props:{},
     data() {
         return {
@@ -83,10 +80,6 @@ export default {
             this.isBoard = window.innerWidth < 1200;
             this.isSmallPC = window.innerWidth <= 1400;
             this.isMidPC = window.innerWidth <= 1540;
-        },
-        getInfoImage(name){
-            // 999無效，有空再解
-            // return `src/assets/images/ticket/${name}.svg`;
         },
         TickCalendar(){
             if(window.innerWidth < 1200){

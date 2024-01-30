@@ -4,40 +4,6 @@
       <img :src="getImagePath()" alt="立即購票進度條">
     </div>
 
-    <!-- 安安 小龜老師，我是一畫 -->
-    <!-- 還深陷排版泥沼，寫不到太多vue的東東......
-      🐢：你這頁可以寫很多vue~~放心，切完你就變組件大師，prop/emit功力會大增，有些公司就在考你這種頁面功能，好好寫捏
-
-      排版的問題可否請教您: 
-
-      1. PHP上課說"需要把資料傳到後端的，要用<form>包"，請問所有<input>、<select>、<option>...都要用<form>包嗎？（降我排版要全部重新檢查了）
-        🐢：不要用form包，傳資料可以用axios裡的post就好了(用chartGPT問一下範例)
-
-      2. 請問下拉式選單中option的樣式設計，我研究了一下，option能寫的樣式極少，一般建議用div>ul>li來做......請教您：是這樣嗎？如果用div>ul>li在後續抓資料上會比較麻煩嗎？（還不太懂怎麼抓資料、傳到後端><）
-        🐢：用iview再改樣式，用div自己刻太浪費時間了
-
-      目前對立即購票執行的規劃&理解:
-        (1) 這個檔案只有進度條&接渲染資料，預計每次下一頁時，更改進度條的圖片檔案。
-            🐢：沒錯用step去理解
-        (2) 使用者選擇的資料先都存在local host，直到TickFinished資料才存到後端。
-            🐢：這邊不一定要用local storage，通常這種流程不會幫使用者緩存，不過要寫也是可以
-        (3) 所有頁面的js會另開一個ticket.js，按鈕控制&各種條件篩選會寫在那裏。
-            🐢：都分好組件了，你就寫在組件裡就好了，不然也蠻麻煩的
-        (4) 後面且戰且走orz
-            🐢：寫完這一頁再說吧
-
-
-    <article v-if="isMobile">
-      <TickInfo :open="TickInfoOpen" />
-      <TickCalendar />
-    </article>
-    <main v-else>
-      <TickInfo :open="true" />
-      <TickCalendar />
-    </main>
-
--->
-
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
       <TickInfo 
@@ -65,7 +31,13 @@
     <main v-else-if="tickStep === 2">
       <TickCheck 
       :ticketsData="tickets" 
-      :tipriceData="tiprice" 
+      :tipriceData="tiprice"
+      :couponsData="coupons"
+      :couponOpData="selectedCouOp" 
+      :couponValData="selectedCouVal" 
+      :coupriceData="couprice" 
+      :paypriceData = "payprice" 
+      @newCoupon="updateCoupon" 
       @goNextStep="showNextStep" 
       @goPreviousStep="backPreviousStep" 
       />
@@ -74,7 +46,8 @@
 <!-- 100% -->
     <main v-else="tickStep === 3">
       <TickFinished  :ticketsData="tickets" 
-      :tipriceData="tiprice" 
+      :tipriceData="tiprice"
+      :coupriceData="couprice"  
       />
     </main>
 
@@ -82,7 +55,6 @@
 </template>
 
 <script>
-// 🐢:把以下這些組件移到tick目錄裡
 import TickInfo from '@/components/tick/TickInfo.vue';
 import TickCalendar from '@/components/tick/TickCalendar.vue';
 import TickNum from '@/components/tick/TickNum.vue';
@@ -91,7 +63,6 @@ import TickFinished from '@/components/tick/TickFinished.vue';
 
 export default {
   components:{
-    // RouterLink,
     TickInfo,
     TickCalendar,
     TickNum,
@@ -104,51 +75,71 @@ export default {
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
+      selectedCouOp: '', 
+      selectedCouVal: 0, 
+      couprice: 0,
+      payprice: 0,
       tickets:[
-                {
-                    id: 1,
-                    name: '成人票',
-                    rule: '18~64 歲',
-                    price: 100,
-                    src: 'src/assets/images/ticket/ticket1.svg',
-                    qty: 0,
-                },
-                {
-                    id: 2,
-                    name: '學生票',
-                    rule: '12 歲以上(含)持學生證者',
-                    price: 80,
-                    src: 'src/assets/images/ticket/ticket2.svg',
-                    qty: 0,
-                },
-                {
-                    id: 3,
-                    name: '團體票',
-                    rule: '15 人以上適用',
-                    price: 60,
-                    src: 'src/assets/images/ticket/ticket3.svg',
-                    qty: 0,
-                },
-                {
-                    id: 4,
-                    name: '兒童票',
-                    rule: '4~11 歲',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket4.svg',
-                    qty: 0,
-                },
-                {
-                    id: 5,
-                    name: '愛心票',
-                    rule: '65 歲以上(含)',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket5.svg',
-                    qty: 0,
-                },
-            ],
+          {
+            id: 1,
+            name: '成人票',
+            rule: '18~64 歲',
+            price: 100,
+            src: 'src/assets/images/ticket/ticket1.svg',
+            qty: 0,
+          },
+          {
+            id: 2,
+            name: '學生票',
+            rule: '12 歲以上(含)持學生證者',
+            price: 80,
+            src: 'src/assets/images/ticket/ticket2.svg',
+            qty: 0,
+          },
+          {
+            id: 3,
+            name: '團體票',
+            rule: '15 人以上適用',
+            price: 60,
+            src: 'src/assets/images/ticket/ticket3.svg',
+            qty: 0,
+          },
+          {
+            id: 4,
+            name: '兒童票',
+            rule: '4~11 歲',
+            price: 40,
+            src: 'src/assets/images/ticket/ticket4.svg',
+            qty: 0,
+          },
+          {
+            id: 5,
+            name: '愛心票',
+            rule: '65 歲以上(含)',
+            price: 40,
+            src: 'src/assets/images/ticket/ticket5.svg',
+            qty: 0,
+          },
+      ],
+      coupons: [
+        { 
+          id: 1,
+          option: '不使用優惠券',
+          value: 1,
+        },
+        {
+          id: 2,
+          option: '付款金額 9 折',
+          value: 0.9,
+        },
+        { 
+          id: 3,
+          option: '付款金額 95 折',
+          value: 0.95,
+        },
+      ],
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
-      // targetValue:0,
     }
   },
   methods:{
@@ -175,6 +166,12 @@ export default {
     // },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
+    },
+    updateCoupon(newCouponOp, newCouponVal, newCouprice, newPayprice){
+      this.selectedCouOp = newCouponOp;
+      this.selectedCouVal = newCouponVal;
+      this.couprice = newCouprice;
+      this.payprice = newPayprice;
     },
   },
   // watch: {
