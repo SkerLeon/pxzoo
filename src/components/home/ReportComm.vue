@@ -34,7 +34,7 @@
             </label>
         </div>
 
-        <div class="tqplb" v-if="showReportTqp">
+        <div class="tqplb" v-if="showReportTqp" @click.self="closeReportTqp">
             <reporttqp @close-reporttqp="closeReportTqp" />
         </div>
 
@@ -85,6 +85,7 @@ export default {
             // this.fileThumbnail = URL.createObjectURL(fileData);
         },
         closeReportTqp() {
+        this.hideReportComm();
         this.showReportTqp = false;
         document.body.style.overflow = "auto";
         },

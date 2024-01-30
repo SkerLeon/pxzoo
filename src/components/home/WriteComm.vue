@@ -42,7 +42,7 @@
             </label>
         </div>
 
-        <div class="tqplb" v-if="showWriteTqp">
+        <div class="tqplb" v-if="showWriteTqp"  @click.self="closeWriteTqp">
             <writetqp @close-writetqp="closeWriteTqp" />
         </div>
 
@@ -92,6 +92,7 @@ export default {
             // this.fileThumbnail = URL.createObjectURL(fileData);
         },
         closeWriteTqp() {
+            this.hideWriteComm();
             this.showWriteTqp = false;
             document.body.style.overflow = "auto";
         },
