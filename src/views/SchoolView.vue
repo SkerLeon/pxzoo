@@ -21,27 +21,28 @@
         <img src="@/assets/images/vetor/nature_tree_1.svg" alt="tree">
       </div>
 
+
     </div>
     <!-- 初始畫面 -->
     <div :class="{ 'content1': isContent1 }">
       <div v-if="isContent1" class="school_content_1">
         <div class="school_title forHeader">
-          <div class="number_8">
+          <div class="number_8" :class="{ 'jump-up': showAnimation8 }">
             <img src="@/assets/images/vetor/number_8.svg" alt="8">
           </div>
-          <div class="number_n">
+          <div class="number_n" :class="{ 'jump-up': showAnimationN }">
             <img src="@/assets/images/vetor/number_n.svg" alt="n">
           </div>
-          <div class="number_i">
+          <div class="number_i" :class="{ 'jump-up': showAnimationI }">
             <img src="@/assets/images/vetor/number_i.svg" alt="i">
           </div>
-          <div class="number_m">
+          <div class="number_m" :class="{ 'jump-up': showAnimationM }">
             <img src="@/assets/images/vetor/number_m.svg" alt="m">
           </div>
-          <div class="number_a">
+          <div class="number_a" :class="{ 'jump-up': showAnimationA }">
             <img src="@/assets/images/vetor/number_a.svg" alt="a">
           </div>
-          <div class="number_l">
+          <div class="number_l" :class="{ 'jump-up': showAnimationL }">
             <img src="@/assets/images/vetor/number_l.svg" alt="l">
           </div>
 
@@ -107,45 +108,46 @@
                   <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
                 <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="teacher">
+                  <img src="@/assets/images/school/coin.svg" alt="coin">
                 </div>
               </div>
 
               <div v-if="showAnswer[index]" class="lightbox">
                 <div class="lightbox-content">
-                  <div class="correct_answer pcSmTitle">正確答案：{{ question.correctAnswer }}</div>
+                  
                   <div class="user_answer pcSmTitle" v-if="userSelectedOption">
                     你的答案：{{ userSelectedOption }}
                     <span v-if="userSelectedOption === question.correctAnswer" style="color: green;">（正確）</span>
                     <span v-else style="color: red;">（錯誤）</span>
                   </div>
+                  <div class="correct_answer pcSmTitle">正確答案：{{ question.correctAnswer }}</div>
                   <div class="explanation pcSmTitle"> 解析：<br><span style="color: #ff6100;">{{ question.explanation }}</span></div>
                   <button v-if="currentQuestionIndex < questions.length - 1" @click="showNextQuestion" class="pcInnerText defaultBtn">
   <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />下一題
@@ -162,9 +164,9 @@
           <div v-if="isGameFinished" class="result_all">
             <div class="result pcSmTitle">
               {{ successfulQuestionsCount >= 8 ?
-                '破關成功！，'
+                '破關成功！你展現了出色的動物知識!獲得了一張PX ZOO門票優惠券！'
                 :
-                '破關失敗'
+                '破關失敗~很抱歉，你未能成功破關，祝您下次冒險成功！加油!!'
               }}
               <br>
               總分：{{ totalScore }}
@@ -184,7 +186,12 @@
 export default {
   data() {
     return {
-    
+      showAnimation8: false,
+      showAnimationN: false,
+      showAnimationI: false,
+      showAnimationM: false,
+      showAnimationA: false,
+      showAnimationL: false,
       isContent1: true,
       isGameStarted: false,
       isGameFinished: false,
@@ -192,7 +199,7 @@ export default {
       currentQuestionIndex: 0,
       totalScore: 0,
       userSelectedOption: null,
-   
+      showAnimation: false,
       questions: [
         // 問題列表
         {
@@ -210,13 +217,13 @@ export default {
         {
           text: "2.樹懶至少需要幾星期消化食物?", image: '',
           options: [
-            { text: "A 一個星期", image: 'sloth' },
-            { text: "B 兩個星期", image: 'sloth' },
-            { text: "C 三個星期", image: 'sloth' },
-            { text: "D 四個星期", image: 'sloth' },
+            { text: "A 一個", image: 'sloth' },
+            { text: "B 兩個", image: 'sloth' },
+            { text: "C 三個", image: 'sloth' },
+            { text: "D 四個", image: 'sloth' },
 
           ],
-          correctAnswer: "B 兩個星期",
+          correctAnswer: "B 兩個",
           explanation: "樹懶是擁有非常緩慢的新陳代謝的動物，因此它們需要相當長的時間來消化食物。",
         },
         {
@@ -312,9 +319,16 @@ export default {
       showAnswer: Array(10).fill(false), //是否顯示答案跟解析
     };
   },
+
+  mounted() {
+
+    // 在mounted鉤子中設置showAnimation為true，觸發動畫效果
+    this.showAnimation = true;
+  
+  },
  
   methods: {
-    
+  
     
     toggleContent() {
       this.isContent1 = !this.isContent1;

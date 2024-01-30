@@ -1,4 +1,4 @@
-//上個月投票結果
+/* PC-上個月投票結果 */
 .vote_top {
   position: relative;
   color: $mainTextColor;
@@ -7,17 +7,15 @@
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
-  height: auto;
-
+  background-color: $bgColorLightgray;
   .banner {
-    background-image: url("/src/assets/images/vote/tree.svg");
-    background-color: $bgColorLightgray;
-
     width: 100%;
     height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom center;
+    // background-image: url("/src/assets/images/vote/tree.svg");
+
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-position: bottom center;
 
     .title {
       color: $primaryColorGreen;
@@ -34,178 +32,219 @@
       width: 8vw;
       z-index: 10;
     }
-  }
-  .podium_no {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .vote_img {
-      width: 9vw;
-      height: auto;
-      border: $primaryColorYellow solid 4px;
-    }
-    .NO {
-      width: 3vw;
-      height: auto;
+    .tree_bg {
       position: absolute;
-      top: -1.5vw;
-    }
-    .score {
-      position: absolute;
-      top: 20vw;
+      bottom: 0px;
+      left: 0;
+      display: block; /* 確保圖片顯示為塊級元素 */
+      width: 100%; /* 讓圖片填滿父級容器的寬度 */
+      height: auto; /* 讓高度自動調整以保持圖片比例 */
+      max-width: 100%; /* 避免圖片超出其原始大小 */
       z-index: 10;
     }
 
-    .podium1 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 40%;
-      position: absolute;
-      bottom: 0;
-      .vote_name {
-        margin: 6% 0 15% 0;
-      }
-
-      .podium_box {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        width: 20vw;
-        height: 50vh;
-        background: rgb(254, 208, 1);
-        background: linear-gradient(
-          180deg,
-          rgba(254, 208, 1, 1) 0%,
-          rgba(254, 208, 1, 0.38716736694677867) 41%,
-          rgba(254, 208, 1, 0) 85%
-        );
-        /* 新增 border 相關屬性 */
-        border-left: 4px solid transparent; /* 透明的左邊框 */
-        border-right: 4px solid transparent; /* 透明的右邊框 */
-        border-image: linear-gradient(
-          to bottom,
-          $bgColorLightgray 60%,
-          rgba(255, 255, 255, 0) 85%
-        );
-
-        border-image-slice: 1;
-
-        z-index: 3;
-      }
-    }
-    .podium2 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 23%;
-      position: absolute;
-      bottom: 0;
-      .vote_name {
-        margin: 6% 0 15% 0;
-      }
-      .podium_box {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        width: 20vw;
-        height: 35vh;
-        background: rgb(254, 208, 1);
-        background: linear-gradient(
-          180deg,
-          rgba(254, 208, 1, 1) 0%,
-          rgba(254, 208, 1, 0.38716736694677867) 41%,
-          rgba(254, 208, 1, 0) 85%
-        );
-        z-index: 2;
-      }
-    }
-    .podium3 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 57%;
-      position: absolute;
-      bottom: 0;
-      .vote_name {
-        margin: 6% 0 15% 0;
-        left: 55%;
-      }
-      .podium_box {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        width: 20vw;
-        height: 30vh;
-        background: rgb(254, 208, 1);
-        background: linear-gradient(
-          180deg,
-          rgba(254, 208, 1, 1) 0%,
-          rgba(254, 208, 1, 0.38716736694677867) 41%,
-          rgba(254, 208, 1, 0) 85%
-        );
-        z-index: 1;
-      }
-    }
-  }
-}
-
-@media screen and (width < 480px) {
-  .vote_top {
-    height: 90vh;
-    .banner {
-      width: 100%;
-      height: auto;
-
-      .title {
-        padding: 5% 0;
-      }
-    }
     .podium_no {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
       .vote_img {
-        width: 15vw;
+        width: 9vw;
         height: auto;
-        border: $primaryColorYellow solid 4px;
+        border: $primaryColorYellow solid 0.3em;
       }
+
       .NO {
-        width: 5vw;
+        width: 3vw;
         height: auto;
         position: absolute;
         top: -1.5vw;
       }
+
       .score {
         position: absolute;
-        top: 40vw;
+        top: 21vw;
         z-index: 10;
       }
 
       .podium1 {
-        left: 35%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        left: 40%;
+        position: absolute;
+        bottom: 0;
+
+        .vote_name {
+          margin: 6% 0 15% 0;
+        }
+
         .podium_box {
-          width: 30vw;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 20vw;
+          height: 50vh;
+          background: rgb(254, 208, 1);
+          background: linear-gradient(
+            180deg,
+            rgba(254, 208, 1, 1) 0%,
+            rgba(254, 208, 1, 0.38716736694677867) 41%,
+            rgba(254, 208, 1, 0) 85%
+          );
+          //新增 border 相關屬性
+          border-left: 4px solid transparent;
+          //透明的左邊框
+          border-right: 4px solid transparent;
+          //透明的右邊框
+          border-image: linear-gradient(
+            to bottom,
+            $bgColorLightgray 60%,
+            rgba(255, 255, 255, 0) 85%
+          );
+
+          border-image-slice: 1;
+
+          z-index: 3;
         }
       }
+
       .podium2 {
-        left: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        left: 23%;
+        position: absolute;
+        bottom: 0;
+
+        .vote_name {
+          margin: 6% 0 15% 0;
+        }
+
         .podium_box {
-          width: 30vw;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 20vw;
+          height: 35vh;
+          background: rgb(254, 208, 1);
+          background: linear-gradient(
+            180deg,
+            rgba(254, 208, 1, 1) 0%,
+            rgba(254, 208, 1, 0.38716736694677867) 41%,
+            rgba(254, 208, 1, 0) 85%
+          );
+          z-index: 2;
         }
       }
+
       .podium3 {
-        left: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        left: 57%;
+        position: absolute;
+        bottom: 0;
+
+        .vote_name {
+          margin: 6% 0 15% 0;
+          left: 55%;
+        }
+
         .podium_box {
-          width: 30vw;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 20vw;
+          height: 30vh;
+          background: rgb(254, 208, 1);
+          background: linear-gradient(
+            180deg,
+            rgba(254, 208, 1, 1) 0%,
+            rgba(254, 208, 1, 0.38716736694677867) 41%,
+            rgba(254, 208, 1, 0) 85%
+          );
+          z-index: 1;
         }
       }
     }
   }
 }
 
-//投票活動
+/* PH-上個月投票結果 */
+@media screen and (width < 480px) {
+  .vote_top {
+    height: 90vh;
+
+    .banner {
+      // width: 100%;
+      // height: auto;
+      // background-image: url("/src/assets/images/vote/pc-tree.svg");
+      // z-index: 5;
+      .title {
+        padding: 15% 0;
+      }
+      .sheep {
+        left: 20%;
+
+        width: 19vw;
+      }
+      .tree_bg {
+        content: url("@/assets/images/vote/pc-tree.svg");
+      }
+      .podium_no {
+        .vote_img {
+          width: 15vw;
+          height: auto;
+          border: $primaryColorYellow solid 4px;
+        }
+
+        .NO {
+          width: 5vw;
+          height: auto;
+          position: absolute;
+          top: -1.5vw;
+        }
+
+        .score {
+          position: absolute;
+          top: 35vw;
+          z-index: 10;
+        }
+
+        .podium1 {
+          left: 35%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+
+        .podium2 {
+          left: 10%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+
+        .podium3 {
+          left: 60%;
+
+          .podium_box {
+            width: 30vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* PC-上個月投票結果 */
 .vote_activity {
   height: auto;
   padding-bottom: 10%;
@@ -214,9 +253,11 @@
   position: relative;
   // padding-bottom: 211px;
   color: $mainTextColor;
+
   .newsFrame .newsFrameText {
     top: 0;
   }
+
   .vote_activity_wrap {
     z-index: 3;
     width: 70%;
@@ -229,54 +270,68 @@
 
     padding: 5% 0 1% 0;
   }
+
   p {
     text-align: left;
   }
+
   .cloud_6 {
     animation: cloudMove 20s linear infinite;
     position: absolute;
     top: 15%;
     left: 6%;
     background-repeat: no-repeat;
+
     img {
       width: 8vw;
     }
   }
+
   .cloud_2 {
     animation: cloudMove2 5s linear infinite;
     position: absolute;
     top: 5%;
     right: 5%;
     background-repeat: no-repeat;
+
     img {
       max-width: 12vw;
       width: 100%;
     }
   }
+
   @keyframes cloudMove {
     0%,
     100% {
-      transform: translateX(0); /* 云的初始位置和结束位置 */
+      transform: translateX(0);
+      //雲的初始位置和結束位置
     }
+
     50% {
-      transform: translateX(calc(100% - 200px)); /* 云的中间位置 */
+      transform: translateX(calc(100% - 200px));
+      //雲的中間位置
     }
   }
+
   @keyframes cloudMove2 {
     0%,
     100% {
-      transform: translateY(0); /* 开始和结束位置 */
+      transform: translateY(0);
+      //開始和結束位置
     }
+
     50% {
-      transform: translateY(-20px); /* 上升 */
+      transform: translateY(-20px);
+      //上升
     }
   }
 
   .squirrel_2 {
     position: absolute;
     bottom: 6%;
-    left: 5%;
+    left: 10%;
     background-repeat: no-repeat;
+
     img {
       width: 10vw;
     }
@@ -284,40 +339,66 @@
 
   .conversation-vote-text {
     position: absolute;
-    bottom: 3%; /* 距离蟲头的距离，根据需要调整 */
-    left: 11%; /* 将文字框居中 */
-    transform: translateX(-50%); /* 使用负的自身宽度的一半来水平居中 */
+    bottom: 3%;
+    left: 15%;
+    //文字框居中
+    transform: translateX(-50%);
+    //使用負的自身寬度的一半來水平居中 */
     background-color: $primaryColorYellow;
     text-align: center;
-    padding: 0.4% 1.6%; /* 根据需要调整内边距 */
-    border-radius: 5px; /* 根据需要调整圆角 */
+    padding: 0.4% 1.6%;
+    border-radius: 5px;
     z-index: 1;
     animation: moveLeftRight 5s linear infinite;
+    cursor: pointer;
   }
+
+  .conversation-vote-text:hover {
+    background-color: $primaryColorGreen;
+    color: $bgColorWhite;
+  }
+
   @keyframes moveLeftRight {
     0% {
-      left: 10%; /* 初始位置 */
+      left: 15%;
+      //初始位置
     }
+
     50% {
-      left: 8.5%; /* 左移动到的位置 */
+      left: 13.5%;
+      //左移動到的位置
     }
+
     100% {
-      left: 10%; /* 回到初始位置 */
+      left: 15%;
+      //回到初始位置
     }
   }
+
   .vote_rule {
     .time_text {
       margin: 1.5% 0;
     }
+
     .time {
       margin: 1.5% 0;
     }
   }
 }
 
+/*TB-投票活動*/
+@media screen and (width < 768px) {
+  .vote_activity {
+    padding-bottom: 15%;
+  }
+}
+
+/*PH-投票活動*/
 @media screen and (width < 480px) {
   .vote_activity {
     height: auto;
+
+    padding-bottom: 20%;
 
     .vote_activity_wrap {
       width: 90%;
@@ -329,10 +410,26 @@
         align-items: center;
       }
     }
+    .cloud_6 {
+      top: 3%;
+      left: 20%;
+
+      img {
+        width: 14vw;
+      }
+    }
+
+    .cloud_2 {
+      top: 5%;
+      right: 5%;
+      img {
+        max-width: 16vw;
+      }
+    }
   }
 }
 
-//人氣投票TOP3
+/*PC-人氣投票TOP3*/
 .vote_popular {
   height: auto;
   padding: 8%;
@@ -344,7 +441,6 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -352,32 +448,32 @@
   position: relative;
   color: $mainTextColor;
   padding: auto;
-  box-sizing: border-box;
+
   .title {
     padding-bottom: 4%;
     // margin-bottom: 3%;
     color: #fff;
     display: flex;
   }
+
   .ranking .content {
     width: 70vw;
-
     height: 15vh;
     background-color: #fff;
     display: flex;
     align-items: center;
-
-    margin: 0.7% 0;
+    margin: 2% 0;
     white-space: nowrap;
 
     .img img {
-      max-width: 20%;
+      max-width: 6.5vw;
 
       border-radius: 50%;
-      margin: 0 10%; // 使用相對單位
+      margin: 0 20%; // 使用相對單位
       height: auto;
       margin-right: auto;
     }
+
     .number {
       padding: 0 1.6%;
       height: 100%;
@@ -386,14 +482,20 @@
       justify-content: center;
       align-items: center;
     }
+
     .name {
-      margin-left: auto;
-      margin: 0 5%; /* 使用相對單位 */
+      margin: 0 5%;
+      /* 使用相對單位 */
+      // margin-left: auto;
     }
+
     .votes {
-      margin-left: auto; /* 將左側 margin 設為 auto，使其具有彈性 */
-      margin-right: 2%; /* 使用相對單位 */
+      margin-left: auto;
+      //左側 margin 設為 auto具有彈性
+      margin-right: 2%;
+      //使用相對單位
     }
+
     button {
       margin-right: 5%;
     }
@@ -412,19 +514,22 @@
 
   @keyframes moveLeft {
     0% {
-      left: 90%; /* 初始位置在容器的右侧 */
+      left: 90%;
     }
+
     100% {
-      left: -100%; /* 结束位置在容器的左侧（超出容器的部分） */
+      left: -100%;
     }
   }
 }
 
+/*TB-人氣投票TOP3*/
 @media screen and (width < 768px) {
   .vote_popular {
     .ranking .content {
       width: 90vw;
       height: 10vh;
+
       .img img {
         max-width: 5vw;
         width: 100%;
@@ -433,11 +538,13 @@
   }
 }
 
+/*PH-人氣投票TOP3*/
 @media screen and (width < 480px) {
   .vote_popular {
     .ranking .content {
       width: 90vw;
       height: 10vh;
+
       .img img {
         max-width: 8vw;
         width: 100%;
@@ -445,12 +552,12 @@
     }
   }
 }
-//投票列表
+
+/*PC-投票列表*/
 .vote_overview_all {
   background-color: $bgColorLightgray;
   background-repeat: no-repeat;
   background-position: bottom;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -462,28 +569,10 @@
   position: relative;
   width: 100%;
   height: auto;
-  .animals_grass {
-    position: relative;
-    .animals_grass_hover {
-      overflow: hidden;
-      position: relative;
-      img {
-        position: absolute;
-        vertical-align: bottom;
-        transition: 0.5s ease-in-out;
-      }
-
-      &:hover img {
-        display: block;
-        top: 0px;
-      }
-    }
-  }
 
   .vote_overview_content {
     display: flex;
     flex-direction: column;
-
     padding: auto;
     max-width: 70%;
     width: 100%;
@@ -494,33 +583,36 @@
       width: 10vw;
       right: 16%;
     }
+
     .vote_button {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 2%;
+
       button {
+        cursor: pointer;
         width: 100%;
         height: 8vh;
         background-color: $primaryColorYellow;
 
         color: $mainTextColor;
       }
+
       button.hovered {
         background-color: $primaryColorGreen;
         color: $bgColorWhite;
       }
     }
+
     .vote_wrap {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-
       width: 100%;
-
       gap: 2%;
-
+      z-index: 50;
       .vote_card {
         // height: 10%;
         display: flex;
@@ -544,6 +636,7 @@
           flex-direction: row;
           align-items: center;
           color: $primaryColorGreen;
+
           img {
             min-width: 1.5vw;
             margin: 0 10px;
@@ -553,16 +646,19 @@
     }
   }
 }
-//投票列表-手機版
+
+//TB-投票列表
 @media screen and (width < 768px) {
   .vote_overview_all {
     .vote_overview_content {
       .vote_button {
         gap: 1%;
+
         button {
           height: auto;
         }
       }
+
       .vote_wrap {
         .vote_card {
           .vote_wrap_animal img {
@@ -575,18 +671,24 @@
   }
 }
 
+/*PC-投票列表*/
 @media screen and (width < 480px) {
   .vote_overview_all {
     .vote_overview_content {
-      max-width: 90%;
+      max-width: 70%;
+      .elephant1 img {
+        width: 20vw;
+        right: 13%;
+      }
       .vote_button {
         flex-direction: column;
 
         button {
-          height: auto;
+          height: 8vh;
           margin: 1% 0;
         }
       }
+
       .vote_wrap {
         justify-content: center;
 

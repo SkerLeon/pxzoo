@@ -2,40 +2,41 @@
     <section class="forHeader animal_detail_section">
 
         <!-- menu button -->
-        <div class="animal_pc_sidebar">
-            <aside class="Sidebar no_slide" id="animaldetail_sidebar">
+        <div class="animal_detail_pc_sidebar">
+            <aside class="Sidebar no_slide slide" id="animaldetail_sidebar">
             <!--     側邊欄上方動物icon -->
-                <img class="Sidebar_icon monkey" src="@/assets/images/vetor/vetor_animal_monkey.svg" alt="猴子icon">
+                <img class="Sidebar_icon monkey" src="@/assets/images/vetor/vetor_animal_monkey.svg" alt="猴子icon">    
 
                 <!-- 下拉式選單 -->
                 <ul class="Sidebar_filter_btns">
                     <li class="animaldetail_filter filter_btn_item "
-                    v-for="category in animalsCategoryPc">
-                    <div class="main_select">
+                        v-for="(category, index) in animals_species"
+                        :key="category.id"
+                        @click="toggleShow(isShow,index)">
+                        <div class="main_select">
                         <img :src="getIconUrl(category.icon)" alt="category.label">
-                        <p class="pcInnerText">{{category.label}}</p>
-                        <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow">
-                        <!-- sub-select -->
-                    </div>
-                        <!-- <ul class="animaldetail_sub_menu">
-                            <li><a class="pcInnerText" href="#">lion</a></li>
-                            <li><a class="pcInnerText" href="#">lion</a></li>
-                            <li><a class="pcInnerText" href="#">lion</a></li>
-                            <li><a class="pcInnerText" href="#">lion</a></li>
-                            <li><a class="pcInnerText" href="#">lion</a></li>
-                        </ul> -->
+                        <p class="pcInnerText">{{ category.park }}</p>
+                        <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow"
+                        :class="{ arrow_rotate: category.isShow }">
+                        </div>
+                        <!-- 子層 -->
+                        <ul class="animaldetail_sub_menu" v-show="category.isShow">
+                        <li v-for="child in category.children" :key="child.id">
+                            <a class="pcInnerText" href="#">{{ child.species }}</a>
+                        </li>
+                        </ul>
                     </li>
                 </ul>
 
                 <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon)  -->
-                <!-- <div class="Sidebar_guide hidden_buttom">   
+                <div class="Sidebar_guide hidden_buttom">   
                     <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
-                </div> -->
+                </div> 
             </aside>
         </div>
 
-        <main class="animal_detail_overview">
-        <!-- 上方介紹區塊 -->           
+        <main class="animal_detail_overview"> 
+        <!-- 上方介紹區塊            -->
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
@@ -121,46 +122,76 @@ export default {
     data() {
         return {
             //animal
-            animals_grass: [
-                { species: 'lion', name: '獅子' },
-                { species: 'giraffe', name: '長頸鹿' },
-                { species: 'elephant', name: '非洲象' },
-                { species: 'cheetah', name: '獵豹' },
-                { species: 'zebra', name: '斑馬' },
-                { species: 'meerkat', name: '狐獴' },
+            animals_species : [
+                {
+                    park:'草原之聲',
+                    id:1,
+                    isShow: false,
+                    children: [
+                        {species:'獅子'},
+                        {species:'長頸鹿'},
+                        {species:'非洲象'},
+                        {species:'獵豹'},
+                        {species:'斑馬'},
+                        {species:'狐獴'},
+                    ],
+                    icon:'giraffe'
+                },
+                {
+                    park:'極地秘境',
+                    id:2,
+                    isShow: false,
+                    children: [
+                        {species:'北極熊'},
+                        {species:'國王企鵝'},
+                        {species:'麥哲倫企鵝'},
+                        {species:'北極狐'},
+                        {species:'海豹'},
+                    ],
+                    icon:'penguin'
+                },
+                {
+                    park:'叢林奇蹟',
+                    id:3,
+                    isShow: false,
+                    children: [
+                        {species:'水豚'},
+                        {species:'馬來貘'},
+                        {species:'紅毛猩猩'},
+                        {species:'孟加拉虎'},
+                        {species:'二趾樹懶'},
+                        {species:'台灣獼猴'},
+                    ],
+                    icon:'monkey'
+                },
+                {
+                    park:'鳥園樂章',
+                    id:4,
+                    isShow: false,
+                    children: [
+                        {species:'孔雀'},
+                        {species:'紅鶴'},
+                        {species:'丹頂鶴'},
+                        {species:'貓頭鷹'},
+                        {species:'巨嘴鳥'},
+                        {species:'鵜鶘'},
+                    ],
+                    icon:'flamingo'
+                },
+                {
+                    park:'海洋奇觀',
+                    id:5,
+                    isShow: false,
+                    children: [
+                        {species:'魟魚'},
+                        {species:'鯊魚'},
+                        {species:'海鰻'},
+                        {species:'小丑魚'},
+                        {species:'章魚'},
+                    ],
+                    icon:'fish'
+                },
             ],
-            animals_polar: [
-                { species: 'polarBear', name: '北極熊' },
-                { species: 'kingPenguin', name: '國王企鵝' },
-                { species: 'magellanicPenguin', name: '麥哲倫企鵝' },
-                { species: 'arcticFox', name: '北極狐' },
-                { species: 'seal', name: '海豹' },
-            ],
-            animals_jungle: [
-                { species: 'capybara', name: '水豚' },
-                { species: 'malayanTapir', name: '馬來貘' },
-                { species: 'orangutan', name: '紅毛猩猩' },
-                { species: 'tiger', name: '孟加拉虎' },
-                { species: 'sloth', name: '二趾樹懶' },
-                { species: 'monkey', name: '台灣獼猴' },
-            ],
-            animals_birds: [
-                { species: 'peacock', name: '孔雀' },
-                { species: 'flamingo', name: '紅鶴' },
-                { species: 'japaneseCrane', name: '丹頂鶴' },
-                { species: 'owl', name: '貓頭鷹' },
-                { species: 'eagle', name: '老鷹' },
-                { species: 'toucan', name: '巨嘴鳥' },
-                { species: 'pelican', name: '鵜鶘' },
-            ],
-            animals_aqua: [
-                { species: 'stingray', name: '魟魚' },
-                { species: 'shark', name: '鯊魚' },
-                { species: 'eel', name: '海鰻' },
-                { species: 'clownfish', name: '小丑魚' },
-                { species: 'octopus', name: '章魚' },
-            ],
-
             //select ph
             animalsCategory: [
                 {
@@ -189,33 +220,6 @@ export default {
                 }
             ],
             //pc
-            animalsCategoryPc: [
-                {
-                    value: 'grassLand',
-                    label: '草原之聲',
-                    icon: 'giraffe'
-                },
-                {
-                    value: 'polar',
-                    label: '極地秘境',
-                    icon: 'penguin'
-                },
-                {
-                    value: 'jungle',
-                    label: '叢林奇蹟',
-                    icon: 'monkey'
-                },
-                {
-                    value: 'birds',
-                    label: '鳥園樂章',
-                    icon: 'flamingo'
-                },
-                {
-                    value: 'aqua',
-                    label: '海洋奇觀',
-                    icon: 'fish'
-                }
-            ],
         };
     },
     methods: {
@@ -227,9 +231,9 @@ export default {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
         },
 
-        // asideToggle(){
-        //     this.
-        // }
+        toggleShow(isShow,index) {
+            this.animals_species[index].isShow = !this.animals_species[index].isShow;
+        },
     },
     created() {
     },

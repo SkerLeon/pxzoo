@@ -13,12 +13,13 @@
             </h2>
         </hgroup>
         <article class="choosed">
-            <main v-for=" ticket in tickets" :key="ticket.id">
+            <main v-for=" ticket in ticketsData" :key="ticket.id">
                 <div>
                     <p class="pcInnerText">{{ ticket.name }}</p>
                     <span class="pcMarkText">{{ ticket.rule }}</span>
                 </div>
-                <h2 class="pcSmTitle">1 
+                <h2 class="pcSmTitle">
+                        {{ ticket.qty }} 
                     <span class="pcMarkText">張</span>
                 </h2>
             </main>
@@ -26,30 +27,31 @@
         <hgroup class="coupon pcInnerText">
             <h2 class="pcSmTitle">優惠折扣</h2>
             <p v-if="noCoupon">目前沒有優惠券</p>
-            <select v-else name="" id="coupon" v-model="selectedCoupon">
-                <option value="" disabled selected hidden>請選擇優惠券</option>
-                <option v-for="(coupon, couponIndex) in couponList" :key="coupon.Id" :value="coupon.value">{{ coupon.option }}</option>
+            <select v-else name="" id="coupon" v-model="selectedCoupon" 
+            @change="chooseCoupon()">
+                <option value="null" disabled default hidden>請選擇優惠券</option>
+                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon">{{ coupon.option }}</option>
             </select>
         </hgroup>
         <div class="price">
             <span>票券金額</span>
             <div class="pcInnerText">
                 <span class="pcMarkText">NT$</span>
-                <p>260</p>
+                <p>{{tipriceData}}</p>
             </div>
         </div>
         <div class="price">
             <span>優惠金額</span>
             <div class="pcInnerText">
                 <span class="pcMarkText">NT$</span>
-                <p>26</p>
+                <p>{{coupriceData}}</p>
             </div>
         </div>
         <div class="price important">
             <p class="pcInnerText">付款金額</p>
             <div class="mixedFont pcSmTitle">
                 <p class="pcInnerText">NT$</p>
-                <h2>234</h2>
+                <h2>{{paypriceData}}</h2>
             </div>
         </div>
         <article class="payWay">
@@ -105,67 +107,44 @@ export default {
     },
     props:{
         // 丟資料的key值
-        'tickStep':{ type: Number },
+        // validator 驗證規則內不可讀取 data. computed 屬性
+        // validator: value => value>0,
+        tickStep:{ type: Number },
+        ticketsData: {
+            type: Array,
+            required: true,
+        },
+        tipriceData: {
+            type: Number,
+            required: true,
+        },
+        couponsData: {
+            type: Array,
+            required: true,
+        },
+        couponOpData: {
+            type: String,
+            required: true,
+        },
+        couponValData: {
+            type: Number,
+            required: true,
+        },
+        coupriceData: {
+            type: Number,
+            required: true,
+        },
+        paypriceData: {
+            type: Number,
+            required: true,
+        },
     },
     data(){
         return {
-            tickets: [
-                {
-                    id: 1,
-                    name: '成人票',
-                    rule: '18~64 歲',
-                    price: 100,
-                    src: 'src/assets/images/ticket/ticket1.svg'
-                },
-                {
-                    id: 2,
-                    name: '兒童票',
-                    rule: '4~11 歲',
-                    price: 80,
-                    src: 'src/assets/images/ticket/ticket2.svg'
-                },
-                {
-                    id: 3,
-                    name: '學生票',
-                    rule: '12 歲以上(含)持學生證者',
-                    price: 40,
-                    src: 'src/assets/images/ticket/ticket3.svg'
-                },
-                {
-                    id: 4,
-                    name: '愛心票',
-                    rule: '65 歲以上(含)',
-                    price: 4100,
-                    src: 'src/assets/images/ticket/ticket4.svg'
-                },
-                {
-                    id: 5,
-                    name: '團體票',
-                    rule: '15 人以上適用',
-                    price: 60,
-                    src: 'src/assets/images/ticket/ticket5.svg'
-                },
-            ],
+            noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
             isSmallPH: false,
-            selectedCoupon: '',
+            selectedCoupon: null,
             selectedPay: '',
-            couponList: [
-                { 
-                    id: 1,
-                    option: '不使用優惠券',
-                    value: 1,
-                },
-                {
-                    id: 2,
-                    option: '付款金額 9 折',
-                    value: 0.9,
-                },
-                { 
-                    id: 3,
-                    option: '付款金額 95 折',
-                    value: 0.95,
-                },
-            ],
             paywayList: [
                 { 
                     id: 1,
@@ -186,22 +165,27 @@ export default {
         nextStep(){
             // 999寫確認有選付款方式的判斷式
             // 999寫確認信用卡的判斷式
-            this.$emit('nextStep');
+            this.$emit('goNextStep');
         },
         previousStep(){
-            this.$emit('previousStep');
+            this.$emit('goPreviousStep');
         },
         windowSize(){
             this.isSmallPH = window.innerWidth <= 430;
         },
+        chooseCoupon(){
+            // 不可直接修改props值
+            // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進製表示浮點數)
+            let coupriceCal =  parseInt(
+                (this.tipriceData * (1 - this.selectedCoupon.value)).toFixed(2)
+            );
+            let paypriceCal = this.tipriceData - coupriceCal;
+
+            this.$emit("newCoupon", this.selectedCoupon.option, this.selectedCoupon.value, coupriceCal, paypriceCal);
+        },
     },
     computed:{},
     watch:{
-        selectedCoupon(newValue){
-            console.log("當前Coupon", newValue);
-            
-            this.$emit("transferCoupon", this.selectedCoupon);
-        },
         selectedPay(newValue){
             console.log("當前Pay", newValue);
             console.log("當前Pay", newValue.value);

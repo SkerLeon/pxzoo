@@ -14,7 +14,7 @@
           <div class="podium_box">
             <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
           </div>
-          <div class="score pcDecSmTitle">{{ podium.score }}</div>
+          <div class="score pcSmTitle">{{ podium.score }}</div>
         </div>
       </div>
       <!-- <div class="podium1">
@@ -26,6 +26,8 @@
           </div>
         </div> -->
       <!-- </div> -->
+      <img class="tree_bg" src="@/assets/images/vote/tree.svg" alt="tree_bg" />
+ 
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
     </div>
   </section>
@@ -56,16 +58,16 @@
         </p>
       </div>
     </div>
-    <div class="cloud_6" >
+    <div class="cloud_6">
       <img src="@/assets/images/vote/clouda_6.svg" alt="雲" />
     </div>
     <div class="cloud_2">
       <img src="@/assets/images/vote/clouda_2.svg" alt="雲" />
     </div>
-    <div class="squirrel_2" >
+    <div class="squirrel_2">
       <img src="@/assets/images/vote/squirrel_2.svg" alt="松鼠" />
     </div>
-    <div class="conversation-vote-text pcSmTitle">快來投票</div>
+    <div class="conversation-vote-text pcSmTitle " @click="scrollToVoteList">快來投票</div>
     <div class="AnimalSquirrel"></div>
   </section>
   <!-- 人氣投票TOP3 -->
@@ -92,63 +94,64 @@
     <!-- 蟲在平板大小會蓋到，讓他移動XD -->
     <div class="caterpillar">
       <img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" />
-    </div> 
-  
+    </div>
+
   </section>
 
   <!-- 投票列表 -->
 
   <section class="vote_overview_all">
     <div class="vote_overview_content">
-    <div class="vote_button">
-      <button @click="showContent('vote_grass')" @mouseover="setHoverState('vote_grass')"
-        class="animals_grass pcInnerText" :class="{ hovered: currentContent === 'vote_grass' }">
-        草原之聲
-         
-      </button>
-     
-     
-      <button @click="showContent('vote_polar')" @mouseover="setHoverState('vote_polar')"
-        class="animals_polar pcInnerText" :class="{ hovered: currentContent === 'vote_polar' }">
-        極地秘境
-      </button>
-      <button @click="showContent('vote_jungle')" @mouseover="setHoverState('vote_jungle')"
-        class="animals_jungle pcInnerText" :class="{ hovered: currentContent === 'vote_jungle' }">
-        叢林奇蹟
-      </button>
-      <button @click="showContent('vote_birds')" @mouseover="setHoverState('vote_birds')"
-        class="animals_birds pcInnerText" :class="{ hovered: currentContent === 'vote_birds' }">
-        鳥園樂章
-      </button>
-      <button @click="showContent('vote_aqua')" @mouseover="setHoverState('vote_aqua')" class="animals_aqua pcInnerText"
-        :class="{ hovered: currentContent === 'vote_aqua' }">
-        海洋奇觀
-      </button>
-    </div>
+      <div class="vote_button">
+        <button @click="showContent('vote_grass')" @mouseover="setHoverState('vote_grass')"
+          class="animals_grass pcInnerText" :class="{ hovered: currentContent === 'vote_grass' }">
+          草原之聲
 
-    <div class="vote_wrap">
-      <div v-for="(voteItem, index) in currentVoteList" :key="index" class="vote_item">
-        <div class="vote_card">
-          <div class="vote_wrap_animal">
-            <img :src="getImageUrl(voteItem.animal_img)" alt="Animal" />
-          </div>
+        </button>
 
-          <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
-          <div class="vote_icon pcInnerText">
-            <img src="@/assets/images/vote/star.svg" alt="" />{{
-              voteItem.point
-            }}票
+
+        <button @click="showContent('vote_polar')" @mouseover="setHoverState('vote_polar')"
+          class="animals_polar pcInnerText" :class="{ hovered: currentContent === 'vote_polar' }">
+          極地秘境
+        </button>
+        <button @click="showContent('vote_jungle')" @mouseover="setHoverState('vote_jungle')"
+          class="animals_jungle pcInnerText" :class="{ hovered: currentContent === 'vote_jungle' }">
+          叢林奇蹟
+        </button>
+        <button @click="showContent('vote_birds')" @mouseover="setHoverState('vote_birds')"
+          class="animals_birds pcInnerText" :class="{ hovered: currentContent === 'vote_birds' }">
+          鳥園樂章
+        </button>
+        <button @click="showContent('vote_aqua')" @mouseover="setHoverState('vote_aqua')" class="animals_aqua pcInnerText"
+          :class="{ hovered: currentContent === 'vote_aqua' }">
+          海洋奇觀
+        </button>
+      </div>
+
+      <div class="vote_wrap">
+        <div v-for="(voteItem, index) in currentVoteList" :key="index" class="vote_item">
+          <div class="vote_card">
+            <div class="vote_wrap_animal">
+              <img :src="getImageUrl(voteItem.animal_img)" alt="Animal" />
+            </div>
+
+            <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{
+                voteItem.point
+              }}票
+            </div>
+            <button @click="vote_animal(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
           </div>
-          <button @click="vote_animal(voteItem)" class="pcInnerText defaultBtn">
-  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-  立即投票
-</button>
         </div>
       </div>
+      <div class="elephant1">
+        <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
+      </div>
     </div>
-    <div class="elephant1">
-      <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
-    </div></div>
   </section>
 </template>
 
@@ -156,6 +159,7 @@
 export default {
   data() {
     return {
+
       votedCount: 0,
       currentContent: "vote_grass",
 
@@ -233,7 +237,7 @@ export default {
       ],
 
       vote_birds_list: [
-       { animal_img: "flamingo", name: "阿翔", point: "13" },
+        { animal_img: "flamingo", name: "阿翔", point: "13" },
         { animal_img: "japaneseCrane", name: "曉曉", point: "23" },
         { animal_img: "owl", name: "晴空", point: "32" },
         { animal_img: "eagle", name: "艾妮", point: "98" },
@@ -251,7 +255,11 @@ export default {
     };
   },
   methods: {
-   
+    scrollToVoteList() {
+      const voteListElement = document.querySelector('.vote_wrap');
+      voteListElement.scrollIntoView({ behavior: 'smooth' });
+    },
+
     getImageUrl(img) {
       return new URL(
         `../assets/images/animal/small_pic/small_pic_${img}.png`,
@@ -270,12 +278,12 @@ export default {
       // 檢查用戶是否已經投過三票
       if (this.votedCount >= 3) {
         console.log("你今天已經投過三票了！");
-            // 在界面上顯示訊息
-    alert("你今天已經投過三票了！");
+        // 在界面上顯示訊息
+        alert("今天已經投過三票了！");
 
         return; // 如果已經投過三票，退出方法
       }
-      
+
       // 在 ranking_list 中找到被選中動物的索引
       const index = this.ranking_list.findIndex(item => item.name === animal.name);
       // 如果找到該動物
@@ -288,30 +296,30 @@ export default {
       } else {
         console.error("未找到該動物！");
       }
-  },
-  vote_animal(animal2) {
-  // 檢查用戶是否已經投過三票
-  if (this.votedCount >= 3) {
-    console.log("你今天已經投過三票了！");
+    },
+    vote_animal(animal2) {
+      // 檢查用戶是否已經投過三票
+      if (this.votedCount >= 3) {
+        console.log("今天已經投過三票！");
         // 在界面上顯示訊息
-        alert("你今天已經投過三票了！");
+        alert("你今天已經投過三票！");
 
-    return; // 如果已經投過三票，退出方法
-  }
+        return; // 如果已經投過三票，退出方法
+      }
 
-  // 在 currentVoteList 中找到被選中動物的索引
-  const index = this.currentVoteList.findIndex(item => item.name === animal2.name);
-  // 如果找到該動物
-  if (index !== -1) {
-    // 增加票數
-    this.currentVoteList[index].point++;
-    // 更新已經投票的次數
-    this.votedCount++;
-    console.log("投票成功！");
-  } else {
-    console.error("未找到該動物！");
-  }
-},
+      // 在 currentVoteList 中找到被選中動物的索引
+      const index = this.currentVoteList.findIndex(item => item.name === animal2.name);
+      // 如果找到該動物
+      if (index !== -1) {
+        // 增加票數
+        this.currentVoteList[index].point++;
+        // 更新已經投票的次數
+        this.votedCount++;
+        console.log("投票成功！");
+      } else {
+        console.error("未找到該動物！");
+      }
+    },
 
     showContent(content) {
       this.currentContent = content;
@@ -321,8 +329,13 @@ export default {
       // 如果只是要變樣式，沒有要做其他js程序，不要用vue用css就好了
       this.currentContent = content;
     },
+
   },
-  created() { },
+
+  mounted() {
+    // // 在mounted鉤子中綁定滾動到投票列表的函數
+    // this.scrollToVoteList();
+  },
   computed: {
     currentVoteList() {
       // 除非資料庫存五張類型動物的tabla，可以這樣寫

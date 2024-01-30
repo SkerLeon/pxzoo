@@ -29,19 +29,11 @@ $Sidebar_icon_rigth: 70px;
   left: -14%;
   transition: 0.3s;
   @media (max-width:768px) {
-    width: 300px;
-    height: 80px;
-    top: 50%;
-    left: -29.5%;
-  }
-  @media (max-width:480px) {
-    width: 163px;
-    height: 80px;
-    top: 25%;
-    left: -29.5%;
+    top: 5%;
+    left: -26%;
   }
   &:hover {
-    @media (min-width:1280px) {
+    @media (min-width:1279px) {
       transition: 0.3s;
       left: 0;
     }
@@ -65,13 +57,8 @@ $Sidebar_icon_rigth: 70px;
     }
     @media (max-width: 768px) {
       width: 12vw;
-      top: -22vh;
-      right: 13vw;
-    }
-    @media (max-width: 480px) {
-      width: 13vw;
-      top: -9vh;
-      right: 14vw;
+      top: -23%;
+      right: 35%;
     }
   }
   .Sidebar_filter_btns {
@@ -92,12 +79,6 @@ $Sidebar_icon_rigth: 70px;
         height: 12vh;
         gap: 10px;
       }
-      @media (max-width:480px) {
-        justify-content: start;
-        width: 110px;
-        height: 6vh;
-        gap: 10px;
-      }
       &:hover {
         @media (min-width:1280px) {
           cursor: pointer;
@@ -111,16 +92,10 @@ $Sidebar_icon_rigth: 70px;
           width: 4vw;
           height: 4vh;
         }
-        @media (max-width:480px) {
-          width: 5vw;
-        }
       }
       p{
         @media (max-width:768px) {
           font-size: 20px;
-        }
-        @media (max-width:480px) {
-          font-size: 14px;
         }
       }
     }
@@ -137,19 +112,11 @@ $Sidebar_icon_rigth: 70px;
       height: 3.7vh;
     }
     @media (max-width:768px) {
-      width: 300px;
+      width: 100px;
       height: 12vh;
       img {
         width: 6vw;
         height: 6vh;
-      }
-    }
-    @media (max-width:480px) {
-      width: 60px;
-      height: 6vh;
-      img {
-        width: 3.5vw;
-        height: 3.5vh;
       }
     }
   }

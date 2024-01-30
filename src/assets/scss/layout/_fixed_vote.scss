@@ -1,5 +1,5 @@
 .fixed_vote{
-    z-index: 999;
+    z-index: 997;
     position: fixed;
     bottom: 0;
     right: 1vw;
@@ -11,24 +11,87 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-
+    @media (max-width:768px) {
+        background-image: url("/src/assets/images/fixedvote/fixedvote_ph.svg");
+        bottom: 30vh;
+        right: -3.4vw;
+        width: 25vw;
+        height: 20vh;
+    }
+    @media (max-width:660px) {
+        right: -2vw;
+    }
+    @media (max-width:550px) {
+        right: 0vw;
+    }
     a{
         text-decoration: none;
         color: $bgColorWhite;
-        text-align: center;
     }
-
-    
-
     .fixed_top{
         position: absolute;
         top: 3.2vw;
         left: 2.2vw;
+        @media (max-width:768px) {
+            font-size: 18px;
+        }
     }
 
     .fixed_bottom{
         position: absolute;
         top: 8.1vw;
         left: 2.5vw;
+        @media (max-width:768px) {
+            font-size: 18px;
+        }
     }
+
+    .fixed_pc{
+        @media (max-width:768px) {
+            display: none;
+        }
+    }
+    .fixed_ph{
+        position: absolute;
+        bottom: 5%;
+        left: 25%;
+        @media (min-width:769px) {
+            display: none;   
+        }
+        @media (max-width:550px) {
+            left: 18%; 
+        }
+        @media (max-width:470px) {
+            left: 10%;
+            bottom:9%;
+        }
+        @media (max-width:450px) {
+            line-height: normal;
+            left: 12%;
+            bottom:14%;
+        }
+        @media (max-width:430px) {
+            left: 10%;
+            bottom:20%;
+        }
+        @media (max-width:425px) {
+            left: 8%;
+            bottom:15%;
+        }
+        @media (max-width:414px) {
+            left: 8%;
+            bottom:20%;
+        }
+        @media (max-width:400px) {
+            font-size: 14px;
+            left: 10%;
+            bottom:20%;
+        }
+        @media (max-width:375px) {
+            font-size: 14px;
+            left: 10%;
+            bottom:15%;
+        }
+    }
+
 }

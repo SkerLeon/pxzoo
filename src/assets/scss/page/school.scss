@@ -1,17 +1,26 @@
 .school {
-  background-image: url("/src/assets/images/school/banner.svg");
+  background-image: url("/src/assets/images/school/sky.svg");
   background-color: #fff;
-  max-width: 1920px;
   width: 100%;
   height: 100vh;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  animation: animate_school 100s linear infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @keyframes animate_school {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
 
   .teacher img {
     position: absolute;
@@ -25,6 +34,7 @@
   .school_tree img {
     position: absolute;
     bottom: 0;
+    // z-index: 5;
   }
   .school_tree {
     .tree_3 img {
@@ -66,6 +76,18 @@
     justify-content: center;
     align-items: center;
 
+    .school_title > div {
+      animation: jumpup 1s infinite alternate; /* 添加跳動動畫效果 */
+    }
+
+    @keyframes jumpup {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-20px);
+      }
+    }
     .school_title {
       display: flex;
       flex-direction: row;
@@ -99,8 +121,8 @@
       }
     }
     .school_name {
-      color: #fff;
-      letter-spacing: 20px;
+      color: $primaryColorYellow;
+      letter-spacing: 16px;
       margin: 10% 0;
       font-weight: 500;
     }
@@ -128,6 +150,7 @@
 .school_content_2 .school_content_2 .question {
   display: flex;
   flex-direction: column;
+  z-index: 10;
 }
 
 .option_all {
@@ -221,10 +244,10 @@
 
 .lightbox-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 4%;
   border-radius: 10px;
   text-align: center;
-  width: 70vw;
+  width: 80vw;
 }
 
 .lightbox button {
@@ -280,6 +303,48 @@
   }
 }
 @media screen and (width < 480px) {
+  .school {
+    .teacher img {
+      width: 14vw;
+      right: 40%;
+      bottom: -0.5%;
+    }
+    .school_tree {
+      .tree_3 img {
+        width: 25vw;
+        left: 0;
+        bottom: -2px;
+      }
+      .tree_5 img {
+        width: 29vw;
+        height: auto;
+        left: 6%;
+        bottom: 0%;
+      }
+      .grasses_6 img {
+        width: 21vw;
+        height: auto;
+        left: 24%;
+      }
+      .grasses_7 img {
+        width: 25vw;
+        height: auto;
+        right: 22%;
+      }
+      .tree_8 img {
+        width: 25vw;
+        height: auto;
+        right: 12%;
+        bottom: -2px;
+      }
+      .tree_1 img {
+        width: 25vw;
+        height: auto;
+        right: 0%;
+      }
+    }
+  }
+
   .option-image-container {
     width: 32vw;
     margin: 20% 0;
@@ -291,9 +356,28 @@
   .option_all {
     flex-wrap: wrap;
 
-    gap: 10%;
+    gap: 8%;
   }
   .option_input {
     padding: 12% 24%;
+  }
+  .lightbox-content {
+    margin-top: 6%;
+    width: 90vw;
+  }
+
+  .eat_coin {
+    left: 16vw;
+    gap: 6%;
+  }
+  .eat_coin .coin {
+    img {
+      width: 5vw;
+    }
+  }
+  .chimpanzees img {
+    left: -12vw;
+    width: 14vw;
+    z-index: 12;
   }
 }

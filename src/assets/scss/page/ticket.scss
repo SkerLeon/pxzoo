@@ -147,11 +147,9 @@
     div{
         display: block;
     }
-    .fakeCalendar{
-        width: 100%;
-    }
     .tickBtn{
         justify-content: end;
+        margin: 1vw 0 calc(1vw + 60px);
     }
     hgroup{
         border: 0;
@@ -171,7 +169,7 @@
     }
 }
 .calendar{
-    height: 400px;
+    height: 312px;
     overflow: hidden;
     text-align: center;
     background-size: cover;
@@ -216,11 +214,12 @@
     }
     .ivu-calendar-table thead th, td{
         padding: 8px;
-        height: 40px;
         width: 4vw;
         text-align: center;
         color: $mainTextColor;
-
+    }
+    .ivu-calendar-table thead th{
+        padding: 4px 8px;
     }
     td,.ivu-calendar-table tr:first-child td{
         border: $bgColorSecGray solid 1px;
@@ -245,6 +244,12 @@
     width: 100%;
     >div{ gap: 1vw; }
     >.tickOption.PC{ gap: 4vw; }
+    hgroup{
+        button{
+            border: 0;
+            background-color: transparent;
+        }
+    }
     .countBTN{
         display: flex;
         justify-content: center;
@@ -258,6 +263,26 @@
             color: $mainTextColor;
             &:hover {
                 background-color: $primaryColorYellow;
+            }
+        }
+    }
+    .tickBtn{
+        position: relative;
+        main{
+            position: absolute;
+            bottom: 0;
+            right: 20vw;
+            article{
+                font-weight: 700;
+                color: $inputColor;
+                transform: translate(150px, 3.8vw);
+            }
+            img{
+                height: calc(39px + 5vw);
+            }
+            p{
+                display: inline;
+                line-height: 100%;
             }
         }
     }
@@ -345,11 +370,23 @@
     .tickInfo{
         article{ margin: 20px 4vw auto; }
     }
+    .tickNum{
+        .tickBtn{
+            main{
+                article{
+                    transform: translate(100px, 3.8vw);
+                }
+                p{
+                    display: block;
+                }
+            }
+        }
+    }
 }
 @media screen and (max-width: 1540px){
     .tickBgc{
         transform: translate(-11%, 0);
-        .tickBoard{ height: 525px; }
+        .tickBoard{ height: 520px; }
     }
     .tickInfo{
         article{
@@ -360,13 +397,14 @@
 }
 @media screen and (max-width: 1400px){
     .tickBgc{
+        transform: translate(-16%, 0);
         .tickBoard{ height: 515px; }
         .tickEagle{ width: 8vw;}
     }
     .tickInfo{
         article{
             width: 440px;
-            margin: 20px 4.2vw auto;
+            margin: 20px 2.1vw auto;
         }
     }
 }
@@ -470,6 +508,14 @@
         >article{
             gap: 8px;
         }
+        .tickBtn{
+            main{
+                article{
+                    display: block;
+                    transform: translate(80px, 4.4vw);
+                }
+            }
+        }
     }
     .tickOption{
         align-items: center;
@@ -509,6 +555,7 @@
             left: 1vw;
         }
     }
+
 }
 @media screen and (max-width:768px){
     .tickFrame{
@@ -550,6 +597,16 @@
         .ivu-ml>.ivu-radio-wrapper{
             width: 44px;
             line-height: 44px;
+        }
+    }
+    .tickNum{
+        .tickBtn{
+            main{
+                right: 36vw;
+                article{
+                    transform: translate(80px, 4.2vw);
+                }
+            }
         }
     }
     .tickCheck, .tickFinished{
@@ -643,6 +700,16 @@
         }
         .price{ padding-top: 3vw; }
         .tickBtn button{ margin: 5vw 0 8vw; }
+        .tickBtn{
+            main{
+                right: 20vw;
+                img{ height: 17vw; }
+                article{
+                    transform: translate(93px, 8.2vw);
+                }
+            }
+        }
+    
     }
 }
 @media screen and (max-width:520px){
@@ -699,6 +766,17 @@
             right: 11vw;
         }
     }
+    .tickNum{
+        .tickBtn{
+            main{
+                right: 24vw;
+                img{ height: 15vw; }
+                article{
+                    transform: translate(80px, 6vw);
+                }
+            }
+        }
+    }
     .tickCheck{
         input, select{ width: 80%; }
         .coupon h2, .payWay h2{ width: 120px; }
@@ -733,6 +811,17 @@
             left: 16vw;
         }
     }
+    .tickNum{
+        .tickBtn{
+            main{
+                right: 33vw;
+                img{ height: 20vw; }
+                article{
+                    transform: translate(80px, 0.8vw);
+                }
+            }
+        }
+    }
     .tickCheck, .tickFinished{
         .coupon{
             margin-top: 20px;
@@ -761,6 +850,14 @@
     .calendar{
         td{
             padding: 8px 2px;
+        }
+    }
+    .tickNum{
+        .tickBtn{
+            main{
+                right: 31.75vw;
+                img{ height: 22vw; }
+            }
         }
     }
     .tickCheck{

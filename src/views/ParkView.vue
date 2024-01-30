@@ -168,12 +168,12 @@
       </div>
 
       <div class="pk_content_bg_eagle">
-        <img src="@/assets/images/park/pk_content_bg_eagle.svg" alt="老鷹圖片">
+        <img src="@/assets/images/park/pk_content_bg_eagle.png" alt="老鷹圖片">
       </div>
 
     </section>
 
-    <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
+    <!-- <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
         <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
 
         <ul class="Sidebar_filter_btns">
@@ -196,7 +196,7 @@
         <div class="Sidebar_guide" >   
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
-      </aside>
+    </aside> -->
 
   </section>
 </template>
@@ -447,7 +447,7 @@ export default {
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
-      this.$refs.Sidebar.style.left = this.hover ? '0px' : '-29.5%';
+      this.$refs.Sidebar.style.left = this.hover ? '0' : '-26%';
     }
   },
 };
