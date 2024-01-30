@@ -5,6 +5,9 @@
   width: 100%;
   height: 48vw;
   @media (width <= 768px) {
+    height: 105vw;
+  }
+  @media (width <= 450px) {
     height: 190vw;
   }
 }
@@ -425,6 +428,7 @@
           .commentArea {
             display: flex;
             width: 50%;
+            height: 100%;
             flex-direction: column;
             justify-content: center;
             row-gap: 3.5vw;
