@@ -1,6 +1,6 @@
 <template>
   <main class="memPage forHeader">
-    <div class="qrCodeLb" v-if="showQRCode" @click="closeQRCode">
+    <div class="qrCodeLb" v-if="showQRCode" @click.self="closeQRCode">
       <qrcodeLB @close-qrcode="closeQRCode" />
     </div>
     <aside class="memSidebar">

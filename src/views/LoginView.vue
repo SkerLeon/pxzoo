@@ -126,13 +126,21 @@
 // import axios from "axios";
 import { mapActions } from "pinia";
 import userStore from "@/stores/auth";
+const imgUrl = new URL(
+  "../../public/images/login/login_btn_area.png",
+  import.meta.url
+).href;
+const imgUrl2 = new URL(
+  "../assets/images/login/login-bg/signin_btn_area.png",
+  import.meta.url
+).href;
 export default {
   data() {
     return {
       activeTab: "loginForm",
       loginAccount: "mor_2314",
       loginPassword: "83r5^_",
-      currentImage: `/src/assets/images/login/login-bg/login_btn_area.png`,
+      currentImage: imgUrl,
     };
   },
   components: {},
@@ -173,9 +181,9 @@ export default {
     },
     changeImage(imageNumber) {
       if (imageNumber === 1) {
-        this.currentImage = `/src/assets/images/login/login-bg/login_btn_area.png`;
+        this.currentImage = imgUrl;
       } else if (imageNumber === 2) {
-        this.currentImage = `/src/assets/images/login/login-bg/signin_btn_area.png`;
+        this.currentImage = imgUrl2;
       }
     },
   },
