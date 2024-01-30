@@ -173,7 +173,7 @@
 
     </section>
 
-    <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
+    <!-- <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
         <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
 
         <ul class="Sidebar_filter_btns">
@@ -196,7 +196,7 @@
         <div class="Sidebar_guide" >   
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
-      </aside>
+    </aside> -->
 
   </section>
 </template>
