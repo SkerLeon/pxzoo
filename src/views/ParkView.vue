@@ -168,7 +168,7 @@
       </div>
 
       <div class="pk_content_bg_eagle">
-        <img src="@/assets/images/park/pk_content_bg_eagle.svg" alt="老鷹圖片">
+        <img src="@/assets/images/park/pk_content_bg_eagle.png" alt="老鷹圖片">
       </div>
 
     </section>
@@ -447,7 +447,7 @@ export default {
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
-      this.$refs.Sidebar.style.left = this.hover ? '0px' : '-29.5%';
+      this.$refs.Sidebar.style.left = this.hover ? '0' : '-26%';
     }
   },
 };

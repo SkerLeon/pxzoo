@@ -62,15 +62,17 @@
           <RouterLink to="/member">Member</RouterLink> -->
       <div class="header_ph_hb header_pc_dis_no"
       @click="isLightBoxVisible = !isLightBoxVisible">
-        <span class="header_ph_hb_style"></span>
-        <span class="header_ph_hb_style"></span>
-        <span class="header_ph_hb_style"></span>
+        <span :class="['header_ph_hb_style', 'header_hb_span1', { 'active': isLightBoxVisible }]"></span>
+        <span :class="['header_ph_hb_style', 'header_hb_span2', { 'active': isLightBoxVisible }]"></span>
+        <span :class="['header_ph_hb_style', 'header_hb_span3', { 'active': isLightBoxVisible }]"></span>
       </div>
     </nav>
   </header>
+
   <transition name="fade">
     <MainHeaderLightBox v-if="isLightBoxVisible" :close-menu="closeMenu"></MainHeaderLightBox>
   </transition>
+  
 </template>
 
 <script>
@@ -97,6 +99,7 @@ export default {
 </script>
 
 <style>
+/* 由程式控制出現的css樣式 */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }

@@ -70,14 +70,27 @@
             left: 12%;
             bottom:14%;
         }
+        @media (max-width:430px) {
+            left: 10%;
+            bottom:20%;
+        }
         @media (max-width:425px) {
             left: 8%;
             bottom:15%;
+        }
+        @media (max-width:414px) {
+            left: 8%;
+            bottom:20%;
         }
         @media (max-width:400px) {
             font-size: 14px;
             left: 10%;
             bottom:20%;
+        }
+        @media (max-width:375px) {
+            font-size: 14px;
+            left: 10%;
+            bottom:15%;
         }
     }
 

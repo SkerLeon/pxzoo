@@ -78,6 +78,7 @@ $time:10s;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     .pk_map{
         width: 100%;
         position: relative;
@@ -894,7 +895,7 @@ $time:10s;
                 width: 280px;
                 top: 37%;
                 left: 50%;
-                z-index: 998;
+                z-index: 800;
             }
             @media (max-width:600px)  {
                 width: 37%;
