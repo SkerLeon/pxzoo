@@ -75,27 +75,6 @@
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
       </aside>
-
-      <div class="home_qkpage_park">
-        <div class="parkmark">
-          <img
-            class="prevbtn"
-            src="@/assets/images/home/home_banner_prevarrow.svg"
-            alt="arrow"
-          />
-          <span class="pcMarkText">左右滑動</span>
-          <img
-            class="nextbtn"
-            src="@/assets/images/home/home_banner_nextarrow.svg"
-            alt="arrow"
-          />
-        </div>
-        <div class="parkgroup">
-          <parkmap />
-        </div>
-
-        <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
-      </div>
     </section>
 
     <section v-show="AnimalDetails" class="pk_Animal_details">
