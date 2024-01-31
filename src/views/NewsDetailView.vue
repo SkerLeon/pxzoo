@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import MainFixedVote from '@/components/MainFixedVote.vue'    
 export default {
     data() {
         return {
