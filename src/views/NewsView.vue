@@ -65,16 +65,16 @@
       <div class="news_pagination pcInnerText">
         <li><a href="#" class="news_page_num onpage">1
         </a>
-        <img src="../assets/images/news/onpage.svg" alt="page-num">
+        <img :src="imgstate[0]" alt="page-num">
         </li>
         
         <li v-for="(pageNumber, index) in pageNumbers" :key="index">
           <a href="#" class="news_page_num default" 
           @mouseenter="toggleImage(index,ishover)" @mouseleave="toggleImage(index,ishover)">
           {{ pageNumber }}
-        </a>
-        <img :src="ishover[index] ? '/src/assets/images/news/onpage.svg' : '/src/assets/images/news/default.svg'" 
-        alt="page-num">
+          </a>
+          <img :src="ishover[index] ? imgstate[0] : imgstate[1]" 
+          alt="page-num">
         </li>
       </div>
     </div>     
@@ -97,10 +97,17 @@
 </template>
 
 <script>
-import MainFixedVote from '@/components/MainFixedVote.vue'    
+import MainFixedVote from '@/components/MainFixedVote.vue'
+import onpagebtn from "/images/news/onpage.svg";   
+import defaultbtn from "/images/news/default.svg";   
+  
 export default {
   data() {
       return {
+        imgstate: [
+        onpagebtn,
+        defaultbtn,
+        ],
 
         pageNumbers: [2, 3, 4, 5, '>|'], // 假设有5个页码
         ishover: new Array(5).fill(false) ,
