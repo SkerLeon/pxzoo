@@ -9,6 +9,10 @@
     width: 70%;
     // height: 80%;
     padding: 5vw 0 8vw 0;
+    @media (width <= 1024px) {
+        width: 80%;
+        padding: 5vw 0 9vw 0;
+    }
     @media (width <= 768px) {
         width: 80%;
         padding: 12vw 0 25vw 0;
@@ -23,6 +27,11 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
+        z-index: 3;
+        @media (width <= 1024px) {
+            top: 20px;
+            right: 20px;
+        }
         @media (width <= 768px) {
             top: 20px;
             right: 20px;
@@ -38,7 +47,7 @@
         // display: flex;
         width: 100%;
         @media (width <= 768px) {
-            display: flex;
+            // display: flex;
             text-align: start;
             padding: 0 4vw;
         }
@@ -63,8 +72,11 @@
                 &::placeholder{
                     color: $inputTextColor;
                 }
+                @media (width <= 1024px) {
+                    width: 85%;
+                }
                 @media (width <= 768px) {
-                    width: 112%;
+                    width: 100%;
                     padding: 2vw;
                     margin-left: 0vw;
                 }
@@ -87,12 +99,20 @@
         padding-top: 0.85vw;
         display: flex;
         justify-content: space-between;
+        @media (width <= 1024px) {
+            width: 95%;
+        }
         @media (width <= 768px) {
             flex-direction: column;
             
             text-align: start;
             padding-top: 3vw;
             width: 90%;
+
+            &_text{
+                display: flex;
+                flex-direction: column;
+            }
         }
         label{
             color: $mainTextColor;
@@ -113,6 +133,7 @@
                 margin-left: 1vw;
                 @media (width <= 768px) {
                     width: 100%;
+                    margin-left: 0vw;
                 }
             }
             
@@ -187,9 +208,15 @@
     width: 70%;
     // height: 80%;
     padding: 9vw 0 12vw 0;
+    @media (width <= 1024px) {
+        width: 80%;
+        padding: 12vw 0 15vw 0;
+    }
     @media (width <= 768px) {
         width: 80%;
-        height: 60%;
+        padding: 43vw 0 53vw 0;
+        // height: 60%;
+        top: 10%;
     }
 
     .close {
@@ -199,12 +226,24 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
+        z-index: 3;
+        @media (width <= 1024px) {
+            top: 20px;
+            right: 20px;
+        }
+        @media (width <= 768px) {
+            top: 20px;
+            right: 20px;
+        }
     }
 
     .tqp_logo{
         img{
             width: 15vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 27vw;
+            }
         }
     }
 
@@ -216,6 +255,10 @@
         color: $mainTextColor;
         padding: 1vw 0;
         line-height: 2vw;
+        @media (width <= 768px) {
+            padding: 4vw 0;
+            line-height: 7vw;
+        }
     }
 
     .writetqp_decotop{
@@ -228,6 +271,11 @@
             top: 3vw;
             width: 11vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: -6vw;
+                top: 15vw;
+                width: 20vw;
+            }
         }
         .cloud_7 img{
             position: absolute;
@@ -235,6 +283,11 @@
             top: 14vw;
             width: 6vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: 5vw;
+                top: 70vw;
+                width: 14vw;
+            }
         }
         .cloud_5 img{
             position: absolute;
@@ -242,6 +295,11 @@
             top: 14vw;
             width: 15vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: -8vw;
+                top: 26vw;
+                width: 25vw;
+            }
         }
     }
 
@@ -255,6 +313,11 @@
             bottom: 6.3vw;
             width: 8vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: -1vw;
+                bottom: 15.3vw;
+                width: 18vw;
+            }
         }
         .horse img{
             position: absolute;
@@ -263,6 +326,11 @@
             width: 6vw;
             vertical-align: bottom;
             transform:scaleX(-1);
+            @media (width <= 768px) {
+                left: 15vw;
+                bottom: 15.3vw;
+                width: 13vw;
+            }
         }
         .kangaroo img{
             position: absolute;
@@ -270,6 +338,11 @@
             bottom: 6.3vw;
             width: 5vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: 15vw;
+                bottom: 15.3vw;
+                width: 13vw;
+            }
         }
         .tree_2 img{
             position: absolute;
@@ -277,6 +350,11 @@
             bottom: 6.3vw;
             width: 9vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: -3vw;
+                bottom: 15.3vw;
+                width: 20vw;
+            }
         }
         .ground img{
             position: absolute;
@@ -284,6 +362,9 @@
             bottom: 0;
             width: 100%;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 220%;
+            }
         }
     }
 }
@@ -299,9 +380,15 @@
     width: 70%;
     // height: 80%;
     padding: 5vw 0 6vw 0;
+    @media (width <= 1024px) {
+        width: 80%;
+        padding: 5vw 0 9vw 0;
+    }
     @media (width <= 768px) {
         width: 80%;
-        height: 60%;
+        padding: 12vw 0;
+        // height: 60%;
+        top: 10%;
     }
 
     .close {
@@ -311,6 +398,15 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
+        z-index: 3;
+        @media (width <= 1024px) {
+            top: 20px;
+            right: 20px;
+        }
+        @media (width <= 768px) {
+            top: 20px;
+            right: 20px;
+        }
     }
 
     .comm_title{
@@ -319,12 +415,23 @@
 
     .comm_mark{
         color: $mainTextColor;
+        @media (width <= 768px) {
+            width: 90%;
+            font-size: 3.5vw;
+        }
+
     }
 
     .comm_text{
         padding-top: 0.85vw;
         // display: flex;
         width: 100%;
+        @media (width <= 768px) {
+            // display: flex;
+            text-align: start;
+            padding: 0 4vw;
+            margin-top: 2vw;
+        }
         
         label{
             color: $mainTextColor;
@@ -346,12 +453,24 @@
                 &::placeholder{
                     color: $inputTextColor;
                 }
+                @media (width <= 1024px) {
+                    width: 85%;
+                }
+                @media (width <= 768px) {
+                    width: 100%;
+                    padding: 2vw;
+                    margin-left: 0vw;
+                }
             }
 
             .numLimit{
                 position: absolute;
                 top: 2vw;
                 left: 0vw;
+                @media (width <= 768px) {
+                    top: 0vw;
+                    left: 58vw;
+                }
             }
         }
     }
@@ -359,6 +478,12 @@
     .comm_select{
         width: 100%;
         padding-top: 1vw;
+        
+        @media (width <= 768px) {
+            // display: flex;
+            text-align: start;
+            padding: 0 4vw;
+        }
 
         label{
             color: $mainTextColor;
@@ -380,12 +505,23 @@
                 &::placeholder{
                     color: $inputTextColor;
                 }
+                @media (width <= 1024px) {
+                    width: 85%;
+                }
+                @media (width <= 768px) {
+                    width: 100%;
+                    padding: 2vw;
+                    margin-left: 0vw;
+                }
             }
         }
     }
 
     .submitbtn{
         margin-top: 0.85vw;
+        @media (width <= 768px) {
+            margin-top: 3vw;
+        }
     }
 
     .reportcomm_deco{
@@ -398,6 +534,10 @@
             bottom: 0;
             width: 7vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 12vw;
+            }
+    
         }
         .rabbit img{
             position: absolute;
@@ -405,6 +545,10 @@
             bottom: 0;
             width: 5vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 9vw;
+            }
+    
         }
         .koala img{
             position: absolute;
@@ -412,6 +556,11 @@
             bottom: 0;
             width: 6vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: 4vw;
+                width: 9vw;
+            }
+    
         }
         
     }
@@ -445,9 +594,15 @@
     width: 70%;
     // height: 80%;
     padding: 9vw 0 12vw 0;
+    @media (width <= 1024px) {
+        width: 80%;
+        padding: 12vw 0 15vw 0;
+    }
     @media (width <= 768px) {
         width: 80%;
-        height: 60%;
+        padding: 40vw 0 50vw 0;
+        // height: 60%;
+        top: 10%;
     }
 
     .close {
@@ -457,12 +612,24 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
+        z-index: 3;
+        @media (width <= 1024px) {
+            top: 20px;
+            right: 20px;
+        }
+        @media (width <= 768px) {
+            top: 20px;
+            right: 20px;
+        }
     }
 
     .tqp_logo{
         img{
             width: 15vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 27vw;
+            }
         }
     }
 
@@ -474,6 +641,10 @@
         color: $mainTextColor;
         padding: 1vw 0;
         line-height: 2vw;
+        @media (width <= 768px) {
+            padding: 4vw 0;
+            line-height: 7vw;
+        }
     }
 
     .reporttqp_decotop{
@@ -486,6 +657,11 @@
             top: 8vw;
             width: 9vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: -12vw;
+                top: 23vw;
+                width: 30vw;
+            }
         }
         .cloud_1 img{
             position: absolute;
@@ -493,6 +669,12 @@
             top: 4vw;
             width: 10vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: 23vw;
+                top: 8vw;
+                width: 20vw;
+            }
+    
         }
         .cloud_7 img{
             position: absolute;
@@ -500,6 +682,12 @@
             top: 10vw;
             width: 5vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: -3vw;
+                top: 20vw;
+                width: 15vw;
+            }
+    
         }
     }
 
@@ -513,6 +701,12 @@
             bottom: 6.3vw;
             width: 7vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: -7vw;
+                bottom: 15.3vw;
+                width: 17vw;
+            }
+    
         }
         .tree_1 img{
             position: absolute;
@@ -520,6 +714,12 @@
             bottom: 6.3vw;
             width: 6vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                left: 2vw;
+                bottom: 15.3vw;
+                width: 13vw;
+            }
+    
         }
         .rhino img{
             position: absolute;
@@ -528,6 +728,12 @@
             width: 6vw;
             vertical-align: bottom;
             transform:scaleX(-1);
+            @media (width <= 768px) {
+                left: 17vw;
+                bottom: 15.3vw;
+                width: 15vw;
+            }
+    
         }
         .leopard img{
             position: absolute;
@@ -535,6 +741,12 @@
             bottom: 6.3vw;
             width: 8vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: 11vw;
+                bottom: 15.3vw;
+                width: 18vw;
+            }
+    
         }
         .tree_6 img{
             position: absolute;
@@ -542,6 +754,12 @@
             bottom: 6.3vw;
             width: 5vw;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                right: -3vw;
+                bottom: 15.3vw;
+                width: 12vw;
+            }
+    
         }
         .ground img{
             position: absolute;
@@ -549,6 +767,10 @@
             bottom: 0;
             width: 100%;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 220%;
+            }
+    
         }
     }
 }

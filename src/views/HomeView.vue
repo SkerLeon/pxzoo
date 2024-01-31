@@ -212,8 +212,10 @@
             alt="arrow"
           />
         </div>
-        <div class="parkgroup">
-          <parkmap />
+        <div class="home_qkpage_parkmap">
+          <div class="parkgroup">
+            <parkmap />
+          </div>
         </div>
 
         <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
@@ -687,8 +689,10 @@
           alt="arrow"
         />
       </div>
-      <div class="parkgroup">
-        <parkmap />
+      <div class="home_park_map">
+        <div class="parkgroup">
+          <parkmap />
+        </div>
       </div>
     </div>
 
@@ -1244,6 +1248,7 @@ export default {
         多雲時晴: "mostly_clear",
         晴有霧: "mostly_clear",
         晴晨霧: "mostly_clear",
+        晴有靄: "mostly_clear",
 
         多雲有靄: "cloudy",
         多雲: "cloudy",

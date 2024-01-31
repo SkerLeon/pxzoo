@@ -17,7 +17,7 @@
         </div>
 
         <div class="comm_img">
-            <label class="pcInnerText">
+            <label class="comm_img_text pcInnerText">
                 上傳圖片
                 <span v-if="fileName">{{ fileName }}</span>
                 <span v-else>請選擇檔案</span>      

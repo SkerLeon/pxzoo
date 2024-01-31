@@ -310,7 +310,19 @@
                     &:nth-child(3){
                         padding: 5.5vw 0;
                     }
+                    @media (width <= 1024px) {
+                        &:nth-child(1){
+                            padding: 4vw 0;
+                        }
+                        &:nth-child(2){
+                            padding: 1vw 0;
+                        }
+                        &:nth-child(3){
+                            padding: 4.5vw 0;
+                        }
+                    }
                 }
+                
                 @media (width <= 768px) {
                     display: none;
                 }
@@ -390,12 +402,18 @@
                     
                     h2{
                         padding: 5vw 0 3vw 0;
+                        @media (width <= 1024px) {
+                            padding: 4vw 0 2vw 0;
+                        }
                         @media (width <= 768px) {
                             padding: 2vw 0 3vw 0;
                         }
                     }
                     .ticket_price{
                         padding: 3vw 0;
+                        @media (width <= 1024px) {
+                            padding: 2vw 0;
+                        }
                         @media (width <= 768px) {
                             padding: 2vw 0 3vw 0;
                         }
@@ -419,40 +437,39 @@
         }
 
         &_park{
-            // position: relative;
-            width: 80%;
-            margin: auto;
+            position: relative;
             padding: 7% 0;
-            // display: flex;
-            // justify-content: center;
-            // padding: 7% 0;
-            // img{
-            //     width: 80%;
-            //     vertical-align: bottom;
-            // }
-            @media (width <= 768px) {
-                width: 100%;
-                overflow: auto;
-
-                &::-webkit-scrollbar{
-                    width: 0;
+            .home_qkpage_parkmap{
+                width: 80%;
+                margin: auto;
+                @media (width <= 1024px) {
+                    width: 90%;        
                 }
-                &::-webkit-scrollbar-track{
-                    overflow: hidden;
-                }
+                @media (width <= 768px) {
+                    width: 100%;
+                    overflow: auto;
 
-                .parkgroup{
-                    width: 280%;
-                    text-align: center;
-                    justify-content: center;
+                    &::-webkit-scrollbar{
+                        width: 0;
+                    }
+                    &::-webkit-scrollbar-track{
+                        overflow: hidden;
+                    }
+
+                    .parkgroup{
+                        width: 280%;
+                        text-align: center;
+                        justify-content: center;
+                    }
                 }
             }
+            
 
             .parkmark{
                 position: absolute;
                 left: 35%;
                 right: 0;
-                bottom: -120vw;
+                bottom: 17vw;
                 z-index: 1;
                 background-color: #000000aa;
                 display: flex;
@@ -464,6 +481,29 @@
                 img{
                     width: 2vw;
                 }
+                .prevbtn{
+                    position: absolute;
+                    left: 2.5vw;
+                    animation: prevbtn 1.5s infinite;
+                }
+                .nextbtn{
+                    position: absolute;
+                    right: 2.5vw;
+                    animation: nextbtn 1.5s infinite;
+                }
+
+                @keyframes prevbtn{
+                    0%{left: 2.5vw;}
+                    50%{left: 1.5vw;}
+                    100%{left: 2.5vw;}
+                }
+
+                @keyframes nextbtn{
+                    0%{right: 2.5vw;}
+                    50%{right: 1.5vw;}
+                    100%{right: 2.5vw;}
+                }
+
                 span{
                     color: $bgColorWhite;
                     padding: 0 2vw;
@@ -479,6 +519,9 @@
             display: flex;
             justify-content: space-between;
             align-content: center;
+            @media (width <= 1024px) {
+                
+            }
             @media (width <= 768px) {
                 flex-direction: column;
                 width: 98%;
@@ -497,12 +540,23 @@
 
                 button{
                     margin-top: 2vw;
+                    @media (width <= 1024px) {
+                        width: 90px;
+                        margin-top: 1vw;
+                    }
                     &:nth-child(3){
                         .iconText {
                             padding: 0 0.8vw;
                             gap: 0.1vw;
                             img{
                                 width: 150px;
+                            }
+                            @media (width <= 1024px) {
+                                padding: 0 0.8vw;
+                                gap: 0.4vw;
+                                img{
+                                    width: 20px;
+                                }
                             }
                             @media (width <= 768px) {
                                 padding-top: 2vw;
@@ -535,6 +589,7 @@
             .traffic_page{
                 position: relative;
                 width: 85%;
+                
 
                 @media (width <= 768px) {
                     width: 90%;
@@ -679,6 +734,7 @@
                     position: absolute;
                     width: 2.3vw;
                     vertical-align: bottom;
+                    
                     @media (width <= 768px) {
                         width: 7vw;
                     }
@@ -928,6 +984,11 @@
                         left: 0.77vw;
                         z-index: 4;
                         color: $mainTextColor;
+                        @media (width <= 1024px) {
+                            font-size: 1vw;
+                            left: 1.2vw;
+                        }
+                        
                     }
 
                     img{
@@ -1018,6 +1079,11 @@
                     right: 1vw;
                     z-index: 4;
                     color: $mainTextColor;
+                    @media (width <= 1024px) {
+                        font-size: 1vw;
+                        right: 1.5vw;
+                        top: 2.2vw;
+                    }
                 }
 
                 img{
@@ -1188,6 +1254,9 @@
             .city{
                 color: $mainTextColor;
                 line-height: 5vw;
+                @media (width <= 1024px) {
+                    line-height: 7vw;
+                }
                 @media (width <= 768px) {
                     line-height: 15vw;
                 }
@@ -1204,6 +1273,9 @@
             .temperature{
                 color: $mainTextColor;
                 line-height: 5vw;
+                @media (width <= 1024px) {
+                    line-height: 7vw;
+                }
                 @media (width <= 768px) {
                     line-height: 15vw;
                 }
@@ -1230,6 +1302,9 @@
                 height: 16.5vw;
                 overflow: auto;
                 // display: flex;
+                @media (width <= 1024px) {
+                    height: 20vw;
+                }
                 @media (width <= 768px) {
                     height: 65.5vw;
                 }
@@ -1247,6 +1322,14 @@
                     padding: 1.5vw;
                     &:last-child{
                         border-bottom: 1px $mainTextColor solid;
+                    }
+                    @media (width <= 1024px) {
+                        .newsFrame {
+                            width: 90px;
+                            .newsFrameText {
+                                top: -0px;
+                            }
+                        }
                     }
                     @media (width <= 768px) {
                         padding: 3vw 1.5vw;
@@ -1268,8 +1351,11 @@
                         }
                         .news_tag{
                             margin: 0 2vw;
+                            @media (width <= 1024px) {
+                                margin: 0 3vw;
+                            }
                             @media (width <= 768px) {
-                                margin: 0 18vw;
+                                margin: 0 22vw;
                             }
                         }
 
@@ -1279,6 +1365,9 @@
                     .news_title{
                         color: $mainTextColor;
                         width: 60%;
+                        @media (width <= 1024px) {
+                            width: 55%; 
+                        }
                         @media (width <= 768px) {
                             width: 100%;
                         }
@@ -1421,6 +1510,10 @@
                 width: 30px;
                 height: 30px;
                 cursor: pointer;
+                @media (width <= 1024px) {
+                    top: 20px;
+                    right: 20px;
+                }
                 @media (width <= 768px) {
                     top: 30px;
                     right: 30px;
@@ -1460,8 +1553,11 @@
                         
                     }
                     .weather{
-                        width: 75%;
+                        width: 80%;
                         margin: auto;
+                        @media (width <= 768px) {
+                            width: 40%;
+                        }
                     }
                     img{
                         width: 80%;
@@ -1469,7 +1565,7 @@
                         padding: 0 0 1.5vw 0;
                         text-align: center;
                         @media (width <= 768px) {
-                            // width: 30%;
+                            width: 60%;
                             padding: 0;
                             margin: auto;
                             // text-align: start;
@@ -1483,34 +1579,13 @@
 
     //園區地圖
     .home_park{
-        // position: relative;
-        margin: auto;
-        @media (width <= 768px) {
-            width: 100%;
-            overflow: auto;
-            
-            &::-webkit-scrollbar{
-                width: 0;
-            }
-            &::-webkit-scrollbar-track{
-                overflow: hidden;
-            }
-
-            .parkgroup{
-                width: 280%;
-                img{
-                    vertical-align: bottom;
-                }
-                // text-align: center;
-                // justify-content: center;
-            }
-        }
+        position: relative;
 
         .parkmark{
             position: absolute;
             left: 35%;
             right: 0;
-            bottom: -500vw;
+            bottom: 10vw;
             z-index: 1;
             background-color: #000000aa;
             display: flex;
@@ -1522,6 +1597,31 @@
             img{
                 width: 2vw;
             }
+
+            .prevbtn{
+                position: absolute;
+                left: 2.5vw;
+                animation: prevbtn 1.5s infinite;
+            }
+
+            .nextbtn{
+                position: absolute;
+                right: 2.5vw;
+                animation: nextbtn 1.5s infinite;
+            }
+
+            @keyframes prevbtn{
+                0%{left: 2.5vw;}
+                50%{left: 1.5vw;}
+                100%{left: 2.5vw;}
+            }
+
+            @keyframes nextbtn{
+                0%{right: 2.5vw;}
+                50%{right: 1.5vw;}
+                100%{right: 2.5vw;}
+            }
+
             span{
                 color: $bgColorWhite;
                 padding: 0 2vw;
@@ -1530,6 +1630,35 @@
                 display: flex;
             }
         }
+
+        &_map{
+            margin: auto;
+            @media (width <= 768px) {
+                width: 100%;
+                overflow: auto;
+                // display: grid;
+                // align-items: center;
+                
+                &::-webkit-scrollbar{
+                    width: 0;
+                }
+                &::-webkit-scrollbar-track{
+                    overflow: hidden;
+                }
+
+                .parkgroup{
+                    width: 280%;
+                    img{
+                        vertical-align: bottom;
+                    }
+                    // text-align: center;
+                    // justify-content: center;
+                }
+            } 
+        }
+        
+
+        
     }
 
     //人氣投票
@@ -1574,8 +1703,11 @@
             position: relative;
             height: 600px;
             width: 55%;
-            @media (width <= 768px) {
+            @media (width <= 1024px) {
                 height: 500px;
+            }
+            @media (width <= 768px) {
+                height: 470px;
                 width: 90%;
             }
 
@@ -1960,6 +2092,11 @@
                     bottom: 6.5vw;
                     z-index: 4;
                     color: $mainTextColor;
+                    @media (width <= 1024px) {
+                        left: 29.5vw;
+                        bottom: 7.5vw;
+                        font-size: 1.5vw;
+                    }
                 }
 
                 img{
@@ -1968,6 +2105,9 @@
                     bottom: 5vw;
                     width: 7vw;
                     vertical-align: bottom;
+                    @media (width <= 1024px) {
+                        width: 10vw;
+                    }
                 }
 
                 @media (width <= 768px) {
