@@ -1,5 +1,6 @@
 <template>
   <section class="home">
+    <MainFixedVote/>
     <div class="home_banner">
       <div class="home_banner_deco">
         <div class="tree_2">
@@ -907,6 +908,7 @@
 
 <script>
 import { RouterLink } from "vue-router";
+import MainFixedVote from '@/components/MainFixedVote.vue'
 import parkmap from "@/components/park/ParkMap.vue";
 import writecomm from "@/components/home/WriteComm.vue";
 import reportcomm from "@/components/home/ReportComm.vue";
@@ -920,6 +922,7 @@ import Image04 from "/images/home/home_banner_4.jpg"
 export default {
   components: {
     RouterLink,
+    MainFixedVote,
     parkmap,
     writecomm,
     reportcomm,
