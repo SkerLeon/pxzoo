@@ -48,6 +48,9 @@
     @media (width <= 768px) {
       position: static;
     }
+    .active {
+      color: $primaryColorGreen;
+    }
     .chameleon {
       position: absolute;
       width: 200px;
