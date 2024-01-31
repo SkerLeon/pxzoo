@@ -26,8 +26,7 @@
         <section class="grassland">
         <!-- 動物列表 -->
             <!-- 篩選-ph有 -->
-            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select"
-            v-model="selectedCategory">
+            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select">
                 <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
             </select>
             <div class="animal_park grassLand" ref="grassLand">
@@ -35,7 +34,7 @@
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info">
                     <!-- 個別動物種類名+圖片 -->
-                    <a v-for="(animal, index) in animals_grass" :key="index" class="animal_each col-md-4 col-sm-6"
+                    <a v-for="(animal, index) in animals_grassland" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                         <div class="animal_frame">
                             <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
@@ -116,7 +115,7 @@ export default {
     data() {
         return {
             //animal
-            animals_grass: [
+            animals_grassland: [
                 { value: 'grassLand', species: 'lion', name: '獅子' },
                 { value: 'grassLand', species: 'giraffe', name: '長頸鹿' },
                 { value: 'grassLand', species: 'elephant', name: '非洲象' },
@@ -156,7 +155,7 @@ export default {
             ],
 
             //select ph
-            selectedCategory: 'ALL',
+            // selectedCategory: 'ALL',
 
             animalsCategoryPh: [
                 {
@@ -227,21 +226,22 @@ export default {
         window.removeEventListener('scroll', this.handleScroll);
     },
     computed: {
-        filteredAnimals() {
-            if (this.selectedCategory === 'All') {
-      // 如果选择的是 'ALL'，返回所有动物数组的合并结果
-            return [
-        ...this.animals_grass,
-        ...this.animals_polar,
-        ...this.animals_jungle,
-        ...this.animals_birds,
-        ...this.animals_aqua
-            ];
-            } else {
-      // 如果选择的是特定的分类，返回相应分类的动物数组
-                return this['animals_' + this.selectedCategory];
-            }
-        },
+    //     filteredAnimals() {
+    //         console.log(selectedCategory)
+    //         if (this.selectedCategory === 'ALL') {
+    //   // 如果选择的是 'ALL'，返回所有动物数组的合并结果
+    //         return [
+    //     ...this.animals_grassland,
+    //     ...this.animals_polar,
+    //     ...this.animals_jungle,
+    //     ...this.animals_birds,
+    //     ...this.animals_aqua
+    //         ];
+    //         } else {
+    //   // 如果选择的是特定的分类，返回相应分类的动物数组
+    //             return this['animals_' + this.selectedCategory];
+    //         }
+    //     },
     },
     methods: {
         getImageUrl(paths) {
