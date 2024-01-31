@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px; /* Width of the switch */
+        height: 34px; /* Height of the switch */
+      }
+
+      /* Hide default HTML checkbox */
+      .switch-checkbox {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* The slider */
+      .switch-label {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc; /* Off state color */
+        transition: 0.4s;
+      }
+
+      .switch-label:before {
+        position: absolute;
+        content: "";
+        height: 26px; /* Height of the slider */
+        width: 26px; /* Width of the slider */
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+      }
+
+      /* Checked state for the switch */
+      .switch-checkbox:checked + .switch-label {
+        background-color: #2196f3; /* On state color */
+      }
+
+      /* Checked state for the slider */
+      .switch-checkbox:checked + .switch-label:before {
+        transform: translateX(26px); /* Slider move distance */
+      }
+
+      /* Rounded sliders */
+      .switch-label,
+      .switch-label:before {
+        border-radius: 34px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Switch Container -->
+    <div class="switch">
+      <!-- Checkbox used as the click receiver -->
+      <input type="checkbox" id="toggle" class="switch-checkbox" />
+      <!-- The actual switch that will be styled with CSS -->
+      <label class="switch-label" for="toggle">
+        <span class="switch-inner"></span>
+        <span class="switch-switch"></span>
+      </label>
+    </div>
+  </body>
+</html>
