@@ -32,6 +32,60 @@
       width: 8vw;
       z-index: 10;
     }
+    .cloud_6_top {
+      animation: cloudMoves 10s linear infinite;
+      position: absolute;
+      top: 15%;
+      right: 6%;
+      width: 14vw;
+    }
+    @keyframes cloudMoves {
+      0%,
+      100% {
+        transform: translateX(0);
+        //雲的初始位置和結束位置
+      }
+
+      25% {
+        transform: translate(-5vw, 20px);
+        //雲的中間位置
+      }
+      50% {
+        transform: translate(-10vw, 10px);
+        //雲的中間位置
+      }
+      75% {
+        transform: translate(-5vw, 0);
+        //雲的中間位置
+      }
+    }
+    .cloud_1_top {
+      animation: cloudMoves2 15s linear infinite;
+      position: absolute;
+      top: 15%;
+      left: 6%;
+      width: 14vw;
+    }
+    @keyframes cloudMoves2 {
+      0%,
+      100% {
+        transform: translate(5vw, 0);
+        //雲的初始位置和結束位置
+      }
+
+      25% {
+        transform: translate(10vw, -20px);
+        //雲的中間位置
+      }
+      50% {
+        transform: translate(15vw, -10px);
+        //雲的中間位置
+      }
+      75% {
+        transform: translate(10vw, 0);
+        //雲的中間位置
+      }
+    }
 
     .balloon {
       animation: balloonMove 60s linear infinite;
@@ -39,6 +93,7 @@
       width: 8vw;
       top: 10%;
       left: 5%;
+      z-index: 10;
     }
 
     @keyframes balloonMove {
@@ -286,6 +341,33 @@
       .tree_bg {
         content: url("@/assets/images/vote/pc-tree.svg");
       }
+      .cloud_1_top {
+        animation: cloudMoves2 15s linear infinite;
+        position: absolute;
+        top: 20%;
+        left: 3%;
+        width: 14vw;
+      }
+      @keyframes cloudMoves2 {
+        0%,
+        100% {
+          transform: translateX(5vw);
+          //雲的初始位置和結束位置
+        }
+
+        25% {
+          transform: translate(10vw, -10px);
+          //雲的中間位置
+        }
+        50% {
+          transform: translate(15vw, -5px);
+          //雲的中間位置
+        }
+        75% {
+          transform: translate(10vw, 0);
+          //雲的中間位置
+        }
+      }
       .podium_no {
         .vote_img {
           width: 15vw;
@@ -510,7 +592,7 @@
     }
     .cloud_6 {
       top: 3%;
-      left: 20%;
+      left: 10%;
 
       img {
         width: 20vw;
@@ -679,7 +761,7 @@
       position: absolute;
       bottom: 0;
       width: 10vw;
-      right: 16%;
+      right: 11%;
     }
 
     .vote_button {
@@ -774,6 +856,26 @@
       }
     }
   }
+  .vote_bottom {
+    background-image: url("/src/assets/images/vote/bgbottom.svg");
+    background-position: 0% -50%;
+    background-repeat: repeat;
+    -webkit-background-sixe: cover;
+    background-size: contain;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15vw;
+    font-family: "Montserrat", "Noto Sans TC";
+    font-weight: bolder;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    word-spacing: nowrap;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.424);
+  }
 }
 
 //TB-投票列表
@@ -797,12 +899,21 @@
         }
       }
     }
+    .vote_bottom {
+      top: 97%;
+      left: 50%;
+      z-index: 1;
+      font-size: 13vw;
+    }
   }
 }
 
 /*PC-投票列表*/
 @media screen and (width < 480px) {
   .vote_overview_all {
+    .elephant1 img {
+      z-index: 5;
+    }
     .vote_overview_content {
       max-width: 90%;
       .elephant1 img {
@@ -830,6 +941,12 @@
           }
         }
       }
+    }
+    .vote_bottom {
+      top: 97.5%;
+      left: 43%;
+      z-index: 1;
+      font-size: 12vw;
     }
   }
 }
