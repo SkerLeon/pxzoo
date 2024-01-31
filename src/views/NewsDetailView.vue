@@ -1,8 +1,10 @@
 <template>
+    <MainFixedVote/>
     <section class="forHeader news_detail_section">
         <!-- banner -->
         <div class="newsDetail_banner">
-            <img src="@/assets/images/news/banner_newsInfo.png" alt="newsDetail_banner">
+            <img src="../assets/images/news/banner_news_detail_full.png" alt="newsDetail_banner">
+            <h2 class="pcBigTitle">最新消息</h2>
         </div>
 
         <main>
@@ -65,8 +67,9 @@ export default {
     },
     methods: {
     },
-    created() {
-    },
+    components: {
+       MainFixedVote,
+     },
 };
 </script>
 

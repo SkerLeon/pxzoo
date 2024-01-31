@@ -1,51 +1,53 @@
 
 .animal_banner{
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+    height: 23.6vw;
     img{
         width: 100%;
         vertical-align: middle;
-    }   
-}
-.animal_pc_sidebar{
-    .no_slide{
-        position: fixed;
-    }
-}
-.animal_pc_sidebar,.animal_detail_pc_sidebar{
-    position: relative;
-    z-index: 3;
-    .filter_btn_item img{
-        width: 2vw;
-    }
-    .no_slide{
-        @media (max-width: 1920px) {
-            left: 0px;
-            top: 12vw;
-            }
-        @media (max-width: 1746px) {
-        left: 0px;
-        top: 12vw;
-        }
-        @media (max-width: 1536px) {
-        left: 0px;
-        top: 12vw;
-        }
-        @media (max-width: 1280px) {
-        left: 0px;
-        top: 12vw;
-        }
-        .silde{
-            display: none;
-        }
-    }
-    .hidden_buttom{
-        display: none;
-    }
-    .octopus{
         position: absolute;
-        top: -2.5vw;
-        right: 0vw;
+        top: -35px;
+    }   
+    h2{
+        position: absolute;
+        bottom: 40%;
+        left: 14%;
+        color: $bgColorLightgray;
+        letter-spacing: 15px
     }
+    @media screen and (max-width: 768px) {
+        height: 60vw;
+        img{
+            width: 170%;
+            vertical-align: middle;
+            position: absolute;
+            right: -40%;
+            top: 0%;
+        }  
+    }
+}
+    
+.animal_section, .animal_detail_section{
+    background-color: $bgColorLightgray;
+    position: relative;
+    max-width: 1920px;
+    height: auto;
+}
+
+.sidebar_fixed{
+    position: fixed;
+    top: 400px;
+ }
+ .sidebar_absolute{
+    position: absolute;
+    bottom: 0;
+ }
+.animal_anchorlink{
+    z-index: 5;
     .monkey{
+        width: 30%;
         position: absolute;
         top: -4vw;
         right: 0vw;
@@ -54,78 +56,46 @@
             left: 16vw;
         }
     }
-
-}  
-// .animal_detail_pc_sidebar{
-//     top: 0;
-// }
-//menu-tree動物詳細頁面
-#animaldetail_sidebar{
-    @media screen and (max-width: 768px) {       
-        position: absolute;
-        bottom: 0;
-        display: block;
-    }
-    .animaldetail_filter{
-        flex-wrap: wrap;
-        align-items: center;
-        height: auto;
-        row-gap: 0;
-        @media screen and (max-width: 768px) {       
-            width: 200px;
-            height: 12vh; 
-        }
-        .main_select{
-            height: 6.2vh;
+    .animal_link_btn{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .animal_btn_item{
             display: flex;
-            align-items: center;
-            column-gap: 19px;
-            img{
-                width: 1.2vw;
-                @media (max-width: 768px) {
-                    width: 2.6vw;
-                }
-            }
-            .arrow_rotate{
-                transform: rotate(180deg);
+        justify-content: center;
+        align-items: center;
+        gap: 19px;
+        width: 13.6vw;
+        height: 6.2vh;
+        background-color: $bgColorSecGray;
+        color: $mainTextColor;
+        @media (max-width:768px) {
+            display: none;
+        }
+        &:hover {
+            @media (min-width:1280px) {
+            cursor: pointer;
+            color: $primaryColorGreen;
             }
         }
-        
-        //次選
-        .animaldetail_sub_menu{
-            width: 100%;
-
-            li{
-                height: 3vw; 
-                border-top: $bgColorLightgray solid 0.2vw;
-                a{
-                    display: block;
-                    height: 100%;
-                    text-align: center;
-                    padding: 0.7vw 0;
-                    background-color:$inputTextColor;
-                    color: $mainTextColor;
-                }
-            }        
+        img {
+            width: 1.47vw;
+            height: 2.5vh;
+            @media (max-width:768px) {
+            width: 4vw;
+            height: 4vh;
+            }
+        }
+        p{
+            @media (max-width:768px) {
+            font-size: 20px;
+            }
+        }
         }
     }
 }
 
-
-    
-//動物總覽關掉側欄  
-@media screen and (max-width: 768px) {
-    .animal_pc_sidebar{
-        display: none;
-    }
-}
-
-.animal_section, .animal_detail_section{
-    background-color: $bgColorLightgray;
-    position: relative;
-    max-width: 1920px;
-}
-
+//關掉手機版篩選
 .animal_select{
     display: none;
 }
@@ -137,7 +107,6 @@
     .animal_select{
         display: block;
         margin-left: calc(5% + 2.1vw);
-        margin-top:6.5vw ;
 
         height: 35px;
         width: 42vw;
@@ -155,14 +124,116 @@
         }
         
     }
+
 }
 
+
+//menu-tree動物詳細頁面
+.animal_detail_menu{
+    position: fixed;
+    top: 10vw;
+    z-index: 8;
+
+    @media screen and (max-width: 768px) {       
+        display: none;
+    }
+    .animal_link_btn{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+            
+        .animaldetail_filter{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 13.6vw;
+            height: auto;
+            background-color: $bgColorSecGray;
+            color: $mainTextColor;
+        @media (max-width:768px) {
+            width: 200px;
+            height: 12vh;
+            gap: 10px;
+        }
+        &:hover {
+            @media (min-width:1280px) {
+            cursor: pointer;
+            color: $primaryColorGreen;
+            }
+        }
+        img {
+            width: 1.47vw;
+            height: 2.5vh;
+            @media (max-width:768px) {
+            width: 4vw;
+            height: 4vh;
+            }
+        }
+        p{
+            @media (max-width:768px) {
+            font-size: 20px;
+            }
+        }
+        }
+    }
+}
+     .monkey{
+        width: 30%;
+        position: absolute;
+        top: -4vw;
+        right: 0vw;
+        @media screen and (max-width: 768px) {
+            top: -11.5vw;
+            left: 16vw;
+        }
+    }
+    .main_select{
+        padding: 1.6vh 0;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img{
+            width: 1.2vw;
+            @media (max-width: 768px) {
+                width: 2.6vw;
+            }
+        }
+        .toggle_arrow{
+            transition: transform 0.5s ease;
+        }
+        .arrow_rotate{
+            transform: rotate(180deg);
+        }
+    }
+    
+    //次選
+    .animaldetail_sub_menu{
+        width: 100%;
+
+        li{
+            height: 3vw; 
+            border-top: $bgColorLightgray solid 0.2vw;
+            a{
+                display: block;
+                height: 100%;
+                text-align: center;
+                padding: 0.7vw 0;
+                background-color:$inputTextColor;
+                color: $mainTextColor;
+            }
+        }        
+    }
+
+
 section.grassland{
-    padding-top: 4.6vw;
     background-image: url(/src/assets/images/animal/animal_bg/grassland_bg_pc.png);
     background-repeat: no-repeat;
     background-size: cover;
-    @media screen and (max-width: 768px) {    background-image: url(/src/assets/images/animal/animal_bg/grassland_bg_mb.png);}
+    @media screen and (max-width: 768px) {   
+    padding-top:6.5vw ; 
+    background-image: url(/src/assets/images/animal/animal_bg/grassland_bg_mb.png);}
 } 
 section.polar{
     background-image: url(/src/assets/images/animal/animal_bg/polar_bg_pc.png);
@@ -172,7 +243,7 @@ section.polar{
         background-image: url(/src/assets/images/animal/animal_bg/polar_bg_mb.png);}
 } 
 section.jungle{
-    padding-top: 4.6vw;
+
     background-image: url(/src/assets/images/animal/animal_bg/jungle_bg_pc.png);
     background-repeat: no-repeat;
     background-size:cover;
@@ -181,7 +252,7 @@ section.jungle{
     }
 } 
 section.birds{
-    padding-top: 4.6vw;
+
     background-image: url(/src/assets/images/animal/animal_bg/birds_bg_pc.png);
     background-repeat: no-repeat;
     background-size:cover;
@@ -224,7 +295,6 @@ section.aqua{
 .animal_info{
     display: flex;
     flex-wrap: wrap;
-    padding-top: 2.6vw;
 }
 
 .animal_each{
@@ -232,18 +302,18 @@ section.aqua{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2.6vw;
+    padding-bottom: 1.5vw;
     .animal_frame{
         background-image: url(/src/assets/images/animal/animal_frame.png);
     }
     img{
-        width: 17vw;
+        width: 15vw;
         padding:0.45vw 0.3vw 0.3vw 0.3vw;
     }
     .animal_name{
         color:$mainTextColor;
         text-align: center;
-        padding-top: 1.45vw; 
+        padding-top: 1vw; 
     }
 }
 [class*=col-] {
@@ -357,8 +427,9 @@ section.aqua{
         padding-right: 0.8vw;
     }
     .animal_detail_sound{
+        cursor: pointer;
         img{
-            width: 2vw;
+            width: 32px;
             transition: scale 0.3s ease;
             &:hover{
                 scale: 1.2;
@@ -442,20 +513,25 @@ section.aqua{
             p{     
                 padding-top: 2.6vw;
                 color: $bgColorLightgray;   
-            }    
-        }   
+            }  
+        } 
+        .animal_detail_btn{
+            position: relative;
+            z-index: 3;
+            margin: 3vw 0 10vw 5%;
+        }    
         
     } 
     
 } 
 
 //背景
-
 .animal_detail_bg{
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
+
     .cloud_bg{
         position: absolute;
     }
