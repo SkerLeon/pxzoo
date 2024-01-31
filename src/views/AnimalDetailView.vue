@@ -1,47 +1,41 @@
 <template>
+    <MainFixedVote/>
     <section class="forHeader animal_detail_section">
 
-        <!-- menu button -->
-        <div class="animal_detail_pc_sidebar">
-            <aside class="Sidebar no_slide slide" id="animaldetail_sidebar">
-            <!--     側邊欄上方動物icon -->
-                <img class="Sidebar_icon monkey" src="@/assets/images/vetor/vetor_animal_monkey.svg" alt="猴子icon">    
-
-                <!-- 下拉式選單 -->
-                <ul class="Sidebar_filter_btns">
-                    <li class="animaldetail_filter filter_btn_item "
-                        v-for="(category, index) in animals_species"
-                        :key="category.id"
-                        @click="toggleShow(isShow,index)">
-                        <div class="main_select">
-                        <img :src="getIconUrl(category.icon)" alt="category.label">
-                        <p class="pcInnerText">{{ category.park }}</p>
-                        <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow"
-                        :class="{ arrow_rotate: category.isShow }">
-                        </div>
-                        <!-- 子層 -->
-                        <ul class="animaldetail_sub_menu" v-show="category.isShow">
+        <!-- 動物側邊欄 -->
+        <aside class="animal_detail_menu">
+            <img 
+            class="monkey"
+            src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
+            <ul class="animal_link_btn">
+                <li class="animaldetail_filter "
+                v-for="(category, index) in animals_species"
+                :key="category.id"
+                @click="toggleShow(isShow,index)">
+                <div class="main_select">
+                <img :src="getIconUrl(category.icon)" alt="category.label">
+                <p class="pcInnerText">{{ category.park }}</p>
+                <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow"
+                class="toggle_arrow"
+                :class="{ arrow_rotate: category.isShow }">
+                </div>
+                    <ul class="animaldetail_sub_menu" v-show="category.isShow">
                         <li v-for="child in category.children" :key="child.id">
                             <a class="pcInnerText" href="#">{{ child.species }}</a>
                         </li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon)  -->
-                <div class="Sidebar_guide hidden_buttom">   
-                    <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
-                </div> 
-            </aside>
-        </div>
-
+                    </ul>
+                </li>
+            </ul>
+        </aside>
         <main class="animal_detail_overview"> 
         <!-- 上方介紹區塊            -->
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
                         <h2 class="animal_detail_species">獅子</h2>
-                        <div class="animal_detail_sound">
+                        <div class="animal_detail_sound"
+                        @click="animalSoundPlay">
+                        
                             <img src="../assets/images/animal/icon/Sound.svg" alt="">
                         </div>
                     </div>
@@ -101,6 +95,22 @@
                 </div>
                 <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
             </div>
+
+            
+            <button class="iconBtn pcInnerText animal_detail_btn"                 @click="backtoAnimal()">
+            <p class="iconText">
+                <img
+                src="../assets/images/animal/goback-arrow.png"
+                alt=""
+                class="buttonIcon"
+                />返回上頁
+            </p>
+            <img
+                src="@/assets/images/login/icon/btnArrow.svg"
+                alt=""
+                class="arrowIcon"
+            />
+            </button>
         </div>
 
         <!-- 背景 -->
@@ -117,7 +127,8 @@
     </section>
 </template>
 
-<script>
+<script>       
+import MainFixedVote from '@/components/MainFixedVote.vue'     
 export default {
     data() {
         return {
@@ -219,9 +230,10 @@ export default {
                     label: '海洋奇觀'
                 }
             ],
-            //pc
+                
         };
     },
+
     methods: {
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
@@ -231,12 +243,29 @@ export default {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
         },
 
+        animalSoundPlay(){
+            var sound = new Audio('/public/sound_lion.mp3')
+            sound.play();
+        },
         toggleShow(isShow,index) {
             this.animals_species[index].isShow = !this.animals_species[index].isShow;
+            this.animals_species.forEach((item, i) => {
+            if (i !== index) {
+            item.isShow = false;
+            }
+         });
+         
+            
+        },
+        
+        backtoAnimal(){
+        this.$router.push({
+        path:'./animal',})
         },
     },
-    created() {
-    },
+    components: {
+       MainFixedVote,
+     },
 };
 </script>
 

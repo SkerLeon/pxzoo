@@ -1,33 +1,28 @@
 <template>
-    <section class="forHeader animal_section">
+    <MainFixedVote/>
+    <section class="forHeader animal_section"  ref="containerRef">
         <!-- banner -->
         <div class="animal_banner">
-            <img src="@/assets/images/animal/banner_animal.png" alt="animal_banner">
+            <img src="@/assets/images/animal/banner_animal_full.png" alt="animal_banner">
+            <h2 class="pcBigTitle">動物資訊</h2>
         </div>
 
-        <!-- menu button(pc) -->
-        <div class="animal_pc_sidebar">
-            <aside class="Sidebar no_slide">
-                <!-- 側邊欄上方動物icon -->
-                <img class="Sidebar_icon octopus" src="@/assets/images/vetor/vetor_animal_octopus.svg" alt="螃蟹icon">
+        <aside class="animal_anchorlink"
+        :class="{ 'sidebar_fixed': isFixed },
+        {'sidebar_absolute': isAbsolute}">
+            <img 
+            class="monkey"
+            src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
+            <ul class="animal_link_btn">
+                <li class="animal_btn_item"
+                v-for="category in animalsCategoryPc"
+                @click="scrollTo(category.value)">
+                    <img class="btn_icon" :src="getIconUrl(category.icon)" alt="category.label">
+                    <p class="pcInnerText">{{category.label}}</p>
+                </li>
+            </ul>
+        </aside>
 
-                <!-- ul裡面的li是主要存放按鈕的區塊 -->
-                <!-- 之後想優化程式碼把這邊變成v-for -->
-                <ul class="Sidebar_filter_btns">
-                    <li class="filter_btn_item"
-                    v-for="category in animalsCategoryPc"
-                    @click="scrollTo(category.value)">
-                    <img :src="getIconUrl(category.icon)" alt="category.label">
-                        <p class="pcInnerText">{{category.label}}</p>
-                    </li>
-                </ul>
-
-                <!-- 導引按鈕(我還沒讓它收起來時可以自動變icon) -->
-                <div class="Sidebar_guide hidden_buttom">   
-                    <img  src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
-                </div>
-            </aside>
-        </div>
         <section class="grassland">
         <!-- 動物列表 -->
             <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select">
@@ -109,10 +104,12 @@
                 </div>
             </div>
         </section>
+        
     </section>
 </template>
 
 <script>
+import MainFixedVote from '@/components/MainFixedVote.vue'    
 export default {
     data() {
         return {
@@ -212,7 +209,18 @@ export default {
                     icon: 'fish'
                 }
             ],
+            isFixed : true,
+            isAbsolute :false,
+            containerHeight: 0 
         };
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+            const containerHeight = this.$refs.containerRef.clientHeight;
+    // console.log('容器高度：', containerHeight);
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
         getImageUrl(paths) {
@@ -231,14 +239,34 @@ export default {
                 })
             }
         },
+        handleScroll() {
+            let threshold =0
+            // console.log(threshold)
+            if(window.innerWidth <= 1920 && window.innerWidth>1440){
+                threshold = 4200
+            }
+            else if(window.innerWidth <= 1440 && window.innerWidth>1280){
+                threshold = 3300
+            }else if(window.innerWidth <= 1280){
+                threshold = 3000
+            }
+            if (window.scrollY > threshold) {
+                this.isFixed = false;
+                this.isAbsolute = true;
+            } else {
+                this.isFixed = true;
+                this.isAbsolute = false;
+            }
+        },
         toAnimalDetail(){
         this.$router.push({
         path:'./AnimalDetail',
     })
     }
     },
-    created() {
-    },
+    components: {
+       MainFixedVote,
+     },
 };
 </script>
 

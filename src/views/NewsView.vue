@@ -1,8 +1,10 @@
 <template>
+  <MainFixedVote/>
   <section class="forHeader news_section">
       <!-- banner -->
     <div class="news_banner">
-        <img src="@/assets/images/news/banner_news.png" alt="news_banner">
+        <img src="../assets/images/news/banner_news_full.png" alt="news_banner">
+        <h2 class="pcBigTitle">最新消息</h2>
     </div>
 
     <!-- 新聞列表 -->
@@ -95,6 +97,7 @@
 </template>
 
 <script>
+import MainFixedVote from '@/components/MainFixedVote.vue'    
 export default {
   data() {
       return {
@@ -214,8 +217,9 @@ export default {
         ishover[index] = !ishover[index];
       }
   },
-  created() {
-  },
+  components: {
+       MainFixedVote,
+     },
 };
 </script>
 
