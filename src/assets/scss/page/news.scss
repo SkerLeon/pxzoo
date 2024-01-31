@@ -39,6 +39,7 @@
 }
 }
 
+
 .news_section, .news_detail_section{
     background-color: $bgColorLightgray;
     position: relative;
@@ -118,6 +119,8 @@ ul.news_pc_filter li{
         width: 100%;
     }
 }
+
+//裝飾線
 .news_line{
     width: 60vw;
     @media screen and (max-width: 768px) {
@@ -125,6 +128,7 @@ ul.news_pc_filter li{
     }
 }
 
+//各新聞資訊
 .news_info{
     display: flex;
     align-content: center;
@@ -191,6 +195,7 @@ ul.news_pc_filter li{
 
 }
 
+//分頁
 .news_pagination{
     list-style: none;
     display: flex;
@@ -240,7 +245,7 @@ ul.news_pc_filter li{
     }
 }
 
-
+//新聞詳細頁面
 .news_detail{
     max-width: 74%;
     margin: auto;

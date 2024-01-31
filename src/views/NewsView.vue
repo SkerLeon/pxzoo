@@ -9,13 +9,6 @@
 
     <!-- 新聞列表 -->
     <main class="news_overview">
-      <!-- select(mb) -->
-      <!-- <Select class="" 
-      v-model="model" 
-      default-label="ALL"
-      style="width:200px">
-          <Option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</Option>
-      </Select> -->
 
       <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText news_select">
         <option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</option>
@@ -61,7 +54,7 @@
       </a>
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
 
-      <!-- 分頁 -->
+      <!-- 分頁 目前是寫死 -->
       <div class="news_pagination pcInnerText">
         <li><a href="#" class="news_page_num onpage">1
         </a>
@@ -79,6 +72,7 @@
       </div>
     </div>     
     </main>
+    
     <!-- 背景 -->
     <div class="news_bg">
       <img class="cloud_bg cloud_2" src="../assets/images/vetor/nature_cloud_2.svg" alt="bg-雲2">
@@ -102,7 +96,8 @@ export default {
   data() {
       return {
 
-        pageNumbers: [2, 3, 4, 5, '>|'], // 假设有5个页码
+        //目前是寫死
+        pageNumbers: [2, 3, 4, 5, '>|'], 
         ishover: new Array(5).fill(false) ,
           
           //select
@@ -124,9 +119,6 @@ export default {
                   label: '動物知識'
               },
           ],
-
-          //fliter
-
 
           //news
           news_info:[
