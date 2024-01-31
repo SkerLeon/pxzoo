@@ -1,4 +1,5 @@
 <template>
+  <MainFixedVote />
   <section class="loginPage forHeader">
     <a href="#" class="forgetPsw">
       <img src="@/assets/images/login/lion1.png" alt="" />
@@ -126,6 +127,7 @@
 // import axios from "axios";
 import { mapActions } from "pinia";
 import userStore from "@/stores/auth";
+import MainFixedVote from "@/components/MainFixedVote.vue";
 const imgUrl = new URL(
   "../../public/images/login/login_btn_area.png",
   import.meta.url
@@ -143,7 +145,7 @@ export default {
       currentImage: imgUrl,
     };
   },
-  components: {},
+  components: { MainFixedVote },
   methods: {
     //(我要調用的js檔案,調用裡面的哪些函式)
     ...mapActions(userStore, ["updateToken", "updateName", "checkLogin"]),

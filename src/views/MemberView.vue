@@ -1,4 +1,5 @@
 <template>
+  <MainFixedVote />
   <main class="memPage forHeader">
     <div class="qrCodeLb" v-if="showQRCode" @click.self="closeQRCode">
       <qrcodeLB @close-qrcode="closeQRCode" />
@@ -214,6 +215,7 @@
 
 <script>
 import qrcodeLB from "@/components/QRcodeLightBox.vue";
+import MainFixedVote from "@/components/MainFixedVote.vue";
 export default {
   data() {
     return {
@@ -288,6 +290,7 @@ export default {
   },
   components: {
     qrcodeLB,
+    MainFixedVote,
   },
   //抓取使用者在input輸入的內容
   created() {
