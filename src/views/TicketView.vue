@@ -1,9 +1,12 @@
 <template>
+  <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
     <div class="tickStep">
-      <img :src="getImagePath()" alt="立即購票進度條">
+      <img :src="tickStepImg" alt="立即購票進度條">
     </div>
-
+<!-- 小龜老師您好，我的問題都有打???，可以直接搜尋歐
+  
+ -->
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
       <TickInfo 
@@ -36,8 +39,12 @@
       :couponOpData="selectedCouOp" 
       :couponValData="selectedCouVal" 
       :coupriceData="couprice" 
-      :paypriceData = "payprice" 
+      :paypriceData="payprice"
+      :paywaysData="payways" 
+      :paywayOpData="selectedPWOp" 
+      :paywayTTData="selectedPWTT"
       @newCoupon="updateCoupon" 
+      @newPayway="updatePayway" 
       @goNextStep="showNextStep" 
       @goPreviousStep="backPreviousStep" 
       />
@@ -47,7 +54,12 @@
     <main v-else="tickStep === 3">
       <TickFinished  :ticketsData="tickets" 
       :tipriceData="tiprice"
-      :coupriceData="couprice"  
+      :couponOpData="selectedCouOp" 
+      :coupriceData="couprice" 
+      :paypriceData="payprice" 
+      :paywayOpData="selectedPWOp" 
+      :paywayTTData="selectedPWTT" 
+      :tickStatusData="status"
       />
     </main>
 
@@ -55,6 +67,16 @@
 </template>
 
 <script>
+import tickStepImg0 from "@/assets/images/ticket/PC0.svg";
+import tickStepImg1 from "../assets/images/ticket/PC1.svg";
+import tickStepImg2 from "../assets/images/ticket/PC2.svg";
+import tickStepImg3 from "../assets/images/ticket/PC3.svg";
+import ticketImg1 from "@/assets/images/ticket/ticket1.svg";
+import ticketImg2 from "@/assets/images/ticket/ticket2.svg";
+import ticketImg3 from "@/assets/images/ticket/ticket3.svg";
+import ticketImg4 from "@/assets/images/ticket/ticket4.svg";
+import ticketImg5 from "@/assets/images/ticket/ticket5.svg";
+import MainFixedVote from '@/components/MainFixedVote.vue';
 import TickInfo from '@/components/tick/TickInfo.vue';
 import TickCalendar from '@/components/tick/TickCalendar.vue';
 import TickNum from '@/components/tick/TickNum.vue';
@@ -63,6 +85,7 @@ import TickFinished from '@/components/tick/TickFinished.vue';
 
 export default {
   components:{
+    MainFixedVote,
     TickInfo,
     TickCalendar,
     TickNum,
@@ -72,6 +95,12 @@ export default {
   props:{},
   data() {
     return {
+      tickStepImgs: [
+        tickStepImg0,
+        tickStepImg1,
+        tickStepImg2,
+        tickStepImg3,
+      ],
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
@@ -85,7 +114,7 @@ export default {
             name: '成人票',
             rule: '18~64 歲',
             price: 100,
-            src: 'src/assets/images/ticket/ticket1.svg',
+            src: ticketImg1,
             qty: 0,
           },
           {
@@ -93,7 +122,7 @@ export default {
             name: '學生票',
             rule: '12 歲以上(含)持學生證者',
             price: 80,
-            src: 'src/assets/images/ticket/ticket2.svg',
+            src: ticketImg2,
             qty: 0,
           },
           {
@@ -101,7 +130,7 @@ export default {
             name: '團體票',
             rule: '15 人以上適用',
             price: 60,
-            src: 'src/assets/images/ticket/ticket3.svg',
+            src: ticketImg3,
             qty: 0,
           },
           {
@@ -109,7 +138,7 @@ export default {
             name: '兒童票',
             rule: '4~11 歲',
             price: 40,
-            src: 'src/assets/images/ticket/ticket4.svg',
+            src: ticketImg4,
             qty: 0,
           },
           {
@@ -117,7 +146,7 @@ export default {
             name: '愛心票',
             rule: '65 歲以上(含)',
             price: 40,
-            src: 'src/assets/images/ticket/ticket5.svg',
+            src: ticketImg5,
             qty: 0,
           },
       ],
@@ -138,6 +167,23 @@ export default {
           value: 0.95,
         },
       ],
+      payways: [
+        { 
+          id: 1,
+          option: '信用卡',
+          value: 'card',
+          tickType: '數位票券',
+        },
+        {
+          id: 2,
+          option: '現場付款',
+          value: 'cash',
+          tickType: '實體票券',
+        },
+      ],
+      selectedPWTT: '',
+      selectedPWOp: '',
+      status: '',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
     }
@@ -147,10 +193,11 @@ export default {
       this.isMobile = window.innerWidth <= 768;
       this.isBoard = window.innerWidth < 1200;
     },
-    getImagePath(){
-      return `src/assets/images/ticket/PC${this.tickStep}.svg`;
-    },
     showNextStep(){
+      // 如果沒有選優惠券，則顯示不使用
+      if(this.tickStep === 2 && this.selectedCouOp === ''){
+        this.selectedCouOp = this.coupons[0].option;
+      }
       this.tickStep++;
     },
     backPreviousStep(){
@@ -166,25 +213,35 @@ export default {
     // },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
+      this.payprice = newTiprice;
     },
     updateCoupon(newCouponOp, newCouponVal, newCouprice, newPayprice){
+      console.log(this.selectedCouOp);
       this.selectedCouOp = newCouponOp;
       this.selectedCouVal = newCouponVal;
       this.couprice = newCouprice;
       this.payprice = newPayprice;
     },
+    updatePayway(newPaywayOp, newPaywayTType){
+      this.selectedPWOp = newPaywayOp;
+      this.selectedPWTT = newPaywayTType;
+
+      if(this.selectedPWOp === '信用卡'){
+        this.status = '未用票';
+      }else{
+        this.status = '未取票';
+      }
+      console.log("主頁更新付款方式", this.selectedPWOp);
+      console.log("主頁更新票券型態", this.selectedPWWTT);
+      // 請問小龜老師:為什麼 console.log("主頁更新票券型態", this.selectedPWWTT); 結果是undefined ???
+    },
   },
-  // watch: {
-  //   tiprice: {
-  //   handler(newVal, oldVal) {
-  //     this.$nextTick(() => {
-  //       console.log('tiprice 更新，新值:', newVal);
-  //     });
-  //   },
-  //   deep: true,
-  //   immediate: true,
-  // },
-  // },
+  computed:{
+    //tickStepImg
+    tickStepImg() {
+      return this.tickStepImgs[this.tickStep];
+    },
+  },
   created(){
     this.windowSize();
     window.addEventListener('resize', this.windowSize);

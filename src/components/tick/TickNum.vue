@@ -23,10 +23,10 @@
                         <img :src="ticket.src" :alt="ticket.name">
                     </article>
                     <div class="countBTN">
-                        <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
-                        <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
-                        <!-- v-model與:value 不建議同時存在 -->
                         <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
+                        <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
+                        <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
+                        <!-- v-model與:value 不建議同時存在 -->
                     </div>
                 </article>
             </article>

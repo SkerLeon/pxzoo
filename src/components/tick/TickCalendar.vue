@@ -9,10 +9,14 @@
             </hgroup>
 
             <Calendar class="calendar" 
-            :cell-height=24 
+            :cell-height=38 
             :locale="{ today: '本月', type: { month: '月', year: '年' }, weekDays: ['日', '一', '二', '三', '四', '五', '六'], months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] }"
             >
-
+                <template #month="{date, data}">
+                    <div>
+                      <Badge text="休園" v-if="new Date(data.day).getDay() === 1" />
+                    </div>
+                </template>
             </Calendar>
 
         </article>

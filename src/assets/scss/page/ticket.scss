@@ -90,7 +90,7 @@
 
 .tickStep{
     width: 100%;
-    margin: 3vw auto 1vw;
+    margin: 3vw auto 0.5vw;
     img{
         height: 35px;
         margin: 0 auto;
@@ -149,7 +149,7 @@
     }
     .tickBtn{
         justify-content: end;
-        margin: 1vw 0 calc(1vw + 60px);
+        margin: 0.8vw 0;
     }
     hgroup{
         border: 0;
@@ -169,7 +169,7 @@
     }
 }
 .calendar{
-    height: 312px;
+    height: 382.5px;
     overflow: hidden;
     text-align: center;
     background-size: cover;
@@ -190,7 +190,11 @@
         color: $mainTextColor;
         font-family: $font;
     }
+    .ivu-icon{
+        font-weight: 700;
+    }
     .ivu-btn, .ivu-ml>.ivu-radio-wrapper{
+        font-weight: 700;
         border-radius: 0;
         border: $bgColorSecGray solid 1px;
         width: 44px;
@@ -220,6 +224,7 @@
     }
     .ivu-calendar-table thead th{
         padding: 4px 8px;
+        font-weight: 500;
     }
     td,.ivu-calendar-table tr:first-child td{
         border: $bgColorSecGray solid 1px;
@@ -233,6 +238,17 @@
     }
     .ivu-calendar-table-day-other{
         color: $inputHintColor;
+    }
+    .ivu-calendar-table-day-title{
+        // 同.pcMarkText
+        font-size: $pcFontH5;
+        font-family: $font;
+        font-weight: 700;
+        line-height: 150%;
+        @media (width <= 768px) {
+          //ph尺寸
+          font-size: $phFontH5;
+        }
     }
     // 休園標籤
     .ivu-badge-count{
@@ -274,7 +290,7 @@
             right: 20vw;
             article{
                 font-weight: 700;
-                color: $inputColor;
+                color: $bgColorWhite;
                 transform: translate(150px, 3.8vw);
             }
             img{
@@ -478,14 +494,14 @@
         }
         >img{
             position: absolute;
-            top: calc(26.396px + 3vw + 400px + 6vw);
+            bottom: -3px;
             left: 2vw;
             width: 80px;
             transform:scaleX(-1);
         }
     }
     .calendar{
-        height: 400px;
+        // height: 382px;
         table{
             font-size: $phFontH3;
         }
@@ -551,7 +567,6 @@
     }
     .tickCalendar{
         >img{
-            top: calc(26.396px + 7vw + 400px);
             left: 1vw;
         }
     }
@@ -565,14 +580,18 @@
     .tick{
         >article, >main{ width: 90%; }
     }
+    .tickStep{
+        margin: calc(4vw + 50px) auto 5vw;
+    }
     .tickInfo{
+        z-index: 998;
         article{
             width: 65%;
-            margin-top: calc(8vw + 20px);
+            margin-top: calc(8vw + 20px + 45px)
         }
     }
     .tickLightbox{
-        top: -45px;
+        top: 0px;
         img{ width: 95%; }
         .tickIcon{
             top: calc(12vw + 20px + 5vw);
@@ -585,18 +604,20 @@
         hgroup img{
             right: 10%;
         }
-        >img{
-            top: calc(26.396px + 14vw + 400px);
-        }
     }
     .calendar{
-        height: 422px; 
+        height: 425px; 
         .ivu-calendar-header-title, .ivu-btn, .ivu-ml>.ivu-radio-wrapper{
             height: 50px;
         }
         .ivu-ml>.ivu-radio-wrapper{
             width: 44px;
             line-height: 44px;
+            font-weight: 700;
+        }
+        .ivu-calendar-table thead th{
+            line-height: 42px;
+
         }
     }
     .tickNum{
@@ -638,15 +659,10 @@
         h2{ margin: 4vw auto 3vw;}
     }
     .tickLightbox{
-        top: calc(-40px + 1vw);
+        top: calc(5px + 1vw);
         .tickIcon{
             top: calc(15vw + 20px + 3vw);
             right: 12vw;
-        }
-    }
-    .tickCalendar{
-        >img{
-            top: calc(26.396px + 15.5vw + 400px);
         }
     }
     .tickCheck, .tickFinished{
@@ -675,7 +691,6 @@
     }
     .tickCalendar{
         >img{
-            top: calc(26.396px + 14vw + 400px);
             left: 15vw;
         }
     }
@@ -686,7 +701,7 @@
         h2{ margin: 8vw auto 5vw; }
     }
     .tickLightbox{
-        top: 70px;
+        top: 120px;
         img{ transform: none; }
         .tickIcon{
             top: 40px;
@@ -737,7 +752,6 @@
             top: calc(-2vw - 10px);
         }
         >img{
-            top: calc(26.396px + 16vw + 400px);
             left: 15vw;
         }
     }
@@ -752,11 +766,14 @@
         height: 130vw;
         max-height: 565px;
     }
+    .tickStep{
+        margin: 10vw auto 5vw;
+    }
     .tickInfo{
         h2{ margin: 10vw auto 5vw; }
     }
     .tickLightbox{
-        top: -13.5vw;
+        top: -6.5vw;
         img{ 
             margin-bottom: -20vw;
             transform: rotateX(45deg);
@@ -790,10 +807,11 @@
         max-height: 570px;
     }
     .tickInfo{
+        article{ margin-top: calc(8vw + 20px + 15px); }
         h2{ margin: 15vw auto 8vw; }
     }
     .tickLightbox{
-        top: calc(57px + 3vw);
+        top: calc(57px + 3vw + 20px);
         img{
             transform: none;
             margin-bottom: 0;
@@ -807,7 +825,6 @@
         }
         >img{
             width: 60px;
-            top: calc(26.396px + 22vw + 400px);
             left: 16vw;
         }
     }

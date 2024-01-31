@@ -27,9 +27,9 @@
         <hgroup class="coupon pcInnerText">
             <h2 class="pcSmTitle">優惠折扣</h2>
             <p v-if="noCoupon">目前沒有優惠券</p>
-            <select v-else name="" id="coupon" v-model="selectedCoupon" 
+            <select v-else name="" class="pcInnerText" v-model="selectedCoupon" 
             @change="chooseCoupon()">
-                <option value="null" disabled default hidden>請選擇優惠券</option>
+                <option value="null" disabled hidden>請選擇優惠券</option>
                 <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon">{{ coupon.option }}</option>
             </select>
         </hgroup>
@@ -57,16 +57,17 @@
         <article class="payWay">
             <hgroup>
                 <h2 class="pcSmTitle">付款方式</h2>
-                <select name="" id="payway" v-model="selectedPay">
-                    <option value="" disabled selected hidden>請選擇付款方式</option>
-                    <option v-for="(payway, paywayIndex) in paywayList" :key="payway.Id" :value="payway">{{ payway.option }}</option>
+                <select name="" v-model="selectedPayway"
+                @change="choosePayway()" class="pcInnerText">
+                    <option value="null" disabled hidden>請選擇付款方式</option>
+                    <option v-for="(payway, paywayIndex) in paywaysData" :key="payway.Id" :value="payway">{{ payway.option }}</option>
                 </select>
             </hgroup>
             <div class="price pcInnerText important">
                 <p>票券型態</p>
-                <p >{{ selectedPay.tickType }}</p>
+                <p >{{ paywayTTData }}</p>
             </div>
-            <article v-if="selectedPay.value === 'card'">
+            <article v-if="payWay === '信用卡'">
                 <main class="pcInnerText">
                     <p>信用卡卡號</p>
                     <input v-model.lazy="cardid" type="number" placeholder="請輸入卡號">
@@ -84,7 +85,6 @@
                     <input v-model.lazy="cardCode" type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
                 </main>
             </article>
-
         </article>
 
         <main class="tickBtn">
@@ -138,29 +138,38 @@ export default {
             type: Number,
             required: true,
         },
+        paywaysData: {
+            type: Array,
+            required: true,
+        },
+        paywayOpData: {
+            type: String,
+            required: true,
+        },
+        paywayTTData: {
+            type: String,
+            required: true,
+        },
     },
     data(){
         return {
             noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
             isSmallPH: false,
             selectedCoupon: null,
-            selectedPay: '',
-            paywayList: [
-                { 
-                    id: 1,
-                    option: '信用卡',
-                    value: 'card',
-                    tickType: '數位票券',
-                },
-                {
-                    id: 2,
-                    option: '現場付款',
-                    value: 'cash',
-                    tickType: '實體票券',
-                },
-            ],
+            selectedPayway: null,
+            payWay:'',
         }
     },
+    // computed: { //watch要做其他事情,value綁id跟值比較好
+    //     selectedPayway: {
+    //         get() {
+    //             return this.paywayOpData
+    //         },
+    //         set(nVal) {
+    //            this.$emit('newPayway', nVal)
+    //         },
+    //     }
+    // },
     methods:{
         nextStep(){
             // 999寫確認有選付款方式的判斷式
@@ -183,17 +192,17 @@ export default {
 
             this.$emit("newCoupon", this.selectedCoupon.option, this.selectedCoupon.value, coupriceCal, paypriceCal);
         },
+        choosePayway(){
+            console.log("票券型態", this.selectedPayway.tickType);
+            console.log("付款方式", this.selectedPayway.option);
+            
+            this.payWay=this.selectedPayway.option;
+
+            this.$emit("newPayway", this.selectedPayway.option, this.selectedPayway.tickType);
+        },
     },
     computed:{},
     watch:{
-        selectedPay(newValue){
-            console.log("當前Pay", newValue);
-            console.log("當前Pay", newValue.value);
-            console.log("當前Pay", newValue.tickType);
-            // 觸發 transferPay 事件，傳遞選擇的支付方式選項
-            this.$emit("transferPay", newValue.value);
-            this.$emit("transferTickType", newValue.tickType);
-        },
     },
     created(){
         this.windowSize();

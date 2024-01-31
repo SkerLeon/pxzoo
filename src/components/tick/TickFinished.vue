@@ -3,7 +3,8 @@
     <section class="tickFinished">
 
         <section>
-            <h2 v-html=" cashFinished " class="pcSmTitle"></h2>
+            <h2 v-html=" paywayOpData === '信用卡'? cardFinished : cashFinished " class="pcSmTitle"></h2>
+
             <p class="pcInnerText">畫面將於 5 秒鐘後跳轉回首頁。</p>
             <button @click="useGoHome" class="defaultBtn pcInnerText">
                 返回首頁
@@ -40,7 +41,7 @@
             </article>
             <hgroup class="coupon pcInnerText">
                 <p>優惠折扣</p>
-                <p>付款金額 9 折</p>
+                <p>{{ couponOpData }}</p>
             </hgroup>
             <div class="price">
                 <span>票券金額</span>
@@ -53,28 +54,28 @@
                 <span>優惠金額</span>
                 <div class="pcInnerText">
                     <span class="pcMarkText">NT$</span>
-                    <p>26</p>
+                    <p>{{coupriceData}}</p>
                 </div>
             </div>
             <div class="price important">
                 <p class="pcInnerText">付款金額</p>
                 <div class="mixedFont pcSmTitle">
                     <p class="pcInnerText">NT$</p>
-                    <p>234</p>
+                    <p>{{paypriceData}}</p>
                 </div>
             </div>
             <article class="payWay pcInnerText">
                 <hgroup>
                     <p>付款方式</p>
-                    <p>信用卡</p>
+                    <p>{{paywayOpData}}</p>
                 </hgroup>
                 <div class="price important">
                     <p>票券型態</p>
-                    <p>數位票券</p>
+                    <p>{{paywayTTData}}</p>
                 </div>
                 <div class="price important">
                     <p>處理狀態</p>
-                    <p>未用票</p>
+                    <p>{{tickStatusData}}</p>
                 </div>
             </article>
         </article>
@@ -99,6 +100,30 @@ export default {
             type: Number,
             required: true,
         },
+        couponOpData: {
+            type: String,
+            required: true,
+        },
+        coupriceData: {
+            type: Number,
+            required: true,
+        },
+        paypriceData: {
+            type: Number,
+            required: true,
+        },
+        paywayOpData: {
+            type: String,
+            required: true,
+        },
+        paywayTTData: {
+            type: String,
+            required: true,
+        },
+        tickStatusData: {
+            type: String,
+            required: true,
+        }
     },
     data(){
         return {
