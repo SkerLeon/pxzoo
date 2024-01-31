@@ -33,10 +33,9 @@
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
                         <h2 class="animal_detail_species">獅子</h2>
-                        <div class="animal_detail_sound">
-                        <audio >
-                        <source src="./movies/videoplayback.mp4">
-                        </audio>
+                        <div class="animal_detail_sound"
+                        @click="animalSoundPlay">
+                        
                             <img src="../assets/images/animal/icon/Sound.svg" alt="">
                         </div>
                     </div>
@@ -245,8 +244,8 @@ export default {
         },
 
         animalSoundPlay(){
-            // var sound = new Audio(url('../assets/images/animal/sound_lion.mp3'))
-            // sound.play();
+            var sound = new Audio('/public/sound_lion.mp3')
+            sound.play();
         },
         toggleShow(isShow,index) {
             this.animals_species[index].isShow = !this.animals_species[index].isShow;
