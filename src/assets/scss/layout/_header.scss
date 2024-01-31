@@ -434,38 +434,26 @@ header {
   z-index: 998;
   width: 100vw;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #ffffffdd;
   .header_router_links{
     position: absolute;
-    bottom: 20%;
-    left: 45%;
+    top: 0;
+    left: 0;
+    transform: translate(45vw,30vw);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 50px;
+    @media (max-width:550px) {
+      transform: translate(42vw,30vw);
+    }
+    @media (max-width:480px) {
+      transform: translate(40vw,30vw);
+    }
     a{
       color: $mainTextColor;
       text-decoration: none;
-    }
-    @media (max-width:600px) {
-      left: 45%;
-    }
-    @media (max-width:600px) {
-      left: 43%;
-    }
-    @media (max-width:480px) {
-      bottom: 28%;
-    }
-    @media (max-width:430px) {
-      bottom: 30%;
-      left: 41%;
-    }
-    @media (max-width:414px) {
-      bottom: 28%;
-    }
-    @media (max-width:375px) {
-      bottom: 30%;
     }
   }
 }

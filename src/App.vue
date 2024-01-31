@@ -4,22 +4,6 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <MainHeader/>
-  <MainFixedVote/>
-  <!-- <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/ticket">Ticket</RouterLink>
-        <RouterLink to="/member">Member</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/animal">Animal</RouterLink>
-        <RouterLink to="/park">Park</RouterLink>
-        <RouterLink to="/news">News</RouterLink>
-        <RouterLink to="/school">School</RouterLink>
-        <RouterLink to="/vote">Vote</RouterLink>
-      </nav>
-    </div>
-  </header> -->
 
   <!-- 頁面路由route渲染的地方 -->
   <RouterView />
@@ -31,7 +15,6 @@ import { RouterLink, RouterView } from "vue-router";
 <script>
 import { RouterView } from 'vue-router'
 import MainHeader from '@/components/MainHeader.vue'
-import MainFixedVote from '@/components/MainFixedVote.vue'
 import MainFooter from '@/components/MainFooter.vue'
 
 export default {
@@ -39,7 +22,6 @@ export default {
     // RouterLink,
     RouterView,
     MainHeader,
-    MainFixedVote,
     MainFooter
   },
   data() {

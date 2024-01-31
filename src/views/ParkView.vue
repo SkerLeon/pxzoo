@@ -29,7 +29,7 @@
           <div class="pk_Store_icon_dialog_content">
             <img class="pk_Store_icon_dialog" src="@/assets/images/park/pk_Store_icon_dialog_pink.png" alt="園區動物hover的圖片">
             <div class="pk_Store_icon_dialog_content_text">
-              <p class="pcMarkText">男女廁所</p>
+              <p class="pcMarkText">園區廁所</p>
             </div>
           </div>
           <img src="@/assets/images/park/pk_Store_icon3.png" alt="廁所icon">
@@ -75,6 +75,27 @@
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
       </aside>
+
+      <div class="home_qkpage_park">
+        <div class="parkmark">
+          <img
+            class="prevbtn"
+            src="@/assets/images/home/home_banner_prevarrow.svg"
+            alt="arrow"
+          />
+          <span class="pcMarkText">左右滑動</span>
+          <img
+            class="nextbtn"
+            src="@/assets/images/home/home_banner_nextarrow.svg"
+            alt="arrow"
+          />
+        </div>
+        <div class="parkgroup">
+          <parkmap />
+        </div>
+
+        <!-- <img src="@/assets/images/home/home_map.jpg" alt="map"> -->
+      </div>
     </section>
 
     <section v-show="AnimalDetails" class="pk_Animal_details">
@@ -173,40 +194,42 @@
 
     </section>
 
-    <!-- <aside class="Sidebar ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
-        <img class="Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
+    <aside class="pk_ph_Sidebar" @click="Mobile_filtering()" ref="Sidebar">
+        <img class="pk_ph_Sidebar_icon" src="@/assets/images/park/pk_Sidebar_icon_crab.svg" alt="螃蟹icon">
 
-        <ul class="Sidebar_filter_btns">
-          <li class="filter_btn_item" @click="showAnimalsAndFacilities()">
+        <ul class="pk_ph_Sidebar_filter_btns">
+          <li class="pk_ph_filter_btn_item" @click="showAnimalsAndFacilities()">
             <img src="@/assets/images/park/pk_filter_icon_Overview.svg" alt="篩選icon">
-            <p class="pcInnerText">園區總覽</p>
+            <p class="phSmTitle">園區總覽</p>
           </li>
 
-          <li class="filter_btn_item" @click="showFacilities()">
+          <li class="pk_ph_filter_btn_item" @click="showFacilities()">
             <img src="@/assets/images/park/pk_filter_icon_facility.svg" alt="篩選icon">
-            <p class="pcInnerText">園區設施</p>
+            <p class="phSmTitle">園區設施</p>
           </li>
 
-          <li class="filter_btn_item" @click="showAnimals()">
+          <li class="pk_ph_filter_btn_item" @click="showAnimals()">
             <img src="@/assets/images/park/pk_filter_icon_Vector.svg" alt="篩選icon">
-            <p class="pcInnerText">動物分館</p>
+            <p class="phSmTitle">動物分館</p>
           </li>
         </ul>
 
-        <div class="Sidebar_guide" >   
+        <div class="pk_ph_Sidebar_guide" >   
           <img :class="[{ 'Sidebar_guide_rotate': hover }]" src="@/assets/images/park/pk_Sidebar_guide_icon.svg" alt="導引icon">
         </div>
-    </aside> -->
+    </aside>
 
   </section>
+  <MainFixedVote/>
 </template>
 
 <script>
-
+import MainFixedVote from '@/components/MainFixedVote.vue'
 
 export default {
+  
   components: {
-    
+    MainFixedVote,
   },
   data() {
     return {
@@ -396,7 +419,7 @@ export default {
     // 生命週期鉤子
   },
   mounted() {
-    // 生命週期鉤子
+    
   },
   methods: {
     getAnimalIconUrl(paths){
@@ -447,8 +470,8 @@ export default {
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
-      this.$refs.Sidebar.style.left = this.hover ? '0' : '-26%';
-    }
+      this.$refs.Sidebar.style.left = this.hover ? '0' : '-29%';
+    },
   },
 };
 </script>
