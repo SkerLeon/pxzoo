@@ -30,6 +30,12 @@
  
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
        <img class="balloon" src="@/assets/images/vote/balloon.svg" alt="balloon" />
+       <div>
+      <img  class="cloud_6_top" src="@/assets/images/vote/clouda_6.svg" alt="雲" />
+    </div>
+       <div>
+      <img  class="cloud_1_top" src="@/assets/images/vetor/nature_cloud_1.svg" alt="雲" />
+    </div>
     </div>
   </section>
   <!-- 投票規則 -->
@@ -157,6 +163,7 @@
       <div class="elephant1">
         <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
       </div>
+      <div class="vote_bottom">PxZoO</div>
     </div>
   </section>
 </template>
