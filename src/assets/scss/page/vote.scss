@@ -32,6 +32,91 @@
       width: 8vw;
       z-index: 10;
     }
+
+    .balloon {
+      animation: balloonMove 60s linear infinite;
+      position: absolute;
+      width: 8vw;
+      top: 10%;
+      left: 5%;
+    }
+
+    @keyframes balloonMove {
+      0% {
+        transform: translate(2vw, 0px);
+      }
+      5% {
+        transform: translate(4vw, -20px);
+      }
+      10% {
+        transform: translate(6vw, 0px);
+      }
+
+      15% {
+        transform: translate(8vw, -20px);
+      }
+      20% {
+        transform: translate(10vw, 0px);
+      }
+
+      25% {
+        transform: translate(12vw, -20px);
+      }
+
+      30% {
+        transform: translate(14vw, 0px);
+      }
+
+      35% {
+        transform: translate(16vw, -20px);
+      }
+      40% {
+        transform: translate(18vw, 0px);
+      }
+
+      45% {
+        transform: translate(20vw, -20px);
+      }
+
+      50% {
+        transform: translate(18vw, 0px);
+      }
+
+      55% {
+        transform: translate(16vw, -20px);
+        //
+      }
+      60% {
+        transform: translate(14vw, 0px);
+      }
+
+      65% {
+        transform: translate(12vw, -20px);
+      }
+      70% {
+        transform: translate(10vw, 0px);
+      }
+
+      75% {
+        transform: translate(8vw, -20px);
+      }
+
+      80% {
+        transform: translate(6vw, 0px);
+      }
+
+      85% {
+        transform: translate(4vw, -20px);
+      }
+      90% {
+        transform: translate(2vw, 0px);
+      }
+
+      100% {
+        transform: translate(0vw, -20px); /* 回到起始位置 */
+      }
+    }
+
     .tree_bg {
       position: absolute;
       bottom: 0px;
@@ -193,6 +278,11 @@
 
         width: 19vw;
       }
+      .balloon {
+        width: 12vw;
+        top: 25%;
+        left: 5%;
+      }
       .tree_bg {
         content: url("@/assets/images/vote/pc-tree.svg");
       }
@@ -247,7 +337,7 @@
 /* PC-上個月投票結果 */
 .vote_activity {
   height: auto;
-  padding-bottom: 10%;
+  padding: 5% 0 15% 0;
   width: 100%;
   background-color: #fff;
   position: relative;
@@ -256,6 +346,7 @@
 
   .newsFrame .newsFrameText {
     top: 0;
+    padding-top: 0.3vw;
   }
 
   .vote_activity_wrap {
@@ -268,7 +359,7 @@
     color: $primaryColorGreen;
     text-align: center;
 
-    padding: 5% 0 1% 0;
+    padding: 1% 0 5% 0;
   }
 
   p {
@@ -286,6 +377,18 @@
       width: 8vw;
     }
   }
+  @keyframes cloudMove {
+    0%,
+    100% {
+      transform: translateX(0);
+      //雲的初始位置和結束位置
+    }
+
+    50% {
+      transform: translateX(calc(100% - 200px));
+      //雲的中間位置
+    }
+  }
 
   .cloud_2 {
     animation: cloudMove2 5s linear infinite;
@@ -297,19 +400,6 @@
     img {
       max-width: 12vw;
       width: 100%;
-    }
-  }
-
-  @keyframes cloudMove {
-    0%,
-    100% {
-      transform: translateX(0);
-      //雲的初始位置和結束位置
-    }
-
-    50% {
-      transform: translateX(calc(100% - 200px));
-      //雲的中間位置
     }
   }
 
@@ -391,6 +481,10 @@
   .vote_activity {
     padding-bottom: 15%;
   }
+  .newsFrame .newsFrameText {
+    top: 0;
+    padding-top: 0.4vw;
+  }
 }
 
 /*PH-投票活動*/
@@ -398,7 +492,11 @@
   .vote_activity {
     height: auto;
 
-    padding-bottom: 20%;
+    padding: 10% 0 20% 0;
+    .newsFrame .newsFrameText {
+      top: 0;
+      padding-top: 1vw;
+    }
 
     .vote_activity_wrap {
       width: 90%;
@@ -415,7 +513,7 @@
       left: 20%;
 
       img {
-        width: 14vw;
+        width: 20vw;
       }
     }
 
@@ -423,7 +521,7 @@
       top: 5%;
       right: 5%;
       img {
-        max-width: 16vw;
+        max-width: 25vw;
       }
     }
   }
@@ -546,7 +644,7 @@
       height: 10vh;
 
       .img img {
-        max-width: 8vw;
+        max-width: 14vw;
         width: 100%;
       }
     }
@@ -565,7 +663,7 @@
   align-items: center;
   color: $mainTextColor;
   padding-top: 10%;
-  padding-bottom: 11%;
+  padding-bottom: 18%;
   position: relative;
   width: 100%;
   height: auto;
@@ -621,9 +719,40 @@
         align-items: center;
         margin-top: 13%;
 
-        .vote_wrap_animal img {
-          max-width: 16.2vw;
-          height: auto;
+        .vote_wrap_animal {
+          overflow: hidden;
+          position: relative;
+          img {
+            max-width: 16.2vw;
+            height: auto;
+            transform: scale(1, 1);
+            transition: all 1s ease-out;
+            cursor: pointer;
+          }
+          // img:hover {
+          //   transform: scale(1.2, 1.2);
+          // }
+          .vote_wrap_animal_txt {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            opacity: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: $bgColorWhite;
+            transition: 0.5s;
+            letter-spacing: 1.5px;
+          }
+          :hover {
+            opacity: 1;
+          }
         }
 
         .vote_name {
@@ -675,28 +804,28 @@
 @media screen and (width < 480px) {
   .vote_overview_all {
     .vote_overview_content {
-      max-width: 70%;
+      max-width: 90%;
       .elephant1 img {
         width: 20vw;
         right: 13%;
       }
       .vote_button {
-        flex-direction: column;
+        flex-direction: row;
 
         button {
-          height: 8vh;
+          height: 9vh;
+          width: 16vw;
           margin: 1% 0;
+          letter-spacing: 5px;
+          text-align: center;
         }
       }
 
       .vote_wrap {
-        justify-content: center;
-
+        gap: 4%;
         .vote_card {
           .vote_wrap_animal img {
-            border: 0;
-            width: 100%;
-            max-width: 100%;
+            max-width: 43vw;
             height: auto;
           }
         }

@@ -29,6 +29,7 @@
       <img class="tree_bg" src="@/assets/images/vote/tree.svg" alt="tree_bg" />
  
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />
+       <img class="balloon" src="@/assets/images/vote/balloon.svg" alt="balloon" />
     </div>
   </section>
   <!-- 投票規則 -->
@@ -77,8 +78,8 @@
       <h1>目前人氣<span>TOP3</span></h1>
     </div>
 
-    <div v-for="(ranking, index) in ranking_list" :key="index" class="ranking">
-      <div class="content">
+    <div v-for="(ranking, index) in ranking_list" :key="index" class="ranking"  data-aos="zoom-in-up">
+      <div class="content" >
         <div class="number pcDecBigTitle">{{ ranking.number }}</div>
         <div class="img"> <img :src="getImageUrl(ranking.animal_img)" alt="Animal" /></div>
 
@@ -130,11 +131,16 @@
 
       <div class="vote_wrap">
         <div v-for="(voteItem, index) in currentVoteList" :key="index" class="vote_item">
+         
           <div class="vote_card">
+            <router-link :to="'/animalDetail/' ">
             <div class="vote_wrap_animal">
               <img :src="getImageUrl(voteItem.animal_img)" alt="Animal" />
+              <div class="vote_wrap_animal_txt pcInnerText">
+                前往動物詳細資訊
+              </div>
             </div>
-
+          </router-link>
             <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
             <div class="vote_icon pcInnerText">
               <img src="@/assets/images/vote/star.svg" alt="" />{{
@@ -256,7 +262,7 @@ export default {
   },
   methods: {
     scrollToVoteList() {
-      const voteListElement = document.querySelector('.vote_wrap');
+      const voteListElement = document.querySelector('.vote_overview_all');
       voteListElement.scrollIntoView({ behavior: 'smooth' });
     },
 
