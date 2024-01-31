@@ -2,7 +2,7 @@
     <MainFixedVote/>
     <section class="forHeader animal_detail_section">
 
-        <!-- 動物側邊欄 -->
+        <!-- 動物側邊欄 pc才有 -->
         <aside class="animal_detail_menu">
             <img 
             class="monkey"
@@ -19,6 +19,7 @@
                 class="toggle_arrow"
                 :class="{ arrow_rotate: category.isShow }">
                 </div>
+                    <!-- 次選單 因為父層click點子層會一起收合 -->
                     <ul class="animaldetail_sub_menu" v-show="category.isShow">
                         <li v-for="child in category.children" :key="child.id">
                             <a class="pcInnerText" href="#">{{ child.species }}</a>
@@ -28,6 +29,7 @@
             </ul>
         </aside>
         <main class="animal_detail_overview"> 
+
         <!-- 上方介紹區塊            -->
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
@@ -96,7 +98,7 @@
                 <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
             </div>
 
-            
+            <!-- 返回上頁 mb才有 -->
             <button class="iconBtn pcInnerText animal_detail_btn"                 @click="backtoAnimal()">
             <p class="iconText">
                 <img
@@ -244,20 +246,19 @@ export default {
         },
 
         animalSoundPlay(){
-            var sound = new Audio('/public/sound_lion.mp3')
+            var sound = new Audio('/public/audio/sound_lion.mp3')
             sound.play();
         },
+        // 選單收合，雖然功能有出來但不確定寫得對不對
         toggleShow(isShow,index) {
             this.animals_species[index].isShow = !this.animals_species[index].isShow;
             this.animals_species.forEach((item, i) => {
             if (i !== index) {
             item.isShow = false;
             }
-         });
-         
-            
+        });  
         },
-        
+        //回到上頁
         backtoAnimal(){
         this.$router.push({
         path:'./animal',})
@@ -268,7 +269,3 @@ export default {
      },
 };
 </script>
-
-<style scoped>
-/* 在這裡添加樣式 */
-</style>

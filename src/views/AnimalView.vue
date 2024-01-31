@@ -25,7 +25,9 @@
 
         <section class="grassland">
         <!-- 動物列表 -->
-            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select">
+            <!-- 篩選-ph有 -->
+            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select"
+            v-model="selectedCategory">
                 <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
             </select>
             <div class="animal_park grassLand" ref="grassLand">
@@ -115,45 +117,47 @@ export default {
         return {
             //animal
             animals_grass: [
-                { species: 'lion', name: '獅子' },
-                { species: 'giraffe', name: '長頸鹿' },
-                { species: 'elephant', name: '非洲象' },
-                { species: 'cheetah', name: '獵豹' },
-                { species: 'zebra', name: '斑馬' },
-                { species: 'meerkat', name: '狐獴' },
+                { value: 'grassLand', species: 'lion', name: '獅子' },
+                { value: 'grassLand', species: 'giraffe', name: '長頸鹿' },
+                { value: 'grassLand', species: 'elephant', name: '非洲象' },
+                { value: 'grassLand', species: 'cheetah', name: '獵豹' },
+                { value: 'grassLand', species: 'zebra', name: '斑馬' },
+                { value: 'grassLand', species: 'meerkat', name: '狐獴' },
             ],
             animals_polar: [
-                { species: 'polarBear', name: '北極熊' },
-                { species: 'kingPenguin', name: '國王企鵝' },
-                { species: 'magellanicPenguin', name: '麥哲倫企鵝' },
-                { species: 'arcticFox', name: '北極狐' },
-                { species: 'seal', name: '海豹' },
+                { value: 'polar', species: 'polarBear', name: '北極熊' },
+                { value: 'polar', species: 'kingPenguin', name: '國王企鵝' },
+                { value: 'polar', species: 'magellanicPenguin', name: '麥哲倫企鵝' },
+                { value: 'polar', species: 'arcticFox', name: '北極狐' },
+                { value: 'polar', species: 'seal', name: '海豹' },
             ],
             animals_jungle: [
-                { species: 'capybara', name: '水豚' },
-                { species: 'malayanTapir', name: '馬來貘' },
-                { species: 'orangutan', name: '紅毛猩猩' },
-                { species: 'tiger', name: '孟加拉虎' },
-                { species: 'sloth', name: '二趾樹懶' },
-                { species: 'monkey', name: '台灣獼猴' },
+                { value: 'jungle', species: 'capybara', name: '水豚' },
+                { value: 'jungle', species: 'malayanTapir', name: '馬來貘' },
+                { value: 'jungle', species: 'orangutan', name: '紅毛猩猩' },
+                { value: 'jungle', species: 'tiger', name: '孟加拉虎' },
+                { value: 'jungle', species: 'sloth', name: '二趾樹懶' },
+                { value: 'jungle', species: 'monkey', name: '台灣獼猴' },
             ],
             animals_birds: [
-                { species: 'peacock', name: '孔雀' },
-                { species: 'flamingo', name: '紅鶴' },
-                { species: 'japaneseCrane', name: '丹頂鶴' },
-                { species: 'owl', name: '貓頭鷹' },
-                { species: 'toucan', name: '巨嘴鳥' },
-                { species: 'pelican', name: '鵜鶘' },
+                { value: 'birds', species: 'peacock', name: '孔雀' },
+                { value: 'birds', species: 'flamingo', name: '紅鶴' },
+                { value: 'birds', species: 'japaneseCrane', name: '丹頂鶴' },
+                { value: 'birds', species: 'owl', name: '貓頭鷹' },
+                { value: 'birds', species: 'toucan', name: '巨嘴鳥' },
+                { value: 'birds', species: 'pelican', name: '鵜鶘' },
             ],
             animals_aqua: [
-                { species: 'stingray', name: '魟魚' },
-                { species: 'shark', name: '鯊魚' },
-                { species: 'eel', name: '海鰻' },
-                { species: 'clownfish', name: '小丑魚' },
-                { species: 'octopus', name: '章魚' },
+                { value: 'aqua', species: 'stingray', name: '魟魚' },
+                { value: 'aqua', species: 'shark', name: '鯊魚' },
+                { value: 'aqua', species: 'eel', name: '海鰻' },
+                { value: 'aqua', species: 'clownfish', name: '小丑魚' },
+                { value: 'aqua', species: 'octopus', name: '章魚' },
             ],
 
             //select ph
+            selectedCategory: 'ALL',
+
             animalsCategoryPh: [
                 {
                     value: 'All',
@@ -222,6 +226,23 @@ export default {
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
     },
+    computed: {
+        filteredAnimals() {
+            if (this.selectedCategory === 'All') {
+      // 如果选择的是 'ALL'，返回所有动物数组的合并结果
+            return [
+        ...this.animals_grass,
+        ...this.animals_polar,
+        ...this.animals_jungle,
+        ...this.animals_birds,
+        ...this.animals_aqua
+            ];
+            } else {
+      // 如果选择的是特定的分类，返回相应分类的动物数组
+                return this['animals_' + this.selectedCategory];
+            }
+        },
+    },
     methods: {
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
@@ -239,11 +260,15 @@ export default {
                 })
             }
         },
+
+        //想控制fixed範圍(不碰到footer)，想知道有沒有偵測最外層section高度的方式
         handleScroll() {
             let threshold =0
             // console.log(threshold)
-            if(window.innerWidth <= 1920 && window.innerWidth>1440){
+            if(window.innerWidth <= 1920 && window.innerWidth>1600){
                 threshold = 4200
+            }else if(window.innerWidth <= 1600 && window.innerWidth>1440){
+                threshold = 3500
             }
             else if(window.innerWidth <= 1440 && window.innerWidth>1280){
                 threshold = 3300
@@ -261,13 +286,15 @@ export default {
         toAnimalDetail(){
         this.$router.push({
         path:'./AnimalDetail',
-    })
-    }
+        })
+        }
     },
     components: {
-       MainFixedVote,
-     },
-};
+        MainFixedVote,
+    },
+    }
+
+
 </script>
 
 <style scoped>

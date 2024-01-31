@@ -34,6 +34,9 @@
     position: relative;
     max-width: 1920px;
     height: auto;
+    @media screen and (max-width: 768px) {
+        max-width: 768px;
+    }
 }
 
 .sidebar_fixed{
@@ -99,10 +102,9 @@
 .animal_select{
     display: none;
 }
+
+
 @media screen and (max-width: 768px) {
-    .animal_section, .animal_detail_section{
-        max-width: 768px;
-    }
 
     .animal_select{
         display: block;
@@ -162,12 +164,26 @@
             color: $primaryColorGreen;
             }
         }
-        img {
-            width: 1.47vw;
-            height: 2.5vh;
-            @media (max-width:768px) {
-            width: 4vw;
-            height: 4vh;
+        .main_select{
+            padding: 1.6vh 0;
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            img {
+                width: 1.5vw;
+                height: 2.6vh;
+                @media (max-width:768px) {
+                width: 4vw;
+                height: 4vh;
+                }
+            }
+            img.toggle_arrow{
+                width: 1vw;
+                transition: transform 0.5s ease;
+            }
+            .arrow_rotate{
+                transform: rotate(180deg);
             }
         }
         p{
@@ -178,6 +194,7 @@
         }
     }
 }
+    //選單上的動物
      .monkey{
         width: 30%;
         position: absolute;
@@ -186,25 +203,6 @@
         @media screen and (max-width: 768px) {
             top: -11.5vw;
             left: 16vw;
-        }
-    }
-    .main_select{
-        padding: 1.6vh 0;
-        width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        img{
-            width: 1.2vw;
-            @media (max-width: 768px) {
-                width: 2.6vw;
-            }
-        }
-        .toggle_arrow{
-            transition: transform 0.5s ease;
-        }
-        .arrow_rotate{
-            transform: rotate(180deg);
         }
     }
     
@@ -226,7 +224,7 @@
         }        
     }
 
-
+//各區背景
 section.grassland{
     background-image: url(/src/assets/images/animal/animal_bg/grassland_bg_pc.png);
     background-repeat: no-repeat;
@@ -272,7 +270,7 @@ section.aqua{
     }
 }
 
-
+//內容
 .animal_park{
     max-width: calc(74% - 12%);
     margin: auto;
@@ -297,6 +295,14 @@ section.aqua{
     flex-wrap: wrap;
 }
 
+//個別動物資訊
+
+[class*=col-] {
+    box-sizing: border-box;
+}
+.col-md-4 {
+    width: 33.333333%;
+}
 .animal_each{
     display: flex;
     flex-direction: column;
@@ -315,12 +321,6 @@ section.aqua{
         text-align: center;
         padding-top: 1vw; 
     }
-}
-[class*=col-] {
-    box-sizing: border-box;
-}
-.col-md-4 {
-    width: 33.333333%;
 }
 
 @media screen and (max-width: 768px) {
@@ -357,10 +357,13 @@ section.aqua{
     }
 }
 
+//內容
 .animal_detail_info{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    //文字區
     .animal_detail_text{
         display: flex;
         flex-direction: column;
@@ -371,7 +374,49 @@ section.aqua{
             padding-bottom: 1.2vw;
             color: $primaryColorGreen;
         }
+        .animal_detail_title{
+            display: flex;
+            align-items: center;
+            margin-bottom: 2vw;
+            h2{
+                color: $primaryColorGreen;
+                padding-right: 0.8vw;
+            }
+            .animal_detail_sound{
+                cursor: pointer;
+                img{
+                    width: 32px;
+                    transition: scale 0.3s ease;
+                    &:hover{
+                        scale: 1.2;
+        
+                    }
+                }
+            }
+        }
+        .animal_detail_sec-section{
+            display: flex;
+            .animal_detail_name{
+                padding-right: 10.4vw;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+        
+            .animal_detail_title{
+                justify-content: center;
+                margin:5.6vw 0 2vw 0;
+            }
+            .animal_detail_sec-section{
+                .animal_detail_name{
+                    padding-right: 36vw;
+                }
+            }
+        }
+        
     }
+
+    //圖片區
     .animal_detail_img_list{
         .big_pic img{
             vertical-align: middle;
@@ -418,47 +463,7 @@ section.aqua{
 
 }
 
-.animal_detail_title{
-    display: flex;
-    align-items: center;
-    margin-bottom: 2vw;
-    h2{
-        color: $primaryColorGreen;
-        padding-right: 0.8vw;
-    }
-    .animal_detail_sound{
-        cursor: pointer;
-        img{
-            width: 32px;
-            transition: scale 0.3s ease;
-            &:hover{
-                scale: 1.2;
-
-            }
-        }
-    }
-}
-.animal_detail_sec-section{
-    display: flex;
-    .animal_detail_name{
-        padding-right: 10.4vw;
-    }
-}
-
-@media screen and (max-width: 768px) {
-
-    .animal_detail_title{
-        justify-content: center;
-        margin:5.6vw 0 2vw 0;
-    }
-    .animal_detail_sec-section{
-        .animal_detail_name{
-            padding-right: 36vw;
-        }
-    }
-}
-
-
+//下方介紹
 .animal_detail_intro{
     display: flex;
     justify-content: space-between;
@@ -483,6 +488,7 @@ section.aqua{
         padding: 2.3vw 1.5vw;
     }
 }
+
 .animal_detail_intro_ph{
     display: none;
 }
