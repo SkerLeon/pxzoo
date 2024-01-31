@@ -67,7 +67,7 @@
           <button
             type="submit"
             class="defaultBtn pcInnerText"
-            @click="toMemberPage()"
+            @click="toMemberPage"
           >
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />

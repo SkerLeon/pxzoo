@@ -44,7 +44,12 @@
         </li>
       </ul>
     </aside>
-    <section class="infoArea" id="info" v-show="activeTab === 'info'">
+    <section
+      class="infoArea"
+      id="info"
+      v-show="activeTab === 'info'"
+      :class="{ active: activeTab === 'info' }"
+    >
       <div class="innerInfo">
         <h2 class="pcBigTitle">會員資訊</h2>
         <div class="memInfo">

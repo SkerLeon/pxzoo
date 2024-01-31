@@ -24,11 +24,12 @@
 
   .teacher img {
     position: absolute;
-    width: 8vw;
+    width: 6vw;
     height: auto;
     right: 30%;
     bottom: -1%;
     z-index: 99;
+    overflow: hidden;
   }
 
   .school_tree img {
@@ -203,7 +204,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
-  padding: 10% 28%; /* 使用百分比值 */
+  padding: 10% 35%; /* 使用百分比值 */
   white-space: nowrap;
   width: 100%;
   background-color: $mainTextColor;
@@ -231,7 +232,7 @@
 }
 
 .lightbox {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -309,6 +310,7 @@
       right: 40%;
       bottom: -0.5%;
     }
+
     .school_tree {
       .tree_3 img {
         width: 25vw;
