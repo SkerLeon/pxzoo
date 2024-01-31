@@ -519,6 +519,7 @@
             display: flex;
             justify-content: space-between;
             align-content: center;
+            
             @media (width <= 1024px) {
                 
             }
@@ -621,6 +622,7 @@
                     position: absolute;
                     display: flex;
                     width: 100%;
+                    
                     // z-index: 2;
 
                     .cloud_6 img{
@@ -644,7 +646,7 @@
                         vertical-align: bottom;
                         @media (width <= 768px) {
                             bottom: -0vw;
-                            right: -20vw;
+                            right: -18vw;
                             width: 35vw;
                         }
                     }
@@ -952,6 +954,7 @@
             display: flex;
             width: 100%;
             z-index: 2;
+            
             .bee{
                 position: absolute;
                 top: 0.5vw;
