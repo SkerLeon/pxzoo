@@ -6,24 +6,36 @@ footer{
         display: flex;
         .grasses_1 img{
             position: absolute;
-            top: -3.8vw;
+            transform: translateY(-100%);
             left: 3.5vw;
             width: 9vw;
             vertical-align: bottom;
+            @media (max-width:768px) {
+                left: 3.5vw;
+                width: 15vw;
+            }
         }
         .grasses_9 img{
             position: absolute;
-            top: -3.8vw;
+            transform: translateY(-100%);
             left: 14.5vw;
             width: 4vw;
             vertical-align: bottom;
+            @media (max-width:768px) {
+                left: 20.5vw;
+                width: 8vw;
+            }
         }
         .grasses_5 img{
             position: absolute;
-            top: -3.8vw;
+            transform: translateY(-100%);
             right: 3.5vw;
             width: 11vw;
             vertical-align: bottom;
+            @media (max-width:768px) {
+                right: 3.5vw;
+                width: 18vw;
+            }
         }
         
     }
@@ -38,13 +50,14 @@ footer{
         @media (max-width:768px) {
             flex-direction: column;
             align-items: start;
-            width: 87.1%;
+            width: 90%;
         }
         .footer_front{
             width: 20%;
             @media (max-width:768px) {
-                width: 30%;
+                width: 35%;
             }
+
             .footer_logo {
                 @media (max-width:768px) {
                     order: 1;
@@ -67,11 +80,15 @@ footer{
                 @media (max-width:768px) {
                     width: 100%;
                     align-items: center;
-                    gap: 10px;
+                    // gap: 10px;
+                    margin-top: 3vw;
                 }
                 img{
                     width: 78%;
                     vertical-align: bottom;
+                    @media (max-width:768px) {
+                        width: 70%;
+                    }
                 }
             }
         }
@@ -90,16 +107,16 @@ footer{
             }
 
             .pcInnerText{
-                line-height: normal;
+                line-height: 15px;
             }
-            .footer_item{
-                @media (max-width:580px) {
-                    font-size: 14px;
-                }
-                @media (max-width:414px) {
-                    font-size: 12px;
-                }
-            }
+            // .footer_item{
+            //     @media (max-width:580px) {
+            //         font-size: 14px;
+            //     }
+            //     @media (max-width:414px) {
+            //         font-size: 12px;
+            //     }
+            // }
         }
 
         .footer_tourists{
@@ -108,12 +125,12 @@ footer{
                 margin-top: 10px;
                 order: 2;
             }
-            @media (max-width:580px) {
-                font-size: 14px;
-            }
-            @media (max-width:414px) {
-                font-size: 12px;
-            }
+            // @media (max-width:580px) {
+            //     font-size: 14px;
+            // }
+            // @media (max-width:414px) {
+            //     font-size: 12px;
+            // }
         }
     }
 
@@ -123,7 +140,8 @@ footer{
         margin: auto;
         background-color: $bgColorWhite;
         @media (max-width:768px) {
-            width: 87.1%;
+            width: 90%;
+            margin-top: 3vw;
         }
     }
 
@@ -133,8 +151,11 @@ footer{
         color: $bgColorWhite;
         padding: 2vw 0 2vw 0;
         line-height: 25px;
+        text-align: justify;
         @media (max-width:768px) {
-            width: 87.1%;
+            width: 90%;
+            line-height: 20px;
+            padding: 4vw 0 10vw 0;
         }
         @media (max-width:580px) {
             font-size: 14px;
@@ -168,16 +189,13 @@ footer{
             transform: translate(82vw,-37vw);
         }
         @media (max-width:430px) {
-            transform: translate(80vw,-40vw);
-        }
-        @media (max-width:430px) {
-            transform: translate(80vw,-40vw);
+            transform: translate(80vw,-54vw);
         }
         @media (max-width:414px) {
-            transform: translate(78vw,-42vw);
+            transform: translate(78vw,-51vw);
         }
         @media (max-width:375px) {
-            transform: translate(78vw,-45vw);
+            transform: translate(78vw,-58vw);
         }
         
         button{
@@ -214,9 +232,13 @@ footer{
     }
 
     .footer_ground{
+        overflow: hidden;
         img{
             width: 100%;
             vertical-align: bottom;
+            @media (width <= 768px) {
+                width: 250%;
+            }
         }
     }
 }
