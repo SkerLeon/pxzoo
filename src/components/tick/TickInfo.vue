@@ -14,6 +14,11 @@
                 </li>
             </ol>
         </article>
+        <!-- ???老師~~~這裡想請教您:
+            1.這頁我在.vue跟.scss都下了很多斷點跟換圖，結果剛好寬1199的時候，畫面會掛掉QQ求解
+            2.另外用程式下這麼多斷點會造成網站很大的負擔嗎？這裡我可以怎麼優化嗎><
+            感謝老師!
+        -->
         <div v-if="isBoard" class="tickLightbox">
             <img v-if="isMidPH" src="@/assets/images/ticket/PHinfoXS.svg" alt="購票須知布告欄" class=""/>
             <img v-else src="@/assets/images/ticket/PHinfoL.svg" alt="購票須知布告欄" class=""/>
@@ -67,12 +72,10 @@ export default {
                     ],
                 },
             ],
-            // targetValue:0,
         }
     },
     methods:{
         windowSize(){
-            // this.isXSmallPH = window.innerWidth <= 370;
             this.isSmallPH = window.innerWidth <= 430;
             this.isMidPH = window.innerWidth <= 470;
             this.isMobile = window.innerWidth <= 768;

@@ -1,6 +1,14 @@
 <template>
     <!-- part1 選擇數量 -->
     <section class="tickNum">
+    <!-- ???請教老師: 
+        1.ticketsDatak的資料在這頁、tickCheck、tickFinished重複出現，這頁有按鈕跟兩種裝置排版，但其他兩頁的排版都是一樣的...
+        這樣一般會把這塊另外切componet嗎?
+        (同問上下一步按鈕，因為有綁各頁面必填條件，所以放在各component內)
+        2.數量的input框，我有寫格式篩選，由於type是number，使用者輸入+0、-0、.0、0000是被允許的><
+        我嘗試過把數字轉字串來做比較，但沒有效...想請教老師要怎麼辦?
+        (還是一般不會特別處理?)
+    -->
 
         <hgroup>
             <h2 class="pcSmTitle">選擇數量</h2>
@@ -100,7 +108,6 @@ export default {
             this.tipriceCalculate();
         },
         nextStep(){
-            // 999寫確認有選票券的判斷式
             if(this.tipriceData > 0){
                 this.$emit('goNextStep');
             }else{

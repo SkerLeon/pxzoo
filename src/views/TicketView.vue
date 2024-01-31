@@ -5,8 +5,11 @@
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
 <!-- 小龜老師您好，我的問題都有打???，可以直接搜尋歐
-  
- -->
+  1.除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎?)
+  2.我目前emit的function都放在methods，但我還不太了解什麼應該放computed/watch/mouted...
+  3.
+  4.
+-->
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
       <TickInfo 
@@ -59,8 +62,10 @@
       :paypriceData="payprice" 
       :paywayOpData="selectedPWOp" 
       :paywayTTData="selectedPWTT" 
-      :tickStatusData="status"
+      :tickStatusData="status" 
+      @goPreviousStep="backPreviousStep" 
       />
+      <!-- goPreviousStep for 測試，正式上線要拿掉!!! -->
     </main>
 
   </section>
@@ -193,18 +198,28 @@ export default {
       this.isMobile = window.innerWidth <= 768;
       this.isBoard = window.innerWidth < 1200;
     },
+    startFromTop(){
+      // 使用 window.scrollTo() 滾動到頂部
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth', // 使用平滑滾動效果
+      });
+    },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
       if(this.tickStep === 2 && this.selectedCouOp === ''){
         this.selectedCouOp = this.coupons[0].option;
       }
       this.tickStep++;
+      // this.startFromTop();
     },
     backPreviousStep(){
       this.tickStep--;
+      // this.startFromTop();
     },
     showTickCalendar(){
       this.TickCalendar=true;
+      // this.startFromTop();
     },
     // updateDate(newDate){
     //   console.log(newDate);
@@ -245,10 +260,8 @@ export default {
   created(){
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
-    // console.log('Vue 主頁面 created，tiprice 值:', this.tiprice);
   },
   mounted() {
-    // console.log('Vue 主頁面 mounted，tiprice 值:', this.tiprice);
   },
   beforeDestroy() {
       window.removeEventListener('resize', this.windowSize);

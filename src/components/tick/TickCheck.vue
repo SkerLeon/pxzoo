@@ -1,6 +1,26 @@
 <template>
     <!-- part2 付款頁 -->
     <section class="tickCheck">
+        <!-- 本頁待辦:
+            1.引入票卷日期(格式分 年月日)
+            2.信用卡卡號篩選(only0-9、上限19位數)
+            3.有效日期月篩選(only1-12)
+            4.有效日期年篩選(only今年-+50年)
+            5.驗證碼篩選(only0-9、上限3位數)
+            6.下一步條件: 
+                (1)付款方式必選，跳提示
+                (2)if信用卡則input必填，跳提示
+                (3)信用卡input
+            7.界接綠界(或下一步條件篩信用卡發款邏輯)
+            8.noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
+        -->
+        <!-- ???
+            在<article v-if="payWay === '信用卡'">是特別新增一個data"payWay"
+            我本想直接在: choosePayway回傳selectedPWOp的新值，然後這裡寫{{paywayOpData}}，達到資料同步更新，不知為何沒有成功?
+            請教老師，謝謝您
+        -->
+
+
         <h2 class="pcSmTitle">請確認您的訂單資訊</h2>
         <hgroup class="pcInnerText">
             <p>票卷日期</p>
@@ -70,19 +90,19 @@
             <article v-if="payWay === '信用卡'">
                 <main class="pcInnerText">
                     <p>信用卡卡號</p>
-                    <input v-model.lazy="cardid" type="number" placeholder="請輸入卡號">
+                    <input v-model="cardid" type="number" placeholder="請輸入卡號">
                 </main>
                 <main class="pcInnerText carddate">
                     <p>有效日期</p>
                     <main>
-                        <input v-model.lazy="cardMonth" type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
+                        <input v-model="cardMonth" type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
                         <p> / </p> 
-                        <input v-model.lazy="cardYear" type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
+                        <input v-model="cardYear" type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
                     </main>
                 </main>
                 <main class="pcInnerText">
                     <p>驗證碼</p>
-                    <input v-model.lazy="cardCode" type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
+                    <input v-model="cardCode" type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
                 </main>
             </article>
         </article>
@@ -103,10 +123,8 @@
 <script>
 export default {
     components:{
-        // RouterLink,
     },
     props:{
-        // 丟資料的key值
         // validator 驗證規則內不可讀取 data. computed 屬性
         // validator: value => value>0,
         tickStep:{ type: Number },
@@ -214,9 +232,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-
-
-</style>

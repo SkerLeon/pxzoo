@@ -1,11 +1,17 @@
 <template>
     <!-- part3 購票完成 -->
     <section class="tickFinished">
+        <!-- 本頁待辦:
+            1.引入票卷日期(格式分 年月日)
+            2.訂單建立進資料庫
+            3.從資料庫傳來訂單編號???
+        -->
 
         <section>
-            <h2 v-html=" paywayOpData === '信用卡'? cardFinished : cashFinished " class="pcSmTitle"></h2>
+            <!-- click for測試用，正式上線要拿掉!!! -->
+            <h2  @click="previousStep" v-html=" paywayOpData === '信用卡'? cardFinished : cashFinished " class="pcSmTitle"></h2>
 
-            <p class="pcInnerText">畫面將於 5 秒鐘後跳轉回首頁。</p>
+            <p class="pcInnerText">畫面將於 {{sec}} 秒鐘後跳轉回首頁。</p>
             <button @click="useGoHome" class="defaultBtn pcInnerText">
                 返回首頁
                 <img src="@/assets/images/login/icon/btnArrow.svg">
@@ -86,12 +92,14 @@
 import {goHome} from '@/assets/js/common.js';
 export default {
     components:{
-        // RouterLink,
     },
     props:{
-        // 丟資料的key值
         // validator 驗證規則內不可讀取 data. computed 屬性
         // validator: value => value>0,
+        tickStep:{
+        // 測試用，正式上線要拿掉!!!
+            type: Number,
+        },
         ticketsData: {
             type: Array,
             required: true,
@@ -127,24 +135,50 @@ export default {
     },
     data(){
         return {
-
             cashFinished: '訂單完成，訂單編號請見：會員中心 - 購票記錄，<br>入園當天請至服務台「快速通道」告知訂單編號，將由專人協助您，<br>PXZoO 的獨家動物冒險之旅，等您來探索！',
             cardFinished: '付款完成，數位票券已發送至：會員中心 - 購票記錄，<br>入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！',
+            sec: 5,
+            timer: null,
         }
     },
-    created(){
-    },
     methods:{
+        previousStep(){
+            // 測試用，正式上線要拿掉!!!
+            this.$emit('goPreviousStep');
+        },
         useGoHome(){
+            clearInterval(this.timer);
             goHome(this);
         },
-    },
-    computed:{
+        countDown(){
+            this.timer = setInterval( () => {
+                // setInterval 按照指定的時間間隔循環執行指定的程式碼。
+                // setTimeout 在指定的時間間隔後執行一次指定的程式碼。
 
+                if(this.sec>0){
+                    this.sec--;
+                }else{
+                    clearInterval(this.timer);
+                    this.$router.push({ name: 'home' })
+                }
+            }, 1000 );
+                // this.$router.push({ name: 'home' }) 編程式導航
+                // 倒計時 沒有自己的 this，它會捕獲所在上下文的 this 值(全域對象window)
+                // 使用 Vue Router 的 $router 對象，通過 push 方法將路由切換到名稱為 'home' 的路由，完成跳轉
+                // 導航方法 push 會保留之前的路由，新的路由會被加入歷史記錄中。(replace是替代)
+                // 每秒倒數，因此數值為1000
+        },
     },
-    watch:{
+    computed:{},
+    watch:{},
+    created(){
+        this.countDown();
+    },
+    beforeDestroy() {
+    // 清理定时器
+        clearInterval(this.timer);
+    },
 
-    }
 }
 
 </script>
