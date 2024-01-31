@@ -78,6 +78,7 @@ $time:10s;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     .pk_map{
         width: 100%;
         position: relative;
@@ -445,8 +446,8 @@ $time:10s;
     }
     .pk_Animal_details{
         position: absolute;
-        z-index: 500;
-        top: 30%;
+        z-index: 997;
+        top: 5%;
         width: 320px;
         height: 456px;
         background-image: url("/src/assets/images/park/pk_Animal_details_bg.png");
@@ -460,11 +461,10 @@ $time:10s;
         gap: 0.5%;
         @media (max-width:768px) {
             width: 320px;
-            height: 70%;
-            top: 20vh;
         }
         @media (max-width:480px) {
-            width: 300px;
+            width: 240px;
+            top: 1%;
         }
         @media (max-width:375px) {
             width: 280px;
@@ -478,6 +478,9 @@ $time:10s;
             h1{
                 font-size: 32px;
                 color: $primaryColorGreen;
+                @media (max-width:480px) {
+                    font-size: 24px;
+                }
             }
             .pk_Animal_details_closure_icon{
                 width: 18.75%;
@@ -503,6 +506,9 @@ $time:10s;
         .pk_Animal_details-text{  
             p{
                 font-size: 24px;
+                @media (max-width:480px) {    
+                    font-size: 18px;
+                }
             }
         }
         button{
@@ -916,10 +922,56 @@ $time:10s;
         }
 
     }
-
-    .ph_Sidebar{
-        @media (min-width:769px) {
-            display: none;
+    .pk_ph_Sidebar{
+        width: 41.30vw;
+        height: 35.74vw;
+        position: absolute;
+        top: 4%;
+        left: -29%;
+        display: none;
+        align-items: center;
+        gap: 1.20vw;
+        transition: 0.3s;
+        @media (max-width:768px) {
+            display: flex;
+        }
+        .pk_ph_Sidebar_icon{
+            width: 40%;
+            position: absolute;
+            top: 0;
+            transform: translate(13.28vw,-12.07vw);
+        }
+        .pk_ph_Sidebar_filter_btns{
+            display: flex;
+            flex-direction: column;
+            gap: 1.20vw;
+            .pk_ph_filter_btn_item{
+                width: 28.98vw;
+                height: 11.11vw;
+                background-color: $bgColorLightgray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2.415vw;
+                img{
+                    width: 5.55vw;
+                    height: 5.55vw;
+                }
+                p{
+                    font-size: 16px;
+                }
+            }
+        } 
+        .pk_ph_Sidebar_guide{
+            width: 11.11vw;
+            height: 11.11vw;
+            background-color: $bgColorLightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 40%;
+            }
         }
     }
 }

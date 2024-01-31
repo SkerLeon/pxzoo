@@ -6,7 +6,7 @@
             <span class="fixed_bottom pcInnerText">活動進行中</span>
         </RouterLink>
 
-        <RouterLink to="/vote" class="fixed_ph pcInnerText">
+        <RouterLink to="/vote" class="fixed_ph phDecSmTitle">
             人氣投票<br>活動進行中
         </RouterLink>
     </div>

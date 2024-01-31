@@ -52,6 +52,9 @@ footer{
                 img{
                     width: 80%;
                     vertical-align: bottom;
+                    @media (max-width:768px) {
+                        width: 100%;
+                    }
                 }
             }
 
@@ -62,7 +65,9 @@ footer{
                 justify-content: space-between;
                 margin-top: 1vw;
                 @media (max-width:768px) {
+                    width: 100%;
                     align-items: center;
+                    gap: 10px;
                 }
                 img{
                     width: 78%;
@@ -87,6 +92,14 @@ footer{
             .pcInnerText{
                 line-height: normal;
             }
+            .footer_item{
+                @media (max-width:580px) {
+                    font-size: 14px;
+                }
+                @media (max-width:414px) {
+                    font-size: 12px;
+                }
+            }
         }
 
         .footer_tourists{
@@ -94,6 +107,12 @@ footer{
             @media (max-width:768px) {
                 margin-top: 10px;
                 order: 2;
+            }
+            @media (max-width:580px) {
+                font-size: 14px;
+            }
+            @media (max-width:414px) {
+                font-size: 12px;
             }
         }
     }
@@ -117,6 +136,12 @@ footer{
         @media (max-width:768px) {
             width: 87.1%;
         }
+        @media (max-width:580px) {
+            font-size: 14px;
+        }
+        @media (max-width:414px) {
+            font-size: 12px;
+        }
         a{
             color: $bgColorWhite;
             text-decoration: none;
@@ -129,30 +154,32 @@ footer{
         left: 3.5vw;
         text-align: center;
         @media (max-width:768px) {
-            left: 86%;
-            bottom:30%;
+            bottom: 0;
+            left: 0;
+            transform: translate(78vw,-18vw);
         }
-        @media (max-width:666px) {
-            bottom:35%;
+        @media (max-width:650px) {
+            transform: translate(82vw,-25vw);
         }
-        @media (max-width:600px) {
-            bottom:36%;
+        @media (max-width:610px) {
+            transform: translate(82vw,-25vw);
         }
-        @media (max-width:504px) {
-            bottom:41%;
+        @media (max-width:500px) {
+            transform: translate(82vw,-37vw);
         }
-        @media (max-width:440px) {
-            bottom:42%;
+        @media (max-width:430px) {
+            transform: translate(80vw,-40vw);
         }
-        @media (max-width:420px) {
-            bottom:45%;
+        @media (max-width:430px) {
+            transform: translate(80vw,-40vw);
         }
-        @media (max-width:410px) {
-            bottom:46%;
+        @media (max-width:414px) {
+            transform: translate(78vw,-42vw);
         }
         @media (max-width:375px) {
-            bottom:53%;
+            transform: translate(78vw,-45vw);
         }
+        
         button{
             background-color: transparent;
             outline: none;
@@ -169,6 +196,18 @@ footer{
             @media (max-width:768px) {
                 width: 8vw;
                 transform: scaleX(-1);
+            }
+            @media (max-width:650px) {
+                width: 10vw;
+            }
+            @media (max-width:610px) {
+                width: 12vw;
+            }
+            @media (max-width:480px) {
+                width: 13.5vw;
+            }
+            @media (max-width:414px) {
+                width: 15vw;
             }
         }
         
