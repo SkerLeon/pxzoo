@@ -4,11 +4,8 @@
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
-<!-- 小龜老師您好，我的問題都有打???，可以直接搜尋歐
-  1.除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎?)
-  2.我目前emit的function都放在methods，但我還不太了解什麼應該放computed/watch/mouted...
-  3.
-  4.
+<!-- 小龜老師您好:
+  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???)
 -->
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
@@ -237,9 +234,9 @@ export default {
       this.couprice = newCouprice;
       this.payprice = newPayprice;
     },
-    updatePayway(newPaywayOp, newPaywayTType){
+    updatePayway(newPaywayOp, newPaywayTT){
       this.selectedPWOp = newPaywayOp;
-      this.selectedPWTT = newPaywayTType;
+      this.selectedPWTT = newPaywayTT;
 
       if(this.selectedPWOp === '信用卡'){
         this.status = '未用票';
@@ -247,12 +244,10 @@ export default {
         this.status = '未取票';
       }
       console.log("主頁更新付款方式", this.selectedPWOp);
-      console.log("主頁更新票券型態", this.selectedPWWTT);
-      // 請問小龜老師:為什麼 console.log("主頁更新票券型態", this.selectedPWWTT); 結果是undefined ???
+      console.log("主頁更新票券型態", this.selectedPWTT);
     },
   },
   computed:{
-    //tickStepImg
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },

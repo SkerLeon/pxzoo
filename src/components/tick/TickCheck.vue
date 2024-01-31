@@ -12,14 +12,8 @@
                 (2)if信用卡則input必填，跳提示
                 (3)信用卡input
             7.界接綠界(或下一步條件篩信用卡發款邏輯)
-            8.noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
+            8.noCoupon: false, // 等界接後這個值由會員優惠紀錄決定
         -->
-        <!-- ???
-            在<article v-if="payWay === '信用卡'">是特別新增一個data"payWay"
-            我本想直接在: choosePayway回傳selectedPWOp的新值，然後這裡寫{{paywayOpData}}，達到資料同步更新，不知為何沒有成功?
-            請教老師，謝謝您
-        -->
-
 
         <h2 class="pcSmTitle">請確認您的訂單資訊</h2>
         <hgroup class="pcInnerText">
@@ -87,22 +81,22 @@
                 <p>票券型態</p>
                 <p >{{ paywayTTData }}</p>
             </div>
-            <article v-if="payWay === '信用卡'">
+            <article v-if="paywayOpData === '信用卡'">
                 <main class="pcInnerText">
                     <p>信用卡卡號</p>
-                    <input v-model="cardid" type="number" placeholder="請輸入卡號">
+                    <input type="number" placeholder="請輸入卡號">
                 </main>
                 <main class="pcInnerText carddate">
                     <p>有效日期</p>
                     <main>
-                        <input v-model="cardMonth" type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
+                        <input type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
                         <p> / </p> 
-                        <input v-model="cardYear" type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
+                        <input type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
                     </main>
                 </main>
                 <main class="pcInnerText">
                     <p>驗證碼</p>
-                    <input v-model="cardCode" type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
+                    <input type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
                 </main>
             </article>
         </article>
@@ -175,9 +169,10 @@ export default {
             isSmallPH: false,
             selectedCoupon: null,
             selectedPayway: null,
-            payWay:'',
         }
     },
+    // ???請問小龜老師: 
+    // 我目前emit的function都放在methods，但我還不太了解什麼應該放computed/watch/mouted...
     // computed: { //watch要做其他事情,value綁id跟值比較好
     //     selectedPayway: {
     //         get() {
@@ -213,8 +208,6 @@ export default {
         choosePayway(){
             console.log("票券型態", this.selectedPayway.tickType);
             console.log("付款方式", this.selectedPayway.option);
-            
-            this.payWay=this.selectedPayway.option;
 
             this.$emit("newPayway", this.selectedPayway.option, this.selectedPayway.tickType);
         },
