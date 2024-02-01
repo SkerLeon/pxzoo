@@ -107,6 +107,9 @@
 @media screen and (max-width: 768px) {
 
     .animal_select{
+        position: absolute;
+        top: 6.8%;
+        z-index: 99;
         display: block;
         margin-left: calc(5% + 2.1vw);
 
@@ -125,6 +128,12 @@
             border-radius: 0;
         }
         
+    }
+
+}
+@media screen and (max-width: 414px) {
+    .animal_select{
+        top: 6.1%;
     }
 
 }
@@ -406,6 +415,9 @@ section.aqua{
             .animal_detail_title{
                 justify-content: center;
                 margin:5.6vw 0 2vw 0;
+            }
+            h2{
+                margin-right: 8px;
             }
             .animal_detail_sec-section{
                 .animal_detail_name{

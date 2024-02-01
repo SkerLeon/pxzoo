@@ -22,13 +22,15 @@
                 </li>
             </ul>
         </aside>
-
+        <!-- 篩選-ph有 -->
+        <select name="payway[]" placeholder="ALL" class="pcInnerText animal_select"
+            v-model="selectedCategory"
+            @change="filteredAnimals()">
+            <option value="ALL" disabled hidden>ALL</option>
+            <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
+        </select>
         <section class="grassland">
         <!-- 動物列表 -->
-            <!-- 篩選-ph有 -->
-            <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText animal_select">
-                <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
-            </select>
             <div class="animal_park grassLand" ref="grassLand">
                 <!-- 分館名稱 -->
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
@@ -155,7 +157,7 @@ export default {
             ],
 
             //select ph
-            // selectedCategory: 'ALL',
+            selectedCategory: 'ALL',
 
             animalsCategoryPh: [
                 {
@@ -226,8 +228,8 @@ export default {
         window.removeEventListener('scroll', this.handleScroll);
     },
     computed: {
-    //     filteredAnimals() {
-    //         console.log(selectedCategory)
+        filteredAnimals() {
+            console.log(selectedCategory)
     //         if (this.selectedCategory === 'ALL') {
     //   // 如果选择的是 'ALL'，返回所有动物数组的合并结果
     //         return [
@@ -241,7 +243,7 @@ export default {
     //   // 如果选择的是特定的分类，返回相应分类的动物数组
     //             return this['animals_' + this.selectedCategory];
     //         }
-    //     },
+        },
     },
     methods: {
         getImageUrl(paths) {
