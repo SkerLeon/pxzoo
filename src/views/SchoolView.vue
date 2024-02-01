@@ -91,7 +91,7 @@
 
 
                   <label class="option_input">
-                    <input type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
+                    <input class="option_input_as" type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
                       style="display: none;">
                     {{ option.text }}
                   </label>

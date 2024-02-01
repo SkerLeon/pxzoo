@@ -153,6 +153,11 @@
   flex-direction: column;
   z-index: 10;
 }
+.question_text {
+  color: $bgColorWhite;
+  font-size: 1.8em;
+  letter-spacing: 1.5px;
+}
 
 .option_all {
   display: flex;
