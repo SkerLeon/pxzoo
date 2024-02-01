@@ -4,6 +4,7 @@
   max-width: 1920px;
   background-color: $primaryColorGreen;
   background-image: url("/src/assets/images/vote/grid.svg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
@@ -12,8 +13,12 @@
   justify-content: center;
   position: relative;
   color: $mainTextColor;
+  
+  @media (width <= 1024px) {
+    height: 90vh;
+  }
   @media (width <= 768px) {
-    height: 45vh;
+    height: 80vh;
   }
   .errorTitle {
     position: absolute;
@@ -21,8 +26,12 @@
     right: 42.8vw;
     text-align: center;
     color: $primaryColorYellow;
+    @media (width <= 1024px) {
+      top: 40vw;
+    }
     @media (width <= 768px) {
-      right: 32.9vw;
+      top: 40vw;
+      right: 35%;
     }
   }
   .cautionSign {
