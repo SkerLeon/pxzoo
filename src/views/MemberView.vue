@@ -70,7 +70,7 @@
             </div>
             <button
               type="submit"
-              @click="saveProfile()"
+              @click="saveProfile"
               class="defaultBtn pcInnerText infoBtn"
             >
               修改資料
@@ -216,12 +216,16 @@
 <script>
 import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
+const imgDefault = new URL(
+  "../assets/images/member/+9bear.svg",
+  import.meta.url
+).href;
 export default {
   data() {
     return {
       activeTab: "info",
       showQRCode: false,
-      imgUrl: "",
+      imgUrl: imgDefault,
       profile: {
         name: "",
         title: "",
@@ -331,7 +335,7 @@ export default {
           reader.readAsDataURL(file);
         } else {
           alert("檔案過大");
-          imgUrl = "";
+          this.imgUrl = "";
         }
       }
     },
@@ -348,9 +352,8 @@ export default {
     },
   },
   mounted() {
-    //開啟頁面時，會自動將存在localStorage的圖片顯示在葉面上
-    const saveImg = localStorage.getItem("uploadedImage");
-    this.imgUrl = saveImg;
+    const savedImg = localStorage.getItem("uploadedImage");
+    this.imgUrl = savedImg ? savedImg : imgDefault;
   },
 };
 </script>
