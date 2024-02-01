@@ -24,8 +24,7 @@
         </aside>
         <!-- 篩選-ph有 -->
         <select name="payway[]" placeholder="ALL" class="pcInnerText animal_select"
-            v-model="selectedCategory"
-            @change="filteredAnimals()">
+            v-model="selectedCategory">
             <option value="ALL" disabled hidden>ALL</option>
             <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
         </select>
@@ -229,7 +228,7 @@ export default {
     },
     computed: {
         filteredAnimals() {
-            console.log(selectedCategory)
+            // console.log(this.selectedCategory)
     //         if (this.selectedCategory === 'ALL') {
     //   // 如果选择的是 'ALL'，返回所有动物数组的合并结果
     //         return [

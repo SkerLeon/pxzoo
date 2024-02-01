@@ -68,12 +68,13 @@
                 <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                        <img src="../assets/images/animal/animal_pic/pic1_lion.png" alt="pic1_lion">
+                        <img :src="getSmallPicUrl(`animal_pic/pic${imgnum}_lion.png`)" alt="pic_lion">
                     </div>
                     <div class="small_pic">
-                        <img src="../assets/images/animal/animal_pic/pic1_lion.png" alt="pic1_lion">
-                        <img src="../assets/images/animal/animal_pic/pic2_lion.png" alt="pic2_lion">
-                        <img src="../assets/images/animal/animal_pic/pic3_lion.png" alt="pic3_lion">
+                        <img
+                        v-for="num in 3"
+                        :src="getSmallPicUrl(`animal_pic/pic${num}_lion.png`)" alt="small_pic_lion"
+                        @click="imgnum = num">
                     </div>
                 </div>
             </div>
@@ -233,6 +234,9 @@ export default {
                     label: '海洋奇觀'
                 }
             ],
+
+            //小圖換大圖
+            imgnum: 1
                 
         };
     },
@@ -244,6 +248,10 @@ export default {
 
         getIconUrl(paths) {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
+        },
+
+        getSmallPicUrl(paths) {
+            return new URL(`../assets/images/animal/${paths}`, import.meta.url).href
         },
 
         animalSoundPlay(){
