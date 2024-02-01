@@ -130,7 +130,8 @@
 </template>
 
 <script>       
-import MainFixedVote from '@/components/MainFixedVote.vue'     
+import MainFixedVote from '@/components/MainFixedVote.vue'   
+import animalSound from "../../public/audio/sound_lion.mp3";     
 export default {
     data() {
         return {
@@ -246,7 +247,7 @@ export default {
         },
 
         animalSoundPlay(){
-            var sound = new Audio('/public/audio/sound_lion.mp3')
+            var sound = new Audio(animalSound)
             sound.play();
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
