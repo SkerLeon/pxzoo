@@ -254,6 +254,7 @@
         justify-content: space-around;
         align-items: center;
         height: 240px;
+        cursor: pointer;
         @media (width <= 768px) {
           width: 95%;
         }

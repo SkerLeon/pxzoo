@@ -85,7 +85,7 @@
     <section class="ticketArea" id="ticket" v-show="activeTab === 'ticket'">
       <div class="innerTicket">
         <h2 class="pcBigTitle">購票紀錄</h2>
-        <div class="buyHistory">
+        <div class="buyHistory" @click="openQRCode">
           <div class="listTitle">
             <p
               v-for="ticket in ticketsTitle"
@@ -97,7 +97,7 @@
           </div>
 
           <div class="listInfo">
-            <p class="pcInnerText idColor" @click="openQRCode">
+            <p class="pcInnerText idColor">
               {{ ticketDetail[0].id }}
             </p>
             <p class="pcInnerText">{{ ticketDetail[0].date }}</p>
@@ -107,7 +107,7 @@
             <p class="pcInnerText">{{ ticketDetail[0].status }}</p>
           </div>
         </div>
-        <div class="buyHistory">
+        <div class="buyHistory" @click="openQRCode">
           <div class="listTitle">
             <p
               v-for="ticket in ticketsTitle"
