@@ -10,7 +10,7 @@
     <!-- 新聞列表 -->
     <main class="news_overview">
 
-      <select name="payway[]" id="payway" placeholder="ALL" class="pcInnerText news_select">
+      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select">
         <option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</option>
       </select>
 
@@ -102,6 +102,8 @@ export default {
         onpagebtn,
         defaultbtn,
         ],
+
+        
 
         //目前是寫死
         pageNumbers: [2, 3, 4, 5, '>|'], 
