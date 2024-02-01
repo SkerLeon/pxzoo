@@ -56,9 +56,9 @@
                 
                 <br>
                 <div class="footer_item pcInnerText">
-                    <RouterLink to="https://maps.app.goo.gl/apyan9qoHcT4gzZeA">
+                    <a target="_blank" href="https://maps.app.goo.gl/apyan9qoHcT4gzZeA">
                         園區地址｜320 桃園市中壢區復興路46號8樓
-                    </RouterLink> 
+                    </a> 
                 </div>
             </div>
 
@@ -74,12 +74,14 @@
         <div class="footer_bottom pcMarkText">
             <span>@2024 PXZoO</span>
             <br>
-            <span>本網站為緯育TibaMe_前端設計工程師班第88期學員專題成果作品，本平台僅供學習、展示之用。若有抵觸有關著作權或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊<RouterLink to="https://www.facebook.com/TibaMe">[緯育TibaMe]</RouterLink>，後續會由專人協助處理。</span>
+            <span>本網站為緯育TibaMe_前端設計工程師班第88期學員專題成果作品，本平台僅供學習、展示之用。若有抵觸有關著作權或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊<a target="_blank" href="https://www.facebook.com/TibaMe">[緯育TibaMe]</a>，後續會由專人協助處理。</span>
         </div>
 
         <div class="footer_top pcDecMarkText">
             <button @click="scrollToTop">
-                <span>TOP</span>
+                <span class="footer_top_t">T</span>
+                <span class="footer_top_o">O</span>
+                <span class="footer_top_p">P</span>
                 <br>
                 <img src="@/assets/images/vetor/vetor_animal_frog.svg" alt="top">
             </button>

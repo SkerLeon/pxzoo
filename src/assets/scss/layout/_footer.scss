@@ -197,6 +197,43 @@ footer{
         @media (max-width:375px) {
             transform: translate(78vw,-58vw);
         }
+
+        &_t{
+            animation: top 1.8s infinite; 
+            position:absolute; 
+            
+            left: 1vw;
+        }
+        &_o{
+            animation: top 1.8s infinite; 
+            animation-delay: 0.2s; 
+            position:absolute; 
+            left: 2.2vw;
+            @media (max-width:414px) {
+                left: 6.1vw;
+            }
+        }
+        &_p{
+            animation: top 1.8s infinite; 
+            animation-delay: 0.4s; 
+            position:absolute; 
+            right: 0.5vw;
+        }
+        span{
+            bottom: 5.5vw; 
+            @media (max-width:768px) {
+                bottom: 10.5vw; 
+            }
+            @media (max-width:414px) {
+                bottom: 14.5vw; 
+            }
+        }
+
+        @keyframes top {
+            0%{transform: translateY(0vw);}
+            50%{transform: translateY(1vw);}
+            100%{transform: translateY(0);}
+        }
         
         button{
             background-color: transparent;
