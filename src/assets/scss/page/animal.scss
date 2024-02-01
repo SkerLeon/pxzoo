@@ -433,6 +433,7 @@ section.aqua{
         .big_pic img{
             vertical-align: middle;
             width: 36vw;
+            cursor: pointer;
         }
         .small_pic{
             display: flex;
@@ -440,6 +441,7 @@ section.aqua{
             justify-content: space-between;
             flex-wrap: wrap;
             img{
+                cursor: pointer;
                 vertical-align: middle;
                 width: 11vw;
             }
