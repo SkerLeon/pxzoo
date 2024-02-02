@@ -32,6 +32,7 @@
       width: 8vw;
       z-index: 10;
     }
+
     .cloud_6_top {
       animation: cloudMoves 10s linear infinite;
       position: absolute;
@@ -226,7 +227,7 @@
           justify-content: center;
           position: relative;
           width: 20vw;
-          height: 50vh;
+          height: auto;
           background: rgb(254, 208, 1);
           background: linear-gradient(
             180deg,
@@ -248,6 +249,15 @@
           border-image-slice: 1;
 
           z-index: 3;
+          animation: increaseHeight1 5s forwards;
+        }
+        @keyframes increaseHeight1 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 50vh;
+          }
         }
       }
 
@@ -269,7 +279,7 @@
           justify-content: center;
           position: relative;
           width: 20vw;
-          height: 35vh;
+          height: auto;
           background: rgb(254, 208, 1);
           background: linear-gradient(
             180deg,
@@ -278,6 +288,15 @@
             rgba(254, 208, 1, 0) 85%
           );
           z-index: 2;
+          animation: increaseHeight2 5s forwards; /* 播放增加高度的動畫，持續時間為2秒 */
+        }
+        @keyframes increaseHeight2 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 35vh;
+          }
         }
       }
 
@@ -300,7 +319,7 @@
           justify-content: center;
           position: relative;
           width: 20vw;
-          height: 30vh;
+          height: auto;
           background: rgb(254, 208, 1);
           background: linear-gradient(
             180deg,
@@ -309,6 +328,15 @@
             rgba(254, 208, 1, 0) 85%
           );
           z-index: 1;
+          animation: increaseHeight3 5s forwards;
+        }
+        @keyframes increaseHeight3 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 30vh;
+          }
         }
       }
     }

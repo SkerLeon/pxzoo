@@ -24,8 +24,8 @@
             <img class="NO" src="@/assets/images/vote/NO1.svg" alt="NO1" />
             <div class="score pcDecSmTitle">205</div>
           </div>
-        </div> -->
-      <!-- </div> -->
+        </div> 
+      </div> -->
       <img class="tree_bg" src="@/assets/images/vote/tree.svg" alt="tree_bg" />
  
       <img class="sheep" src="@/assets/images/vetor/vetor_animal_sheep.svg" alt="sheep" />

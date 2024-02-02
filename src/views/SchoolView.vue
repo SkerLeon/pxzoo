@@ -104,40 +104,16 @@
               </div>
               <div class="eat_coin">
 
-                <div class="chimpanzees">
-                  <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-                <div class="coin">
-                  <img src="@/assets/images/school/coin.svg" alt="coin">
-                </div>
-              </div>
+<div class="chimpanzees">
+  <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
+</div>
+<div  v-for="(coin, index) in 10"
+:key="index"
+:class="{ eaten: index < chimpanzeesPosition }"
+class="coin">
+  <img src="@/assets/images/school/coin.svg" alt="coin">
+</div>
+</div>
 
               <div v-if="showAnswer[index]" class="lightbox">
                 <div class="lightbox-content">
@@ -186,6 +162,7 @@
 export default {
   data() {
     return {
+      
       showAnimation8: false,
       showAnimationN: false,
       showAnimationI: false,
