@@ -24,11 +24,13 @@
         </aside>
         <!-- 篩選-ph有 -->
         <select name="payway[]" placeholder="ALL" class="pcInnerText animal_select"
-            v-model="selectedCategory">
+        v-model="selectedCategory"
+        @change="selectTypeChange">
             <option value="ALL" disabled hidden>ALL</option>
             <option v-for="category in animalsCategoryPh" :value="category.value" :key="category.value">{{ category.label }}</option>
         </select>
-        <section class="grassland">
+        <section class="grassland" 
+        v-show="showingSections.grassLand">
         <!-- 動物列表 -->
             <div class="animal_park grassLand" ref="grassLand">
                 <!-- 分館名稱 -->
@@ -46,7 +48,8 @@
             </div>
         </section>
 
-        <section class="polar">
+        <section class="polar" 
+        v-show="showingSections.polar">
             <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
                 <div class="animal_info">
@@ -62,7 +65,8 @@
             </div>
         </section>
 
-        <section class="jungle">
+        <section class="jungle" 
+        v-show="showingSections.jungle">
             <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
                 <div class="animal_info">
@@ -77,7 +81,8 @@
             </div>
         </section>
 
-        <section class="birds">
+        <section class="birds" 
+        v-show="showingSections.birds">
             <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
                 <div class="animal_info">
@@ -92,7 +97,8 @@
             </div>
         </section>
 
-        <section class="aqua">
+        <section class="aqua" 
+        v-show="showingSections.aqua">
             <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
                 <div class="animal_info">
@@ -157,10 +163,17 @@ export default {
 
             //select ph
             selectedCategory: 'ALL',
+            showingSections: {
+                grassLand: true,
+                polar: true,
+                jungle: true,
+                birds: true,
+                aqua: true
+            },
 
             animalsCategoryPh: [
                 {
-                    value: 'All',
+                    value: 'ALL',
                     label: 'ALL'
                 },
                 {
@@ -226,25 +239,26 @@ export default {
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
     },
-    computed: {
-        filteredAnimals() {
-            // console.log(this.selectedCategory)
-    //         if (this.selectedCategory === 'ALL') {
-    //   // 如果选择的是 'ALL'，返回所有动物数组的合并结果
-    //         return [
-    //     ...this.animals_grassland,
-    //     ...this.animals_polar,
-    //     ...this.animals_jungle,
-    //     ...this.animals_birds,
-    //     ...this.animals_aqua
-    //         ];
-    //         } else {
-    //   // 如果选择的是特定的分类，返回相应分类的动物数组
-    //             return this['animals_' + this.selectedCategory];
-    //         }
-        },
-    },
     methods: {
+        selectTypeChange(){
+            if (this.selectedCategory === 'ALL') {
+        // 顯示所有分類
+                for (let key in this.showingSections) {
+                    this.showingSections[key] = true;
+            }
+            } else {
+        // 顯示選擇的分類
+                for (let key in this.showingSections) {
+                    if (key !== this.selectedCategory) {
+                        this.showingSections[key] = false;
+                    }else{
+                        this.showingSections[key] = true;
+                    }
+                }
+            }
+        },
+
+
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
         },

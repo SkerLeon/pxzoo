@@ -108,7 +108,7 @@
 
     .animal_select{
         position: absolute;
-        top: 6.8%;
+        margin-top: 5vw;
         z-index: 99;
         display: block;
         margin-left: calc(5% + 2.1vw);
@@ -129,6 +129,8 @@
         }
         
     }
+
+
 
 }
 @media screen and (max-width: 414px) {
@@ -239,7 +241,6 @@ section.grassland{
     background-repeat: no-repeat;
     background-size: cover;
     @media screen and (max-width: 768px) {   
-    padding-top:6.5vw ; 
     background-image: url(/src/assets/images/animal/animal_bg/grassland_bg_mb.png);}
 } 
 section.polar{
@@ -292,6 +293,9 @@ section.aqua{
     .animal_park{
         max-width: 90%;
         padding-top:6.5vw ;
+    }
+    .animal_park_name{
+        padding-top: 8vw;
     }
 }
 

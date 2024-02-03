@@ -9,16 +9,22 @@
 
     <!-- 新聞列表 -->
     <main class="news_overview">
-
-      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select">
-        <option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}</option>
+      <!-- menu button(ph) -->
+      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select"
+      @change="selectTypeChange"
+      v-model="selectedCategory">
+      <option value="ALL" disabled hidden>ALL</option>
+        <option v-for="category in newsCategory" :value="category.value" :key="category.value"
+        >{{ category.label }}</option>
       </select>
 
 
       <!-- menu button(pc) -->
       <ul class="news_pc_filter">
         <li v-for="category in newsCategory">
-          <button class="defaultBtn pcInnerText">
+          <button class="defaultBtn pcInnerText"
+          @click="pressType(category.value)"
+          >
           {{category.label}}
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
@@ -28,7 +34,7 @@
       <!-- news -->
       <div class="news_content">
         <a class="news-each"
-        v-for="item in news_info"
+        v-for="item in filteredNews"
       :key="item ">
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
           <div class="news_info"
@@ -56,13 +62,13 @@
 
       <!-- 分頁 目前是寫死 -->
       <div class="news_pagination pcInnerText">
-        <li><a href="#" class="news_page_num onpage">1
+        <!-- <li><a href="#" class="news_page_num onpage">1
         </a>
         <img :src="imgstate[0]" alt="page-num">
         </li>
-        
+         -->
         <li v-for="(pageNumber, index) in pageNumbers" :key="index">
-          <a href="#" class="news_page_num default" 
+          <a href="#" class="news_page_num" 
           @mouseenter="toggleImage(index,ishover)" @mouseleave="toggleImage(index,ishover)">
           {{ pageNumber }}
           </a>
@@ -103,16 +109,14 @@ export default {
         defaultbtn,
         ],
 
-        
-
         //目前是寫死
-        pageNumbers: [2, 3, 4, 5, '>|'], 
-        ishover: new Array(5).fill(false) ,
+        pageNumbers: [1, 2, 3, 4, 5, '>|'], 
+        ishover: new Array(6).fill(false) ,
           
           //select
           newsCategory: [
               {
-                  value: 'All',
+                  value: 'ALL',
                   label: 'ALL'
               },
               {
@@ -195,28 +199,202 @@ export default {
               title:'動物園歡樂跨年 共度美好時光',
               img:'new_activity_3',
             },
+            {
+              date:'2024.12.10',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'奇特鳥類現身！園區引進巨嘴鳥擴大生態多樣性',
+              img:'zoo_news_3',
+            },
+            {
+              date:'2023.12.01',
+              tag:'動物知識',
+              color:'blue',
+              tag_class:'animal_knowledge',
+              title:'海豚的高度智慧和令人驚艷的表演技巧',
+              img:'animal_knowledge_4',
+            },
+            {
+              date:'2023.11.28',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'老虎親子幸福時刻！雙胞胎寶寶首次公開亮相',
+              img:'zoo_news_4',
+            },
+            {
+              date:'2023.11.27',
+              tag:'最新消息',
+              color:'orange',
+              tag_class:'new_activity',
+              title:'動物園推出專業生態導覽活動，深入解說動物的自然行為和習性',
+              img:'new_activity_4',
+            },
+            {
+              date:'2023.11.26',
+              tag:'動物知識',
+              color:'blue',
+              tag_class:'animal_knowledge',
+              title:'獅子的社會結構和狩獵技巧，追蹤非洲草原上的霸主',
+              img:'animal_knowledge_5',
+            },
+            {
+              date:'2023.11.20',
+              tag:'最新消息',
+              color:'orange',
+              tag_class:'new_activity',
+              title:'環境教育工作坊，邀請專業生態學家分享有關動植物保育的知識',
+              img:'new_activity_5',
+            },
+            {
+              date:'2023.11.16',
+              tag:'動物知識',
+              color:'blue',
+              tag_class:'animal_knowledge',
+              title:'企鵝的潛水冒險，揭開冰山下的神秘世界',
+              img:'animal_knowledge_6',
+            },
+            {
+              date:'2023.11.15',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'環保倡議：動物園宣布全面淘汰一次性塑膠，投身環保運動',
+              img:'zoo_news_5',
+            },
+            {
+              date:'2023.11.05',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'動物園引進新鮮有機食材，動物們品嚐美食大集合',
+              img:'zoo_news_6',
+            },
+            {
+              date:'2023.11.03',
+              tag:'動物知識',
+              color:'blue',
+              tag_class:'animal_knowledge',
+              title:'樹頂生活的猿猴，探討猴群社會結構和智慧表現',
+              img:'animal_knowledge_7',
+            },
+            {
+              date:'2023.10.28',
+              tag:'最新消息',
+              color:'orange',
+              tag_class:'new_activity',
+              title:'星際奇幻夜：動物園舉辦星空觀測派對，揭秘動物星座的有趣故事',
+              img:'new_activity_6',
+            },
+            {
+              date:'2023.10.25',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'動物保育計畫新進展，園方積極參與國際合作保育工作',
+              img:'zoo_news_7',
+            },
+            {
+              date:'2023.10.25',
+              tag:'動物知識',
+              color:'blue',
+              tag_class:'animal_knowledge',
+              title:'獵鷹的驚人飛行速度和狩獵技巧解析',
+              img:'animal_knowledge_8',
+            },
+            {
+              date:'2023.10.13',
+              tag:'園區消息',
+              color:'green',
+              tag_class:'zoo_news',
+              title:'現代科技登場，動物園啟動AR導覽，提升遊客互動體驗',
+              img:'zoo_news_8',
+            },
+            {
+              date:'2023.09.23',
+              tag:'最新消息',
+              color:'orange',
+              tag_class:'new_activity',
+              title:'古怪搞笑周：園區展示動物最搞笑的一面，帶給遊客歡笑滿滿',
+              img:'new_activity_7',
+            },
+            {
+              date:'2023.09.15',
+              tag:'最新消息',
+              color:'orange',
+              tag_class:'new_activity',
+              title:'秋日生態尋奇：動物園邀您共度秋日美好',
+              img:'new_activity_8',
+            },
+          ],
+          //儲存篩選值
+          filteredNews: [],
 
-          ]
+          // v-model用
+          selectedCategory: 'ALL',
+
+          perpage: 8, //一頁的資料數
+          currentPage: 1
       };
   },
-  methods: {
-      getImageUrl(paths) {
-          return new URL(`../assets/images/news/${paths}.png`, import.meta.url).href
-      },//改網址
-
-      getTagUrl(paths){
-        return new URL(`../assets/images/news/newsFrame/${paths}Frame.svg`, import.meta.url).href
+  created() {
+        this.initializeFilteredNews();
       },
+  computed: {
+    totalPage() {
+        return Math.ceil(this.datas.length / this.perpage)
+        //Math.ceil()取最小整數
+    },
+    pageStart() {
+        return (this.currentPage - 1) * this.perpage
+        //取得該頁第一個值的index
+    },
+    pageEnd() {
+        return this.currentPage * this.perpage
+        //取得該頁最後一個值的index
+    }
+  },
+  methods: {
+    //初始匯入全部值
+    initializeFilteredNews(){
+          this.filteredNews = this.news_info
+        },
+    //按鈕先到這
+    pressType(value){
+      //value值到this.selectedCategory
+          this.selectedCategory = value
+          this.selectTypeChange()
+    },
+    //篩選
+    selectTypeChange(){
+        if (this.selectedCategory !== 'ALL') {
+          this.filteredNews = this.news_info.filter(item => item.tag_class === this.selectedCategory)
+          console.log(this.selectedCategory)
+          console.log(this.filteredNews)
+        } else {
+          this.filteredNews = this.news_info
+        }
+    },
 
-      toNewsDetail(){
+    getImageUrl(paths) {
+          return new URL(`../assets/images/news/${paths}.png`, import.meta.url).href
+    },
+    //tag樣式
+    getTagUrl(paths){
+        return new URL(`../assets/images/news/newsFrame/${paths}Frame.svg`, import.meta.url).href
+    },
+
+    toNewsDetail(){
         this.$router.push({
           path:'./NewsDetail',
       })
-      },
-      toggleImage(index,ishover){
+    },
+    //hover頁碼
+    toggleImage(index,ishover){
         // console.log(ishover[index]);
         ishover[index] = !ishover[index];
-      }
+    }
   },
   components: {
        MainFixedVote,
