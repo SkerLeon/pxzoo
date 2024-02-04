@@ -387,7 +387,7 @@ export default {
   created() {
     axios.get('http://localhost/phpLab/pxzoo/ticketsShow.php')
     .then(response => {
-      this.tickets = response.data; // 假設返回的數據是一個數組
+      this.tickets = response.data; 
     })
     .catch(error => {
       console.error("Error fetching data: ", error);
