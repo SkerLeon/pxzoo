@@ -127,9 +127,9 @@
             </div>
             <img class="pk_Tickets_item_bottom" :src="getItemBottomUrl(index+1)" alt="門票下半部">
             <div class="pk_Tickets_item_text">
-              <h1 class="pcSmTitle">{{ticket.title}}</h1>
-              <p class="pcInnerText">{{ticket.rule}}</p>
-              <p class="pcInnerText">NT$ {{ticket.price}}</p>
+              <h1 class="pcSmTitle">{{ticket.tickets_name}}</h1>
+              <p class="pcInnerText">{{ticket.tickets_rule}}</p>
+              <p class="pcInnerText">NT$ {{ticket.tickets_price}}</p>
             </div>
           </RouterLink>
         </div>
@@ -214,6 +214,7 @@
 
 <script>
 import MainFixedVote from '@/components/MainFixedVote.vue'
+import axios from 'axios';
 
 export default {
   
@@ -225,28 +226,7 @@ export default {
       show_animals:true,
       show_facilities:true,
       hover : false,
-      tickets:[{
-        title:"成人票",
-        rule:"18~64歲",
-        price:"100",
-      },{
-        title:"學生票",
-        rule:"12歲以上持學生證者",
-        price:"80",
-      },{
-        title:"團體票",
-        rule:"15人以上適用",
-        price:"60",
-      },
-      {
-        title:"兒童票",
-        rule:"4~11歲",
-        price:"40",
-      },{
-        title:"愛心票",
-        rule:"65歲以上",
-        price:"40",
-      }],
+      tickets:[],
       hoverStatus:{},
       icon_animals:[{
         Library:"草原之聲",
@@ -405,7 +385,13 @@ export default {
     };
   },
   created() {
-    // 生命週期鉤子
+    axios.get('http://localhost/phpLab/pxzoo/ticketsShow.php')
+    .then(response => {
+      this.tickets = response.data; 
+    })
+    .catch(error => {
+      console.error("Error fetching data: ", error);
+    });
   },
   mounted() {
     
