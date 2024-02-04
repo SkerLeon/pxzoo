@@ -390,6 +390,10 @@ export default {
     },
     //篩選
     selectTypeChange(){
+        this.currentPage = 1
+        window.scrollTo(0, 0);
+        this.firstPage = false
+          this.lastPage = true
         if (this.selectedCategory !== 'ALL') {
           this.filteredNews = this.news_info.filter(item => item.tag_class === this.selectedCategory)
           console.log(this.selectedCategory)
