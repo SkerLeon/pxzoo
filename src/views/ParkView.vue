@@ -77,6 +77,16 @@
       </aside>
     </section>
 
+    <div class="parkmark">
+        <img
+          class="prevbtn" src="@/assets/images/home/home_banner_prevarrow.svg" alt="arrow"
+        />
+        <span class="pcMarkText">左右滑動</span>
+        <img
+          class="nextbtn" src="@/assets/images/home/home_banner_nextarrow.svg" alt="arrow"
+        />
+      </div>
+
     <section v-show="AnimalDetails" class="pk_Animal_details">
       <div class="pk_Animal_details_content_align">
         <h1>草原之聲</h1>

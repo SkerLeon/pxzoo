@@ -2,9 +2,6 @@
 //位置 px換算%數
 @mixin icon-top-location($location) {
     top: math.div(math.div($location, 1px), 923) * 100 * 1%;
-    @media (max-width:768px) {
-        top: math.div(math.div($location, 1px), 923) * 100 * 1%;
-    }
 }
 @mixin icon-left-location($location) {
     left: math.div(math.div($location, 1px), 1920) * 100 * 1%;
@@ -70,8 +67,6 @@ $time:10s;
     }
 }
 
-
-
 .pk_content{
     width: 100%;
     height: 100%;
@@ -94,6 +89,7 @@ $time:10s;
             }
         }
         .pk_animal_icon{
+            width: 100%;
             .pk_animal_default{
                 position: absolute;
                 @include mapicon-px-percentage-size(75px);
@@ -301,6 +297,7 @@ $time:10s;
             }
         } 
         .pk_Store_icon{
+            width: 100%;
             .pk_Store_default{
                 position: absolute;
                 transition: 0.3s;
@@ -442,6 +439,54 @@ $time:10s;
             @media (max-width:768px) {
                 display: none;
             }
+        }
+    }
+    .parkmark{
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(35vw,99vw);
+        background-color: #000000aa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5vw 1vw;
+        width: 28vw;
+        display: none;
+        img{
+            width: 2vw;
+        }
+
+        .prevbtn{
+            position: absolute;
+            left: 2.5vw;
+            animation: prevbtn 1.5s infinite;
+        }
+
+        .nextbtn{
+            position: absolute;
+            right: 2.5vw;
+            animation: nextbtn 1.5s infinite;
+        }
+
+        @keyframes prevbtn{
+            0%{left: 2.5vw;}
+            50%{left: 1.5vw;}
+            100%{left: 2.5vw;}
+        }
+
+        @keyframes nextbtn{
+            0%{right: 2.5vw;}
+            50%{right: 1.5vw;}
+            100%{right: 2.5vw;}
+        }
+
+        span{
+            color: $bgColorWhite;
+            padding: 0 2vw;
+        }
+        @media (width <= 768px) {
+            display: flex;
         }
     }
     .pk_Animal_details{
