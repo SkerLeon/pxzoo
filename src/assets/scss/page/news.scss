@@ -78,7 +78,7 @@
         flex-direction: column;
         padding-top: 0;
         .news_select{
-            z-index: 999;
+            z-index: 10;
             display: block;
             margin-top: 6.25vw;
 
@@ -204,16 +204,16 @@ ul.news_pc_filter li{
     padding-top: 4.5vw;
     padding-bottom: 7.5vw;
     li{ 
+        cursor: pointer;
         position: relative;
         padding: 0 0.52vw;
-        a{
+        span{
             position: absolute;
             z-index: 1;
             top: 44%;
             left: 50%;
 
             color: $bgColorLightgray;
-            padding:  1.4vw;
             text-align: center;
             transform: translate(-50%, -50%);
 
@@ -223,7 +223,7 @@ ul.news_pc_filter li{
             }
         }
         @media screen and (max-width: 414px) {
-            a{
+            span{
                 top: 39%;
                 left: 42%;
             }

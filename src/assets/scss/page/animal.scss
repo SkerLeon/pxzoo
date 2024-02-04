@@ -275,7 +275,6 @@ section.aqua{
     background-repeat: no-repeat;
     background-size:cover;
     @media screen and (max-width: 768px) {
-        padding-bottom: 18.6vw;
         background-image: url(/src/assets/images/animal/animal_bg/aqua_bg_mb.png);
     }
 }
@@ -293,6 +292,7 @@ section.aqua{
     .animal_park{
         max-width: 90%;
         padding-top:6.5vw ;
+        padding-bottom: 4vw;
     }
     .animal_park_name{
         padding-top: 8vw;

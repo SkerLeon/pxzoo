@@ -33,8 +33,9 @@
 
       <!-- news -->
       <div class="news_content">
+        <!-- 限制一頁的數量 -->
         <a class="news-each"
-        v-for="item in filteredNews"
+        v-for="item in filteredNews.slice(pageStart, pageEnd)"
       :key="item ">
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
           <div class="news_info"
@@ -61,21 +62,38 @@
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
 
       <!-- 分頁 目前是寫死 -->
-      <div class="news_pagination pcInnerText">
-        <!-- <li><a href="#" class="news_page_num onpage">1
-        </a>
-        <img :src="imgstate[0]" alt="page-num">
+      <ul class="news_pagination pcInnerText">
+
+        <li @click.prevent="setPage(currentPage-1)"
+        @mouseenter="toggleImage(-1,ishover)" @mouseleave="toggleImage(-1,ishover)"
+         v-show="firstPage">
+          <span class="news_page_num" >
+          |&lt;
+          </span>
+          <img :src="ishover[-1] ? imgstate[0] : imgstate[1]" 
+          alt="page-num">
         </li>
-         -->
-        <li v-for="(pageNumber, index) in pageNumbers" :key="index">
-          <a href="#" class="news_page_num" 
-          @mouseenter="toggleImage(index,ishover)" @mouseleave="toggleImage(index,ishover)">
-          {{ pageNumber }}
-          </a>
+
+        <li v-for="(num, index) in totalPage" :key="index"
+        @click.prevent="setPage(num)"
+        @mouseenter="toggleImage(index,ishover)" @mouseleave="toggleImage(index,ishover)">
+          <span class="news_page_num" >
+          {{ num }}
+          </span>
           <img :src="ishover[index] ? imgstate[0] : imgstate[1]" 
           alt="page-num">
         </li>
-      </div>
+
+        <li @click.prevent="setPage(currentPage+1)"
+        @mouseenter="toggleImage(totalPage,ishover)" @mouseleave="toggleImage(totalPage,ishover)"
+        v-show="lastPage">
+          <span class="news_page_num" >
+          >|
+          </span>
+          <img :src="ishover[totalPage] ? imgstate[0] : imgstate[1]" 
+          alt="page-num">
+        </li>
+      </ul>
     </div>     
     </main>
     
@@ -110,8 +128,9 @@ export default {
         ],
 
         //目前是寫死
-        pageNumbers: [1, 2, 3, 4, 5, '>|'], 
-        ishover: new Array(6).fill(false) ,
+        firstPage: false,
+        lastPage: true,
+        ishover: new Array(5).fill(false) ,
           
           //select
           newsCategory: [
@@ -341,9 +360,12 @@ export default {
   created() {
         this.initializeFilteredNews();
       },
+  mounted() {
+  window.scrollTo(0, 0);
+      },
   computed: {
     totalPage() {
-        return Math.ceil(this.datas.length / this.perpage)
+        return Math.ceil(this.news_info.length / this.perpage)
         //Math.ceil()取最小整數
     },
     pageStart() {
@@ -392,8 +414,25 @@ export default {
     },
     //hover頁碼
     toggleImage(index,ishover){
-        // console.log(ishover[index]);
         ishover[index] = !ishover[index];
+    },
+    //換頁
+    setPage(page) {
+        if(page <= 0 || page > this.totalPage) {
+            return
+        }
+        this.currentPage = page
+          window.scrollTo(0, 0);
+        if(page == 1){
+          this.firstPage = false
+          this.lastPage = true
+        }else if(page == this.totalPage){
+          this.lastPage = false
+          this.firstPage = true
+        }else{
+          this.firstPage = true
+          this.lastPage = true
+        }
     }
   },
   components: {
