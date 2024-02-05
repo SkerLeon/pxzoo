@@ -1231,6 +1231,7 @@ export default {
         if (this.$refs.weather) {
           this.$refs.weather.innerHTML = locationWeather;
         }
+        
         if (this.$refs.location) {
           this.$refs.location.innerHTML = location;
         }

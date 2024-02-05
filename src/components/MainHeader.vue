@@ -1,8 +1,13 @@
 <template>
-  <header>
+  <header
+  :style="{
+    backgroundImage: `url(${currentIcon})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'top left',
+  }">
     <nav>
-      <div class="arrowleft"></div>
-      <div class="arrowright"></div>
+      <div class="arrowleft" :style="{ 'border-left': borderStyle}"></div>
+      <div class="arrowright" :style="{ 'border-right': borderStyle}"></div>
       <div class="arrowtopleft">
         <div class="arrowtopl"></div>
         <div class="arrowtopl"></div>
@@ -77,7 +82,11 @@
 
 <script>
 import { RouterLink } from "vue-router";
-import MainHeaderLightBox from '@/components/header/MainHeaderLightBox.vue'
+import MainHeaderLightBox from '@/components/header/MainHeaderLightBox.vue';
+
+import Image01 from "/src/assets/images/header/header_day.svg"
+import Image02 from "/src/assets/images/header/header_night.svg"
+
 export default {
   components: {
     RouterLink,
@@ -87,13 +96,35 @@ export default {
     return {
       targetValue: 0,
       isLightBoxVisible: false,
+      
+      currentIcon: '',
+      borderStyle: '50px solid #91d5ff',
     };
+  },
+  mounted() {
+    this.updateTimeOfDayIcon();
+    // 更新圖示，每5分鐘檢查一次
+    setInterval(this.updateTimeOfDayIcon, 300000);
+
+    this.updateBorderStyle();
+    setInterval(this.updateBorderStyle, 300000);
+    
   },
   created() {},
   methods: {
     closeMenu() {
-    this.isLightBoxVisible = false;
-  }
+      this.isLightBoxVisible = false;
+    },
+
+    updateTimeOfDayIcon() {
+      const currentHour = new Date().getHours();
+      this.currentIcon = (6 <= currentHour && currentHour < 18) ? '/src/assets/images/header/header_day.svg' : '/src/assets/images/header/header_night.svg';
+    },
+
+    updateBorderStyle() {
+      const currentHour = new Date().getHours();
+      this.borderStyle = (currentHour >= 6 && currentHour < 18) ? '50px solid #91d5ff' : '50px solid #11215C';
+    }
   },
 };
 </script>
