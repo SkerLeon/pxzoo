@@ -2,32 +2,32 @@
     <!-- part0-2 日曆 -->
     <section class="tickCalendar">
         <!-- 本頁待辦:
-            1.取得當前選擇的日子的值(分年、月、日)
-            2.選擇日期傳到其他componet
-            3.1/1是週一但沒休園日，條件要補改
             4.已過期的日子要呈現灰色
             5.已過期的日子&休園日都不能被選擇(滑鼠不會變成手指)
-            6.下一步按鈕篩選已過期的日子&休園日，跳提示訊息
             7.下一步按鈕接會員登入篩選，if未登入則跳燈箱，else則下一頁
             8.有時間再寫localhost緩存
-        -->
-        <!-- ???請教老師: 
-            1. 怎麼取得當前選擇的日子的值?
-            2. 週一休園的標示，夜輔的老師有幫我用v-if="new Date(data.day).getDay() === 1" 抓出來，但我還是不太懂日曆套件怎麼設定，請問要寫在標籤裡、還是寫在methods裡？
+            9.串接行政院行事曆
         -->
         <article>
             <hgroup>
                 <h2 class="pcSmTitle">選擇日期</h2>
-                <img src="@/assets/images/vetor/vetor_animal_fox.svg" alt="ticket">
-            </hgroup>
 
+                <main v-show="cantNextPage" class="tickPrompt">
+                    <article v-html="cantNextPage" class="pcInnerText">
+                    </article>
+                    <img src="@/assets/images/ticket/tickConversation_0.png" alt="提示訊息">
+                </main>
+
+                <img src="@/assets/images/vetor/vetor_animal_fox.svg" alt="ticket_decoratoin">
+            </hgroup>
             <Calendar class="calendar" 
+            v-model="bindTidateData" 
             :cell-height=38 
-            :locale="{ today: '本月', type: { month: '月', year: '年' }, weekDays: ['日', '一', '二', '三', '四', '五', '六'], months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] }"
+            :locale="{ today: '本月', type: { month: '月', year: '年' }, weekDays: ['日', '一', '二', '三', '四', '五', '六'], months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] }" 
             >
                 <template #month="{date, data}">
                     <div>
-                      <Badge text="休園" v-if="new Date(data.day).getDay() === 1" />
+                        <Badge text="休園" v-if="offDate(data.day)" />
                     </div>
                 </template>
             </Calendar>
@@ -46,17 +46,15 @@
 
 <script>
 export default {
-    components:{
-    },
     props:{
-        tickStep:{ type: Number, },
+        tidateData:{
+            type: Date,
+            required: true,
+        },
     },
     data() {
         return {
-            // date: new Date(),
-            // dateFormat: 'YYYY-MM-DD',
-            // TickNumOpen: true,
-            // targetValue:0,
+            cantNextPage: false,
         }
     },
     methods:{
@@ -64,16 +62,53 @@ export default {
             this.isBoard = window.innerWidth < 1200;
         },
         nextStep(){
-            // 999寫確認有選日期的判斷式
-            this.$emit('goNextStep');
-        }
-    },
-    watch:{
-        // selectedDate(newValue){
-        //     console.log("當前Date", newValue);
+            const today = new Date();
+            today.setHours(17, 0, 0, 0);
+            // 將 today 變數的時間部分設定為午夜（00:00:00:000），同時保留本地時區，today 代表的是當前日期
+            if (this.tidateData < today) {
+                this.cantNextPage="<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
+                console.log("，");
+            }else if( this.offDate(this.tidateData) ){
+                this.cantNextPage="<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";
+            }else{
+                this.$emit('goNextStep');
+            }
+        },
+        offDate(day){
+            return new Date(day).getDay() === 1 && !(new Date(day).getMonth() === 0 && new Date(day).getDate() === 1) && !(new Date(day).getMonth() === 2 && new Date(day).getDate() === 12) && !(new Date(day).getMonth() === 5 && new Date(day).getDate() === 10);
+        },
+        // dateRender(date){
+        //     console.log("dateRender");
+        // //  date-render 是iView 日曆組件中的 props，允許自定義每個日期的呈現方式。你需要提供一個函數，該函數接受一個日期作為輸入，並返回一個表示應該應用於該日期的樣式的字符串。
+        //     const today = new Date();
+        //     today.setHours(0, 0, 0, 0);
             
-        //     this.$emit("transferDate", this.selectedDate);
+        //     // 將 today 變數的時間部分設定為午夜（00:00:00:000），同時保留本地時區，today 代表的是當前日期
+        //     if (date < today) {
+        //         return {
+        //             disabled: true, // 表示禁用
+        //         };
+        //     }
+        //     return {};
         // },
+        // disabledDate(date) {
+        //     console.log("disabledDate");
+        // // disabled-date 是 iView 日曆組件中的 props，用於禁用日曆中的特定日期。你需要提供一個函數，該函數接受一個日期作為輸入，並返回一個布爾值，指示該日期是否應該被禁用。
+        //     const today = new Date();
+        //     today.setHours(0, 0, 0, 0);
+
+        //     return date < today;
+        // },
+    },
+    computed:{
+        bindTidateData:{
+            get(){
+                return this.tidateData;
+            },
+            set(value){
+                this.$emit('newDate', value);
+            },
+        },
     },
     created(){
         this.windowSize();
@@ -83,11 +118,4 @@ export default {
         window.removeEventListener('resize', this.windowSize);
     },
 }
-
 </script>
-
-<style>
-
-
-
-</style>

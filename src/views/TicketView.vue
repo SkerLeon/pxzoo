@@ -1,7 +1,8 @@
 <template>
   <!-- 本頁待辦:
-    1.接tickets資料庫
-    
+    1.TickNum接tickets資料庫
+    2.
+
   -->
   <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
@@ -44,13 +45,12 @@
       :tipriceData="tiprice" 
       
       :couponsData="coupons" 
-      :couponOpData="selectedCouOp" 
-      :couponValData="selectedCouVal" 
+      :couData="selectedCou" 
       :coupriceData="couprice" 
 
       :paypriceData="payprice"
       :paywaysData="payways" 
-      :paywayOpData="selectedPWOp" 
+      :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
 
       @newCoupon="updateCoupon" 
@@ -65,12 +65,12 @@
       <TickFinished   
       :tidateData="tidate" :ticketsData="tickets" 
       :tipriceData="tiprice"
-      :couponOpData="selectedCouOp" 
+      :couData="selectedCou" 
       :coupriceData="couprice" 
       :paypriceData="payprice" 
-      :paywayOpData="selectedPWOp" 
+      :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
-      :tickStatusData="status" 
+      :tickStatusData="tickstatus" 
       @goPreviousStep="backPreviousStep" 
       />
       <!-- goPreviousStep for 測試，正式上線要拿掉!!! -->
@@ -117,8 +117,7 @@ export default {
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
-      selectedCouOp: '', 
-      selectedCouVal: 0, 
+      selectedCou: null, 
       couprice: 0,
       payprice: 0,
       tidate: new Date(),
@@ -196,8 +195,8 @@ export default {
         },
       ],
       selectedPWTT: '',
-      selectedPWOp: '',
-      status: '',
+      selectedPW: null,
+      tickstatus: '',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
     }
@@ -215,15 +214,14 @@ export default {
       });
     },
     updateDate(newDate){
-      // this.tidate = newDate;
       const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
       this.tidate=newDate.toLocaleDateString('zh-TW', options);
       // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
     },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
-      if(this.tickStep === 2 && this.selectedCouOp === ''){
-        this.selectedCouOp = this.coupons[0].option;
+      if(this.tickStep === 2 && this.selectedCou === ''){
+        this.selectedCou = this.coupons[0].option;
       }
       this.tickStep++;
       this.startFromTop();
@@ -244,38 +242,33 @@ export default {
       this.tiprice = newTiprice;
       this.payprice = newTiprice;
     },
-    updateCoupon(newCouponOp, newCouponVal, newCouprice, newPayprice){
-      console.log(this.selectedCouOp);
-      this.selectedCouOp = newCouponOp;
-      this.selectedCouVal = newCouponVal;
-      this.couprice = newCouprice;
-      this.payprice = newPayprice;
+    updateCoupon(newCoupon){
+      // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+      let couVal = this.coupons.find(
+          (cou) => cou.id === newCoupon
+      );
+      console.log("couVal.value",couVal.value);
+      this.couprice =  parseInt(
+          (this.tiprice * (1 - couVal.value)).toFixed(2)
+      );
+      this.payprice = this.tiprice - this.couprice;
     },
-    updatePayway(newPaywayOp, newPaywayTT){
-      this.selectedPWOp = newPaywayOp;
-      this.selectedPWTT = newPaywayTT;
+    updatePayway(newPayway){
+      this.selectedPW = newPayway;
 
-      if(this.selectedPWOp === '信用卡'){
-        this.status = '未用票';
+      if(this.selectedPW === '信用卡'){
+        this.selectedPWTT = '數位票券',
+        this.tickstatus = '未用票';
       }else{
-        this.status = '未取票';
+        this.selectedPWTT = '實體票券',
+        this.tickstatus = '未取票';
       }
-      console.log("主頁更新付款方式", this.selectedPWOp);
-      console.log("主頁更新票券型態", this.selectedPWTT);
     },
   },
   computed:{
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
-    // tidate: {
-    //   get() {
-    //     return this.tidate;
-    //   },
-    //   set(value) {
-    //     this.tidate = value;
-    //   },
-    // },
   },
   created(){
     this.windowSize();
