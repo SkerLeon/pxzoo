@@ -1,11 +1,15 @@
 <template>
+  <!-- 本頁待辦:
+    1.接tickets資料庫
+    
+  -->
   <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
 <!-- 小龜老師您好:
-  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???)
+  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???疑問)
 -->
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
@@ -15,6 +19,8 @@
       />
       <TickCalendar 
       v-if="!isBoard ||TickCalendar" 
+      :tidateData="tidate" 
+      @newDate="updateDate" 
       @goNextStep="showNextStep" 
       />
     </main>
@@ -32,17 +38,21 @@
 
 <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck 
+      <TickCheck  
+      :tidateData="tidate" 
       :ticketsData="tickets" 
-      :tipriceData="tiprice"
-      :couponsData="coupons"
+      :tipriceData="tiprice" 
+      
+      :couponsData="coupons" 
       :couponOpData="selectedCouOp" 
       :couponValData="selectedCouVal" 
       :coupriceData="couprice" 
+
       :paypriceData="payprice"
       :paywaysData="payways" 
       :paywayOpData="selectedPWOp" 
-      :paywayTTData="selectedPWTT"
+      :paywayTTData="selectedPWTT" 
+
       @newCoupon="updateCoupon" 
       @newPayway="updatePayway" 
       @goNextStep="showNextStep" 
@@ -52,7 +62,8 @@
 
 <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished  :ticketsData="tickets" 
+      <TickFinished   
+      :tidateData="tidate" :ticketsData="tickets" 
       :tipriceData="tiprice"
       :couponOpData="selectedCouOp" 
       :coupriceData="couprice" 
@@ -69,10 +80,10 @@
 </template>
 
 <script>
-import tickStepImg0 from "@/assets/images/ticket/PC0.svg";
-import tickStepImg1 from "../assets/images/ticket/PC1.svg";
-import tickStepImg2 from "../assets/images/ticket/PC2.svg";
-import tickStepImg3 from "../assets/images/ticket/PC3.svg";
+import tickStepImg0 from "@/assets/images/ticket/PC0.png";
+import tickStepImg1 from "@/assets/images/ticket/PC1.png";
+import tickStepImg2 from "@/assets/images/ticket/PC2.png";
+import tickStepImg3 from "@/assets/images/ticket/PC3.png";
 import ticketImg1 from "@/assets/images/ticket/ticket1.svg";
 import ticketImg2 from "@/assets/images/ticket/ticket2.svg";
 import ticketImg3 from "@/assets/images/ticket/ticket3.svg";
@@ -110,6 +121,7 @@ export default {
       selectedCouVal: 0, 
       couprice: 0,
       payprice: 0,
+      tidate: new Date(),
       tickets:[
           {
             id: 1,
@@ -202,27 +214,32 @@ export default {
           behavior: 'smooth', // 使用平滑滾動效果
       });
     },
+    updateDate(newDate){
+      // this.tidate = newDate;
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      this.tidate=newDate.toLocaleDateString('zh-TW', options);
+      // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
+    },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
       if(this.tickStep === 2 && this.selectedCouOp === ''){
         this.selectedCouOp = this.coupons[0].option;
       }
       this.tickStep++;
-      // this.startFromTop();
+      this.startFromTop();
     },
     backPreviousStep(){
       this.tickStep--;
-      // this.startFromTop();
+      this.startFromTop();
     },
     showTickCalendar(){
       this.TickCalendar=true;
-      // this.startFromTop();
+      this.startFromTop();
     },
-    // updateDate(newDate){
-    //   console.log(newDate);
-    //   this.tidate = newDate;
-    //   console.log(this.tidate);
-    // },
+    updateDate(newDate){
+      this.tidate = newDate;
+      console.log(this.tidate);
+    },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
       this.payprice = newTiprice;
@@ -251,6 +268,14 @@ export default {
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
+    // tidate: {
+    //   get() {
+    //     return this.tidate;
+    //   },
+    //   set(value) {
+    //     this.tidate = value;
+    //   },
+    // },
   },
   created(){
     this.windowSize();
