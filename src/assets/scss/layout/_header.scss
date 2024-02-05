@@ -56,19 +56,19 @@ header {
       top: 0;
       left: 0;
       border-bottom: 40px solid #ff730000;
-      border-left: 50px solid $bgColorLightgray;
-      @media (max-width:768px) {
-        border-bottom: 60px solid #ff730000;
-      }
-      @media (max-width:480px) {
-        border-bottom: 50px solid #ff730000;
-      }
-      @media (max-width:420px) {
-        border-bottom: 45px solid #ff730000;;
-      }
-      @media (max-width:375px) {
-        border-bottom: 40px solid #ff730000;
-      }
+      // border-left: 50px solid $bgColorLightgray;
+      // @media (max-width:768px) {
+      //   border-bottom: 60px solid #ff730000;
+      // }
+      // @media (max-width:480px) {
+      //   border-bottom: 50px solid #ff730000;
+      // }
+      // @media (max-width:420px) {
+      //   border-bottom: 45px solid #ff730000;;
+      // }
+      // @media (max-width:375px) {
+      //   border-bottom: 40px solid #ff730000;
+      // }
     }
 
     .arrowright{
