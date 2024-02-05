@@ -47,9 +47,9 @@
       :couponsData="coupons" 
       :couData="selectedCou" 
       :coupriceData="couprice" 
-
       :paypriceData="payprice"
       :paywaysData="payways" 
+
       :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
 
@@ -65,7 +65,7 @@
       <TickFinished   
       :tidateData="tidate" :ticketsData="tickets" 
       :tipriceData="tiprice"
-      :couData="selectedCou" 
+      :couOpData="selectedCouOp" 
       :coupriceData="couprice" 
       :paypriceData="payprice" 
       :paywayData="selectedPW" 
@@ -118,6 +118,7 @@ export default {
       TickCalendar: false,
       tiprice: 0,
       selectedCou: null, 
+      selectedCouOp: '',
       couprice: 0,
       payprice: 0,
       tidate: new Date(),
@@ -247,6 +248,7 @@ export default {
       let couVal = this.coupons.find(
           (cou) => cou.id === newCoupon
       );
+      this.selectedCouOp = couVal.option;
       console.log("couVal.value",couVal.value);
       this.couprice =  parseInt(
           (this.tiprice * (1 - couVal.value)).toFixed(2)

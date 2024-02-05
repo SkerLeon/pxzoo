@@ -46,7 +46,7 @@
             </article>
             <hgroup class="coupon pcInnerText">
                 <p>優惠折扣</p>
-                <p>{{ couponOpData }}</p>
+                <p>{{ couOpData }}</p>
             </hgroup>
             <div class="price">
                 <span>票券金額</span>
@@ -108,8 +108,8 @@ export default {
             type: Number,
             required: true,
         },
-        couData: {
-            type: Number,
+        couOpData: {
+            type: String,
             required: true,
         },
         coupriceData: {
