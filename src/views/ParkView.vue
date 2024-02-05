@@ -385,7 +385,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost/phpLab/pxzoo/ticketsShow.php')
+    axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
     .then(response => {
       this.tickets = response.data; 
     })
