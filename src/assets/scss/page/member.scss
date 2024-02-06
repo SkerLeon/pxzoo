@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 48vw;
+  height: 60vw;
   @media (width <= 768px) {
     height: 105vw;
   }
@@ -386,6 +386,7 @@
   }
 
   //會員評論
+  //D9C098
   .commentArea {
     @include defaultMemSize();
     .innerComment {
@@ -394,6 +395,12 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+      &::-webkit-scrollbar-track {
+        overflow: hidden;
+      }
       @media (width <= 768px) {
       }
       h2 {
@@ -401,10 +408,12 @@
       }
       .commentGroup {
         width: 50%;
-        gap: 10px;
+        gap: 100px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow: scroll;
         @media (width <= 768px) {
           width: 90%;
         }
@@ -451,6 +460,7 @@
               font-family: $font;
               font-weight: 500;
               line-height: 150%;
+              background-color: #d9c098;
               @media (width <= 768px) {
                 line-height: 5vw;
                 font-size: 12px;

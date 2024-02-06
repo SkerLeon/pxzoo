@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 export default defineStore("userStore", {
   // 定義名稱為 "userStore" 的存儲庫。
   state: () => ({
-    token: "", //
+    token: localStorage.getItem("token") || "", //
     name: "Jenny",
     wallet: "300",
     //預留userData:{}之後串接PHP
@@ -30,6 +30,7 @@ export default defineStore("userStore", {
       }
     },
     updateToken(payload) {
+      console.log(payload);
       // 定義一個名為 updateToken 的方法，接受一個 payload 作為參數。
       if (payload) {
         this.token = payload; // 將存儲庫中的 token 設定為提供的 payload。
