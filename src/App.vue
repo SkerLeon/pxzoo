@@ -19,7 +19,6 @@ import MainFooter from '@/components/MainFooter.vue'
 
 export default {
   components:{
-    // RouterLink,
     RouterView,
     MainHeader,
     MainFooter
@@ -30,29 +29,6 @@ export default {
     }
     
   },
-  created(){},
-  methods:{}
+  methods:{},
 }
 </script>
-
-<!-- <style>
-  .textheader{
-    background-color: #f5efeb;
-  }
-  .wrapper{
-    width: 100%;
-  }
-  .wrapper nav{
-    display: flex;
-    justify-content: space-between;
-  }
-  .wrapper nav a{
-    text-decoration: none;
-    font-size: 30px;
-    font-weight: bold;
-    color: #3f3f3f;
-  }
-  .wrapper nav a:hover{
-    color:#11a729;
-  }
-</style> -->

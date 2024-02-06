@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 
 import { 
-    Button, Input, Select, Space, Option, Upload, Calendar, DatePicker, InputNumber, Badge, 
+    Button, Input, Select, Space, Option, Upload, Calendar, DatePicker, InputNumber, Badge, dateRender, disabledDate,
 } from 'view-ui-plus';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
@@ -42,12 +42,13 @@ vueApp.component('Input', Input)
 vueApp.component('Select', Select)
 vueApp.component('Space', Space)
 vueApp.component('Option', Option)
-
 vueApp.component('Upload', Upload)
 vueApp.component('Calendar', Calendar)
 vueApp.component('DatePicker', DatePicker)
 vueApp.component('InputNumber', InputNumber)
 vueApp.component('Badge', Badge)
+vueApp.component('date-render', dateRender)
+vueApp.component('disabled-date', disabledDate)
 
 // 渲染在index.html裡面的div#app
 vueApp.mount("#app");

@@ -1,11 +1,16 @@
 <template>
+  <!-- 本頁待辦:
+    1.TickNum接tickets資料庫
+    2.
+
+  -->
   <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
 <!-- 小龜老師您好:
-  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???)
+  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???疑問)
 -->
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
@@ -15,6 +20,8 @@
       />
       <TickCalendar 
       v-if="!isBoard ||TickCalendar" 
+      :tidateData="tidate" 
+      @newDate="updateDate" 
       @goNextStep="showNextStep" 
       />
     </main>
@@ -32,17 +39,20 @@
 
 <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck 
+      <TickCheck  
+      :tidateData="tidate" 
       :ticketsData="tickets" 
-      :tipriceData="tiprice"
-      :couponsData="coupons"
-      :couponOpData="selectedCouOp" 
-      :couponValData="selectedCouVal" 
+      :tipriceData="tiprice" 
+      
+      :couponsData="coupons" 
+      :couData="selectedCou" 
       :coupriceData="couprice" 
       :paypriceData="payprice"
       :paywaysData="payways" 
-      :paywayOpData="selectedPWOp" 
-      :paywayTTData="selectedPWTT"
+
+      :paywayData="selectedPW" 
+      :paywayTTData="selectedPWTT" 
+
       @newCoupon="updateCoupon" 
       @newPayway="updatePayway" 
       @goNextStep="showNextStep" 
@@ -52,14 +62,15 @@
 
 <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished  :ticketsData="tickets" 
+      <TickFinished   
+      :tidateData="tidate" :ticketsData="tickets" 
       :tipriceData="tiprice"
-      :couponOpData="selectedCouOp" 
+      :couOpData="selectedCouOp" 
       :coupriceData="couprice" 
       :paypriceData="payprice" 
-      :paywayOpData="selectedPWOp" 
+      :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
-      :tickStatusData="status" 
+      :tickStatusData="tickstatus" 
       @goPreviousStep="backPreviousStep" 
       />
       <!-- goPreviousStep for 測試，正式上線要拿掉!!! -->
@@ -69,10 +80,10 @@
 </template>
 
 <script>
-import tickStepImg0 from "@/assets/images/ticket/PC0.svg";
-import tickStepImg1 from "../assets/images/ticket/PC1.svg";
-import tickStepImg2 from "../assets/images/ticket/PC2.svg";
-import tickStepImg3 from "../assets/images/ticket/PC3.svg";
+import tickStepImg0 from "@/assets/images/ticket/PC0.png";
+import tickStepImg1 from "@/assets/images/ticket/PC1.png";
+import tickStepImg2 from "@/assets/images/ticket/PC2.png";
+import tickStepImg3 from "@/assets/images/ticket/PC3.png";
 import ticketImg1 from "@/assets/images/ticket/ticket1.svg";
 import ticketImg2 from "@/assets/images/ticket/ticket2.svg";
 import ticketImg3 from "@/assets/images/ticket/ticket3.svg";
@@ -106,10 +117,11 @@ export default {
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
-      selectedCouOp: '', 
-      selectedCouVal: 0, 
+      selectedCou: null, 
+      selectedCouOp: '',
       couprice: 0,
       payprice: 0,
+      tidate: new Date(),
       tickets:[
           {
             id: 1,
@@ -184,8 +196,8 @@ export default {
         },
       ],
       selectedPWTT: '',
-      selectedPWOp: '',
-      status: '',
+      selectedPW: null,
+      tickstatus: '',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
     }
@@ -202,49 +214,57 @@ export default {
           behavior: 'smooth', // 使用平滑滾動效果
       });
     },
+    updateDate(newDate){
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      this.tidate=newDate.toLocaleDateString('zh-TW', options);
+      // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
+    },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
-      if(this.tickStep === 2 && this.selectedCouOp === ''){
-        this.selectedCouOp = this.coupons[0].option;
+      if(this.tickStep === 2 && this.selectedCou === ''){
+        this.selectedCou = this.coupons[0].option;
       }
       this.tickStep++;
-      // this.startFromTop();
+      this.startFromTop();
     },
     backPreviousStep(){
       this.tickStep--;
-      // this.startFromTop();
+      this.startFromTop();
     },
     showTickCalendar(){
       this.TickCalendar=true;
-      // this.startFromTop();
+      this.startFromTop();
     },
-    // updateDate(newDate){
-    //   console.log(newDate);
-    //   this.tidate = newDate;
-    //   console.log(this.tidate);
-    // },
+    updateDate(newDate){
+      this.tidate = newDate;
+      console.log(this.tidate);
+    },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
       this.payprice = newTiprice;
     },
-    updateCoupon(newCouponOp, newCouponVal, newCouprice, newPayprice){
-      console.log(this.selectedCouOp);
-      this.selectedCouOp = newCouponOp;
-      this.selectedCouVal = newCouponVal;
-      this.couprice = newCouprice;
-      this.payprice = newPayprice;
+    updateCoupon(newCoupon){
+      // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+      let couVal = this.coupons.find(
+          (cou) => cou.id === newCoupon
+      );
+      this.selectedCouOp = couVal.option;
+      console.log("couVal.value",couVal.value);
+      this.couprice =  parseInt(
+          (this.tiprice * (1 - couVal.value)).toFixed(2)
+      );
+      this.payprice = this.tiprice - this.couprice;
     },
-    updatePayway(newPaywayOp, newPaywayTT){
-      this.selectedPWOp = newPaywayOp;
-      this.selectedPWTT = newPaywayTT;
+    updatePayway(newPayway){
+      this.selectedPW = newPayway;
 
-      if(this.selectedPWOp === '信用卡'){
-        this.status = '未用票';
+      if(this.selectedPW === '信用卡'){
+        this.selectedPWTT = '數位票券',
+        this.tickstatus = '未用票';
       }else{
-        this.status = '未取票';
+        this.selectedPWTT = '實體票券',
+        this.tickstatus = '未取票';
       }
-      console.log("主頁更新付款方式", this.selectedPWOp);
-      console.log("主頁更新票券型態", this.selectedPWTT);
     },
   },
   computed:{

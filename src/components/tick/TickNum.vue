@@ -1,10 +1,14 @@
 <template>
     <!-- part1 選擇數量 -->
     <section class="tickNum">
-    <!-- ???請教老師: 
+    <!-- 本頁待辦:
+        1.fetch API，接tickets資料庫
+    -->
+    <!-- 疑問???請教老師: 
         1.ticketsDatak的資料在這頁、tickCheck、tickFinished重複出現，這頁有按鈕跟兩種裝置排版，但其他兩頁的排版都是一樣的...
         這樣一般會把這塊另外切componet嗎?
         (同問上下一步按鈕，因為有綁各頁面必填條件，所以放在各component內)
+        
         2.數量的input框，我有寫格式篩選，由於type是number，使用者輸入+0、-0、.0、0000是被允許的><
         我嘗試過把數字轉字串來做比較，但沒有效...想請教老師要怎麼辦?
         (還是一般不會特別處理?)
@@ -31,7 +35,7 @@
                         <img :src="ticket.src" :alt="ticket.name">
                     </article>
                     <div class="countBTN">
-                        <button  @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
+                        <button @click="decrease(ticket.id)" class="pcDecMarkText">-</button>
                         <input v-model.trim="ticket.qty" @input="alterQty(ticket.id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
                         <button @click="increase(ticket.id)" class="pcDecMarkText">+</button>
                         <!-- v-model與:value 不建議同時存在 -->
@@ -48,15 +52,13 @@
             </div>
         </div>
 
-        <main class="tickBtn">
+        <main class="tickBtn relative">
             <button class="defaultBtn pcInnerText" @click="previousStep">
                 上一步
                 <img src="@/assets/images/login/icon/btnArrow.svg">
             </button>
-            <main v-show="cantNextPage">
-                <article class="pcInnerText">
-                    <p>票券數量,</p> 
-                    <p>請選擇!</p>
+            <main v-show="cantNextPage" class="tickPrompt">
+                <article v-html="cantNextPage" class="pcInnerText">
                 </article>
                 <img v-if="isSmallPH" src="@/assets/images/ticket/tickConversation_1s.svg" alt="提示訊息">
                 <img v-else src="@/assets/images/ticket/tickConversation_1.svg" alt="提示訊息">
@@ -73,14 +75,7 @@
 
 <script>
 export default {
-    components:{
-        // RouterLink,
-    },
     props:{
-        // 丟資料的key值
-        // validator 驗證規則內不可讀取 data. computed 屬性
-        // validator: value => value>0,
-        tickStep:{ type: Number, },
         ticketsData: {
             type: Array,
             required: true,
@@ -97,7 +92,6 @@ export default {
     },
     methods:{
         windowSize(){
-            // this.isMobile = window.innerWidth <= 768;
             this.isSmallPH = window.innerWidth <= 430;
             this.isBoard = window.innerWidth < 1200;
         },
@@ -108,11 +102,16 @@ export default {
             this.tipriceCalculate();
         },
         nextStep(){
+            let teamQty = this.ticketsData[2].qty;
+
             if(this.tipriceData > 0){
-                this.$emit('goNextStep');
+                if(teamQty>0 && teamQty<15){
+                    this.cantNextPage="<p>團體票須</p><p><span class='promptYellow'>15人以上</span>!</p>";
+                }else{
+                    this.$emit('goNextStep');
+                }
             }else{
-                console.log("請至少選擇一張票券");
-                this.cantNextPage=true;
+                this.cantNextPage="<p class='promptYellow'>票券數量,</p><p>請選擇!</p>";
             }
         },
         previousStep(){
@@ -162,9 +161,7 @@ export default {
             console.log(typeof ticket.qty); // 因為HTML設定input type="number"，所以這邊用typeof都會得到"number"，但事實上所有input都是字串
 
             if(isNaN(ticket.qty)){
-                console.log(ticket.qty);
                 ticket.qty = 0;
-                console.log(ticket.qty);
             }
 
             // 單票種上限
@@ -198,7 +195,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>
