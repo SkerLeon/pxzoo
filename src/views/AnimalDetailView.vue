@@ -19,8 +19,8 @@
                 class="toggle_arrow"
                 :class="{ arrow_rotate: category.isShow }">
                 </div>
-                    <!-- 次選單 因為父層click點子層會一起收合 -->
-                    <ul class="animaldetail_sub_menu" v-show="category.isShow">
+                    <!-- @click.stop阻止蔓延 -->
+                    <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
                         <li v-for="child in category.children" :key="child.id">
                             <a class="pcInnerText" href="#">{{ child.species }}</a>
                         </li>

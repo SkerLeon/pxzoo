@@ -1,3 +1,4 @@
+Vue.config.devtools = true; 
 <template>
   <MainFixedVote/>
   <section class="forHeader news_section">
@@ -35,7 +36,7 @@
       <div class="news_content">
         <!-- 限制一頁的數量 -->
         <a class="news-each"
-        v-for="item in filteredNews.slice(pageStart, pageEnd)"
+        v-for="item in listAfterPagination"
       :key="item ">
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
           <div class="news_info"
@@ -61,12 +62,11 @@
       </a>
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
 
-      <!-- 分頁 目前是寫死 -->
       <ul class="news_pagination pcInnerText">
-
+        <!-- 前一頁 -->
         <li @click.prevent="setPage(currentPage-1)"
         @mouseenter="toggleImage(-1,ishover)" @mouseleave="toggleImage(-1,ishover)"
-         v-show="firstPage">
+        v-show="firstPage">
           <span class="news_page_num" >
           |&lt;
           </span>
@@ -80,10 +80,10 @@
           <span class="news_page_num" >
           {{ num }}
           </span>
-          <img :src="ishover[index] ? imgstate[0] : imgstate[1]" 
-          alt="page-num">
+          <!-- 當頁淺綠，其他頁hover淺綠 -->
+          <img :src="num === currentPage ? imgstate[0] : (ishover[index] ? imgstate[0] : imgstate[1])" alt="page-num">
         </li>
-
+        <!-- 後一頁 -->
         <li @click.prevent="setPage(currentPage+1)"
         @mouseenter="toggleImage(totalPage,ishover)" @mouseleave="toggleImage(totalPage,ishover)"
         v-show="lastPage">
@@ -96,7 +96,6 @@
       </ul>
     </div>     
     </main>
-    
     <!-- 背景 -->
     <div class="news_bg">
       <img class="cloud_bg cloud_2" src="../assets/images/vetor/nature_cloud_2.svg" alt="bg-雲2">
@@ -118,6 +117,7 @@
 import MainFixedVote from '@/components/MainFixedVote.vue'
 import onpagebtn from "/images/news/onpage.svg";   
 import defaultbtn from "/images/news/default.svg";   
+// import { setTransitionHooks } from 'vue';
   
 export default {
   data() {
@@ -127,9 +127,9 @@ export default {
         defaultbtn,
         ],
 
-        //目前是寫死
         firstPage: false,
         lastPage: true,
+        //目前是寫死
         ishover: new Array(5).fill(false) ,
           
           //select
@@ -365,7 +365,7 @@ export default {
       },
   computed: {
     totalPage() {
-        return Math.ceil(this.news_info.length / this.perpage)
+        return Math.ceil(this.listAfterCategory.length / this.perpage)
         //Math.ceil()取最小整數
     },
     pageStart() {
@@ -375,7 +375,19 @@ export default {
     pageEnd() {
         return this.currentPage * this.perpage
         //取得該頁最後一個值的index
-    }
+    },
+    
+    //篩選
+    listAfterCategory() {
+      if (this.selectedCategory === 'ALL') return this.news_info
+      return this.news_info.filter(item => {
+        return item.tag_class === this.selectedCategory
+      })
+    },
+    //根據篩選後新聞數量顯示頁面
+    listAfterPagination() {
+      return this.listAfterCategory.slice((this.currentPage - 1) * this.perpage, this.currentPage * this.perpage);
+    },
   },
   methods: {
     //初始匯入全部值
@@ -386,21 +398,7 @@ export default {
     pressType(value){
       //value值到this.selectedCategory
           this.selectedCategory = value
-          this.selectTypeChange()
-    },
-    //篩選
-    selectTypeChange(){
-        this.currentPage = 1
-        window.scrollTo(0, 0);
-        this.firstPage = false
-          this.lastPage = true
-        if (this.selectedCategory !== 'ALL') {
-          this.filteredNews = this.news_info.filter(item => item.tag_class === this.selectedCategory)
-          console.log(this.selectedCategory)
-          console.log(this.filteredNews)
-        } else {
-          this.filteredNews = this.news_info
-        }
+          this.setPage(1)
     },
 
     getImageUrl(paths) {
@@ -427,16 +425,13 @@ export default {
         }
         this.currentPage = page
           window.scrollTo(0, 0);
-        if(page == 1){
-          this.firstPage = false
-          this.lastPage = true
-        }else if(page == this.totalPage){
-          this.lastPage = false
-          this.firstPage = true
-        }else{
-          this.firstPage = true
-          this.lastPage = true
-        }
+          if (this.totalPage === 1) {
+            this.firstPage = false;
+            this.lastPage = false;
+          } else {
+            this.firstPage = page !== 1;
+            this.lastPage = page !== this.totalPage;
+          }
     }
   },
   components: {
