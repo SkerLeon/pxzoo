@@ -39,7 +39,7 @@
           <img src="../assets/images/member/memicon/4.svg" alt="" />
           <p class="sidebarText">會員評論</p>
         </li>
-        <li @click="toHomePage()">
+        <li @click="logout">
           <img src="../assets/images/member/memicon/5.svg" alt="" />
           <p class="sidebarText">會員登出</p>
         </li>
@@ -188,9 +188,9 @@
             />
             <div class="commentArea">
               <p class="commentTitle pcSmTitle">Emily L.</p>
-              <p class="commentText">
-                我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
-              </p>
+              <textarea name="" id="" cols="30" rows="4" class="commentText">
+我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
+              </textarea>
             </div>
             <button class="defaultBtn pcInnerText commentBtn">
               修改評論
@@ -202,6 +202,60 @@
               class="greenClose"
             />
           </div>
+          <div class="comment">
+            <img
+              src="@/assets/images/member/papper.png"
+              alt="commentBg"
+              class="commentBg"
+            />
+            <img
+              src="../assets/images/member/commentPic.png"
+              alt="commentPic"
+              class="commentPic"
+            />
+            <div class="commentArea">
+              <p class="commentTitle pcSmTitle">Emily L.</p>
+              <textarea name="" id="" cols="30" rows="4" class="commentText">
+我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
+              </textarea>
+            </div>
+            <button class="defaultBtn pcInnerText commentBtn">
+              修改評論
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+            </button>
+            <img
+              src="../assets/images/member/memicon/green_close.svg"
+              alt="green_close"
+              class="greenClose"
+            />
+          </div>
+          <!-- <div class="comment">
+            <img
+              src="@/assets/images/member/papper.png"
+              alt="commentBg"
+              class="commentBg"
+            />
+            <img
+              src="../assets/images/member/commentPic.png"
+              alt="commentPic"
+              class="commentPic"
+            />
+            <div class="commentArea">
+              <p class="commentTitle pcSmTitle">Emily L.</p>
+              <textarea name="" id="" cols="30" rows="4" class="commentText">
+我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
+              </textarea>
+            </div>
+            <button class="defaultBtn pcInnerText commentBtn">
+              修改評論
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+            </button>
+            <img
+              src="../assets/images/member/memicon/green_close.svg"
+              alt="green_close"
+              class="greenClose"
+            />
+          </div> -->
         </div>
       </div>
       <img
@@ -216,10 +270,9 @@
 <script>
 import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
-const imgDefault = new URL(
-  "../assets/images/member/+9bear.svg",
-  import.meta.url
-).href;
+import userStore from "../stores/auth";
+
+const imgDefault = new URL("../assets/images/member/", import.meta.url).href;
 export default {
   data() {
     return {
@@ -232,6 +285,7 @@ export default {
         birthday: "",
         email: "",
         phone: "",
+        token: "",
       },
       fields: [
         { key: "name", label: "姓名" },
@@ -290,6 +344,7 @@ export default {
           status: "已用票",
         },
       ],
+      userStore: userStore(),
     };
   },
   components: {
@@ -305,10 +360,17 @@ export default {
       }
     });
   },
-  methods: {
-    toHomePage() {
-      this.$router.push("login");
+  watch: {
+    "userStore.token": {
+      handler(nVal) {
+        if (!nVal) {
+          this.$router.push("/");
+        }
+      },
+      immediate: true,
     },
+  },
+  methods: {
     toTicketPage() {
       this.$router.push("ticket");
     },
@@ -349,6 +411,10 @@ export default {
         localStorage.setItem(`member${field.key}`, field.value);
       });
       alert("資料修改成功");
+    },
+    logout() {
+      this.$router.push("/");
+      this.userStore.updateToken("");
     },
   },
   mounted() {

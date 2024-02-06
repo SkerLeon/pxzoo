@@ -68,7 +68,7 @@
           <button
             type="submit"
             class="defaultBtn pcInnerText"
-            @click="toMemberPage"
+            @click.prevent="signin"
           >
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
@@ -80,6 +80,7 @@
         class="myLog forSignup"
         id="signForm"
         v-show="activeTab === 'signForm'"
+        @submit.prevent="register"
       >
         <img
           src="@/assets/images/login/login-bg/login_input.png"
@@ -92,26 +93,40 @@
               <img src="@/assets/images/login/icon/user.svg" alt="" />
             </div>
 
-            <input type="text" placeholder="用戶名" class="pcMarkText" />
+            <input
+              type="text"
+              placeholder="用戶名"
+              class="pcMarkText"
+              v-model="name"
+            />
           </div>
           <div class="acc">
             <div class="img">
               <img src="@/assets/images/login/icon/account.svg" alt="" />
             </div>
 
-            <input type="text" placeholder="帳號" class="pcMarkText" />
+            <input
+              type="text"
+              placeholder="帳號"
+              class="pcMarkText"
+              v-model="acc"
+            />
           </div>
           <div class="psw">
             <div class="img">
               <img src="@/assets/images/login/icon/psw.svg" alt="" />
             </div>
-            <input type="password" placeholder="密碼" />
+            <input type="password" placeholder="密碼" v-model="au4a83" />
           </div>
           <div class="psw">
             <div class="img">
               <img src="@/assets/images/login/icon/psw.svg" alt="" />
             </div>
-            <input type="password" placeholder="再次輸入密碼" />
+            <input
+              type="password"
+              placeholder="再次輸入密碼"
+              v-model="au4a83again"
+            />
           </div>
           <button class="defaultBtn pcInnerText">
             註冊
@@ -124,9 +139,10 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import { mapActions } from "pinia";
-import userStore from "@/stores/auth";
+import userStore from "../stores/auth";
+import apiInstance from "@/stores/acc";
 import MainFixedVote from "@/components/MainFixedVote.vue";
 const imgUrl = new URL(
   "../../public/images/login/login_btn_area.png",
@@ -143,7 +159,19 @@ export default {
       loginAccount: "mor_2314",
       loginPassword: "83r5^_",
       currentImage: imgUrl,
+      message: "",
+      name: "",
+      acc: "",
+      au4a83: "",
+      au4a83again: "",
     };
+  },
+  created() {
+    // 判斷有沒有登入過，如果沒有token等同於沒有登入
+    const user = this.checkLogin();
+    if (user) {
+      this.$router.push("member");
+    }
   },
   components: { MainFixedVote },
   methods: {
@@ -156,8 +184,8 @@ export default {
           {
             // username: "mor_2314",
             // password: "83r5^_"
-            username: this.username,
-            password: this.pswdddv,
+            username: this.loginAccount,
+            password: this.loginPassword,
           },
           {
             headers: {
@@ -168,18 +196,41 @@ export default {
         .then((response) => {
           if (response.data && response.data.token) {
             // localStorage.setItem('token', response.data.token)
+            console.log(response.data.token);
             this.updateToken(response.data.token);
-            this.$router.push("/");
+            this.$router.push("member");
           }
         })
         .catch((error) => console.error(error));
     },
-    userLogin() {
-      console.log(this.loginAccount);
-      console.log(this.loginPassword);
-    },
-    toMemberPage() {
-      this.$router.push("member");
+    register() {
+      if (this.au4a83 !== this.au4a83again) {
+        alert("請確認密碼");
+      } else if (this.au4a83.length < 8 && this.au4a83.length < 8) {
+        alert("密碼至少8個字");
+      } else {
+        const bodyFormData = new FormData();
+        bodyFormData.append("mem_name", this.name);
+        bodyFormData.append("mem_acc", this.acc);
+        bodyFormData.append("mem_psw", this.au4a83);
+        apiInstance({
+          method: "post",
+          url: `${import.meta.env.VITE_API_URL}/register.php`,
+          headers: { "Content-Type": "multipart/form-data" },
+          data: bodyFormData,
+        })
+          .then((res) => {
+            console.log(res);
+            if (res && res.data && res.data.msg === "success") {
+              alert("註冊成功");
+            } else {
+              alert("error");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     changeImage(imageNumber) {
       if (imageNumber === 1) {
