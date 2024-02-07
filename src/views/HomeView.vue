@@ -183,15 +183,15 @@
 
           <div class="ticket_text">
             <div class="ticket_text_title">
-              <h2 class="pcSmTitle">{{ ticket.title }}</h2>
+              <h2 class="pcSmTitle">{{ ticket.tickets_name }}</h2>
               <div class="line"></div>
               <div class="ticket_price">
                 <span class="pcInnerText">NT$</span>
-                <span class="pcSmTitle">{{ ticket.price }}</span>
+                <span class="pcSmTitle">{{ ticket.tickets_price }}</span>
               </div>
             </div>
             <div class="line"></div>
-            <p class="ticket_rule pcInnerText">{{ ticket.rule }}</p>
+            <p class="ticket_rule pcInnerText">{{ ticket.tickets_rule }}</p>
           </div>
         </div>
       </div>
@@ -919,6 +919,8 @@ import Image02 from "/images/home/home_banner_2.jpg"
 import Image03 from "/images/home/home_banner_3.jpg"
 import Image04 from "/images/home/home_banner_4.jpg"
 
+import axios from 'axios';
+
 export default {
   components: {
     RouterLink,
@@ -949,39 +951,29 @@ export default {
       //快速選單 交通
       currentSection: "traffic_page_train",
 
-      //快速選單 門票
-      tickets: [
+      //快速選單 門票class
+      ticketsClass: [
         {
-          title: "成人票",
-          price: "100",
-          rule: "18~64歲",
           class: "adult",
         },
         {
-          title: "學生票",
-          price: "80",
-          rule: "12歲以上(含)持學生證者",
           class: "student",
         },
         {
-          title: "兒童票",
-          price: "40",
-          rule: "4~11歲",
           class: "kid",
         },
         {
-          title: "愛心票",
-          price: "40",
-          rule: "65歲以上(含)",
           class: "heart",
         },
         {
-          title: "團體票",
-          price: "60",
-          rule: "15人以上適用",
           class: "group",
         },
       ],
+
+      //快速選單 門票資料
+      tickets: [],
+
+
 
       //天氣
       // 新增：用於存放天氣圖片的路徑
@@ -1144,7 +1136,6 @@ export default {
       return this.images[this.currentIndex];
     },
   },
-
   mounted() {
     //banner
     if (this.autoPlay) {
@@ -1164,6 +1155,19 @@ export default {
   created() {
     //天氣
     // this.fetchWeather();
+    axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
+      .then(response => {
+        this.tickets = response.data.map((ticket, index) => {
+          return {
+            ...ticket,
+            class: this.ticketsClass[index].class
+          };
+        });
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
   },
 
   methods: {
