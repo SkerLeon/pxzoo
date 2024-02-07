@@ -29,7 +29,8 @@
 <!-- 30% -->
     <main v-else-if="tickStep === 1">
       <TickNum 
-      :ticketsData="tickets" 
+      :ticketsData="tickets"  
+      :ticketsQtyData="ticketsQty" 
       :tipriceData="tiprice" 
       @newTiprice="updateTiprice"
       @goNextStep="showNextStep" 
@@ -65,7 +66,7 @@
       <TickFinished   
       :tidateData="tidate" :ticketsData="tickets" 
       :tipriceData="tiprice"
-      :couOpData="selectedCouOp" 
+      :couData="selectedCou" 
       :coupriceData="couprice" 
       :paypriceData="payprice" 
       :paywayData="selectedPW" 
@@ -80,15 +81,11 @@
 </template>
 
 <script>
+import axios from 'axios';
 import tickStepImg0 from "@/assets/images/ticket/PC0.png";
 import tickStepImg1 from "@/assets/images/ticket/PC1.png";
 import tickStepImg2 from "@/assets/images/ticket/PC2.png";
 import tickStepImg3 from "@/assets/images/ticket/PC3.png";
-import ticketImg1 from "@/assets/images/ticket/ticket1.svg";
-import ticketImg2 from "@/assets/images/ticket/ticket2.svg";
-import ticketImg3 from "@/assets/images/ticket/ticket3.svg";
-import ticketImg4 from "@/assets/images/ticket/ticket4.svg";
-import ticketImg5 from "@/assets/images/ticket/ticket5.svg";
 import MainFixedVote from '@/components/MainFixedVote.vue';
 import TickInfo from '@/components/tick/TickInfo.vue';
 import TickCalendar from '@/components/tick/TickCalendar.vue';
@@ -122,49 +119,55 @@ export default {
       couprice: 0,
       payprice: 0,
       tidate: new Date(),
-      tickets:[
-          {
-            id: 1,
-            name: '成人票',
-            rule: '18~64 歲',
-            price: 100,
-            src: ticketImg1,
-            qty: 0,
-          },
-          {
-            id: 2,
-            name: '學生票',
-            rule: '12 歲以上(含)持學生證者',
-            price: 80,
-            src: ticketImg2,
-            qty: 0,
-          },
-          {
-            id: 3,
-            name: '團體票',
-            rule: '15 人以上適用',
-            price: 60,
-            src: ticketImg3,
-            qty: 0,
-          },
-          {
-            id: 4,
-            name: '兒童票',
-            rule: '4~11 歲',
-            price: 40,
-            src: ticketImg4,
-            qty: 0,
-          },
-          {
-            id: 5,
-            name: '愛心票',
-            rule: '65 歲以上(含)',
-            price: 40,
-            src: ticketImg5,
-            qty: 0,
-          },
-      ],
+      tickets: [],
+      ticketsQty:[],
+// 每次按+新增
+      
+      // oldtickets:[
+      //     {
+      //       id: 1,
+      //       name: '成人票',
+      //       rule: '18~64 歲',
+      //       price: 100,
+      //       src: ticketImg1,
+      //       qty: 0,
+      //     },
+      //     {
+      //       id: 2,
+      //       name: '學生票',
+      //       rule: '12 歲以上(含)持學生證者',
+      //       price: 80,
+      //       src: ticketImg2,
+      //       qty: 0,
+      //     },
+      //     {
+      //       id: 3,
+      //       name: '團體票',
+      //       rule: '15 人以上適用',
+      //       price: 60,
+      //       src: ticketImg3,
+      //       qty: 0,
+      //     },
+      //     {
+      //       id: 4,
+      //       name: '兒童票',
+      //       rule: '4~11 歲',
+      //       price: 40,
+      //       src: ticketImg4,
+      //       qty: 0,
+      //     },
+      //     {
+      //       id: 5,
+      //       name: '愛心票',
+      //       rule: '65 歲以上(含)',
+      //       price: 40,
+      //       src: ticketImg5,
+      //       qty: 0,
+      //     },
+      // ],
+      ord_detail_qty: 0,
       coupons: [
+        // 之後抓資料表，要寫"去除重複"!!!!!
         { 
           id: 1,
           option: '不使用優惠券',
@@ -221,9 +224,11 @@ export default {
     },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
-      if(this.tickStep === 2 && this.selectedCou === ''){
+
+      if(this.tickStep === 2 && this.selectedCou === null){
         this.selectedCou = this.coupons[0].option;
       }
+
       this.tickStep++;
       this.startFromTop();
     },
@@ -244,15 +249,16 @@ export default {
       this.payprice = newTiprice;
     },
     updateCoupon(newCoupon){
-      // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+      this.selectedCou = newCoupon;
+
       let couVal = this.coupons.find(
-          (cou) => cou.id === newCoupon
+          (cou) => cou.option === newCoupon
       );
-      this.selectedCouOp = couVal.option;
-      console.log("couVal.value",couVal.value);
+
       this.couprice =  parseInt(
           (this.tiprice * (1 - couVal.value)).toFixed(2)
       );
+            // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
       this.payprice = this.tiprice - this.couprice;
     },
     updatePayway(newPayway){
@@ -275,6 +281,26 @@ export default {
   created(){
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
+
+    // 引入tickets資料
+    axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
+    .then(response => {
+      // 確保 response.data 是數組
+      if (Array.isArray(response.data)) {
+        this.tickets = response.data;
+
+        // 為每個 ticket 添加 qty 屬性
+        this.tickets.forEach(ticket => {
+          ticket.qty = 0;
+        });
+      } else {
+        console.error('Invalid data format'); // 处理非数组的情况
+      } 
+    })
+    .catch(error => {
+      console.error("Error fetching data: ", error);
+    });
+    
   },
   mounted() {
   },

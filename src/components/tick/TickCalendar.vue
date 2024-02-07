@@ -63,9 +63,8 @@ export default {
         },
         nextStep(){
             const today = new Date();
-            today.setHours(17, 0, 0, 0);
-            // 將 today 變數的時間部分設定為午夜（00:00:00:000），同時保留本地時區，today 代表的是當前日期
-            if (this.tidateData.getTime() < today.getTime()) {
+            today.setHours(17);
+            if ((this.tidateData.getDate()===today.getDate() && this.tidateData.getTime() > today.getTime()) || this.tidateData.getDate()<today.getDate() ) {
                 this.cantNextPage="<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
             }else if( this.offDate(this.tidateData) ){
                 this.cantNextPage="<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";

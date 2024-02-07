@@ -33,20 +33,20 @@
                 </h2>
             </hgroup>
             <article class="choosed">
-                <main v-for=" ticket in ticketsData" :key="ticket.id">
+                <main v-for=" t in ticketsData" :key="t.tickets_id">
                     <div>
-                        <p class="pcInnerText">{{ ticket.name }}</p>
-                        <span class="pcMarkText">{{ ticket.rule }}</span>
+                        <p class="pcInnerText">{{ t.tickets_name }}</p>
+                        <span class="pcMarkText">{{ t.tickets_rule }}</span>
                     </div>
                     <h2 class="pcSmTitle">
-                        {{ ticket.qty }} 
+                        {{ t.qty }} 
                         <span class="pcMarkText">張</span>
                     </h2>
                 </main>
             </article>
             <hgroup class="coupon pcInnerText">
                 <p>優惠折扣</p>
-                <p>{{ couOpData }}</p>
+                <p>{{ couData }}</p>
             </hgroup>
             <div class="price">
                 <span>票券金額</span>
@@ -108,7 +108,7 @@ export default {
             type: Number,
             required: true,
         },
-        couOpData: {
+        couData: {
             type: String,
             required: true,
         },
@@ -137,7 +137,7 @@ export default {
         return {
             cashFinished: '訂單完成，訂單編號請見：會員中心 - 購票記錄，<br>入園當天請至服務台「快速通道」告知訂單編號，將由專人協助您，<br>PXZoO 的獨家動物冒險之旅，等您來探索！',
             cardFinished: '付款完成，數位票券已發送至：會員中心 - 購票記錄，<br>入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！',
-            sec: 20,
+            sec: 30,
             timer: null,
         }
     },
@@ -173,8 +173,10 @@ export default {
     watch:{},
     created(){
         this.countDown();
+        this.couData;
     },
     beforeDestroy() {
+        console.log("end");
         clearInterval(this.timer); // 清理定时器
     },
 }

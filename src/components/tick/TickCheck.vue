@@ -25,13 +25,13 @@
             </h2>
         </hgroup>
         <article class="choosed">
-            <main v-for=" ticket in ticketsData" :key="ticket.id">
+            <main v-for=" t in ticketsData" :key="t.tickets_id">
                 <div>
-                    <p class="pcInnerText">{{ ticket.name }}</p>
-                    <span class="pcMarkText">{{ ticket.rule }}</span>
+                    <p class="pcInnerText">{{ t.tickets_name }}</p>
+                    <span class="pcMarkText">{{ t.tickets_rule }}</span>
                 </div>
                 <h2 class="pcSmTitle">
-                        {{ ticket.qty }} 
+                        {{ t.qty }} 
                     <span class="pcMarkText">張</span>
                 </h2>
             </main>
@@ -41,7 +41,7 @@
             <p v-if="noCoupon">目前沒有優惠券</p>
             <select v-else class="pcInnerText" v-model="couData">
                 <option value="null" disabled hidden>請選擇優惠券</option>
-                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon.id">{{ coupon.option }}</option>
+                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon.option">{{ coupon.option }}</option>
             </select>
         </hgroup>
         <div class="price">
@@ -139,7 +139,7 @@ export default {
             required: true,
         },
         couData: {
-            type: Number,
+            type: String,
             required: true,
         },
         coupriceData: {
@@ -228,6 +228,7 @@ export default {
                 return this.paywayData;
             },
             set(value){
+                console.log(value);
                 this.$emit('newPayway', value);
             },
         },
