@@ -38,6 +38,80 @@
         max-width: 768px;
     }
 }
+.animal-lightBox{
+    position: fixed;
+    z-index: 12;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    .animal-hint{
+        position: absolute;
+        top:20vw;
+        background-color: #fff;
+        padding: 2%;
+        border-radius: 10px;
+        width: 30vw;
+        height: 12vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img.hint-close{
+            cursor: pointer;
+            position: absolute;
+            top: 1vw;
+            right: 1vw;
+            width: 20px;
+        }
+        p{
+            line-height: 240%;
+            span{
+                padding: 0 1vw;
+                img{
+                vertical-align: middle;
+                }
+        }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .animal-hint{
+            top:45vw;
+            width: 60vw;
+            height: 24vw;
+            img.hint-close{
+                top: 2.5vw;
+                right: 2.5vw;
+                width: 25px;
+            }
+                span{
+                    padding: 0 2vw;
+                }
+        }
+
+    }
+    @media screen and (max-width: 414px) {
+        .animal-hint{
+            top:45vw;
+            width: 80vw;
+            height: 44vw;
+            padding: 8%;
+            img.hint-close{
+                top: 5vw;
+                right: 5vw;
+            }
+                span{
+                    padding: 0 2vw;
+                    img{
+                        vertical-align: middle;
+                    }
+                }
+        }
+
+    }
+}
 
 .sidebar_fixed{
     position: fixed;

@@ -1,7 +1,14 @@
 <template>
     <MainFixedVote/>
     <section class="forHeader animal_detail_section">
-
+        <div class="animal-lightBox"
+        v-show="showHint" @click.stop="closeHint">
+            <div class="animal-hint">
+                <img class="hint-close" src="/src/assets/images/animal/icon/close.svg" alt="close"
+                @click="closeHint">
+                <p class="pcMarkText">此頁面含有動物叫聲，請打開聲音點選<span><img src="../assets/images/animal/icon/Sound.svg" alt=""></span>聆聽</p>
+            </div>
+        </div>
         <!-- 動物側邊欄 pc才有 -->
         <aside class="animal_detail_menu">
             <img 
@@ -34,46 +41,45 @@
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
-                        <h2 class="animal_detail_species">獅子</h2>
+                        <h2 class="animal_detail_species">{{ animal.species }}</h2>
+                        <!-- 聲音 -->
                         <div class="animal_detail_sound"
-                        @click="animalSoundPlay">
-                        
-                            <img src="../assets/images/animal/icon/Sound.svg" alt="">
+                        @click="animalSoundPlay">            <img src="../assets/images/animal/icon/Sound.svg" alt="">
                         </div>
                     </div>
                     <div class="animal_detail_sec-section">
                         <div class="animal_detail_name">
                             <h5 class="pcMarkText">名字</h5>
-                            <p class="pcInnerText">威廉</p>
+                            <p class="pcInnerText">{{animal.name}}</p>
                         </div>
                         <div class="animal_detail_life">
                             <h5 class="pcMarkText">平均壽命</h5>
-                            <p class="pcInnerText">10-14年</p>
+                            <p class="pcInnerText">{{animal.lifeSpan}}</p>
                         </div>
                     </div>
                     <div class="animal_detail_live">
                         <h5 class="pcMarkText">分布地區</h5>
-                        <p class="pcInnerText">主要分布在非洲和印度次大陸</p>
+                        <p class="pcInnerText">{{ animal.area }}</p>
                     </div>
                     <div class="animal_detail_food">
                         <h5 class="pcMarkText">食性</h5>
-                        <p class="pcInnerText">獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物</p>
+                        <p class="pcInnerText">{{ animal.food }}</p>
                     </div>
                     <div class="animal_detail_feature">
                         <h5 class="pcMarkText">特徵</h5>
-                        <p class="pcInnerText">獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵</p>
+                        <p class="pcInnerText">{{ animal.features }}</p>
                     </div>
                 </div>
 
                 <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                        <img :src="getSmallPicUrl(`animal_pic/pic${imgnum}_lion.png`)" alt="pic_lion">
+                        <img :src="getSmallPicUrl(`animal_pic/pic${imgnum}_${animal.en_name}.png`)" alt="pic_lion">
                     </div>
                     <div class="small_pic">
                         <img
                         v-for="num in 3"
-                        :src="getSmallPicUrl(`animal_pic/pic${num}_lion.png`)" alt="small_pic_lion"
+                        :src="getSmallPicUrl(`animal_pic/pic${num}_${animal.en_name}.png`)" alt="small_pic_lion"
                         @click="imgnum = num">
                     </div>
                 </div>
@@ -82,10 +88,10 @@
             <!-- 下方介紹 -->
             <div class="animal_detail_intro">
                 <div class="animal_detail_icon">
-                    <img src="../assets/images/animal/animal_icon/animal_icon_lion.png" alt="lion">
+                    <img :src="getAnimalIconUrl(animal.en_name)" alt="lion">
                 </div>
                 <div class="animal_detail_text_bg">
-                    <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
+                    <p class="pcInnerText"> {{ animal.description }}</p>
                 </div>
             </div>
         </main>
@@ -94,13 +100,14 @@
         <div class="animal_detail_intro_ph">
             <div class="animal_detail_intro_content">
                 <div class="animal_detail_icon">
-                    <img src="../assets/images/animal/animal_icon/animal_icon_lion.png" alt="lion">
+                    <img :src="getAnimalIconUrl(animal.en_name)" alt="lion">
                 </div>
-                <p class="pcInnerText"> 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。</p>
+                <p class="pcInnerText"> {{ animal.description }}</p>
             </div>
 
             <!-- 返回上頁 mb才有 -->
-            <button class="iconBtn pcInnerText animal_detail_btn"                 @click="backtoAnimal()">
+            <button class="iconBtn pcInnerText animal_detail_btn"                 
+            @click="backtoAnimal()">
             <p class="iconText">
                 <img
                 src="../assets/images/animal/goback-arrow.png"
@@ -136,7 +143,17 @@ import animalSound from "../../public/audio/sound_lion.mp3";
 export default {
     data() {
         return {
-            //animal
+            animal:{
+                species: '獅子',
+                name:'威廉',
+                lifeSpan:'10-14年',
+                area:'主要分布在非洲和印度次大陸',
+                food:'獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物',
+                features:'獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵',
+                description:' 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。',
+                en_name:'lion',
+
+            },
             animals_species : [
                 {
                     park:'草原之聲',
@@ -236,18 +253,35 @@ export default {
             ],
 
             //小圖換大圖
-            imgnum: 1
+            imgnum: 1,
+            //關提示
+            showHint: true
                 
         };
     },
-
+    created(){
+        document.body.style.overflow = 'hidden';
+        const closed = sessionStorage.getItem('hintClosed');
+        if (closed) {
+            this.showHint = false;
+        }
+    },
     methods: {
+        closeHint() {
+            sessionStorage.setItem('hintClosed', 'true');
+            this.showHint = false;
+            document.body.style.overflow = ''
+        },
+
         getImageUrl(paths) {
             return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
         },
 
         getIconUrl(paths) {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
+        },
+        getAnimalIconUrl(paths) {
+            return new URL(`../assets/images/animal/animal_icon/animal_icon_${paths}.png`, import.meta.url).href
         },
 
         getSmallPicUrl(paths) {
