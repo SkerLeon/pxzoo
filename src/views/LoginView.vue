@@ -39,7 +39,7 @@
         class="myLog"
         id="loginForm"
         v-show="activeTab === 'loginForm'"
-        @submit.prevent="userLogin"
+        @submit.prevent="login"
       >
         <img
           src="@/assets/images/login/login-bg/login_input.png"
@@ -63,13 +63,9 @@
             <div class="img">
               <img src="@/assets/images/login/icon/psw.svg" alt="" />
             </div>
-            <input type="password" placeholder="密碼" v-model="loginPassword" />
+            <input type="password" placeholder="密碼" v-model="loginau4a83" />
           </div>
-          <button
-            type="submit"
-            class="defaultBtn pcInnerText"
-            @click.prevent="signin"
-          >
+          <button type="submit" class="defaultBtn pcInnerText">
             登入
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
@@ -139,7 +135,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import { mapActions } from "pinia";
 import userStore from "../stores/auth";
 import apiInstance from "@/stores/acc";
@@ -156,9 +152,9 @@ export default {
   data() {
     return {
       activeTab: "loginForm",
-      loginAccount: "mor_2314",
-      loginPassword: "83r5^_",
       currentImage: imgUrl,
+      loginAccount: "",
+      loginau4a83: "",
       message: "",
       name: "",
       acc: "",
@@ -177,31 +173,33 @@ export default {
   methods: {
     //(我要調用的js檔案,調用裡面的哪些函式)
     ...mapActions(userStore, ["updateToken", "updateName", "checkLogin"]),
-    signin() {
-      axios
-        .post(
-          "https://fakestoreapi.com/auth/login",
-          {
-            // username: "mor_2314",
-            // password: "83r5^_"
-            username: this.loginAccount,
-            password: this.loginPassword,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data && response.data.token) {
-            // localStorage.setItem('token', response.data.token)
-            console.log(response.data.token);
-            this.updateToken(response.data.token);
-            this.$router.push("member");
+    login() {
+      const bodyFormData = new FormData();
+      bodyFormData.append("mem_acc", this.loginAccount);
+      bodyFormData.append("mem_psw", this.loginau4a83);
+
+      // 請記得將php埋入跨域
+      apiInstance({
+        method: "post",
+        url: `${import.meta.env.VITE_API_URL}/memberLogin.php`,
+        headers: { "Content-Type": "multipart/form-data" },
+        data: bodyFormData,
+      })
+        .then((res) => {
+          console.log(res);
+          if (res && res.data) {
+            if (res.data.code == 1) {
+              this.updateToken(res.data.session_id);
+              this.updateUserData(res.data.memInfo);
+              alert("登入成功");
+            } else {
+              alert("登入失敗");
+            }
           }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.log(error);
+        });
     },
     register() {
       if (this.au4a83 !== this.au4a83again) {
@@ -224,7 +222,7 @@ export default {
             if (res && res.data && res.data.msg === "success") {
               alert("註冊成功");
             } else {
-              alert("error");
+              alert("註冊失敗");
             }
           })
           .catch((error) => {
