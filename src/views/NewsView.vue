@@ -37,7 +37,10 @@ Vue.config.devtools = true;
         <!-- 限制一頁的數量 -->
         <a class="news-each"
         v-for="item in listAfterPagination"
-      :key="item ">
+      :key="item "
+      data-aos="fade-up"
+      data-aos-easing="ease-in-out"
+      data-aos-anchor-placement =“top-bottom”>
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
           <div class="news_info"
           @click="toNewsDetail()">
