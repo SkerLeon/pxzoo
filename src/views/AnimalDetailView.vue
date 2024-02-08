@@ -6,7 +6,7 @@
             <div class="animal-hint">
                 <img class="hint-close" src="/src/assets/images/animal/icon/close.svg" alt="close"
                 @click="closeHint">
-                <p class="pcMarkText">此頁面含有動物叫聲，請打開聲音點選<span><img src="../assets/images/animal/icon/Sound.svg" alt=""></span>聆聽</p>
+                <p class="pcMarkText">此頁面含有動物叫聲，請點選<span><img src="../assets/images/animal/icon/Sound.svg" alt=""></span>聆聽</p>
             </div>
         </div>
         <!-- 動物側邊欄 pc才有 -->
@@ -14,7 +14,7 @@
             <img 
             class="monkey"
             src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
-            <ul class="animal_link_btn">
+            <ul class="animal_link_btn ">
                 <li class="animaldetail_filter "
                 v-for="(category, index) in animals_species"
                 :key="category.id"
@@ -28,7 +28,7 @@
                 </div>
                     <!-- @click.stop阻止蔓延 -->
                     <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
-                        <li v-for="child in category.children" :key="child.id">
+                        <li v-for="child in category.children" :key="child.id" class="fade">
                             <a class="pcInnerText" href="#">{{ child.species }}</a>
                         </li>
                     </ul>
@@ -44,7 +44,8 @@
                         <h2 class="animal_detail_species">{{ animal.species }}</h2>
                         <!-- 聲音 -->
                         <div class="animal_detail_sound"
-                        @click="animalSoundPlay">            <img src="../assets/images/animal/icon/Sound.svg" alt="">
+                        @click="animalSoundPlay">            
+                        <img src="../assets/images/animal/icon/Sound.svg" alt="soundIcon">
                         </div>
                     </div>
                     <div class="animal_detail_sec-section">
@@ -255,7 +256,7 @@ export default {
             //小圖換大圖
             imgnum: 1,
             //關提示
-            showHint: true
+            showHint: true,
                 
         };
     },
@@ -264,6 +265,12 @@ export default {
         const closed = sessionStorage.getItem('hintClosed');
         if (closed) {
             this.showHint = false;
+            document.body.style.overflow = ''
+        }
+    },
+    computed:{
+        animalSoundPath(){
+            return this.getAnimalSound(this.animal.en_name)
         }
     },
     methods: {
@@ -287,9 +294,11 @@ export default {
         getSmallPicUrl(paths) {
             return new URL(`../assets/images/animal/${paths}`, import.meta.url).href
         },
-
+        getAnimalSound(paths){
+            return new URL(`../../public/audio/sound_${paths}.mp3`, import.meta.url).href
+        },
         animalSoundPlay(){
-            var sound = new Audio(animalSound)
+            var sound = new Audio(this.animalSoundPath)
             sound.play();
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
@@ -299,6 +308,7 @@ export default {
             if (i !== index) {
             item.isShow = false;
             }
+
         });  
         },
         //回到上頁

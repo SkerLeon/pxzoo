@@ -159,9 +159,6 @@ ul.news_pc_filter li{
                     @media screen and (max-width: 768px) {
                         padding-top: 0.8vw;
                     }
-                    @media screen and (max-width: 450px) {
-                        padding-top: 1.8vw;
-                    }
                 }
             }
         }
@@ -181,7 +178,6 @@ ul.news_pc_filter li{
             vertical-align: middle;
         }
         .news-text{
-            padding: 0 4.6vw;
             padding-top : 3.6vw;
             font-size: $phFontH3;
             font-family: $font;

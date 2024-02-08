@@ -35,7 +35,9 @@
             <div class="animal_park grassLand" ref="grassLand">
                 <!-- 分館名稱 -->
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
-                <div class="animal_info">
+                <div class="animal_info"
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out" >
                     <!-- 個別動物種類名+圖片 -->
                     <a v-for="(animal, index) in animals_grassland" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
@@ -52,7 +54,9 @@
         v-show="showingSections.polar">
             <div class="animal_park" ref="polar">
                 <h2 class="animal_park_name pcBigTitle">極地秘境</h2>
-                <div class="animal_info">
+                <div class="animal_info"
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out" >
                     <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                     <div class="animal_frame">
@@ -69,7 +73,9 @@
         v-show="showingSections.jungle">
             <div class="animal_park" ref="jungle">
                 <h2 class="animal_park_name pcBigTitle">叢林奇蹟</h2>
-                <div class="animal_info">
+                <div class="animal_info"
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out" >
                     <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                     <div class="animal_frame">
@@ -85,8 +91,10 @@
         v-show="showingSections.birds">
             <div class="animal_park" ref="birds">
                 <h2 class="animal_park_name pcBigTitle">鳥園樂章</h2>
-                <div class="animal_info">
-                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-4 col-sm-6"
+                <div class="animal_info"
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out">
+                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-4 col-sm-6" 
                     @click="toAnimalDetail()">
                     <div class="animal_frame">
                         <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
@@ -101,7 +109,9 @@
         v-show="showingSections.aqua">
             <div class="animal_park" ref="aqua">
                 <h2 class="animal_park_name pcBigTitle">海洋奇觀</h2>
-                <div class="animal_info">
+                <div class="animal_info"
+                data-aos="fade-up"
+                data-aos-easing="ease-in-out" >
                     <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail()">
                     <div class="animal_frame">
