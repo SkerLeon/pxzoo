@@ -28,14 +28,16 @@
 
       <div class="home_banner_carousel">
         <!-- <img class="home_banner_carousel_img" :src="currentImage" alt="Carousel Image"/> -->
-        <div
-          class="home_banner_carousel_img"
-          :style="{
-            backgroundImage: `url(${currentImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }"
-        >
+        <div class="home_banner_carousel_box">
+          <div
+            class="home_banner_carousel_img"
+            v-for="(item, index) in images"
+            :key="index"
+            :style="{
+              backgroundImage: `url(${item})`,
+              left: `${(index - this.currentIndex)*100}%`
+            }"
+          ></div>          
           <div class="home_banner_carousel_controls">
             <button @click="prev">
               <img
