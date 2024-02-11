@@ -9,8 +9,8 @@
       <div class="podium_no">
 
         <div v-for="podium in podium_list" :class="podium.class">
-          <img class="vote_img" :src="getImageUrl(podium.animal_img)" alt="Animal" />
-          <div class="vote_name pcDecSmTitle">{{ podium.name }}</div>
+          <img class="vote_img" :src="getImageUrl(podium.animal_pic_a)" alt="Animal" />
+          <div class="vote_name pcDecSmTitle">{{ podium.animal_name }}</div>
           <div class="podium_box">
             <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
           </div>
@@ -87,10 +87,10 @@
     <div v-for="(ranking, index) in ranking_list" :key="index" class="ranking"  data-aos="zoom-in-up">
       <div class="content" >
         <div class="number pcDecBigTitle">{{ ranking.number }}</div>
-        <div class="img"> <img :src="getImageUrl(ranking.animal_img)" alt="Animal" /></div>
+        <div class="img"> <img :src="getImageUrl(ranking.animal_pic_a)" alt="Animal" /></div>
 
-        <div class="name pcSmTitle">{{ ranking.name }}</div>
-        <div class="votes phSmTitle">{{ ranking.point }}票</div>
+        <div class="name pcSmTitle">{{ ranking.animal_name }}</div>
+        <div class="votes phSmTitle">{{ ranking.vote_count }}票</div>
         <button class="phInnerText defaultBtn" @click="voteTop3(ranking)"> <img
             src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           立即投票
@@ -141,16 +141,16 @@
           <div class="vote_card">
             <router-link :to="'/animalDetail/' ">
             <div class="vote_wrap_animal">
-              <img :src="getImageUrl(voteItem.animal_img)" alt="Animal" />
+              <img :src="getImageUrl(voteItem.animal_pic_a)" alt="Animal" />
               <div class="vote_wrap_animal_txt pcInnerText">
                 前往動物詳細資訊
               </div>
             </div>
           </router-link>
-            <div class="vote_name pcSmTitle">{{ voteItem.name }}</div>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
             <div class="vote_icon pcInnerText">
               <img src="@/assets/images/vote/star.svg" alt="" />{{
-                voteItem.point
+                voteItem.vote_count
               }}票
             </div>
             <button @click="vote_animal(voteItem)" class="pcInnerText defaultBtn">
@@ -178,25 +178,25 @@ export default {
 
       podium_list: [
         {
-          name: "琳達",
-          // medal: "第二名獎牌",
+          animal_name: "琳達",
+       
           score: 197,
-          animal_img: 'giraffe',
+          animal_pic_a: 'giraffe',
           NO: '2',
           class: 'podium2'
         },
         {
-          name: "艾迪",
-          // medal: "第一名獎牌",
-          animal_img: 'elephant',
+          animal_name: "艾迪",
+        
+          animal_pic_a: 'elephant',
           score: 205,
           NO: '1',
           class: 'podium1'
         },
         {
-          name: "阿斯蘭",
-          // medal: "第三名獎牌",
-          animal_img: 'lion',
+          animal_name: "阿斯蘭",
+      
+          animal_pic_a: 'lion',
           score: 146,
           NO: '3',
           class: 'podium3'
@@ -205,65 +205,65 @@ export default {
       ranking_list: [
         {
           number: 1,
-          name: "威廉",
-          point: 300,
-          animal_img: "lion",
+          animal_name: "威廉",
+          vote_count: 300,
+          animal_pic_a: "lion",
         },
         {
           number: 2,
-          name: "琳達",
-          point: 250,
-          animal_img: "giraffe",
+          animal_name: "琳達",
+          vote_count: 250,
+          animal_pic_a: "giraffe",
         },
         {
           number: 3,
-          name: "馬克",
-          point: 200,
-          animal_img: "meerkat",
+          animal_name: "馬克",
+          vote_count: 200,
+          animal_pic_a: "meerkat",
         },
       ],
 
       vote_grass_list: [
-        { animal_img: "lion", name: "威廉", point: "10" },
-        { animal_img: "giraffe", name: "琳達", point: "23" },
-        { animal_img: "elephant", name: "索拉", point: "12" },
-        { animal_img: "cheetah", name: "豹哥", point: "123" },
-        { animal_img: "zebra", name: "小班", point: "263" },
-        { animal_img: "meerkat", name: "馬克", point: "237" },
+        { animal_pic_a: "lion", animal_name: "威廉", vote_count: "10" },
+        { animal_pic_a: "giraffe", animal_name: "琳達", vote_count: "23" },
+        { animal_pic_a: "elephant", animal_name: "索拉", vote_count: "12" },
+        { animal_pic_a: "cheetah", animal_name: "豹哥", vote_count: "123" },
+        { animal_pic_a: "zebra", animal_name: "小班", vote_count: "263" },
+        { animal_pic_a: "meerkat", animal_name: "馬克", vote_count: "237" },
       ],
 
       vote_polar_list: [
-        { animal_img: "polarBear", name: "寶拉", point: "1223" },
-        { animal_img: "kingPenguin", name: "小雪", point: "13" },
-        { animal_img: "magellanicPenguin", name: "亞當", point: "1423" },
-        { animal_img: "arcticFox", name: "雪球", point: "13" },
-        { animal_img: "seal", name: "波比", point: "113" },
+        { animal_pic_a: "polarBear", animal_name: "寶拉", vote_count: "1223" },
+        { animal_pic_a: "kingPenguin", animal_name: "小雪", vote_count: "13" },
+        { animal_pic_a: "magellanicPenguin", animal_name: "亞當", vote_count: "1423" },
+        { animal_pic_a: "arcticFox", animal_name: "雪球", vote_count: "13" },
+        { animal_pic_a: "seal", animal_name: "波比", vote_count: "113" },
       ],
 
       vote_jungle_list: [
-        { animal_img: "capybara", name: "珍珍", point: "120" },
-        { animal_img: "malayanTapir", name: "栗栗", point: "178" },
-        { animal_img: "orangutan", name: "狄恩", point: "124" },
-        { animal_img: "tiger", name: "瑪雅", point: "423" },
-        { animal_img: "sloth", name: "曼曼", point: "43" },
-        { animal_img: "monkey", name: "中中", point: "123" },
+        { animal_pic_a: "capybara", animal_name: "珍珍", vote_count: "120" },
+        { animal_pic_a: "malayanTapir", animal_name: "栗栗", vote_count: "178" },
+        { animal_pic_a: "orangutan", animal_name: "狄恩", vote_count: "124" },
+        { animal_pic_a: "tiger", animal_name: "瑪雅", vote_count: "423" },
+        { animal_pic_a: "sloth", animal_name: "曼曼", vote_count: "43" },
+        { animal_pic_a: "monkey", animal_name: "中中", vote_count: "123" },
       ],
 
       vote_birds_list: [
-        { animal_img: "flamingo", name: "阿翔", point: "13" },
-        { animal_img: "japaneseCrane", name: "曉曉", point: "23" },
-        { animal_img: "owl", name: "晴空", point: "32" },
-        { animal_img: "eagle", name: "艾妮", point: "98" },
-        { animal_img: "toucan", name: "嘟嘟", point: "100" },
-        { animal_img: "pelican", name: "小瑜", point: "78" },
+        { animal_pic_a: "flamingo", animal_name: "阿翔", vote_count: "13" },
+        { animal_pic_a: "japaneseCrane", animal_name: "曉曉", vote_count: "23" },
+        { animal_pic_a: "owl", animal_name: "晴空", vote_count: "32" },
+        { animal_pic_a: "eagle", animal_name: "艾妮", vote_count: "98" },
+        { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "100" },
+        { animal_pic_a: "pelican", animal_name: "小瑜", vote_count: "78" },
       ],
 
       vote_aqua_list: [
-        { animal_img: "stingray", name: "藍波", point: "95" },
-        { animal_img: "shark", name: "海妞", point: "456" },
-        { animal_img: "eel", name: "燈燈", point: "37" },
-        { animal_img: "clownfish", name: "馬林", point: "1" },
-        { animal_img: "octopus", name: "巴奇", point: "0" },
+        { animal_pic_a: "stingray", animal_name: "藍波", vote_count: "95" },
+        { animal_pic_a: "shark", animal_name: "海妞", vote_count: "456" },
+        { animal_pic_a: "eel", animal_name: "燈燈", vote_count: "37" },
+        { animal_pic_a: "clownfish", animal_name: "馬林", vote_count: "1" },
+        { animal_pic_a: "octopus", animal_name: "巴奇", vote_count: "0" },
       ],
     };
   },
@@ -298,7 +298,7 @@ export default {
       }
 
       // 在 ranking_list 中找到被選中動物的索引
-      const index = this.ranking_list.findIndex(item => item.name === animal.name);
+      const index = this.ranking_list.findIndex(item => item.animal_name === animal.animal_name);
       // 如果找到該動物
       if (index !== -1) {
         // 增加票數
@@ -321,13 +321,13 @@ export default {
       }
 
       // 在 currentVoteList 中找到被選中動物的索引
-      const index = this.currentVoteList.findIndex(item => item.name === animal2.name);
+      const index = this.currentVoteList.findIndex(item => item.animal_name === animal2.animal_name);
       // 如果找到該動物
       if (index !== -1) {
         // 增加票數
-        this.currentVoteList[index].point++;
+        this.currentVoteList[index].vote_count++;
         // 更新已經投票的次數
-        this.votedCount++;
+        this.vote_count++;
         console.log("投票成功！");
       } else {
         console.error("未找到該動物！");
