@@ -398,7 +398,7 @@ export default {
   },
   methods: {
     getAnimalIconUrl(paths){
-      return new URL(`../assets/images/animal/animal_icon/${paths}.png`, import.meta.url).href
+      return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}.png`,import.meta.url).href;
     },
     getItemTopUrl(paths){
       return new URL(`../assets/images/park/pk_Tickets_item_top${paths}.png`, import.meta.url).href
