@@ -230,7 +230,7 @@ export default {
       hoverStatus:{},
       icon_animals:[],
       AnimalDetails:false,
-      hiddenIndexes : [3, 5, 10, 11, 14, 23, 25, 27, 32, 31],
+      hiddenIndexes : [],
     };
   },
   created() {
@@ -242,6 +242,7 @@ export default {
     .then(([response1, response2]) => {
       this.tickets = response1.data;
       this.icon_animals = response2.data;
+      this.fillHiddenIndexes(); 
     })
     .catch(error => {
       console.error("Error fetching data: ", error);
@@ -285,7 +286,12 @@ export default {
       this.hoverStatus[index] = false;
     },
     isHidden(index) {
-      return this.hiddenIndexes.includes(index + 1);
+      return this.hiddenIndexes.includes(index);
+    },
+    fillHiddenIndexes() {
+    this.hiddenIndexes = this.icon_animals
+      .map((animal, index) => animal.animal_name === null ? index : null)
+      .filter(index => index !== null);
     },
     Animal_details_closure(){
       this.AnimalDetails = false
