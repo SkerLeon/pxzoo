@@ -309,6 +309,7 @@ export default {
       this.selectedAnimal_species = this.icon_animals[index].animal_species;
       this.selectedAnimal_location_name = this.icon_animals[index].category_name;
       this.selectedAnimal_pic = this.icon_animals[index].animal_small_pic;
+      console.log(this.selectedAnimal_pic);
       this.selectedAnimal_router = index+1;
       this.AnimalDetails = true;
     },
