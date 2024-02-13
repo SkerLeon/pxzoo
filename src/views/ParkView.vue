@@ -38,7 +38,7 @@
       
       <div v-show="show_animals"  class="pk_animal_icon">
         <div v-for="(animal,index) in icon_animals" 
-        @click="Animal_details_open"
+        @click="Animal_details_open(index)"
         :class="`pk_animal_default pk_animal_icon${index+1}`">
           <div v-show="!isHidden(index)" class="pk_animal_icon_dialog_content">
             <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
@@ -89,14 +89,14 @@
 
     <section v-show="AnimalDetails" class="pk_Animal_details">
       <div class="pk_Animal_details_content_align">
-        <h1>草原之聲</h1>
+        <h1>{{ selectedAnimal_location_name }}</h1>
         <div class="pk_Animal_details_closure_icon">
           <img @click="Animal_details_closure" class="pk_Animal_details_closure_icon" src="@/assets/images/park/pk_Animal_details_closure_icon.svg" alt="關閉按鈕">
         </div>
       </div>
 
       <div class="pk_Animal_details_img">
-        <img src="@/assets/images/animal/small_pic/small_pic_lion.png" alt="動物照片">
+        <img :src="getAnimalPicUrl(selectedAnimal_pic)" alt="動物照片">
 
         <div class="pk_Animal_details_frame">
           <img src="@/assets/images/park/pk_Animal_details_frame.svg" alt="像素邊框">
@@ -104,8 +104,8 @@
       </div>
 
       <div class="pk_Animal_details-text">
-        <p class="pcInnerText">獅子</p>
-        <p class="pcInnerText">威廉</p>
+        <p class="pcInnerText">{{ selectedAnimal_species }}</p>
+        <p class="pcInnerText">{{ selectedAnimal_name }}</p>
       </div>
 
       <button @click="link_animal_information" class="pk_button defaultBtn pcInnerText">
@@ -230,7 +230,12 @@ export default {
       hoverStatus:{},
       icon_animals:[],
       AnimalDetails:false,
-      hiddenIndexes : [3, 5, 10, 11, 14, 23, 25, 27, 32, 31],
+      hiddenIndexes : [],
+      selectedAnimal_name: "",
+      selectedAnimal_species: "",
+      selectedAnimal_location_name: "",
+      selectedAnimal_pic: "",
+      selectedAnimal_router: "",
     };
   },
   created() {
@@ -242,6 +247,7 @@ export default {
     .then(([response1, response2]) => {
       this.tickets = response1.data;
       this.icon_animals = response2.data;
+      this.fillHiddenIndexes(); 
     })
     .catch(error => {
       console.error("Error fetching data: ", error);
@@ -253,6 +259,9 @@ export default {
   methods: {
     getAnimalIconUrl(paths){
       return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`,import.meta.url).href;
+    },
+    getAnimalPicUrl(paths){
+      return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/${paths}`,import.meta.url).href;
     },
     getItemTopUrl(paths){
       return new URL(`../assets/images/park/pk_Tickets_item_top${paths}.png`, import.meta.url).href
@@ -285,16 +294,27 @@ export default {
       this.hoverStatus[index] = false;
     },
     isHidden(index) {
-      return this.hiddenIndexes.includes(index + 1);
+      return this.hiddenIndexes.includes(index);
+    },
+    fillHiddenIndexes() {
+    this.hiddenIndexes = this.icon_animals
+      .map((animal, index) => animal.animal_name === null ? index : null)
+      .filter(index => index !== null);
     },
     Animal_details_closure(){
       this.AnimalDetails = false
     },
-    Animal_details_open(){
-      this.AnimalDetails = true
+    Animal_details_open(index){
+      this.selectedAnimal_name = this.icon_animals[index].animal_name;
+      this.selectedAnimal_species = this.icon_animals[index].animal_species;
+      this.selectedAnimal_location_name = this.icon_animals[index].category_name;
+      this.selectedAnimal_pic = this.icon_animals[index].animal_small_pic;
+      console.log(this.selectedAnimal_pic);
+      this.selectedAnimal_router = index+1;
+      this.AnimalDetails = true;
     },
     link_animal_information(){
-      this.$router.push('/animalDetail');
+      this.$router.push({ name: 'animalDetail', params: { id: this.selectedAnimal_router } });
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
