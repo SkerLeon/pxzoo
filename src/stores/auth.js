@@ -44,5 +44,31 @@ export default defineStore("userStore", {
       // 定義一個名為 updateName 的方法，接受一個 payload 作為參數。
       this.name = payload; // 使用提供的 payload 更新存儲庫中的名稱。
     },
+    updateUserData(val) {
+      console.log(val);
+      // 不把全部資訊紀錄
+      this.userData = {
+        name: val.mem_name,
+        // email驗證狀況1|0ㄋ
+        validation: val.mem_validation,
+        // 封鎖狀況1|0
+        state: val.mem_state,
+        // 如果有權限可以把權限角色記載資料庫
+        role: "editor",
+      };
+      localStorage.setItem("userData", JSON.stringify(this.userData));
+    },
+    checkUserData() {
+      const storageUserData = localStorage.getItem("userData");
+      console.log(Object.keys(this.userData).length);
+      if (Object.keys(this.userData).length > 0) {
+        return this.userData;
+      } else if (storageUserData) {
+        this.userData = JSON.parse(storageUserData);
+        return storageUserData;
+      } else {
+        return "";
+      }
+    },
   },
 });
