@@ -231,11 +231,11 @@ export default {
       icon_animals:[],
       AnimalDetails:false,
       hiddenIndexes : [],
-      selectedAnimal_name: "威廉",
-      selectedAnimal_species: "獅子",
-      selectedAnimal_location_name: "草原之聲",
-      selectedAnimal_pic: "small_pic_lion.png",
-
+      selectedAnimal_name: "",
+      selectedAnimal_species: "",
+      selectedAnimal_location_name: "",
+      selectedAnimal_pic: "",
+      selectedAnimal_router: "",
     };
   },
   created() {
@@ -309,10 +309,11 @@ export default {
       this.selectedAnimal_species = this.icon_animals[index].animal_species;
       this.selectedAnimal_location_name = this.icon_animals[index].category_name;
       this.selectedAnimal_pic = this.icon_animals[index].animal_small_pic;
-      this.AnimalDetails = true
+      this.selectedAnimal_router = index+1;
+      this.AnimalDetails = true;
     },
     link_animal_information(){
-      this.$router.push('/animalDetail');
+      this.$router.push({ name: 'animalDetail', params: { id: this.selectedAnimal_router } });
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
