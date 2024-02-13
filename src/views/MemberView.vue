@@ -271,7 +271,7 @@
 import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
 import userStore from "../stores/auth";
-
+import axios from "axios";
 const imgDefault = new URL("../assets/images/member/", import.meta.url).href;
 export default {
   data() {
@@ -280,19 +280,19 @@ export default {
       showQRCode: false,
       imgUrl: imgDefault,
       profile: {
-        name: "",
-        title: "",
-        birthday: "",
-        email: "",
-        phone: "",
-        token: "",
+        mem_name: "",
+        mem_title: "",
+        mem_birthday: "",
+        mem_email: "",
+        mem_phone: "",
+        mem_token: "",
       },
       fields: [
-        { key: "name", label: "姓名" },
-        { key: "title", label: "稱謂" },
-        { key: "birthday", label: "生日" },
-        { key: "email", label: "信箱" },
-        { key: "phone", label: "電話" },
+        { key: "mem_name", label: "姓名" },
+        { key: "mem_title", label: "稱謂" },
+        { key: "mem_birthday", label: "生日" },
+        { key: "mem_email", label: "信箱" },
+        { key: "mem_phone", label: "電話" },
       ],
       ticketsTitle: [
         "訂單編號:",
@@ -353,12 +353,21 @@ export default {
   },
   //抓取使用者在input輸入的內容
   created() {
-    this.fields.forEach((field) => {
-      const savedValue = localStorage.getItem(`member${field.key}`);
-      if (savedValue) {
-        field.value = savedValue;
-      }
-    });
+    // this.fields.forEach((field) => {
+    //   const savedValue = localStorage.getItem(`member${field.key}`);
+    //   if (savedValue) {
+    //     field.value = savedValue;
+    //   }
+    // });
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/memberInfo.php`)
+      .then((res) => {
+        console.log(res);
+        this.mem_name = res.data.name; // 將從 API 獲取的名稱賦值給 mem_name
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   },
   watch: {
     "userStore.token": {
@@ -420,6 +429,7 @@ export default {
   mounted() {
     const savedImg = localStorage.getItem("uploadedImage");
     this.imgUrl = savedImg ? savedImg : imgDefault;
+    this.mem_name = localStorage.getItem("name") || "";
   },
 };
 </script>

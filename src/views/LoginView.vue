@@ -172,7 +172,12 @@ export default {
   components: { MainFixedVote },
   methods: {
     //(我要調用的js檔案,調用裡面的哪些函式)
-    ...mapActions(userStore, ["updateToken", "updateName", "checkLogin"]),
+    ...mapActions(userStore, [
+      "updateToken",
+      "updateName",
+      "checkLogin",
+      "updateUserData",
+    ]),
     login() {
       const bodyFormData = new FormData();
       bodyFormData.append("mem_acc", this.loginAccount);
@@ -191,7 +196,8 @@ export default {
             if (res.data.code == 1) {
               this.updateToken(res.data.session_id);
               this.updateUserData(res.data.memInfo);
-              alert("登入成功");
+              alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
+              this.$router.push("member");
             } else {
               alert("登入失敗");
             }
