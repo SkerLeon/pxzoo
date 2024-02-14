@@ -629,24 +629,24 @@
             <a
               class="news_info"
               @click="toNewsDetail()"
-              v-for="item in news_info"
-              :key="item"
+              v-for="(newsinfo, index) in news"
+              :key="index"
             >
               <div class="news_datetag">
-                <span class="news_time pcInnerText">{{ item.date }}</span>
+                <span class="news_time pcInnerText">{{ newsinfo.news_date }}</span>
                 <div class="news_tag newsFrame">
                   <img
-                    :src="getNewsUrl(item.img)"
+                    :src="getNewsUrl(newsinfo.news_typepic)"
                     class="newsFramePic"
                     alt="btnFrame"
                   />
-                  <p class="newsFrameText pcInnerText" :class="item.tag_class">
-                    {{ item.tag }}
+                  <p class="newsFrameText pcInnerText" :class="newsinfo.tag_class">
+                    {{ newsinfo.news_type }}
                   </p>
                 </div>
               </div>
               <div class="news_title pcInnerText">
-                <p>{{ item.title }}</p>
+                <p>{{ newsinfo.news_title }}</p>
               </div>
             </a>
           </div>
@@ -846,13 +846,15 @@
 
       <h2 class="home_comment_title pcBigTitle">動物園探險家</h2>
       <h3 class="pcSmTitle">探索奇妙，與大自然共享驚喜！</h3>
-
+      <!-- :class="comment.class" -->
       <div class="home_comment_section">
         <div class="comment_group">
           <div
             class="comment"
-            v-for="comment in comment_list"
-            :class="comment.class"
+            v-for="(comminfo, index) in comment"
+            :key="index"
+            :class="'comm' + (comminfo.com_id % 4)"
+
           >
             <div class="comment_report">
               <div class="before">
@@ -873,18 +875,18 @@
                     alt="conversation"
                     class="hover_conversation_img"
                   />
-                  <span class="hover_conversation_text pcMarkText"
-                    >檢舉不當言論</span
-                  >
+                  <span class="hover_conversation_text pcMarkText">
+                    檢舉不當言論
+                  </span>
                 </div>
               </div>
             </div>
             <img
               class="comment_img"
-              :src="getCommUrl(comment.img)"
+              :src="getCommUrl(comminfo.com_pic)"
               alt="comment"
             />
-            <p class="comment_content pcMarkText">{{ comment.content }}</p>
+            <p class="comment_content pcMarkText">{{ comminfo.com_text }}</p>
           </div>
         </div>
       </div>
@@ -983,57 +985,8 @@ export default {
       // api_key: 'CWA-6404EFA0-8D5B-4848-89E4-F7F963901914',
       // base_url: 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-6404EFA0-8D5B-4848-89E4-F7F963901914/',
 
-      //最新消息
-      news_info: [
-        {
-          date: "2024.01.02",
-          tag: "最新活動",
-          img: "orangeFrame",
-          title: "動物明星新一輪投票即將啟動！",
-        },
-        {
-          date: "2024.01.04",
-          tag: "園區動態",
-          img: "greenFrame",
-          title: "動物園為家人共度佳節與動物提供寧靜休息環境，宣布農曆新年休假",
-        },
-        {
-          date: "2023.12.29",
-          tag: "最新活動",
-          img: "orangeFrame",
-          title: "兒童攝影大賽：小攝影師們快來動物園捕捉最美瞬間，贏得豐富獎品",
-        },
-        {
-          date: "2023.12.28",
-          tag: "動物知識",
-          img: "blueFrame",
-          title: "貓頭鷹的生活習性和獵食技巧，揭開夜間狩獵的神秘面紗",
-        },
-        {
-          date: "2023.12.22",
-          tag: "園區動態",
-          img: "greenFrame",
-          title: "新生兒象寶寶在動物園誕生，展現可愛模樣",
-        },
-        {
-          date: "2023.12.21",
-          tag: "動物知識",
-          img: "blueFrame",
-          title: "北極熊的生態適應，面對氣候變遷的挑戰",
-        },
-        {
-          date: "2023.12.18",
-          tag: "動物知識",
-          img: "blueFrame",
-          title: "大象的家庭結構和保護幼象的感人故事",
-        },
-        {
-          date: "2023.12.15",
-          tag: "最新活動",
-          img: "orangeFrame",
-          title: "動物園歡樂跨年 共度美好時光",
-        },
-      ],
+      //最新消息資料
+      news: [],
 
       //人氣投票
       podium_list: [
@@ -1064,68 +1017,69 @@ export default {
       ],
 
       //留言板
-      comment_list: [
-        {
-          class: "comm1",
-          img: "comm_1",
-          content:
-            "這是我第三次造訪這個動物園，每次都有不同的驚喜！孩子們特別喜歡互動區，能近距離觀察動物真是太棒了！",
-        },
-        {
-          class: "comm2",
-          img: "comm_2",
-          content:
-            "這個動物園的設施很棒，動物品種豐富多樣，但有些地方需要更多資訊牌，讓遊客更了解動物的生態習性。",
-        },
-        {
-          class: "comm3",
-          img: "comm_3",
-          content:
-            "我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！",
-        },
-        {
-          class: "comm4",
-          img: "comm_4",
-          content:
-            "看到這麼多種類的動物很值得。我特別喜歡他們的猩猩區，能夠近距離觀察猩猩的行為真是太有趣了！",
-        },
-        {
-          class: "comm1",
-          img: "comm_5",
-          content:
-            "這個動物園真的很適合家庭遊玩，有許多互動體驗讓孩子們玩得很開心。但是建議增加一些休息區域，讓遊客可以休息片刻再繼續探索。",
-        },
-        {
-          class: "comm2",
-          img: "comm_6",
-          content:
-            "動物園的環境很美，但是有些動物的展示區可能需要擴建。不過整體來說，是個不錯的地方，特別是他們的教育活動非常有意義。",
-        },
-        {
-          class: "comm3",
-          img: "comm_7",
-          content:
-            "這是我第一次來這個動物園，我完全愛上了！工作人員很親切，動物看起來都很幸福，這裡的氛圍令人感到愉悅。",
-        },
-        {
-          class: "comm4",
-          img: "comm_8",
-          content:
-            "動物園的設施和種類都很豐富，但是人流量有些大，特別是在假日。建議增加一些導覽團或者提供更多資訊，幫助遊客更好地欣賞動物。",
-        },
-        {
-          class: "comm1",
-          img: "comm_9",
-          content:
-            "這裡的設施非常乾淨整潔，動物看起來都很健康。但希望能增加一些飲料站或者小吃亭，方便遊客在觀賞動物時能夠休息補充能量。",
-        },
-        {
-          class: "comm2",
-          img: "comm_10",
-          content:
-            "我是動物愛好者，這個動物園真的讓我感到驚艷！看到這麼多種類的動物，學到了很多新知識。下次還會再來！",
-        },
-      ],
+      // comment_list: [
+      //   {
+      //     class: "comm1",
+      //     img: "comm_1",
+      //     content:
+      //       "這是我第三次造訪這個動物園，每次都有不同的驚喜！孩子們特別喜歡互動區，能近距離觀察動物真是太棒了！",
+      //   },
+      //   {
+      //     class: "comm2",
+      //     img: "comm_2",
+      //     content:
+      //       "這個動物園的設施很棒，動物品種豐富多樣，但有些地方需要更多資訊牌，讓遊客更了解動物的生態習性。",
+      //   },
+      //   {
+      //     class: "comm3",
+      //     img: "comm_3",
+      //     content:
+      //       "我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！",
+      //   },
+      //   {
+      //     class: "comm4",
+      //     img: "comm_4",
+      //     content:
+      //       "看到這麼多種類的動物很值得。我特別喜歡他們的猩猩區，能夠近距離觀察猩猩的行為真是太有趣了！",
+      //   },
+      //   {
+      //     class: "comm1",
+      //     img: "comm_5",
+      //     content:
+      //       "這個動物園真的很適合家庭遊玩，有許多互動體驗讓孩子們玩得很開心。但是建議增加一些休息區域，讓遊客可以休息片刻再繼續探索。",
+      //   },
+      //   {
+      //     class: "comm2",
+      //     img: "comm_6",
+      //     content:
+      //       "動物園的環境很美，但是有些動物的展示區可能需要擴建。不過整體來說，是個不錯的地方，特別是他們的教育活動非常有意義。",
+      //   },
+      //   {
+      //     class: "comm3",
+      //     img: "comm_7",
+      //     content:
+      //       "這是我第一次來這個動物園，我完全愛上了！工作人員很親切，動物看起來都很幸福，這裡的氛圍令人感到愉悅。",
+      //   },
+      //   {
+      //     class: "comm4",
+      //     img: "comm_8",
+      //     content:
+      //       "動物園的設施和種類都很豐富，但是人流量有些大，特別是在假日。建議增加一些導覽團或者提供更多資訊，幫助遊客更好地欣賞動物。",
+      //   },
+      //   {
+      //     class: "comm1",
+      //     img: "comm_9",
+      //     content:
+      //       "這裡的設施非常乾淨整潔，動物看起來都很健康。但希望能增加一些飲料站或者小吃亭，方便遊客在觀賞動物時能夠休息補充能量。",
+      //   },
+      //   {
+      //     class: "comm2",
+      //     img: "comm_10",
+      //     content:
+      //       "我是動物愛好者，這個動物園真的讓我感到驚艷！看到這麼多種類的動物，學到了很多新知識。下次還會再來！",
+      //   },
+      // ],
+      comment: [],
       showWriteComm: false,
       showReportComm: false,
       showMoreWeather: false,
@@ -1138,6 +1092,7 @@ export default {
       return this.images[this.currentIndex];
     },
   },
+
   mounted() {
     //banner
     if (this.autoPlay) {
@@ -1157,6 +1112,8 @@ export default {
   created() {
     //天氣
     // this.fetchWeather();
+
+    //快速選單 門票資料
     axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
       .then(response => {
         this.tickets = response.data.map((ticket, index) => {
@@ -1170,6 +1127,38 @@ export default {
       .catch(error => {
         console.error("Error fetching data: ", error);
       });
+
+    //最新消息資料
+    axios.get(`${import.meta.env.VITE_API_URL}/newsShow.php`)
+      .then(response => {
+        this.news = response.data; // 假設返回的數據是一個數組
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
+
+    //留言板資料
+    // axios.get(`${import.meta.env.VITE_API_URL}/commentShow.php`)
+    //   .then(response => {
+    //     this.comment = response.data.map((comm, index) => {
+    //       return {
+    //         ...comm,
+    //         class: this.commentClass[index].class
+    //       };
+    //     });
+    //     console.log(response.data)
+    //   })
+    //   .catch(error => {
+    //     console.error("Error fetching data: ", error);
+    //   });
+    axios.get(`${import.meta.env.VITE_API_URL}/commentShow.php`)
+      .then(response => {
+        this.comment = response.data; // 假設返回的數據是一個數組
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
+
   },
 
   methods: {
@@ -1259,6 +1248,7 @@ export default {
         晴有霧: "mostly_clear",
         晴晨霧: "mostly_clear",
         晴有靄: "mostly_clear",
+        晴有霾: "mostly_clear",
 
         多雲有靄: "cloudy",
         多雲: "cloudy",
@@ -1544,9 +1534,9 @@ export default {
         path: "./NewsDetail",
       });
     },
-    getNewsUrl(paths) {
+    getNewsUrl(image) {
       return new URL(
-        `../assets/images/news/newsFrame/${paths}.svg`,
+        '../assets/images/news/newsFrame/'+image,
         import.meta.url
       ).href;
     }, //改網址
@@ -1563,9 +1553,11 @@ export default {
     },
 
     //留言板
-    getCommUrl(paths) {
-      return new URL(`../assets/images/home/comm/${paths}.jpg`, import.meta.url)
-        .href;
+    getCommUrl(image) {
+      return new URL(
+        '../assets/images/home/comm/'+image,
+        import.meta.url
+      ).href;
     }, //改網址
     openWriteComm() {
       this.showWriteComm = true;

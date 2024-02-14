@@ -1348,7 +1348,10 @@
             align-items: center;
             .news_time {
               color: $mainTextColor;
-              width: 6vw;
+              width: 7vw;
+              @media (width <= 768px) {
+                width: 30vw;
+              }
             }
             .news_tag {
               margin: 0 2vw;
@@ -1356,7 +1359,7 @@
                 margin: 0 3vw;
               }
               @media (width <= 768px) {
-                margin: 0 22vw;
+                // margin: 0 22vw;
               }
             }
           }
@@ -2236,7 +2239,7 @@
             transform: rotate(6deg);
           }
         }
-        .comm4 {
+        .comm0 {
           transform: rotate(4deg);
           .hover_conversation {
             transform: rotate(-4deg);
