@@ -86,7 +86,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/animalDetail',
+      path: '/animalDetail/:id',
       name: 'animalDetail',
       component: () => import('../views/AnimalDetailView.vue'),
       meta:{

@@ -38,16 +38,16 @@
       
       <div v-show="show_animals"  class="pk_animal_icon">
         <div v-for="(animal,index) in icon_animals" 
-        @click="Animal_details_open"
+        @click="Animal_details_open(index)"
         :class="`pk_animal_default pk_animal_icon${index+1}`">
           <div v-show="!isHidden(index)" class="pk_animal_icon_dialog_content">
             <img class="pk_animal_icon_dialog" src="@/assets/images/park/pk_animal_icon_dialog_green.png" alt="園區動物hover的圖片">
             <div class="pk_animal_icon_dialog_content_text">
-              <p class="pcMarkText">{{ animal.Library }}</p>
-              <p class="pcMarkText">{{ animal.name }}</p>
+              <p class="pcMarkText">{{ animal.category_name }}</p>
+              <p class="pcMarkText">{{ animal.animal_name }}</p>
             </div>
           </div>
-          <img v-show="!isHidden(index)" :src="getAnimalIconUrl(animal.icon)" alt="園區動物icon的圖片">
+          <img v-show="!isHidden(index)" :src="getAnimalIconUrl(animal.animal_icon)" alt="園區動物icon的圖片">
         </div>
       </div>
 
@@ -89,14 +89,14 @@
 
     <section v-show="AnimalDetails" class="pk_Animal_details">
       <div class="pk_Animal_details_content_align">
-        <h1>草原之聲</h1>
+        <h1>{{ selectedAnimal_location_name }}</h1>
         <div class="pk_Animal_details_closure_icon">
           <img @click="Animal_details_closure" class="pk_Animal_details_closure_icon" src="@/assets/images/park/pk_Animal_details_closure_icon.svg" alt="關閉按鈕">
         </div>
       </div>
 
       <div class="pk_Animal_details_img">
-        <img src="@/assets/images/animal/small_pic/small_pic_lion.png" alt="動物照片">
+        <img :src="getAnimalPicUrl(selectedAnimal_pic)" alt="動物照片">
 
         <div class="pk_Animal_details_frame">
           <img src="@/assets/images/park/pk_Animal_details_frame.svg" alt="像素邊框">
@@ -104,8 +104,8 @@
       </div>
 
       <div class="pk_Animal_details-text">
-        <p class="pcInnerText">獅子</p>
-        <p class="pcInnerText">威廉</p>
+        <p class="pcInnerText">{{ selectedAnimal_species }}</p>
+        <p class="pcInnerText">{{ selectedAnimal_name }}</p>
       </div>
 
       <button @click="link_animal_information" class="pk_button defaultBtn pcInnerText">
@@ -228,166 +228,26 @@ export default {
       hover : false,
       tickets:[],
       hoverStatus:{},
-      icon_animals:[{
-        Library:"草原之聲",
-        name:"曼陀",
-        icon:"animal_icon_zebra"
-      },{
-        Library:"草原之聲",
-        name:"蘇菲",
-        icon:"animal_icon_giraffe",
-      },{
-        Library:"草原之聲",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"草原之聲",
-        name:"斑斑",
-        icon:"animal_icon_cheetah",
-      },{
-        Library:"草原之聲",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"草原之聲",
-        name:"威廉",
-        icon:"animal_icon_lion",
-      },{
-        Library:"草原之聲",
-        name:"索拉",
-        icon:"animal_icon_elephant",
-      },{
-        Library:"草原之聲",
-        name:"馬克",
-        icon:"animal_icon_meerkat",
-      },{
-        Library:"極地秘境",
-        name:"亞當",
-        icon:"animal_icon_magellanicPenguin",
-      },{
-        Library:"極地秘境",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"極地秘境",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"極地秘境",
-        name:"寶拉",
-        icon:"animal_icon_polarBear",
-      },{
-        Library:"極地秘境",
-        name:"小雪",
-        icon:"animal_icon_kingPenguin",
-      },{
-        Library:"極地秘境",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"極地秘境",
-        name:"雪球",
-        icon:"animal_icon_arcticFox",
-      },{
-        Library:"極地秘境",
-        name:"波比",
-        icon:"animal_icon_seal",
-      },{
-        Library:"鳥園樂章",
-        name:"小瑜",
-        icon:"animal_icon_pelican",
-      },{
-        Library:"鳥園樂章",
-        name:"曉曉",
-        icon:"animal_icon_flamingo",
-      },{
-        Library:"鳥園樂章",
-        name:"阿翔",
-        icon:"animal_icon_peacock",
-      },{
-        Library:"鳥園樂章",
-        name:"艾妮",
-        icon:"animal_icon_owl",
-      },{
-        Library:"鳥園樂章",
-        name:"晴空",
-        icon:"animal_icon_japaneseCrane",
-      },{
-        Library:"鳥園樂章",
-        name:"嘟嘟",
-        icon:"animal_icon_toucan",
-      },{
-        Library:"鳥園樂章",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"海洋奇觀",
-        name:"海妞",
-        icon:"animal_icon_shark",
-      },{
-        Library:"海洋奇觀",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"海洋奇觀",
-        name:"巴奇",
-        icon:"animal_icon_octopus",
-      },{
-        Library:"海洋奇觀",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"海洋奇觀",
-        name:"馬林",
-        icon:"animal_icon_clownFish",
-      },{
-        Library:"海洋奇觀",
-        name:"藍波",
-        icon:"animal_icon_stingray",
-      },{
-        Library:"海洋奇觀",
-        name:"燈燈",
-        icon:"animal_icon_eel",
-      },{
-        Library:"叢林奇蹟",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"叢林奇蹟",
-        name:"空位置",
-        icon:"animal_icon_default",
-      },{
-        Library:"叢林奇蹟",
-        name:"栗栗",
-        icon:"animal_icon_malayanTapir",
-      },{
-        Library:"叢林奇蹟",
-        name:"珍珍",
-        icon:"animal_icon_capybara",
-      },{
-        Library:"叢林奇蹟",
-        name:"中中",
-        icon:"animal_icon_monkey",
-      },{
-        Library:"叢林奇蹟",
-        name:"曼曼",
-        icon:"animal_icon_sloth",
-      },{
-        Library:"叢林奇蹟",
-        name:"瑪雅",
-        icon:"animal_icon_tiger",
-      },{
-        Library:"叢林奇蹟",
-        name:"狄恩",
-        icon:"animal_icon_orangutan",
-      }],
+      icon_animals:[],
       AnimalDetails:false,
+      hiddenIndexes : [],
+      selectedAnimal_name: "",
+      selectedAnimal_species: "",
+      selectedAnimal_location_name: "",
+      selectedAnimal_pic: "",
+      selectedAnimal_router: "",
     };
   },
   created() {
-    axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
-    .then(response => {
-      this.tickets = response.data; 
+    //複數串接php
+    Promise.all([
+      axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`),
+      axios.get(`${import.meta.env.VITE_API_URL}/parkMapIcon.php`)
+    ])
+    .then(([response1, response2]) => {
+      this.tickets = response1.data;
+      this.icon_animals = response2.data;
+      this.fillHiddenIndexes(); 
     })
     .catch(error => {
       console.error("Error fetching data: ", error);
@@ -398,7 +258,10 @@ export default {
   },
   methods: {
     getAnimalIconUrl(paths){
-      return new URL(`../assets/images/animal/animal_icon/${paths}.png`, import.meta.url).href
+      return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`,import.meta.url).href;
+    },
+    getAnimalPicUrl(paths){
+      return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/${paths}`,import.meta.url).href;
     },
     getItemTopUrl(paths){
       return new URL(`../assets/images/park/pk_Tickets_item_top${paths}.png`, import.meta.url).href
@@ -431,17 +294,27 @@ export default {
       this.hoverStatus[index] = false;
     },
     isHidden(index) {
-      const hiddenIndexes = [3, 5, 10, 11, 14, 23, 25, 27, 32, 31];
-      return hiddenIndexes.includes(index + 1);
+      return this.hiddenIndexes.includes(index);
+    },
+    fillHiddenIndexes() {
+    this.hiddenIndexes = this.icon_animals
+      .map((animal, index) => animal.animal_name === null ? index : null)
+      .filter(index => index !== null);
     },
     Animal_details_closure(){
       this.AnimalDetails = false
     },
-    Animal_details_open(){
-      this.AnimalDetails = true
+    Animal_details_open(index){
+      this.selectedAnimal_name = this.icon_animals[index].animal_name;
+      this.selectedAnimal_species = this.icon_animals[index].animal_species;
+      this.selectedAnimal_location_name = this.icon_animals[index].category_name;
+      this.selectedAnimal_pic = this.icon_animals[index].animal_small_pic;
+      console.log(this.selectedAnimal_pic);
+      this.selectedAnimal_router = index+1;
+      this.AnimalDetails = true;
     },
     link_animal_information(){
-      this.$router.push('/animalDetail');
+      this.$router.push({ name: 'animalDetail', params: { id: this.selectedAnimal_router } });
     }, 
     Mobile_filtering() {
       this.hover = !this.hover; 
