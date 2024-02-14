@@ -64,7 +64,9 @@ export default {
         nextStep(){
             const today = new Date();
             today.setHours(17);
-            if ((this.tidateData.getDate()===today.getDate() && this.tidateData.getTime() > today.getTime()) || this.tidateData.getDate()<today.getDate() ) {
+            
+            // (購票日期為今天&&時間>=休息時間) || 購票日期比今天早
+            if ( (this.tidateData.getDate()===today.getDate() && this.tidateData.getTime() >= today.getTime()) || this.tidateData.getDate()<today.getDate()  ) {
                 this.cantNextPage="<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
             }else if( this.offDate(this.tidateData) ){
                 this.cantNextPage="<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";
@@ -73,6 +75,7 @@ export default {
             }
         },
         offDate(day){
+            // 星期一 && 不是1/1 && 不是3/12 && 不是 6/10 
             return new Date(day).getDay() === 1 && !(new Date(day).getMonth() === 0 && new Date(day).getDate() === 1) && !(new Date(day).getMonth() === 2 && new Date(day).getDate() === 12) && !(new Date(day).getMonth() === 5 && new Date(day).getDate() === 10);
         },
         // dateRender(date){

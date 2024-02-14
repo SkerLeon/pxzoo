@@ -63,6 +63,7 @@
         transform: translateZ(0);
         top: 7.25vw; /* 結束位置 top 調整 */
         right: 13%; /* 結束位置 right 調整 */
+        z-index: 1;
     }
 }
 .animate__tickBounceInDown {
@@ -388,6 +389,10 @@
             border: 0;
             background-color: transparent;
         }
+        img {
+            min-width: 30px;
+            width: 1.5vw
+        }
     }
     .countBTN{
         display: flex;
@@ -685,6 +690,8 @@
             transform: translateZ(0);
             top: calc(-26.5px - 0.25vw); /* 結束位置 top 調整 */
             right: 5%; /* 結束位置 right 調整 */
+
+            z-index: 1;
         }
     }
     .tickCalendar{
@@ -1143,6 +1150,7 @@
             transform: translateZ(0);
             top: calc(-11px - 0.25vw); /* 結束位置 top 調整 */
             right: 5%; /* 結束位置 right 調整 */
+            z-index: 1;
         }
     }
     .tickFrame{
