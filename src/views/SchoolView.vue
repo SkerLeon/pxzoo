@@ -76,9 +76,9 @@
             <div v-for="(question, index) in questions" :key="index" class="question"
               v-show="index === currentQuestionIndex">
               <!-- 顯示問題內容 -->
-              <div class="question_text pcSmTitle">{{ question.text }}
-                <img v-if="question.image" :src="getImageUrl(question.image)" alt="question-image"
-                  class="question-image" />
+              <div class="question_text pcSmTitle">{{ question.question_text }}
+                <!-- <img v-if="question.image" :src="getImageUrl(question.image)" alt="question-image"
+                  class="question-image" /> -->
               </div>
 
               <div class="option_all">
@@ -159,6 +159,7 @@ class="coin">
 </template> 
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -180,7 +181,7 @@ export default {
       questions: [
         // 問題列表
         {
-          text: "1.哪個動物天生沒有聲帶?", image: '',
+          question_text: "1.哪個動物天生沒有聲帶?", image: '',
           options: [
             { text: "長頸鹿", image: 'giraffe' },
             { text: "無尾熊", image: 'koala' },
@@ -192,7 +193,7 @@ export default {
           explanation: "長頸鹿是沒有聲帶的。但是美國科學家的最新研究表明，長頸鹿事實上能夠彼此交談。我們聽不到它們的聲音是因為它們發出的聲音屬於次聲，次聲是一種低頻音波，遠遠低於人耳所能達到的聽力範圍。"
         },
         {
-          text: "2.樹懶至少需要幾星期消化食物?", image: '',
+          question_text: "2.樹懶至少需要幾星期消化食物?", image: '',
           options: [
             { text: "一個星期", image: 'q1' },
             { text: "兩個星期", image: 'q2' },
@@ -204,7 +205,7 @@ export default {
           explanation: "樹懶是擁有非常緩慢的新陳代謝的動物，因此它們需要相當長的時間來消化食物。",
         },
         {
-          text: "3.哪隻是唯一不會跳躍的動物?", image: '',
+          question_text: "3.哪隻是唯一不會跳躍的動物?", image: '',
           options: [
             { text: "斑馬", image: 'zebra' },
             { text: "獅子", image: 'lion' },
@@ -215,7 +216,7 @@ export default {
           explanation: "大象不會跳的原因主要與它們的身體結構和體重有關。大象是非常大型且重量龐大的動物，牠們的身體組成並不適合進行跳躍動作。大象的骨架、肌肉和關節都是為了支撐巨大的體重而設計，這種結構並不適合做高強度的運動",
         },
         {
-          text: "4.什麼動物的指紋跟人類非常相似，難以分辨?", image: '',
+          question_text: "4.什麼動物的指紋跟人類非常相似，難以分辨?", image: '',
           options: [
             { text: "浣熊", image: 'red_panda' },
             { text: "狐獴", image: 'meerkat' },
@@ -226,7 +227,7 @@ export default {
           explanation: "無尾熊的指紋和人類的非常相似，這使得它們很難在犯罪現場留下證據。無尾熊的指紋結構與人類的指紋相似，都有獨特的紋路和特徵，這使得研究人員難以將無尾熊的指紋與人類的指紋區分開來。這也意味著在犯罪現場發現的無尾熊指紋可能會與人類指紋混淆，增加了辨識的困難。",
         },
         {
-          text: "5.為什麼蛇要一直吐舌頭?", image: '',
+          question_text: "5.為什麼蛇要一直吐舌頭?", image: '',
           options: [
             { text: "聞氣味", image: 'odor' },
             { text: "釋放毒液", image: 'liquid' },
@@ -237,7 +238,7 @@ export default {
           explanation: "蛇伸出舌頭是為了嗅覺，舌尖接觸氣味分子，幫助它們尋找食物、識別潛在危險..等。",
         },
         {
-          text: "6.哪一個動物不會游泳?", image: '',
+          question_text: "6.哪一個動物不會游泳?", image: '',
           options: [
             { text: "河馬", image: 'hippo' },
             { text: "鱷魚", image: 'Crocodile' },
@@ -248,7 +249,7 @@ export default {
           explanation: "河馬雖然是半水生動物，但它們實際上並不會游泳。相反，當河馬在水中移動時，牠們通常是步行或是跳躍，並且可以在水中推進自己。雖然河馬可以在水中移動，但牠們通常是在淺水區或是河流底部行走，而不是真正的游泳。",
         },
         {
-          text: "7.哪個動物不會倒退走?", image: '',
+          question_text: "7.哪個動物不會倒退走?", image: '',
           options: [
             { text: "犀牛", image: 'rhino' },
             { text: "鱷魚", image: 'Crocodile' },
@@ -259,7 +260,7 @@ export default {
           explanation: "袋鼠的身體結構和肌肉組織使其不太適合倒退走。牠們的後肢非常強壯且發達，主要用於向前跳躍。牠們的尾巴也扮演著平衡和支撐的重要角色。由於牠們的身體設計，倒退走對袋鼠來說並不是一個自然的動作，因此牠們通常更傾向於向前跳躍或向前移動。",
         },
         {
-          text: "8.哪隻動物的視野幾乎360度?", image: '',
+          question_text: "8.哪隻動物的視野幾乎360度?", image: '',
           options: [
             { text: "豹", image: 'cheetah' },
             { text: "山羊", image: 'goat' },
@@ -270,7 +271,7 @@ export default {
           explanation: "山羊擁有幾乎360度的視野。它們的眼睛位於頭部兩側，幾乎水平分佈，這使得它們能夠在幾乎所有方向上觀察周圍的環境，從而更好地辨識潛在的威脅或尋找食物。這種廣闊的視野範圍有助於山羊在野外生活中保持警惕，並且在岩石和崎嶇的地形中尋找安全的路徑。",
         },
         {
-          text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: '',
+          question_text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: '',
           options: [
             { text: "兩倍", image: 'q2' },
             { text: "三倍", image: 'q3' },
@@ -281,7 +282,7 @@ export default {
           explanation: "樹懶動作是出了名的緩慢，在陸地上行走的時候，每分鐘只能移動2公尺。不過，樹懶游泳的時候，速度竟然可以快轉三倍，簡直就像開外掛一樣！",
         },
         {
-          text: "10.什麼動物的大便是立方體?", image: '',
+          question_text: "10.什麼動物的大便是立方體?", image: '',
           options: [
             { text: "鴨嘴獸", image: 'platypus' },
             { text: "龍貓", image: 'chinchilla' },
@@ -325,7 +326,7 @@ export default {
           console.log(`回答正確，目前總分：${this.totalScore}`);
         }
 
-        if (this.currentQuestionIndex === 9) {
+        if (this.currentQuestionIndex === 10) {
           this.isGameFinished = true;
           console.log(`遊戲結束，最終總分：${this.totalScore}`);
         }
@@ -374,6 +375,8 @@ export default {
   console.log(`得分：${score} 分`);
   // 顯示結果，但不顯示題目和選項
   this.isContent1 = false;
+  //不顯示題目
+  this.currentQuestionIndex = false;
 },
     getScore() {
       return this.successfulQuestionsCount * 10;

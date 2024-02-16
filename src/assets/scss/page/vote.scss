@@ -8,6 +8,7 @@
   box-sizing: border-box;
   flex-wrap: wrap;
   background-color: $bgColorLightgray;
+  overflow: hidden;
   .banner {
     width: 100%;
     height: 100vh;

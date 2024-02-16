@@ -6,16 +6,17 @@
       <h1 class="title pcBigTitle">
         12月動物人氣投票冠軍揭曉！<br />前三名登場！
       </h1>
-      <div class="podium_no">
+      <div  v-for="podium in podium_list"  class="podium_no">
 
-        <div v-for="podium in podium_list" :class="podium.class">
+        <div  :class="podium.class">
           <img class="vote_img" :src="getImageUrl(podium.animal_pic_a)" alt="Animal" />
           <div class="vote_name pcDecSmTitle">{{ podium.animal_name }}</div>
           <div class="podium_box">
-            <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
+            <img  class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
           </div>
           <div class="score pcSmTitle">{{ podium.score }}</div>
         </div>
+       
       </div>
       <!-- <div class="podium1">
           <img class="vote_img" src="@/assets/images/animal/small_pic/small_pic_elephant.png" alt="sheep" />
@@ -169,6 +170,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -343,6 +345,15 @@ export default {
       this.currentContent = content;
     },
 
+  },
+  created() {
+    axios.get(`${import.meta.env.VITE_API_URL}/votesshow.php`)
+    .then(response => {
+      this.tickets = response.data; 
+    })
+    .catch(error => {
+      console.error("Error fetching data: ", error);
+    });
   },
 
   mounted() {
