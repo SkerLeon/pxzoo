@@ -485,8 +485,12 @@ section.aqua{
         }
         .animal_detail_sec-section{
             display: flex;
+            // justify-content: space-between;
             .animal_detail_name{
-                padding-right: 10.4vw;
+                width: 50%;
+            }
+            .animal_detail_life{
+                justify-items: flex-end;
             }
         }
         

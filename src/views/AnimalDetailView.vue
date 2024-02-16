@@ -41,7 +41,7 @@
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
-                        <h2 class="animal_detail_species">{{ animal.species }}</h2>
+                        <h2 class="animal_detail_species">{{ animalDetailData.animal_species }}</h2>
                         <!-- 聲音 -->
                         <div class="animal_detail_sound"
                         @click="animalSoundPlay">            
@@ -51,37 +51,41 @@
                     <div class="animal_detail_sec-section">
                         <div class="animal_detail_name">
                             <h5 class="pcMarkText">名字</h5>
-                            <p class="pcInnerText">{{animal.name}}</p>
+                            <p class="pcInnerText">{{animalDetailData.animal_name}}</p>
                         </div>
                         <div class="animal_detail_life">
                             <h5 class="pcMarkText">平均壽命</h5>
-                            <p class="pcInnerText">{{animal.lifeSpan}}</p>
+                            <p class="pcInnerText">{{animalDetailData.animal_lifespan}}</p>
                         </div>
                     </div>
                     <div class="animal_detail_live">
                         <h5 class="pcMarkText">分布地區</h5>
-                        <p class="pcInnerText">{{ animal.area }}</p>
+                        <p class="pcInnerText">{{ animalDetailData.animal_area }}</p>
                     </div>
                     <div class="animal_detail_food">
                         <h5 class="pcMarkText">食性</h5>
-                        <p class="pcInnerText">{{ animal.food }}</p>
+                        <p class="pcInnerText">{{ animalDetailData.animal_food }}</p>
                     </div>
                     <div class="animal_detail_feature">
                         <h5 class="pcMarkText">特徵</h5>
-                        <p class="pcInnerText">{{ animal.features }}</p>
+                        <p class="pcInnerText">{{ animalDetailData.animal_features }}</p>
                     </div>
                 </div>
 
                 <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                        <img :src="getSmallPicUrl(`animal_pic/pic${imgnum}_${animal.en_name}.png`)" alt="pic_lion">
+                    <!-- 动态绑定大图的 src 属性 -->
+                        <img :src="bigPic" alt="big_pic">
                     </div>
                     <div class="small_pic">
-                        <img
-                        v-for="num in 3"
-                        :src="getSmallPicUrl(`animal_pic/pic${num}_${animal.en_name}.png`)" alt="small_pic_lion"
-                        @click="imgnum = num">
+                    <!-- 使用 v-for 循环生成小图 -->
+                    <img
+                     v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
+                    :src="getSmallPicUrl(pic)" 
+                    :key="`small_${pic}`" 
+                    :alt="`small_${pic}`"
+                    @click="selectPic(pic)">
                     </div>
                 </div>
             </div>
@@ -89,10 +93,10 @@
             <!-- 下方介紹 -->
             <div class="animal_detail_intro">
                 <div class="animal_detail_icon">
-                    <img :src="getAnimalIconUrl(animal.en_name)" alt="lion">
+                    <img :src="getAnimalIconUrl(animalDetailData.animal_icon)" alt="icon">
                 </div>
                 <div class="animal_detail_text_bg">
-                    <p class="pcInnerText"> {{ animal.description }}</p>
+                    <p class="pcInnerText"> {{ animalDetailData.animal_description }}</p>
                 </div>
             </div>
         </main>
@@ -101,9 +105,9 @@
         <div class="animal_detail_intro_ph">
             <div class="animal_detail_intro_content">
                 <div class="animal_detail_icon">
-                    <img :src="getAnimalIconUrl(animal.en_name)" alt="lion">
+                    <img :src="getAnimalIconUrl(animalDetailData.animal_icon)" alt="icon">
                 </div>
-                <p class="pcInnerText"> {{ animal.description }}</p>
+                <p class="pcInnerText"> {{ animalDetailData.animal_description }}</p>
             </div>
 
             <!-- 返回上頁 mb才有 -->
@@ -141,9 +145,13 @@
 <script>       
 import MainFixedVote from '@/components/MainFixedVote.vue'   
 import animalSound from "../../public/audio/sound_lion.mp3";     
+import axios from 'axios';
 export default {
     data() {
         return {
+            animalDetailData: [],//data
+            bigPic:'',
+            smallPics: [],
             animal:{
                 species: '獅子',
                 name:'威廉',
@@ -267,13 +275,49 @@ export default {
             this.showHint = false;
             document.body.style.overflow = ''
         }
+        const animalIdMapping = {
+            6: 1,  7: 3,  1: 5, 8: 6,
+            12: 7, 13: 8,  15: 10, 16: 11,
+            34: 12, 33: 13, 38: 14, 37: 15, 36: 16, 35: 17,
+            19: 18, 18: 19, 21: 20, 20: 21,  17: 23,
+            29: 24, 24: 25, 30: 26, 28: 27, 26: 28
+        }
+ 
+        const animalId = this.$route.params.id;
+        if (animalIdMapping.hasOwnProperty(animalId)) {
+        // 如果動物 ID 需要映射，則獲取對應的新 ID
+            const mappedAnimalId = animalIdMapping[animalId];
+            console.log(`映射後的動物 ID: ${mappedAnimalId}`);
+
+        // 使用新的動物 ID 來獲取動物詳情
+            this.fetchAnimalDetail(mappedAnimalId);
+        } else {
+        // 如果動物 ID 不需要映射，則直接使用原始的動物 ID
+            console.log(`未映射的動物 ID: ${animalId}`);
+            this.fetchAnimalDetail(animalId);
+        }
+
     },
     computed:{
         animalSoundPath(){
-            return this.getAnimalSound(this.animal.en_name)
+            return this.getAnimalSound(this.animalDetailData.animal_sound)
         }
     },
     methods: {
+        fetchAnimalDetail(id) {
+        // API 請求或其他邏輯來填充 animalDetail
+            axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?id=${id}`)
+            .then(response => {
+                // 處理獲取到的動物詳情數據
+                this.animalDetailData = response.data
+
+                this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${this.animalDetailData.animal_pic_a}`, import.meta.url).href
+            })
+            .catch(error => {
+                // 處理錯誤情況
+                console.error('獲取動物詳情時出錯:', error);
+            });
+        },
         closeHint() {
             sessionStorage.setItem('hintClosed', 'true');
             this.showHint = false;
@@ -288,17 +332,23 @@ export default {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
         },
         getAnimalIconUrl(paths) {
-            return new URL(`../assets/images/animal/animal_icon/animal_icon_${paths}.png`, import.meta.url).href
+            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`, import.meta.url).href
         },
 
-        getSmallPicUrl(paths) {
-            return new URL(`../assets/images/animal/${paths}`, import.meta.url).href
+        getSmallPicUrl(pic) {
+            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
+        },
+        selectPic(pic) {
+            this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
+            console.log(this.bigPic)
         },
         getAnimalSound(paths){
-            return new URL(`../../public/audio/sound_${paths}.mp3`, import.meta.url).href
+            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/audio/${paths}`, import.meta.url).href
+
         },
         animalSoundPlay(){
             var sound = new Audio(this.animalSoundPath)
+            console.log(sound)
             sound.play();
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
