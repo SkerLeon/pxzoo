@@ -112,7 +112,11 @@
             <div class="img">
               <img src="@/assets/images/login/icon/psw.svg" alt="" />
             </div>
-            <input type="password" placeholder="密碼" v-model="au4a83" />
+            <input
+              type="password"
+              placeholder="密碼至少8個字"
+              v-model="au4a83"
+            />
           </div>
           <div class="psw">
             <div class="img">
@@ -224,11 +228,11 @@ export default {
           data: bodyFormData,
         })
           .then((res) => {
-            console.log(res);
             if (res && res.data && res.data.msg === "success") {
               alert("註冊成功");
+              location.reload();
             } else {
-              alert("註冊失敗");
+              alert("請檢查輸入資訊");
             }
           })
           .catch((error) => {
@@ -236,6 +240,7 @@ export default {
           });
       }
     },
+
     changeImage(imageNumber) {
       if (imageNumber === 1) {
         this.currentImage = imgUrl;

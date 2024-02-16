@@ -66,7 +66,11 @@
           <div class="info pcSmTitle">
             <div v-for="field in fields" :key="field.key">
               <label>{{ field.label }}:</label>
-              <input v-model="field.value" class="infoInput" />
+              <input
+                v-model="field.value"
+                class="infoInput"
+                :placeholder="placeholderLabel(field.key)"
+              />
             </div>
             <button
               type="submit"
@@ -229,33 +233,6 @@
               class="greenClose"
             />
           </div>
-          <!-- <div class="comment">
-            <img
-              src="@/assets/images/member/papper.png"
-              alt="commentBg"
-              class="commentBg"
-            />
-            <img
-              src="../assets/images/member/commentPic.png"
-              alt="commentPic"
-              class="commentPic"
-            />
-            <div class="commentArea">
-              <p class="commentTitle pcSmTitle">Emily L.</p>
-              <textarea name="" id="" cols="30" rows="4" class="commentText">
-我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
-              </textarea>
-            </div>
-            <button class="defaultBtn pcInnerText commentBtn">
-              修改評論
-              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-            </button>
-            <img
-              src="../assets/images/member/memicon/green_close.svg"
-              alt="green_close"
-              class="greenClose"
-            />
-          </div> -->
         </div>
       </div>
       <img
@@ -353,12 +330,9 @@ export default {
   },
   //抓取使用者在input輸入的內容
   created() {
-    // this.fields.forEach((field) => {
-    //   const savedValue = localStorage.getItem(`member${field.key}`);
-    //   if (savedValue) {
-    //     field.value = savedValue;
-    //   }
-    // });
+    this.profile.mem_name = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).name
+      : "";
     axios
       .get(`${import.meta.env.VITE_API_URL}/memberInfo.php`)
       .then((res) => {
@@ -380,6 +354,12 @@ export default {
     },
   },
   methods: {
+    placeholderLabel(key) {
+      const labels = {
+        mem_name: this.profile.mem_name,
+      };
+      return labels[key] || "";
+    },
     toTicketPage() {
       this.$router.push("ticket");
     },

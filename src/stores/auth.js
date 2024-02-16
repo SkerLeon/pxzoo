@@ -49,7 +49,7 @@ export default defineStore("userStore", {
       // 不把全部資訊紀錄
       this.userData = {
         name: val.mem_name,
-        // email驗證狀況1|0ㄋ
+        id: val.mem_id,
         validation: val.mem_validation,
         // 封鎖狀況1|0
         state: val.mem_state,
