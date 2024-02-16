@@ -1,8 +1,6 @@
 <template>
   <!-- 本頁待辦:
     1.TickNum接tickets資料庫
-    2.
-
   -->
   <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
@@ -302,9 +300,7 @@ export default {
     });
     
   },
-  mounted() {
-  },
-  beforeDestroy() {
+  beforeUnmount() {
       window.removeEventListener('resize', this.windowSize);
   },
 }

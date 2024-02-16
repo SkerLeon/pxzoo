@@ -115,7 +115,7 @@ export default {
         this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.windowSize);
     },
 }
