@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="memLightBox_bg" @click.self="closeMemLightBox">
     <section class="memLightBox forHeader">
       <img
-        src="@/assets/images/login/lightbox/memLightBox.png"
-        alt=""
+        src="@/assets/images/ticket/lightBox.png"
+        alt="會員登入燈箱"
         class="LBBg"
       />
       <div class="LBTextArea">
@@ -11,6 +11,7 @@
           src="@/assets/images/login/lightbox/close.svg"
           alt=""
           class="closeIcon"
+          @click.self="closeMemLightBox"
         />
         <p class="LBTextAreaP pcBigTitle">會員登入</p>
       </div>
@@ -27,14 +28,14 @@
           </div>
           <input type="password" placeholder="密碼" />
         </div>
-        <a href="#" class="LBForget pcMarkText">忘記密碼?</a>
+        <RouterLink to="/login" class="LBForget pcMarkText">忘記密碼?</RouterLink>
       </div>
       <div class="LBBtnArea">
         <button class="defaultBtn pcInnerText">
           登入
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
         </button>
-        <button class="defaultBtn pcInnerText">
+        <button @click="goSignUp" class="defaultBtn pcInnerText">
           註冊
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
         </button>
@@ -42,3 +43,20 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  props:{},
+  methods:{
+    closeMemLightBox(){
+      this.$emit('closeLoginBox',false);
+    },
+    goSignUp(){
+      this.$router.push({ 
+        name: 'login'
+    // 須與index.js中首頁的名稱一致
+    });
+    },
+  },
+}
+</script>

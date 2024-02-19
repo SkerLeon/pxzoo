@@ -3,6 +3,7 @@
     1.TickNum接tickets資料庫
   -->
   <MainFixedVote v-if="!isMobile" />
+  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox"/>
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
@@ -107,6 +108,7 @@ export default {
   props:{},
   data() {
     return {
+      showLogin: false,
       tickStepImgs: [
         tickStepImg0,
         tickStepImg1,
@@ -199,12 +201,8 @@ export default {
     //     }
     //   })
     },
-    getMemId(){
-      // 在此之前補: 先判斷有沒有陣列
-      // let a = json.parse(localStorage[member陣列]);
-      // 抓到陣列，轉成字串，使用他
-
-      // 再把傳來的給自己的值(v-model)
+    updateLoginBox(bool){
+      this.showLogin=bool;
     },
     windowSize(){
       this.isMobile = window.innerWidth <= 768;
@@ -230,12 +228,18 @@ export default {
       // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
     },
     showNextStep(){
-      // 如果沒有選優惠券，則顯示不使用
-      if(this.tickStep === 2 && this.selectedCou === null){
-        this.selectedCou = this.coupons[0].option;
+      // 如果沒有登入，則顯示登入燈箱
+      if(this.tickStep === 0){
+        if(this.mem_id === null){
+          this.showLogin=(this.mem_id === null);
+        }
+      }else{
+        // 如果沒有選優惠券，則顯示不使用
+        if(this.tickStep === 2 && this.selectedCou === null){
+          this.selectedCou = "不使用優惠券";
+        }
+        this.tickStep++;
       }
-
-      this.tickStep++;
       this.startFromTop();
     },
     backPreviousStep(){
