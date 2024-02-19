@@ -232,7 +232,6 @@ export default {
             }
         },
         isCardIdValid(){ // 驗證卡號符合發卡規則、Luhn算法
-
             if(typeof this.cardId === 'number'){
                 var string = this.cardId.toString();
             }else{
@@ -281,10 +280,7 @@ export default {
             // console.log(this.cardId, this.cardMonth, this.cardYear, this.cardCode);
             // console.log(typeof this.cardId, typeof this.cardMonth, typeof this.cardYear, typeof this.cardCode);
 
-            if(cardInfo.some((value) => value === null)) { return false;
-            }else{
-                return true;
-            }
+            return !cardInfo.some( (value) => value === null );
         },
         stopPrompt(){
             this.cantNextPage=false;
@@ -318,14 +314,8 @@ export default {
             this.isSmallPH = window.innerWidth <= 430;
         },
         checkCardTime(){
-            if(                    
-                this.cardMonth < parseInt(new Date().getMonth()+1) && 
-                this.cardYear === parseInt(new Date().getFullYear())
-            ){
-                return false;
-            }else{
-                return true;
-            }
+            return !(this.cardMonth < parseInt(new Date().getMonth()+1) && this.cardYear === parseInt(new Date().getFullYear()));
+
         }
     },
     computed:{
