@@ -20,7 +20,7 @@
 
                 <img src="@/assets/images/vetor/vetor_animal_fox.svg" alt="ticket_decoratoin">
             </hgroup>
-            <Calendar class="calendar" 
+            <Calendar name="ord_tidate" class="calendar" 
             v-model="bindTidateData" 
             :cell-height=38 
             :locale="{ today: '本月', type: { month: '月', year: '年' }, weekDays: ['日', '一', '二', '三', '四', '五', '六'], months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'] }" 
@@ -66,7 +66,7 @@ export default {
             today.setHours(17);
             
             // (購票日期為今天&&時間>=休息時間) || 購票日期比今天早
-            if ( (this.tidateData.getDate()===today.getDate() && this.tidateData.getTime() >= today.getTime()) || this.tidateData.getDate()<today.getDate()  ) {
+            if ( (this.tidateData.getDate()===today.getDate() && this.tidateData.getTime() >= today.getTime()) || this.tidateData.getDate()<today.getDate() ) {
                 this.cantNextPage="<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
             }else if( this.offDate(this.tidateData) ){
                 this.cantNextPage="<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";
@@ -107,6 +107,7 @@ export default {
                 return this.tidateData;
             },
             set(value){
+                console.log(value);
                 this.$emit('newDate', value);
             },
         },
@@ -115,7 +116,7 @@ export default {
         this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.windowSize);
     },
 }

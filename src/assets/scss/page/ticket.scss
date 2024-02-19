@@ -464,7 +464,7 @@
 .tickCheck{
     .coupon{ margin-top: 2vw; }
     .defaultBtn{ margin: 4vw 0;}
-    input{
+    input, .payWay article select{
         width: 100%;
         &:focus {
             border: 4px solid $primaryColorYellow;
@@ -474,6 +474,14 @@
                 font-weight: 700;
             }
         }
+    }
+    .payWay article select{
+        padding-left: 4px;
+        color: $inputHintColor;
+        font-weight: 400;
+    }
+    .payWay article select.heavy{
+        color: $mainTextColor;
     }
     .payWay{
         margin-top: 2vw;
@@ -503,6 +511,12 @@
             width: 135px;
             height: auto;
         }
+    }
+    .cardPrompt{
+        color: $secColorOrange;
+        float: right;
+        text-align: right;
+        margin-bottom: -20px;
     }
 }
 .tickFinished{
