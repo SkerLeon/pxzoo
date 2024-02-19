@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         getAnimalIconUrl(paths){
-            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL2}/animal/animal_icon/${paths}`,import.meta.url).href;
+            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`,import.meta.url).href;
         },
         fillHiddenIndexes() {
             this.hiddenIndexes = this.icon_animals
