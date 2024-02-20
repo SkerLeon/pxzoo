@@ -89,27 +89,32 @@
           class="buyHistory"
           @click="openQRCode"
         >
-          <div class="listTitle">
-            <p
-              v-for="title in ticketsTitle"
-              :key="title"
-              class="listTitle pcSmTitle"
-            >
-              {{ title }}
-            </p>
-          </div>
-
           <div
-            v-for="(ticket, index) in ticketDetail"
-            :key="index"
-            class="listInfo"
+            v-for="(group, groupIndex) in ticketDetail"
+            :key="groupIndex"
+            class="buyList"
           >
-            <p class="pcInnerText idColor">{{ ticket.ord_id }}</p>
-            <p class="pcInnerText">{{ ticket.ord_tidate }}</p>
-            <p class="pcInnerText">{{ ticket.ord_tiprice }}</p>
-            <p class="pcInnerText">{{ ticket.ord_payprice }}</p>
-            <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
-            <p class="pcInnerText">{{ ticket.ord_status }}</p>
+            <div class="listTitle">
+              <p
+                v-for="title in ticketsTitle"
+                :key="title"
+                class="listTitle pcSmTitle"
+              >
+                {{ title }}
+              </p>
+            </div>
+            <div
+              v-for="(ticket, index) in group.tickets"
+              :key="index"
+              class="listInfo"
+            >
+              <p class="pcInnerText idColor">{{ ticket.ord_id }}</p>
+              <p class="pcInnerText">{{ ticket.ord_tidate }}</p>
+              <p class="pcInnerText">{{ ticket.ord_tiprice }}</p>
+              <p class="pcInnerText">{{ ticket.ord_payprice }}</p>
+              <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
+              <p class="pcInnerText">{{ ticket.ord_status }}</p>
+            </div>
           </div>
         </div>
         <div v-else>
@@ -231,6 +236,7 @@ import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
 import userStore from "../stores/auth";
 import axios from "axios";
+import { Alert } from "view-ui-plus";
 const imgDefault = new URL("../assets/images/member/", import.meta.url).href;
 export default {
   data() {
@@ -290,23 +296,29 @@ export default {
     this.profile.mem_id = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).id
       : "";
+
     //訂單資訊
-    // axios
+    //從LS取出會員資料
     const memberId = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).id
       : "";
     if (memberId) {
-      // 发送GET请求以获取会员订单信息
+      // 資料庫會員資料需要與LS內的ID一樣
       axios
         .get(
           `${import.meta.env.VITE_API_URL}/memOrderInfo.php?mem_id=${memberId}`
         )
         .then((res) => {
           console.log(res);
-          this.ticketDetail = res.data;
+          // 將從資料庫獲取的票券資料格式化成適合於渲染的格式
+          const formattedTicketDetail = res.data.map((ticket) => {
+            return {
+              tickets: [ticket],
+            };
+          });
+          this.ticketDetail = formattedTicketDetail;
         })
         .catch((error) => {
-          // 处理错误
           console.error("Error fetching member orders:", error);
         });
     } else {
@@ -321,6 +333,13 @@ export default {
         }
       },
       immediate: true,
+    },
+  },
+  computed: {
+    ticketGroups() {
+      // 根據需要，這裡可以將資料庫回傳的資料分組，例如按照日期、類型等，以便動態新增包含標題的 div
+      // 這裡假設 ticketDetail 已經是分組好的資料了，每一個元素是一個物件，包含 tickets 屬性，裡面是相同分組的票券詳情
+      return this.ticketDetail;
     },
   },
   methods: {
@@ -358,6 +377,7 @@ export default {
     saveImg() {
       localStorage.setItem("uploadedImage", this.imgUrl);
     },
+    //會員資料確認修改
     reviseMemProfile() {
       const data = {
         mem_id: this.profile.mem_id,
@@ -385,7 +405,6 @@ export default {
             localStorage.setItem("userData", JSON.stringify(userData));
           }
 
-          // 更新当前组件实例中的 profile 对象
           this.profile.mem_name = data.mem_name;
           this.profile.mem_title = data.mem_title;
           this.profile.mem_birthday = data.mem_birthday;
@@ -394,15 +413,14 @@ export default {
           alert("更新成功");
         })
         .catch((error) => {
-          // 处理后端返回的错误
           console.error(error);
-          // 可以根据需要执行其他操作，比如提示用户更新失败等
         });
     },
     logout() {
       this.$router.push("/");
       this.userStore.updateToken("");
       this.userStore.updateUserData("");
+      alert("bye~");
     },
   },
   mounted() {
