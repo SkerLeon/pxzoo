@@ -76,82 +76,77 @@
             <div v-for="(question, index) in questions" :key="index" class="question"
               v-show="index === currentQuestionIndex">
               <!-- 顯示問題內容 -->
-              <div class="question_text pcSmTitle">{{ question.question_text }}
+              <div class="question_text pcSmTitle">{{ question.question_id }}. {{ question.question_text }}
                 <!-- <img v-if="question.image" :src="getImageUrl(question.image)" alt="question-image"
                   class="question-image" /> -->
               </div>
 
               <div class="option_all">
-                <div v-for="(option, optionIndex) in question.options" :key="optionIndex" class="option pcInnerText">
-                  <div v-if="option.image" class="option-image-container">
+                                <div v-for="optionPara in ['a', 'b', 'c', 'd']" :key="optionPara"
+                                    class="option pcInnerText">
+                                    <div v-if="question['question_img_' + optionPara]" class="option-image-container">
+    <img :src="getImageUrl(question['question_img_' + optionPara])"
+        :alt="question['question_img_' + optionPara]" class="option-image" />
+</div>
+                                    <label class="option_input">
+                                        <input class="option_input_as" type="radio" :name="'answer' + index"
+                                            @click="checkAnswer(index, optionPara)"
+                                            :value="question['question_option_' + optionPara]" style="display: none;">
+                                        {{ question['question_option_' + optionPara] }}
+                                    </label>
+                                </div>
+                            </div>
 
-                    <img :src="getImageUrl(option.image)" alt="option-image" class="option-image" />
+          
+            <div class="eat_coin">
 
-                  </div>
-
-
-                  <label class="option_input">
-                    <input class="option_input_as" type="radio" name="answer" @click="checkAnswer(index, option)" :value="option.text"
-                      style="display: none;">
-                    {{ option.text }}
-                  </label>
-
-
-
-                </div>
-
-
+              <div class="chimpanzees">
+                <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
               </div>
-              <div class="eat_coin">
-
-<div class="chimpanzees">
-  <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
-</div>
-<div  v-for="(coin, index) in 10"
-:key="index"
-:class="{ eaten: index < chimpanzeesPosition }"
-class="coin">
-  <img src="@/assets/images/school/coin.svg" alt="coin">
-</div>
-</div>
-
-              <div v-if="showAnswer[index]" class="lightbox">
-                <div class="lightbox-content">
-                  
-                  <div class="user_answer pcSmTitle" v-if="userSelectedOption">
-                    你的答案：{{ userSelectedOption }}
-                    <span v-if="userSelectedOption === question.correctAnswer" style="color: green;">（正確）</span>
-                    <span v-else style="color: red;">（錯誤）</span>
-                  </div>
-                  <div class="correct_answer pcSmTitle">正確答案：{{ question.correctAnswer }}</div>
-                  <div class="explanation pcSmTitle"> 解析：<br><span style="color: #ff6100;">{{ question.explanation }}</span></div>
-                  <button v-if="currentQuestionIndex < questions.length - 1" @click="showNextQuestion" class="pcInnerText defaultBtn">
-  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />下一題
-</button>
-<button v-else @click="endGame" class="pcInnerText defaultBtn">
-  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />結束遊戲
-</button>
-                </div>
+              <div v-for="(coin, index) in 10" :key="index" :class="{ eaten: index < chimpanzeesPosition }" class="coin">
+                <img src="@/assets/images/school/coin.svg" alt="coin">
               </div>
             </div>
-          </div>
 
+            <div v-if="showAnswer[index]" class="lightbox">
+              <div class="lightbox-content">
 
-          <div v-if="isGameFinished" class="result_all">
-            <div class="result pcSmTitle">
-              {{ successfulQuestionsCount >= 8 ?
-                '破關成功！你展現了出色的動物知識!獲得了一張PX ZOO門票優惠券！'
-                :
-                '破關失敗~很抱歉，你未能成功破關，祝您下次冒險成功！加油!!'
-              }}
-              <br>
-              總分：{{ totalScore }}
+                <div class="user_answer pcSmTitle" v-if="userSelectedOption">
+                  你的答案：{{ userSelectedOption }}
+                  <span v-if="userSelectedOption === question.question_correctanswer" style="color: green;">（正確）</span>
+                  <span v-else style="color: red;">（錯誤）</span>
+                </div>
+                <div class="correct_answer pcSmTitle">正確答案：{{ question.question_correctanswer }}</div>
+                <div class="explanation pcSmTitle"> 解析：<br><span style="color: #ff6100;">{{
+                  question.question_answer_illustrate }}</span></div>
+                <button v-if="currentQuestionIndex < questions.length - 1" @click="showNextQuestion"
+                  class="pcInnerText defaultBtn">
+                  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />下一題
+                </button>
+                <button v-else @click="endGame" class="pcInnerText defaultBtn">
+                  <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />結束遊戲
+                </button>
+              </div>
             </div>
-            <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn"><img
-                src="@/assets/images/login/icon/btnArrow.svg" alt="" />重新開始</button>
           </div>
         </div>
+
+
+        <div v-if="isGameFinished" class="result_all">
+          <div class="result pcSmTitle">
+            {{ successfulQuestionsCount >= 8 ?
+              '破關成功！你展現了出色的動物知識!獲得了一張PX ZOO門票優惠券！'
+              :
+              '破關失敗~很抱歉，你未能成功破關，祝您下次冒險成功！加油!!'
+            }}
+            <br>
+            總分：{{ totalScore }}
+          </div>
+          <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn"><img
+              src="@/assets/images/login/icon/btnArrow.svg" alt="" />重新開始</button>
+        </div>
       </div>
+    </div>
     </div>
 
 
@@ -163,7 +158,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      
+
       showAnimation8: false,
       showAnimationN: false,
       showAnimationI: false,
@@ -175,139 +170,158 @@ export default {
       isGameFinished: false,
       successfulQuestionsCount: 0,
       currentQuestionIndex: 0,
+      chimpanzeesPosition: '',
       totalScore: 0,
       userSelectedOption: null,
       showAnimation: false,
       questions: [
         // 問題列表
-        {
-          question_text: "1.哪個動物天生沒有聲帶?", image: '',
-          options: [
-            { text: "長頸鹿", image: 'giraffe' },
-            { text: "無尾熊", image: 'koala' },
-            { text: "熊貓", image: 'panda' },
-            { text: "犀牛", image: 'rhino' },
+        // {
+        //   question_text: "1.哪個動物天生沒有聲帶?", image: '',
+        //   options: [
+        //     { text: "長頸鹿", image: 'giraffe' },
+        //     { text: "無尾熊", image: 'koala' },
+        //     { text: "熊貓", image: 'panda' },
+        //     { text: "犀牛", image: 'rhino' },
 
-          ],
-          correctAnswer: "長頸鹿",
-          explanation: "長頸鹿是沒有聲帶的。但是美國科學家的最新研究表明，長頸鹿事實上能夠彼此交談。我們聽不到它們的聲音是因為它們發出的聲音屬於次聲，次聲是一種低頻音波，遠遠低於人耳所能達到的聽力範圍。"
-        },
-        {
-          question_text: "2.樹懶至少需要幾星期消化食物?", image: '',
-          options: [
-            { text: "一個星期", image: 'q1' },
-            { text: "兩個星期", image: 'q2' },
-            { text: "三個星期", image: 'q3' },
-            { text: "四個星期", image: 'q4' },
+        //   ],
+        //   question_correctanswer: "長頸鹿",
+        //   question_answer_illustrate: "長頸鹿是沒有聲帶的。但是美國科學家的最新研究表明，長頸鹿事實上能夠彼此交談。我們聽不到它們的聲音是因為它們發出的聲音屬於次聲，次聲是一種低頻音波，遠遠低於人耳所能達到的聽力範圍。"
+        // },
+        // {
+        //   question_text: "2.樹懶至少需要幾星期消化食物?", image: '',
+        //   options: [
+        //     { text: "一個星期", image: 'q1' },
+        //     { text: "兩個星期", image: 'q2' },
+        //     { text: "三個星期", image: 'q3' },
+        //     { text: "四個星期", image: 'q4' },
 
-          ],
-          correctAnswer: "兩個星期",
-          explanation: "樹懶是擁有非常緩慢的新陳代謝的動物，因此它們需要相當長的時間來消化食物。",
-        },
-        {
-          question_text: "3.哪隻是唯一不會跳躍的動物?", image: '',
-          options: [
-            { text: "斑馬", image: 'zebra' },
-            { text: "獅子", image: 'lion' },
-            { text: "大象", image: 'elephant' },
-            { text: "無尾熊", image: 'koala' },
-          ],
-          correctAnswer: "大象",
-          explanation: "大象不會跳的原因主要與它們的身體結構和體重有關。大象是非常大型且重量龐大的動物，牠們的身體組成並不適合進行跳躍動作。大象的骨架、肌肉和關節都是為了支撐巨大的體重而設計，這種結構並不適合做高強度的運動",
-        },
-        {
-          question_text: "4.什麼動物的指紋跟人類非常相似，難以分辨?", image: '',
-          options: [
-            { text: "浣熊", image: 'red_panda' },
-            { text: "狐獴", image: 'meerkat' },
-            { text: "袋鼠", image: 'kangaroo' },
-            { text: "無尾熊", image: 'koala' },
-          ],
-          correctAnswer: "無尾熊",
-          explanation: "無尾熊的指紋和人類的非常相似，這使得它們很難在犯罪現場留下證據。無尾熊的指紋結構與人類的指紋相似，都有獨特的紋路和特徵，這使得研究人員難以將無尾熊的指紋與人類的指紋區分開來。這也意味著在犯罪現場發現的無尾熊指紋可能會與人類指紋混淆，增加了辨識的困難。",
-        },
-        {
-          question_text: "5.為什麼蛇要一直吐舌頭?", image: '',
-          options: [
-            { text: "聞氣味", image: 'odor' },
-            { text: "釋放毒液", image: 'liquid' },
-            { text: "傳達訊息", image: 'message' },
-            { text: "散熱", image: 'heat' },
-          ],
-          correctAnswer: "聞氣味",
-          explanation: "蛇伸出舌頭是為了嗅覺，舌尖接觸氣味分子，幫助它們尋找食物、識別潛在危險..等。",
-        },
-        {
-          question_text: "6.哪一個動物不會游泳?", image: '',
-          options: [
-            { text: "河馬", image: 'hippo' },
-            { text: "鱷魚", image: 'Crocodile' },
-            { text: "海象", image: 'walrus' },
-            { text: "水獺", image: 'otter' },
-          ],
-          correctAnswer: "河馬",
-          explanation: "河馬雖然是半水生動物，但它們實際上並不會游泳。相反，當河馬在水中移動時，牠們通常是步行或是跳躍，並且可以在水中推進自己。雖然河馬可以在水中移動，但牠們通常是在淺水區或是河流底部行走，而不是真正的游泳。",
-        },
-        {
-          question_text: "7.哪個動物不會倒退走?", image: '',
-          options: [
-            { text: "犀牛", image: 'rhino' },
-            { text: "鱷魚", image: 'Crocodile' },
-            { text: "袋鼠", image: 'kangaroo' },
-            { text: "長頸鹿", image: 'giraffe' },
-          ],
-          correctAnswer: "袋鼠",
-          explanation: "袋鼠的身體結構和肌肉組織使其不太適合倒退走。牠們的後肢非常強壯且發達，主要用於向前跳躍。牠們的尾巴也扮演著平衡和支撐的重要角色。由於牠們的身體設計，倒退走對袋鼠來說並不是一個自然的動作，因此牠們通常更傾向於向前跳躍或向前移動。",
-        },
-        {
-          question_text: "8.哪隻動物的視野幾乎360度?", image: '',
-          options: [
-            { text: "豹", image: 'cheetah' },
-            { text: "山羊", image: 'goat' },
-            { text: "梅花鹿", image: 'sika_deer' },
-            { text: "獅子", image: 'lion' },
-          ],
-          correctAnswer: "山羊",
-          explanation: "山羊擁有幾乎360度的視野。它們的眼睛位於頭部兩側，幾乎水平分佈，這使得它們能夠在幾乎所有方向上觀察周圍的環境，從而更好地辨識潛在的威脅或尋找食物。這種廣闊的視野範圍有助於山羊在野外生活中保持警惕，並且在岩石和崎嶇的地形中尋找安全的路徑。",
-        },
-        {
-          question_text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: '',
-          options: [
-            { text: "兩倍", image: 'q2' },
-            { text: "三倍", image: 'q3' },
-            { text: "四倍", image: 'q4' },
-            { text: "五倍", image: 'q5' },
-          ],
-          correctAnswer: "三倍",
-          explanation: "樹懶動作是出了名的緩慢，在陸地上行走的時候，每分鐘只能移動2公尺。不過，樹懶游泳的時候，速度竟然可以快轉三倍，簡直就像開外掛一樣！",
-        },
-        {
-          question_text: "10.什麼動物的大便是立方體?", image: '',
-          options: [
-            { text: "鴨嘴獸", image: 'platypus' },
-            { text: "龍貓", image: 'chinchilla' },
-            { text: "無尾熊", image: 'koala' },
-            { text: "袋熊", image: 'wombat' },
-          ],
-          correctAnswer: "袋熊",
-          explanation: "牠們的糞便特別之處在於其形狀可以呈現出立方體的形狀。這種特殊的形狀有助於牠們將糞便放置在領地邊界上，以作為標記。這種立方體形狀的糞便是由於袋熊的消化系統特殊的生物力學機制所致。",
-        },
+        //   ],
+        //   question_correctanswer: "兩個星期",
+        //   question_answer_illustrate: "樹懶是擁有非常緩慢的新陳代謝的動物，因此它們需要相當長的時間來消化食物。",
+        // },
+        // {
+        //   question_text: "3.哪隻是唯一不會跳躍的動物?", image: '',
+        //   options: [
+        //     { text: "斑馬", image: 'zebra' },
+        //     { text: "獅子", image: 'lion' },
+        //     { text: "大象", image: 'elephant' },
+        //     { text: "無尾熊", image: 'koala' },
+        //   ],
+        //   question_correctanswer: "大象",
+        //   question_answer_illustrate: "大象不會跳的原因主要與它們的身體結構和體重有關。大象是非常大型且重量龐大的動物，牠們的身體組成並不適合進行跳躍動作。大象的骨架、肌肉和關節都是為了支撐巨大的體重而設計，這種結構並不適合做高強度的運動",
+        // },
+        // {
+        //   question_text: "4.什麼動物的指紋跟人類非常相似，難以分辨?", image: '',
+        //   options: [
+        //     { text: "浣熊", image: 'red_panda' },
+        //     { text: "狐獴", image: 'meerkat' },
+        //     { text: "袋鼠", image: 'kangaroo' },
+        //     { text: "無尾熊", image: 'koala' },
+        //   ],
+        //   question_correctanswer: "無尾熊",
+        //   question_answer_illustrate: "無尾熊的指紋和人類的非常相似，這使得它們很難在犯罪現場留下證據。無尾熊的指紋結構與人類的指紋相似，都有獨特的紋路和特徵，這使得研究人員難以將無尾熊的指紋與人類的指紋區分開來。這也意味著在犯罪現場發現的無尾熊指紋可能會與人類指紋混淆，增加了辨識的困難。",
+        // },
+        // {
+        //   question_text: "5.為什麼蛇要一直吐舌頭?", image: '',
+        //   options: [
+        //     { text: "聞氣味", image: 'odor' },
+        //     { text: "釋放毒液", image: 'liquid' },
+        //     { text: "傳達訊息", image: 'message' },
+        //     { text: "散熱", image: 'heat' },
+        //   ],
+        //   question_correctanswer: "聞氣味",
+        //   question_answer_illustrate: "蛇伸出舌頭是為了嗅覺，舌尖接觸氣味分子，幫助它們尋找食物、識別潛在危險..等。",
+        // },
+        // {
+        //   question_text: "6.哪一個動物不會游泳?", image: '',
+        //   options: [
+        //     { text: "河馬", image: 'hippo' },
+        //     { text: "鱷魚", image: 'Crocodile' },
+        //     { text: "海象", image: 'walrus' },
+        //     { text: "水獺", image: 'otter' },
+        //   ],
+        //   question_correctanswer: "河馬",
+        //   question_answer_illustrate: "河馬雖然是半水生動物，但它們實際上並不會游泳。相反，當河馬在水中移動時，牠們通常是步行或是跳躍，並且可以在水中推進自己。雖然河馬可以在水中移動，但牠們通常是在淺水區或是河流底部行走，而不是真正的游泳。",
+        // },
+        // {
+        //   question_text: "7.哪個動物不會倒退走?", image: '',
+        //   options: [
+        //     { text: "犀牛", image: 'rhino' },
+        //     { text: "鱷魚", image: 'Crocodile' },
+        //     { text: "袋鼠", image: 'kangaroo' },
+        //     { text: "長頸鹿", image: 'giraffe' },
+        //   ],
+        //   question_correctanswer: "袋鼠",
+        //   question_answer_illustrate: "袋鼠的身體結構和肌肉組織使其不太適合倒退走。牠們的後肢非常強壯且發達，主要用於向前跳躍。牠們的尾巴也扮演著平衡和支撐的重要角色。由於牠們的身體設計，倒退走對袋鼠來說並不是一個自然的動作，因此牠們通常更傾向於向前跳躍或向前移動。",
+        // },
+        // {
+        //   question_text: "8.哪隻動物的視野幾乎360度?", image: '',
+        //   options: [
+        //     { text: "豹", image: 'cheetah' },
+        //     { text: "山羊", image: 'goat' },
+        //     { text: "梅花鹿", image: 'sika_deer' },
+        //     { text: "獅子", image: 'lion' },
+        //   ],
+        //   question_correctanswer: "山羊",
+        //   question_answer_illustrate: "山羊擁有幾乎360度的視野。它們的眼睛位於頭部兩側，幾乎水平分佈，這使得它們能夠在幾乎所有方向上觀察周圍的環境，從而更好地辨識潛在的威脅或尋找食物。這種廣闊的視野範圍有助於山羊在野外生活中保持警惕，並且在岩石和崎嶇的地形中尋找安全的路徑。",
+        // },
+        // {
+        //   question_text: "9.樹懶游泳的速度是在陸地上的幾倍?", image: '',
+        //   options: [
+        //     { text: "兩倍", image: 'q2' },
+        //     { text: "三倍", image: 'q3' },
+        //     { text: "四倍", image: 'q4' },
+        //     { text: "五倍", image: 'q5' },
+        //   ],
+        //   question_correctanswer: "三倍",
+        //   question_answer_illustrate: "樹懶動作是出了名的緩慢，在陸地上行走的時候，每分鐘只能移動2公尺。不過，樹懶游泳的時候，速度竟然可以快轉三倍，簡直就像開外掛一樣！",
+        // },
+        // {
+        //   question_text: "10.什麼動物的大便是立方體?", image: '',
+        //   options: [
+        //     { text: "鴨嘴獸", image: 'platypus' },
+        //     { text: "龍貓", image: 'chinchilla' },
+        //     { text: "無尾熊", image: 'koala' },
+        //     { text: "袋熊", image: 'wombat' },
+        //   ],
+        //   question_correctanswer: "袋熊",
+        //   question_answer_illustrate: "牠們的糞便特別之處在於其形狀可以呈現出立方體的形狀。這種特殊的形狀有助於牠們將糞便放置在領地邊界上，以作為標記。這種立方體形狀的糞便是由於袋熊的消化系統特殊的生物力學機制所致。",
+        // },
 
       ],
       showAnswer: Array(10).fill(false), //是否顯示答案跟解析
+
+      
     };
   },
 
   mounted() {
+    axios.get(`${import.meta.env.VITE_API_URL}/questionShow.php`)
+      .then(response => {
+        this.questions = response.data; // 假設返回的數據是一個數組
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
+    },
+    // 使用 Axios 發送 GET 請求
+    // axios.get(`${import.meta.env.VITE_API_URL}/questionshow.php`)
+    //   .then(response => {
+    //     // 請求成功，處理回應資料
+    //     this.question = response.data.map(option => {
+    //       return {
+    //         text: [option.question_option_a, option.question_option_b, option.question_option_c, option.question_option_d]
+    //       };
+    //     });
+    //   })
+    //   .catch(error => {
+    //     // 請求失敗，處理錯誤
+    //     console.error('Error fetching data:', error);
+    //   });
+  // },
 
-    // 在mounted鉤子中設置showAnimation為true，觸發動畫效果
-    this.showAnimation = true;
-  
-  },
- 
   methods: {
-  
-    
     toggleContent() {
       this.isContent1 = !this.isContent1;
     },
@@ -316,11 +330,11 @@ export default {
     },
     checkAnswer(index, selectedOption) {
       if (!this.showAnswer[index]) {
-        const correctAnswer = this.questions[index].correctAnswer;
-        this.userSelectedOption = selectedOption.text; // 存儲使用者選擇的答案
+        const question_correctanswer = this.questions[index].question_correctanswer;
+        this.userSelectedOption = selectedOption.optionPara; // 存儲使用者選擇的答案
         this.showAnswer[index] = true;
 
-        if (selectedOption.text === correctAnswer) {
+        if (selectedOption.optionPara === question_correctanswer) {
           this.successfulQuestionsCount++;
           this.totalScore += 10; // 每題10分
           console.log(`回答正確，目前總分：${this.totalScore}`);
@@ -351,7 +365,7 @@ export default {
         this.showResultLightbox();
       }
     },
-    
+
 
     resetGame() {
       this.isGameStarted = false;
@@ -361,28 +375,32 @@ export default {
       this.showAnswer = Array(10).fill(false);
     },
     endGame() {
-  // 成功破關後結束遊戲的邏輯
-  console.log("成功破關，結束遊戲");
-  this.isGameFinished = true;
-  // 關閉燈箱
-  this.closeLightbox();
-  // 重置顯示答案的狀態
-  this.showAnswer = Array(10).fill(false);
-  // 重置使用者選擇的答案
-  this.userSelectedOption = null;
-  // 計算得分
-  const score = this.successfulQuestionsCount * 10;
-  console.log(`得分：${score} 分`);
-  // 顯示結果，但不顯示題目和選項
-  this.isContent1 = false;
-  //不顯示題目
-  this.currentQuestionIndex = false;
-},
+      // 成功破關後結束遊戲的邏輯
+      console.log("成功破關，結束遊戲");
+      this.isGameFinished = true;
+      // 關閉燈箱
+      this.closeLightbox();
+      // 重置顯示答案的狀態
+      this.showAnswer = Array(10).fill(false);
+      // 重置使用者選擇的答案
+      this.userSelectedOption = null;
+      // 計算得分
+      const score = this.successfulQuestionsCount * 10;
+      console.log(`得分：${score} 分`);
+      // 顯示結果，但不顯示題目和選項
+      this.isContent1 = false;
+      //不顯示題目
+      this.currentQuestionIndex = false;
+    },
     getScore() {
       return this.successfulQuestionsCount * 10;
     },
+    
     getImageUrl(img) {
-      return new URL(`../assets/images/school/animal/${img}.png`, import.meta.url).href
+      
+      return new URL(`../assets/images/school/animal/${img}`, import.meta.url).href
+      // return  `${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`;
+      // console.log(`${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`);
     },
   },
 };

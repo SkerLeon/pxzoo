@@ -43,9 +43,9 @@
   <section class="vote_activity">
 
     <div class="vote_activity_wrap">
-      <h1 class="pcBigTitle">探索動物奇蹟<br />2024年1月動物園之星投票大賽！</h1>
+      <h1 class="pcBigTitle">探索動物奇蹟<br />動物園之星投票大賽！</h1>
       <p class="pcInnerText">
-        大象以其智慧和巨大的魅力蟬聯人氣王！長頸鹿優雅的身姿總是令人難以忘懷。而獅子勇猛的王者氣質讓人讚嘆。這些動物都擁有獨特的故事和魅力，誰將在本月成為動物園之星？你最喜歡哪一種動物？快來投票選你最愛的動物！
+        動物人氣投票活動開始啦！每月一次的盛事，每天都能投三票，無論您在哪個館別發現心愛的動物，都能為它投票！快來參與，讓我們一起為動物園添上美好的色彩！
       </p>
       <div class="vote_rule">
         <div class="time pcInnerText newsFrame">
@@ -53,7 +53,7 @@
           <div class=" newsFrameText pcInnerText">投票時間</div>
         </div>
         <p class="time_text pcInnerText">
-          即日起~<span>1</span>月<span>31</span>日<span>23:59</span>截止
+          活動持續至本月底截止。
         </p>
       </div>
       <div class="vote_rule">
@@ -62,7 +62,7 @@
           <div class="newsFrameText pcInnerText">投票方式</div>
         </div>
         <p class="time_text pcInnerText">
-          參與投票非常簡單！只需登入你的會員帳號，每天可投三票，不限館別。前往我們的動物園官網，點擊你最喜歡的動物，為它投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
+          參與投票非常簡單！每天可投三票，不限館別，可重複投下同一隻動物，點擊你最喜歡的動物，為他投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
         </p>
       </div>
     </div>
