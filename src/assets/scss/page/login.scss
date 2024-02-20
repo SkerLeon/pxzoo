@@ -229,12 +229,12 @@ section.loginPage {
           input {
             height: 35px;
             width: 100%;
+            padding-left: 8px;
             background-color: $inputColor;
             @media (width <= 768px) {
               height: 25px;
             }
             &::placeholder {
-              padding: 5px;
               color: $inputTextColor;
             }
           }
@@ -263,12 +263,12 @@ section.loginPage {
           input {
             height: 35px;
             width: 100%;
+            padding-left: 8px;
             background-color: $inputColor;
             @media (width <= 768px) {
               height: 25px;
             }
             &::placeholder {
-              padding: 5px;
               color: $inputTextColor;
             }
           }

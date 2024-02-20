@@ -1536,7 +1536,8 @@ export default {
     },
     getNewsUrl(image) {
       return new URL(
-        '../assets/images/news/newsFrame/'+image,
+        'http://localhost/g4/images/news/'+image,
+        // '../../../image/news/'+image,
         import.meta.url
       ).href;
     }, //改網址
