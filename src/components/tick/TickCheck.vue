@@ -2,8 +2,6 @@
     <!-- part2 付款頁 -->
     <section class="tickCheck">
         <!-- 本頁待辦:
-            6.下一步條件: 
-                (3)信用卡input篩選
             8.noCoupon: false, // 等界接後這個值由會員優惠紀錄決定
         -->
 
@@ -36,7 +34,8 @@
             <p v-if="noCoupon">目前沒有優惠券</p>
             <select v-else class="pcInnerText" v-model="selectedCoupon">
                 <option value="null" disabled hidden>請選擇優惠券</option>
-                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon.option">{{ coupon.option }}</option>
+                <option value="不使用優惠券">不使用優惠券</option>
+                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.cou_id" :value="coupon.cou_name">{{ coupon.cou_name }}</option>
             </select>
         </hgroup>
         <div class="price">
@@ -315,7 +314,6 @@ export default {
         },
         checkCardTime(){
             return !(this.cardMonth < parseInt(new Date().getMonth()+1) && this.cardYear === parseInt(new Date().getFullYear()));
-
         }
     },
     computed:{
@@ -328,6 +326,7 @@ export default {
         selectedPayway:{
             get(){ return this.paywayData; },
             set(value){
+                console.log('pw',value);
                 this.cantNextPage=false;
                 this.$emit('newPayway', value);
             },

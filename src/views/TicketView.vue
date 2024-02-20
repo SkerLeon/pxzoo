@@ -43,7 +43,7 @@
       :ticketsData="tickets" 
       :tipriceData="tiprice" 
       
-      :couponsData="coupons" 
+      :couponsData="coupons"
       :couData="selectedCou" 
       :coupriceData="couprice" 
       :paypriceData="payprice"
@@ -126,24 +126,26 @@ export default {
       tickets: [],
       ticketsQty:[],
       ord_detail_qty: 0,
-      coupons: [
-        // 之後抓資料表，要寫"去除重複"!!!!!
-        { 
-          id: 1,
-          option: '不使用優惠券',
-          value: 1,
-        },
-        {
-          id: 2,
-          option: '付款金額 9 折',
-          value: 0.9,
-        },
-        { 
-          id: 3,
-          option: '付款金額 95 折',
-          value: 0.95,
-        },
-      ],
+      coupons: [],
+      selectedCouId: null,
+      // coupons: [
+      //   // 之後抓資料表，要寫"去除重複"!!!!!
+      //   { 
+      //     id: 1,
+      //     option: '不使用優惠券',
+      //     value: 1,
+      //   },
+      //   {
+      //     id: 2,
+      //     option: '付款金額 9 折',
+      //     value: 0.9,
+      //   },
+      //   { 
+      //     id: 3,
+      //     option: '付款金額 95 折',
+      //     value: 0.95,
+      //   },
+      // ],
       payways: [
         { 
           id: 1,
@@ -167,11 +169,40 @@ export default {
     }
   },
   methods:{
-    isLogin(){
-      return this.mem_id !==null;
+    fetchTickets(){
+      axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
+      .then(response => {
+        // 確保 response.data 是數組
+        if (Array.isArray(response.data)) {
+          this.tickets = response.data;
+
+          // 為每個 ticket 添加 qty 屬性
+          this.tickets.forEach(ticket => {
+            ticket.qty = 0;
+          });
+        } else {
+          console.error('Invalid data format'); // 处理非数组的情况
+        } 
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
     },
     fetchMemCou(){
-
+      axios.post(`${import.meta.env.VITE_API_URL}/couShowDistince.php`,{
+        mem_id: this.mem_id,
+      },{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then( response => {
+        this.coupons = response.data;
+        console.log(this.coupons);
+      })
+      .catch(error=>{
+        console.error('Error fetching data:', error);
+      })
     },
 
     fetchOrderInsert(){
@@ -232,6 +263,10 @@ export default {
       if(this.tickStep === 0){
         if(this.mem_id === null){
           this.showLogin=(this.mem_id === null);
+        }else{
+          this.fetchTickets();
+          this.fetchMemCou();
+          this.tickStep++;
         }
       }else{
         // 如果沒有選優惠券，則顯示不使用
@@ -255,16 +290,18 @@ export default {
       this.payprice = newTiprice;
     },
     updateCoupon(newCoupon){
+      if(newCoupon!=="不使用優惠券"){
+        var coupon = this.coupons.find(
+          (cou) => cou.cou_name === newCoupon
+        );
+        this.selectedCouId=coupon.cou_id;
+        this.couprice =  parseInt(
+          (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
+        );
+        // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+      }
       this.selectedCou = newCoupon;
 
-      let couVal = this.coupons.find(
-          (cou) => cou.option === newCoupon
-      );
-
-      this.couprice =  parseInt(
-          (this.tiprice * (1 - couVal.value)).toFixed(2)
-      );
-            // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
       this.payprice = this.tiprice - this.couprice;
     },
     updatePayway(newPayway){
@@ -288,29 +325,9 @@ export default {
     },
   },
   created(){
-    this.fetchOrderInsert();
+    // this.fetchOrderInsert();
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
-
-    // 引入tickets資料
-    axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
-    .then(response => {
-      // 確保 response.data 是數組
-      if (Array.isArray(response.data)) {
-        this.tickets = response.data;
-
-        // 為每個 ticket 添加 qty 屬性
-        this.tickets.forEach(ticket => {
-          ticket.qty = 0;
-        });
-      } else {
-        console.error('Invalid data format'); // 处理非数组的情况
-      } 
-    })
-    .catch(error => {
-      console.error("Error fetching data: ", error);
-    });
-    
   },
   beforeUnmount() {
       window.removeEventListener('resize', this.windowSize);
