@@ -1,7 +1,4 @@
 <template>
-  <!-- 本頁待辦:
-    1.TickNum接tickets資料庫
-  -->
   <MainFixedVote v-if="!isMobile" />
   <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox"/>
   <section class="tick forheader">
@@ -21,7 +18,6 @@
       @newDate="updateDate" 
       @goNextStep="showNextStep" 
       />
-      
     </main>
 
 <!-- 30% -->
@@ -32,7 +28,7 @@
       :tipriceData="tiprice" 
       @newTiprice="updateTiprice"
       @goNextStep="showNextStep" 
-      @goPreviousStep="backPreviousStep" 
+      @goPreviousStep="backPreviousStep"
       />
     </main>
 
@@ -71,7 +67,7 @@
       :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
       :tickStatusData="tickstatus" 
-      @goPreviousStep="backPreviousStep" 
+      @goPreviousStep="backPreviousStep"
       />
       <!-- goPreviousStep for 測試，正式上線要拿掉!!! -->
     </main>
@@ -126,26 +122,8 @@ export default {
       tickets: [],
       ticketsQty:[],
       ord_detail_qty: 0,
-      coupons: [],
+      coupons: null,
       selectedCouId: null,
-      // coupons: [
-      //   // 之後抓資料表，要寫"去除重複"!!!!!
-      //   { 
-      //     id: 1,
-      //     option: '不使用優惠券',
-      //     value: 1,
-      //   },
-      //   {
-      //     id: 2,
-      //     option: '付款金額 9 折',
-      //     value: 0.9,
-      //   },
-      //   { 
-      //     id: 3,
-      //     option: '付款金額 95 折',
-      //     value: 0.95,
-      //   },
-      // ],
       payways: [
         { 
           id: 1,
@@ -164,8 +142,6 @@ export default {
       selectedPW: null,
       cardId: null,
       tickstatus: '',
-      // 🐢:之後組件中的資料可以放在這邊，用props傳進去
-      // 🐢:組件中資料填寫完成，用emit傳過來
     }
   },
   methods:{
@@ -189,7 +165,7 @@ export default {
       });
     },
     fetchMemCou(){
-      axios.post(`${import.meta.env.VITE_API_URL}/couShowDistince.php`,{
+      axios.post(`${import.meta.env.VITE_API_URL}/couShowDistinct.php`,{
         mem_id: this.mem_id,
       },{
         headers: {
@@ -197,14 +173,16 @@ export default {
         },
       })
       .then( response => {
-        this.coupons = response.data;
-        console.log(this.coupons);
+        if(response.data.errMsg){
+          this.coupons = response.data.errMsg;
+        }else{
+          this.coupons = response.data;
+        }
       })
       .catch(error=>{
         console.error('Error fetching data:', error);
       })
     },
-
     fetchOrderInsert(){
 
       // // 從local storage取得userData字串

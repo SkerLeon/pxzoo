@@ -31,7 +31,7 @@
         </article>
         <hgroup class="coupon pcInnerText">
             <h2 class="pcSmTitle">優惠折扣</h2>
-            <p v-if="noCoupon">目前沒有優惠券</p>
+            <p v-if="typeof this.couponsData === 'string'">{{this.couponsData}}</p>
             <select v-else class="pcInnerText" v-model="selectedCoupon">
                 <option value="null" disabled hidden>請選擇優惠券</option>
                 <option value="不使用優惠券">不使用優惠券</option>
@@ -147,7 +147,7 @@ export default {
             required: true,
         },
         couponsData: {
-            type: Array,
+            // type: Array,
             required: true,
         },
         couData: {
