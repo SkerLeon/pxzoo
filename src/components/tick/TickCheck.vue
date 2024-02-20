@@ -2,13 +2,8 @@
     <!-- part2 付款頁 -->
     <section class="tickCheck">
         <!-- 本頁待辦:
-            2.信用卡卡號篩選(only0-9、上限19位數)
-            3.有效日期月篩選(only1-12)
-            4.有效日期年篩選(only今年-+50年)
-            5.驗證碼篩選(only0-9、上限3位數)
             6.下一步條件: 
                 (3)信用卡input篩選
-            7.界接綠界(或下一步條件篩信用卡發款邏輯)
             8.noCoupon: false, // 等界接後這個值由會員優惠紀錄決定
         -->
 
@@ -39,7 +34,7 @@
         <hgroup class="coupon pcInnerText">
             <h2 class="pcSmTitle">優惠折扣</h2>
             <p v-if="noCoupon">目前沒有優惠券</p>
-            <select v-else class="pcInnerText" v-model="couData">
+            <select v-else class="pcInnerText" v-model="selectedCoupon">
                 <option value="null" disabled hidden>請選擇優惠券</option>
                 <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.id" :value="coupon.option">{{ coupon.option }}</option>
             </select>
@@ -68,7 +63,7 @@
         <article class="payWay">
             <hgroup>
                 <h2 class="pcSmTitle">付款方式</h2>
-                <select v-model="paywayData" 
+                <select v-model="selectedPayway"
                 class="pcInnerText">
                     <option value="null" disabled hidden>請選擇付款方式</option>
                     <option v-for="(payway, paywayIndex) in paywaysData" :key="payway.Id" :value="payway.option">{{ payway.option }}</option>
@@ -78,24 +73,42 @@
                 <p>票券型態</p>
                 <p >{{ paywayTTData }}</p>
             </div>
-            <article v-if="paywayData === '信用卡'
-            ">
+            <article v-if="paywayData === '信用卡' ">
                 <main class="pcInnerText">
                     <p>信用卡卡號</p>
-                    <input v-model.trim="cardId" @input="enterCardId" type="number" placeholder="請輸入卡號">
+                    <input v-model.trim="cardId" title=""
+                    @change="isCardConformFormat('卡號', cardId, 15, 19)" 
+                    @focus="stopPrompt" type="number" 
+                    placeholder="請輸入卡號" inputmode="numeric" step="1" >
                 </main>
                 <main class="pcInnerText carddate">
                     <p>有效日期</p>
                     <main>
-                        <input v-model.trim="cardMonth" @input="enterCardMonth" type="number" :placeholder=" isSmallPH? '信用卡月' : '請輸入信用卡月' ">
+                        <select v-model="selectedMonth" 
+                        @focus="stopPrompt" 
+                        :class="['pcInnerText', {heavy: cardMonth !==null}]">
+                            <option value="null" disabled hidden>{{ isSmallPH? '信用卡月' : '請選擇信用卡月' }}</option>
+                            <option v-for="i in 12" :key="i"  :value="i">{{ i }} 月</option>
+                        </select>
                         <p> / </p> 
-                        <input v-model.trim="cardYear" @input="enterCarYear" type="number" :placeholder=" isSmallPH? '信用卡年' : '請輸入信用卡年' ">
+                        <select v-model="selectedYear" 
+                        @focus="stopPrompt" 
+                        :class="['pcInnerText', {heavy: cardYear !==null}]">
+                            <option value="null" disabled hidden>{{ isSmallPH? '信用卡年' : '請選擇信用卡年' }}</option>
+                            <option v-for="i in 30" :key="i"  :value="new Date().getFullYear()-1+i">{{ new Date().getFullYear()-1+i }} 年</option>
+                        </select>
+
                     </main>
                 </main>
                 <main class="pcInnerText">
                     <p>驗證碼</p>
-                    <input v-model.trim="cardCode" @input="enterCardCode" type="text" :placeholder=" isSmallPH? '卡後末三碼' : '請輸入卡片背面末三碼' " class="defaultInput">
+                    <input v-model.trim="cardCode" 
+                    @change="isCardConformFormat('驗證碼', cardCode, 3)"  
+                    @focus="stopPrompt"
+                    :placeholder=" isSmallPH? '卡後驗證碼' : '請輸入卡片背面驗證碼' " 
+                    type="number" inputmode="numeric" step="1" class="defaultInput">
                 </main>
+                <div v-html="cardPrompt" class="cardPrompt pcInnerText"></div>
             </article>
         </article>
 
@@ -139,7 +152,6 @@ export default {
             required: true,
         },
         couData: {
-            type: String,
             required: true,
         },
         coupriceData: {
@@ -155,7 +167,6 @@ export default {
             required: true,
         },
         paywayData: {
-            type: String,
             required: true,
         },
         paywayTTData: {
@@ -172,6 +183,8 @@ export default {
             cardMonth: null,
             cardYear: null,
             cardCode: null,
+            cardPrompt: '',
+            wrongCard: "<p>信用卡資訊有誤，請確認填寫內容是否正確或聯繫發卡銀行，新卡片請確認是否已開卡。</p>"
         }
     },
     // computed: { //watch要做其他事情,value綁id跟值比較好
@@ -185,27 +198,114 @@ export default {
     //     }
     // },
     methods:{
-        checkInputs(){
-            // const inputs = [this.cardId, this.cardMonth, this.cardYear, this.cardCode];
-            // inputs.forEach( (value, index) =>{
-            //     console.log(index);
-            //     console.log(value);
+        isCardConformFormat(name, val, min, max=null){
+            // @change，每次改變先取消過去cardPrompt
+            this.cardPrompt = '';
+            if(typeof val === 'number'){
+                var string = val.toString();
+            }else{
+                var string = val;
+            }
+            
+            // 確認input是否含數字符號
+            const allowedChars = ['+', '-', '.'];
+            if([...string].every(char => allowedChars.includes(char))){
+                // 使用 every 方法檢查字串中的每個字元是否都包含在 allowedChars 中
+                // 使用展開運算子 (...) 將字串轉換為字元陣列
+                console.log(1);
+                this.cardPrompt=`<p>${name}請輸入半形數字</p>`;
+                return false;
+            }
+            
+            if(max !== null){ // 卡號由15~19位數字組成
+                if(string.length<min || string.length>max){
+                    this.cardPrompt=`<p>${name}由${min}~${max}位數字組成</p>`;
+                console.log(2);
+                    return false;
+                }else{ return true; }
+            }else{ // 驗證碼由3位數字組成
+                if(string.length !== min){
+                    this.cardPrompt=`<p>${name}由${min}位數字組成</p>`;
+                console.log(3);
+                    return false;
+                }else{ return true; }
+            }
+        },
+        isCardIdValid(){ // 驗證卡號符合發卡規則、Luhn算法
+            if(typeof this.cardId === 'number'){
+                var string = this.cardId.toString();
+            }else{
+                var string = this.cardId;
+            }
+            
+            // 確認卡號沒有0、7、8、9開頭
+            if( parseInt(string.charAt(0)) >= 7 || string.charAt(0) === '0' ){
+                console.log('head');
+                return false;
+            }
 
-            //     if(value === null){
-            //         this.focus();
-            //     }
-            // });
+            let sum = 0;
+
+            // 1.從校驗位開始，從右往左，偶數位乘2，若是兩位數則個位與十位相加
+            // 因此length-2，因為長度扣1教驗位扣1
+            // i-2，因為只要奇數位
+            for(let i=string.length-2; i>=0; i--){
+                let digit = parseInt(string[i]);
+
+                if( (string.length-i)%2 === 1 ){
+                    // 奇數位，權重1
+                    sum+=digit;
+                }else{                    
+                    // 偶數位，權重2
+                    digit*=2;
+                    if(digit>9){
+                        digit -= 9;
+                    }
+                    // 2.把得到的數字加在一起
+                    sum += digit;
+                }
+            }
+            // 3.將數字的和取模10（本例中得到7），再用10去減（本例中得到3），得到校驗位。
+            const checkSum = 10 - (sum % 10);
+            const lastDigit = parseInt(string[string.length - 1]);
+            console.log("sum", sum);
+            console.log(checkSum, lastDigit);
+            console.log(typeof checkSum, typeof lastDigit);
+
+            return checkSum === lastDigit;
+        },
+        checkInputs(){
+            let cardInfo=[this.cardId, this.cardMonth, this.cardYear, this.cardCode];
+            
+            // console.log(this.cardId, this.cardMonth, this.cardYear, this.cardCode);
+            // console.log(typeof this.cardId, typeof this.cardMonth, typeof this.cardYear, typeof this.cardCode);
+
+            return !cardInfo.some( (value) => value === null );
+        },
+        stopPrompt(){
+            this.cantNextPage=false;
         },
         nextStep(){
             if(this.paywayData === null){
                 this.cantNextPage="<p class='promptYellow'>付款方式</p><p>請選擇~</p>";
             }else if(this.paywayData === '信用卡'){
-                this.checkInputs();
-                // 999寫確認信用卡的判斷式
-                this.cantNextPage="<p>請填寫~</p><p class='promptYellow'>信用卡資訊</p>";
-            }else{
-                this.$emit('goNextStep');
-            }
+                // 確認信用卡都有填寫
+                if(!this.checkInputs()){
+                    this.cantNextPage="<p>請填寫~</p><p class='promptYellow'>信用卡資訊</p>";
+                }else if( !this.isCardConformFormat('卡號', this.cardId, 15, 19) ){
+                    console.log("here", this.cardPrompt);
+                }else if( !this.isCardConformFormat('驗證碼', this.cardCode, 3) ){
+                    console.log("here2", this.cardPrompt);
+                }else if( !this.checkCardTime() ){
+                    this.cardPrompt=this.wrongCard; 
+                }else if( !this.isCardIdValid() ){
+                    console.log("id");
+                    this.cardPrompt=this.wrongCard; 
+                }else{
+                    this.$emit('newCardId', this.cardId);
+                    this.$emit('goNextStep');
+                }
+            }else{ this.$emit('goNextStep'); }
         },
         previousStep(){
             this.$emit('goPreviousStep');
@@ -213,34 +313,40 @@ export default {
         windowSize(){
             this.isSmallPH = window.innerWidth <= 430;
         },
+        checkCardTime(){
+            return !(this.cardMonth < parseInt(new Date().getMonth()+1) && this.cardYear === parseInt(new Date().getFullYear()));
+
+        }
     },
     computed:{
-        couData:{
-            get(){
-                return this.couData;
-            },
+        selectedCoupon:{
+            get(){ return this.couData; },
             set(value){
                 this.$emit('newCoupon', value);
             },
         },
-        paywayData:{
-            get(){
-                return this.paywayData;
-            },
+        selectedPayway:{
+            get(){ return this.paywayData; },
             set(value){
-                console.log(value);
+                this.cantNextPage=false;
                 this.$emit('newPayway', value);
             },
         },
-
+        selectedMonth:{
+            get(){ return this.cardMonth; },
+            set(val){ this.cardMonth=val; },
+        },
+        selectedYear:{
+            get(){ return this.cardYear; },
+            set(val){ this.cardYear=val; },
+        },
     },
-    watch:{
-    },
+    watch:{},
     created(){
         this.windowSize();
         window.addEventListener('resize', this.windowSize);
     },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener('resize', this.windowSize);
     },
 }

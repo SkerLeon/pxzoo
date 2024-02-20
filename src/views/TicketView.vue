@@ -1,17 +1,13 @@
 <template>
   <!-- 本頁待辦:
     1.TickNum接tickets資料庫
-    2.
-
   -->
   <MainFixedVote v-if="!isMobile" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
-<!-- 小龜老師您好:
-  除了calendar不太會用，其他數據我都有綁定了，請老師幫忙看一下(底下componet的標籤好醜，這樣是對的嗎???疑問)
--->
+
 <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
       <TickInfo 
@@ -24,6 +20,7 @@
       @newDate="updateDate" 
       @goNextStep="showNextStep" 
       />
+      
     </main>
 
 <!-- 30% -->
@@ -52,8 +49,9 @@
       :paywaysData="payways" 
 
       :paywayData="selectedPW" 
-      :paywayTTData="selectedPWTT" 
+      :paywayTTData="selectedPWTT"
 
+      @newCardId="updateCardId" 
       @newCoupon="updateCoupon" 
       @newPayway="updatePayway" 
       @goNextStep="showNextStep" 
@@ -82,6 +80,7 @@
 
 <script>
 import axios from 'axios';
+import { getMemId } from '@/stores/getMemId.js';
 import tickStepImg0 from "@/assets/images/ticket/PC0.png";
 import tickStepImg1 from "@/assets/images/ticket/PC1.png";
 import tickStepImg2 from "@/assets/images/ticket/PC2.png";
@@ -92,8 +91,10 @@ import TickCalendar from '@/components/tick/TickCalendar.vue';
 import TickNum from '@/components/tick/TickNum.vue';
 import TickCheck from '@/components/tick/TickCheck.vue';
 import TickFinished from '@/components/tick/TickFinished.vue';
+import LoginLightBox from '@/components/loginLightBox.vue';
 
 export default {
+  mixins: [getMemId],
   components:{
     MainFixedVote,
     TickInfo,
@@ -101,7 +102,8 @@ export default {
     TickNum,
     TickCheck,
     TickFinished,
-  },
+    LoginLightBox
+},
   props:{},
   data() {
     return {
@@ -121,50 +123,6 @@ export default {
       tidate: new Date(),
       tickets: [],
       ticketsQty:[],
-// 每次按+新增
-      
-      // oldtickets:[
-      //     {
-      //       id: 1,
-      //       name: '成人票',
-      //       rule: '18~64 歲',
-      //       price: 100,
-      //       src: ticketImg1,
-      //       qty: 0,
-      //     },
-      //     {
-      //       id: 2,
-      //       name: '學生票',
-      //       rule: '12 歲以上(含)持學生證者',
-      //       price: 80,
-      //       src: ticketImg2,
-      //       qty: 0,
-      //     },
-      //     {
-      //       id: 3,
-      //       name: '團體票',
-      //       rule: '15 人以上適用',
-      //       price: 60,
-      //       src: ticketImg3,
-      //       qty: 0,
-      //     },
-      //     {
-      //       id: 4,
-      //       name: '兒童票',
-      //       rule: '4~11 歲',
-      //       price: 40,
-      //       src: ticketImg4,
-      //       qty: 0,
-      //     },
-      //     {
-      //       id: 5,
-      //       name: '愛心票',
-      //       rule: '65 歲以上(含)',
-      //       price: 40,
-      //       src: ticketImg5,
-      //       qty: 0,
-      //     },
-      // ],
       ord_detail_qty: 0,
       coupons: [
         // 之後抓資料表，要寫"去除重複"!!!!!
@@ -200,12 +158,54 @@ export default {
       ],
       selectedPWTT: '',
       selectedPW: null,
+      cardId: null,
       tickstatus: '',
       // 🐢:之後組件中的資料可以放在這邊，用props傳進去
       // 🐢:組件中資料填寫完成，用emit傳過來
     }
   },
   methods:{
+    isLogin(){
+      return this.mem_id !==null;
+    },
+    fetchMemCou(){
+
+    },
+
+    fetchOrderInsert(){
+
+      // // 從local storage取得userData字串
+      // const userDataString = localStorage.getItem('userData');
+      // // 將userData字串轉換為JS物件
+      // const userData = JSON.parse(userDataString);
+      // // 從JS物件中獲取id屬性
+      // this.mem_id=userData.id;
+      console.log(this.mem_id);
+
+    //   axios.post(`${import.meta.env.VITE_API_URL}/orderInsert.php`, {
+    //     mem_id: this.mem_id,
+    //     cou_id: ,  // couData是string
+    //     ord_tidate: this.tidate, 
+    //     ord_tiprice: this.tiprice, 
+    //     ord_couprice: this.couprice, 
+    //     ord_payprice: this.payprice, 
+    //     ord_payway: this.selectedPW, 
+    //     ord_ticktype: this.selectedPWTT, 
+    //     ord_cardid: this., //還沒驗證綁值
+    //     ord_status: this.tickstatus
+    //   }, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     }
+    //   })
+    },
+    getMemId(){
+      // 在此之前補: 先判斷有沒有陣列
+      // let a = json.parse(localStorage[member陣列]);
+      // 抓到陣列，轉成字串，使用他
+
+      // 再把傳來的給自己的值(v-model)
+    },
     windowSize(){
       this.isMobile = window.innerWidth <= 768;
       this.isBoard = window.innerWidth < 1200;
@@ -218,13 +218,19 @@ export default {
       });
     },
     updateDate(newDate){
-      const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-      this.tidate=newDate.toLocaleDateString('zh-TW', options);
+      this.tidate=newDate;
+
+      // const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      // this.tidate=newDate.toLocaleDateString('zh-TW', options);
+      // console.log('this.calDate type', typeof this.calDate);
+      // console.log('this.calDate',this.calDate);
+      console.log('typeof',typeof this.tidate);
+      console.log('this.tidate',this.tidate);
+
       // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
     },
     showNextStep(){
       // 如果沒有選優惠券，則顯示不使用
-
       if(this.tickStep === 2 && this.selectedCou === null){
         this.selectedCou = this.coupons[0].option;
       }
@@ -239,10 +245,6 @@ export default {
     showTickCalendar(){
       this.TickCalendar=true;
       this.startFromTop();
-    },
-    updateDate(newDate){
-      this.tidate = newDate;
-      console.log(this.tidate);
     },
     updateTiprice(newTiprice){
       this.tiprice = newTiprice;
@@ -272,6 +274,9 @@ export default {
         this.tickstatus = '未取票';
       }
     },
+    updateCardId(newCardId){
+      this.cardId = newCardId;
+    },
   },
   computed:{
     tickStepImg() {
@@ -279,6 +284,7 @@ export default {
     },
   },
   created(){
+    this.fetchOrderInsert();
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
 
@@ -302,9 +308,7 @@ export default {
     });
     
   },
-  mounted() {
-  },
-  beforeDestroy() {
+  beforeUnmount() {
       window.removeEventListener('resize', this.windowSize);
   },
 }

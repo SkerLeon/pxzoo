@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 
 import { 
-    Button, Input, Select, Space, Option, Upload, Calendar, DatePicker, InputNumber, Badge, dateRender, disabledDate,
+    Calendar, Badge, dateRender, disabledDate,
 } from 'view-ui-plus';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
@@ -11,7 +11,7 @@ import "./assets/scss/style.scss";
 import App from "./App.vue";
 import router from "./router";
 import AOS from 'aos';
-import 'aos/dist/aos.css';//導入AOS CSS 樣式
+import 'aos/dist/aos.css'; //導入AOS CSS 樣式
 // import VueNativeSock from 'vue-native-websocket';
 
 
@@ -37,15 +37,7 @@ vueApp.use(router);
 //     },
 //   });
 
-vueApp.component('Button', Button)
-vueApp.component('Input', Input)
-vueApp.component('Select', Select)
-vueApp.component('Space', Space)
-vueApp.component('Option', Option)
-vueApp.component('Upload', Upload)
 vueApp.component('Calendar', Calendar)
-vueApp.component('DatePicker', DatePicker)
-vueApp.component('InputNumber', InputNumber)
 vueApp.component('Badge', Badge)
 vueApp.component('date-render', dateRender)
 vueApp.component('disabled-date', disabledDate)

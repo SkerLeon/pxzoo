@@ -37,14 +37,15 @@
                 <h2 class="animal_park_name pcBigTitle">草原之聲</h2>
                 <div class="animal_info"
                 data-aos="fade-up"
-                data-aos-easing="ease-in-out" >
+                data-aos-easing="ease-in-out"
+                 >
                     <!-- 個別動物種類名+圖片 -->
-                    <a v-for="(animal, index) in animals_grassland" :key="index" class="animal_each col-md-4 col-sm-6"
-                    @click="toAnimalDetail()">
+                    <a v-for="(each, index) in animal_List[0].animals" :key="index" class="animal_each col-md-4 col-sm-6"
+                    @click="toAnimalDetail(each.id)">
                         <div class="animal_frame">
-                            <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                            <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
                         </div>
-                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{each.species }}</h3>
                     </a>
                 </div>
             </div>
@@ -57,13 +58,13 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out" >
-                    <a v-for="(animal, index) in animals_polar" :key="index" class="animal_each col-md-4 col-sm-6"
-                    @click="toAnimalDetail()">
+                    <a v-for="(each, index) in animal_List[1].animals"  :key="index" class="animal_each col-md-4 col-sm-6"
+                    @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
                     </div>                            
                     <h3 class="animal_name pcSmTitle">
-                            {{ animal.name }}</h3>
+                            {{ each.species }}</h3>
                     </a>
                 </div>
             </div>
@@ -76,12 +77,12 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out" >
-                    <a v-for="(animal, index) in animals_jungle" :key="index" class="animal_each col-md-4 col-sm-6"
-                    @click="toAnimalDetail()">
+                    <a v-for="(each, index) in animal_List[2].animals"  :key="index"  class="animal_each col-md-4 col-sm-6"
+                    @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
                     </div>   
-                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ each.species }}</h3>
                     </a>
                 </div>
             </div>
@@ -94,12 +95,12 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out">
-                    <a v-for="(animal, index) in animals_birds" :key="index" class="animal_each col-md-4 col-sm-6" 
-                    @click="toAnimalDetail()">
+                    <a v-for="(each, index) in animal_List[3].animals"  :key="index" class="animal_each col-md-4 col-sm-6" 
+                    @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
                     </div>   
-                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ each.species }}</h3>
                     </a>
                 </div>
             </div>
@@ -112,12 +113,12 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out" >
-                    <a v-for="(animal, index) in animals_aqua" :key="index" class="animal_each col-md-4 col-sm-6"
-                    @click="toAnimalDetail()">
+                    <a v-for="(each, index) in animal_List[4].animals"  :key="index" class="animal_each col-md-4 col-sm-6"
+                    @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
-                        <img :src="getImageUrl(animal.species)" alt="animal_small_pic">
+                        <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
                     </div>   
-                        <h3 class="animal_name pcSmTitle">{{ animal.name }}</h3>
+                        <h3 class="animal_name pcSmTitle">{{ each.species }}</h3>
                     </a>
                 </div>
             </div>
@@ -127,10 +128,34 @@
 </template>
 
 <script>
-import MainFixedVote from '@/components/MainFixedVote.vue'    
+import MainFixedVote from '@/components/MainFixedVote.vue'   
+import axios from 'axios'; 
 export default {
     data() {
         return {
+            animal_List:[
+                {
+                    park:'草原之聲',
+
+                },
+                {
+                    park:'極地秘境',
+
+                },
+                {
+                    park:'叢林奇蹟',
+
+                },
+                {
+                    park:'鳥園樂章',
+
+                },
+                {
+                    park:'海洋奇觀',
+
+                },
+            ],
+
             //animal
             animals_grassland: [
                 { value: 'grassLand', species: 'lion', name: '獅子' },
@@ -245,11 +270,51 @@ export default {
         window.addEventListener('scroll', this.handleScroll);
             const containerHeight = this.$refs.containerRef.clientHeight;
     // console.log('容器高度：', containerHeight);
+
+        this.fetchAnimalData();
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
+        fetchAnimalData(){
+            axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?type=animalList`)
+            .then(response => {
+                const animalsData = response.data;
+                // 清空animal_List數組，以便重新填充
+                this.animal_List = [];
+                // 遍歷每一筆動物資料
+                animalsData.forEach(animal => {
+                // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
+                const parkIndex = this.animal_List.findIndex(category => category.park === animal.category_name);
+                // 檢查是否找到對應的館別
+
+                // 如果館別不存在，則創建一個新的館別對象並添加到animal_List數組中
+                if (parkIndex === -1) {
+                    this.animal_List.push({
+                        park: animal.category_name,
+                        animals: [{
+                            id: animal.animal_id,
+                            species: animal.animal_species,
+                            animal_pic: animal.animal_small_pic
+                        }]
+                    });
+                }else{
+                    // 如果館別已存在，則將動物數據添加到相應館別的animals數組中
+                    this.animal_List[parkIndex].animals.push({
+                        id: animal.animal_id,
+                        species: animal.animal_species,
+                        animal_pic: animal.animal_small_pic
+                    });
+                }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching animal data:', error);
+            });
+        },
+
+
         selectTypeChange(){
             if (this.selectedCategory === 'ALL') {
         // 顯示所有分類
@@ -270,7 +335,7 @@ export default {
 
 
         getImageUrl(paths) {
-            return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
+            return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/${paths}`, import.meta.url).href
         },
         getIconUrl(paths) {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
@@ -308,10 +373,12 @@ export default {
                 this.isAbsolute = false;
             }
         },
-        toAnimalDetail(){
+        toAnimalDetail(animalId){
+            console.log(animalId)
         this.$router.push({
-        path:'./AnimalDetail',
+            name: 'animalDetail', params: { id:animalId },
         })
+
         }
     },
     components: {

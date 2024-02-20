@@ -137,8 +137,8 @@ export default {
         return {
             cashFinished: '訂單完成，訂單編號請見：會員中心 - 購票記錄，<br>入園當天請至服務台「快速通道」告知訂單編號，將由專人協助您，<br>PXZoO 的獨家動物冒險之旅，等您來探索！',
             cardFinished: '付款完成，數位票券已發送至：會員中心 - 購票記錄，<br>入園當天請憑數位票卷入場， PXZoO 的獨家動物冒險之旅，等您來探索！',
-            sec: 30,
             timer: null,
+            sec: 20,
         }
     },
     methods:{
@@ -175,9 +175,10 @@ export default {
         this.countDown();
         this.couData;
     },
-    beforeDestroy() {
+    beforeUnmount() {
         console.log("end");
         clearInterval(this.timer); // 清理定时器
+        console.log(`clearInterval(this.timer)`)
     },
 }
 

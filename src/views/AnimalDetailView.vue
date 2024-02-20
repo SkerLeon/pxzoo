@@ -16,7 +16,7 @@
             src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
             <ul class="animal_link_btn ">
                 <li class="animaldetail_filter "
-                v-for="(category, index) in animals_species"
+                v-for="(category, index) in animals_sidebar"
                 :key="category.id"
                 @click="toggleShow(isShow,index)">
                 <div class="main_select">
@@ -28,7 +28,7 @@
                 </div>
                     <!-- @click.stop阻止蔓延 -->
                     <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
-                        <li v-for="child in category.children" :key="child.id" class="fade">
+                        <li v-for="child in category.animals" :key="child.id" class="fade">
                             <a class="pcInnerText" href="#">{{ child.species }}</a>
                         </li>
                     </ul>
@@ -144,7 +144,7 @@
 
 <script>       
 import MainFixedVote from '@/components/MainFixedVote.vue'   
-import animalSound from "../../public/audio/sound_lion.mp3";     
+// import animalSound from "../../public/audio/sound_lion.mp3";     
 import axios from 'axios';
 export default {
     data() {
@@ -152,113 +152,54 @@ export default {
             animalDetailData: [],//data
             bigPic:'',
             smallPics: [],
-            animal:{
-                species: '獅子',
-                name:'威廉',
-                lifeSpan:'10-14年',
-                area:'主要分布在非洲和印度次大陸',
-                food:'獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物',
-                features:'獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵',
-                description:' 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。',
-                en_name:'lion',
+            // animal:{
+            //     species: '獅子',
+            //     name:'威廉',
+            //     lifeSpan:'10-14年',
+            //     area:'主要分布在非洲和印度次大陸',
+            //     food:'獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物',
+            //     features:'獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵',
+            //     description:' 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。',
+            //     en_name:'lion',
 
-            },
-            animals_species : [
+            // },
+            //側邊欄
+            animals_sidebar : [
                 {
                     park:'草原之聲',
                     id:1,
                     isShow: false,
-                    children: [
-                        {species:'獅子'},
-                        {species:'長頸鹿'},
-                        {species:'非洲象'},
-                        {species:'獵豹'},
-                        {species:'斑馬'},
-                        {species:'狐獴'},
-                    ],
+                    animals: [],//動物種類，動態渲染
                     icon:'giraffe'
                 },
                 {
                     park:'極地秘境',
                     id:2,
                     isShow: false,
-                    children: [
-                        {species:'北極熊'},
-                        {species:'國王企鵝'},
-                        {species:'麥哲倫企鵝'},
-                        {species:'北極狐'},
-                        {species:'海豹'},
-                    ],
+                    animals: [],
                     icon:'penguin'
                 },
                 {
                     park:'叢林奇蹟',
                     id:3,
                     isShow: false,
-                    children: [
-                        {species:'水豚'},
-                        {species:'馬來貘'},
-                        {species:'紅毛猩猩'},
-                        {species:'孟加拉虎'},
-                        {species:'二趾樹懶'},
-                        {species:'台灣獼猴'},
-                    ],
+                    animals: [],
                     icon:'monkey'
                 },
                 {
                     park:'鳥園樂章',
                     id:4,
                     isShow: false,
-                    children: [
-                        {species:'孔雀'},
-                        {species:'紅鶴'},
-                        {species:'丹頂鶴'},
-                        {species:'貓頭鷹'},
-                        {species:'巨嘴鳥'},
-                        {species:'鵜鶘'},
-                    ],
+                    animals: [],
                     icon:'flamingo'
                 },
                 {
                     park:'海洋奇觀',
                     id:5,
                     isShow: false,
-                    children: [
-                        {species:'魟魚'},
-                        {species:'鯊魚'},
-                        {species:'海鰻'},
-                        {species:'小丑魚'},
-                        {species:'章魚'},
-                    ],
+                    animals: [],
                     icon:'fish'
                 },
-            ],
-            //select ph
-            animalsCategory: [
-                {
-                    value: 'All',
-                    label: 'All'
-                },
-                {
-                    value: 'grassLand',
-                    label: '草原之聲'
-                },
-                {
-                    value: 'polar',
-                    label: '極地秘境'
-                },
-                {
-                    value: 'jungle',
-                    label: '叢林奇蹟'
-                },
-                {
-                    value: 'birds',
-                    label: '鳥園樂章'
-                },
-                {
-                    value: 'aqua',
-                    label: '海洋奇觀'
-                }
             ],
 
             //小圖換大圖
@@ -269,36 +210,33 @@ export default {
         };
     },
     created(){
+        //定住畫面
         document.body.style.overflow = 'hidden';
         const closed = sessionStorage.getItem('hintClosed');
         if (closed) {
             this.showHint = false;
             document.body.style.overflow = ''
         }
-        const animalIdMapping = {
-            6: 1,  7: 3,  1: 5, 8: 6,
-            12: 7, 13: 8,  15: 10, 16: 11,
-            34: 12, 33: 13, 38: 14, 37: 15, 36: 16, 35: 17,
-            19: 18, 18: 19, 21: 20, 20: 21,  17: 23,
-            29: 24, 24: 25, 30: 26, 28: 27, 26: 28
-        }
- 
         const animalId = this.$route.params.id;
-        if (animalIdMapping.hasOwnProperty(animalId)) {
-        // 如果動物 ID 需要映射，則獲取對應的新 ID
-            const mappedAnimalId = animalIdMapping[animalId];
-            console.log(`映射後的動物 ID: ${mappedAnimalId}`);
+        this.fetchAnimalDetail(animalId);
 
-        // 使用新的動物 ID 來獲取動物詳情
-            this.fetchAnimalDetail(mappedAnimalId);
-        } else {
-        // 如果動物 ID 不需要映射，則直接使用原始的動物 ID
-            console.log(`未映射的動物 ID: ${animalId}`);
-            this.fetchAnimalDetail(animalId);
-        }
+        // 側邊欄
+        axios.get(`${import.meta.env.VITE_API_URL}/animalShow.php?type=categories`)
+        .then(response => {
+            this.categories = response.data; // 假設返回的數據是一個數組
+        // console.log(this.categories)
+        })
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+        });
 
     },
+    mounted() {
+        // 從後端獲取動物數據並填充到對應的館別下面
+        this.fetchSidebarData();
+    },
     computed:{
+        //監控目前動物頁面找聲音
         animalSoundPath(){
             return this.getAnimalSound(this.animalDetailData.animal_sound)
         }
@@ -318,43 +256,64 @@ export default {
                 console.error('獲取動物詳情時出錯:', error);
             });
         },
+        //側邊欄
+        fetchSidebarData(){
+            axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?type=speciesname`)
+            .then(response => {
+                const animalsData = response.data;
+                // 遍歷每一筆動物資料
+                animalsData.forEach(animal => {
+                // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
+                const parkIndex = this.animals_sidebar.findIndex(category => category.park === animal.category_name);
+                // 檢查是否找到對應的館別
+                if (parkIndex !== -1) {
+                    // 將動物的種類添加到對應館別的 animals 陣列中，因為index從0開始
+                    this.animals_sidebar[parkIndex].animals.push({ species: animal.animal_species });
+                }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching animal data:', error);
+            });
+        },
+        //關閉提示
         closeHint() {
             sessionStorage.setItem('hintClosed', 'true');
             this.showHint = false;
             document.body.style.overflow = ''
         },
-
-        getImageUrl(paths) {
-            return new URL(`../assets/images/animal/small_pic/small_pic_${paths}.png`, import.meta.url).href
-        },
-
+        //側邊欄的icon
         getIconUrl(paths) {
             return new URL(`../assets/images/animal/icon/${paths}.svg`, import.meta.url).href
         },
+        //動物icon(連資料庫)
         getAnimalIconUrl(paths) {
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`, import.meta.url).href
         },
-
+        //動物圖片(連資料庫)
         getSmallPicUrl(pic) {
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
         },
+        //動物圖片(大圖)，根據圖片選擇切換this.bigPic
         selectPic(pic) {
             this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
-            console.log(this.bigPic)
+            // console.log(this.bigPic)
         },
+        //動物聲音路徑
         getAnimalSound(paths){
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/audio/${paths}`, import.meta.url).href
-
         },
+        //播放聲音
         animalSoundPlay(){
             var sound = new Audio(this.animalSoundPath)
-            console.log(sound)
+            
+            // console.log(sound)
             sound.play();
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
         toggleShow(isShow,index) {
-            this.animals_species[index].isShow = !this.animals_species[index].isShow;
-            this.animals_species.forEach((item, i) => {
+            this.animals_sidebar[index].isShow = !this.animals_sidebar[index].isShow;
+            this.animals_sidebar.forEach((item, i) => {
             if (i !== index) {
             item.isShow = false;
             }
