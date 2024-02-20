@@ -66,15 +66,10 @@
           <div class="info pcSmTitle">
             <div v-for="field in fields" :key="field.key">
               <label>{{ field.label }}:</label>
-              <input
-                v-model="field.value"
-                class="infoInput"
-                :placeholder="placeholderLabel(field.key)"
-              />
+              <input class="infoInput" v-model="profile[field.key]" />
             </div>
             <button
-              type="submit"
-              @click="saveProfile"
+              @click="reviseMemProfile"
               class="defaultBtn pcInnerText infoBtn"
             >
               修改資料
@@ -89,49 +84,36 @@
     <section class="ticketArea" id="ticket" v-show="activeTab === 'ticket'">
       <div class="innerTicket">
         <h2 class="pcBigTitle">購票紀錄</h2>
-        <div class="buyHistory" @click="openQRCode">
+        <div
+          v-if="ticketDetail.length > 0"
+          class="buyHistory"
+          @click="openQRCode"
+        >
           <div class="listTitle">
             <p
-              v-for="ticket in ticketsTitle"
-              :key="ticketsTitle"
+              v-for="title in ticketsTitle"
+              :key="title"
               class="listTitle pcSmTitle"
             >
-              {{ ticket }}
+              {{ title }}
             </p>
           </div>
 
-          <div class="listInfo">
-            <p class="pcInnerText idColor">
-              {{ ticketDetail[0].id }}
-            </p>
-            <p class="pcInnerText">{{ ticketDetail[0].date }}</p>
-            <p class="pcInnerText">{{ ticketDetail[0].pay }}</p>
-            <p class="pcInnerText">{{ ticketDetail[0].total }}</p>
-            <p class="pcInnerText">{{ ticketDetail[0].type }}</p>
-            <p class="pcInnerText">{{ ticketDetail[0].status }}</p>
+          <div
+            v-for="(ticket, index) in ticketDetail"
+            :key="index"
+            class="listInfo"
+          >
+            <p class="pcInnerText idColor">{{ ticket.ord_id }}</p>
+            <p class="pcInnerText">{{ ticket.ord_tidate }}</p>
+            <p class="pcInnerText">{{ ticket.ord_tiprice }}</p>
+            <p class="pcInnerText">{{ ticket.ord_payprice }}</p>
+            <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
+            <p class="pcInnerText">{{ ticket.ord_status }}</p>
           </div>
         </div>
-        <div class="buyHistory" @click="openQRCode">
-          <div class="listTitle">
-            <p
-              v-for="ticket in ticketsTitle"
-              :key="ticketsTitle"
-              class="listTitle pcSmTitle"
-            >
-              {{ ticket }}
-            </p>
-          </div>
-
-          <div class="listInfo">
-            <p class="pcInnerText idColor" @click="openQRCode">
-              {{ ticketDetail[1].id }}
-            </p>
-            <p class="pcInnerText">{{ ticketDetail[1].date }}</p>
-            <p class="pcInnerText">{{ ticketDetail[1].pay }}</p>
-            <p class="pcInnerText">{{ ticketDetail[1].total }}</p>
-            <p class="pcInnerText">{{ ticketDetail[1].type }}</p>
-            <p class="pcInnerText">{{ ticketDetail[1].status }}</p>
-          </div>
+        <div v-else>
+          <p>尚無購票紀錄</p>
         </div>
       </div>
       <img
@@ -263,6 +245,7 @@ export default {
         mem_email: "",
         mem_phone: "",
         mem_token: "",
+        mem_id: "",
       },
       fields: [
         { key: "mem_name", label: "姓名" },
@@ -279,48 +262,7 @@ export default {
         "票券型態:",
         "處理狀態:",
       ],
-      ticketDetail: [
-        {
-          id: "1",
-          date: "2023/12/30",
-          pay: "NT$300",
-          total: "4",
-          type: "電子票",
-          status: "已用票",
-        },
-        {
-          id: "2",
-          date: "2023/12/30",
-          pay: "NT$800",
-          total: "4",
-          type: "實體票",
-          status: "未取票",
-        },
-        {
-          id: "3",
-          date: "2023/12/30",
-          pay: "NT$300",
-          total: "4",
-          type: "電子票",
-          status: "已用票",
-        },
-        {
-          id: "4",
-          date: "2023/12/30",
-          pay: "NT$300",
-          total: "4",
-          type: "電子票",
-          status: "已用票",
-        },
-        {
-          id: "5",
-          date: "2023/12/30",
-          pay: "NT$300",
-          total: "4",
-          type: "電子票",
-          status: "已用票",
-        },
-      ],
+      ticketDetail: [],
       userStore: userStore(),
     };
   },
@@ -328,20 +270,48 @@ export default {
     qrcodeLB,
     MainFixedVote,
   },
-  //抓取使用者在input輸入的內容
   created() {
+    //抓取localStorage內會員資料
     this.profile.mem_name = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).name
       : "";
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/memberInfo.php`)
-      .then((res) => {
-        console.log(res);
-        this.mem_name = res.data.name; // 將從 API 獲取的名稱賦值給 mem_name
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    this.profile.mem_title = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).title
+      : "";
+    this.profile.mem_email = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).email
+      : "";
+    this.profile.mem_phone = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).phone
+      : "";
+    this.profile.mem_birthday = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).birthday
+      : "";
+    this.profile.mem_id = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).id
+      : "";
+    //訂單資訊
+    // axios
+    const memberId = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).id
+      : "";
+    if (memberId) {
+      // 发送GET请求以获取会员订单信息
+      axios
+        .get(
+          `${import.meta.env.VITE_API_URL}/memOrderInfo.php?mem_id=${memberId}`
+        )
+        .then((res) => {
+          console.log(res);
+          this.ticketDetail = res.data;
+        })
+        .catch((error) => {
+          // 处理错误
+          console.error("Error fetching member orders:", error);
+        });
+    } else {
+      console.log("重新查詢");
+    }
   },
   watch: {
     "userStore.token": {
@@ -354,12 +324,6 @@ export default {
     },
   },
   methods: {
-    placeholderLabel(key) {
-      const labels = {
-        mem_name: this.profile.mem_name,
-      };
-      return labels[key] || "";
-    },
     toTicketPage() {
       this.$router.push("ticket");
     },
@@ -394,16 +358,51 @@ export default {
     saveImg() {
       localStorage.setItem("uploadedImage", this.imgUrl);
     },
-    //點擊修改btn會先將值存入localStorage
-    saveProfile() {
-      this.fields.forEach((field) => {
-        localStorage.setItem(`member${field.key}`, field.value);
-      });
-      alert("資料修改成功");
+    reviseMemProfile() {
+      const data = {
+        mem_id: this.profile.mem_id,
+        mem_name: this.profile.mem_name,
+        mem_title: this.profile.mem_title,
+        mem_birthday: this.profile.mem_birthday,
+        mem_email: this.profile.mem_email,
+        mem_phone: this.profile.mem_phone,
+      };
+      axios
+        .post(`${import.meta.env.VITE_API_URL}/memberRevise.php`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          const userData = JSON.parse(localStorage.getItem("userData"));
+          if (userData) {
+            userData.mem_name = data.mem_name;
+            userData.mem_title = data.mem_title;
+            userData.mem_birthday = data.mem_birthday;
+            userData.mem_email = data.mem_email;
+            userData.mem_phone = data.mem_phone;
+            localStorage.setItem("userData", JSON.stringify(userData));
+          }
+
+          // 更新当前组件实例中的 profile 对象
+          this.profile.mem_name = data.mem_name;
+          this.profile.mem_title = data.mem_title;
+          this.profile.mem_birthday = data.mem_birthday;
+          this.profile.mem_email = data.mem_email;
+          this.profile.mem_phone = data.mem_phone;
+          alert("更新成功");
+        })
+        .catch((error) => {
+          // 处理后端返回的错误
+          console.error(error);
+          // 可以根据需要执行其他操作，比如提示用户更新失败等
+        });
     },
     logout() {
       this.$router.push("/");
       this.userStore.updateToken("");
+      this.userStore.updateUserData("");
     },
   },
   mounted() {

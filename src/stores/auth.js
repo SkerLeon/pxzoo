@@ -50,9 +50,13 @@ export default defineStore("userStore", {
       this.userData = {
         name: val.mem_name,
         id: val.mem_id,
+        title: val.mem_title,
+        email: val.mem_email,
+        phone: val.mem_phone,
+        birthday: val.mem_birthday,
         validation: val.mem_validation,
         // 封鎖狀況1|0
-        state: val.mem_state,
+        state: val.mem_status,
         // 如果有權限可以把權限角色記載資料庫
         role: "editor",
       };

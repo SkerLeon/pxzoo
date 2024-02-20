@@ -195,7 +195,6 @@ export default {
         data: bodyFormData,
       })
         .then((res) => {
-          console.log(res);
           if (res && res.data) {
             if (res.data.code == 1) {
               this.updateToken(res.data.session_id);
