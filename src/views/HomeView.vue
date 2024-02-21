@@ -1536,7 +1536,8 @@ export default {
     },
     getNewsUrl(image) {
       return new URL(
-        'http://localhost/g4/images/news/'+image,
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/news/newsFrame/`+image,
+        // 'http://localhost/g4/images/news/'+image,
         // '../../../image/news/'+image,
         import.meta.url
       ).href;
