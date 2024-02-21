@@ -1,73 +1,38 @@
 <template>
-  <MainFixedVote v-if="!isMobile" />
-  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox"/>
+  <MainFixedVote v-if="!windowWidth.isMobile" />
+  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
     </div>
 
-<!-- 0% -->
+    <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
-      <TickInfo 
-      v-if="!isBoard || !TickCalendar" 
-      @TickCalendar="showTickCalendar" 
-      />
-      <TickCalendar 
-      v-if="!isBoard ||TickCalendar" 
-      :tidateData="tidate" 
-      @newDate="updateDate" 
-      @goNextStep="showNextStep" 
-      />
+      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" :windowWidth="windowWidth"
+        @TickCalendar="showTickCalendar" />
+      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar" :windowWidth="windowWidth" :tidateData="tidate"
+        @newDate="updateDate" @goNextStep="showNextStep" />
     </main>
 
-<!-- 30% -->
+    <!-- 30% -->
     <main v-else-if="tickStep === 1">
-      <TickNum 
-      :ticketsData="tickets"  
-      :ticketsQtyData="ticketsQty" 
-      :tipriceData="tiprice" 
-      @newTiprice="updateTiprice"
-      @goNextStep="showNextStep" 
-      @goPreviousStep="backPreviousStep"
-      />
+      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" :ticketsQtyData="ticketsQty" :tipriceData="tiprice"
+        @newTiprice="updateTiprice" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
-<!-- 60% -->
+    <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck  
-      :tidateData="tidate" 
-      :ticketsData="tickets" 
-      :tipriceData="tiprice" 
-      
-      :couponsData="coupons"
-      :couData="selectedCou" 
-      :coupriceData="couprice" 
-      :paypriceData="payprice"
-      :paywaysData="payways" 
-
-      :paywayData="selectedPW" 
-      :paywayTTData="selectedPWTT"
-
-      @newCardId="updateCardId" 
-      @newCoupon="updateCoupon" 
-      @newPayway="updatePayway" 
-      @goNextStep="showNextStep" 
-      @goPreviousStep="backPreviousStep" 
-      />
+      <TickCheck :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couponsData="coupons"
+        :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywaysData="payways"
+        :paywayData="selectedPW" :paywayTTData="selectedPWTT" @newCardId="updateCardId" @newCoupon="updateCoupon"
+        @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
-<!-- 100% -->
+    <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished   
-      :tidateData="tidate" :ticketsData="tickets" 
-      :tipriceData="tiprice"
-      :couData="selectedCou" 
-      :coupriceData="couprice" 
-      :paypriceData="payprice" 
-      :paywayData="selectedPW" 
-      :paywayTTData="selectedPWTT" 
-      :tickStatusData="tickstatus"
-      />
+      <TickFinished :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couData="selectedCou"
+        :coupriceData="couprice" :paypriceData="payprice" :paywayData="selectedPW" :paywayTTData="selectedPWTT"
+        :tickStatusData="tickstatus" />
     </main>
 
   </section>
@@ -90,7 +55,7 @@ import LoginLightBox from '@/components/loginLightBox.vue';
 
 export default {
   mixins: [getMemId],
-  components:{
+  components: {
     MainFixedVote,
     TickInfo,
     TickCalendar,
@@ -98,8 +63,8 @@ export default {
     TickCheck,
     TickFinished,
     LoginLightBox
-},
-  props:{},
+  },
+  props: {},
   data() {
     return {
       showLogin: false,
@@ -112,17 +77,17 @@ export default {
       tickStep: 0,
       TickCalendar: false,
       tiprice: 0,
-      selectedCou: null, 
+      selectedCou: null,
       couprice: 0,
       payprice: 0,
       tidate: new Date(),
       tickets: [],
-      ticketsQty:[],
+      ticketsQty: [],
       ord_detail_qty: 0,
       coupons: [],
       selectedCouId: null,
       payways: [
-        { 
+        {
           id: 1,
           option: '信用卡',
           value: 'card',
@@ -140,48 +105,57 @@ export default {
       cardId: null,
       tickstatus: '',
       selectedCouDetailId: null,
+      // windowWidth: window.innerWidth,
+      windowWidth: {
+        isSmallPH: false,
+        isMidPH: false,
+        isMobile: false,
+        isBoard: false,
+        isSmallPC: false,
+        isMidPC: false,
+      },
     }
   },
-  methods:{
-    fetchTickets(){
+  methods: {
+    fetchTickets() {
       axios.get(`${import.meta.env.VITE_API_URL}/ticketsShow.php`)
-      .then(response => {
-        // 確保 response.data 是數組
-        if (Array.isArray(response.data)) {
-          this.tickets = response.data;
+        .then(response => {
+          // 確保 response.data 是數組
+          if (Array.isArray(response.data)) {
+            this.tickets = response.data;
 
-          // 為每個 ticket 添加 qty 屬性
-          this.tickets.forEach(ticket => {
-            ticket.ord_detail_qty = 0;
-          });
-        } else {
-          console.error('Invalid data format'); // 處理非數組的情況
-        } 
-      })
-      .catch(error => {
-        console.error("Error fetching data: ", error);
-      });
+            // 為每個 ticket 添加 qty 屬性
+            this.tickets.forEach(ticket => {
+              ticket.ord_detail_qty = 0;
+            });
+          } else {
+            console.error('Invalid data format'); // 處理非數組的情況
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching data: ", error);
+        });
     },
-    fetchMemCou(){
-      axios.post(`${import.meta.env.VITE_API_URL}/couShowDistinct.php`,{
+    fetchMemCou() {
+      axios.post(`${import.meta.env.VITE_API_URL}/couShowDistinct.php`, {
         mem_id: this.mem_id,
-      },{
+      }, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      .then( response => {
-        if(response.data.errMsg){
-          this.coupons = response.data.errMsg;
-        }else if(!Array.isArray(response.data)){
-          this.coupons=Object.values(response.data)[0]; // this.coupons isArray
-        }else{ this.coupons = response.data; }
-      })
-      .catch(error=>{
-        console.error('Error fetching data:', error);
-      })
+        .then(response => {
+          if (response.data.errMsg) {
+            this.coupons = response.data.errMsg;
+          } else if (!Array.isArray(response.data)) {
+            this.coupons = Object.values(response.data)[0]; // this.coupons isArray
+          } else { this.coupons = response.data; }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        })
     },
-    fetchOrderInsert(){
+    fetchOrderInsert() {
       const requestData = {
         mem_id: this.mem_id,
         cou_id: this.selectedCouId,
@@ -201,46 +175,46 @@ export default {
           'Content-Type': 'application/json',
         }
       })
-      .then(response => { 
-        response.data;
-        this.fetchMemCou();
-      })
-      .catch(error=>{
-        console.error('Error fetching data:', error);
-      })
+        .then(response => {
+          response.data;
+          this.fetchMemCou();
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        })
     },
-    updateLoginBox(bool){
-      this.showLogin=bool;
+    windowResize() {
+      this.windowWidth.isSmallPH = window.innerWidth <= 430;
+      this.windowWidth.isMidPH = window.innerWidth <= 470;
+      this.windowWidth.isMobile = window.innerWidth <= 768;
+      this.windowWidth.isBoard = window.innerWidth < 1200;
+      this.windowWidth.isSmallPC = window.innerWidth <= 1400;
+      this.windowWidth.isMidPC = window.innerWidth <= 1540;
+
+      // this.windowWidth=window.innerWidth;
     },
-    windowSize(){
-      this.isMobile = window.innerWidth <= 768;
-      this.isBoard = window.innerWidth < 1200;
-    },
-    startFromTop(){
+    startFromTop() {
       // 使用 window.scrollTo() 滾動到頂部
       window.scrollTo({
-          top: 0,
-          behavior: 'smooth', // 使用平滑滾動效果
+        top: 0,
+        behavior: 'smooth', // 使用平滑滾動效果
       });
     },
-    updateDate(newDate){
-      this.tidate=newDate;
-    },
-    showNextStep(){
+    showNextStep() {
       // 如果沒有登入，則顯示登入燈箱
-      if(this.tickStep === 0){
-        if(this.mem_id === null){
-          this.showLogin=(this.mem_id === null);
-        }else{
+      if (this.tickStep === 0) {
+        if (this.mem_id === null) {
+          this.showLogin = (this.mem_id === null);
+        } else {
           this.fetchTickets();
           this.fetchMemCou();
           this.tickStep++;
         }
-      }else{
+      } else {
         // 送出訂單階段
-        if(this.tickStep === 2){
+        if (this.tickStep === 2) {
           // 如果沒有選優惠券，則顯示不使用
-          if(this.selectedCou === null){
+          if (this.selectedCou === null) {
             this.selectedCou = "不使用優惠券";
           }
           this.fetchOrderInsert();
@@ -249,27 +223,32 @@ export default {
       }
       this.startFromTop();
     },
-    backPreviousStep(){
+    backPreviousStep() {
       this.tickStep--;
       this.startFromTop();
     },
-    showTickCalendar(){
-      this.TickCalendar=true;
+    showTickCalendar() {
+      this.TickCalendar = true;
       this.startFromTop();
     },
-    updateTiprice(newTiprice){
-
+    updateDate(newDate) {
+      this.tidate = newDate;
+    },
+    updateLoginBox(bool) {
+      this.showLogin = bool;
+    },
+    updateTiprice(newTiprice) {
       this.tiprice = newTiprice;
       this.payprice = newTiprice;
     },
-    updateCoupon(newCoupon){
-      if(newCoupon!=="不使用優惠券"){
-        var coupon =this.coupons.find(
+    updateCoupon(newCoupon) {
+      if (newCoupon !== "不使用優惠券") {
+        var coupon = this.coupons.find(
           (cou) => cou.cou_name === newCoupon
         );
-        this.selectedCouId=coupon.cou_id;
-        this.selectedCouDetailId=coupon.cou_detail_id;
-        this.couprice =  parseInt(
+        this.selectedCouId = coupon.cou_id;
+        this.selectedCouDetailId = coupon.cou_detail_id;
+        this.couprice = parseInt(
           (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
         );
         // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
@@ -278,40 +257,62 @@ export default {
 
       this.payprice = this.tiprice - this.couprice;
     },
-    updatePayway(newPayway){
+    updatePayway(newPayway) {
       this.selectedPW = newPayway;
 
-      if(this.selectedPW === '信用卡'){
+      if (this.selectedPW === '信用卡') {
         this.selectedPWTT = '數位票券',
-        this.tickstatus = '未用票';
-      }else{
+          this.tickstatus = '未用票';
+      } else {
         this.selectedPWTT = '實體票券',
-        this.tickstatus = '未取票';
+          this.tickstatus = '未取票';
       }
     },
-    updateCardId(newCardId){
+    updateCardId(newCardId) {
       this.cardId = newCardId;
     },
   },
-  computed:{
-    tickStepImg(){
+  computed: {
+    tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
+    // isMidPH(){
+    //   return window.innerWidth <= 470;
+    // },
+    // isMobile(){
+    //   return window.innerWidth <= 768;
+    // },
+    // isBoard(){
+    //   return window.innerWidth < 1200;
+    // },
+    // isSmallPC(){
+    //     return window.innerWidth <= 1400;
+    // },
+    // isMidPC(){
+    //     return window.innerWidth <= 1540;
+    // },
   },
-  created(){
-    this.windowSize();
-    window.addEventListener('resize', this.windowSize);
-
+  watch: {},
+  // created(){
+  //   this.windowSize();
+  //   window.addEventListener('resize', this.windowSize);
+  // },
+  provide() {
+    return {
+      windowWidth: this.windowWidth,
+    };
+  },
+  mounted() {
+    this.windowResize();
+    window.addEventListener('resize', this.windowResize);
+    // this.windowSize();
+    // window.addEventListener('resize', this.windowSize);
   },
   beforeUnmount() {
-      window.removeEventListener('resize', this.windowSize);
+    window.removeEventListener('resize', this.windowResize);
   },
 }
 
 </script>
 
-<style>
-
-
-
-</style>
+<style></style>
