@@ -5,7 +5,7 @@
         <hgroup>
             <h2 class="pcSmTitle">選擇數量</h2>
             <button @click="tickReset">
-                <img src="@/assets/images/ticket/refresh.svg">
+                <img src="@/assets/images/ticket/refresh.png">
             </button>
         </hgroup>
         <main>
@@ -47,8 +47,8 @@
             <main v-show="cantNextPage" class="tickPrompt">
                 <article v-html="cantNextPage" class="pcInnerText">
                 </article>
-                <img v-if="isSmallPH" src="@/assets/images/ticket/tickConversation_1s.svg" alt="提示訊息">
-                <img v-else src="@/assets/images/ticket/tickConversation_1.svg" alt="提示訊息">
+                <img v-if="isSmallPH" src="@/assets/images/ticket/tickConversation_1s.png" alt="提示訊息">
+                <img v-else src="@/assets/images/ticket/tickConversation_1.png" alt="提示訊息">
             </main>
 
             <button type="button" class="tickLBtn defaultBtn pcInnerText" @click="nextStep">
@@ -93,7 +93,7 @@ export default {
             this.tipriceCalculate();
         },
         getTickImgUrl(path){
-            return new URL(`../../assets/images/ticket/ticket${path}.svg`, import.meta.url).href
+            return new URL(`../../assets/images/ticket/ticket${path}.png`, import.meta.url).href
         },
         nextStep(){
             let teamQty = this.ticketsData[2].ord_detail_qty;

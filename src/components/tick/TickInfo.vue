@@ -15,16 +15,16 @@
             </ol>
         </article>
         <div v-if="isBoard" class="tickLightbox">
-            <img v-if="isMidPH" src="@/assets/images/ticket/PHinfoXS.svg" alt="購票須知布告欄" class=""/>
-            <img v-else src="@/assets/images/ticket/PHinfoL.svg" alt="購票須知布告欄" class=""/>
+            <img v-if="isMidPH" src="@/assets/images/ticket/PHinfoXS.png" alt="購票須知布告欄" class=""/>
+            <img v-else src="@/assets/images/ticket/PHinfoL.png" alt="購票須知布告欄" class=""/>
             
-            <img @click="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.svg" alt="關閉按鈕">
+            <img @click="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.png" alt="關閉按鈕">
         </div>
         <div v-else class="tickBgc">
-            <img src="@/assets/images/ticket/eagle.svg" alt="eagle" class="tickEagle">
-            <img v-if="isSmallPC" src="@/assets/images/ticket/PCinfoS.svg" alt="購票須知布告欄" class="tickBoard"/>
-            <img v-else-if="isMidPC" src="@/assets/images/ticket/PCinfoM.svg" alt="購票須知布告欄" class="tickBoard"/>
-            <img v-else src="@/assets/images/ticket/PCinfoL.svg"  alt="購票須知布告欄" class="tickBoard"/>
+            <img src="@/assets/images/ticket/eagle.png" alt="eagle" class="tickEagle">
+            <img v-if="isSmallPC" src="@/assets/images/ticket/PCinfoS.png" alt="購票須知布告欄" class="tickBoard"/>
+            <img v-else-if="isMidPC" src="@/assets/images/ticket/PCinfoM.png" alt="購票須知布告欄" class="tickBoard"/>
+            <img v-else src="@/assets/images/ticket/PCinfoL.png"  alt="購票須知布告欄" class="tickBoard"/>
         </div>
 
     </section>
