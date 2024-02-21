@@ -203,7 +203,6 @@ export default {
       })
       .then(response => { 
         response.data;
-        this.coupons=null;
         this.fetchMemCou();
       })
       .catch(error=>{
