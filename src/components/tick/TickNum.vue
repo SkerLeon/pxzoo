@@ -24,7 +24,7 @@
                     </article>
                     <div class="countBTN">
                         <button @click="decrease(t.tickets_id)" class="pcDecMarkText">-</button>
-                        <input v-model.trim="t.qty" @input="alterQty(t.tickets_id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
+                        <input v-model.trim="t.ord_detail_qty" @input="alterQty(t.tickets_id)" type="number" placeholder="0" inputmode="numeric" step="1" min="0" max="999">
                         <button @click="increase(t.tickets_id)" class="pcDecMarkText">+</button>
                     </div>
                 </article>
@@ -88,7 +88,7 @@ export default {
         },
         tickReset(){
             this.ticketsData.forEach((ticket) => {
-                ticket.qty = 0;
+                ticket.ord_detail_qty = 0;
             });
             this.tipriceCalculate();
         },
@@ -96,29 +96,12 @@ export default {
             return new URL(`../../assets/images/ticket/ticket${path}.svg`, import.meta.url).href
         },
         nextStep(){
-            let teamQty = this.ticketsData[2].qty;
+            let teamQty = this.ticketsData[2].ord_detail_qty;
 
             if(this.tipriceData > 0){
                 if(teamQty>0 && teamQty<15){
                     this.cantNextPage="<p>團體票須</p><p><span class='promptYellow'>15人以上</span>!</p>";
                 }else{
-                    
-                    // let ticketsWithQty  = this.ticketsData.filter(tick => tick.qty > 0);
-                    // console.log(ticketsWithQty);
-
-                    // ticketsWithQty.forEach(tick =>{
-                    //     this.ticketsQtyData.push({
-                    //         tickets_id: tick.tickets_id, 
-                    //         detail_qty: tick.qty,
-                    //     })
-                    // })
-                    // console.log(this.ticketsQtyData);
-
-                    // qty歸零的話，原本的會刪掉嗎?
-                    // 應該先抓tickets_id是否已存在，若存在則更新數值
-                    // 若不存在再push
-                    // 若tick.qty=0，則必須從陣列移除
-                    // 或是之後直接把qty 篩選>0的pass到資料庫就好，不用寫入陣列了
                     this.$emit('goNextStep');
                 }
             }else{
@@ -129,25 +112,24 @@ export default {
             this.$emit('goPreviousStep');
         },
         increase(ticketId){
-            if(this.ticketsData[ticketId-1].qty<999){
-                this.ticketsData[ticketId-1].qty++;
+            if(this.ticketsData[ticketId-1].ord_detail_qty<999){
+                this.ticketsData[ticketId-1].ord_detail_qty++;
                 this.tipriceCalculate();
                 
-                console.log(this.ticketsQtyData);
-                return this.ticketsData[ticketId-1].qty;
+                return this.ticketsData[ticketId-1].ord_detail_qty;
             }
         },
         decrease(ticketId){
-            if(this.ticketsData[ticketId-1].qty>0){
-                this.ticketsData[ticketId-1].qty--;
+            if(this.ticketsData[ticketId-1].ord_detail_qty>0){
+                this.ticketsData[ticketId-1].ord_detail_qty--;
                 this.tipriceCalculate();
-                return this.ticketsData[ticketId-1].qty;
+                return this.ticketsData[ticketId-1].ord_detail_qty;
             }
         },
         tipriceCalculate(){
             let newTiprice=this.ticketsData.reduce(
                 (sum, tick)=>
-                sum + tick.qty* tick.tickets_price,
+                sum + tick.ord_detail_qty* tick.tickets_price,
             0);
             
             if(isNaN(newTiprice)){
@@ -163,17 +145,17 @@ export default {
         alterQty(ticketId){
             // 因為HTML設定input type="number"，所以這邊用typeof都會得到"number"，但事實上所有input都是字串
 
-            if(isNaN(this.ticketsData[ticketId-1].qty)){
-                this.ticketsData[ticketId-1].qty = 0;
+            if(isNaN(this.ticketsData[ticketId-1].ord_detail_qty)){
+                this.ticketsData[ticketId-1].ord_detail_qty = 0;
             }
 
             // 單票種上限
-            if( parseInt(this.ticketsData[ticketId-1].qty) >999 ){
-                this.ticketsData[ticketId-1].qty = 999;
+            if( parseInt(this.ticketsData[ticketId-1].ord_detail_qty) >999 ){
+                this.ticketsData[ticketId-1].ord_detail_qty = 999;
             }
 
             // 將數值轉為整數數字
-            this.ticketsData[ticketId-1].qty = parseInt(this.ticketsData[ticketId-1].qty);
+            this.ticketsData[ticketId-1].ord_detail_qty = parseInt(this.ticketsData[ticketId-1].ord_detail_qty);
 
             this.tipriceCalculate();
         },
@@ -181,12 +163,8 @@ export default {
     },
     computed:{
     // computed 不需 $emit 傳遞值，會自動被 Vue 監聽，當值發生變化時，它會通知使用這個值的地方進行更新
-
-
     },
-    watch:{
-
-    },
+    watch:{},
     created(){
         this.windowSize();
         window.addEventListener('resize', this.windowSize);

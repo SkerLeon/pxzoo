@@ -66,10 +66,8 @@
       :paypriceData="payprice" 
       :paywayData="selectedPW" 
       :paywayTTData="selectedPWTT" 
-      :tickStatusData="tickstatus" 
-      @goPreviousStep="backPreviousStep"
+      :tickStatusData="tickstatus"
       />
-      <!-- goPreviousStep for 測試，正式上線要拿掉!!! -->
     </main>
 
   </section>
@@ -115,14 +113,13 @@ export default {
       TickCalendar: false,
       tiprice: 0,
       selectedCou: null, 
-      selectedCouOp: '',
       couprice: 0,
       payprice: 0,
       tidate: new Date(),
       tickets: [],
       ticketsQty:[],
       ord_detail_qty: 0,
-      coupons: null,
+      coupons: [],
       selectedCouId: null,
       payways: [
         { 
@@ -142,6 +139,7 @@ export default {
       selectedPW: null,
       cardId: null,
       tickstatus: '',
+      selectedCouDetailId: null,
     }
   },
   methods:{
@@ -154,10 +152,10 @@ export default {
 
           // 為每個 ticket 添加 qty 屬性
           this.tickets.forEach(ticket => {
-            ticket.qty = 0;
+            ticket.ord_detail_qty = 0;
           });
         } else {
-          console.error('Invalid data format'); // 处理非数组的情况
+          console.error('Invalid data format'); // 處理非數組的情況
         } 
       })
       .catch(error => {
@@ -175,40 +173,42 @@ export default {
       .then( response => {
         if(response.data.errMsg){
           this.coupons = response.data.errMsg;
-        }else{
-          this.coupons = response.data;
-        }
+        }else if(!Array.isArray(response.data)){
+          this.coupons=Object.values(response.data)[0]; // this.coupons isArray
+        }else{ this.coupons = response.data; }
       })
       .catch(error=>{
         console.error('Error fetching data:', error);
       })
     },
     fetchOrderInsert(){
-
-      // // 從local storage取得userData字串
-      // const userDataString = localStorage.getItem('userData');
-      // // 將userData字串轉換為JS物件
-      // const userData = JSON.parse(userDataString);
-      // // 從JS物件中獲取id屬性
-      // this.mem_id=userData.id;
-      console.log(this.mem_id);
-
-    //   axios.post(`${import.meta.env.VITE_API_URL}/orderInsert.php`, {
-    //     mem_id: this.mem_id,
-    //     cou_id: ,  // couData是string
-    //     ord_tidate: this.tidate, 
-    //     ord_tiprice: this.tiprice, 
-    //     ord_couprice: this.couprice, 
-    //     ord_payprice: this.payprice, 
-    //     ord_payway: this.selectedPW, 
-    //     ord_ticktype: this.selectedPWTT, 
-    //     ord_cardid: this., //還沒驗證綁值
-    //     ord_status: this.tickstatus
-    //   }, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     }
-    //   })
+      const requestData = {
+        mem_id: this.mem_id,
+        cou_id: this.selectedCouId,
+        ord_tidate: this.tidate.toISOString().split('T')[0],
+        ord_tiprice: this.tiprice,
+        ord_couprice: this.couprice,
+        ord_payprice: this.payprice,
+        ord_payway: this.selectedPW,
+        ord_ticktype: this.selectedPWTT,
+        ord_cardid: this.cardId,
+        ord_status: this.tickstatus,
+        ord_detail_tick: this.tickets,
+        cou_detail_id: this.selectedCouDetailId,
+      };
+      axios.post(`${import.meta.env.VITE_API_URL}/orderInsert.php`, requestData, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => { 
+        response.data;
+        this.coupons=null;
+        this.fetchMemCou();
+      })
+      .catch(error=>{
+        console.error('Error fetching data:', error);
+      })
     },
     updateLoginBox(bool){
       this.showLogin=bool;
@@ -226,15 +226,6 @@ export default {
     },
     updateDate(newDate){
       this.tidate=newDate;
-
-      // const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-      // this.tidate=newDate.toLocaleDateString('zh-TW', options);
-      // console.log('this.calDate type', typeof this.calDate);
-      // console.log('this.calDate',this.calDate);
-      console.log('typeof',typeof this.tidate);
-      console.log('this.tidate',this.tidate);
-
-      // toLocaleDateString 方法，該方法將日期轉換為當地日期字符串。它的第一個參數是區域設置（locale），這裡設置為 'zh-TW'，表示使用中文（台灣）的日期格式。第二個參數是 options 物件，用於指定日期的顯示格式。
     },
     showNextStep(){
       // 如果沒有登入，則顯示登入燈箱
@@ -247,9 +238,13 @@ export default {
           this.tickStep++;
         }
       }else{
-        // 如果沒有選優惠券，則顯示不使用
-        if(this.tickStep === 2 && this.selectedCou === null){
-          this.selectedCou = "不使用優惠券";
+        // 送出訂單階段
+        if(this.tickStep === 2){
+          // 如果沒有選優惠券，則顯示不使用
+          if(this.selectedCou === null){
+            this.selectedCou = "不使用優惠券";
+          }
+          this.fetchOrderInsert();
         }
         this.tickStep++;
       }
@@ -264,15 +259,17 @@ export default {
       this.startFromTop();
     },
     updateTiprice(newTiprice){
+
       this.tiprice = newTiprice;
       this.payprice = newTiprice;
     },
     updateCoupon(newCoupon){
       if(newCoupon!=="不使用優惠券"){
-        var coupon = this.coupons.find(
+        var coupon =this.coupons.find(
           (cou) => cou.cou_name === newCoupon
         );
         this.selectedCouId=coupon.cou_id;
+        this.selectedCouDetailId=coupon.cou_detail_id;
         this.couprice =  parseInt(
           (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
         );
@@ -298,14 +295,14 @@ export default {
     },
   },
   computed:{
-    tickStepImg() {
+    tickStepImg(){
       return this.tickStepImgs[this.tickStep];
     },
   },
   created(){
-    // this.fetchOrderInsert();
     this.windowSize();
     window.addEventListener('resize', this.windowSize);
+
   },
   beforeUnmount() {
       window.removeEventListener('resize', this.windowSize);

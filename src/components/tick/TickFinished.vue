@@ -1,13 +1,9 @@
 <template>
     <!-- part3 購票完成 -->
     <section class="tickFinished">
-        <!-- 本頁待辦:
-            2.訂單建立進資料庫，資料庫AI產生訂單編號
-        -->
 
         <section>
-            <!-- click for測試用，正式上線要拿掉!!! -->
-            <h2 @click="previousStep" v-html=" paywayData === '信用卡'? cardFinished : cashFinished " class="pcSmTitle"></h2>
+            <h2 v-html=" paywayData === '信用卡'? cardFinished : cashFinished " class="pcSmTitle"></h2>
 
             <p class="pcInnerText">畫面將於 {{sec}} 秒鐘後跳轉回首頁。</p>
             <button @click="useGoHome" class="defaultBtn pcInnerText">
@@ -39,7 +35,7 @@
                         <span class="pcMarkText">{{ t.tickets_rule }}</span>
                     </div>
                     <h2 class="pcSmTitle">
-                        {{ t.qty }} 
+                        {{ t.ord_detail_qty }} 
                         <span class="pcMarkText">張</span>
                     </h2>
                 </main>
@@ -92,10 +88,6 @@ import {goHome} from '@/assets/js/common.js';
 export default {
     components:{},
     props:{
-        tickStep:{
-        // 測試用，正式上線要拿掉!!!
-            type: Number,
-        },
         tidateData:{
             type: Date,
             required: true,
@@ -142,10 +134,6 @@ export default {
         }
     },
     methods:{
-        previousStep(){
-            // 測試用，正式上線要拿掉!!!
-            this.$emit('goPreviousStep');
-        },
         useGoHome(){
             clearInterval(this.timer);
             goHome(this);
@@ -176,9 +164,7 @@ export default {
         this.couData;
     },
     beforeUnmount() {
-        console.log("end");
         clearInterval(this.timer); // 清理定时器
-        console.log(`clearInterval(this.timer)`)
     },
 }
 

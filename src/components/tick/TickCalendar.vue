@@ -4,7 +4,6 @@
         <!-- 本頁待辦:
             4.已過期的日子要呈現灰色
             5.已過期的日子&休園日都不能被選擇(滑鼠不會變成手指)
-            7.下一步按鈕接會員登入篩選，if未登入則跳燈箱，else則下一頁
             8.有時間再寫localhost緩存
             9.串接行政院行事曆
         -->
@@ -107,7 +106,6 @@ export default {
                 return this.tidateData;
             },
             set(value){
-                console.log(value);
                 this.$emit('newDate', value);
             },
         },

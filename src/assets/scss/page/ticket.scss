@@ -631,6 +631,7 @@
         button{ margin: 3vw 0;}
     }
     .tickInfo{
+        z-index: 99;
         overflow: scroll;
         background-color: rgba(0, 0, 0, 70%);
         position: fixed;

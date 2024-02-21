@@ -1,9 +1,6 @@
 <template>
     <!-- part2 付款頁 -->
     <section class="tickCheck">
-        <!-- 本頁待辦:
-            8.noCoupon: false, // 等界接後這個值由會員優惠紀錄決定
-        -->
 
         <h2 class="pcSmTitle">請確認您的訂單資訊</h2>
         <hgroup class="pcInnerText">
@@ -24,7 +21,7 @@
                     <span class="pcMarkText">{{ t.tickets_rule }}</span>
                 </div>
                 <h2 class="pcSmTitle">
-                        {{ t.qty }} 
+                        {{ t.ord_detail_qty }} 
                     <span class="pcMarkText">張</span>
                 </h2>
             </main>
@@ -35,7 +32,7 @@
             <select v-else class="pcInnerText" v-model="selectedCoupon">
                 <option value="null" disabled hidden>請選擇優惠券</option>
                 <option value="不使用優惠券">不使用優惠券</option>
-                <option v-for="(coupon, couponIndex) in couponsData" :key="coupon.cou_id" :value="coupon.cou_name">{{ coupon.cou_name }}</option>
+                <option v-for="coupon in couponsData" :key="coupon.cou_detail_id" :value="coupon.cou_name">{{ coupon.cou_name }}</option>
             </select>
         </hgroup>
         <div class="price">
@@ -147,7 +144,6 @@ export default {
             required: true,
         },
         couponsData: {
-            // type: Array,
             required: true,
         },
         couData: {
@@ -175,7 +171,6 @@ export default {
     },
     data(){
         return {
-            noCoupon: false, // 等界接後這個值由會員優惠券紀錄決定
             isSmallPH: false,
             cantNextPage: false,
             cardId: null,
@@ -211,7 +206,6 @@ export default {
             if([...string].every(char => allowedChars.includes(char))){
                 // 使用 every 方法檢查字串中的每個字元是否都包含在 allowedChars 中
                 // 使用展開運算子 (...) 將字串轉換為字元陣列
-                console.log(1);
                 this.cardPrompt=`<p>${name}請輸入半形數字</p>`;
                 return false;
             }
@@ -219,13 +213,11 @@ export default {
             if(max !== null){ // 卡號由15~19位數字組成
                 if(string.length<min || string.length>max){
                     this.cardPrompt=`<p>${name}由${min}~${max}位數字組成</p>`;
-                console.log(2);
                     return false;
                 }else{ return true; }
             }else{ // 驗證碼由3位數字組成
                 if(string.length !== min){
                     this.cardPrompt=`<p>${name}由${min}位數字組成</p>`;
-                console.log(3);
                     return false;
                 }else{ return true; }
             }
@@ -239,7 +231,6 @@ export default {
             
             // 確認卡號沒有0、7、8、9開頭
             if( parseInt(string.charAt(0)) >= 7 || string.charAt(0) === '0' ){
-                console.log('head');
                 return false;
             }
 
@@ -251,11 +242,9 @@ export default {
             for(let i=string.length-2; i>=0; i--){
                 let digit = parseInt(string[i]);
 
-                if( (string.length-i)%2 === 1 ){
-                    // 奇數位，權重1
+                if( (string.length-i)%2 === 1 ){ // 奇數位，權重1
                     sum+=digit;
-                }else{                    
-                    // 偶數位，權重2
+                }else{// 偶數位，權重2
                     digit*=2;
                     if(digit>9){
                         digit -= 9;
@@ -267,17 +256,11 @@ export default {
             // 3.將數字的和取模10（本例中得到7），再用10去減（本例中得到3），得到校驗位。
             const checkSum = 10 - (sum % 10);
             const lastDigit = parseInt(string[string.length - 1]);
-            console.log("sum", sum);
-            console.log(checkSum, lastDigit);
-            console.log(typeof checkSum, typeof lastDigit);
 
             return checkSum === lastDigit;
         },
         checkInputs(){
             let cardInfo=[this.cardId, this.cardMonth, this.cardYear, this.cardCode];
-            
-            // console.log(this.cardId, this.cardMonth, this.cardYear, this.cardCode);
-            // console.log(typeof this.cardId, typeof this.cardMonth, typeof this.cardYear, typeof this.cardCode);
 
             return !cardInfo.some( (value) => value === null );
         },
@@ -292,13 +275,12 @@ export default {
                 if(!this.checkInputs()){
                     this.cantNextPage="<p>請填寫~</p><p class='promptYellow'>信用卡資訊</p>";
                 }else if( !this.isCardConformFormat('卡號', this.cardId, 15, 19) ){
-                    console.log("here", this.cardPrompt);
+                    this.cardPrompt=this.wrongCard; 
                 }else if( !this.isCardConformFormat('驗證碼', this.cardCode, 3) ){
-                    console.log("here2", this.cardPrompt);
+                    this.cardPrompt=this.wrongCard; 
                 }else if( !this.checkCardTime() ){
                     this.cardPrompt=this.wrongCard; 
                 }else if( !this.isCardIdValid() ){
-                    console.log("id");
                     this.cardPrompt=this.wrongCard; 
                 }else{
                     this.$emit('newCardId', this.cardId);
@@ -326,7 +308,6 @@ export default {
         selectedPayway:{
             get(){ return this.paywayData; },
             set(value){
-                console.log('pw',value);
                 this.cantNextPage=false;
                 this.$emit('newPayway', value);
             },
@@ -349,5 +330,4 @@ export default {
         window.removeEventListener('resize', this.windowSize);
     },
 }
-
 </script>
