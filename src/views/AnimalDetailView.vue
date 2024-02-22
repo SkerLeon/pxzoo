@@ -81,7 +81,7 @@
                     <div class="small_pic">
                     <!-- 使用 v-for 循环生成小图 -->
                     <img
-                     v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
+                    v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
                     :src="getSmallPicUrl(pic)" 
                     :key="`small_${pic}`" 
                     :alt="`small_${pic}`"
@@ -152,17 +152,7 @@ export default {
             animalDetailData: [],//data
             bigPic:'',
             smallPics: [],
-            // animal:{
-            //     species: '獅子',
-            //     name:'威廉',
-            //     lifeSpan:'10-14年',
-            //     area:'主要分布在非洲和印度次大陸',
-            //     food:'獅子是肉食性動物，主食包括水牛、斑馬、角馬等大型草食動物',
-            //     features:'獅子以強壯的身軀、金黃色的鬃毛和威風凜凜的咆哮聲著稱。雄性獅子的鬃毛不僅吸引雌性，也象徵領導地位。發達的四肢和肌肉是成功捕獵的關鍵',
-            //     description:' 獅子，草原之王，是大自然中的傑出代表。其金黃色的身軀和宏偉的鬃毛賦予了牠們令人難以忽視的外貌。作為社會性動物，獅子以群體合作和狩獵技巧而聞名。這些特質讓獅子在草原生態中扮演重要角色，體現著大自然的神奇和生命的韌性。',
-            //     en_name:'lion',
 
-            // },
             //側邊欄
             animals_sidebar : [
                 {
@@ -234,6 +224,7 @@ export default {
     mounted() {
         // 從後端獲取動物數據並填充到對應的館別下面
         this.fetchSidebarData();
+        // this.fetchAnimalDetail(animalId);
     },
     computed:{
         //監控目前動物頁面找聲音
@@ -297,7 +288,7 @@ export default {
         //動物圖片(大圖)，根據圖片選擇切換this.bigPic
         selectPic(pic) {
             this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
-            // console.log(this.bigPic)
+            //console.log(this.bigPic)
         },
         //動物聲音路徑
         getAnimalSound(paths){

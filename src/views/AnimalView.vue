@@ -58,7 +58,7 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out" >
-                    <a v-for="(each, index) in animal_List[1].animals"  :key="index" class="animal_each col-md-4 col-sm-6"
+                    <a v-for="(each, index) in animal_List[2].animals"  :key="index" class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
                         <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
@@ -77,7 +77,7 @@
                 <div class="animal_info"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out" >
-                    <a v-for="(each, index) in animal_List[2].animals"  :key="index"  class="animal_each col-md-4 col-sm-6"
+                    <a v-for="(each, index) in animal_List[1].animals"  :key="index"  class="animal_each col-md-4 col-sm-6"
                     @click="toAnimalDetail(each.id)">
                     <div class="animal_frame">
                         <img :src="getImageUrl(each.animal_pic)" alt="animal_small_pic">
