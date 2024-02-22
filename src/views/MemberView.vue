@@ -60,8 +60,13 @@
               alt="picFrame"
               class="picFrame"
             />
-            <img :src="imgUrl" alt="" class="memPic" />
-            <input type="file" @change="imgChange" accept="image/*" />
+            <img
+              :src="getMemPicUrl(this.profile.mem_pic)"
+              alt="會員頭貼"
+              class="memPic"
+            />
+            <input type="file" @change="handleFileUpload" accept="image/*" />
+            <p class="memPicText pcMarkText">點擊相框更換頭貼</p>
           </div>
           <div class="info pcSmTitle">
             <div v-for="field in fields" :key="field.key">
@@ -165,8 +170,12 @@
     <section class="commentArea" id="comment" v-show="activeTab === 'comment'">
       <div class="innerComment">
         <h2 class="pcBigTitle">會員評論</h2>
-        <div class="commentGroup">
-          <div class="comment">
+        <div class="commentGroup" v-if="commentDetail.length > 0">
+          <div
+            class="comment"
+            v-for="(comment, index) in commentDetail"
+            :key="index"
+          >
             <img
               src="@/assets/images/member/papper.png"
               alt="commentBg"
@@ -178,12 +187,15 @@
               class="commentPic"
             />
             <div class="commentArea">
-              <p class="commentTitle pcSmTitle">Emily L.</p>
-              <textarea name="" id="" cols="30" rows="4" class="commentText">
-我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
-              </textarea>
+              <p class="commentTitle pcSmTitle">{{ this.profile.mem_name }}</p>
+              <textarea name="" id="" cols="30" rows="4" class="commentText">{{
+                comment.com_text
+              }}</textarea>
             </div>
-            <button class="defaultBtn pcInnerText commentBtn">
+            <button
+              class="defaultBtn pcInnerText commentBtn"
+              @click="reviseMemConnProfile(com_id, newText)"
+            >
               修改評論
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
@@ -191,36 +203,11 @@
               src="../assets/images/member/memicon/green_close.svg"
               alt="green_close"
               class="greenClose"
-            />
-          </div>
-          <div class="comment">
-            <img
-              src="@/assets/images/member/papper.png"
-              alt="commentBg"
-              class="commentBg"
-            />
-            <img
-              src="../assets/images/member/commentPic.png"
-              alt="commentPic"
-              class="commentPic"
-            />
-            <div class="commentArea">
-              <p class="commentTitle pcSmTitle">Emily L.</p>
-              <textarea name="" id="" cols="30" rows="4" class="commentText">
-我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！
-              </textarea>
-            </div>
-            <button class="defaultBtn pcInnerText commentBtn">
-              修改評論
-              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-            </button>
-            <img
-              src="../assets/images/member/memicon/green_close.svg"
-              alt="green_close"
-              class="greenClose"
+              @click="delComm(index)"
             />
           </div>
         </div>
+        <div v-else><p>尚無留言紀錄</p></div>
       </div>
       <img
         src="../assets/images/member/flamingo.svg"
@@ -236,21 +223,18 @@ import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
 import userStore from "../stores/auth";
 import axios from "axios";
-import { Alert } from "view-ui-plus";
-const imgDefault = new URL("../assets/images/member/", import.meta.url).href;
 export default {
   data() {
     return {
       activeTab: "info",
       showQRCode: false,
-      imgUrl: imgDefault,
       profile: {
         mem_name: "",
         mem_title: "",
         mem_birthday: "",
         mem_email: "",
         mem_phone: "",
-        mem_token: "",
+        mem_pic: "",
         mem_id: "",
       },
       fields: [
@@ -269,6 +253,7 @@ export default {
         "處理狀態:",
       ],
       ticketDetail: [],
+      commentDetail: [],
       userStore: userStore(),
     };
   },
@@ -277,7 +262,7 @@ export default {
     MainFixedVote,
   },
   created() {
-    //抓取localStorage內會員資料
+    //抓取localStorage內的會員資料
     this.profile.mem_name = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).name
       : "";
@@ -296,17 +281,22 @@ export default {
     this.profile.mem_id = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).id
       : "";
+    this.profile.mem_pic = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).pic
+      : "";
 
-    //訂單資訊
     //從LS取出會員資料
     const memberId = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).id
       : "";
+    //訂單資訊
     if (memberId) {
       // 資料庫會員資料需要與LS內的ID一樣
       axios
         .get(
-          `${import.meta.env.VITE_API_URL}/memOrderInfo.php?mem_id=${memberId}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/memberOrderInfo.php?mem_id=${memberId}`
         )
         .then((res) => {
           console.log(res);
@@ -317,6 +307,25 @@ export default {
             };
           });
           this.ticketDetail = formattedTicketDetail;
+        })
+        .catch((error) => {
+          console.error("Error fetching member orders:", error);
+        });
+    } else {
+      console.log("重新查詢");
+    }
+    //留言資訊
+    if (memberId) {
+      // 資料庫會員資料需要與LS內的ID一樣
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/memberCommentInfo.php?mem_id=${memberId}`
+        )
+        .then((res) => {
+          this.commentDetail = res.data;
+          console.log(res.data);
         })
         .catch((error) => {
           console.error("Error fetching member orders:", error);
@@ -343,6 +352,39 @@ export default {
     },
   },
   methods: {
+    //將會員圖片從memberPic中取出
+    getMemPicUrl(image) {
+      return new URL(
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/memberPic/` + image,
+        import.meta.url
+      ).href;
+    },
+    test() {
+      alert("aa");
+    },
+    delComm(index) {
+      if (confirm("確定要刪除嗎?")) {
+        const com_id = this.commentDetail[index].com_id; // 通过 index 获取指定位置的评论对象的 com_id
+        const formData = new FormData();
+        formData.append("com_id", com_id);
+
+        axios
+          .post(
+            `${import.meta.env.VITE_API_URL}/memberCommDelete.php`,
+            formData
+          )
+          .then((res) => {
+            console.log(res);
+            if (!res.data.error) {
+              alert(res.data.msg);
+              this.commentDetail.splice(index, 1); // 删除成功后删除前端对应的评论
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    },
     toTicketPage() {
       this.$router.push("ticket");
     },
@@ -354,28 +396,48 @@ export default {
       this.showQRCode = true;
       document.body.style.overflow = "hidden";
     },
-    imgChange(event) {
+    //會員圖片上傳
+    handleFileUpload(event) {
       const file = event.target.files[0];
-      if (file) {
-        //限定尺寸
-        const size = 1024;
-        if (file.size <= size * 1024) {
-          const reader = new FileReader();
+      const formData = new FormData();
+      formData.append("mem_pic", file);
+      formData.append("mem_id", this.profile.mem_id);
 
-          reader.onload = (e) => {
-            this.imgUrl = e.target.result;
-            this.saveImg();
-          };
-          reader.readAsDataURL(file);
-        } else {
-          alert("檔案過大");
-          this.imgUrl = "";
-        }
-      }
+      axios
+        .post(`${import.meta.env.VITE_API_URL}/memberPicUpload.php`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log("File uploaded successfully:", response.data);
+          alert("頭貼更新成功");
+        })
+        .catch((error) => {
+          console.error("Error uploading file:", error);
+        });
     },
-    //將圖片存入localStorage
-    saveImg() {
-      localStorage.setItem("uploadedImage", this.imgUrl);
+    reviseMemConnProfile(com_id, newText) {
+      axios
+        .post(
+          `${import.meta.env.VITE_API_URL}/memberCommRevise.php`,
+          {
+            com_id: com_id, // 提供要修改的评论的 ID
+            com_text: newText, // 提供新的评论文本
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          // 根据后端的响应进行相应的处理
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     },
     //會員資料確認修改
     reviseMemProfile() {
@@ -424,8 +486,6 @@ export default {
     },
   },
   mounted() {
-    const savedImg = localStorage.getItem("uploadedImage");
-    this.imgUrl = savedImg ? savedImg : imgDefault;
     this.mem_name = localStorage.getItem("name") || "";
   },
 };

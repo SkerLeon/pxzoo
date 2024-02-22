@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 60vw;
+  height: 50vw;
   @media (width <= 768px) {
     height: 105vw;
   }
@@ -118,7 +118,7 @@
       align-items: center;
       flex-direction: column;
       width: 60%;
-      height: 100%;
+      height: auto;
       @media (width <= 768px) {
         width: 100%;
       }
@@ -160,6 +160,9 @@
             @media (width <= 450px) {
               top: 67px;
             }
+          }
+          .memPicText {
+            color: $mainTextColor;
           }
           .memPic {
             top: 100px;
@@ -240,6 +243,7 @@
       margin-top: 20px;
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       flex-direction: column;
       width: 60%;
       @media (width <= 768px) {
@@ -250,20 +254,31 @@
       }
       .buyHistory {
         overflow: auto;
-        // border: 2px solid violet;
         display: flex;
         flex-direction: column;
-        width: 50%;
-        justify-content: space-around;
+        width: 70%;
         align-items: center;
-        height: 80%;
+        height: 90%;
         cursor: pointer;
+        &::-webkit-scrollbar {
+          height: 5px;
+          width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          overflow: hidden;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #ccc;
+          border-radius: 20px;
+          width: 5px;
+        }
         @media (width <= 768px) {
           width: 95%;
         }
         .buyList {
-          width: 100%;
-          height: 250px;
+          margin: 5px 0;
+          width: 60%;
+          height: 200px;
           display: flex;
           border-bottom: 2px solid $mainTextColor;
           .listTitle {
@@ -396,11 +411,10 @@
   }
 
   //會員評論
-  //D9C098
   .commentArea {
     @include defaultMemSize();
     .innerComment {
-      margin-top: 20px;
+      margin: 20px 0 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -417,13 +431,26 @@
         @include defaultMemH2();
       }
       .commentGroup {
-        width: 50%;
+        height: auto;
+        width: 70%;
         gap: 100px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         overflow: scroll;
+        &::-webkit-scrollbar {
+          height: 5px;
+          width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          overflow: hidden;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #ccc;
+          border-radius: 20px;
+          width: 5px;
+        }
         @media (width <= 768px) {
           width: 90%;
         }
@@ -433,7 +460,7 @@
           align-items: center;
           justify-content: center;
           gap: 2vw;
-          width: 100%;
+          width: 70%;
           height: 18vw;
           @media (width <= 768px) {
             height: 45vw;
@@ -479,11 +506,12 @@
           }
           .greenClose {
             position: absolute;
-            z-index: 1;
+            z-index: 20;
             right: 3.2vw;
             top: 2.7vw;
             height: 2vw;
             width: 2vw;
+            cursor: pointer;
           }
           .commentBtn {
             position: absolute;
@@ -502,7 +530,7 @@
     .flamingo {
       position: absolute;
       bottom: 0px;
-      right: 50vw;
+      right: 15vw;
       height: 120px;
       width: 100px;
     }
