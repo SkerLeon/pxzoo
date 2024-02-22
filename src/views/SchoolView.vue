@@ -76,7 +76,7 @@
             <div v-for="(question, index) in questions" :key="index" class="question"
               v-show="index === currentQuestionIndex">
               <!-- 顯示問題內容 -->
-              <div class="question_text pcSmTitle">{{ question.question_id }}. {{ question.question_text }}
+              <div class="question_text pcSmTitle">{{ question.question_number }}. {{ question.question_text }}
                 <!-- <img v-if="question.image" :src="getImageUrl(question.image)" alt="question-image"
                   class="question-image" /> -->
               </div>
@@ -297,7 +297,7 @@ export default {
   },
 
   mounted() {
-    axios.get(`${import.meta.env.VITE_API_URL}/questionShow.php`)
+    axios.get(`${import.meta.env.VITE_API_URL}/questionsfront.php`)
       .then(response => {
         this.questions = response.data; // 假設返回的數據是一個數組
       })
@@ -329,23 +329,26 @@ export default {
       this.isGameStarted = true;
     },
     checkAnswer(index, selectedOption) {
-      if (!this.showAnswer[index]) {
-        const question_correctanswer = this.questions[index].question_correctanswer;
-        this.userSelectedOption = selectedOption.optionPara; // 存儲使用者選擇的答案
-        this.showAnswer[index] = true;
+  if (!this.showAnswer[index]) {
+    const question = this.questions[index];
+    const question_correctanswer = question.question_correctanswer;
+    const selectedAnswer = question[`question_option_${selectedOption}`];
+    
+    this.userSelectedOption = selectedAnswer; // 存儲使用者選擇的答案
+    this.showAnswer[index] = true;
 
-        if (selectedOption.optionPara === question_correctanswer) {
-          this.successfulQuestionsCount++;
-          this.totalScore += 10; // 每題10分
-          console.log(`回答正確，目前總分：${this.totalScore}`);
-        }
+    if (selectedAnswer === question_correctanswer) {
+      this.successfulQuestionsCount++;
+      this.totalScore += 10; // 每題10分
+      console.log(`回答正確，目前總分：${this.totalScore}`);
+    }
 
-        if (this.currentQuestionIndex === 10) {
-          this.isGameFinished = true;
-          console.log(`遊戲結束，最終總分：${this.totalScore}`);
-        }
-      }
-    },
+    if (this.currentQuestionIndex === 10) {
+      this.isGameFinished = true;
+      console.log(`遊戲結束，最終總分：${this.totalScore}`);
+    }
+  }
+},
     closeLightbox() {
       // 重置相關狀態，關閉燈箱
       this.showAnswer[this.currentQuestionIndex] = false;
@@ -372,6 +375,7 @@ export default {
       this.isGameFinished = false;
       this.successfulQuestionsCount = 0;
       this.currentQuestionIndex = 0;
+      this.totalScore = 0; // 將分數歸零
       this.showAnswer = Array(10).fill(false);
     },
     endGame() {
@@ -398,7 +402,7 @@ export default {
     
     getImageUrl(img) {
       
-      return new URL(`../assets/images/school/animal/${img}`, import.meta.url).href
+      return new URL(`../../../images/school/animal/${img}`, import.meta.url).href
       // return  `${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`;
       // console.log(`${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`);
     },
