@@ -284,7 +284,13 @@
 .result_all {
   margin: 6% 0;
   .result {
-    // line-height: 150%;
+    width: 40vw;
+    letter-spacing: 0.3vw;
+    text-align: center;
+
+  }
+  button{
+    margin-top: 20px;
   }
 }
 
