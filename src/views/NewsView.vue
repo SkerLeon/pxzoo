@@ -11,13 +11,13 @@ Vue.config.devtools = true;
     <!-- 新聞列表 -->
     <main class="news_overview">
       <!-- menu button(ph) -->
-      <!-- <select name="payway[]" placeholder="ALL" class="pcInnerText news_select"
+      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select"
       @change="selectTypeChange"
       v-model="selectedCategory">
       <option value="ALL" disabled hidden>ALL</option>
         <option v-for="category in newsCategory" :value="category.value" :key="category.value"
         >{{ category.label }}</option>
-      </select> -->
+      </select>
 
 
       <!-- menu button(pc) -->
@@ -31,20 +31,6 @@ Vue.config.devtools = true;
           </button>
         </li>
       </ul> 
-      <!-- <ul class="news_pc_filter">
-        <li v-for="type in buttonTypes" :key="type.value">
-          <button
-            class="defaultBtn pcInnerText"
-            :class="{ active: selectedCategory === type.value }"
-            @click="handleButtonClick(type.value)"
-          >
-            {{ type.label }}
-            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-          </button>
-
-
-        </li>
-      </ul> -->
       
 
       <!-- news -->
