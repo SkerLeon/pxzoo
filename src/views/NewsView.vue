@@ -25,6 +25,7 @@ Vue.config.devtools = true;
         <li v-for="category in newsCategory">
           <button class="defaultBtn pcInnerText"
           @click="pressType(category.value)"
+          :class="{ hovered: selectedCategory === category.label }"
           >
           {{category.label}}
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
@@ -156,12 +157,6 @@ export default {
           value: '動物知識',
           label: '動物知識'
         },
-      ],
-      buttonTypes: [
-        { value: '', label: 'ALL' },
-        { value: '最新活動', label: '最新活動' },
-        { value: '園區動態', label: '園區動態' },
-        { value: '動物知識', label: '動物知識' },
       ],
 
       //news
@@ -427,14 +422,6 @@ export default {
       this.selectedCategory = value
       this.setPage(1)
     },
-    
-    // 按鈕點擊事件處理函數
-    // 在handleButtonClick方法中调用filterNews方法
-    handleButtonClick(value) {
-      this.selectedCategory = value;
-      this.filterNews(); // 调用filterNews方法重新过滤新闻列表
-      this.setPage(1); // 每次过滤都返回第一页
-    },
 
     // // 篩選新聞
     filterNews() {
@@ -444,18 +431,6 @@ export default {
         this.filteredNews = this.news.filter(news => news.news_type === this.selectedType);
       }
     },
-    // 在methods中添加filterNews方法
-    // filterNews() {
-    //   this.filteredNews = this.news.filter(item => {
-    //     if (this.selectedCategory === 'ALL') {
-    //       return true; // 如果选择了 'ALL'，返回所有新闻
-    //     } else {
-    //       return item.tag_class === this.selectedCategory; // 否则，根据选定的类别过滤新闻
-    //     }
-    //   });
-    // },
-
-    
 
     getNewsTagUrl(image) {
       return new URL(
@@ -471,12 +446,6 @@ export default {
       ).href;
     },
 
-    // toNewsDetail(){
-    //     this.$router.push({
-    //       path:'./NewsDetail',
-    //   })
-    // },
-    
     toNewsDetail(newsId){
       console.log(newsId)
       this.$router.push({

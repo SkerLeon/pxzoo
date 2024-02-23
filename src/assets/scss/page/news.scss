@@ -69,7 +69,11 @@
         z-index: 5;
         top: 10vh;
         height: 20vh;
-        margin-right: 2.7vw;       
+        margin-right: 2.7vw;    
+    
+        .hovered {
+            background-color: $primaryColorYellow;
+        } 
     }
 }
 @media screen and (max-width: 768px) {
@@ -99,6 +103,7 @@
         }    
         .news_pc_filter{
             display: none;
+
         }
     }
 }
@@ -106,7 +111,6 @@
 ul.news_pc_filter li{
     margin-bottom: 0.8vw;
 }
-
 .news_content{
     position: relative;
     z-index: 3;
@@ -147,6 +151,7 @@ ul.news_pc_filter li{
             display: flex;
             align-items: center;
             .time{
+                width: 8.5vw;
                 padding-right: 1.6vw;
             }
             .newsFrame{
@@ -185,6 +190,9 @@ ul.news_pc_filter li{
             .news_tag_time{
                 padding-bottom: 3vw;
                 justify-content: space-between;
+                .time{
+                    width: 30vw;
+                }
             }
         }
 

@@ -118,7 +118,7 @@ export default {
 
     updateTimeOfDayIcon() {
       const currentHour = new Date().getHours();
-      this.currentIcon = (6 <= currentHour && currentHour < 18) ? '/src/assets/images/header/header_day.svg' : '/src/assets/images/header/header_night.svg';
+      this.currentIcon = (6 <= currentHour && currentHour < 18) ? `${import.meta.env.VITE_IMAGES_BASE_URL}/header/header_day.svg` : `${import.meta.env.VITE_IMAGES_BASE_URL}/header/header_night.svg`;
     },
 
     updateBorderStyle() {
