@@ -176,6 +176,7 @@ export default {
         }
       })
         .then(response => {
+          console.log(this.mem_id);
           response.data;
           this.fetchMemCou();
         })

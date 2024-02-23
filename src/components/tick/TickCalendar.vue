@@ -59,11 +59,19 @@ export default {
       const today = new Date();
       today.setHours(17);
 
-      // (購票日期為今天&&時間>=休息時間) || 購票日期比今天早
-      if ((this.tidateData.getDate() === today.getDate() && this.tidateData.getTime() >= today.getTime()) || this.tidateData.getDate() < today.getDate()) {
-        this.cantNextPage = "<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
-      } else if (this.offDate(this.tidateData)) {
+      if (this.offDate(this.tidateData)) {
         this.cantNextPage = "<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";
+      }else if ( this.tidateData < today){ // 購票日期比今天早
+        console.log('購票日期比今天早');
+        this.cantNextPage = "<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
+      }else if ( // 購票日期為今天&&時間>=17.
+        this.tidateData.getFullYear() === today.getFullYear() &&
+        this.tidateData.getMonth() === today.getMonth() &&
+        this.tidateData.getDate() === today.getDate() &&
+        this.tidateData.getHours() >= today.getHours()
+      ){
+        console.log('購票日期為今天');
+        this.cantNextPage = "<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
       } else {
         this.$emit('goNextStep');
       }
@@ -98,9 +106,12 @@ export default {
   computed: {
     bindTidateData: {
       get() {
+        console.log();
         return this.tidateData;
       },
       set(value) {
+        console.log(value);
+
         this.$emit('newDate', value);
       },
     },
