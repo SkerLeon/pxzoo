@@ -70,6 +70,7 @@
             <img src="@/assets/images/school/teacher.svg" alt="teacher">
           </div>
         </div>
+
         <div v-else>
           <!-- 開始進行遊戲畫面 -->
           <div v-if="currentQuestionIndex < questions.length" class="question_all">
@@ -82,20 +83,18 @@
               </div>
 
               <div class="option_all">
-                                <div v-for="optionPara in ['a', 'b', 'c', 'd']" :key="optionPara"
-                                    class="option pcInnerText">
-                                    <div v-if="question['question_img_' + optionPara]" class="option-image-container">
-    <img :src="getImageUrl(question['question_img_' + optionPara])"
-        :alt="question['question_img_' + optionPara]" class="option-image" />
-</div>
-                                    <label class="option_input">
-                                        <input class="option_input_as" type="radio" :name="'answer' + index"
-                                            @click="checkAnswer(index, optionPara)"
-                                            :value="question['question_option_' + optionPara]" style="display: none;">
-                                        {{ question['question_option_' + optionPara] }}
-                                    </label>
-                                </div>
-                            </div>
+                <div v-for="optionPara in ['a', 'b', 'c', 'd']" :key="optionPara" class="option pcInnerText">
+                  <div v-if="question['question_img_' + optionPara]" class="option-image-container">
+                    <img :src="getImageUrl(question['question_img_' + optionPara])" :alt="question['question_img_' + optionPara]" class="option-image" />
+                  </div>
+                  <label class="option_input">
+                      <input class="option_input_as" type="radio" :name="'answer' + index"
+                          @click="checkAnswer(index, optionPara)"
+                          :value="question['question_option_' + optionPara]" style="display: none;">
+                      {{ question['question_option_' + optionPara] }}
+                  </label>
+                </div>
+              </div>
 
           
             <div class="eat_coin">
@@ -131,34 +130,35 @@
           </div>
         </div>
 
-
         <div v-if="isGameFinished" class="result_all">
           <div class="result pcSmTitle">
-            {{ successfulQuestionsCount >= 8 ?
-              '破關成功！你展現了出色的動物知識!獲得了一張PX ZOO門票優惠券！'
-              :
-              '破關失敗~很抱歉，你未能成功破關，祝您下次冒險成功！加油!!'
-            }}
-            <br>
-            總分：{{ totalScore }}
+            {{ resultMessage }}
           </div>
-          <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn"><img
-              src="@/assets/images/login/icon/btnArrow.svg" alt="" />重新開始</button>
+
+          <button v-if="successfulQuestionsCount < 8" @click="resetGame" class="pcInnerText defaultBtn">
+            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />重新開始
+          </button>
         </div>
+
+        
       </div>
     </div>
-    </div>
+  </div>
 
+  <schoolGameAchieve v-if="GameAchieveSwitch" :totalScore="totalScore"/>
 
+  
   </section>
 </template> 
 
 <script>
 import axios from 'axios';
+import schoolGameAchieve from '@/components/school/schoolGameAchieve.vue'
+
 export default {
   data() {
     return {
-
+      GameAchieveSwitch:false,
       showAnimation8: false,
       showAnimationN: false,
       showAnimationI: false,
@@ -295,7 +295,18 @@ export default {
       
     };
   },
-
+  components:{
+    schoolGameAchieve,
+  },
+  computed: {
+    resultMessage() {
+      if (this.successfulQuestionsCount >= 8) {
+        this.GameAchieveSwitch = true;
+      } else {
+        return '很抱歉你未能成功破關，但冒險並不僅僅是成功與否每一次的嘗試都是對知識的探索和成長失敗並不代表結束，而是迎接更多挑戰的開始「失敗只是成功的一部分，堅持不懈才是真正的勇氣。」我們鼓勵你繼續保持好奇心，學習更多關於動物的知識下一次冒險可能就是你獲得成功的時刻！加油，未來的動物知識王！';
+      }
+    }
+  },
   mounted() {
     axios.get(`${import.meta.env.VITE_API_URL}/questionsfront.php`)
       .then(response => {
@@ -402,10 +413,12 @@ export default {
     
     getImageUrl(img) {
       
-      return new URL(`../../../images/school/animal/${img}`, import.meta.url).href
+      return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`, import.meta.url).href
       // return  `${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`;
       // console.log(`${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`);
     },
+
+    
   },
 };
 </script>
