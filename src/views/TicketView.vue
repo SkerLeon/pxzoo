@@ -8,31 +8,23 @@
 
     <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
-      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" :windowWidth="windowWidth"
-        @TickCalendar="showTickCalendar" />
-      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar" :windowWidth="windowWidth" :tidateData="tidate"
-        @newDate="updateDate" @goNextStep="showNextStep" />
+      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
+      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar" :windowWidth="windowWidth" :tidateData="tidate" @newDate="updateDate" @goNextStep="showNextStep" />
     </main>
 
     <!-- 30% -->
     <main v-else-if="tickStep === 1">
-      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" :ticketsQtyData="ticketsQty" :tipriceData="tiprice"
-        @newTiprice="updateTiprice" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" :ticketsQtyData="ticketsQty" :tipriceData="tiprice" @newTiprice="updateTiprice" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couponsData="coupons"
-        :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywaysData="payways"
-        :paywayData="selectedPW" :paywayTTData="selectedPWTT" @newCardId="updateCardId" @newCoupon="updateCoupon"
-        @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickCheck :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couponsData="coupons" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywaysData="payways" :paywayData="selectedPW" :paywayTTData="selectedPWTT" @newCardId="updateCardId" @newCoupon="updateCoupon" @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couData="selectedCou"
-        :coupriceData="couprice" :paypriceData="payprice" :paywayData="selectedPW" :paywayTTData="selectedPWTT"
-        :tickStatusData="tickstatus" />
+      <TickFinished :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywayData="selectedPW" :paywayTTData="selectedPWTT" :tickIdData="tickId" :tickStatusData="tickstatus" />
     </main>
 
   </section>
@@ -105,7 +97,6 @@ export default {
       cardId: null,
       tickstatus: '',
       selectedCouDetailId: null,
-      // windowWidth: window.innerWidth,
       windowWidth: {
         isSmallPH: false,
         isMidPH: false,
@@ -114,6 +105,7 @@ export default {
         isSmallPC: false,
         isMidPC: false,
       },
+      tickId: null,
     }
   },
   methods: {
@@ -156,7 +148,7 @@ export default {
         })
     },
     fetchOrderInsert() {
-      const requestData = {
+      let requestData = {
         mem_id: this.mem_id,
         cou_id: this.selectedCouId,
         ord_tidate: this.tidate.toISOString().split('T')[0],
@@ -176,8 +168,7 @@ export default {
         }
       })
         .then(response => {
-          console.log(this.mem_id);
-          response.data;
+          this.tickId=response.data;
           this.fetchMemCou();
         })
         .catch(error => {

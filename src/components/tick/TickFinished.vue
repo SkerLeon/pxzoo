@@ -15,7 +15,7 @@
 		<article>
 			<hgroup class="important">
 				<p class="pcInnerText">訂單編號</p>
-				<h2 class="pcSmTitle">1</h2>
+				<h2 class="pcSmTitle">{{tickIdData}}</h2>
 			</hgroup>
 			<hgroup>
 				<p class="pcInnerText">票卷日期</p>
@@ -123,7 +123,11 @@ export default {
 		tickStatusData: {
 			type: String,
 			required: true,
-		}
+		},
+		tickIdData: {
+			// type: Number,
+			required: true,
+		},
 	},
 	data() {
 		return {
