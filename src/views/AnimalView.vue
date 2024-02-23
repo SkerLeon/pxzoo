@@ -157,44 +157,44 @@ export default {
             ],
 
             //animal
-            animals_grassland: [
-                { value: 'grassLand', species: 'lion', name: '獅子' },
-                { value: 'grassLand', species: 'giraffe', name: '長頸鹿' },
-                { value: 'grassLand', species: 'elephant', name: '非洲象' },
-                { value: 'grassLand', species: 'cheetah', name: '獵豹' },
-                { value: 'grassLand', species: 'zebra', name: '斑馬' },
-                { value: 'grassLand', species: 'meerkat', name: '狐獴' },
-            ],
-            animals_polar: [
-                { value: 'polar', species: 'polarBear', name: '北極熊' },
-                { value: 'polar', species: 'kingPenguin', name: '國王企鵝' },
-                { value: 'polar', species: 'magellanicPenguin', name: '麥哲倫企鵝' },
-                { value: 'polar', species: 'arcticFox', name: '北極狐' },
-                { value: 'polar', species: 'seal', name: '海豹' },
-            ],
-            animals_jungle: [
-                { value: 'jungle', species: 'capybara', name: '水豚' },
-                { value: 'jungle', species: 'malayanTapir', name: '馬來貘' },
-                { value: 'jungle', species: 'orangutan', name: '紅毛猩猩' },
-                { value: 'jungle', species: 'tiger', name: '孟加拉虎' },
-                { value: 'jungle', species: 'sloth', name: '二趾樹懶' },
-                { value: 'jungle', species: 'monkey', name: '台灣獼猴' },
-            ],
-            animals_birds: [
-                { value: 'birds', species: 'peacock', name: '孔雀' },
-                { value: 'birds', species: 'flamingo', name: '紅鶴' },
-                { value: 'birds', species: 'japaneseCrane', name: '丹頂鶴' },
-                { value: 'birds', species: 'owl', name: '貓頭鷹' },
-                { value: 'birds', species: 'toucan', name: '巨嘴鳥' },
-                { value: 'birds', species: 'pelican', name: '鵜鶘' },
-            ],
-            animals_aqua: [
-                { value: 'aqua', species: 'stingray', name: '魟魚' },
-                { value: 'aqua', species: 'shark', name: '鯊魚' },
-                { value: 'aqua', species: 'eel', name: '海鰻' },
-                { value: 'aqua', species: 'clownfish', name: '小丑魚' },
-                { value: 'aqua', species: 'octopus', name: '章魚' },
-            ],
+            // animals_grassland: [
+            //     { value: 'grassLand', species: 'lion', name: '獅子' },
+            //     { value: 'grassLand', species: 'giraffe', name: '長頸鹿' },
+            //     { value: 'grassLand', species: 'elephant', name: '非洲象' },
+            //     { value: 'grassLand', species: 'cheetah', name: '獵豹' },
+            //     { value: 'grassLand', species: 'zebra', name: '斑馬' },
+            //     { value: 'grassLand', species: 'meerkat', name: '狐獴' },
+            // ],
+            // animals_polar: [
+            //     { value: 'polar', species: 'polarBear', name: '北極熊' },
+            //     { value: 'polar', species: 'kingPenguin', name: '國王企鵝' },
+            //     { value: 'polar', species: 'magellanicPenguin', name: '麥哲倫企鵝' },
+            //     { value: 'polar', species: 'arcticFox', name: '北極狐' },
+            //     { value: 'polar', species: 'seal', name: '海豹' },
+            // ],
+            // animals_jungle: [
+            //     { value: 'jungle', species: 'capybara', name: '水豚' },
+            //     { value: 'jungle', species: 'malayanTapir', name: '馬來貘' },
+            //     { value: 'jungle', species: 'orangutan', name: '紅毛猩猩' },
+            //     { value: 'jungle', species: 'tiger', name: '孟加拉虎' },
+            //     { value: 'jungle', species: 'sloth', name: '二趾樹懶' },
+            //     { value: 'jungle', species: 'monkey', name: '台灣獼猴' },
+            // ],
+            // animals_birds: [
+            //     { value: 'birds', species: 'peacock', name: '孔雀' },
+            //     { value: 'birds', species: 'flamingo', name: '紅鶴' },
+            //     { value: 'birds', species: 'japaneseCrane', name: '丹頂鶴' },
+            //     { value: 'birds', species: 'owl', name: '貓頭鷹' },
+            //     { value: 'birds', species: 'toucan', name: '巨嘴鳥' },
+            //     { value: 'birds', species: 'pelican', name: '鵜鶘' },
+            // ],
+            // animals_aqua: [
+            //     { value: 'aqua', species: 'stingray', name: '魟魚' },
+            //     { value: 'aqua', species: 'shark', name: '鯊魚' },
+            //     { value: 'aqua', species: 'eel', name: '海鰻' },
+            //     { value: 'aqua', species: 'clownfish', name: '小丑魚' },
+            //     { value: 'aqua', species: 'octopus', name: '章魚' },
+            // ],
 
             //select ph
             selectedCategory: 'ALL',
@@ -286,9 +286,12 @@ export default {
                 // 遍歷每一筆動物資料
                 animalsData.forEach(animal => {
                 // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
+                if(animal.animal_status ===0){
+                    return
+                }
                 const parkIndex = this.animal_List.findIndex(category => category.park === animal.category_name);
                 // 檢查是否找到對應的館別
-
+                    
                 // 如果館別不存在，則創建一個新的館別對象並添加到animal_List數組中
                 if (parkIndex === -1) {
                     this.animal_List.push({
