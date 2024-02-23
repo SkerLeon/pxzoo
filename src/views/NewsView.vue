@@ -21,7 +21,7 @@ Vue.config.devtools = true;
 
 
       <!-- menu button(pc) -->
-      <!-- <ul class="news_pc_filter">
+      <ul class="news_pc_filter">
         <li v-for="category in newsCategory">
           <button class="defaultBtn pcInnerText"
           @click="pressType(category.value)"
@@ -30,8 +30,8 @@ Vue.config.devtools = true;
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
         </li>
-      </ul>  -->
-      <ul class="news_pc_filter">
+      </ul> 
+      <!-- <ul class="news_pc_filter">
         <li v-for="type in buttonTypes" :key="type.value">
           <button
             class="defaultBtn pcInnerText"
@@ -41,15 +41,17 @@ Vue.config.devtools = true;
             {{ type.label }}
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           </button>
+
+
         </li>
-      </ul>
+      </ul> -->
       
 
       <!-- news -->
       <div class="news_content">
         <!-- 限制一頁的數量 -->
         <a class="news-each"
-        v-for="newsinfo in listAfterPagination"
+        v-for="newsinfo in listAfterCategory"
       :key="newsinfo"
       data-aos="fade-up"
       data-aos-easing="ease-in-out"
@@ -151,24 +153,24 @@ export default {
       ishover: new Array(5).fill(false) ,
         
       //select
-      // newsCategory: [
-      //   {
-      //     value: 'ALL',
-      //     label: 'ALL'
-      //   },
-      //   {
-      //     value: 'new_activity',
-      //     label: '最新活動'
-      //   },
-      //   {
-      //     value: 'zoo_news',
-      //     label: '園區動態'
-      //   },
-      //   {
-      //     value: 'animal_knowledge',
-      //     label: '動物知識'
-      //   },
-      // ],
+      newsCategory: [
+        {
+          value: 'ALL',
+          label: 'ALL'
+        },
+        {
+          value: '最新活動',
+          label: '最新活動'
+        },
+        {
+          value: '園區動態',
+          label: '園區動態'
+        },
+        {
+          value: '動物知識',
+          label: '動物知識'
+        },
+      ],
       buttonTypes: [
         { value: '', label: 'ALL' },
         { value: '最新活動', label: '最新活動' },
@@ -419,7 +421,7 @@ export default {
     //篩選
     listAfterCategory() {
       if (this.selectedCategory === 'ALL') return this.news;
-      return this.news.filter(item => item.tag_class === this.selectedCategory);
+      return this.news.filter(item => item.news_type === this.selectedCategory);
     },
     //根據篩選後新聞數量顯示頁面
     listAfterPagination() {
@@ -441,11 +443,14 @@ export default {
     },
     
     // 按鈕點擊事件處理函數
+    // 在handleButtonClick方法中调用filterNews方法
     handleButtonClick(value) {
       this.selectedCategory = value;
-      this.setPage(1); // 每次篩選都返回第一頁
+      this.filterNews(); // 调用filterNews方法重新过滤新闻列表
+      this.setPage(1); // 每次过滤都返回第一页
     },
-    // 篩選新聞
+
+    // // 篩選新聞
     filterNews() {
       if (!this.selectedType) {
         this.filteredNews = this.news;
@@ -453,6 +458,18 @@ export default {
         this.filteredNews = this.news.filter(news => news.news_type === this.selectedType);
       }
     },
+    // 在methods中添加filterNews方法
+    // filterNews() {
+    //   this.filteredNews = this.news.filter(item => {
+    //     if (this.selectedCategory === 'ALL') {
+    //       return true; // 如果选择了 'ALL'，返回所有新闻
+    //     } else {
+    //       return item.tag_class === this.selectedCategory; // 否则，根据选定的类别过滤新闻
+    //     }
+    //   });
+    // },
+
+    
 
     getNewsTagUrl(image) {
       return new URL(
