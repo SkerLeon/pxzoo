@@ -1271,6 +1271,7 @@ export default {
         晴時多雲陣雨: "cloudrain",
         多雲時晴陣雨: "cloudrain",
         多雲局部雨: "cloudrain",
+        多雲有雨: "cloudrain",
         多雲局部陣雨: "cloudrain",
         多雲局部短暫雨: "cloudrain",
         多雲局部短暫陣雨: "cloudrain",
