@@ -55,6 +55,7 @@ export default defineStore("userStore", {
         phone: val.mem_phone,
         birthday: val.mem_birthday,
         validation: val.mem_validation,
+        pic: val.mem_pic,
         // 封鎖狀況1|0
         state: val.mem_status,
         // 如果有權限可以把權限角色記載資料庫

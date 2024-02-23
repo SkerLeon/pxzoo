@@ -201,7 +201,10 @@ export default {
               this.updateUserData(res.data.memInfo);
               alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
               this.$router.push("member");
+            } else if (res.data.code == 2) {
+              alert("你被ban了 好可憐");
             } else {
+              console.log(res);
               alert("登入失敗");
             }
           }
