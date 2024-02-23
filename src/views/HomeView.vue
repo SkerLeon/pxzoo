@@ -1545,7 +1545,7 @@ export default {
     //留言板
     getCommUrl(image) {
       return new URL(
-        '../assets/images/home/comm/'+image,
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/comm/`+image,
         import.meta.url
       ).href;
     }, //改網址
