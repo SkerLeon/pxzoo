@@ -628,7 +628,7 @@
           <div class="home_wn_news_section">
             <a
               class="news_info"
-              @click="toNewsDetail()"
+              @click="toNewsDetail(newsinfo.news_id)"
               v-for="(newsinfo, index) in news"
               :key="index"
             >
@@ -636,7 +636,7 @@
                 <span class="news_time pcInnerText">{{ newsinfo.news_date }}</span>
                 <div class="news_tag newsFrame">
                   <img
-                    :src="getNewsUrl(newsinfo.news_typepic)"
+                    :src="getNewsTagUrl(newsinfo.news_typepic)"
                     class="newsFramePic"
                     alt="btnFrame"
                   />
@@ -1138,19 +1138,6 @@ export default {
       });
 
     //留言板資料
-    // axios.get(`${import.meta.env.VITE_API_URL}/commentShow.php`)
-    //   .then(response => {
-    //     this.comment = response.data.map((comm, index) => {
-    //       return {
-    //         ...comm,
-    //         class: this.commentClass[index].class
-    //       };
-    //     });
-    //     console.log(response.data)
-    //   })
-    //   .catch(error => {
-    //     console.error("Error fetching data: ", error);
-    //   });
     axios.get(`${import.meta.env.VITE_API_URL}/commentShow.php`)
       .then(response => {
         this.comment = response.data; // 假設返回的數據是一個數組
@@ -1528,13 +1515,13 @@ export default {
     },
 
     //最新消息
-    toNewsDetail() {
-      console.log("page");
+    toNewsDetail(newsId){
+      console.log(newsId)
       this.$router.push({
-        path: "./NewsDetail",
-      });
+        name: 'newsDetail', params: { id:newsId },
+      })
     },
-    getNewsUrl(image) {
+    getNewsTagUrl(image) {
       return new URL(
         `${import.meta.env.VITE_IMAGES_BASE_URL}/news/newsFrame/`+image,
         // 'http://localhost/g4/images/news/'+image,
