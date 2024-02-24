@@ -175,7 +175,7 @@ export default {
   data() {
     return {
 
-      votedCount: 0,
+      votedCount: 0,//總票數
       currentContent: "vote_grass",
 
       podium_list: [
@@ -291,7 +291,7 @@ export default {
 
     voteTop3(animal) {
       // 檢查用戶是否已經投過三票
-      if (this.votedCount >= 3) {
+      if (this.votedCount  >= 3) {
         console.log("你今天已經投過三票了！");
         // 在界面上顯示訊息
         alert("今天已經投過三票了！");
@@ -304,9 +304,9 @@ export default {
       // 如果找到該動物
       if (index !== -1) {
         // 增加票數
-        this.ranking_list[index].point++;
+        this.ranking_list[index].vote_count++;
         // 更新已經投票的次數
-        this.votedCount++;
+        this.votedCount ++;
         console.log("投票成功！");
       } else {
         console.error("未找到該動物！");
@@ -314,7 +314,7 @@ export default {
     },
     vote_animal(animal2) {
       // 檢查用戶是否已經投過三票
-      if (this.votedCount >= 3) {
+      if (this.votedCount  >= 3) {
         console.log("今天已經投過三票！");
         // 在界面上顯示訊息
         alert("你今天已經投過三票！");
@@ -329,7 +329,7 @@ export default {
         // 增加票數
         this.currentVoteList[index].vote_count++;
         // 更新已經投票的次數
-        this.vote_count++;
+        this.votedCount ++;
         console.log("投票成功！");
       } else {
         console.error("未找到該動物！");
@@ -381,5 +381,7 @@ export default {
       }
     },
   },
+  
 };
+
 </script>
