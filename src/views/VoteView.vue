@@ -226,46 +226,46 @@ export default {
       ],
 
       vote_grass_list: [
-        { animal_pic_a: "lion", animal_name: "威廉", vote_count: "10" },
-        { animal_pic_a: "giraffe", animal_name: "琳達", vote_count: "23" },
-        { animal_pic_a: "elephant", animal_name: "索拉", vote_count: "12" },
-        { animal_pic_a: "cheetah", animal_name: "豹哥", vote_count: "123" },
-        { animal_pic_a: "zebra", animal_name: "小班", vote_count: "263" },
-        { animal_pic_a: "meerkat", animal_name: "馬克", vote_count: "237" },
+        // { animal_pic_a: "lion", animal_name: "威廉", vote_count: "10" },
+        // { animal_pic_a: "giraffe", animal_name: "琳達", vote_count: "23" },
+        // { animal_pic_a: "elephant", animal_name: "索拉", vote_count: "12" },
+        // { animal_pic_a: "cheetah", animal_name: "豹哥", vote_count: "123" },
+        // { animal_pic_a: "zebra", animal_name: "小班", vote_count: "263" },
+        // { animal_pic_a: "meerkat", animal_name: "馬克", vote_count: "237" },
       ],
 
       vote_polar_list: [
-        { animal_pic_a: "polarBear", animal_name: "寶拉", vote_count: "1223" },
-        { animal_pic_a: "kingPenguin", animal_name: "小雪", vote_count: "13" },
-        { animal_pic_a: "magellanicPenguin", animal_name: "亞當", vote_count: "1423" },
-        { animal_pic_a: "arcticFox", animal_name: "雪球", vote_count: "13" },
-        { animal_pic_a: "seal", animal_name: "波比", vote_count: "113" },
+        // { animal_pic_a: "polarBear", animal_name: "寶拉", vote_count: "1223" },
+        // { animal_pic_a: "kingPenguin", animal_name: "小雪", vote_count: "13" },
+        // { animal_pic_a: "magellanicPenguin", animal_name: "亞當", vote_count: "1423" },
+        // { animal_pic_a: "arcticFox", animal_name: "雪球", vote_count: "13" },
+        // { animal_pic_a: "seal", animal_name: "波比", vote_count: "113" },
       ],
-
+      
       vote_jungle_list: [
-        { animal_pic_a: "capybara", animal_name: "珍珍", vote_count: "120" },
-        { animal_pic_a: "malayanTapir", animal_name: "栗栗", vote_count: "178" },
-        { animal_pic_a: "orangutan", animal_name: "狄恩", vote_count: "124" },
-        { animal_pic_a: "tiger", animal_name: "瑪雅", vote_count: "423" },
-        { animal_pic_a: "sloth", animal_name: "曼曼", vote_count: "43" },
-        { animal_pic_a: "monkey", animal_name: "中中", vote_count: "123" },
+        // { animal_pic_a: "capybara", animal_name: "珍珍", vote_count: "120" },
+        // { animal_pic_a: "malayanTapir", animal_name: "栗栗", vote_count: "178" },
+        // { animal_pic_a: "orangutan", animal_name: "狄恩", vote_count: "124" },
+        // { animal_pic_a: "tiger", animal_name: "瑪雅", vote_count: "423" },
+        // { animal_pic_a: "sloth", animal_name: "曼曼", vote_count: "43" },
+        // { animal_pic_a: "monkey", animal_name: "中中", vote_count: "123" },
       ],
 
       vote_birds_list: [
-        { animal_pic_a: "flamingo", animal_name: "阿翔", vote_count: "13" },
-        { animal_pic_a: "japaneseCrane", animal_name: "曉曉", vote_count: "23" },
-        { animal_pic_a: "owl", animal_name: "晴空", vote_count: "32" },
-        { animal_pic_a: "eagle", animal_name: "艾妮", vote_count: "98" },
-        { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "100" },
-        { animal_pic_a: "pelican", animal_name: "小瑜", vote_count: "78" },
+        // { animal_pic_a: "flamingo", animal_name: "阿翔", vote_count: "13" },
+        // { animal_pic_a: "japaneseCrane", animal_name: "曉曉", vote_count: "23" },
+        // { animal_pic_a: "owl", animal_name: "晴空", vote_count: "32" },
+        // { animal_pic_a: "eagle", animal_name: "艾妮", vote_count: "98" },
+        // { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "100" },
+        // { animal_pic_a: "pelican", animal_name: "小瑜", vote_count: "78" },
       ],
 
       vote_aqua_list: [
-        { animal_pic_a: "stingray", animal_name: "藍波", vote_count: "95" },
-        { animal_pic_a: "shark", animal_name: "海妞", vote_count: "456" },
-        { animal_pic_a: "eel", animal_name: "燈燈", vote_count: "37" },
-        { animal_pic_a: "clownfish", animal_name: "馬林", vote_count: "1" },
-        { animal_pic_a: "octopus", animal_name: "巴奇", vote_count: "0" },
+        // { animal_pic_a: "stingray", animal_name: "藍波", vote_count: "95" },
+        // { animal_pic_a: "shark", animal_name: "海妞", vote_count: "456" },
+        // { animal_pic_a: "eel", animal_name: "燈燈", vote_count: "37" },
+        // { animal_pic_a: "clownfish", animal_name: "馬林", vote_count: "1" },
+        // { animal_pic_a: "octopus", animal_name: "巴奇", vote_count: "0" },
       ],
     };
   },
@@ -277,8 +277,9 @@ export default {
 
     getImageUrl(img) {
       return new URL(
-        `../assets/images/animal/small_pic/small_pic_${img}.png`,
-        import.meta.url
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/small_pic_${img}`
+        // `../assets/images/animal/small_pic/small_pic_${img}.png` //方式
+        ,import.meta.url
       ).href;
     },
 
@@ -298,7 +299,42 @@ export default {
 
         return; // 如果已經投過三票，退出方法
       }
+      
+ // 抓取用戶IP地址
+ fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Your IP address is:', data.ip);
+      // 在這裡添加投票的邏輯，例如將投票數加1等等
+      const voteData = {
+        animal_id: animal.id, // 假設你有動物的 ID
+        new_vote_count: animal.vote_count + 1 // 新的票數
+      };
 
+      fetch(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(voteData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('投票計數已更新:', data);
+        // // 更新前端的投票計數
+        // animal.vote_count++;
+        // 更新已經投票的次數
+        this.votedCount++;
+        console.log("投票成功！");
+      })
+    
+      .catch(error => {
+        console.error('Error updating vote count:', error);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching IP address:', error);
+    });
       // 在 ranking_list 中找到被選中動物的索引
       const index = this.ranking_list.findIndex(item => item.animal_name === animal.animal_name);
       // 如果找到該動物
@@ -320,7 +356,18 @@ export default {
         alert("你今天已經投過三票！");
 
         return; // 如果已經投過三票，退出方法
+        
       }
+      // 抓取用戶IP地址
+  fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Your IP address is:', data.ip);
+      // 在這裡添加投票的邏輯，例如將投票數加1等等
+    })
+    .catch(error => {
+      console.error('Error fetching IP address:', error);
+    });
 
       // 在 currentVoteList 中找到被選中動物的索引
       const index = this.currentVoteList.findIndex(item => item.animal_name === animal2.animal_name);
@@ -347,16 +394,24 @@ export default {
 
   },
   created() {
-    axios.get(`${import.meta.env.VITE_API_URL}/votesshow.php`)
-    .then(response => {
-      this.tickets = response.data; 
-    })
-    .catch(error => {
-      console.error("Error fetching data: ", error);
-    });
+
+
+
+    
   },
 
   mounted() {
+    axios.get(`${import.meta.env.VITE_API_URL}/votefront.php`)
+      .then(response => {
+        this.vote_grass_list = response.data.grass;
+      this.vote_polar_list = response.data.polar;
+      this.vote_jungle_list = response.data.jungle;
+      this.vote_birds_list = response.data.birds;
+      this.vote_aqua_list = response.data.aqua; // 假設返回的數據是一個數組
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
     // // 在mounted鉤子中綁定滾動到投票列表的函數
     // this.scrollToVoteList();
   },
@@ -365,23 +420,41 @@ export default {
       // 除非資料庫存五張類型動物的tabla，可以這樣寫
       // 如果是同一張table記得要用filter類型，不然之後會寫不出來
       switch (this.currentContent) {
-        case "vote_grass":
-          return this.vote_grass_list;
-        case "vote_jungle":
-          return this.vote_jungle_list;
-        case "vote_polar":
-          return this.vote_polar_list;
-        case "vote_birds":
-          return this.vote_birds_list;
-        case "vote_aqua":
-          return this.vote_aqua_list;
-        // Add conditions for other content sections if needed
-        default:
-          return [];
+      case "vote_grass":
+        return this.vote_grass_list;
+      case "vote_jungle":
+        return this.vote_jungle_list;
+      case "vote_polar":
+        return this.vote_polar_list;
+      case "vote_birds":
+        return this.vote_birds_list;
+      case "vote_aqua":
+        return this.vote_aqua_list;
+      default:
+        return [];
       }
     },
+
+  //   currentVoteList() {
+  //   // 從所有投票列表中過濾出符合當前內容的項目
+  //   return this.vote_list.filter(item => {
+  //     switch (this.currentContent) {
+  //       case "vote_grass":
+  //         return item.category === "grass"; // 假設你的資料中有一個屬性叫做 category，代表草原動物
+  //       case "vote_jungle":
+  //         return item.category === "jungle"; // 假設你的資料中有一個屬性叫做 category，代表叢林動物
+  //       case "vote_polar":
+  //         return item.category === "polar"; // 假設你的資料中有一個屬性叫做 category，代表極地動物
+  //       case "vote_birds":
+  //         return item.category === "birds"; // 假設你的資料中有一個屬性叫做 category，代表鳥類動物
+  //       case "vote_aqua":
+  //         return item.category === "aqua"; // 假設你的資料中有一個屬性叫做 category，代表水生動物
+  //       default:
+  //         return false;
+  //     }
+  //   });
+  // },
   },
   
 };
-
 </script>

@@ -74,15 +74,21 @@
         <div v-else>
           <!-- 開始進行遊戲畫面 -->
           <div v-if="currentQuestionIndex < questions.length" class="question_all">
-            <div v-for="(question, index) in questions" :key="index" class="question"
-              v-show="index === currentQuestionIndex">
+            
+          
+            
+            <div   v-for="(question, index) in questions" :key="index" class="question"
+              v-show="index === currentQuestionIndex" >
+
+           
+             
               <!-- 顯示問題內容 -->
-              <div class="question_text pcSmTitle">{{ question.question_number }}. {{ question.question_text }}
+              <div  class="question_text pcSmTitle">{{ question.question_number }}. {{ question.question_text }}
                 <!-- <img v-if="question.image" :src="getImageUrl(question.image)" alt="question-image"
                   class="question-image" /> -->
               </div>
 
-              <div class="option_all">
+              <div  class="option_all">
                 <div v-for="optionPara in ['a', 'b', 'c', 'd']" :key="optionPara" class="option pcInnerText">
                   <div v-if="question['question_img_' + optionPara]" class="option-image-container">
                     <img :src="getImageUrl(question['question_img_' + optionPara])" :alt="question['question_img_' + optionPara]" class="option-image" />
@@ -158,6 +164,7 @@ import schoolGameAchieve from '@/components/school/schoolGameAchieve.vue'
 export default {
   data() {
     return {
+      // index:0,
       GameAchieveSwitch:false,
       showAnimation8: false,
       showAnimationN: false,
@@ -315,6 +322,8 @@ export default {
       .catch(error => {
         console.error("Error fetching data: ", error);
       });
+
+
     },
     // 使用 Axios 發送 GET 請求
     // axios.get(`${import.meta.env.VITE_API_URL}/questionshow.php`)
@@ -333,6 +342,8 @@ export default {
   // },
 
   methods: {
+    
+
     toggleContent() {
       this.isContent1 = !this.isContent1;
     },
