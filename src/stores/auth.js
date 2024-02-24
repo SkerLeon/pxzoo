@@ -5,9 +5,7 @@ export default defineStore("userStore", {
   // 定義名稱為 "userStore" 的存儲庫。
   state: () => ({
     token: localStorage.getItem("token") || "", //
-    name: "Jenny",
-    wallet: "300",
-    //預留userData:{}之後串接PHP
+    userData: {},
   }),
 
   // 對應 computed (物件形式)
@@ -48,14 +46,13 @@ export default defineStore("userStore", {
       console.log(val);
       // 不把全部資訊紀錄
       this.userData = {
-        name: val.mem_name,
-        id: val.mem_id,
-        title: val.mem_title,
-        email: val.mem_email,
-        phone: val.mem_phone,
-        birthday: val.mem_birthday,
-        validation: val.mem_validation,
-        pic: val.mem_pic,
+        mem_name: val.mem_name,
+        mem_id: val.mem_id,
+        mem_title: val.mem_title,
+        mem_email: val.mem_email,
+        mem_phone: val.mem_phone,
+        mem_birthday: val.mem_birthday,
+        mem_pic: val.mem_pic,
         // 封鎖狀況1|0
         state: val.mem_status,
         // 如果有權限可以把權限角色記載資料庫

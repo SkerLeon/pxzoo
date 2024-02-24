@@ -61,7 +61,7 @@
               class="picFrame"
             />
             <img
-              :src="getMemPicUrl(this.profile.mem_pic)"
+              :src="getMemPicUrl(userStore.userData.mem_pic)"
               alt="會員頭貼"
               class="memPic"
             />
@@ -136,23 +136,13 @@
     <section class="couponArea" id="coupon" v-show="activeTab === 'coupon'">
       <div class="innerCoupon">
         <h2 class="pcBigTitle">優惠票券</h2>
-        <div class="couponGroup">
-          <div class="coupon">
+        <div class="couponGroup" v-if="coupontDetail.length > 0">
+          <div
+            class="coupon"
+            v-for="(coupon, index) in coupontDetail"
+            :key="index"
+          >
             <img src="../assets/images/member/discount10.svg" alt="" />
-            <button class="couponBtn pcInnerText" @click="toTicketPage">
-              購票去
-              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-            </button>
-          </div>
-          <div class="coupon">
-            <img src="../assets/images/member/discount15.svg" alt="" />
-            <button class="couponBtn pcInnerText" @click="toTicketPage">
-              購票去
-              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
-            </button>
-          </div>
-          <div class="coupon">
-            <img src="../assets/images/member/discount20.svg" alt="" />
             <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
@@ -182,19 +172,24 @@
               class="commentBg"
             />
             <img
-              src="../assets/images/member/commentPic.png"
+              :src="getCommPicUrl(comment.com_pic)"
               alt="commentPic"
               class="commentPic"
             />
             <div class="commentArea">
               <p class="commentTitle pcSmTitle">{{ this.profile.mem_name }}</p>
-              <textarea name="" id="" cols="30" rows="4" class="commentText">{{
-                comment.com_text
-              }}</textarea>
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="4"
+                class="commentText"
+                v-model="comment.com_text"
+              ></textarea>
             </div>
             <button
               class="defaultBtn pcInnerText commentBtn"
-              @click="reviseMemConnProfile(com_id, newText)"
+              @click="reviseMemCommProfile(comment.com_id, comment.com_text)"
             >
               修改評論
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
@@ -223,6 +218,7 @@ import qrcodeLB from "@/components/QRcodeLightBox.vue";
 import MainFixedVote from "@/components/MainFixedVote.vue";
 import userStore from "../stores/auth";
 import axios from "axios";
+import { mapActions } from "pinia";
 export default {
   data() {
     return {
@@ -252,8 +248,9 @@ export default {
         "票券型態:",
         "處理狀態:",
       ],
-      ticketDetail: [],
       commentDetail: [],
+      ticketDetail: [],
+      coupontDetail: [],
       userStore: userStore(),
     };
   },
@@ -264,30 +261,30 @@ export default {
   created() {
     //抓取localStorage內的會員資料
     this.profile.mem_name = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).name
+      ? JSON.parse(localStorage.getItem("userData")).mem_name
       : "";
     this.profile.mem_title = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).title
+      ? JSON.parse(localStorage.getItem("userData")).mem_title
       : "";
     this.profile.mem_email = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).email
+      ? JSON.parse(localStorage.getItem("userData")).mem_email
       : "";
     this.profile.mem_phone = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).phone
+      ? JSON.parse(localStorage.getItem("userData")).mem_phone
       : "";
     this.profile.mem_birthday = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).birthday
+      ? JSON.parse(localStorage.getItem("userData")).mem_birthday
       : "";
     this.profile.mem_id = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).id
+      ? JSON.parse(localStorage.getItem("userData")).mem_id
       : "";
     this.profile.mem_pic = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).pic
+      ? JSON.parse(localStorage.getItem("userData")).mem_pic
       : "";
-
+    this.userStore.updateUserData(this.profile);
     //從LS取出會員資料
     const memberId = localStorage.getItem("userData")
-      ? JSON.parse(localStorage.getItem("userData")).id
+      ? JSON.parse(localStorage.getItem("userData")).mem_id
       : "";
     //訂單資訊
     if (memberId) {
@@ -333,6 +330,37 @@ export default {
     } else {
       console.log("重新查詢");
     }
+    //優惠票券
+    if (memberId) {
+      // 資料庫會員資料需要與LS內的ID一樣
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/memberCouponInfo.php?mem_id=${memberId}`
+        )
+        .then((res) => {
+          this.coupontDetail = res.data;
+          console.log(res.data);
+          localStorage.setItem("cou", JSON.stringify(res.data));
+        })
+        .catch((error) => {
+          console.error("Error fetching member orders:", error);
+        });
+    } else {
+      console.log("重新查詢");
+    }
+
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/memberCouponTicket.php`)
+      .then((res) => {
+        this.ticketDetail = res.data;
+        console.log(res);
+      });
+
+    this.ticketDetail.forEach((ticket) => {
+      console.log(ticket.cou_id);
+    });
   },
   watch: {
     "userStore.token": {
@@ -352,6 +380,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(userStore, ["updateName", "updateUserData"]),
     //將會員圖片從memberPic中取出
     getMemPicUrl(image) {
       return new URL(
@@ -359,12 +388,15 @@ export default {
         import.meta.url
       ).href;
     },
-    test() {
-      alert("aa");
+    getCommPicUrl(image) {
+      return new URL(
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/comm/` + image,
+        import.meta.url
+      ).href;
     },
     delComm(index) {
       if (confirm("確定要刪除嗎?")) {
-        const com_id = this.commentDetail[index].com_id; // 通过 index 获取指定位置的评论对象的 com_id
+        const com_id = this.commentDetail[index].com_id;
         const formData = new FormData();
         formData.append("com_id", com_id);
 
@@ -377,7 +409,7 @@ export default {
             console.log(res);
             if (!res.data.error) {
               alert(res.data.msg);
-              this.commentDetail.splice(index, 1); // 删除成功后删除前端对应的评论
+              this.commentDetail.splice(index, 1);
             }
           })
           .catch((error) => {
@@ -409,22 +441,31 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then((response) => {
-          console.log("File uploaded successfully:", response.data);
-          alert("頭貼更新成功");
+        .then((res) => {
+          console.log(res.data);
+          this.userStore.updateUserData({
+            ...this.userStore.userData,
+            mem_pic: res.data.img,
+          });
+          console.log({
+            ...this.userStore.userData,
+            mem_pic: res.data.img,
+          });
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
         });
     },
-    reviseMemConnProfile(com_id, newText) {
+    reviseMemCommProfile(com_id, com_text) {
+      const postData = {
+        com_id: com_id,
+        com_text: com_text,
+      };
+
       axios
         .post(
           `${import.meta.env.VITE_API_URL}/memberCommRevise.php`,
-          {
-            com_id: com_id, // 提供要修改的评论的 ID
-            com_text: newText, // 提供新的评论文本
-          },
+          postData,
           {
             headers: {
               "Content-Type": "application/json",
@@ -433,7 +474,6 @@ export default {
         )
         .then((res) => {
           console.log(res);
-          // 根据后端的响应进行相应的处理
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -458,6 +498,7 @@ export default {
         .then((res) => {
           console.log(res);
           const userData = JSON.parse(localStorage.getItem("userData"));
+          console.log(userData);
           if (userData) {
             userData.mem_name = data.mem_name;
             userData.mem_title = data.mem_title;

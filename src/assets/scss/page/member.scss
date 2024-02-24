@@ -338,6 +338,8 @@
         width: 80%;
         gap: 10px;
         display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
         justify-content: center;
         align-items: center;
         @media (width <= 768px) {
@@ -400,9 +402,9 @@
     .elephant {
       position: absolute;
       bottom: 0;
-      right: 20vw;
-      height: 110px;
-      width: 300px;
+      right: 18vw;
+      height: 90px;
+      width: 280px;
       @media (width <= 768px) {
         height: 90px;
         width: 250px;
