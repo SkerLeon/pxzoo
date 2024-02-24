@@ -59,7 +59,7 @@ export default {
         },
         fillHiddenIndexes() {
             this.hiddenIndexes = this.icon_animals
-            .map((animal, index) => animal.animal_name === null ? index : null)
+            .map((animal, index) => animal.animal_name === null || animal.animal_status === 0 ? index : null)
             .filter(index => index !== null);
         },
         isHidden(index) {

@@ -297,8 +297,8 @@ export default {
       return this.hiddenIndexes.includes(index);
     },
     fillHiddenIndexes() {
-    this.hiddenIndexes = this.icon_animals
-      .map((animal, index) => animal.animal_name === null ? index : null)
+      this.hiddenIndexes = this.icon_animals
+      .map((animal, index) => animal.animal_name === null || animal.animal_status === 0 ? index : null)
       .filter(index => index !== null);
     },
     Animal_details_closure(){
