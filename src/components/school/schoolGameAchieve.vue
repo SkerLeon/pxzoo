@@ -74,17 +74,18 @@ export default {
                 this.loginLightBoxSwitch = !this.loginLightBoxSwitch
             }else{
                 this.couponAndMemderData.mem_id = this.mem_id
-                this.couponAndMemderData.cou_id = this.random
-                console.log(this.couponAndMemderData.mem_id);
-                console.log(this.couponAndMemderData.cou_id);
+                this.couponAndMemderData.cou_id = this.random + 1
+                // console.log(this.couponAndMemderData.mem_id);
+                // console.log(this.couponAndMemderData.cou_id);
                 axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                 .then(() => {
-                    location.reload()
                     alert("該優惠卷已儲存至會員中心！")
+                    location.reload()
+
                 })
                 .catch(error => {
                     console.error('更新錯誤:', error);
