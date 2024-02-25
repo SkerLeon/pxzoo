@@ -1,9 +1,11 @@
 <template>
   <MainFixedVote />
   <main class="memPage forHeader">
+
     <div class="qrCodeLb" v-if="showQRCode" @click.self="closeQRCode">
-      <qrcodeLB @close-qrcode="closeQRCode" />
+      <qrcodeLB @close-qrcode="closeQRCode" :selectTicketDetail="selectTicketDetail" />
     </div>
+
     <aside class="memSidebar">
       <ul>
         <li
@@ -92,12 +94,12 @@
         <div
           v-if="ticketDetail.length > 0"
           class="buyHistory"
-          @click="openQRCode"
         >
           <div
             v-for="(group, groupIndex) in ticketDetail"
             :key="groupIndex"
             class="buyList"
+            @click="openQRCode(groupIndex)"
           >
             <div class="listTitle">
               <p
@@ -108,6 +110,7 @@
                 {{ title }}
               </p>
             </div>
+
             <div
               v-for="(ticket, index) in group.tickets"
               :key="index"
@@ -120,17 +123,22 @@
               <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
               <p class="pcInnerText">{{ ticket.ord_status }}</p>
             </div>
+
           </div>
         </div>
+
         <div v-else>
           <p>尚無購票紀錄</p>
         </div>
+
       </div>
+
       <img
         src="@/assets/images/member/crocodile.svg"
         alt="crocodile"
         class="ticketCrocodile"
       />
+
     </section>
 
     <section class="couponArea" id="coupon" v-show="activeTab === 'coupon'">
@@ -245,6 +253,7 @@ export default {
         "處理狀態:",
       ],
       ticketDetail: [],
+      selectTicketDetail: [],
       coupontDetail: [],
       commentDetail: [],
     };
@@ -291,7 +300,7 @@ export default {
           }/memberOrderInfo.php?mem_id=${memberId}`
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           // 將從資料庫獲取的票券資料格式化成適合於渲染的格式
           const formattedTicketDetail = res.data.map((ticket) => {
             return {
@@ -299,6 +308,7 @@ export default {
             };
           });
           this.ticketDetail = formattedTicketDetail;
+          console.log(this.ticketDetail);
         })
         .catch((error) => {
           console.error("Error fetching member orders:", error);
@@ -335,7 +345,7 @@ export default {
         )
         .then((res) => {
           this.coupontDetail = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           localStorage.setItem("cou", JSON.stringify(res.data));
         })
         .catch((error) => {
@@ -428,9 +438,14 @@ export default {
       this.showQRCode = false;
       document.body.style.overflow = "auto";
     },
-    openQRCode() {
-      this.showQRCode = true;
-      document.body.style.overflow = "hidden";
+    openQRCode(groupIndex) {
+      if(this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"){ 
+        this.showQRCode = true;
+        this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0]
+        document.body.style.overflow = "hidden";
+      } else{
+        alert("您好！實體票卷沒有QRcode喔！")
+      }
     },
     //會員圖片上傳
     handleFileUpload(event) {
