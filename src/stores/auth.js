@@ -43,7 +43,7 @@ export default defineStore("userStore", {
       this.name = payload; // 使用提供的 payload 更新存儲庫中的名稱。
     },
     updateUserData(val) {
-      console.log(val);
+      // console.log(val);
       // 不把全部資訊紀錄
       this.userData = {
         mem_name: val.mem_name,
