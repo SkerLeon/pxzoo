@@ -38,14 +38,14 @@ Vue.config.devtools = true;
       <div class="news_content">
         <!-- 限制一頁的數量 -->
         <a class="news-each"
-        v-for="newsinfo in listAfterCategory"
-      :key="newsinfo"
-      data-aos="fade-up"
-      data-aos-easing="ease-in-out"
-      data-aos-anchor-placement =“top-bottom”>
+          v-for="newsinfo in listAfterCategory"
+          :key="newsinfo"
+          data-aos="fade-up"
+          data-aos-easing="ease-in-out"
+          data-aos-anchor-placement ="top-bottom"
+        >
           <img src="../assets/images/news/decorate-line.png" alt="上方裝飾線" class="news_line upper">
-          <div class="news_info"
-          @click="toNewsDetail(newsinfo.news_id)">
+          <div class="news_info" @click="toNewsDetail(newsinfo.news_id)">
             <img :src="getNewsUrl(newsinfo.news_pic)" alt="news圖">
             <div class="news-text">
               <div class="news_tag_time">
@@ -63,8 +63,8 @@ Vue.config.devtools = true;
                 <h4 class="pcSmTitle">{{newsinfo.news_title}}</h4>
               </div>
             </div>
-        </div>
-      </a>
+          </div>
+        </a>
       <img src="../assets/images/news/decorate-line.png" alt="下方裝飾線" class="news_line lower">
 
       <ul class="news_pagination pcInnerText">
@@ -371,7 +371,7 @@ export default {
 
   created() {
     this.initializeFilteredNews();
-    axios.get(`${import.meta.env.VITE_API_URL}/newsShow.php`)
+    axios.get(`${import.meta.env.VITE_API_URL}/newsFrontShow.php`)
       .then(response => {
         this.news = response.data; // 假設返回的數據是一個數組
       })
@@ -423,7 +423,7 @@ export default {
       this.setPage(1)
     },
 
-    // // 篩選新聞
+    //篩選新聞
     filterNews() {
       if (!this.selectedType) {
         this.filteredNews = this.news;
