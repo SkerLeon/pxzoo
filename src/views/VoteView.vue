@@ -91,7 +91,7 @@
         <div class="img"> <img :src="getImageUrl(ranking.animal_pic_a)" alt="Animal" /></div>
 
         <div class="name pcSmTitle">{{ ranking.animal_name }}</div>
-        <div class="votes phSmTitle">{{ ranking.vote_count }}票</div>
+        <div class="votes phSmTitle">{{ ranking.animal_vote }}票</div>
         <button class="phInnerText defaultBtn" @click="voteTop3(ranking)"> <img
             src="@/assets/images/login/icon/btnArrow.svg" alt="" />
           立即投票
@@ -136,8 +136,134 @@
         </button>
       </div>
 
+
       <div class="vote_wrap">
-        <div v-for="(voteItem, index) in currentVoteList" :key="index" class="vote_item">
+        <div v-if="currentContent === 'vote_grass'" class="vote_wrap">
+        <div v-for="(voteItem, index) in vote_grass_list" :key="index" class="vote_item">
+          <div class="vote_card">
+            <router-link :to="'/animalDetail/' + voteItem.animal_id">
+              <div class="vote_wrap_animal">
+                <img :src="getImageUrl(voteItem.animal_small_pic)" alt="Animal" />
+                <div class="vote_wrap_animal_txt pcInnerText">
+                  前往動物詳細資訊
+                </div>
+              </div>
+            </router-link>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{ voteItem.animal_vote }}票
+            </div>
+            <button @click="vote_grass(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="vote_wrap">
+        <div v-if="currentContent === 'vote_polar'" class="vote_wrap">
+        <div v-for="(voteItem, index) in vote_polar_list" :key="index" class="vote_item">
+          <div class="vote_card">
+            <router-link :to="'/animalDetail/' + voteItem.animal_id">
+              <div class="vote_wrap_animal">
+                <img :src="getImageUrl(voteItem.animal_small_pic)" alt="Animal" />
+                <div class="vote_wrap_animal_txt pcInnerText">
+                  前往動物詳細資訊
+                </div>
+              </div>
+            </router-link>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{ voteItem.animal_vote }}票
+            </div>
+            <button @click="vote_polar(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="vote_wrap">
+        <div v-if="currentContent === 'vote_jungle'" class="vote_wrap">
+        <div v-for="(voteItem, index) in vote_jungle_list" :key="index" class="vote_item">
+          <div class="vote_card">
+            <router-link :to="'/animalDetail/' + voteItem.animal_id">
+              <div class="vote_wrap_animal">
+                <img :src="getImageUrl(voteItem.animal_small_pic)" alt="Animal" />
+                <div class="vote_wrap_animal_txt pcInnerText">
+                  前往動物詳細資訊
+                </div>
+              </div>
+            </router-link>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{ voteItem.animal_vote }}票
+            </div>
+            <button @click="vote_jungle(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="vote_wrap">
+        <div v-if="currentContent === 'vote_birds'" class="vote_wrap">
+        <div v-for="(voteItem, index) in vote_birds_list" :key="index" class="vote_item">
+          <div class="vote_card">
+            <router-link :to="'/animalDetail/' + voteItem.animal_id">
+              <div class="vote_wrap_animal">
+                <img :src="getImageUrl(voteItem.animal_small_pic)" alt="Animal" />
+                <div class="vote_wrap_animal_txt pcInnerText">
+                  前往動物詳細資訊
+                </div>
+              </div>
+            </router-link>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{ voteItem.animal_vote }}票
+            </div>
+            <button @click="vote_birds(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="vote_wrap">
+        <div v-if="currentContent === 'vote_aqua'" class="vote_wrap">
+        <div v-for="(voteItem, index) in vote_aqua_list" :key="index" class="vote_item">
+          <div class="vote_card">
+            <router-link :to="'/animalDetail/' + voteItem.animal_id">
+              <div class="vote_wrap_animal">
+                <img :src="getImageUrl(voteItem.animal_small_pic)" alt="Animal" />
+                <div class="vote_wrap_animal_txt pcInnerText">
+                  前往動物詳細資訊
+                </div>
+              </div>
+            </router-link>
+            <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
+            <div class="vote_icon pcInnerText">
+              <img src="@/assets/images/vote/star.svg" alt="" />{{ voteItem.animal_vote }}票
+            </div>
+            <button @click="vote_aqua(voteItem)" class="pcInnerText defaultBtn">
+              <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
+              立即投票
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+        <!-- <div v-for="(voteItem, index) in currentVoteList" :key="index" class="vote_item">
          
           <div class="vote_card">
             <router-link :to="'/animalDetail/' ">
@@ -151,7 +277,7 @@
             <div class="vote_name pcSmTitle">{{ voteItem.animal_name }}</div>
             <div class="vote_icon pcInnerText">
               <img src="@/assets/images/vote/star.svg" alt="" />{{
-                voteItem.vote_count
+                voteItem.animal_vote
               }}票
             </div>
             <button @click="vote_animal(voteItem)" class="pcInnerText defaultBtn">
@@ -159,8 +285,8 @@
               立即投票
             </button>
           </div>
-        </div>
-      </div>
+        </div> -->
+     
       <div class="elephant1">
         <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
       </div>
@@ -171,13 +297,14 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
-
+      // animal_id: 'data', 
       votedCount: 0,//總票數
-      currentContent: "vote_grass",
-
+    
+      currentContent: "vote_grass,vote_polar,vote_jungle,vote_birds,vote_aqua",
       podium_list: [
         {
           animal_name: "琳達",
@@ -208,38 +335,38 @@ export default {
         {
           number: 1,
           animal_name: "威廉",
-          vote_count: 300,
+          animal_vote: 300,
           animal_pic_a: "lion",
         },
         {
           number: 2,
           animal_name: "琳達",
-          vote_count: 250,
+          animal_vote: 250,
           animal_pic_a: "giraffe",
         },
         {
           number: 3,
           animal_name: "馬克",
-          vote_count: 200,
+          animal_vote: 200,
           animal_pic_a: "meerkat",
         },
       ],
-
+     
       vote_grass_list: [
-        // { animal_pic_a: "lion", animal_name: "威廉", vote_count: "10" },
-        // { animal_pic_a: "giraffe", animal_name: "琳達", vote_count: "23" },
-        // { animal_pic_a: "elephant", animal_name: "索拉", vote_count: "12" },
-        // { animal_pic_a: "cheetah", animal_name: "豹哥", vote_count: "123" },
-        // { animal_pic_a: "zebra", animal_name: "小班", vote_count: "263" },
-        // { animal_pic_a: "meerkat", animal_name: "馬克", vote_count: "237" },
+        // { animal_pic_a: "lion", animal_name: "威廉", animal_vote: "10" },
+        // { animal_pic_a: "giraffe", animal_name: "琳達", animal_vote: "23" },
+        // { animal_pic_a: "elephant", animal_name: "索拉", animal_vote: "12" },
+        // { animal_pic_a: "cheetah", animal_name: "豹哥", animal_vote: "123" },
+        // { animal_pic_a: "zebra", animal_name: "小班", animal_vote: "263" },
+        // { animal_pic_a: "meerkat", animal_name: "馬克", animal_vote: "237" },
       ],
 
       vote_polar_list: [
-        // { animal_pic_a: "polarBear", animal_name: "寶拉", vote_count: "1223" },
-        // { animal_pic_a: "kingPenguin", animal_name: "小雪", vote_count: "13" },
-        // { animal_pic_a: "magellanicPenguin", animal_name: "亞當", vote_count: "1423" },
-        // { animal_pic_a: "arcticFox", animal_name: "雪球", vote_count: "13" },
-        // { animal_pic_a: "seal", animal_name: "波比", vote_count: "113" },
+        // { animal_pic_a: "polarBear", animal_name: "寶拉", animal_vote: "1223" },
+        // { animal_pic_a: "kingPenguin", animal_name: "小雪", animal_vote: "13" },
+        // { animal_pic_a: "magellanicPenguin", animal_name: "亞當", animal_vote: "1423" },
+        // { animal_pic_a: "arcticFox", animal_name: "雪球", animal_vote: "13" },
+        // { animal_pic_a: "seal", animal_name: "波比", animal_vote: "113" },
       ],
       
       vote_jungle_list: [
@@ -267,9 +394,147 @@ export default {
         // { animal_pic_a: "clownfish", animal_name: "馬林", vote_count: "1" },
         // { animal_pic_a: "octopus", animal_name: "巴奇", vote_count: "0" },
       ],
+      animal: '' // 初始化動物數據
     };
   },
   methods: {
+//     async vote_animal(voteItem) {
+//   try {
+//     const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
+//       animal_id: voteItem.animal_id,
+//     });
+
+//     if (response.status === 200) {
+//       console.log('投票數據已成功更新到資料庫');
+//       // 更新前端的投票數據
+//       voteItem.animal_vote++; // 更新前端的投票數據
+//     } else {
+//       console.error('更新投票數據時出錯');
+//     }
+//   } catch (error) {
+//     console.error('發生錯誤：', error);
+//   }
+// },
+
+  async vote_grass(voteItem) {
+    try {
+      // 發送投票請求到後端，新增投票紀錄
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+      // 更新畫面上的總票數顯示
+      const updatedAnimalVote = response.data.animal_vote;
+      const index = this.vote_grass_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+      if (index !== -1) {
+        this.vote_grass_list[index].animal_vote = updatedAnimalVote;
+      }
+      console.log(voteItem)
+      // 提示投票成功
+      alert('投票成功！');
+    } catch (error) {
+      console.error('投票失敗：', error);
+      alert('投票失敗，請稍後再試！');
+    }
+  },
+
+
+  async vote_polar(voteItem) {
+  try {
+    if (this.animal_vote >= 3) {
+      alert('您今天已經投了三票，請明天再來！');
+      return;
+    }
+
+    // 發送投票請求到後端，新增投票紀錄
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+    // 更新畫面上的總票數顯示
+    const updatedPolarVote = response.data.animal_vote;
+    const index = this.vote_polar_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+    if (index !== -1) {
+      this.vote_polar_list[index].animal_vote = updatedPolarVote;
+    }
+
+    // 提示投票成功
+    alert('投票成功！');
+  } catch (error) {
+    console.error('投票失敗：', error);
+    alert('投票失敗，請稍後再試！');
+  }
+},
+async vote_jungle(voteItem) {
+  try {
+    if (this.animal_vote >= 3) {
+      alert('您今天已經投了三票，請明天再來！');
+      return;
+    }
+
+    // 發送投票請求到後端，新增投票紀錄
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+    // 更新畫面上的總票數顯示
+    const updatedJungleVote = response.data.animal_vote;
+    const index = this.vote_jungle_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+    if (index !== -1) {
+      this.vote_jungle_list[index].animal_vote = updatedJungleVote;
+    }
+
+    // 提示投票成功
+    alert('投票成功！');
+  } catch (error) {
+    console.error('投票失敗：', error);
+    alert('投票失敗，請稍後再試！');
+  }
+},
+async vote_birds(voteItem) {
+  try {
+    if (this.animal_vote >= 3) {
+      alert('您今天已經投了三票，請明天再來！');
+      return;
+    }
+
+    // 發送投票請求到後端，新增投票紀錄
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+    // 更新畫面上的總票數顯示
+    const updatedBirdsVote = response.data.animal_vote;
+    const index = this.vote_birds_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+    if (index !== -1) {
+      this.vote_birds_list[index].animal_vote = updatedBirdsVote;
+    }
+
+    // 提示投票成功
+    alert('投票成功！');
+  } catch (error) {
+    console.error('投票失敗：', error);
+    alert('投票失敗，請稍後再試！');
+  }
+},
+async vote_aqua(voteItem) {
+  try {
+    if (this.animal_vote >= 3) {
+      alert('您今天已經投了三票，請明天再來！');
+      return;
+    }
+
+    // 發送投票請求到後端，新增投票紀錄
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+    // 更新畫面上的總票數顯示
+    const updatedAquarVote = response.data.animal_vote;
+    const index = this.vote_aqua_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+    if (index !== -1) {
+      this.vote_aqua_list[index].animal_vote = updatedAquarVote;
+    }
+
+    // 提示投票成功
+    alert('投票成功！');
+  } catch (error) {
+    console.error('投票失敗：', error);
+    alert('投票失敗，請稍後再試！');
+  }
+},
+
+
     scrollToVoteList() {
       const voteListElement = document.querySelector('.vote_overview_all');
       voteListElement.scrollIntoView({ behavior: 'smooth' });
@@ -277,7 +542,7 @@ export default {
 
     getImageUrl(img) {
       return new URL(
-        `${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/small_pic_${img}`
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/${img}`
         // `../assets/images/animal/small_pic/small_pic_${img}.png` //方式
         ,import.meta.url
       ).href;
@@ -290,98 +555,8 @@ export default {
       ).href;
     },
 
-    voteTop3(animal) {
-      // 檢查用戶是否已經投過三票
-      if (this.votedCount  >= 3) {
-        console.log("你今天已經投過三票了！");
-        // 在界面上顯示訊息
-        alert("今天已經投過三票了！");
+  
 
-        return; // 如果已經投過三票，退出方法
-      }
-      
- // 抓取用戶IP地址
- fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      console.log('Your IP address is:', data.ip);
-      // 在這裡添加投票的邏輯，例如將投票數加1等等
-      const voteData = {
-        animal_id: animal.id, // 假設你有動物的 ID
-        new_vote_count: animal.vote_count + 1 // 新的票數
-      };
-
-      fetch(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(voteData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('投票計數已更新:', data);
-        // // 更新前端的投票計數
-        // animal.vote_count++;
-        // 更新已經投票的次數
-        this.votedCount++;
-        console.log("投票成功！");
-      })
-    
-      .catch(error => {
-        console.error('Error updating vote count:', error);
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching IP address:', error);
-    });
-      // 在 ranking_list 中找到被選中動物的索引
-      const index = this.ranking_list.findIndex(item => item.animal_name === animal.animal_name);
-      // 如果找到該動物
-      if (index !== -1) {
-        // 增加票數
-        this.ranking_list[index].vote_count++;
-        // 更新已經投票的次數
-        this.votedCount ++;
-        console.log("投票成功！");
-      } else {
-        console.error("未找到該動物！");
-      }
-    },
-    vote_animal(animal2) {
-      // 檢查用戶是否已經投過三票
-      if (this.votedCount  >= 3) {
-        console.log("今天已經投過三票！");
-        // 在界面上顯示訊息
-        alert("你今天已經投過三票！");
-
-        return; // 如果已經投過三票，退出方法
-        
-      }
-      // 抓取用戶IP地址
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      console.log('Your IP address is:', data.ip);
-      // 在這裡添加投票的邏輯，例如將投票數加1等等
-    })
-    .catch(error => {
-      console.error('Error fetching IP address:', error);
-    });
-
-      // 在 currentVoteList 中找到被選中動物的索引
-      const index = this.currentVoteList.findIndex(item => item.animal_name === animal2.animal_name);
-      // 如果找到該動物
-      if (index !== -1) {
-        // 增加票數
-        this.currentVoteList[index].vote_count++;
-        // 更新已經投票的次數
-        this.votedCount ++;
-        console.log("投票成功！");
-      } else {
-        console.error("未找到該動物！");
-      }
-    },
 
     showContent(content) {
       this.currentContent = content;
@@ -392,6 +567,41 @@ export default {
       this.currentContent = content;
     },
 
+    fetchDataByCategory(categoryName) {
+      // 發送請求到後端以獲取特定館別的投票列表
+      axios.get(`${import.meta.env.VITE_API_URL}/votefront.php`, {
+        params: {
+          category: categoryName
+        }
+      })
+      .then(response => {
+        // 將從後端獲取的投票列表資料設置到對應的資料變數中
+        switch (categoryName) {
+          case '草原之聲':
+            this.vote_grass_list = response.data;
+            break;
+          case '極地秘境':
+            this.vote_polar_list = response.data;
+            break;
+          case '叢林奇蹟':
+            this.vote_jungle_list = response.data;
+            break;
+          case '鳥園樂章':
+            this.vote_birds_list = response.data;
+            break;
+          case '海洋奇觀':
+            this.vote_aqua_list = response.data;
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
+    },
+  
+
   },
   created() {
 
@@ -401,59 +611,66 @@ export default {
   },
 
   mounted() {
-    axios.get(`${import.meta.env.VITE_API_URL}/votefront.php`)
-      .then(response => {
-        this.vote_grass_list = response.data.grass;
-      this.vote_polar_list = response.data.polar;
-      this.vote_jungle_list = response.data.jungle;
-      this.vote_birds_list = response.data.birds;
-      this.vote_aqua_list = response.data.aqua; // 假設返回的數據是一個數組
-      })
-      .catch(error => {
-        console.error("Error fetching data: ", error);
-      });
+    this.fetchDataByCategory('草原之聲');
+  this.fetchDataByCategory('極地秘境');
+  this.fetchDataByCategory('叢林奇蹟');
+  this.fetchDataByCategory('鳥園樂章');
+  this.fetchDataByCategory('海洋奇觀');
+    
+    // axios.get(`${import.meta.env.VITE_API_URL}/votefront.php`)
+    //   .then(response => {
+    //     this.vote_grass_list = response.data.grass;
+    //   this.vote_polar_list = response.data.polar;
+    //   this.vote_jungle_list = response.data.jungle;
+    //   this.vote_birds_list = response.data.birds;
+    //   this.vote_aqua_list = response.data.aqua; // 假設返回的數據是一個數組
+    //   })
+    //   .catch(error => {
+    //     console.error("Error fetching data: ", error);
+    //   });
     // // 在mounted鉤子中綁定滾動到投票列表的函數
     // this.scrollToVoteList();
   },
   computed: {
+    // currentVoteList() {
+    //   // 除非資料庫存五張類型動物的tabla，可以這樣寫
+    //   // 如果是同一張table記得要用filter類型，不然之後會寫不出來
+    //   switch (this.currentContent) {
+    //   case "vote_grass":
+    //     return this.vote_grass_list;
+    //   case "vote_jungle":
+    //     return this.vote_jungle_list;
+    //   case "vote_polar":
+    //     return this.vote_polar_list;
+    //   case "vote_birds":
+    //     return this.vote_birds_list;
+    //   case "vote_aqua":
+    //     return this.vote_aqua_list;
+    //   default:
+    //     return [];
+    //   }
+    // },
     currentVoteList() {
-      // 除非資料庫存五張類型動物的tabla，可以這樣寫
-      // 如果是同一張table記得要用filter類型，不然之後會寫不出來
-      switch (this.currentContent) {
-      case "vote_grass":
-        return this.vote_grass_list;
-      case "vote_jungle":
-        return this.vote_jungle_list;
-      case "vote_polar":
-        return this.vote_polar_list;
-      case "vote_birds":
-        return this.vote_birds_list;
-      case "vote_aqua":
-        return this.vote_aqua_list;
-      default:
-        return [];
-      }
-    },
+    return []; // 將 currentVoteList 定義為 computed 屬性
+  },
+    currentVoteList() {
+  // 從所有投票列表中過濾出符合當前內容的項目
+  switch (this.currentContent) {
+    case "vote_grass":
+      return this.vote_grass_list;
+    case "vote_jungle":
+      return this.vote_jungle_list;
+    case "vote_polar":
+      return this.vote_polar_list;
+    case "vote_birds":
+      return this.vote_birds_list;
+    case "vote_aqua":
+      return this.vote_aqua_list;
+    default:
+      return [];
+  }
+},
 
-  //   currentVoteList() {
-  //   // 從所有投票列表中過濾出符合當前內容的項目
-  //   return this.vote_list.filter(item => {
-  //     switch (this.currentContent) {
-  //       case "vote_grass":
-  //         return item.category === "grass"; // 假設你的資料中有一個屬性叫做 category，代表草原動物
-  //       case "vote_jungle":
-  //         return item.category === "jungle"; // 假設你的資料中有一個屬性叫做 category，代表叢林動物
-  //       case "vote_polar":
-  //         return item.category === "polar"; // 假設你的資料中有一個屬性叫做 category，代表極地動物
-  //       case "vote_birds":
-  //         return item.category === "birds"; // 假設你的資料中有一個屬性叫做 category，代表鳥類動物
-  //       case "vote_aqua":
-  //         return item.category === "aqua"; // 假設你的資料中有一個屬性叫做 category，代表水生動物
-  //       default:
-  //         return false;
-  //     }
-  //   });
-  // },
   },
   
 };
