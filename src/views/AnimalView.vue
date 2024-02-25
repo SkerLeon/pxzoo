@@ -286,6 +286,7 @@ export default {
                 // 遍歷每一筆動物資料
                 animalsData.forEach(animal => {
                 // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
+                //animal_status = 0 則返回不渲染
                 if(animal.animal_status ===0){
                     return
                 }
