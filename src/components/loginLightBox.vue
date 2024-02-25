@@ -20,18 +20,20 @@
           <div class="inputIconBg">
             <img src="@/assets/images/login/lightbox/email.svg" alt="" />
           </div>
-          <input type="text" placeholder="帳號" />
+          <input type="text" placeholder="帳號" v-model="loginAccount" />
         </div>
         <div class="LBInput">
           <div class="inputIconBg">
             <img src="@/assets/images/login/lightbox/lock.svg" alt="" />
           </div>
-          <input type="password" placeholder="密碼" />
+          <input type="password" placeholder="密碼" v-model="loginau4a83" />
         </div>
-        <RouterLink to="/login" class="LBForget pcMarkText">忘記密碼?</RouterLink>
+        <RouterLink to="/login" class="LBForget pcMarkText"
+          >忘記密碼?</RouterLink
+        >
       </div>
       <div class="LBBtnArea">
-        <button class="defaultBtn pcInnerText">
+        <button class="defaultBtn pcInnerText" @click="login">
           登入
           <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
         </button>
@@ -45,18 +47,71 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import userStore from "../stores/auth";
+import apiInstance from "@/stores/acc";
 export default {
-  props:{},
-  methods:{
-    closeMemLightBox(){
-      this.$emit('closeLoginBox',false);
+  data() {
+    return {
+      loginAccount: "",
+      loginau4a83: "",
+    };
+  },
+  created() {
+    // 判斷有沒有登入過，如果沒有token等同於沒有登入
+    const user = this.checkLogin();
+    if (user) {
+      this.$router.push("member");
+    }
+  },
+  props: {},
+  methods: {
+    ...mapActions(userStore, [
+      "updateToken",
+      "updateName",
+      "checkLogin",
+      "updateUserData",
+    ]),
+    closeMemLightBox() {
+      this.$emit("closeLoginBox", false);
     },
-    goSignUp(){
-      this.$router.push({ 
-        name: 'login'
-    // 須與index.js中首頁的名稱一致
-    });
+    login() {
+      const bodyFormData = new FormData();
+      bodyFormData.append("mem_acc", this.loginAccount);
+      bodyFormData.append("mem_psw", this.loginau4a83);
+
+      // 請記得將php埋入跨域
+      apiInstance({
+        method: "post",
+        url: `${import.meta.env.VITE_API_URL}/memberLogin.php`,
+        headers: { "Content-Type": "multipart/form-data" },
+        data: bodyFormData,
+      })
+        .then((res) => {
+          if (res && res.data) {
+            if (res.data.code == 1) {
+              this.updateToken(res.data.session_id);
+              this.updateUserData(res.data.memInfo);
+              alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
+              this.$router.push("member");
+            } else if (res.data.code == 2) {
+              alert("你被ban了 好可憐");
+            } else {
+              console.log(res);
+              alert("登入失敗");
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    goSignUp() {
+      this.$router.push({
+        name: "login",
+        // 須與index.js中首頁的名稱一致
+      });
     },
   },
-}
+};
 </script>

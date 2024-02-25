@@ -62,11 +62,11 @@
             />
             <img
               :src="getMemPicUrl(userStore.userData.mem_pic)"
-              alt="會員頭貼"
+              alt=""
               class="memPic"
             />
             <input type="file" @change="handleFileUpload" accept="image/*" />
-            <p class="memPicText pcMarkText">點擊相框更換頭貼</p>
+            <p class="memPicText pcMarkText">點擊相框內更換頭貼</p>
           </div>
           <div class="info pcSmTitle">
             <div v-for="field in fields" :key="field.key">
@@ -142,12 +142,15 @@
             v-for="(coupon, index) in coupontDetail"
             :key="index"
           >
-            <img src="../assets/images/member/discount10.svg" alt="" />
+            <img :src="getCouPicUrl(coupon.cou_id)" alt="" />
             <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
             </button>
           </div>
+        </div>
+        <div v-else>
+          <p>尚無優惠券</p>
         </div>
       </div>
       <img
@@ -222,17 +225,10 @@ import { mapActions } from "pinia";
 export default {
   data() {
     return {
+      userStore: userStore(),
       activeTab: "info",
       showQRCode: false,
-      profile: {
-        mem_name: "",
-        mem_title: "",
-        mem_birthday: "",
-        mem_email: "",
-        mem_phone: "",
-        mem_pic: "",
-        mem_id: "",
-      },
+      profile: [],
       fields: [
         { key: "mem_name", label: "姓名" },
         { key: "mem_title", label: "稱謂" },
@@ -248,10 +244,9 @@ export default {
         "票券型態:",
         "處理狀態:",
       ],
-      commentDetail: [],
       ticketDetail: [],
       coupontDetail: [],
-      userStore: userStore(),
+      commentDetail: [],
     };
   },
   components: {
@@ -322,7 +317,6 @@ export default {
         )
         .then((res) => {
           this.commentDetail = res.data;
-          console.log(res.data);
         })
         .catch((error) => {
           console.error("Error fetching member orders:", error);
@@ -350,17 +344,6 @@ export default {
     } else {
       console.log("重新查詢");
     }
-
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/memberCouponTicket.php`)
-      .then((res) => {
-        this.ticketDetail = res.data;
-        console.log(res);
-      });
-
-    this.ticketDetail.forEach((ticket) => {
-      console.log(ticket.cou_id);
-    });
   },
   watch: {
     "userStore.token": {
@@ -393,6 +376,27 @@ export default {
         `${import.meta.env.VITE_IMAGES_BASE_URL}/comm/` + image,
         import.meta.url
       ).href;
+    },
+    getCouPicUrl(cou_id) {
+      let imagePath;
+      switch (cou_id) {
+        case 1:
+          imagePath = `${
+            import.meta.env.VITE_IMAGES_BASE_URL
+          }/coupon/coupon_85`;
+          break;
+        case 2:
+          imagePath = `${
+            import.meta.env.VITE_IMAGES_BASE_URL
+          }/coupon/coupon_90`;
+          break;
+        case 3:
+          imagePath = `${
+            import.meta.env.VITE_IMAGES_BASE_URL
+          }/coupon/coupon_95`;
+          break;
+      }
+      return new URL(imagePath, import.meta.url).href;
     },
     delComm(index) {
       if (confirm("確定要刪除嗎?")) {
@@ -456,6 +460,7 @@ export default {
           console.error("Error uploading file:", error);
         });
     },
+    //會員評論更新
     reviseMemCommProfile(com_id, com_text) {
       const postData = {
         com_id: com_id,
@@ -474,6 +479,7 @@ export default {
         )
         .then((res) => {
           console.log(res);
+          alert("更新完成");
         })
         .catch((error) => {
           console.error("Error:", error);
