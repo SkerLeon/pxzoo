@@ -439,10 +439,14 @@ export default {
       document.body.style.overflow = "auto";
     },
     openQRCode(groupIndex) {
-      if(this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"){ 
-        this.showQRCode = true;
-        this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0]
-        document.body.style.overflow = "hidden";
+      if(this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"){
+        if(this.ticketDetail[groupIndex].tickets[0].ord_status === "未用票"){          
+          this.showQRCode = true;
+          this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0]
+          document.body.style.overflow = "hidden";
+        } else{
+          alert("您好！該張數位票劵已使用！")
+        }
       } else{
         alert("您好！實體票卷沒有QRcode喔！")
       }
