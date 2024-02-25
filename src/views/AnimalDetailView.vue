@@ -196,7 +196,7 @@ export default {
             imgnum: 1,
             //關提示
             showHint: true,
-                
+            
         };
     },
     created(){
@@ -226,11 +226,20 @@ export default {
         this.fetchSidebarData();
         // this.fetchAnimalDetail(animalId);
     },
+    beforeDestroy() {
+    var sound = new Audio(this.animalSoundPath);
+    console.log('stop')
+    sound.pause();
+    sound.currentTime = 0;
+    },
     computed:{
         //監控目前動物頁面找聲音
         animalSoundPath(){
             return this.getAnimalSound(this.animalDetailData.animal_sound)
-        }
+        },
+        audioPlayer() {
+            return new Audio(this.animalSoundPath) 
+        }  
     },
     methods: {
         fetchAnimalDetail(id) {
@@ -296,10 +305,7 @@ export default {
         },
         //播放聲音
         animalSoundPlay(){
-            var sound = new Audio(this.animalSoundPath)
-            
-            // console.log(sound)
-            sound.play();
+            this.audioPlayer.play()
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
         toggleShow(isShow,index) {
@@ -316,6 +322,11 @@ export default {
         this.$router.push({
         path:'./animal',})
         },
+    },
+    //離開這頁時暫停音檔
+    beforeRouteLeave(to, from, next) {
+        this.audioPlayer.pause()
+        next()
     },
     components: {
        MainFixedVote,
