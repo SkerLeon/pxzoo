@@ -38,7 +38,7 @@ Vue.config.devtools = true;
       <div class="news_content">
         <!-- 限制一頁的數量 -->
         <a class="news-each"
-          v-for="newsinfo in listAfterCategory"
+          v-for="newsinfo in listAfterPagination"
           :key="newsinfo"
           data-aos="fade-up"
           data-aos-easing="ease-in-out"
