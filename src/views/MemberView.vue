@@ -291,7 +291,7 @@ export default {
           }/memberOrderInfo.php?mem_id=${memberId}`
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           // 將從資料庫獲取的票券資料格式化成適合於渲染的格式
           const formattedTicketDetail = res.data.map((ticket) => {
             return {
@@ -335,7 +335,7 @@ export default {
         )
         .then((res) => {
           this.coupontDetail = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           localStorage.setItem("cou", JSON.stringify(res.data));
         })
         .catch((error) => {
@@ -410,7 +410,7 @@ export default {
             formData
           )
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             if (!res.data.error) {
               alert(res.data.msg);
               this.commentDetail.splice(index, 1);
@@ -446,7 +446,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.userStore.updateUserData({
             ...this.userStore.userData,
             mem_pic: res.data.img,
@@ -478,7 +478,7 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           alert("更新完成");
         })
         .catch((error) => {
@@ -502,9 +502,8 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           const userData = JSON.parse(localStorage.getItem("userData"));
-          console.log(userData);
           if (userData) {
             userData.mem_name = data.mem_name;
             userData.mem_title = data.mem_title;
