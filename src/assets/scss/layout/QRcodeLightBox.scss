@@ -4,10 +4,11 @@
   background-color: $bgColorLightgray;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 30%;
   height: 80%;
+  gap: 1.5vw;
   @media (width <= 768px) {
     width: 80%;
     height: 60%;
@@ -20,57 +21,15 @@
     height: 30px;
     cursor: pointer;
   }
-  .qrImg {
-    width: 50%;
-    height: 50%;
-  }
   h3 {
     color: $mainTextColor;
-    margin-bottom: 10px;
-    @media (width <= 768px) {
-      // margin-bottom: 2px;
-    }
     span {
       color: $secColorblue;
-    }
-  }
-  .qrFrame {
-    position: relative;
-    width: 120px;
-    height: 35px;
-
-    .newsFramePic {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    .newsFrameText {
-      letter-spacing: 2px;
-      position: absolute;
-      top: -4px;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      padding-top: 0.6vw;
-      color: #fff;
-      z-index: 2;
-      font-size: $pcFontH4;
-      font-family: $font;
-      font-weight: 500;
-      line-height: 150%;
-      @media (width <= 768px) {
-        top: 0;
-      }
     }
   }
   .useNote {
     color: $mainTextColor;
     width: 80%;
-    @media (width <= 768px) {
-      margin-bottom: 20px;
-    }
     p {
       margin: 10px 0;
       letter-spacing: 2px;
