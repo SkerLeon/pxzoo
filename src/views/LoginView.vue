@@ -139,7 +139,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 import { mapActions } from "pinia";
 import userStore from "../stores/auth";
 import apiInstance from "@/stores/acc";
