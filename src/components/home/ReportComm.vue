@@ -1,18 +1,13 @@
 <template>
     <div class="reportcomm">
-        <img
-            src="@/assets/images/member/memicon/green_close.svg"
-            alt="close"
-            class="close"
-            id="close"
-            @click="hideReportComm"
-        />
+        <img src="@/assets/images/member/memicon/green_close.svg" alt="close" class="close" id="close"
+            @click="hideReportComm" />
         <h2 class="comm_title pcBigTitle">檢舉留言</h2>
         <p class="comm_mark pcInnerText">如果此人有立即的人身安全疑慮，請馬上尋求協助，再向PXZoO檢舉，把握救援時間。</p>
         <div class="comm_select" id="comm_text">
             <label class="pcInnerText" for="report-select">
                 檢舉類別
-                <select name="report" id="report-select">
+                <select name="report" id="report-select" v-model="formData.report_type">
                     <option value="">請選擇檢舉類別</option>
                     <option value="暴力">暴力｜宣揚或促使暴力行為的內容。</option>
                     <option value="裸露">裸露｜裸露、色情內容或性暗示的內容。</option>
@@ -30,7 +25,8 @@
         <div class="comm_text" id="comm_text">
             <label class="pcInnerText">
                 檢舉原因<span class="numLimit">{{ num }}/100</span>
-                <textarea rows=7 maxlength="100" @input="monitorInput" v-model="textareaContent" placeholder=請填寫您的想法></textarea>
+                <textarea rows=7 maxlength="100" @input="monitorInput" v-model="formData.report_text"
+                    placeholder=請填寫您的想法></textarea>
             </label>
         </div>
 
@@ -38,61 +34,100 @@
             <reporttqp @close-reporttqp="closeReportTqp" />
         </div>
 
-        <button class="submitbtn defaultBtn pcInnerText" @click="openReportTqp">
+        <button class="submitbtn defaultBtn pcInnerText" @click="saveReport">
             確認送出
             <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
         </button>
-        
+
         <div class="reportcomm_deco">
             <div class="tree_3"><img src="@/assets/images/vetor/nature_tree_3.svg" alt="tree_3"></div>
             <div class="rabbit"><img src="@/assets/images/vetor/vetor_animal_rabbit.svg" alt="rabbit"></div>
             <div class="koala"><img src="@/assets/images/vetor/vetor_animal_koala.svg" alt="koala"></div>
         </div>
-    
+
     </div>
 </template>
 <script>
+import axios from 'axios'; // 引入 axios 库
 import reporttqp from "@/components/home/ReportTqp.vue";
 export default {
-    el: '#comm_text',
-    
+    // 在檢舉留言燈箱組件中接收路由參數中的留言編號com_id
+    props: ['comId'],
     components: {
         reporttqp,
     },
     data() {
         return {
             show: true,
-            textareaContent:'',
             num: 100,
-            fileName: '',
             showReportTqp: false,
+
+            formData: {
+                report_type: '',
+                report_text: '',
+                com_id: '',
+            },
         };
     },
     methods: {
         hideReportComm() {
             this.$emit("close-reportcomm");
         },
-        monitorInput(){
-            var txtVal = this.textareaContent.length;
+
+        //字數
+        monitorInput() {
+            var txtVal = this.formData.report_text.length;
             this.num = 100 - txtVal;
         },
-        handleFileChange(e) {
-            const fileData = e.target.files[0];
-            this.fileName = fileData.name;
-            // this.fileType = fileData.type;
-            // this.fileSize = Math.floor(fileData.size * 0.001) + 'kb';
-            // this.fileTime = fileData.lastModifiedDate;
-            // this.fileThumbnail = URL.createObjectURL(fileData);
-        },
+
         closeReportTqp() {
-        this.hideReportComm();
-        this.showReportTqp = false;
-        document.body.style.overflow = "auto";
+            this.hideReportComm();
+            this.showReportTqp = false;
+            document.body.style.overflow = "auto";
         },
-        openReportTqp() {
-        this.showReportTqp = true;
-        document.body.style.overflow = "hidden";
+
+        // 更新開關狀態
+        updateaddSwitch() {
+            this.$emit('update-switch', !this.addSwitch);
+            // window.location.reload();
         },
+
+        saveReport() {
+            // let formData = new FormData();
+
+            // for (let key in this.formData) {
+            //     formData.append(key, this.formData[key]);
+            // }
+            const formData = {
+                // com_id: this.$route.params.id,
+                com_id: this.comId,
+                report_type: this.formData.report_type,
+                report_text: this.formData.report_text,
+            }
+
+            axios.post(`${import.meta.env.VITE_API_URL}/reportFrontAdd.php`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // 指定文件上傳格式
+                },
+            })
+                .then(response => {
+                    console.log('新增資料成功');
+                    console.log("Selected com_id:", this.comId);
+                    console.log(response.data);
+                    // 提交成功後的處理
+                    this.updateaddSwitch(); // 觸發關閉表單的方法
+                    // window.location.reload();
+                    // 打開reportTqp組件
+                    console.log('Opening reportTqp component');
+                    this.showReportTqp = true;
+                    document.body.style.overflow = "hidden";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // 提交失敗時的處理
+                });
+        },
+        
     },
 };
 </script>
