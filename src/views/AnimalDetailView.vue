@@ -152,7 +152,7 @@ export default {
             animalDetailData: [],//data
             bigPic:'',
             smallPics: [],
-            sidebarClick_id:'',
+            sidebarClick_id:0,
             //側邊欄
             animals_sidebar : [
                 {
@@ -322,40 +322,39 @@ export default {
             item.isShow = false;
             }
 
-        });  
+            });  
         },
         toOtherPage(id){
             this.sidebarClick_id = id
+            console.log(this.sidebarClick_id)
             this.$router.push({
-            name: 'animalDetail', params: { id:this.sidebarClick_id},})
+            name: 'animalDetail', params: { id: this.sidebarClick_id},})
             // location.reload()
         },
         //回到上頁
         backtoAnimal(){
-        this.$router.push({
-        path:'./animal',})
+            this.$router.push({ name: 'animal' });
+        },
+        //離開這頁時暫停音檔
+        beforeRouteLeave(to, from, next) {
+            this.audioPlayer.pause()
+            next()
         },
     },
-    //離開這頁時暫停音檔
-    beforeRouteLeave(to, from, next) {
-        this.audioPlayer.pause()
-        next()
-    },
-    watch:{
+    watch: {
         sidebarClick_id: {
         handler(newVal, oldVal) {
-            // 在这里进行数据更新或其他操作
-            // console.log('animals_id 变化了：', newVal);
-            // 你可以在这里触发重新渲染页面的逻辑或者执行其他操作
+            // console.log('sidebarClick_id 变化了：', newVal);
             this.fetchAnimalDetail(newVal)
         },
-        deep: true // 如果 animals_id 是一个对象或数组，需要使用 deep: true 来深度监测变化
-    }
+        deep: true // 如果 sidebarClick_id 是对象或数组，需要使用 deep: true 来深度监测变化
+        }
     },
+
     components: {
        MainFixedVote,
      },
-};
+}
 </script>
 
 deep:true
