@@ -1,6 +1,6 @@
 <template>
   <MainFixedVote v-if="!windowWidth.isMobile" />
-  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" />
+  <!-- <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" /> -->
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
@@ -139,9 +139,19 @@ export default {
         .then(response => {
           if (response.data.errMsg) {
             this.coupons = response.data.errMsg;
-          } else if (!Array.isArray(response.data)) {
-            this.coupons = Object.values(response.data)[0]; // this.coupons isArray
-          } else { this.coupons = response.data; }
+          } else{
+            // console.log("test", Array.isArray(response.data));
+            let couOriginData = Array.isArray(response.data) ? response.data : Object.values(response.data); // 當資料不是[]時轉為[]
+            // console.log("test typeof", ;
+
+            let emptyCou= {cou_detail_id: 0, cou_discount: "1", cou_id: 0, cou_name: "不使用優惠券", mem_id: null, ord_id: null};
+            couOriginData.unshift(emptyCou);
+
+            // console.log('couOriginData',couOriginData);
+
+            this.coupons = couOriginData;
+            // console.log("test2", this.coupons);
+          }
         })
         .catch(error => {
           console.error('Error fetching data:', error);
@@ -193,6 +203,7 @@ export default {
       });
     },
     showNextStep() {
+      console.log(this.mem_id);
       // 如果沒有登入，則顯示登入燈箱
       if (this.tickStep === 0) {
         if (this.mem_id === null) {
@@ -234,17 +245,18 @@ export default {
       this.payprice = newTiprice;
     },
     updateCoupon(newCoupon) {
-      if (newCoupon !== "不使用優惠券") {
-        var coupon = this.coupons.find(
+      var coupon = this.coupons.find(
           (cou) => cou.cou_name === newCoupon
         );
+      if (newCoupon !== "不使用優惠券") {
         this.selectedCouId = coupon.cou_id;
         this.selectedCouDetailId = coupon.cou_detail_id;
-        this.couprice = parseInt(
-          (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
-        );
-        // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
       }
+      this.couprice = parseInt(
+        (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
+      );
+      // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+
       this.selectedCou = newCoupon;
 
       this.payprice = this.tiprice - this.couprice;
@@ -268,37 +280,17 @@ export default {
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
-    // isMidPH(){
-    //   return window.innerWidth <= 470;
-    // },
-    // isMobile(){
-    //   return window.innerWidth <= 768;
-    // },
-    // isBoard(){
-    //   return window.innerWidth < 1200;
-    // },
-    // isSmallPC(){
-    //     return window.innerWidth <= 1400;
-    // },
-    // isMidPC(){
-    //     return window.innerWidth <= 1540;
-    // },
   },
   watch: {},
-  // created(){
-  //   this.windowSize();
-  //   window.addEventListener('resize', this.windowSize);
-  // },
-  provide() {
+  created(){},
+  provide(){
     return {
       windowWidth: this.windowWidth,
     };
   },
-  mounted() {
+  mounted(){
     this.windowResize();
     window.addEventListener('resize', this.windowResize);
-    // this.windowSize();
-    // window.addEventListener('resize', this.windowSize);
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.windowResize);
