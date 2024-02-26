@@ -1,6 +1,6 @@
 <template>
   <MainFixedVote v-if="!windowWidth.isMobile" />
-  <!-- <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" /> -->
+  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
