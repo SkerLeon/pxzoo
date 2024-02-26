@@ -1,9 +1,11 @@
 <template>
   <MainFixedVote />
   <main class="memPage forHeader">
-
     <div class="qrCodeLb" v-if="showQRCode" @click.self="closeQRCode">
-      <qrcodeLB @close-qrcode="closeQRCode" :selectTicketDetail="selectTicketDetail" />
+      <qrcodeLB
+        @close-qrcode="closeQRCode"
+        :selectTicketDetail="selectTicketDetail"
+      />
     </div>
 
     <aside class="memSidebar">
@@ -39,7 +41,7 @@
           :class="{ active: activeTab === 'comment' }"
         >
           <img src="../assets/images/member/memicon/4.svg" alt="" />
-          <p class="sidebarText">會員評論</p>
+          <p class="sidebarText">會員留言</p>
         </li>
         <li @click="logout">
           <img src="../assets/images/member/memicon/5.svg" alt="" />
@@ -91,10 +93,7 @@
     <section class="ticketArea" id="ticket" v-show="activeTab === 'ticket'">
       <div class="innerTicket">
         <h2 class="pcBigTitle">購票紀錄</h2>
-        <div
-          v-if="ticketDetail.length > 0"
-          class="buyHistory"
-        >
+        <div v-if="ticketDetail.length > 0" class="buyHistory">
           <div
             v-for="(group, groupIndex) in ticketDetail"
             :key="groupIndex"
@@ -123,14 +122,12 @@
               <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
               <p class="pcInnerText">{{ ticket.ord_status }}</p>
             </div>
-
           </div>
         </div>
 
         <div v-else>
           <p>尚無購票紀錄</p>
         </div>
-
       </div>
 
       <img
@@ -138,7 +135,6 @@
         alt="crocodile"
         class="ticketCrocodile"
       />
-
     </section>
 
     <section class="couponArea" id="coupon" v-show="activeTab === 'coupon'">
@@ -170,7 +166,7 @@
 
     <section class="commentArea" id="comment" v-show="activeTab === 'comment'">
       <div class="innerComment">
-        <h2 class="pcBigTitle">會員評論</h2>
+        <h2 class="pcBigTitle">會員留言</h2>
         <div class="commentGroup" v-if="commentDetail.length > 0">
           <div
             class="comment"
@@ -381,29 +377,31 @@ export default {
         import.meta.url
       ).href;
     },
+    //留言圖片
     getCommPicUrl(image) {
       return new URL(
         `${import.meta.env.VITE_IMAGES_BASE_URL}/comm/` + image,
         import.meta.url
       ).href;
     },
+    //優惠券圖片
     getCouPicUrl(cou_id) {
       let imagePath;
       switch (cou_id) {
         case 1:
           imagePath = `${
             import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_85`;
+          }/coupon/coupon_85.svg`;
           break;
         case 2:
           imagePath = `${
             import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_90`;
+          }/coupon/coupon_90.svg`;
           break;
         case 3:
           imagePath = `${
             import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_95`;
+          }/coupon/coupon_95.svg`;
           break;
       }
       return new URL(imagePath, import.meta.url).href;
@@ -439,16 +437,18 @@ export default {
       document.body.style.overflow = "auto";
     },
     openQRCode(groupIndex) {
-      if(this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"){
-        if(this.ticketDetail[groupIndex].tickets[0].ord_status === "未用票"){          
+      if (
+        this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"
+      ) {
+        if (this.ticketDetail[groupIndex].tickets[0].ord_status === "未用票") {
           this.showQRCode = true;
-          this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0]
+          this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0];
           document.body.style.overflow = "hidden";
-        } else{
-          alert("您好！該張數位票劵已使用！")
+        } else {
+          alert("您好！該張數位票劵已使用！");
         }
-      } else{
-        alert("您好！實體票卷沒有QRcode喔！")
+      } else {
+        alert("您好！實體票卷沒有QRcode喔！");
       }
     },
     //會員圖片上傳
@@ -470,10 +470,10 @@ export default {
             ...this.userStore.userData,
             mem_pic: res.data.img,
           });
-          console.log({
-            ...this.userStore.userData,
-            mem_pic: res.data.img,
-          });
+          // console.log({
+          //   ...this.userStore.userData,
+          //   mem_pic: res.data.img,
+          // });
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
@@ -547,7 +547,8 @@ export default {
       this.$router.push("/");
       this.userStore.updateToken("");
       this.userStore.updateUserData("");
-      alert("bye~");
+      localStorage.clear();
+      alert("已登出");
     },
   },
   mounted() {
