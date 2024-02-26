@@ -61,7 +61,7 @@ export default {
     // 判斷有沒有登入過，如果沒有token等同於沒有登入
     const user = this.checkLogin();
     if (user) {
-      this.$router.push("member");
+      // this.$router.push("member");
     }
   },
   props: {},
@@ -93,7 +93,8 @@ export default {
               this.updateToken(res.data.session_id);
               this.updateUserData(res.data.memInfo);
               alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
-              this.$router.push("member");
+              // this.$router.push("member");
+              this.closeMemLightBox()
             } else if (res.data.code == 2) {
               alert("你被ban了 好可憐");
             } else {
