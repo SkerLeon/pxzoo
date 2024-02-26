@@ -391,7 +391,7 @@ export default {
         case 1:
           imagePath = `${
             import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_85.svg`;
+          }/coupon/coupon_95.svg`;
           break;
         case 2:
           imagePath = `${
@@ -401,7 +401,7 @@ export default {
         case 3:
           imagePath = `${
             import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_95.svg`;
+          }/coupon/coupon_85.svg`;
           break;
       }
       return new URL(imagePath, import.meta.url).href;
