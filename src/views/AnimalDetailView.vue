@@ -28,8 +28,8 @@
                 </div>
                     <!-- @click.stop阻止蔓延 -->
                     <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
-                        <li v-for="child in category.animals" :key="child.id" class="fade">
-                            <a class="pcInnerText" href="#">{{ child.species }}</a>
+                        <li v-for="child in category.animals" class="fade">
+                            <a class="pcInnerText" href="#" @click="toOtherPage(child.animals_id)">{{ child.species }}{{ child.id }}</a>
                         </li>
                     </ul>
                 </li>
@@ -152,7 +152,7 @@ export default {
             animalDetailData: [],//data
             bigPic:'',
             smallPics: [],
-
+            sidebarClick_id:'',
             //側邊欄
             animals_sidebar : [
                 {
@@ -160,6 +160,7 @@ export default {
                     id:1,
                     isShow: false,
                     animals: [],//動物種類，動態渲染
+                    animals_id:[],
                     icon:'giraffe'
                 },
                 {
@@ -167,6 +168,7 @@ export default {
                     id:2,
                     isShow: false,
                     animals: [],
+                    animals_id:[],
                     icon:'penguin'
                 },
                 {
@@ -174,6 +176,7 @@ export default {
                     id:3,
                     isShow: false,
                     animals: [],
+                    animals_id:[],
                     icon:'monkey'
                 },
                 {
@@ -181,6 +184,7 @@ export default {
                     id:4,
                     isShow: false,
                     animals: [],
+                    animals_id:[],
                     icon:'flamingo'
                 },
                 {
@@ -188,6 +192,7 @@ export default {
                     id:5,
                     isShow: false,
                     animals: [],
+                    animals_id:[],
                     icon:'fish'
                 },
             ],
@@ -267,8 +272,10 @@ export default {
                 const parkIndex = this.animals_sidebar.findIndex(category => category.park === animal.category_name);
                 // 檢查是否找到對應的館別
                 if (parkIndex !== -1) {
-                    // 將動物的種類添加到對應館別的 animals 陣列中，因為index從0開始
-                    this.animals_sidebar[parkIndex].animals.push({ species: animal.animal_species });
+                    this.animals_sidebar[parkIndex].animals.push({ 
+                    species: animal.animal_species,
+                    animals_id: animal.animal_id  // 在这里为每个 child 对象添加 animals_id 属性
+                    });
                 }
                 });
             })
@@ -317,6 +324,12 @@ export default {
 
         });  
         },
+        toOtherPage(id){
+            this.sidebarClick_id = id
+            this.$router.push({
+            name: 'animalDetail', params: { id:this.sidebarClick_id},})
+            // location.reload()
+        },
         //回到上頁
         backtoAnimal(){
         this.$router.push({
@@ -328,8 +341,21 @@ export default {
         this.audioPlayer.pause()
         next()
     },
+    watch:{
+        sidebarClick_id: {
+        handler(newVal, oldVal) {
+            // 在这里进行数据更新或其他操作
+            // console.log('animals_id 变化了：', newVal);
+            // 你可以在这里触发重新渲染页面的逻辑或者执行其他操作
+            this.fetchAnimalDetail(newVal)
+        },
+        deep: true // 如果 animals_id 是一个对象或数组，需要使用 deep: true 来深度监测变化
+    }
+    },
     components: {
        MainFixedVote,
      },
 };
 </script>
+
+deep:true
