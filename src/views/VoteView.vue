@@ -303,8 +303,8 @@ export default {
     return {
       // animal_id: 'data', 
       votedCount: 0,//總票數
-    
-      currentContent: "vote_grass,vote_polar,vote_jungle,vote_birds,vote_aqua",
+      votesToday: parseInt(localStorage.getItem('votesToday') || '0'),
+      currentContent:"vote_grass",
       podium_list: [
         {
           animal_name: "琳達",
@@ -416,8 +416,13 @@ export default {
 //   }
 // },
 
+//草原之聲
   async vote_grass(voteItem) {
     try {
+      if (this.votesToday >= 3) {
+      alert('您今天已經投了三票，請明天再來！');
+      return;
+    }
       // 發送投票請求到後端，新增投票紀錄
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
 
@@ -427,6 +432,9 @@ export default {
       if (index !== -1) {
         this.vote_grass_list[index].animal_vote = updatedAnimalVote;
       }
+       // 增加當天投票次數
+    this.votesToday++;
+    localStorage.setItem('votesToday', this.votesToday.toString());
       console.log(voteItem)
       // 提示投票成功
       alert('投票成功！');
@@ -436,7 +444,7 @@ export default {
     }
   },
 
-
+//極地秘境
   async vote_polar(voteItem) {
   try {
     if (this.animal_vote >= 3) {
@@ -453,7 +461,10 @@ export default {
     if (index !== -1) {
       this.vote_polar_list[index].animal_vote = updatedPolarVote;
     }
-
+  // 增加當天投票次數
+  this.votesToday++;
+    localStorage.setItem('votesToday', this.votesToday.toString());
+      console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
@@ -461,9 +472,10 @@ export default {
     alert('投票失敗，請稍後再試！');
   }
 },
+//叢林奇蹟
 async vote_jungle(voteItem) {
   try {
-    if (this.animal_vote >= 3) {
+      if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -477,7 +489,10 @@ async vote_jungle(voteItem) {
     if (index !== -1) {
       this.vote_jungle_list[index].animal_vote = updatedJungleVote;
     }
-
+  // 增加當天投票次數
+  this.votesToday++;
+    localStorage.setItem('votesToday', this.votesToday.toString());
+      console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
@@ -485,9 +500,10 @@ async vote_jungle(voteItem) {
     alert('投票失敗，請稍後再試！');
   }
 },
+//鳥園樂章
 async vote_birds(voteItem) {
   try {
-    if (this.animal_vote >= 3) {
+      if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -501,7 +517,10 @@ async vote_birds(voteItem) {
     if (index !== -1) {
       this.vote_birds_list[index].animal_vote = updatedBirdsVote;
     }
-
+  // 增加當天投票次數
+  this.votesToday++;
+    localStorage.setItem('votesToday', this.votesToday.toString());
+      console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
@@ -509,9 +528,10 @@ async vote_birds(voteItem) {
     alert('投票失敗，請稍後再試！');
   }
 },
+//海洋奇觀
 async vote_aqua(voteItem) {
   try {
-    if (this.animal_vote >= 3) {
+      if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -525,7 +545,10 @@ async vote_aqua(voteItem) {
     if (index !== -1) {
       this.vote_aqua_list[index].animal_vote = updatedAquarVote;
     }
-
+  // 增加當天投票次數
+  this.votesToday++;
+    localStorage.setItem('votesToday', this.votesToday.toString());
+      console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
