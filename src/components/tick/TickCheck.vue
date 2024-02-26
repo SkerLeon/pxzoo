@@ -31,7 +31,6 @@
       <p v-if="typeof this.couponsData === 'string'">{{ this.couponsData }}</p>
       <select v-else class="pcInnerText" v-model="selectedCoupon">
         <option value="null" disabled hidden>請選擇優惠券</option>
-        <option value="不使用優惠券">不使用優惠券</option>
         <option v-for="coupon in couponsData" :key="coupon.cou_detail_id" :value="coupon.cou_name">{{ coupon.cou_name }}
         </option>
       </select>
@@ -291,7 +290,10 @@ export default {
   computed: {
     selectedCoupon: {
       get() { return this.couData; },
-      set(value) { this.$emit('newCoupon', value); },
+      set(value) { 
+        console.log(value);
+        this.$emit('newCoupon', value); 
+      },
     },
     selectedPayway: {
       get() { return this.paywayData; },
