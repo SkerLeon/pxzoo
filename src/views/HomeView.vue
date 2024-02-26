@@ -565,12 +565,11 @@ export default {
         Image02,
         Image03,
         Image04,
-        // Add more image URLs as needed
       ],
       currentIndex: 0,
       intervalId: null,
-      autoPlay: true, // Set to false if you want to disable auto play
-      intervalDuration: 4000, // Set the interval duration in milliseconds (3 seconds in this example)
+      autoPlay: true,
+      intervalDuration: 4000,
 
       //快速選單
       currentContent: "home_qkpage_time", // 初始值可以是空字串或其他適合的值
