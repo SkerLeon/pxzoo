@@ -9,6 +9,7 @@
   flex-wrap: wrap;
   background-color: $bgColorLightgray;
   overflow: hidden;
+
   .banner {
     width: 100%;
     height: 100vh;
@@ -455,6 +456,13 @@
   // padding-bottom: 211px;
   color: $mainTextColor;
 
+  max-width: 1920px;
+  box-sizing: border-box;
+  background-color: $primaryColorGreen;
+  background-image: url("/src/assets/images/vote/grid.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   .newsFrame .newsFrameText {
     top: 0;
     padding-top: 0.3vw;
@@ -467,81 +475,102 @@
   }
 
   h1 {
-    color: $primaryColorGreen;
+    color: $primaryColorYellow;
     text-align: center;
-
+    letter-spacing: 2px;
     padding: 1% 0 5% 0;
   }
 
   p {
+    color: $bgColorWhite;
     text-align: left;
   }
 
-  .cloud_6 {
-    animation: cloudMove 20s linear infinite;
-    position: absolute;
-    top: 15%;
-    left: 6%;
-    background-repeat: no-repeat;
+  // .cloud_6 {
+  //   animation: cloudMove 20s linear infinite;
+  //   position: absolute;
+  //   top: 15%;
+  //   left: 6%;
+  //   background-repeat: no-repeat;
 
-    img {
-      width: 8vw;
-    }
-  }
-  @keyframes cloudMove {
-    0%,
-    100% {
-      transform: translateX(0);
-      //雲的初始位置和結束位置
-    }
+  //   img {
+  //     width: 8vw;
+  //   }
+  // }
+  // @keyframes cloudMove {
+  //   0%,
+  //   100% {
+  //     transform: translateX(0);
+  //     //雲的初始位置和結束位置
+  //   }
 
-    50% {
-      transform: translateX(calc(100% - 200px));
-      //雲的中間位置
-    }
-  }
+  //   50% {
+  //     transform: translateX(calc(100% - 200px));
+  //     //雲的中間位置
+  //   }
+  // }
 
-  .cloud_2 {
-    animation: cloudMove2 5s linear infinite;
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    background-repeat: no-repeat;
+  // .cloud_2 {
+  //   animation: cloudMove2 5s linear infinite;
+  //   position: absolute;
+  //   top: 5%;
+  //   right: 5%;
+  //   background-repeat: no-repeat;
 
-    img {
-      max-width: 12vw;
-      width: 100%;
-    }
-  }
+  //   img {
+  //     max-width: 12vw;
+  //     width: 100%;
+  //   }
+  // }
 
-  @keyframes cloudMove2 {
-    0%,
-    100% {
-      transform: translateY(0);
-      //開始和結束位置
-    }
+  // @keyframes cloudMove2 {
+  //   0%,
+  //   100% {
+  //     transform: translateY(0);
+  //     //開始和結束位置
+  //   }
 
-    50% {
-      transform: translateY(-20px);
-      //上升
-    }
-  }
+  //   50% {
+  //     transform: translateY(-20px);
+  //     //上升
+  //   }
+  // }
 
   .squirrel_2 {
     position: absolute;
-    bottom: 6%;
-    left: 10%;
+    top: 8%;
+    left: 8%;
     background-repeat: no-repeat;
 
     img {
       width: 10vw;
     }
   }
+  .caterpillar img {
+    position: absolute;
+    width: 12vw;
+    max-width: 100%;
+    height: auto;
+    bottom: 0;
+    right: 1%;
+    animation: moveLeft 50s linear infinite;
+    overflow: hidden;
+  }
+
+  @keyframes moveLeft {
+    0% {
+      left: 90%;
+    }
+
+    100% {
+      left: -100%;
+    }
+  }
 
   .conversation-vote-text {
     position: absolute;
-    bottom: 3%;
-    left: 15%;
+    top: 20%;
+    left: 10%;
     //文字框居中
     transform: translateX(-50%);
     //使用負的自身寬度的一半來水平居中 */
@@ -555,8 +584,8 @@
   }
 
   .conversation-vote-text:hover {
-    background-color: $primaryColorGreen;
-    color: $bgColorWhite;
+    background-color: $bgColorWhite;
+    color: $primaryColorGreen;
   }
 
   @keyframes moveLeftRight {
@@ -596,6 +625,12 @@
     top: 0;
     padding-top: 0.4vw;
   }
+  .squirrel_2 img {
+    display: none;
+  }
+  .conversation-vote-text {
+    display: none;
+  }
 }
 
 /*PH-投票活動*/
@@ -634,6 +669,12 @@
       img {
         max-width: 25vw;
       }
+    }
+    .squirrel_2 img {
+     display: none;
+    }
+    .conversation-vote-text {
+      display: none;
     }
   }
 }
