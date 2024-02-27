@@ -3,6 +3,7 @@
   <section class="tickCheck">
 
     <h2 class="pcSmTitle">請確認您的訂單資訊</h2>
+
     <hgroup class="pcInnerText">
       <p>票卷日期</p>
       <h2 class="pcSmTitle mixedFont">
@@ -14,6 +15,7 @@
         <p class="pcInnerText">日</p>
       </h2>
     </hgroup>
+
     <article class="choosed">
       <main v-for=" t in ticketsData" :key="t.tickets_id">
         <div>
@@ -26,16 +28,17 @@
         </h2>
       </main>
     </article>
+
     <hgroup class="coupon pcInnerText">
       <h2 class="pcSmTitle">優惠折扣</h2>
       <p v-if="typeof this.couponsData === 'string'">{{ this.couponsData }}</p>
       <select v-else class="pcInnerText" v-model="selectedCoupon">
         <option value="null" disabled hidden>請選擇優惠券</option>
-        <option value="不使用優惠券">不使用優惠券</option>
         <option v-for="coupon in couponsData" :key="coupon.cou_detail_id" :value="coupon.cou_name">{{ coupon.cou_name }}
         </option>
       </select>
     </hgroup>
+
     <div class="price">
       <span>票券金額</span>
       <div class="pcInnerText">
@@ -43,6 +46,7 @@
         <p>{{ tipriceData }}</p>
       </div>
     </div>
+
     <div class="price">
       <span>優惠金額</span>
       <div class="pcInnerText">
@@ -50,6 +54,7 @@
         <p>{{ coupriceData }}</p>
       </div>
     </div>
+
     <div class="price important">
       <p class="pcInnerText">付款金額</p>
       <div class="mixedFont pcSmTitle">
@@ -57,6 +62,7 @@
         <h2>{{ paypriceData }}</h2>
       </div>
     </div>
+
     <article class="payWay">
       <hgroup>
         <h2 class="pcSmTitle">付款方式</h2>
@@ -89,7 +95,6 @@
               <option v-for="i in 30" :key="i" :value="new Date().getFullYear() - 1 + i">{{ new Date().getFullYear() - 1 + i }} 年
               </option>
             </select>
-
           </main>
         </main>
         <main class="pcInnerText">
@@ -107,7 +112,6 @@
         上一步
         <img src="@/assets/images/login/icon/btnArrow.svg">
       </button>
-
       <main v-show="cantNextPage" class="tickPrompt">
         <article v-html="cantNextPage" class="pcInnerText">
         </article>
@@ -118,6 +122,7 @@
         <img src="@/assets/images/login/icon/btnArrow.svg">
       </button>
     </main>
+
   </section>
 </template>
 
@@ -174,16 +179,6 @@ export default {
       wrongCard: "<p>信用卡資訊有誤，請確認填寫內容是否正確或聯繫發卡銀行，新卡片請確認是否已開卡。</p>"
     }
   },
-  // computed: { //watch要做其他事情,value綁id跟值比較好
-  //     selectedPayway: {
-  //         get() {
-  //             return this.paywayOpData
-  //         },
-  //         set(newVal) {
-  //            this.$emit('newPayway', newVal)
-  //         },
-  //     }
-  // },
   methods: {
     isCardConformFormat(name, val, min, max = null) {
       // @change，每次改變先取消過去cardPrompt
@@ -291,11 +286,15 @@ export default {
   computed: {
     selectedCoupon: {
       get() { return this.couData; },
-      set(value) { this.$emit('newCoupon', value); },
+      set(value) { 
+        console.log(value);
+        this.$emit('newCoupon', value); 
+      },
     },
     selectedPayway: {
       get() { return this.paywayData; },
       set(value) {
+        console.log('測試用信用卡號: ', 4556749097057162);
         this.cantNextPage = false;
         this.$emit('newPayway', value);
       },
@@ -309,6 +308,5 @@ export default {
       set(val) { this.cardYear = val; },
     },
   },
-  watch: {},
 }
 </script>

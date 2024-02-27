@@ -2,16 +2,25 @@ export const getMemId = {
   data() {
     return {
       mem_id: null,
+      memData: null,
     };
   },
-  created() {
-    // 從 local storage 取得 userData 字串
-    const userDataString = localStorage.getItem('userData');
-    // 將 userData 字串轉換為 JavaScript 物件
-    const userData = JSON.parse(userDataString);
-    // 判斷 userData 是有資料，還是空框架
-    let logInState = userData && typeof(userData.id)=='number';
-    // 從 JavaScript 物件中獲取 id 屬性
-    this.mem_id = logInState? userData.id : null;
+  watch:{
+    memData:{
+      handler(value){
+        console.log(value);
+        if(value && 'mem_id' in value){
+          // newValue 為 null 或 undefined時，即為 false
+          this.mem_id = value.mem_id;
+        }else{
+          this.mem_id = null;
+        }
+        console.log('now', this.mem_id);
+      },
+      deep: true,
+    }
+  },
+  created(){
+    this.memData = JSON.parse(localStorage.getItem('userData')) || {};
   },
 };

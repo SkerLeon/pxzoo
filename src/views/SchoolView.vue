@@ -318,6 +318,7 @@ export default {
     axios.get(`${import.meta.env.VITE_API_URL}/questionsfront.php`)
       .then(response => {
         this.questions = response.data; // 假設返回的數據是一個數組
+        
       })
       .catch(error => {
         console.error("Error fetching data: ", error);

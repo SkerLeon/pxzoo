@@ -1,6 +1,6 @@
 <template>
   <MainFixedVote v-if="!windowWidth.isMobile" />
-  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" />
+  <LoginLightBox v-show="showLogin" @memIdData="getMemId" @closeLoginBox="updateLoginBox" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
@@ -8,23 +8,38 @@
 
     <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
-      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
-      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar" :windowWidth="windowWidth" :tidateData="tidate" @newDate="updateDate" @goNextStep="showNextStep" />
+      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" 
+        :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
+      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar"
+        :windowWidth="windowWidth" :tidateData="tidate" 
+        @newDate="updateDate" @goNextStep="showNextStep" />
     </main>
 
     <!-- 30% -->
     <main v-else-if="tickStep === 1">
-      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" :ticketsQtyData="ticketsQty" :tipriceData="tiprice" @newTiprice="updateTiprice" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" 
+        :ticketsQtyData="ticketsQty" :tipriceData="tiprice" 
+        @newTiprice="updateTiprice" @goNextStep="showNextStep"  @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couponsData="coupons" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywaysData="payways" :paywayData="selectedPW" :paywayTTData="selectedPWTT" @newCardId="updateCardId" @newCoupon="updateCoupon" @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickCheck :tidateData="tidate" :ticketsData="tickets"
+        :tipriceData="tiprice" :couponsData="coupons"
+        :couData="selectedCou" :coupriceData="couprice"
+        :paypriceData="payprice" :paywaysData="payways"
+        :paywayData="selectedPW" :paywayTTData="selectedPWTT"
+        @newCardId="updateCardId" @newCoupon="updateCoupon"
+        @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywayData="selectedPW" :paywayTTData="selectedPWTT" :tickIdData="tickId" :tickStatusData="tickstatus" />
+      <TickFinished :tidateData="tidate" :ticketsData="tickets"
+        :tipriceData="tiprice" :couData="selectedCou"
+        :coupriceData="couprice" :paypriceData="payprice"
+        :paywayData="selectedPW" :paywayTTData="selectedPWTT"
+        :tickIdData="tickId" :tickStatusData="tickstatus" />
     </main>
 
   </section>
@@ -48,23 +63,14 @@ import LoginLightBox from '@/components/loginLightBox.vue';
 export default {
   mixins: [getMemId],
   components: {
-    MainFixedVote,
-    TickInfo,
-    TickCalendar,
-    TickNum,
-    TickCheck,
-    TickFinished,
-    LoginLightBox
+    MainFixedVote, LoginLightBox,
+    TickInfo, TickCalendar, TickNum, TickCheck, TickFinished,
   },
-  props: {},
   data() {
     return {
       showLogin: false,
       tickStepImgs: [
-        tickStepImg0,
-        tickStepImg1,
-        tickStepImg2,
-        tickStepImg3,
+        tickStepImg0, tickStepImg1, tickStepImg2, tickStepImg3, 
       ],
       tickStep: 0,
       TickCalendar: false,
@@ -139,9 +145,14 @@ export default {
         .then(response => {
           if (response.data.errMsg) {
             this.coupons = response.data.errMsg;
-          } else if (!Array.isArray(response.data)) {
-            this.coupons = Object.values(response.data)[0]; // this.coupons isArray
-          } else { this.coupons = response.data; }
+          } else {
+            let couOriginData = Array.isArray(response.data) ? response.data : Object.values(response.data); // 當資料不是[]時轉為[]
+
+            let emptyCou = { cou_detail_id: 0, cou_discount: "1", cou_id: 0, cou_name: "不使用優惠券", mem_id: null, ord_id: null };
+            couOriginData.unshift(emptyCou);
+
+            this.coupons = couOriginData;
+          }
         })
         .catch(error => {
           console.error('Error fetching data:', error);
@@ -168,7 +179,7 @@ export default {
         }
       })
         .then(response => {
-          this.tickId=response.data;
+          this.tickId = response.data;
           this.fetchMemCou();
         })
         .catch(error => {
@@ -182,8 +193,6 @@ export default {
       this.windowWidth.isBoard = window.innerWidth < 1200;
       this.windowWidth.isSmallPC = window.innerWidth <= 1400;
       this.windowWidth.isMidPC = window.innerWidth <= 1540;
-
-      // this.windowWidth=window.innerWidth;
     },
     startFromTop() {
       // 使用 window.scrollTo() 滾動到頂部
@@ -193,11 +202,12 @@ export default {
       });
     },
     showNextStep() {
-      // 如果沒有登入，則顯示登入燈箱
       if (this.tickStep === 0) {
         if (this.mem_id === null) {
+          // 如果沒有登入，則顯示登入燈箱
           this.showLogin = (this.mem_id === null);
         } else {
+          // 如果有登入
           this.fetchTickets();
           this.fetchMemCou();
           this.tickStep++;
@@ -226,6 +236,9 @@ export default {
     updateDate(newDate) {
       this.tidate = newDate;
     },
+    getMemId(value) {
+      this.mem_id = value;
+    },
     updateLoginBox(bool) {
       this.showLogin = bool;
     },
@@ -234,17 +247,18 @@ export default {
       this.payprice = newTiprice;
     },
     updateCoupon(newCoupon) {
+      var coupon = this.coupons.find(
+        (cou) => cou.cou_name === newCoupon
+      );
       if (newCoupon !== "不使用優惠券") {
-        var coupon = this.coupons.find(
-          (cou) => cou.cou_name === newCoupon
-        );
         this.selectedCouId = coupon.cou_id;
         this.selectedCouDetailId = coupon.cou_detail_id;
-        this.couprice = parseInt(
-          (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
-        );
-        // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
       }
+      this.couprice = parseInt(
+        (this.tiprice * (1 - coupon.cou_discount)).toFixed(2)
+      );
+      // 由於 JS 浮點數的表示並不是精確的，計算結果可能會導致誤差(電腦內部使用二進制表示浮點數)
+
       this.selectedCou = newCoupon;
 
       this.payprice = this.tiprice - this.couprice;
@@ -264,47 +278,22 @@ export default {
       this.cardId = newCardId;
     },
   },
-  computed: {
+  computed:{
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
-    // isMidPH(){
-    //   return window.innerWidth <= 470;
-    // },
-    // isMobile(){
-    //   return window.innerWidth <= 768;
-    // },
-    // isBoard(){
-    //   return window.innerWidth < 1200;
-    // },
-    // isSmallPC(){
-    //     return window.innerWidth <= 1400;
-    // },
-    // isMidPC(){
-    //     return window.innerWidth <= 1540;
-    // },
   },
-  watch: {},
-  // created(){
-  //   this.windowSize();
-  //   window.addEventListener('resize', this.windowSize);
-  // },
-  provide() {
+  provide(){
     return {
       windowWidth: this.windowWidth,
     };
   },
-  mounted() {
+  mounted(){
     this.windowResize();
     window.addEventListener('resize', this.windowResize);
-    // this.windowSize();
-    // window.addEventListener('resize', this.windowSize);
   },
-  beforeUnmount() {
+  beforeUnmount(){
     window.removeEventListener('resize', this.windowResize);
   },
 }
-
 </script>
-
-<style></style>
