@@ -8,23 +8,38 @@
 
     <!-- 0% -->
     <main v-if="tickStep === 0" class="tickFrame">
-      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
-      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar" :windowWidth="windowWidth" :tidateData="tidate" @newDate="updateDate" @goNextStep="showNextStep" />
+      <TickInfo v-if="!windowWidth.isBoard || !TickCalendar" 
+        :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
+      <TickCalendar v-if="!windowWidth.isBoard || TickCalendar"
+        :windowWidth="windowWidth" :tidateData="tidate" 
+        @newDate="updateDate" @goNextStep="showNextStep" />
     </main>
 
     <!-- 30% -->
     <main v-else-if="tickStep === 1">
-      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" :ticketsQtyData="ticketsQty" :tipriceData="tiprice" @newTiprice="updateTiprice" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" 
+        :ticketsQtyData="ticketsQty" :tipriceData="tiprice" 
+        @newTiprice="updateTiprice" @goNextStep="showNextStep"  @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 60% -->
     <main v-else-if="tickStep === 2">
-      <TickCheck :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couponsData="coupons" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywaysData="payways" :paywayData="selectedPW" :paywayTTData="selectedPWTT" @newCardId="updateCardId" @newCoupon="updateCoupon" @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
+      <TickCheck :tidateData="tidate" :ticketsData="tickets"
+        :tipriceData="tiprice" :couponsData="coupons"
+        :couData="selectedCou" :coupriceData="couprice"
+        :paypriceData="payprice" :paywaysData="payways"
+        :paywayData="selectedPW" :paywayTTData="selectedPWTT"
+        @newCardId="updateCardId" @newCoupon="updateCoupon"
+        @newPayway="updatePayway" @goNextStep="showNextStep" @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 100% -->
     <main v-else="tickStep === 3">
-      <TickFinished :tidateData="tidate" :ticketsData="tickets" :tipriceData="tiprice" :couData="selectedCou" :coupriceData="couprice" :paypriceData="payprice" :paywayData="selectedPW" :paywayTTData="selectedPWTT" :tickIdData="tickId" :tickStatusData="tickstatus" />
+      <TickFinished :tidateData="tidate" :ticketsData="tickets"
+        :tipriceData="tiprice" :couData="selectedCou"
+        :coupriceData="couprice" :paypriceData="payprice"
+        :paywayData="selectedPW" :paywayTTData="selectedPWTT"
+        :tickIdData="tickId" :tickStatusData="tickstatus" />
     </main>
 
   </section>
@@ -48,22 +63,14 @@ import LoginLightBox from '@/components/loginLightBox.vue';
 export default {
   mixins: [getMemId],
   components: {
-    MainFixedVote,
-    TickInfo,
-    TickCalendar,
-    TickNum,
-    TickCheck,
-    TickFinished,
-    LoginLightBox
+    MainFixedVote, LoginLightBox,
+    TickInfo, TickCalendar, TickNum, TickCheck, TickFinished,
   },
   data() {
     return {
       showLogin: false,
       tickStepImgs: [
-        tickStepImg0,
-        tickStepImg1,
-        tickStepImg2,
-        tickStepImg3,
+        tickStepImg0, tickStepImg1, tickStepImg2, tickStepImg3, 
       ],
       tickStep: 0,
       TickCalendar: false,
@@ -138,18 +145,13 @@ export default {
         .then(response => {
           if (response.data.errMsg) {
             this.coupons = response.data.errMsg;
-          } else{
-            // console.log("test", Array.isArray(response.data));
+          } else {
             let couOriginData = Array.isArray(response.data) ? response.data : Object.values(response.data); // 當資料不是[]時轉為[]
-            // console.log("test typeof", ;
 
-            let emptyCou= {cou_detail_id: 0, cou_discount: "1", cou_id: 0, cou_name: "不使用優惠券", mem_id: null, ord_id: null};
+            let emptyCou = { cou_detail_id: 0, cou_discount: "1", cou_id: 0, cou_name: "不使用優惠券", mem_id: null, ord_id: null };
             couOriginData.unshift(emptyCou);
 
-            // console.log('couOriginData',couOriginData);
-
             this.coupons = couOriginData;
-            // console.log("test2", this.coupons);
           }
         })
         .catch(error => {
@@ -177,7 +179,7 @@ export default {
         }
       })
         .then(response => {
-          this.tickId=response.data;
+          this.tickId = response.data;
           this.fetchMemCou();
         })
         .catch(error => {
@@ -191,8 +193,6 @@ export default {
       this.windowWidth.isBoard = window.innerWidth < 1200;
       this.windowWidth.isSmallPC = window.innerWidth <= 1400;
       this.windowWidth.isMidPC = window.innerWidth <= 1540;
-
-      // this.windowWidth=window.innerWidth;
     },
     startFromTop() {
       // 使用 window.scrollTo() 滾動到頂部
@@ -223,7 +223,6 @@ export default {
         }
         this.tickStep++;
       }
-      console.log('step',this.tickStep);
       this.startFromTop();
     },
     backPreviousStep() {
@@ -237,8 +236,8 @@ export default {
     updateDate(newDate) {
       this.tidate = newDate;
     },
-    getMemId(value){
-      this.mem_id=value;
+    getMemId(value) {
+      this.mem_id = value;
     },
     updateLoginBox(bool) {
       this.showLogin = bool;
@@ -249,8 +248,8 @@ export default {
     },
     updateCoupon(newCoupon) {
       var coupon = this.coupons.find(
-          (cou) => cou.cou_name === newCoupon
-        );
+        (cou) => cou.cou_name === newCoupon
+      );
       if (newCoupon !== "不使用優惠券") {
         this.selectedCouId = coupon.cou_id;
         this.selectedCouDetailId = coupon.cou_detail_id;
@@ -279,13 +278,11 @@ export default {
       this.cardId = newCardId;
     },
   },
-  computed: {
+  computed:{
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
   },
-  watch: {},
-  created(){},
   provide(){
     return {
       windowWidth: this.windowWidth,
@@ -295,11 +292,8 @@ export default {
     this.windowResize();
     window.addEventListener('resize', this.windowResize);
   },
-  beforeUnmount() {
+  beforeUnmount(){
     window.removeEventListener('resize', this.windowResize);
   },
 }
-
 </script>
-
-<style></style>

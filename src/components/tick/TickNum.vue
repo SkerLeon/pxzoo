@@ -8,6 +8,7 @@
         <img src="@/assets/images/ticket/refresh.png">
       </button>
     </hgroup>
+
     <main>
       <article v-for=" t in ticketsData" :key="t.tickets_id">
         <div v-if="windowWidth.isBoard" class="tickOption pcInnerText">
@@ -56,8 +57,8 @@
         立即購票
         <img src="@/assets/images/login/icon/btnArrow.svg">
       </button>
-
     </main>
+
   </section>
 </template>
 
@@ -158,9 +159,5 @@ export default {
       this.tipriceCalculate();
     },
   },
-  computed: {
-    // computed 不需 $emit 傳遞值，會自動被 Vue 監聽，當值發生變化時，它會通知使用這個值的地方進行更新
-  },
-  watch: {},
 }
 </script>

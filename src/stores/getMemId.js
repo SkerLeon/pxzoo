@@ -22,10 +22,5 @@ export const getMemId = {
   },
   created(){
     this.memData = JSON.parse(localStorage.getItem('userData')) || {};
-    
-  //     // 從 local storage 取得 userData 字串
-  //     const userDataString = localStorage.getItem('userData');
-  //     // 將 userData 字串轉換為 JavaScript 物件
-  //     this.userData = JSON.parse(userDataString);
   },
 };

@@ -4,7 +4,6 @@
 
 		<section>
 			<h2 v-html="paywayData === '信用卡' ? cardFinished : cashFinished" class="pcSmTitle"></h2>
-
 			<p class="pcInnerText">畫面將於 {{ sec }} 秒鐘後跳轉回首頁。</p>
 			<button @click="useGoHome" class="defaultBtn pcInnerText">
 				返回首頁
@@ -80,6 +79,7 @@
 				</div>
 			</article>
 		</article>
+
 	</section>
 </template>
 
@@ -125,7 +125,6 @@ export default {
 			required: true,
 		},
 		tickIdData: {
-			// type: Number,
 			required: true,
 		},
 	},
@@ -161,8 +160,6 @@ export default {
 			// 每秒倒數，因此數值為1000
 		},
 	},
-	computed: {},
-	watch: {},
 	created() {
 		this.countDown();
 		this.couData;

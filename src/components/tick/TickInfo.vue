@@ -4,7 +4,6 @@
     <!-- 修飾符.self 的作用，只會觸發元素自己的事件行為，由子層元素傳遞來的事件則不會觸發。 -->
 
     <article>
-
       <h2 class="pcSmTitle">購票須知</h2>
       <ol>
         <li v-for="info in tickInfomation" :key="info.id" class="pcInnerText">{{ info.content }}
@@ -14,10 +13,10 @@
         </li>
       </ol>
     </article>
+
     <div v-if="windowWidth.isBoard" class="tickLightbox">
       <img v-if="windowWidth.isMidPH" src="@/assets/images/ticket/PHinfoXS.png" alt="購票須知布告欄" class="" />
       <img v-else src="@/assets/images/ticket/PHinfoL.png" alt="購票須知布告欄" class="" />
-
       <img @click="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.png" alt="關閉按鈕">
     </div>
     <div v-else class="tickBgc">
@@ -33,7 +32,6 @@
 <script>
 export default {
   inject: ['windowWidth'],
-  props: {},
   data() {
     return {
       tickInfomation: [
@@ -71,12 +69,11 @@ export default {
     }
   },
   methods: {
-    TickCalendar() {
-      if (window.innerWidth < 1200) {
+    TickCalendar(){
+      if(window.innerWidth < 1200){
         this.$emit('TickCalendar');
       }
     }
   },
-  computed: {},
 }
 </script>
