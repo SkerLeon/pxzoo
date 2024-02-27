@@ -146,7 +146,7 @@
             v-for="(coupon, index) in coupontDetail"
             :key="index"
           >
-            <img :src="getCouPicUrl(coupon.cou_id)" alt="" />
+            <img :src="getCouPicUrl(coupon.cou_pic)" alt="" />
             <button class="couponBtn pcInnerText" @click="toTicketPage">
               購票去
               <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />
@@ -186,6 +186,7 @@
             <div class="commentArea">
               <p class="commentTitle pcSmTitle">{{ this.profile.mem_name }}</p>
               <textarea
+                maxlength="60"
                 name=""
                 id=""
                 cols="30"
@@ -301,6 +302,9 @@ export default {
         .then((res) => {
           // console.log(res);
           // 將從資料庫獲取的票券資料格式化成適合於渲染的格式
+          if (!res.data || !Array.isArray(res.data)) {
+            return;
+          }
           const formattedTicketDetail = res.data.map((ticket) => {
             return {
               tickets: [ticket],
@@ -343,7 +347,6 @@ export default {
         )
         .then((res) => {
           this.coupontDetail = res.data;
-          // console.log(res.data);
           localStorage.setItem("cou", JSON.stringify(res.data));
         })
         .catch((error) => {
@@ -379,6 +382,34 @@ export default {
         import.meta.url
       ).href;
     },
+    //會員圖片上傳
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("mem_pic", file);
+      formData.append("mem_id", this.profile.mem_id);
+
+      axios
+        .post(`${import.meta.env.VITE_API_URL}/memberPicUpload.php`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.userStore.updateUserData({
+            ...this.userStore.userData,
+            mem_pic: res.data.mem_pic,
+          });
+          console.log({
+            ...this.userStore.userData,
+            mem_pic: res.data.mem_pic,
+          });
+        })
+        .catch((error) => {
+          console.error("Error uploading file:", error);
+        });
+    },
     //留言圖片
     getCommPicUrl(image) {
       return new URL(
@@ -386,28 +417,14 @@ export default {
         import.meta.url
       ).href;
     },
-    //優惠券圖片
-    getCouPicUrl(cou_id) {
-      let imagePath;
-      switch (cou_id) {
-        case 1:
-          imagePath = `${
-            import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_95.svg`;
-          break;
-        case 2:
-          imagePath = `${
-            import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_90.svg`;
-          break;
-        case 3:
-          imagePath = `${
-            import.meta.env.VITE_IMAGES_BASE_URL
-          }/coupon/coupon_85.svg`;
-          break;
-      }
-      return new URL(imagePath, import.meta.url).href;
+    //優惠券樣式
+    getCouPicUrl(image) {
+      return new URL(
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/coupon/` + image,
+        import.meta.url
+      ).href;
     },
+    //刪除留言
     delComm(index) {
       if (confirm("確定要刪除嗎?")) {
         const com_id = this.commentDetail[index].com_id;
@@ -452,34 +469,6 @@ export default {
       } else {
         alert("您好！實體票卷沒有QRcode喔！");
       }
-    },
-    //會員圖片上傳
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      const formData = new FormData();
-      formData.append("mem_pic", file);
-      formData.append("mem_id", this.profile.mem_id);
-
-      axios
-        .post(`${import.meta.env.VITE_API_URL}/memberPicUpload.php`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          this.userStore.updateUserData({
-            ...this.userStore.userData,
-            mem_pic: res.data.mem_pic,
-          });
-          console.log({
-            ...this.userStore.userData,
-            mem_pic: res.data.mem_pic,
-          });
-        })
-        .catch((error) => {
-          console.error("Error uploading file:", error);
-        });
     },
     //會員評論更新
     reviseMemCommProfile(com_id, com_text) {
