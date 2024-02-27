@@ -560,7 +560,9 @@ async vote_aqua(voteItem) {
     getNoUrl(NO) {
       // console.log(NO);
       // return `../assets/images/vote/NO${NO+1}.svg`
-      return `../src/assets/images/vote/NO${NO}.svg`
+      return new URL(
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/vote/NO${NO}.svg`,import.meta.url
+      ).href;
     },
 
   
