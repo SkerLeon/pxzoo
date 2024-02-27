@@ -1,6 +1,6 @@
 <template>
   <MainFixedVote v-if="!windowWidth.isMobile" />
-  <LoginLightBox v-show="showLogin" @closeLoginBox="updateLoginBox" />
+  <LoginLightBox v-show="showLogin" @memIdData="getMemId" @closeLoginBox="updateLoginBox" />
   <section class="tick forheader">
     <div class="tickStep">
       <img :src="tickStepImg" alt="立即購票進度條">
@@ -56,7 +56,6 @@ export default {
     TickFinished,
     LoginLightBox
   },
-  props: {},
   data() {
     return {
       showLogin: false,
@@ -203,12 +202,12 @@ export default {
       });
     },
     showNextStep() {
-      console.log(this.mem_id);
-      // 如果沒有登入，則顯示登入燈箱
       if (this.tickStep === 0) {
         if (this.mem_id === null) {
+          // 如果沒有登入，則顯示登入燈箱
           this.showLogin = (this.mem_id === null);
         } else {
+          // 如果有登入
           this.fetchTickets();
           this.fetchMemCou();
           this.tickStep++;
@@ -224,6 +223,7 @@ export default {
         }
         this.tickStep++;
       }
+      console.log('step',this.tickStep);
       this.startFromTop();
     },
     backPreviousStep() {
@@ -236,6 +236,9 @@ export default {
     },
     updateDate(newDate) {
       this.tidate = newDate;
+    },
+    getMemId(value){
+      this.mem_id=value;
     },
     updateLoginBox(bool) {
       this.showLogin = bool;

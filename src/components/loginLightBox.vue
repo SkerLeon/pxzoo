@@ -80,6 +80,8 @@ export default {
       bodyFormData.append("mem_acc", this.loginAccount);
       bodyFormData.append("mem_psw", this.loginau4a83);
 
+      this.$emit("closeLoginBox", false);
+
       // 請記得將php埋入跨域
       apiInstance({
         method: "post",
@@ -93,6 +95,8 @@ export default {
               this.updateToken(res.data.session_id);
               this.updateUserData(res.data.memInfo);
               alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
+              
+              this.$emit("memIdData", res.data.memInfo.mem_id);
               // this.$router.push("member");
               this.closeMemLightBox()
             } else if (res.data.code == 2) {
