@@ -28,11 +28,9 @@
 
 <script>
 import axios from 'axios';
-import { getMemId } from '@/stores/getMemId.js';
 import loginLightBox from '@/components/loginLightBox.vue'
 
 export default {
-    mixins: [getMemId],
     props:{
         totalScore:Number
     },
@@ -45,9 +43,9 @@ export default {
             random:0,
             loginLightBoxSwitch : false,
             couponAndMemderData : {
-                mem_id:undefined,
+                mem_id: null,
                 cou_id:0,
-            }
+            },
         };
     },
     created() {
@@ -70,10 +68,8 @@ export default {
             this.random = Math.floor(Math.random() * (max - min)) + min;
         },
         receiveCoupon(){
-            if(this.mem_id === undefined){
-                this.loginLightBoxSwitch = !this.loginLightBoxSwitch
-            }else{
-                this.couponAndMemderData.mem_id = this.mem_id
+            if(localStorage.getItem('userData')){
+                this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
                 this.couponAndMemderData.cou_id = this.random + 1
                 // console.log(this.couponAndMemderData.mem_id);
                 // console.log(this.couponAndMemderData.cou_id);
@@ -90,6 +86,8 @@ export default {
                 .catch(error => {
                     console.error('更新錯誤:', error);
                 });
+            } else{
+                this.loginLightBoxSwitch = !this.loginLightBoxSwitch
             }
         },
         closeLoginBox(){
