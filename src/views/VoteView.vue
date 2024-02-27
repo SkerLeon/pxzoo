@@ -1,20 +1,23 @@
 <template>
-  <!-- 上個月投票結果 -->
+
+
+  <!-- 上個月投票結果 -->  <!-- 人氣投票TOP3 -->
   <section class="vote_top forHeader">
     <div class="banner">
       <!-- 月份看資料庫設計，如果要做到月份統計這邊要寫動態的 -->
-      <h1 class="title pcBigTitle">
-        12月動物人氣投票冠軍揭曉！<br />前三名登場！
+      <h1 class="title pcSmTitle">
+        <!-- 12月動物人氣投票冠軍揭曉！<br />前三名登場！ -->
+        <h1>目前動物人氣<span>TOP3</span></h1>
       </h1>
-      <div  v-for="podium in podium_list"  class="podium_no">
+      <div  v-for="(podium, index) in podium_list"  class="podium_no">
 
-        <div  :class="podium.class">
-          <img class="vote_img" :src="getImageUrl(podium.animal_pic_a)" alt="Animal" />
-          <div class="vote_name pcDecSmTitle">{{ podium.animal_name }}</div>
+        <div :class="podium.class">
+          <img class="vote_img" :src="getImageUrl(podium.animal_small_pic)" alt="Animal" />
+          <div class="vote_name pcSmTitle">{{ podium.animal_name }}</div>
           <div class="podium_box">
-            <img  class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
+            <img  class="NO" :src="getNoUrl(index)" alt="NO" />
           </div>
-          <div class="score pcSmTitle">{{ podium.score }}</div>
+          <div class="score pcSmTitle">{{ podium.animal_vote }}</div>
         </div>
        
       </div>
@@ -39,48 +42,54 @@
     </div>
     </div>
   </section>
+  
+
   <!-- 投票規則 -->
-  <section class="vote_activity">
+<section class="vote_activity">
 
-    <div class="vote_activity_wrap">
-      <h1 class="pcBigTitle">探索動物奇蹟<br />動物園之星投票大賽！</h1>
-      <p class="pcInnerText">
-        動物人氣投票活動開始啦！每月一次的盛事，每天都能投三票，無論您在哪個館別發現心愛的動物，都能為它投票！快來參與，讓我們一起為動物園添上美好的色彩！
-      </p>
-      <div class="vote_rule">
-        <div class="time pcInnerText newsFrame">
-          <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
-          <div class=" newsFrameText pcInnerText">投票時間</div>
-        </div>
-        <p class="time_text pcInnerText">
-          活動持續至本月底截止。
-        </p>
-      </div>
-      <div class="vote_rule">
-        <div class="time pcInnerText newsFrame">
-          <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
-          <div class="newsFrameText pcInnerText">投票方式</div>
-        </div>
-        <p class="time_text pcInnerText">
-          參與投票非常簡單！每天可投三票，不限館別，可重複投下同一隻動物，點擊你最喜歡的動物，為他投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
-        </p>
-      </div>
+<div class="vote_activity_wrap">
+  <h1 class="pcBigTitle">探索動物奇蹟<br/>動物園之星投票大賽！</h1>
+  <p class="pcInnerText">
+    動物人氣投票活動開始啦！每月一次的盛事，每天都能投三票，無論您在哪個館別發現心愛的動物，都能為它投票！快來參與，讓我們一起為動物園添上美好的色彩！
+  </p>
+  <div class="vote_rule">
+    <div class="time pcInnerText newsFrame">
+      <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+      <div class=" newsFrameText pcInnerText">投票時間</div>
     </div>
-    <div class="cloud_6">
-      <img src="@/assets/images/vote/clouda_6.svg" alt="雲" />
+    <p class="time_text pcInnerText">
+      活動持續至本月底截止。
+    </p>
+  </div>
+  <div class="vote_rule">
+    <div class="time pcInnerText newsFrame">
+      <img src="../assets/images/news/newsFrame/orangeFrame.svg" alt="orangeFrame" class="newsFramePic" />
+      <div class="newsFrameText pcInnerText">投票方式</div>
     </div>
-    <div class="cloud_2">
-      <img src="@/assets/images/vote/clouda_2.svg" alt="雲" />
+    <p class="time_text pcInnerText">
+      參與投票非常簡單！每天可投三票，不限館別，可重複投下同一隻動物，點擊你最喜歡的動物，為他投上珍貴的一票。記得，每個參與者每天可投三票，所以請謹慎選擇，支持你心愛的動物。
+    </p>
+  </div>
+</div>
+<!-- <div class="cloud_6">
+  <img src="@/assets/images/vote/clouda_6.svg" alt="雲" />
+</div>
+<div class="cloud_2">
+  <img src="@/assets/images/vote/clouda_2.svg" alt="雲" />
+</div> -->
+<div class="squirrel_2">
+  <img src="@/assets/images/vote/squirrel_2.svg" alt="松鼠" />
+</div>
+<div class="caterpillar">
+      <img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" />
     </div>
-    <div class="squirrel_2">
-      <img src="@/assets/images/vote/squirrel_2.svg" alt="松鼠" />
-    </div>
-    <div class="conversation-vote-text pcSmTitle " @click="scrollToVoteList">快來投票</div>
-    <div class="AnimalSquirrel"></div>
-  </section>
-  <!-- 人氣投票TOP3 -->
+<div class="conversation-vote-text pcSmTitle " @click="scrollToVoteList">快來投票</div>
+<div class="AnimalSquirrel"></div>
+</section>
 
-  <section class="vote_popular">
+
+<!-- 人氣投票TOP3 -->
+  <!-- <section class="vote_popular">
     <div class="title pcInnerText">
       <h1>目前人氣<span>TOP3</span></h1>
     </div>
@@ -99,12 +108,12 @@
         </button>
       </div>
     </div>
-    <!-- 蟲在平板大小會蓋到，讓他移動XD -->
+
     <div class="caterpillar">
       <img src="@/assets/images/vetor/vetor_animal_caterpillar.svg" alt="蟲" />
     </div>
 
-  </section>
+  </section> -->
 
   <!-- 投票列表 -->
 
@@ -306,51 +315,27 @@ export default {
       votesToday: parseInt(localStorage.getItem('votesToday') || '0'),
       currentContent:"vote_grass",
       podium_list: [
-        {
-          animal_name: "琳達",
-       
-          score: 197,
-          animal_pic_a: 'giraffe',
-          NO: '2',
-          class: 'podium2'
-        },
-        {
-          animal_name: "艾迪",
-        
-          animal_pic_a: 'elephant',
-          score: 205,
-          NO: '1',
-          class: 'podium1'
-        },
-        {
-          animal_name: "阿斯蘭",
-      
-          animal_pic_a: 'lion',
-          score: 146,
-          NO: '3',
-          class: 'podium3'
-        },
       ],
-      ranking_list: [
-        {
-          number: 1,
-          animal_name: "威廉",
-          animal_vote: 300,
-          animal_pic_a: "lion",
-        },
-        {
-          number: 2,
-          animal_name: "琳達",
-          animal_vote: 250,
-          animal_pic_a: "giraffe",
-        },
-        {
-          number: 3,
-          animal_name: "馬克",
-          animal_vote: 200,
-          animal_pic_a: "meerkat",
-        },
-      ],
+      // ranking_list: [
+      //   {
+      //     number: 1,
+      //     animal_name: "威廉",
+      //     animal_vote: 300,
+      //     animal_pic_a: "lion",
+      //   },
+      //   {
+      //     number: 2,
+      //     animal_name: "琳達",
+      //     animal_vote: 250,
+      //     animal_pic_a: "giraffe",
+      //   },
+      //   {
+      //     number: 3,
+      //     animal_name: "馬克",
+      //     animal_vote: 200,
+      //     animal_pic_a: "meerkat",
+      //   },
+      // ],
      
       vote_grass_list: [
         // { animal_pic_a: "lion", animal_name: "威廉", animal_vote: "10" },
@@ -398,6 +383,8 @@ export default {
     };
   },
   methods: {
+
+
 //     async vote_animal(voteItem) {
 //   try {
 //     const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
@@ -419,7 +406,7 @@ export default {
 //草原之聲
   async vote_grass(voteItem) {
     try {
-      if (this.votesToday >= 3) {
+      if (this.votesToday >= 66) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -443,7 +430,6 @@ export default {
       alert('投票失敗，請稍後再試！');
     }
   },
-
 //極地秘境
   async vote_polar(voteItem) {
   try {
@@ -572,10 +558,9 @@ async vote_aqua(voteItem) {
     },
 
     getNoUrl(NO) {
-      return new URL(
-        `../assets/images/vote/NO${NO}.svg`,
-        import.meta.url
-      ).href;
+      // console.log(NO);
+      // return `../assets/images/vote/NO${NO+1}.svg`
+      return `../src/assets/images/vote/NO${NO}.svg`
     },
 
   
@@ -624,6 +609,15 @@ async vote_aqua(voteItem) {
       });
     },
   
+    fetchTop3(){
+      axios.get(`${import.meta.env.VITE_API_URL}/votescountTOP3.php`)
+      .then(response=>{
+        this.podium_list=response.data;
+        this.podium_list[1].class='podium2';
+        this.podium_list[0].class='podium1';
+        this.podium_list[2].class='podium3';
+      })
+    },
 
   },
   created() {
@@ -634,11 +628,13 @@ async vote_aqua(voteItem) {
   },
 
   mounted() {
+    // this.fetchData();
     this.fetchDataByCategory('草原之聲');
   this.fetchDataByCategory('極地秘境');
   this.fetchDataByCategory('叢林奇蹟');
   this.fetchDataByCategory('鳥園樂章');
   this.fetchDataByCategory('海洋奇觀');
+  this.fetchTop3();
     
     // axios.get(`${import.meta.env.VITE_API_URL}/votefront.php`)
     //   .then(response => {
