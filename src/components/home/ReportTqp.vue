@@ -50,6 +50,7 @@ export default {
     methods: {
         hideReportTqp() {
             this.$emit("close-reporttqp");
+            window.location.reload();
         },
     },
 };

@@ -47,6 +47,7 @@ export default {
     methods: {
         hideWriteTqp() {
             this.$emit("close-writetqp");
+            window.location.reload(); 
         },
     },
 };

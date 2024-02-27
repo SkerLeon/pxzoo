@@ -8,7 +8,7 @@
     align-items: center;
     width: 70%;
     // height: 80%;
-    padding: 5vw 0 8vw 0;
+    padding: 3vw 0 3vw 0;
     @media (width <= 1024px) {
         width: 80%;
         padding: 5vw 0 9vw 0;
@@ -97,14 +97,11 @@
     .comm_img{
         width: 85%;
         padding-top: 0.85vw;
-        display: flex;
-        justify-content: space-between;
         @media (width <= 1024px) {
             width: 95%;
         }
         @media (width <= 768px) {
             flex-direction: column;
-            
             text-align: start;
             padding-top: 3vw;
             width: 90%;
@@ -114,6 +111,87 @@
                 flex-direction: column;
             }
         }
+
+        &_front{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cropper-content {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            // width: 85%;
+            padding-top: 0.85vw;
+            text-align: right;
+            .cropper {
+                width: 250px;
+                height: 180px;
+            }
+            .show-preview {
+                // flex: 1;
+                // -webkit-flex: 1;
+                display: flex;
+                display: -webkit-flex;
+                justify-content: center;
+                align-items: center;
+                width: 250px;
+                height: 180px;
+                margin: 0 3vw;
+                
+                .preview {
+                overflow: hidden;
+                border: 1px solid $primaryColorGreen;
+                background: #cccccc;
+                width: 250px;
+                height: 180px;
+                }
+            }
+            }
+            .footer-btn {
+            // margin-top: 30px;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: flex-end;
+            
+            .scope-btn {
+                display: flex;
+                display: -webkit-flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+                padding-right: 10px;
+            }
+            .upload-btn {
+                flex: 1;
+                -webkit-flex: 1;
+                display: flex;
+                display: -webkit-flex;
+                justify-content: center;
+            }
+            .btn {
+                outline: none;
+                display: inline-block;
+                line-height: 1;
+                white-space: nowrap;
+                cursor: pointer;
+                -webkit-appearance: none;
+                text-align: center;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                outline: 0;
+                -webkit-transition: 0.1s;
+                transition: 0.1s;
+                font-weight: 500;
+                padding: 8px 15px;
+                font-size: 12px;
+                border-radius: 3px;
+                color: #fff;
+                background-color: #409eff;
+                border-color: #409eff;
+                margin-right: 10px;
+            }
+        }
+
         label{
             color: $mainTextColor;
             margin: auto;
@@ -144,7 +222,7 @@
     }
 
     .submitbtn{
-        margin-top: 0.85vw;
+        margin-top: 3vw;
         @media (width <= 768px) {
             margin-top: 3vw;
         }

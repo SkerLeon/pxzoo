@@ -2153,6 +2153,7 @@
       .comment_group {
         width: 3500px;
         padding: 3vw 0;
+        
         display: flex;
         @media (width <= 768px) {
           padding: 5vw 0;
@@ -2162,6 +2163,7 @@
           border: 3px $primaryColorGreen solid;
           padding: 15px;
           width: 340px;
+          // float: left;
           position: relative;
 
           .comment_report {
