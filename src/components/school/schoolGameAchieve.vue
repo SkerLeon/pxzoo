@@ -79,46 +79,53 @@ export default {
                 this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
                 this.couponAndMemderData.cou_id = this.random + 1
 
-                this.getMemberCoupon()
+                // 調用 getMemberCoupon 並等待它完成
+                this.getMemberCoupon().then(() => {
+                    // 現在這裡的代碼會在 getMemberCoupon 完成後執行
+                    if(this.couponDataBool === false){
+                        axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(() => {
+                            alert("該優惠卷已儲存至會員中心！")
+                            location.reload()
 
-                if(this.couponDataBool === false){
-                    // axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
-                    //     headers: {
-                    //         'Content-Type': 'application/json'
-                    //     }
-                    // })
-                    // .then(() => {
-                    //     alert("該優惠卷已儲存至會員中心！")
-                    //     location.reload()
-                    // })
-                    // .catch(error => {
-                    //     console.error('更新錯誤:', error);
-                    // });
-                    alert("發送優惠卷")
-                } else{
-                    alert("今天已經領過優惠卷囉！")
-                }
+                        })
+                        .catch(error => {
+                            console.error('更新錯誤:', error);
+                        });
+                    } else{
+                        alert("今天已經領過優惠卷囉！")
+                    }
+                });
             } else{
                 this.loginLightBoxSwitch = !this.loginLightBoxSwitch
             }
         },
         getMemberCoupon(){
-            axios.post(`${import.meta.env.VITE_API_URL}/couponDetailShow.php`, this.couponAndMemderData,{
+            return new Promise((resolve, reject) => {
+                axios.post(`${import.meta.env.VITE_API_URL}/couponDetailShow.php`, this.couponAndMemderData,{
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                 .then((res) => {
                     this.couponData = res.data
-                    this.couponData.forEach(coupon =>{
-                        if(this.convertToday(coupon.cou_detail_time) === this.today){
+                    for(let i=0; i < this.couponData.length; i++){
+                        if(this.convertToday(this.couponData[i].cou_detail_time) === this.today){
                             this.couponDataBool = true
+                            break;
                         }
-                    })
+                    }
+                    resolve(); // 異步操作完成後調用 resolve
                 })
                 .catch(error => {
                     console.error('更新錯誤:', error);
+                    reject(); // 異步操作錯誤時調用 reject
                 });
+            });
         },
         convertToday(couponDate) {
             if(couponDate){
