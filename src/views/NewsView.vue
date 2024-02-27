@@ -373,7 +373,21 @@ export default {
     this.initializeFilteredNews();
     axios.get(`${import.meta.env.VITE_API_URL}/newsFrontShow.php`)
       .then(response => {
-        this.news = response.data; // 假設返回的數據是一個數組
+        this.news = response.data; // 假设返回的数据是一个数组
+        console.log(this.news.length); // 在这里打印新闻数组的长度是安全的
+        // 处理与新闻数据相关的逻辑
+        this.currentPage = parseInt(this.$route.params.page) || 1;
+        this.selectedCategory = this.$route.params.category || 'ALL';
+        if (this.currentPage === 1) {
+          this.firstPage = false;
+          this.lastPage = true;
+        } else if (this.currentPage === Math.ceil(this.news.length / this.perpage)) {
+          this.firstPage = true;
+          this.lastPage = false;
+        } else {
+          this.firstPage = true;
+          this.lastPage = true;
+        }
       })
       .catch(error => {
         console.error("Error fetching data: ", error);
@@ -452,6 +466,13 @@ export default {
         name: 'newsDetail', params: { id:newsId },
       })
     },
+
+    //根據頁碼和篩選更改url
+    toPage(page, category){
+      const nowpage = page; 
+      const type = category
+      this.$router.push(`/news/${nowpage}/${type}`);
+    },
     //hover頁碼
     toggleImage(index,ishover){
         ishover[index] = !ishover[index];
@@ -470,7 +491,11 @@ export default {
           this.firstPage = page !== 1;
           this.lastPage = page !== this.totalPage;
         }
+        this.toPage(this.currentPage, this.selectedCategory)
     },
+    
+  },
+  watch:{
     
   },
   components: {

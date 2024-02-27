@@ -129,6 +129,10 @@ export default {
                 console.error('獲取消息詳情時出錯:', error);
             });
         },
+        backtoNews(){
+            // history.go(-1)
+            this.$router.push({ name: 'news' });
+        },
     },
     components: {
         MainFixedVote,

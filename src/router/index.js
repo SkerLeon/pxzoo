@@ -61,6 +61,9 @@ const router = createRouter({
         title:'最新消息 | PxZoO'
       }
     },
+    { path: '/news/:page/:category',
+      component: () => import('../views/NewsView.vue'), 
+    },
     {
       path: '/school',
       name: 'school',

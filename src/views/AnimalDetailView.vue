@@ -295,10 +295,13 @@ export default {
         },
         //動物icon(連資料庫)
         getAnimalIconUrl(paths) {
+            if (!paths) return ''
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`, import.meta.url).href
         },
         //動物圖片(連資料庫)
         getSmallPicUrl(pic) {
+            // console.log(pic)
+            if (!pic) return ''
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
         },
         //動物圖片(大圖)，根據圖片選擇切換this.bigPic
