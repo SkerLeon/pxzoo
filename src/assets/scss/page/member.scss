@@ -216,7 +216,7 @@
             bottom: -40px;
             @media (width <= 768px) {
               bottom: -50px;
-              right: 0px;
+              right: -20px;
             }
           }
         }
@@ -231,7 +231,7 @@
       @media (width <= 768px) {
         width: 180px;
         height: 80px;
-        right: 10vw;
+        left: 12vw;
       }
     }
   }
@@ -281,6 +281,9 @@
           height: 200px;
           display: flex;
           border-bottom: 2px solid $mainTextColor;
+          @media (width <= 768px) {
+            width: 100%;
+          }
           .listTitle {
             width: 80%;
             height: 100%;
@@ -290,6 +293,7 @@
             justify-content: center;
             color: $mainTextColor;
             @media (width <= 768px) {
+              width: 80%;
             }
           }
           .listInfo {
@@ -302,6 +306,8 @@
             color: $mainTextColor;
             gap: 12px;
             @media (width <= 768px) {
+              gap: 5px;
+              width: 80%;
               align-items: flex-start;
               margin-left: 20px;
             }
@@ -344,8 +350,7 @@
         align-items: center;
         @media (width <= 768px) {
           flex-direction: column;
-
-          width: 90%;
+          width: 100%;
         }
         .coupon {
           width: 22vw;
@@ -466,6 +471,7 @@
           height: 18vw;
           @media (width <= 768px) {
             height: 45vw;
+            width: 100%;
           }
           .commentBg {
             position: absolute;

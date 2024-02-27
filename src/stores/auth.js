@@ -28,7 +28,7 @@ export default defineStore("userStore", {
       }
     },
     updateToken(payload) {
-      console.log(payload);
+      // console.log(payload);
       // 定義一個名為 updateToken 的方法，接受一個 payload 作為參數。
       if (payload) {
         this.token = payload; // 將存儲庫中的 token 設定為提供的 payload。
@@ -43,7 +43,7 @@ export default defineStore("userStore", {
       this.name = payload; // 使用提供的 payload 更新存儲庫中的名稱。
     },
     updateUserData(val) {
-      // console.log(val);
+      console.log(val);
       // 不把全部資訊紀錄
       this.userData = {
         mem_name: val.mem_name,
@@ -53,8 +53,8 @@ export default defineStore("userStore", {
         mem_phone: val.mem_phone,
         mem_birthday: val.mem_birthday,
         mem_pic: val.mem_pic,
+        mem_status: val.mem_status,
         // 封鎖狀況1|0
-        state: val.mem_status,
         // 如果有權限可以把權限角色記載資料庫
         role: "editor",
       };

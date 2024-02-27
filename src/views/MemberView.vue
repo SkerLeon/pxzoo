@@ -281,6 +281,9 @@ export default {
     this.profile.mem_pic = localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData")).mem_pic
       : "";
+    this.profile.mem_status = localStorage.getItem("userData")
+      ? JSON.parse(localStorage.getItem("userData")).mem_status
+      : "";
     this.userStore.updateUserData(this.profile);
     //從LS取出會員資料
     const memberId = localStorage.getItem("userData")
@@ -304,7 +307,6 @@ export default {
             };
           });
           this.ticketDetail = formattedTicketDetail;
-          console.log(this.ticketDetail);
         })
         .catch((error) => {
           console.error("Error fetching member orders:", error);
@@ -465,15 +467,15 @@ export default {
           },
         })
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
           this.userStore.updateUserData({
             ...this.userStore.userData,
-            mem_pic: res.data.img,
+            mem_pic: res.data.mem_pic,
           });
-          // console.log({
-          //   ...this.userStore.userData,
-          //   mem_pic: res.data.img,
-          // });
+          console.log({
+            ...this.userStore.userData,
+            mem_pic: res.data.mem_pic,
+          });
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
@@ -547,7 +549,6 @@ export default {
       this.$router.push("/");
       this.userStore.updateToken("");
       this.userStore.updateUserData("");
-      localStorage.clear();
       alert("已登出");
     },
   },
