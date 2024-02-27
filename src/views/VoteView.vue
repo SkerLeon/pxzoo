@@ -406,7 +406,7 @@ export default {
 //草原之聲
   async vote_grass(voteItem) {
     try {
-      if (this.votesToday >= 66) {
+      if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
