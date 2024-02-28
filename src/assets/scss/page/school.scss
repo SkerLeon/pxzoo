@@ -177,7 +177,9 @@
 // .explanation {
 //   margin: 0 10%;
 // }
-
+.option {
+  z-index: 1;
+}
 .option input {
   display: none;
 }
@@ -237,6 +239,7 @@
 }
 
 .lightbox {
+  z-index: 3;
   position: absolute;
   top: 0;
   left: 0;
@@ -266,6 +269,11 @@
   left: 16vw;
   gap: 12%;
   z-index: 5;
+
+  .coins {
+    position: absolute;
+    width: 3vw;
+  }
 }
 .eat_coin .coin {
   img {
@@ -274,7 +282,6 @@
 }
 .chimpanzees img {
   position: absolute;
-
   transform: scaleX(-1);
   bottom: 0;
   left: -5vw;
@@ -287,9 +294,8 @@
     width: 40vw;
     letter-spacing: 0.3vw;
     text-align: center;
-
   }
-  button{
+  button {
     margin-top: 20px;
   }
 }
@@ -388,9 +394,10 @@
       width: 5vw;
     }
   }
+
   .chimpanzees img {
-    left: -12vw;
-    width: 14vw;
+  
+    width: 8vw;
     z-index: 12;
   }
 }

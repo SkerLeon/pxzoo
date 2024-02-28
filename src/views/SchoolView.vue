@@ -105,12 +105,23 @@
           
             <div class="eat_coin">
 
-              <div class="chimpanzees">
-                <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees">
+
+
+      
+  <div>
+    <img ref="images" v-for="(coin, index) in 10" :key="index" class="coins" :style="{ left: calculateLeftPosition(index) + 6 + 'vw', bottom: '1vw'  ,visibility: shouldHide(index) ? 'hidden' : 'visible' }" src="@/assets/images/school/coin.svg">
+
+  </div>
+
+
+
+
+              <div class="chimpanzees" >
+                <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees" :style="{ left: chimpanzeesLeft+ -3+ 'vw' }">
               </div>
-              <div v-for="(coin, index) in 10" :key="index" :class="{ eaten: index < chimpanzeesPosition }" class="coin">
+              <!-- <div v-for="(coin, index) in 10" :key="index"  class="coin">
                 <img src="@/assets/images/school/coin.svg" alt="coin">
-              </div>
+              </div> -->
             </div>
 
             <div v-if="showAnswer[index]" class="lightbox">
@@ -124,7 +135,7 @@
                 <div class="correct_answer pcSmTitle">正確答案：{{ question.question_correctanswer }}</div>
                 <div class="explanation pcSmTitle"> 解析：<br><span style="color: #ff6100;">{{
                   question.question_answer_illustrate }}</span></div>
-                <button v-if="currentQuestionIndex < questions.length - 1" @click="showNextQuestion"
+                <button v-if="currentQuestionIndex < questions.length - 1" @click="handleButtonClick "
                   class="pcInnerText defaultBtn">
                   <img src="@/assets/images/login/icon/btnArrow.svg" alt="" />下一題
                 </button>
@@ -181,6 +192,7 @@ export default {
       totalScore: 0,
       userSelectedOption: null,
       showAnimation: false,
+      chimpanzeesLeft: 0,
       questions: [
         // 問題列表
         // {
@@ -299,6 +311,11 @@ export default {
       ],
       showAnswer: Array(10).fill(false), //是否顯示答案跟解析
 
+
+
+
+      colors: ['', '', '', '','', '', '', '','',''],
+      hiddenImages: []
       
     };
   },
@@ -343,7 +360,34 @@ export default {
   // },
 
   methods: {
-    
+    moveChimpanzees() {
+      // 将chimpanzees的左偏移量增加6vw
+      this.chimpanzeesLeft += 6;
+    },
+    handleButtonClick() {
+      this.moveAndCoverImage();
+      this.showNextQuestion();
+      this.moveChimpanzees();
+    },
+    shouldHide(index) {
+      return this.hiddenImages.includes(index);
+    },
+    calculateLeftPosition(index) {
+      let left = index * 6;
+      return left;
+    },
+    moveAndCoverImage() {
+      // 如果隐藏图片数组为空，则将数组0添加到隐藏图片数组中
+      if (this.hiddenImages.length === 0) {
+        this.hiddenImages.push(0);
+      } else {
+        // 否则，将下一个隐藏的图片的索引添加到隐藏图片数组中
+        const nextIndex = this.hiddenImages.length;
+        if (nextIndex < this.colors.length ) {
+          this.hiddenImages.push(nextIndex);
+        }
+      }
+    },
 
     toggleContent() {
       this.isContent1 = !this.isContent1;
@@ -400,7 +444,11 @@ export default {
       this.currentQuestionIndex = 0;
       this.totalScore = 0; // 將分數歸零
       this.showAnswer = Array(10).fill(false);
+      this.chimpanzeesLeft= 0;
+      this.moveAndCoverImage();
+      this.hiddenImages = [];
     },
+
     endGame() {
       // 成功破關後結束遊戲的邏輯
       console.log("成功破關，結束遊戲");
@@ -418,6 +466,9 @@ export default {
       this.isContent1 = false;
       //不顯示題目
       this.currentQuestionIndex = false;
+     
+     
+   
     },
     getScore() {
       return this.successfulQuestionsCount * 10;
@@ -429,6 +480,15 @@ export default {
       // return  `${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`;
       // console.log(`${import.meta.env.VITE_IMAGES_BASE_URL}/school/animal/${img}`);
     },
+
+
+
+
+
+
+    
+
+    
 
     
   },
