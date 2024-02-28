@@ -1,5 +1,5 @@
 <template>
-    <MainFixedVote/>
+    <MainFixedVote />
     <section class="forHeader news_detail_section">
         <!-- banner -->
         <div class="newsDetail_banner">
@@ -8,19 +8,13 @@
         </div>
 
         <main>
-            <div class="news_detail">            
-                <div class="news_detail_info"
-                data-aos="fade-up"
-                data-aos-easing="ease-in-out">
+            <div class="news_detail">
+                <div class="news_detail_info" data-aos="fade-up" data-aos-easing="ease-in-out">
                     <div class="news_detail_tag_time">
-                        <span class="time pcInnerText">{{newsDetailData.news_date}}</span>
+                        <span class="time pcInnerText">{{ newsDetailData.news_date }}</span>
                         <div class="newsFrame">
-                            <img
-                            :src="getNewsTagUrl(newsDetailData.news_typepic)"
-                            alt="newsFrame"
-                            class="newsFramePic"
-                            />
-                            <p class="newsFrameText pcInnerText">{{newsDetailData.news_type}}</p>
+                            <img :src="getNewsTagUrl(newsDetailData.news_typepic)" alt="newsFrame" class="newsFramePic" />
+                            <p class="newsFrameText pcInnerText">{{ newsDetailData.news_type }}</p>
                         </div>
                     </div>
                     <div class="news_detail_title">
@@ -28,9 +22,7 @@
                     </div>
                     <img src="../assets/images/news/decorate-line_news_detail.png" alt="裝飾線" class="news_line upper">
                 </div>
-                <div class="news_detail_content"
-                data-aos="fade-up"
-                data-aos-easing="ease-in-out">
+                <div class="news_detail_content" data-aos="fade-up" data-aos-easing="ease-in-out">
                     <div class="news_detail_pic">
                         <div class="news_detail_border">
                             <img :src="getNewsUrl(newsDetailData.news_pic)" alt="news圖">
@@ -54,7 +46,7 @@
 
             </div>
         </main>
-            <!-- 背景 -->
+        <!-- 背景 -->
         <div class="news_detail_bg">
             <img class="cloud_bg cloud_2" src="../assets/images/vetor/nature_cloud_2.svg" alt="bg-雲2">
             <img class="cloud_bg cloud_4" src="../assets/images/vetor/nature_cloud_4.svg" alt="bg-雲4">
@@ -66,70 +58,50 @@
 
 <script>
 import MainFixedVote from '@/components/MainFixedVote.vue';
-import axios from 'axios';  
+import axios from 'axios';
 export default {
     data() {
         return {
             newsDetailData: [],
-            // article: {
-            //     date:'2024.01.02',
-            //     tag:'最新活動',
-            //     color:'orange',
-            //     tag_class:'new_activity',
-            //     title:'動物明星新一輪投票即將啟動！',
-            //     img:'new_activity_1',
-            //     content:[
-            //         '動物園即將迎來一場令人期待的「動物明星投票」活動！經過上一期12月的人氣投票，大象、長頸鹿和獅子成功脫穎而出，成為前三名的熱門動物明星。這次的活動將提供遊客們一個難得的機會，以票選心中最喜愛的動物，讓牠們成為動物園的代表性明星。',
-            //         '參與投票的遊客不僅能夠支持自己心目中的動物候選人，還有機會贏得豐富的獎品。動物園希望透過這次活動，拉進與遊客之間的距離，同時讓大家更深入認識動物園的居民。',
-            //         '這場「動物明星投票」活動將成為動物園最新、最受期待的亮點之一。歡迎大家踴躍參與，共同打造一個充滿歡笑和驚喜的動物園體驗！'
-            //     ]
-            // },
-            
+            pageTitle:''
         };
     },
     created() {
         const newsId = this.$route.params.id;
         this.fetchNewsDetail(newsId);
-
-        // axios.get(`${import.meta.env.VITE_API_URL}/newsShow.php`)
-        // .then(response => {
-        //     this.news = response.data; // 假設返回的數據是一個數組
-        // })
-        // .catch(error => {
-        //     console.error("Error fetching data: ", error);
-        // });
     },
 
     methods: {
         getNewsTagUrl(image) {
             return new URL(
-                `${import.meta.env.VITE_IMAGES_BASE_URL}/news/newsFrame/`+image,
+                `${import.meta.env.VITE_IMAGES_BASE_URL}/news/newsFrame/` + image,
                 import.meta.url
             ).href;
         },
 
         getNewsUrl(image) {
             return new URL(
-                `${import.meta.env.VITE_IMAGES_BASE_URL}/news/`+image,
+                `${import.meta.env.VITE_IMAGES_BASE_URL}/news/` + image,
                 import.meta.url
             ).href;
         },
 
         fetchNewsDetail(id) {
-        // API 請求或其他邏輯來填充 animalDetail
+            // API 請求或其他邏輯來填充 animalDetail
             axios.get(`${import.meta.env.VITE_API_URL}/newsDetailShow.php?id=${id}`)
-            .then(response => {
-                // 處理獲取到的動物詳情數據
-                this.newsDetailData = response.data
-
-                this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/news/${this.news.news_pic}`, import.meta.url).href
-            })
-            .catch(error => {
-                // 處理錯誤情況
-                console.error('獲取消息詳情時出錯:', error);
-            });
+                .then(response => {
+                    // 處理獲取到的動物詳情數據
+                    this.newsDetailData = response.data
+                    this.pageTitle = this.newsDetailData.news_title
+                    document.title = this.pageTitle + ' | PxZoO'
+                    this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/news/${this.news.news_pic}`, import.meta.url).href
+                })
+                .catch(error => {
+                    // 處理錯誤情況
+                    // console.error('獲取消息詳情時出錯:', error);
+                });
         },
-        backtoNews(){
+        backtoNews() {
             // history.go(-1)
             this.$router.push({ name: 'news' });
         },
