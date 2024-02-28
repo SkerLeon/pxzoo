@@ -1,1279 +1,1775 @@
 // reset
-.tick{
-    input, select{
-        outline: none;
-        box-shadow: none;
-    }
+.tick {
+  input,
+  select {
+    outline: none;
+    box-shadow: none;
+  }
 }
-@mixin tickBorder($way){
-    border-#{$way}: 2px dashed $mainTextColor;
-    padding-#{$way}: 1vw;
-    margin-#{$way}: 1vw;
+
+@mixin tickBorder($way) {
+  border-#{$way}: 2px dashed $mainTextColor;
+  padding-#{$way}: 1vw;
+  margin-#{$way}: 1vw;
 }
-@keyframes tickSlideInUp{
-    from {
-        visibility: visible;
-        transform: translateY(100%);
-    }
-    to {
-        visibility: visible;
-        transform: translateY(0);
-    }
+
+@keyframes tickSlideInUp {
+  from {
+    visibility: visible;
+    transform: translateY(100%);
+  }
+
+  to {
+    visibility: visible;
+    transform: translateY(0);
+  }
 }
-@keyframes tickSlideInUpS{
-    from {
-        visibility: visible;
-        transform: translateY(100%) scaleX(-1);
-    }
-    to {
-        visibility: visible;
-        transform: translateY(0) scaleX(-1);
-    }
+
+@keyframes tickSlideInUpS {
+  from {
+    visibility: visible;
+    transform: translateY(100%) scaleX(-1);
+  }
+  to {
+    visibility: visible;
+    transform: translateY(0) scaleX(-1);
+  }
 }
+
 @keyframes tickBounceInDown {
-    0%, 60%, 75%, 90%, to {
-        -webkit-animation-timing-function: cubic-bezier(.42,.15,.17,.85);
-        animation-timing-function: cubic-bezier(.42,.15,.17,.85);
-    }
+  0%, 60%, 75%, 90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(.42, .15, .17, .85);
+    animation-timing-function: cubic-bezier(.42, .15, .17, .85);
+  }
 
-    0% {
-        -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
-        transform: translate3d(0, -3000px, 0) scaleY(3);
-        top: -18px; /* 起始位置 top 調整 */
-        right: 8px; /* 起始位置 right 調整 */
-    }
+  0% {
+    -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
+    transform: translate3d(0, -3000px, 0) scaleY(3);
+    top: -18px;
+    /* 起始位置 top 調整 */
+    right: 8px;
+    /* 起始位置 right 調整 */
+  }
 
-    60% {
-        -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
-        transform: translate3d(0, 25px, 0) scaleY(.9);
-    }
+  60% {
+    -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
+    transform: translate3d(0, 25px, 0) scaleY(.9);
+  }
 
-    75% {
-        -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
-        transform: translate3d(0, -10px, 0) scaleY(.95);
-    }
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
+    transform: translate3d(0, -10px, 0) scaleY(.95);
+  }
 
-    90% {
-        -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
-        transform: translate3d(0, 5px, 0) scaleY(.985);
-    }
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
+    transform: translate3d(0, 5px, 0) scaleY(.985);
+  }
 
-    to {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        top: 7.25vw; /* 結束位置 top 調整 */
-        right: 13%; /* 結束位置 right 調整 */
-        z-index: 1;
-    }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    top: 7.25vw;
+    /* 結束位置 top 調整 */
+    right: 13%;
+    /* 結束位置 right 調整 */
+    z-index: 1;
+  }
 }
+
 .animate__tickBounceInDown {
-    -webkit-animation-name: tickBounceInDown;
-    animation-name: tickBounceInDown;
+  -webkit-animation-name: tickBounceInDown;
+  animation-name: tickBounceInDown;
 }
-@keyframes tickBeeIn {
-    0%, 15%, 30%, 100%{
-        -webkit-animation-timing-function: cubic-bezier(.91,.8,.64,.89);
-        animation-timing-function: cubic-bezier(.91,.8,.64,.89);
-    }
 
-    0% { transform: translate3d(0, 0, 0); }
-    15% { transform: translate3d(-5vw, 3vw, 0); }
-    30%{ transform: translate3d(-9vw, 2vw, 0); }
-    100%{ transform: translate3d(-20vw, 3vw, 0); }
+@keyframes tickBeeIn {
+  0%, 15%, 30%,
+  100% {
+    -webkit-animation-timing-function: cubic-bezier(.91, .8, .64, .89);
+    animation-timing-function: cubic-bezier(.91, .8, .64, .89);
+  }
+
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  15% {
+    transform: translate3d(-5vw, 3vw, 0);
+  }
+
+  30% {
+    transform: translate3d(-9vw, 2vw, 0);
+  }
+
+  100% {
+    transform: translate3d(-20vw, 3vw, 0);
+  }
 }
 
 @keyframes tickBeeStay {
-    20% { transform: translate3d(-22vw, 1vw, 0); }
-    40% { transform: translate3d(-24vw, 2.5vw, 0); }
-    60% { transform: translate3d(-21.5vw, 4vw, 0); }
-    80% { transform: translate3d(-23.5vw, 1vw, 0); }
-    100%{ transform: translate3d(-21vw, 3vw, 0); }
+  20% {
+    transform: translate3d(-22vw, 1vw, 0);
+  }
+
+  40% {
+    transform: translate3d(-24vw, 2.5vw, 0);
+  }
+
+  60% {
+    transform: translate3d(-21.5vw, 4vw, 0);
+  }
+
+  80% {
+    transform: translate3d(-23.5vw, 1vw, 0);
+  }
+
+  100% {
+    transform: translate3d(-21vw, 3vw, 0);
+  }
 }
 
-.tick{
-    .relative{ position: relative; }
-    .promptYellow{ color: $primaryColorYellow; }
-    background-color: #F5EFEB;
+.tick {
+  .relative {
+    position: relative;
+  }
+
+  .promptYellow {
+    color: $primaryColorYellow;
+  }
+
+  background-color: #F5EFEB;
+  color: $mainTextColor;
+  padding-top: 3vw;
+  line-height: 1.5;
+  text-align: justify;
+
+  img {
+    vertical-align: bottom;
+  }
+
+  h2 {
+    color: $primaryColorGreen;
+  }
+
+  span {
+    color: $inputHintColor;
+  }
+
+  >article,
+  >main {
+    width: 74%;
+  }
+
+  div {
+    display: flex;
+  }
+
+  main {
+    margin: 0 auto;
+  }
+
+  main,
+  hgroup {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  hgroup {
+    @include tickBorder(bottom);
+    width: 100%;
+
+    >img {
+      min-width: 30px;
+      width: 1.5vw;
+    }
+  }
+
+  .mixedFont {
     color: $mainTextColor;
-    padding-top: 3vw;
-    line-height: 1.5;
-    text-align: justify;
 
-    img{ vertical-align: bottom; }
-    h2{ color: $primaryColorGreen; }
-    span{ color: $inputHintColor; }
+    >* {
+      display: inline-block;
+    }
+  }
 
-    >article, >main{ width: 74%; }
-    div{ display: flex;}
-    main{ margin: 0 auto; }
-    main, hgroup{
-        display: flex;
-        justify-content: space-between;
+  .important {
+    >* {
+      font-weight: 700;
     }
-    hgroup{
-        @include tickBorder(bottom);
-        width: 100%;
-        >img{
-            min-width: 30px;
-            width: 1.5vw;
-        }
-    }
-    .mixedFont{
-        color: $mainTextColor;
-        >*{ display: inline-block; }
-    }
-    .important{
-        >*{font-weight: 700; }
-        >:nth-child(2){ color: $secColorblue; }
-    }
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none;
-        margin: 0; 
-    }
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-    input, .countBTN>button, select, option{
-        height: 35px;
-        border: 2px solid $mainTextColor;
-        vertical-align: bottom;
-        background-color: $bgColorWhite;
-        border-radius: 0;
-    }
-    .countBTN>button:first-of-type{
-        border-right: 0;
-    }
-    .countBTN>button:last-of-type{
-        border-left: 0;
-    }
-    input::placeholder{
-        color: $inputHintColor;
-    }
-    input, select{
-        padding-inline: 8px;
-    }
-    select{
-        width: 280px;
-        font-weight: 500;
-    }
-    .price{
-        justify-content: end;
-        align-items: center;
-        text-align: right;
-        // gap: 20px;
-        p{ line-height: 150%; }
-        span{ color: $mainTextColor; }
-        >:nth-child(2){ width: 180px;}
-        div{
-            justify-content: end;
-            align-items: flex-end;
-            >:last-child{ width: 50% }
-        }
-        h2{ color: $secColorblue; }
 
+    >:nth-child(2) {
+      color: $secColorblue;
     }
-    .firstLine{
-        @include tickBorder(top);
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input,
+  .countBTN>button,
+  select,
+  option {
+    height: 35px;
+    border: 2px solid $mainTextColor;
+    vertical-align: bottom;
+    background-color: $bgColorWhite;
+    border-radius: 0;
+  }
+
+  .countBTN>button:first-of-type {
+    border-right: 0;
+  }
+
+  .countBTN>button:last-of-type {
+    border-left: 0;
+  }
+
+  input::placeholder {
+    color: $inputHintColor;
+  }
+
+  input,
+  select {
+    padding-inline: 8px;
+  }
+
+  select {
+    width: 280px;
+    font-weight: 500;
+  }
+
+  .price {
+    justify-content: end;
+    align-items: center;
+    text-align: right;
+
+    p {
+      line-height: 150%;
     }
+
+    span {
+      color: $mainTextColor;
+    }
+
+    >:nth-child(2) {
+      width: 180px;
+    }
+
+    div {
+      justify-content: end;
+      align-items: flex-end;
+
+      >:last-child {
+        // width: 50%
+      }
+    }
+
+    h2 {
+      color: $secColorblue;
+    }
+
+  }
+
+  .firstLine {
+    @include tickBorder(top);
+  }
 }
 
-.tickStep{
-    width: 100%;
-    margin: 3vw auto 0.5vw;
-    img{
-        height: 35px;
-        margin: 0 auto;
-    }
-};
-.tickBtn{
-    width: 100%;
-    button{
-        margin: 1vw 0;
-        z-index: 9;
-    }
-    .tickLBtn{ margin-right: 0;}
-}
-.tickPrompt{
-    position: absolute;
-    article{
-        font-weight: 700;
-        color: $bgColorWhite;
-    }
+.tickStep {
+  width: 100%;
+  margin: 3vw auto 0.5vw;
+
+  img {
+    height: 35px;
+    margin: 0 auto;
+  }
 }
 
+.tickBtn {
+  width: 100%;
 
+  button {
+    margin: 1vw 0;
+    z-index: 9;
+  }
+
+  .tickLBtn {
+    margin-right: 0;
+  }
+}
+
+.tickPrompt {
+  position: absolute;
+
+  article {
+    font-weight: 700;
+    color: $bgColorWhite;
+  }
+}
 
 // part0-1 購票須知(TickInfo.vue)
-.tickInfo{
-    position: relative;
+.tickInfo {
+  position: relative;
 
-    article{
-        margin: 1vw 5vw auto;
-        position: relative;
-        z-index: 2;
-        width: 550px;
-    }
-    h2{
-        color: $primaryColorYellow;
-        text-align: center;
-        margin: 1.5vw auto 1vw;
-    }
-    ol{ list-style-type: decimal; }
-    li{ color: $bgColorWhite; }
-    ul{ list-style-type: disc; }
+  article {
+    margin: 1vw 5vw auto;
+    position: relative;
+    z-index: 2;
+    width: 550px;
+  }
+
+  h2 {
+    width: max-content;
+    color: $primaryColorYellow;
+    text-align: center;
+    margin: 1.5vw auto 1vw;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  li {
+    color: $bgColorWhite;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
 }
-.tickBgc{
-    bottom: 0;
+
+.tickBgc {
+  bottom: 0;
+  position: absolute;
+  transform: translate(-3%, 0);
+
+  .tickBoard {
+    height: 540px;
+    width: auto;
+  }
+
+  .tickEagle {
     position: absolute;
-    transform: translate(-3%, 0);
-    
-    .tickBoard{
-        height: 540px;
-        width: auto;
-    }
-    .tickEagle{
-        position: absolute;
-        bottom: -10px;
-        left: -9%;
-        z-index: 3;
-        width: 7vw;
-        visibility: hidden;
-        margin: auto -4vw 0 0;
-        animation: tickSlideInUp 0.3s forwards 1.5s;
-    }
+    bottom: -10px;
+    left: -9%;
+    z-index: 3;
+    width: 7vw;
+    visibility: hidden;
+    margin: auto -4vw 0 0;
+    animation: tickSlideInUp 0.3s forwards 1.5s;
+  }
 }
 
 // part0-2 日曆(TickCalendar.vue)
-.tickCalendar{
-    width: 40%;
-    div{
-        display: block;
-    }
-    .tickBtn{
-        justify-content: end;
-        margin: 0.8vw 0;
-    }
-    hgroup{
-        border: 0;
-        padding-bottom: 0;
-        margin-bottom: 0;
-        height: 50px;
-        >img{
-            position: absolute;
-            z-index: 999;
-            width: 100px;
-            height: auto;
-            right: 8px;
-            top: 0px;
-            animation: 1s 0.5s tickBounceInDown forwards;
-        }
-    }
-    h2{
-        margin: auto auto auto 0;
-    }
-    .tickPrompt{
-        position: absolute;
-        top: 5.8vw;
-        right: 20vw;
+.tickCalendar {
+  width: 40%;
 
-        article{
-            width: 101px;
-            transform: translate(110px, 1vw);
-        }
-        img{
-            max-width: 145px;
-            width: 11vw;
-            height: auto;
-        }
+  div {
+    display: block;
+  }
+
+  .tickBtn {
+    justify-content: end;
+    margin: 0.8vw 0;
+  }
+
+  hgroup {
+    border: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    height: 50px;
+
+    >img {
+      position: absolute;
+      z-index: 999;
+      width: 100px;
+      height: auto;
+      right: 8px;
+      top: 0px;
+      animation: 1s 0.5s tickBounceInDown forwards;
     }
+  }
+
+  h2 {
+    margin: auto auto auto 0;
+  }
+
+  .tickPrompt {
+    position: absolute;
+    top: 5.8vw;
+    right: 20vw;
+
+    article {
+      width: 101px;
+      transform: translate(110px, 1vw);
+    }
+
+    img {
+      max-width: 145px;
+      width: 11vw;
+      height: auto;
+    }
+  }
 }
-.calendar{
-    height: 382.5px;
-    overflow: hidden;
+
+.calendar {
+  height: 382.5px;
+  overflow: hidden;
+  text-align: center;
+  background-size: cover;
+  color: #3f3f3f;
+
+  .test {
+    background-color: #ff6100;
+  }
+
+  table {
+    background-color: $bgColorWhite;
+    font-size: $pcFontH3;
+  }
+
+  .ivu-calendar-header {
+    padding: 0;
+  }
+
+  // 區間按鈕
+  .ivu-calendar-header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $mainTextColor;
+    font-family: $font;
+  }
+
+  .ivu-icon {
+    font-weight: 700;
+  }
+
+  .ivu-btn,
+  .ivu-ml>.ivu-radio-wrapper {
+    font-weight: 700;
+    border-radius: 0;
+    border: $bgColorSecGray solid 1px;
+    width: 44px;
+    height: 35px;
+  }
+
+  .ivu-btn:nth-of-type(2) {
+    width: 60px;
+    padding: 0;
+  }
+
+  .ivu-btn>span,
+  .ivu-radio-group-button .ivu-radio-wrapper {
+    font-size: $pcFontH4;
+    color: $mainTextColor;
+  }
+
+  // 當前月份
+  .ivu-calendar-header-title {
+    font-family: $font;
+    font-size: $pcFontH3;
+    padding-top: 9px;
+    height: 44px;
+    font-weight: 700;
+    background-color: $primaryColorYellow;
+  }
+
+  .ivu-calendar-table thead th,
+  td {
+    padding: 8px;
+    width: 4vw;
     text-align: center;
-    background-size: cover;
-    color: #3f3f3f;
-    .test{
-        background-color: #ff6100;
+    color: $mainTextColor;
+  }
+
+  .ivu-calendar-table thead th {
+    padding: 4px 8px;
+    font-weight: 500;
+  }
+
+  td,
+  .ivu-calendar-table tr:first-child td {
+    border: $bgColorSecGray solid 1px;
+  }
+
+  thead {
+    border-right: $bgColorSecGray solid 1px;
+    border-left: $bgColorSecGray solid 1px;
+  }
+
+  .ivu-calendar-table-day {
+    padding: 0;
+  }
+
+  .ivu-calendar-table-day-other {
+    color: $inputHintColor;
+  }
+
+  .ivu-calendar-table-day-title {
+    // 同.pcMarkText
+    font-size: $pcFontH5;
+    font-family: $font;
+    font-weight: 700;
+    line-height: 150%;
+
+    @media (width <=768px) {
+      //ph尺寸
+      font-size: $phFontH5;
     }
-    table{
-        background-color: $bgColorWhite;
-        font-size: $pcFontH3;
-    }
-    .ivu-calendar-header{
-        padding: 0;
-    }
-    // 區間按鈕
-    .ivu-calendar-header-action{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: $mainTextColor;
-        font-family: $font;
-    }
-    .ivu-icon{
-        font-weight: 700;
-    }
-    .ivu-btn, .ivu-ml>.ivu-radio-wrapper{
-        font-weight: 700;
-        border-radius: 0;
-        border: $bgColorSecGray solid 1px;
-        width: 44px;
-        height: 35px;
-    }
-    .ivu-btn:nth-of-type(2){
-        width: 60px;
-        padding: 0;
-    }
-    .ivu-btn>span, .ivu-radio-group-button .ivu-radio-wrapper{
-        font-size: $pcFontH4;
-        color: $mainTextColor;
-    }
-    // 當前月份
-    .ivu-calendar-header-title{
-        font-family: $font;
-        font-size: $pcFontH3;
-        padding-top: 9px;
-        height: 44px;
-        font-weight: 700;
-        background-color: $primaryColorYellow;
-    }
-    .ivu-calendar-table thead th, td{
-        padding: 8px;
-        width: 4vw;
-        text-align: center;
-        color: $mainTextColor;
-    }
-    .ivu-calendar-table thead th{
-        padding: 4px 8px;
-        font-weight: 500;
-    }
-    td,.ivu-calendar-table tr:first-child td{
-        border: $bgColorSecGray solid 1px;
-    }
-    thead{
-        border-right: $bgColorSecGray solid 1px;
-        border-left: $bgColorSecGray solid 1px;
-    }
-    .ivu-calendar-table-day{
-        padding: 0;
-    }
-    .ivu-calendar-table-day-other{
-        color: $inputHintColor;
-    }
-    .ivu-calendar-table-day-title{
-        // 同.pcMarkText
-        font-size: $pcFontH5;
-        font-family: $font;
-        font-weight: 700;
-        line-height: 150%;
-        @media (width <= 768px) {
-          //ph尺寸
-            font-size: $phFontH5;
-        }
-    }
-    // 休園標籤
-    .ivu-badge-count{
-        background-color: #ff6100;
-    }
+  }
+
+  // 休園標籤
+  .ivu-badge-count {
+    background-color: #ff6100;
+  }
 }
+
 // part1 選擇數量
-.tickNum{
-    width: 100%;
-    >div{ gap: 1vw; }
-    >.tickOption.PC{ gap: 4vw; }
-    hgroup{
-        button{
-            cursor: pointer;
-            border: 0;
-            background-color: transparent;
-        }
-        img {
-            min-width: 30px;
-            width: 1.5vw
-        }
+.tickNum {
+  width: 100%;
+
+  >div {
+    gap: 1vw;
+  }
+
+  >.tickOption.PC {
+    gap: 4vw;
+  }
+
+  hgroup {
+    button {
+      cursor: pointer;
+      border: 0;
+      background-color: transparent;
     }
-    .countBTN{
-        display: flex;
-        justify-content: center;
-        input{
-            width: 55px;
-            text-align: right;
-        }
-        button{
-            width: 44px;
-            cursor: pointer;
-            color: $mainTextColor;
-            &:hover {
-                background-color: $primaryColorYellow;
-            }
-        }
+
+    img {
+      min-width: 30px;
+      width: 1.5vw
     }
-    .tickPrompt{
-        bottom: 0;
-        right: 20vw;
-        article{ transform: translate(150px, 3.8vw); }
-        img{
-            height: calc(39px + 5vw);
-        }
-        p{
-            display: inline;
-            line-height: 100%;
-        }
+  }
+
+  .countBTN {
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 55px;
+      text-align: right;
     }
+
+    button {
+      width: 44px;
+      cursor: pointer;
+      color: $mainTextColor;
+
+      &:hover {
+        background-color: $primaryColorYellow;
+      }
+    }
+  }
+
+  .tickPrompt {
+    bottom: -6px;
+    right: 20vw;
+
+    article {
+      transform: translate(150px, 3.8vw);
+    }
+
+    img {
+      height: calc(39px + 5vw);
+    }
+
+    p {
+      display: inline;
+      line-height: 100%;
+    }
+  }
 }
-.tickOption.PC{
-    max-width: 100%;
-    text-align: center;
-    img{
-        width: auto;
-        height: 20vw;
-        margin-bottom: 1vw;
-        display: inline-block;
-    }
+
+.tickOption.PC {
+  max-width: 100%;
+  text-align: center;
+
+  img {
+    width: auto;
+    height: 20vw;
+    margin-bottom: 1vw;
+    display: inline-block;
+  }
 }
 
 
 // part2 付款頁 & part3 購票完成
-.tickCheck, .tickFinished{
-    min-width: 800px;
-    width: 60%;
-    margin: 0 auto;
-    *{ align-items: center; }
-    >h2{ margin: 1.5vw auto; }
-    .price{ margin-top: 0.5vw; }
-    >hgroup:first-of-type{ font-weight: 700; }
-    div:not(.price){ gap: 2vw; }
-    .choosed{
-        @include tickBorder(bottom);
-        h2, h2>span{ color: $mainTextColor; }
-    }
-    .coupon{
-        margin-bottom: 0;
-        border-bottom: 0;
-    }
-    .price:nth-of-type(3){
-        @include tickBorder(bottom);
-    }
-    .payWay hgroup{
-        margin-bottom: 0;
-        border-bottom: 0;
-    }
-}
-.tickCheck{
-    .coupon{ margin-top: 2vw; }
-    .defaultBtn{ margin: 4vw 0;}
-    input, .payWay article select{
-        width: 100%;
-        &:focus {
-            border: 4px solid $primaryColorYellow;
-            font-weight: 700;
-            &::placeholder{ 
-                color: $inputTextColor;
-                font-weight: 700;
-            }
-        }
-    }
-    .payWay article select{
-        padding-left: 4px;
-        color: $inputHintColor;
-        font-weight: 400;
-    }
-    .payWay article select.heavy{
-        color: $mainTextColor;
-    }
-    .payWay{
-        margin-top: 2vw;
+.tickCheck,
+.tickFinished {
+  min-width: 800px;
+  width: 60%;
+  margin: 0 auto;
 
-        article>main:first-of-type{ margin-top: 2vw; }
-        article>main>p{ width: 120px; }
-        main{
-            align-items: center;
-            gap: 2vw;
-        }
-        main.pcInnerText{ margin-top: 0.5vw; }
+  * {
+    align-items: center;
+  }
+
+  >h2 {
+    margin: 1.5vw auto;
+  }
+
+  .price {
+    margin-top: 0.5vw;
+  }
+
+  >hgroup:first-of-type {
+    font-weight: 700;
+  }
+
+  div:not(.price) {
+    gap: 2vw;
+  }
+
+  .choosed {
+    @include tickBorder(bottom);
+
+    h2,
+    h2>span {
+      color: $mainTextColor;
     }
-    .carddate main{
-        width: 100%;
-        margin: 0;
-    }
-    .tickPrompt{
-        z-index: 996;
-        right: 0;
-        top: -2.5vw;
-        animation: tickBeeIn 10s linear forwards, tickBeeStay 7s linear infinite;
-        article{
-            transform: translate(6.3vw, -1.5vw);
-            width: 88px;
-        }
-        img{
-            width: 135px;
-            height: auto;
-        }
-    }
-    .cardPrompt{
-        color: $secColorOrange;
-        float: right;
-        text-align: right;
-        margin-bottom: -20px;
-    }
+  }
+
+  .coupon {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .price:nth-of-type(3) {
+    @include tickBorder(bottom);
+  }
+
+  .payWay hgroup {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
 }
-.tickFinished{
+
+.tickCheck {
+  .coupon {
+    margin-top: 2vw;
+  }
+
+  .defaultBtn {
+    margin: 4vw 0;
+  }
+
+  input,
+  .payWay article select {
+    width: 100%;
+
+    &:focus {
+      border: 4px solid $primaryColorYellow;
+      font-weight: 700;
+
+      &::placeholder {
+        color: $inputTextColor;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .payWay article select {
+    padding-left: 4px;
+    color: $inputHintColor;
+    font-weight: 400;
+  }
+
+  .payWay article select.heavy {
+    color: $mainTextColor;
+  }
+
+  .payWay {
+    margin-top: 2vw;
+
+    article>main:first-of-type {
+      margin-top: 2vw;
+    }
+
+    article>main>p {
+      width: 120px;
+    }
+
+    main {
+      align-items: center;
+      gap: 2vw;
+    }
+
+    main.pcInnerText {
+      margin-top: 0.5vw;
+    }
+  }
+
+  .carddate main {
+    width: 100%;
+    margin: 0;
+  }
+
+  .tickPrompt {
+    z-index: 996;
+    right: 0;
+    top: -2.5vw;
+    animation: tickBeeIn 10s linear forwards, tickBeeStay 7s linear infinite;
+
+    article {
+      transform: translate(6.3vw, -1.5vw);
+      width: 88px;
+    }
+
+    img {
+      width: 135px;
+      height: auto;
+    }
+  }
+
+  .cardPrompt {
+    color: $secColorOrange;
+    float: right;
+    text-align: right;
+    margin-bottom: -20px;
+  }
+}
+
+.tickFinished {
+  margin-bottom: 2vw;
+
+  section {
+    text-align: center;
     margin-bottom: 2vw;
-    section{
-        text-align: center;
-        margin-bottom: 2vw;
-        p{
-            color: $inputHintColor;
-            margin: 1vw auto;
-        }
-    }
-    hgroup>:first-of-type, .coupon>p, .payWay p{ font-weight: 700; }
-}
-@media screen and (max-width: 1800px){
-    .tickBgc{
-        .tickBoard{ height: 530px; }
-    }
-}
-@media screen and (max-width: 1610px){
-    .tickBgc{
-        transform: translate(-5%, 0);
-        .tickBoard{ height: 520px; }
-    }
-    .tickInfo{
-        article{ margin: 20px 4vw auto; }
-    }
-    .tickNum{
-        .tickPrompt{
-            article{
-                transform: translate(100px, 3.8vw);
-            }
-            p{
-                display: block;
-            }
-        }
-    }
-    .tickCheck{
-        .tickPrompt{
-            article{
-                transform: translate(7.5vw, -2vw);
-            }
-        }
-    }
-}
-@media screen and (max-width: 1540px){
-    .tickBgc{
-        .tickBoard{ height: 520px; }
-    }
-    .tickInfo{
-        article{
-            margin: 20px 3vw auto;
-            width: 530px;
-        }
-    }
-    .tickCalendar{
-        .tickPrompt{
-            right: 21vw;
-        }
-    }
-}
-@media screen and (max-width: 1400px){
-    .tickBgc{
-        transform: translate(-8%, 0);
-        .tickBoard{ height: 515px; }
-        .tickEagle{ width: 8vw;}
-    }
-    .tickInfo{
-        article{
-            width: 440px;
-            margin: 20px 2.1vw auto;
-        }
-    }
-    .tickCalendar{
-        .tickPrompt{
-            top: 6vw;
-            right: 21.1vw;
 
-            img{ width: 125px; }
-        }
+    p {
+      color: $inputHintColor;
+      margin: 1vw auto;
     }
-    .tickCheck{
-        .tickPrompt{
-            img{
-                width: 125px;
-            }
-            article{
-                transform: translate(8.4vw, -2.2vw);
-            }
-        }
-    }
-}
-@media screen and (max-width:1199px){
-    .tickFrame{
-        position: relative;
-        height: 66.2vw;
-        max-height: 600px;
-    }
-    .tick{
-        padding-top: 57px;
+  }
 
-        >article, >main{ width: 80%; } // 暫定，平板再跟組裡統一
-        main{
-            // display: block;
-        }
-        hgroup{
-            padding-bottom: 3vw;
-        }
+  hgroup>:first-of-type,
+  .coupon>p,
+  .payWay p {
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 1800px) {
+  .tickBgc {
+    .tickBoard {
+      height: 530px;
     }
-    .tickStep{ margin: 4vw auto; }
+  }
+}
+
+@media screen and (max-width: 1610px) {
+  .tickBgc {
+    transform: translate(-5%, 0);
+
+    .tickBoard {
+      height: 520px;
+    }
+  }
+
+  .tickInfo {
+    article {
+      margin: 20px 4vw auto;
+    }
+  }
+
+  .tickNum {
+    .tickPrompt {
+      article {
+        transform: translate(100px, 3.8vw);
+      }
+
+      p {
+        display: block;
+      }
+    }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      article {
+        transform: translate(7.5vw, -2vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1540px) {
+  .tickBgc {
+    .tickBoard {
+      height: 520px;
+    }
+  }
+
+  .tickInfo {
+    article {
+      margin: 20px 3vw auto;
+      width: 530px;
+    }
+  }
+
+  .tickCalendar {
+    .tickPrompt {
+      right: 21vw;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .tickBgc {
+    transform: translate(-8%, 0);
+
+    .tickBoard {
+      height: 515px;
+    }
+
+    .tickEagle {
+      width: 8vw;
+    }
+  }
+
+  .tickInfo {
+    article {
+      width: 440px;
+      margin: 20px 2.1vw auto;
+    }
+  }
+
+  .tickCalendar {
+    .tickPrompt {
+      top: 6vw;
+      right: 21.1vw;
+
+      img {
+        width: 125px;
+      }
+    }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      img {
+        width: 125px;
+      }
+
+      article {
+        transform: translate(8.4vw, -2.2vw);
+      }
+    }
+  }
+}
+@media screen and (max-width:1199px) {
+  .tickFrame {
+    position: relative;
+    min-height: 66vh;
+    height: max-content;
+  }
+
+  .tick {
+    // min-height: 78vh;
+    padding-top: 57px;
+
+    >article,
+    >main {
+      width: 80%;
+    }
+
+    hgroup {
+      padding-bottom: 3vw;
+    }
+  }
+
+  .tickStep {
+    margin: 4vw auto;
+  }
+
+  .tickInfo {
+    z-index: 9999;
+    overflow: scroll;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    article {
+      margin-top: 80px;
+      top: 0;
+      height: auto;
+      transform: translate(2%, 0);
+    }
+
+    h2 {
+      margin: 5vw auto;
+    }
+  }
+
+  .tickLightbox {
+    top: -60px;
+    position: absolute;
+
+    img {
+      transform: rotateX(45deg);
+      width: auto;
+      height: 70vw;
+      margin: auto;
+    }
+
+    .tickIcon {
+      cursor: pointer;
+      z-index: 99999;
+      position: absolute;
+      top: 145px;
+      right: 70px;
+      width: 40px;
+      height: auto;
+      transform: none;
+    }
+  }
+
+  @keyframes tickBounceInDown {
+    0%, 60%, 75%, 90%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+      animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
+      transform: translate3d(0, -3000px, 0) scaleY(3);
+      right: -12vw;
+      top: calc(-13vw - 35px - 14px);
+    }
+
+    60% {
+      -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
+      transform: translate3d(0, 25px, 0) scaleY(.9);
+    }
+
+    75% {
+      -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
+      transform: translate3d(0, -10px, 0) scaleY(.95);
+    }
+
+    90% {
+      -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
+      transform: translate3d(0, 5px, 0) scaleY(.985);
+    }
+
+    to {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      top: calc(-26.5px - 0.25vw);
+      /* 結束位置 top 調整 */
+      right: 5%;
+      /* 結束位置 right 調整 */
+
+      z-index: 1;
+    }
+  }
+
+  .tickCalendar {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+
+    .tickBtn {
+      margin: 3vw 0 10vw;
+    }
+
+    hgroup>img {
+      right: -12vw;
+      top: calc(-13vw - 35px - 14px);
+    }
+
+    >img {
+      position: absolute;
+      bottom: 1.8vw;
+      left: -15vw;
+      width: 80px;
+      visibility: hidden;
+      animation: tickSlideInUpS 0.3s forwards 1.5s;
+    }
+
+    .tickPrompt {
+      top: -3.3vw;
+      right: calc(5vw + 100px);
+
+      article {
+        transform: translate(110px, 1.3vw);
+      }
+
+      img {
+        width: 120px;
+      }
+    }
+  }
+
+  .calendar {
+    table {
+      font-size: $phFontH3;
+    }
+
+    // 區間按鈕
+    .ivu-btn>span,
+    .ivu-radio-group-button .ivu-radio-wrapper {
+      font-size: $phFontH4;
+    }
+
+    // 當前月份
+    .ivu-calendar-header-title {
+      font-size: $phFontH3;
+    }
+  }
+
+  .tickNum {
+      position: relative;
+      height: max-content;
+
+    >main:first-of-type {
+      display: block;
+    }
+
+    article {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    >article {
+      gap: 8px;
+    }
+
     .tickBtn{
-        button{ margin: 3vw 0;}
+      margin: 2vw 0 5vw;
     }
-    .tickInfo{
-        z-index: 99;
-        overflow: scroll;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(5px);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        article{
-            margin: 100px 4.2vw auto;
-            height: auto;
-            transform: translate(2%, 0);
-        }
-        h2{ margin: 5vw auto; }
+    .tickPrompt {
+      bottom: calc(-6px + -5vw);
+      article {
+        display: block;
+        transform: translate(80px, 4.4vw);
+      }
     }
-    .tickLightbox{
-        top: -50px;
-        position: absolute;
+  }
 
-        img{
-            transform: rotateX(45deg);
-            width: 100%;
-            height: auto;
-            margin: auto;
-        }
-        .tickIcon{
-            cursor: pointer;
-            z-index: 999;
-            position: absolute;
-            top: 170px;
-            right: 7vw;
-            width: 40px;
-            height: auto;
-            transform: none;
-        }
-    }
+  .tickOption {
+    align-items: center;
+    margin: 1vw 0;
+  }
 
-    @keyframes tickBounceInDown {
-        0%, 60%, 75%, 90%, to {
-            -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-        }
-    
-        0% {
-            opacity: 0;
-            -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
-            transform: translate3d(0, -3000px, 0) scaleY(3);
-            right: -12vw;
-            top: calc(-13vw - 35px - 14px);
-        }
-    
-        60% {
-            -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
-            transform: translate3d(0, 25px, 0) scaleY(.9);
-        }
-    
-        75% {
-            -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
-            transform: translate3d(0, -10px, 0) scaleY(.95);
-        }
-    
-        90% {
-            -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
-            transform: translate3d(0, 5px, 0) scaleY(.985);
-        }
-    
-        to {
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            top: calc(-26.5px - 0.25vw); /* 結束位置 top 調整 */
-            right: 5%; /* 結束位置 right 調整 */
+  div.tickOption {
+    gap: 20px;
+  }
 
-            z-index: 1;
-        }
+  main.tickOption {
+    justify-content: flex-end;
+    margin-right: 8px;
+
+    h2 {
+      color: $mainTextColor;
+      margin-right: 8px;
     }
-    .tickCalendar{
-        position: relative;
-        width: 80%;
-        margin: 0 auto;
-        hgroup>img{
-            right: -12vw;
-            top: calc(-13vw - 35px - 14px);
-        }
-        >img{
-            position: absolute;
-            bottom: 1.8vw;
-            left: -15vw;
-            width: 80px;
-            visibility: hidden;
-            animation: tickSlideInUpS 0.3s forwards 1.5s;
-        }
-        .tickPrompt{
-            top: -3.3vw;
-            right: calc(5vw + 100px);
-            
-            article{ transform: translate(110px, 1.3vw); }
-            img{ width: 120px; }
-        }
+  }
+
+  .tickCheck,
+  .tickFinished {
+    min-width: 100%;
+
+    hgroup {
+      padding-bottom: 1vw;
     }
-    .calendar{
-        // height: 382px;
-        table{
-            font-size: $phFontH3;
-        }
-        // 區間按鈕
-        .ivu-btn>span, .ivu-radio-group-button .ivu-radio-wrapper{
-            font-size: $phFontH4;
-        }
-        // 當前月份
-        .ivu-calendar-header-title{
-            font-size: $phFontH3;
-        }
+  }
+
+  .tickFinished {
+    margin-bottom: 10vw;
+
+    section {
+      margin-bottom: 20px;
+
+      p {
+        margin: 20px auto;
+      }
     }
-    .tickNum{
-        >main:first-of-type{ display: block; }
-        article{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        >article{
-            gap: 8px;
-        }
-        .tickPrompt{
-            article{
-                display: block;
-                transform: translate(80px, 4.4vw);
-            }
-        }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      img {
+        width: 120px;
+      }
+
+      article {
+        transform: translate(10.9vw, -2.6vw);
+      }
     }
-    .tickOption{
-        align-items: center;
-        margin: 1vw 0;
-    }
-    div.tickOption{ gap: 20px; }
-    main.tickOption{
-        justify-content: flex-end;
-        margin-right: 8px;
-        h2{
-            color: $mainTextColor;
-            margin-right: 8px;
-        }
-    }
-    .tickCheck, .tickFinished{
-        min-width: 100%;
-        hgroup{ padding-bottom: 1vw; }
-    }
-    .tickFinished{
-        margin-bottom: 10vw;
-        section{
-            margin-bottom: 20px;
-            p{
-            margin: 20px auto;
-            }
-        }
-    }
-    .tickCheck{
-        .tickPrompt{
-            img{
-                width: 120px;
-            }
-            article{
-                transform: translate(10.9vw, -2.6vw);
-            }
-        }
-    }
+  }
 }
-@media screen and (max-width:860px){
-    .tickFrame{
-        height: 70vw;
-        max-height: 550px;
-    }
-    .tickCalendar{
-        .tickPrompt{
-            top: -3.5vw;
-            right: calc(5vw + 100px);
-    
-            img{ width: 120px; }
-        }
-    }
-    .tickCheck{
-        .tickPrompt{
-            img{
-                width: 110px;
-            }
-            article{
-                transform: translate(13vw, -2.6vw);
-            }
-        }
-    }
+@media screen and (max-width:1000px) {
+  .tickLightbox img{
+    height: 80vw;
+  }
 }
-@media screen and (max-width:768px){
-    .tickFrame{
-        height: 84vw;
-        max-height: 600px;
-    }
-    .tick{
-        >article, >main{ width: 90%; }
-    }
-    .tickStep{
-        margin: calc(4vw + 50px) auto 5vw;
-    }
-    .tickInfo{
-        z-index: 998;
-        article{
-            width: 65%;
-            margin-top: calc(8vw + 20px + 45px)
-        }
-    }
-    .tickLightbox{
-        top: 0px;
-        img{ width: 95%; }
-        .tickIcon{
-            top: calc(12vw + 20px + 5vw);
-            right: 15vw;
-        }
-    }
-    .tickCalendar{
-        width: 100%;
-        margin-top: 0;
-        >img{
-            width: 12vw;
-            bottom: 4.5vw;
-            left: -0.5vw;
-        }
-        .tickPrompt{
-            top: -4.3vw;
-            right: calc(5vw + 100px);
+@media screen and (max-width:860px) {
+  .tick{
+    min-height: 74.8vh;
+  }
+  .tickStep{
+    margin: 6vw 0 8vw;
+  }
+  .tickFrame {
+    min-height: 57.3vh;
+  }
 
-            article{ transform: translate(111px, 1.7vw); }
-            p{ line-height: 150%; }
-        }
-    }
-    .calendar{
-        height: 425px; 
-        .ivu-calendar-header-title, .ivu-btn, .ivu-ml>.ivu-radio-wrapper{
-            height: 50px;
-        }
-        .ivu-ml>.ivu-radio-wrapper{
-            width: 44px;
-            line-height: 44px;
-            font-weight: 700;
-        }
-        .ivu-calendar-table thead th{
-            line-height: 42px;
+  .tickCalendar {
+    .tickPrompt {
+      top: -3.5vw;
+      right: calc(5vw + 100px);
 
-        }
+      img {
+        width: 120px;
+      }
     }
-    .tickNum{
-        .tickPrompt{
-            right: 36vw;
-            article{
-                transform: translate(80px, 4.2vw);
-            }
-        }
+  }
+}
+@media screen and (max-width:768px) {
+  .tick {
+    >article,
+    >main {
+      width: 90%;
     }
-    .tickCheck, .tickFinished{
-        >h2{ margin: 2vw auto; }
-        .price{
-            margin-top: 1vw;
-        }
+  }
+
+  .tickStep {
+    margin: calc(4vw + 50px) auto 5vw;
+  }
+
+  .tickInfo {
+    article {
+      width: 65%;
+      margin-top: 90px;
     }
-    .tickCheck{
-        .defaultBtn{ margin: 40px 0 100px; }
-        .payWay main.pcInnerText{ margin-top: 1.5vw; }
-        .tickPrompt{
-            img{
-                width: 110px;
-            }
-            article{
-                transform: translate(14vw, -3vw);
-            }
-        }
+  }
+
+  .tickLightbox {
+    top: -30px;
+
+    img {
+      height: 100vw;
     }
-    .tickFinished{
-        section>h2{
-            width: 480px;
-            margin: auto;
-            br{  display: none; }
-        }
+
+    .tickIcon {
+      right: 55px;
     }
+  }
+
+  .tickCalendar {
+    width: 100%;
+    margin-top: 0;
+
+    >img {
+      width: 12vw;
+      bottom: 4.5vw;
+      left: -0.5vw;
+    }
+
+    .tickPrompt {
+      top: -4.3vw;
+      right: calc(5vw + 100px);
+
+      article {
+        transform: translate(111px, 1.7vw);
+      }
+
+      p {
+        line-height: 150%;
+      }
+    }
+  }
+
+  .calendar {
+    height: 425px;
+
+    .ivu-calendar-header-title,
+    .ivu-btn,
+    .ivu-ml>.ivu-radio-wrapper {
+      height: 50px;
+    }
+
+    .ivu-ml>.ivu-radio-wrapper {
+      width: 44px;
+      line-height: 44px;
+      font-weight: 700;
+    }
+
+    .ivu-calendar-table thead th {
+      line-height: 42px;
+
+    }
+  }
+
+  .tickNum {
+    .tickPrompt {
+      right: 36vw;
+
+      article {
+        transform: translate(80px, 4.2vw);
+      }
+    }
+  }
+
+  .tickCheck,
+  .tickFinished {
+    >h2 {
+      margin: 2vw auto;
+    }
+
+    .price {
+      margin-top: 1vw;
+    }
+  }
+
+  .tickCheck {
+    .payWay main.pcInnerText {
+      margin-top: 1.5vw;
+    }
+
+    .tickPrompt {
+      img {
+        width: 110px;
+      }
+
+      article {
+        transform: translate(14vw, -3vw);
+      }
+    }
+  }
+
+  .tickFinished {
+    section>h2 {
+      width: 480px;
+      margin: auto;
+
+      br {
+        display: none;
+      }
+    }
+  }
 
 }
-@media screen and (max-width:700px){
-    .tickFrame{
-        height: 92vw;
-    }
-    .tickInfo{
-        article{ width: 75%; }
-        h2{ margin: 4vw auto 3vw;}
-    }
-    .tickLightbox{
-        top: calc(5px + 1vw);
-        .tickIcon{
-            top: calc(15vw + 20px + 3vw);
-            right: 12vw;
-        }
-    }
-    .tickCheck, .tickFinished{
-        hgroup{
-            margin-bottom: 20px;
-        }
-        .choosed, .price:nth-of-type(3){
-            padding-bottom: 20px;
-        }
-    }
-    .tickCheck{
-        .tickPrompt{
-            article{
-                transform: translate(15.8vw, -3.5vw);
-            }
-        }
-    }
-}
-@media screen and (max-width:640px){
-    .tickFrame{
-        height: 108.5vw;
-        max-height: 580px;
-    }
-    .tickInfo{
-        article{ width: 78%; }
-        h2{ margin-top: 2vw; }
-    }
-    .tickLightbox{
-        .tickIcon{
-            top: calc(15vw + 20px + 2vw);
-            right: 11vw;
-        }
-    }
-}
-@media screen and (max-width:620px){
-    .tickInfo{
-        article{ width: 70%; }
-        h2{ margin: 8vw auto 5vw; }
-    }
-    .tickLightbox{
-        top: 120px;
-        img{ transform: none; }
-        .tickIcon{
-            top: 40px;
-            right: 11vw;
-        }
-    }
-    .tickCalendar{
-        >img{
-            width: 13.5vw;
-            bottom: 3.9vw;
-            left: -1.3vw;
-        }
-        .tickPrompt{
-            top: -4.7vw;
 
-            article{ transform: translate(108px, 2vw) }
-        }
+@media screen and (max-width:700px) {
+  .tickInfo {
+    article {
+      width: 75%;
     }
-    .tickNum{
-        >main>article{
-            display: block;
-            margin: 3vw 0;
-        }
-        .price{ padding-top: 3vw; }
-        .tickBtn button{ margin: 5vw 0 8vw; }
-        .tickPrompt{
-            right: 20vw;
 
-            img{ height: 17vw; }
+    h2 {
+      margin: 4vw 0;
+    }
+  }
 
-            article{ transform: translate(93px, 8.2vw); }
-        }
+  .tickLightbox {
+    img {
+      height: 110vw;
     }
-    .tickCheck{
-        .tickPrompt{
-            article{
-                transform: translate(18.1vw, -3.5vw);
-            }
-        }
-    }
-}
-@media screen and (max-width:520px){
-    @keyframes tickBounceInDown {
-        0%, 60%, 75%, 90%, to {
-            -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-        }
-    
-        0% {
-            opacity: 0;
-            -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
-            transform: translate3d(0, -3000px, 0) scaleY(3);
-            right: -12vw;
-            top: calc(-13vw - 35px - 14px);
-        }
-    
-        60% {
-            -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
-            transform: translate3d(0, 25px, 0) scaleY(.9);
-        }
-    
-        75% {
-            -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
-            transform: translate3d(0, -10px, 0) scaleY(.95);
-        }
-    
-        90% {
-            -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
-            transform: translate3d(0, 5px, 0) scaleY(.985);
-        }
-    
-        to {
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            top: calc(-20.5px - 0.25vw); /* 結束位置 top 調整 */
-            right: 5%; /* 結束位置 right 調整 */
-        }
-    }
-    .tickFrame{
-        height: 120vw;
-        max-height: 575px;
-    }
-    .tickStep{
-        img{width: 90%;}
-    }
-    .tickInfo{
-        article{ width: 75%; }
-        h2{ margin: 7vw auto 3vw; }
-    }
-    .tickLightbox{
-        .tickIcon{
-            top: 25px;
-            right: 10vw;
-        }
-    }
-    .tickCalendar{
-        hgroup>img{
-            width: 90px;
-        }
-        >img{
-            width: 13.5vw;
-        }
-    }
-    .tickFinished{
-        section>h2{
-            width: 90%;
-        }
-    }
-    .tickCheck{
-        .tickPrompt{
-            article{
-                transform: translate(18.1vw, -3.5vw);
-            }
-        }
-    }
-}
-@media screen and (max-width:470px){
-    .tickFrame{
-        height: 130vw;
-        max-height: 565px;
-    }
-    .tickStep{
-        margin: 10vw auto 5vw;
-    }
-    .tickInfo{
-        h2{ margin: 10vw auto 5vw; }
-    }
-    .tickLightbox{
-        top: -6.5vw;
-        img{ 
-            margin-bottom: -20vw;
-            transform: rotateX(45deg);
-        }
-        .tickIcon{
-            top: calc(100px + 12vw);
-            right: 11vw;
-        }
-    }
-    .tickNum{
-        .tickPrompt{
-            right: 24vw;
-            img{ height: 15vw; }
-            article{
-                transform: translate(80px, 6vw);
-            }
-        }
-    }
-    .tickCheck{
-        input, select{ width: 80%; }
-        .coupon h2, .payWay h2{ width: 120px; }
-        .coupon, .payWay{ gap: 2vw; }
-        .carddate>main{ width: 80%; }
-        .tickPrompt{
-            article{
-                transform: translate(23vw, -4.5vw);
-            }
-        }
-    }
-}
-@media screen and (max-width:430px){
-    @keyframes tickBounceInDown {
-        0%, 60%, 75%, 90%, to {
-            -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
-        }
-    
-        0% {
-            opacity: 0;
-            -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
-            transform: translate3d(0, -3000px, 0) scaleY(3);
-            right: -12vw;
-            top: calc(-13vw - 35px - 14px);
-        }
-    
-        60% {
-            -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
-            transform: translate3d(0, 25px, 0) scaleY(.9);
-        }
-    
-        75% {
-            -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
-            transform: translate3d(0, -10px, 0) scaleY(.95);
-        }
-    
-        90% {
-            -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
-            transform: translate3d(0, 5px, 0) scaleY(.985);
-        }
-    
-        to {
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            top: calc(-11px - 0.25vw); /* 結束位置 top 調整 */
-            right: 5%; /* 結束位置 right 調整 */
-            z-index: 1;
-        }
-    }
-    .tickFrame{
-        height: 150vw;
-        max-height: 570px;
-    }
-    .tickInfo{
-        article{ margin-top: calc(8vw + 20px + 15px); }
-        h2{ margin: 15vw auto 8vw; }
-    }
-    .tickLightbox{
-        top: calc(57px + 3vw + 20px);
-        img{
-            transform: none;
-            margin-bottom: 0;
-        }
-        .tickIcon{ top: 6vw; }
-    }
-    .tickCalendar{
-        hgroup>img{
-            width: 80px;
-        }
-        .tickPrompt{
-            right: calc(7vw + 80px);
+  }
 
-            article{ transform: translate(104px, 2vw) }
-            img{ width: 110px; }
-        }
+  .tickCheck,
+  .tickFinished {
+    hgroup {
+      margin-bottom: 20px;
     }
-    .tickNum{
-        .tickPrompt{
-            right: 33vw;
-            img{ height: 20vw; }
-            article{
-                transform: translate(80px, 0.8vw);
-            }
-        }
+
+    .choosed,
+    .price:nth-of-type(3) {
+      padding-bottom: 20px;
     }
-    .tickCheck, .tickFinished{
-        .coupon{
-            margin-top: 20px;
-        }
-        .price:nth-of-type(3){
-            margin-bottom: 20px;
-        }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      article {
+        transform: translate(15.8vw, -3.5vw);
+      }
     }
-    .tickCheck{
-        .tickPrompt{
-            img{ width: 100px; }
-            article{
-                transform: translate(25.5vw, -5vw);
-            }
-        }
-    }
+  }
 }
-@media screen and (max-width:370px){
-    .tickFrame{
-        height: 171vw;
-        max-height: 558px;
+
+@media screen and (max-width:640px) {
+  .tickStep{
+    margin-bottom: 8vw;
+  }
+
+  .tickInfo {
+    article {
+      width: 78%;
     }
-    .tickInfo{
-        article{ width: 80%; }
+
+    h2 {
+      margin-top: 2vw;
     }
-    .tickLightbox{
-        img{ width: 100%; }
-        .tickIcon{
-            right: 8vw;
-            top: 18px;
-        }
+  }
+
+  .tickLightbox {
+    .tickIcon {
+      top: 135px;
     }
-    .tickCalendar{
-        .tickPrompt{
-            top: -5vw;
-            right: calc(5vw + 80px);
-        }
+  }
+}
+
+@media screen and (max-width:620px) {
+  .tickInfo {
+    article {
+      width: 70%;
     }
-    .calendar{
-        td{
-            padding: 8px 2px;
-        }
+
+    h2 {
+      margin: 8vw auto 5vw;
     }
-    .tickNum{
-        .tickBtn{
-            main{
-                right: 31.75vw;
-                img{ height: 22vw; }
-            }
-        }
+  }
+
+  .tickLightbox {
+    top: 80px;
+
+    img {
+      transform: none;
     }
-    .tickCheck{
-        .payWay main.pcInnerText>p{ width: 80px; }
-        select, input, .carddate>main{
-            width: calc(100% - 2vw - 80px );
-        }
-        .carddate input{
-            width: 100%;
-        }
-        .price :nth-child(2){
-            width: 40%;
-        }
-        .tickPrompt{
-            right: 12vw;
-            top: 15vw;
-            img{ width: 95px; }
-            article{
-                transform: translate(98px, -6vw);
-            }
-        }
+
+    .tickIcon {
+      top: 40px;
+      right: 11vw;
     }
+  }
+
+  .tickCalendar {
+    >img {
+      width: 13.5vw;
+      bottom: 3.9vw;
+      left: -1.3vw;
+    }
+
+    .tickPrompt {
+      top: -4.7vw;
+
+      article {
+        transform: translate(108px, 2vw)
+      }
+    }
+  }
+
+  .tickNum {
+    >main>article {
+      display: block;
+      margin: 3vw 0;
+    }
+
+    .price {
+      padding-top: 3vw;
+    }
+
+    .tickPrompt {
+      right: 20vw;
+
+      img {
+        height: 17vw;
+      }
+
+      article {
+        transform: translate(93px, 8.2vw);
+      }
+    }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      article {
+        transform: translate(18.1vw, -3.5vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width:520px) {
+  @keyframes tickBounceInDown {
+    0%, 60%, 75%, 90%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+      animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
+      transform: translate3d(0, -3000px, 0) scaleY(3);
+      right: -12vw;
+      top: calc(-13vw - 35px - 14px);
+    }
+
+    60% {
+      -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
+      transform: translate3d(0, 25px, 0) scaleY(.9);
+    }
+
+    75% {
+      -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
+      transform: translate3d(0, -10px, 0) scaleY(.95);
+    }
+
+    90% {
+      -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
+      transform: translate3d(0, 5px, 0) scaleY(.985);
+    }
+
+    to {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      top: calc(-20.5px - 0.25vw);
+      /* 結束位置 top 調整 */
+      right: 5%;
+      /* 結束位置 right 調整 */
+    }
+  }
+
+  .tickStep {
+    img {
+      width: 90%;
+    }
+  }
+
+  .tickInfo {
+    article {
+      width: 77%;
+    }
+
+    h2 {
+      margin: 4.5vw auto 2vw;
+    }
+  }
+
+  .tickLightbox {
+    .tickIcon {
+      top: 25px;
+      right: 40px;
+    }
+  }
+
+  .tickCalendar {
+    hgroup>img {
+      width: 90px;
+    }
+
+    >img {
+      width: 13.5vw;
+    }
+  }
+
+  .tickFinished {
+    section>h2 {
+      width: 90%;
+    }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      article {
+        transform: translate(18.1vw, -3.5vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width:470px) {
+  .tickStep {
+    margin: 10vw auto 7vw;
+  }
+
+  .tickInfo {
+    article{
+      width: 73%;
+    }
+    h2 {
+      margin: -5vw auto 5vw;
+    }
+  }
+
+  .tickLightbox {
+    top: -90px;
+
+    img {
+      height: 200vw;
+      margin-bottom: -20vw;
+      transform: rotateX(40deg);
+    }
+
+    .tickIcon {
+      top: 28vw;
+      right: 32px;
+    }
+  }
+
+  .tickNum {
+    .tickPrompt {
+      right: 24vw;
+
+      img {
+        height: 15vw;
+      }
+
+      article {
+        transform: translate(80px, 6vw);
+      }
+    }
+  }
+
+  .tickCheck {
+
+    input,
+    select {
+      width: 80%;
+    }
+
+    .coupon h2,
+    .payWay h2 {
+      width: 120px;
+    }
+
+    .coupon,
+    .payWay {
+      gap: 2vw;
+    }
+
+    .carddate>main {
+      width: 80%;
+    }
+
+    .tickPrompt {
+      article {
+        transform: translate(23vw, -4.5vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width:430px) {
+  @keyframes tickBounceInDown {
+    0%, 60%, 75%, 90%,
+    to {
+      -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+      animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);
+      transform: translate3d(0, -3000px, 0) scaleY(3);
+      right: -12vw;
+      top: calc(-13vw - 35px - 14px);
+    }
+
+    60% {
+      -webkit-transform: translate3d(0, 25px, 0) scaleY(.9);
+      transform: translate3d(0, 25px, 0) scaleY(.9);
+    }
+
+    75% {
+      -webkit-transform: translate3d(0, -10px, 0) scaleY(.95);
+      transform: translate3d(0, -10px, 0) scaleY(.95);
+    }
+
+    90% {
+      -webkit-transform: translate3d(0, 5px, 0) scaleY(.985);
+      transform: translate3d(0, 5px, 0) scaleY(.985);
+    }
+
+    to {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      top: calc(-11px - 0.25vw);
+      /* 結束位置 top 調整 */
+      right: 5%;
+      /* 結束位置 right 調整 */
+      z-index: 1;
+    }
+  }
+
+  .tickInfo {
+    h2 {
+      margin: -8vw auto 6vw;
+    }
+  }
+
+  .tickLightbox {
+    top: -10px;
+    transform: rotateX(20deg);
+
+    img {
+      transform: none;
+      margin-bottom: 0;
+    }
+
+    .tickIcon {
+      top: 6vw;
+    }
+  }
+
+  .tickCalendar {
+    hgroup>img {
+      width: 80px;
+    }
+
+    .tickPrompt {
+      right: calc(7vw + 80px);
+
+      article {
+        transform: translate(104px, 2vw)
+      }
+
+      img {
+        width: 110px;
+      }
+    }
+  }
+
+  .tickNum {
+    .tickPrompt {
+      right: 33vw;
+
+      img {
+        height: 20vw;
+      }
+
+      article {
+        transform: translate(80px, 0.8vw);
+      }
+    }
+  }
+
+  .tickCheck,
+  .tickFinished {
+    .coupon {
+      margin-top: 20px;
+    }
+
+    .price:nth-of-type(3) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .tickCheck {
+    .tickPrompt {
+      img {
+        width: 100px;
+      }
+
+      article {
+        transform: translate(25.5vw, -5vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width:370px) {
+  .tickInfo {
+    article {
+      width: 78.5%;
+      li{
+        line-height: 150%;
+      }
+    }
+    h2{
+      margin: -50px auto 15px;
+    }
+  }
+
+  .tickLightbox {
+    img {
+      height: 207vw;
+      transform: none;
+    }
+
+    .tickIcon {
+      right: 26px;
+      top: 18px;
+    }
+  }
+
+  .tickCalendar {
+    .tickPrompt {
+      top: -5vw;
+      right: calc(5vw + 80px);
+    }
+  }
+
+  .calendar {
+    td {
+      padding: 8px 2px;
+    }
+  }
+
+  .tickNum {
+    .tickBtn {
+      main {
+        right: 31.75vw;
+
+        img {
+          height: 22vw;
+        }
+      }
+    }
+  }
+
+  .tickCheck {
+    .payWay main.pcInnerText>p {
+      width: 80px;
+    }
+
+    select,
+    input,
+    .carddate>main {
+      width: calc(100% - 2vw - 80px);
+    }
+
+    .carddate input {
+      width: 100%;
+    }
+
+    .price :nth-child(2) {
+      width: 40%;
+    }
+
+    .tickPrompt {
+      right: 12vw;
+      top: 15vw;
+
+      img {
+        width: 95px;
+      }
+
+      article {
+        transform: translate(98px, -6vw);
+      }
+    }
+  }
 }

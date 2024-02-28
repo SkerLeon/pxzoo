@@ -25,8 +25,7 @@
           </article>
           <div class="countBTN">
             <button @click="decrease(t.tickets_id)" class="pcDecMarkText">-</button>
-            <input v-model.trim="t.ord_detail_qty" @input="alterQty(t.tickets_id)" type="number" placeholder="0"
-              inputmode="numeric" step="1" min="0" max="999">
+            <input v-model.trim="t.ord_detail_qty" @input="alterQty(t.tickets_id)" type="number" :placeholder="t.ord_detail_qty" inputmode="numeric" step="1" min="0" max="999">
             <button @click="increase(t.tickets_id)" class="pcDecMarkText">+</button>
           </div>
         </article>
@@ -70,10 +69,6 @@ export default {
       type: Array,
       required: true,
     },
-    ticketsQtyData: {
-      type: Array,
-      required: true,
-    },
     tipriceData: {
       type: Number,
       required: true,
@@ -108,6 +103,7 @@ export default {
       }
     },
     previousStep() {
+      this.tickReset();
       this.$emit('goPreviousStep');
     },
     increase(ticketId) {
@@ -122,6 +118,7 @@ export default {
       if (this.ticketsData[ticketId - 1].ord_detail_qty > 0) {
         this.ticketsData[ticketId - 1].ord_detail_qty--;
         this.tipriceCalculate();
+      
         return this.ticketsData[ticketId - 1].ord_detail_qty;
       }
     },

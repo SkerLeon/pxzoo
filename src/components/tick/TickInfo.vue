@@ -17,7 +17,7 @@
     <div v-if="windowWidth.isBoard" class="tickLightbox">
       <img v-if="windowWidth.isMidPH" src="@/assets/images/ticket/PHinfoXS.png" alt="購票須知布告欄" class="" />
       <img v-else src="@/assets/images/ticket/PHinfoL.png" alt="購票須知布告欄" class="" />
-      <img @click="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.png" alt="關閉按鈕">
+      <img @click.self="TickCalendar" class="tickIcon" src="@/assets/images/ticket/tickClose.png" alt="關閉按鈕">
     </div>
     <div v-else class="tickBgc">
       <img src="@/assets/images/ticket/eagle.png" alt="eagle" class="tickEagle">

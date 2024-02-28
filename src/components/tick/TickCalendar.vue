@@ -52,12 +52,16 @@ export default {
     }
   },
   methods: {
+    scrollToTop() {
+      this.$parent.startFromTop(); // 透過 $parent 訪問父組件中的函數
+    },
     nextStep() {
       const today = new Date();
       today.setHours(17, 0, 0, 0);
 
       if (this.offDate(this.tidateData)) {
         this.cantNextPage = "<p class='promptYellow'>休園日nono</p><p>請重新選擇!</p>";
+        this.scrollToTop();
       }else if ( // 購票日期為今天&&時間>=17.
         this.tidateData.getFullYear() === today.getFullYear() && 
         this.tidateData.getMonth() === today.getMonth() && 
@@ -65,8 +69,10 @@ export default {
         this.tidateData.getHours() >= today.getHours() 
       ){
         this.cantNextPage = "<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
+        this.scrollToTop();
       }else if ( this.tidateData < (today-3600 * 1000 * 17) ){ // 購票日期早於今天
         this.cantNextPage = "<p class='promptYellow'>時間已過</p><p>請重新選擇!</p>";
+        this.scrollToTop();
       } else {
         this.$emit('goNextStep');
       }

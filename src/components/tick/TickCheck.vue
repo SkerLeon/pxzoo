@@ -117,7 +117,7 @@
         </article>
         <img src="@/assets/images/ticket/tickConversation_2.png" alt="提示訊息">
       </main>
-      <button class="tickLBtn defaultBtn pcInnerText" @click="nextStep">
+      <button class="defaultBtn pcInnerText" @click="nextStep">
         送出訂單
         <img src="@/assets/images/login/icon/btnArrow.svg">
       </button>
@@ -287,7 +287,6 @@ export default {
     selectedCoupon: {
       get() { return this.couData; },
       set(value) { 
-        console.log(value);
         this.$emit('newCoupon', value); 
       },
     },
