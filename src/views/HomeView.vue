@@ -388,7 +388,7 @@
     <div class="home_vote">
       <div class="home_vote_section">
         <div class="home_vote_text">
-          <h2 class="pcBigTitle">2023 12月動物王國之星</h2>
+          <h2 class="pcBigTitle">目前動物人氣TOP3</h2>
           <h3 class="pcSmTitle">立刻投票，支持你最愛的動物朋友！</h3>
           <RouterLink to="/vote">
             <button class="defaultBtn pcInnerText">
@@ -499,7 +499,7 @@
       <h3 class="pcSmTitle">探索奇妙，與大自然共享驚喜！</h3>
       <!-- :class="comment.class" -->
       <div class="home_comment_section">
-        <div class="comment_group">
+        <div class="comment_group" :style="{ width: commentGroupWidth }">
           <div class="comment" v-for="(comminfo, index) in comment" :key="index" :class="'comm' + (comminfo.com_id % 4)">
             <div class="comment_report">
               <div class="before">
@@ -522,7 +522,7 @@
         </div>
       </div>
 
-      <button class="iconBtn pcInnerText" @click="openWriteComm">
+      <button class="iconBtn pcInnerText" @click="openWriteComm()">
         <p class="iconText">
           <img src="@/assets/images/home/home_icon_comment.svg" alt="" class="buttonIcon" />
           我要留言
@@ -531,6 +531,8 @@
       </button>
     </div>
   </section>
+
+  <LoginLightBox v-show="showLogin" @memIdData="getMemId" @closeLoginBox="updateLoginBox" />
 </template>
 
 <script>
@@ -540,6 +542,8 @@ import parkmap from "@/components/park/ParkMap.vue";
 import writecomm from "@/components/home/WriteComm.vue";
 import reportcomm from "@/components/home/ReportComm.vue";
 import moreweather from "@/components/home/MoreWeather.vue";
+// import { getMemId } from '@/stores/getMemId.js';
+import LoginLightBox from '@/components/loginLightBox.vue'
 
 import Image01 from "/images/home/home_banner_1.jpg"
 import Image02 from "/images/home/home_banner_2.jpg"
@@ -549,6 +553,7 @@ import Image04 from "/images/home/home_banner_4.jpg"
 import axios from 'axios';
 
 export default {
+  // mixins: [getMemId],
   components: {
     RouterLink,
     MainFixedVote,
@@ -556,6 +561,7 @@ export default {
     writecomm,
     reportcomm,
     moreweather,
+    LoginLightBox
   },
   data() {
     return {
@@ -704,6 +710,9 @@ export default {
       showReportComm: false,
       showMoreWeather: false,
       selectedComId: null,
+      showLogin: false,
+      mem_id: null,
+      memData: null,
     };
   },
 
@@ -711,6 +720,11 @@ export default {
     //banner
     currentImage() {
       return this.images[this.currentIndex];
+    },
+
+    //留言板
+    commentGroupWidth() {
+      return `${this.comment.length * 340}px`;
     },
   },
 
@@ -767,6 +781,24 @@ export default {
         console.error("Error fetching data: ", error);
       });
 
+      this.memData = JSON.parse(localStorage.getItem('userData')) || {};
+
+  },
+
+  watch:{
+    memData:{
+      handler(value){
+        console.log(value);
+        if(value && 'mem_id' in value){
+          // newValue 為 null 或 undefined時，即為 false
+          this.mem_id = value.mem_id;
+        }else{
+          this.mem_id = null;
+        }
+        console.log('now', this.mem_id);
+      },
+      deep: true,
+    }
   },
 
   methods: {
@@ -1171,9 +1203,14 @@ export default {
       ).href;
     }, //改網址
 
-    openWriteComm() {
-      this.showWriteComm = true;
-      document.body.style.overflow = "hidden";
+    openWriteComm(memId) {
+      if(this.mem_id === null){
+        this.showLogin=(this.mem_id === null);
+      }else{
+        console.log(this.mem_id);
+        this.showWriteComm = true;
+        document.body.style.overflow = "hidden";
+      }
     },
 
     closeWriteComm() {
@@ -1182,18 +1219,32 @@ export default {
     },
 
     openReportComm(comId) {
-      console.log(comId);
-      // 將留言編號com_id傳遞給檢舉留言燈箱組件
-      // this.$router.push({ name: 'reportcomm', params: { id: comId } });
-      this.selectedComId = comId;
-      this.showReportComm = true;
-      document.body.style.overflow = "hidden";
+      if(this.mem_id === null){
+        this.showLogin=(this.mem_id === null);
+      }else{
+        // 將留言編號com_id傳遞給檢舉留言燈箱組件
+        // this.$router.push({ name: 'reportcomm', params: { id: comId } });
+        console.log(this.mem_id);
+        console.log(comId);
+        this.selectedComId = comId;
+        this.showReportComm = true;
+        document.body.style.overflow = "hidden";
+      }
     },
 
     closeReportComm() {
       this.showReportComm = false;
       document.body.style.overflow = "auto";
     },
+
+    getMemId(value){
+      this.mem_id=value;
+    },
+
+    updateLoginBox(bool){
+      this.showLogin=bool;
+    },
+
   },
 };
 </script>

@@ -66,6 +66,7 @@ export default {
                 report_type: '',
                 report_text: '',
                 com_id: '',
+                mem_id: '',
             },
         };
     },
@@ -101,6 +102,7 @@ export default {
             const formData = {
                 // com_id: this.$route.params.id,
                 com_id: this.comId,
+                mem_id: JSON.parse(localStorage.getItem('userData')).mem_id,
                 report_type: this.formData.report_type,
                 report_text: this.formData.report_text,
             }

@@ -71,7 +71,7 @@
                     /> -->
                 </div>
 
-                <!--预览效果图-->
+                <!--預覽效果圖-->
                 <div class="show-preview">
                     <div :style="previews.div" class="preview">
                         <img :src="previews.url" :style="previews.img">
@@ -81,23 +81,51 @@
                 <!--底部操作工具按钮-->
                 <div class="footer-btn">
                     <div class="scope-btn">
-                        <!-- <label class="btn" for="uploads">选择图片</label> -->
+                        <!-- <label class="btn" for="uploads">選擇圖片</label> -->
                         <input id="uploads" type="file" style="position:absolute; clip:rect(0 0 0 0);" 
                                 accept="image/png, image/jpeg, image/gif, image/jpg" @change="selectImg($event)">
-                        <button @click="changeScale(1)">放大</button>
-                        <button @click="changeScale(-1)">縮小</button>
-                        <button @click="rotateLeft">↺ 左旋轉</button>
-                        <button @click="rotateRight">↻ 右旋轉</button>
+
+                        <div class="iconBtn pcInnerText" @click="changeScale(1)">
+                            <p class="iconText">
+                                <img src="@/assets/images/home/home_icon_add.svg" alt="" class="buttonIcon" />
+                                
+                            </p>
+                            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" class="arrowIcon" />
+                        </div>
+
+                        <div class="iconBtn pcInnerText" @click="changeScale(-1)">
+                            <p class="iconText">
+                                <img src="@/assets/images/home/home_icon_minus.svg" alt="" class="buttonIcon" />
+                                
+                            </p>
+                            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" class="arrowIcon" />
+                        </div>
+
+                        <div class="iconBtn pcInnerText" @click="rotateLeft">
+                            <p class="iconText">
+                                <img src="@/assets/images/home/home_icon_left.svg" alt="" class="buttonIcon" />
+                                
+                            </p>
+                            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" class="arrowIcon" />
+                        </div>
+
+                        <div class="iconBtn pcInnerText" @click="rotateRight">
+                            <p class="iconText">
+                                <img src="@/assets/images/home/home_icon_right.svg" alt="" class="buttonIcon" />
+                                
+                            </p>
+                            <img src="@/assets/images/login/icon/btnArrow.svg" alt="" class="arrowIcon" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
 
-        <!-- <button v-if="formData.com_pic" @click="getCroppedImage">裁剪图片</button> -->
+        <!-- <button v-if="formData.com_pic" @click="getCroppedImage">裁剪圖片</button> -->
         <!-- <div>
         <h1>留言板</h1>
-        <textarea v-model="message" placeholder="请输入留言"></textarea>
+        <textarea v-model="message" placeholder="請輸入留言"></textarea>
         <button @click="addMessage()">提交</button>
         <div v-for="(msg, index) in messages" :key="index">
         <p>{{ msg }}</p>
@@ -129,6 +157,7 @@ import { VueCropper } from 'vue-cropper';
 // import { regularFileName } from '@/utils';
 
 export default {
+    // props: ['memId'],
     name: 'CropperImage',
     components: {
         writetqp,
@@ -138,11 +167,11 @@ export default {
         addSwitch: false,
 
         //vue-cropper
-        autoCropWidth: { // 默认生成截图框宽度
+        autoCropWidth: { // 默認生成截圖框寬度
             type: Number,
             default: 410
         },
-        autoCropHeight: { // 默认生成截图框高度
+        autoCropHeight: { // 默認生成截圖框高度
             type: Number,
             default: 150
         },
@@ -161,6 +190,7 @@ export default {
             formData: {
                 com_text: '',
                 com_pic: '',
+                mem_id: '',
             },
 
             // message:'',
@@ -175,26 +205,26 @@ export default {
                 img: '', // 裁剪圖片的地址,圖片來源 (空) (url 地址, base64, blob)
                 outputSize: 1, // 裁剪生成影像的品質 (1) (0.1～1)
                 outputType: 'jpeg', // 產生圖片的格式 (jpg (jpg 需要確定 jpeg)) (jpeg, png,webp)
-                info: true, // 图片大小信息 (true) (true,false)
-                canScale: true, // 图片是否允许滚轮缩放 (true) (true,false)
+                info: true, // 圖片大小信息 (true) (true,false)
+                canScale: true, // 圖片是否允許滚輪缩放 (true) (true,false)
                 autoCrop: true, // 是否要有截圖框 (false) (true,false)
                 autoCropWidth: 250, // 截圖框寬 (容器的80%) (0 ~ 最大)
                 autoCropHeight: 187, //截圖框高 (容器的80%) (0 ~ 最大)
-                fixed: true, // 是否开启截图框宽高固定比例 (false) (true,false)
-                fixedNumber: [4, 3], // 截图框的宽高比例 ([1, 1]) ([ 宽度 ,  高度 ])
-                full: false, // false按原比例裁切图片，不失真 (false) (true, false)
-                fixedBox: false, // 固定截图框大小， (不允许改变) (false)
-                canMove: true, // 上传图片是否可以移动 (true) (true, false)
-                canMoveBox: true, // 截图框能否拖动 (true) (true, false)
-                original: false, // 上传图片按照原始比例渲染 (false) (true, false)
-                centerBox: false, // 截图框是否被限制在图片里面 (false) (true, false)
-                height: true, // 是否按照设备的dpr 输出等比例图片 (true) (true, false)
-                infoTrue: false, // true为展示真实输出图片宽高，false展示看到的截图框宽高 (false) (true, false)
-                maxImgSize: 3000, // 限制图片最大宽度和高度 (2000) (0 ~ max)
-                enlarge: 1, // 图片根据截图框输出比例倍数 (1) (0 ~ max(建议不要太大不然会卡死)
-                mode: 'contain', // 图片默认渲染方式 (contain) (contain , cover, 100px, 100% auto)
-                // limitMinSize: '10', // 裁剪框限制最小区域 (10) (Number, Array, String)
-                fillColor: '#ffffff' // 导出时背景颜色填充 (空) (#ffffff, white)
+                fixed: true, // 是否開啟截圖框寬高固定比例 (false) (true,false)
+                fixedNumber: [4, 3], // 截圖框的寬高比例 ([1, 1]) ([ 寬度 ,  高度 ])
+                full: false, // false按原比例裁切圖片，不失真 (false) (true, false)
+                fixedBox: false, // 固定截圖框大小， (不允許改變) (false)
+                canMove: true, // 上傳圖片是否可以移動 (true) (true, false)
+                canMoveBox: true, // 截圖框能否拖動 (true) (true, false)
+                original: false, // 上傳圖片按照原始比例渲染 (false) (true, false)
+                centerBox: false, // 截圖框是否被限制在圖片里面 (false) (true, false)
+                height: true, // 是否按照設備的dpr 輸出等比例圖片 (true) (true, false)
+                infoTrue: false, // true为展示真实輸出圖片寬高，false展示看到的截圖框寬高 (false) (true, false)
+                maxImgSize: 3000, // 限制圖片最大寬度和高度 (2000) (0 ~ max)
+                enlarge: 1, // 圖片根據截圖框輸出比例倍數 (1) (0 ~ max(建議不要太大不然會卡死)
+                mode: 'contain', // 圖片默认渲染方式 (contain) (contain , cover, 100px, 100% auto)
+                // limitMinSize: '10', // 裁剪框限制最小區域 (10) (Number, Array, String)
+                fillColor: '#ffffff' // 導出時背景顏色填充 (空) (#ffffff, white)
                 
             },
             randomFileName: '',
@@ -202,7 +232,7 @@ export default {
             crap: false,
             downImg: '#',
             imgFile:'',
-            uploadImgRelaPath:'', //上传后的图片的地址（不带服务器域名）
+            uploadImgRelaPath:'', //上傳後的圖片的地址（不帶服務器域名）
         };
     },
     methods: {
@@ -241,6 +271,7 @@ export default {
 
         saveComm(field, type) {
             console.log('finish')
+            
             let _this = this;
             // 使用 FormData 來處理文件上傳
             let formData = new FormData();
@@ -257,6 +288,10 @@ export default {
                     for (let key in this.formData) {
                         formData.append(key, this.formData[key]);
                     }
+
+                    console.log("Selected mem_id:", JSON.parse(localStorage.getItem('userData')).mem_id);
+                    
+                    formData.append('mem_id', JSON.parse(localStorage.getItem('userData')).mem_id);
                     formData.append(field, data, newFileName);
 
                     axios.post(`${import.meta.env.VITE_API_URL}/commentFrontAdd.php`, formData, {
@@ -283,7 +318,7 @@ export default {
                         _this.uploadImgRelaPath = res.relaPathList[0];  //非完整路径
                         _this.$message({　　//element-ui的消息Message消息提示组件
                             type: 'success',
-                            message: '上传成功'
+                            message: '上傳成功'
                         });
                         }
                     })
@@ -319,27 +354,23 @@ export default {
         },
 
         //vue-cropper
-        // 初始化函数
+        // 初始化函數
         imgLoad(msg) {
-            console.log('工具初始化函数=====' + msg)
+            console.log('工具初始化函數=====' + msg)
         },
-        // 图片缩放
+        // 圖片缩放
         changeScale(num) {
             num = num || 1
             this.$refs.cropper.changeScale(num)
         },
-        // 向左旋转
+        // 向左旋轉
         rotateLeft() {
             this.$refs.cropper.rotateLeft()
         },
-        // 向右旋转
+        // 向右旋轉
         rotateRight() {
             this.$refs.cropper.rotateRight()
         },
-        // 实时预览函数
-        // realTime(data) {
-        //     this.previews = data
-        // },
         // *********預覽目前截圖結果************
         preview() {
         this.$refs.cropper.getCropData((data) => {
@@ -359,21 +390,21 @@ export default {
         });
         },
 
-        // 选择图片
+        // 選擇圖片
         selectImg(event) {
             this.fileNameFinal = event.target.files[0];
             console.log('handleFileChange',this.fileNameFinal);
             // const file = e.target.files[0]
             if (!/\.(jpg|jpeg|png|JPG|PNG)$/.test(event.target.value)) {
                 this.$message({
-                message: '图片类型要求：jpeg、jpg、png',
+                message: '圖片類型要求：jpeg、jpg、png',
                 type: 'error'
                 })
                 return false
             }
             this.fileName = this.fileNameFinal.name;
 
-            // 转化为blob
+            // 轉化为blob
             const reader = new FileReader()
             reader.onload = (event) => {
                 let data
@@ -386,7 +417,7 @@ export default {
             }
             
             console.log(`file.name => ${this.fileNameFinal.name}`)
-            // 转化为base64
+            // 轉化为base64
             reader.readAsDataURL(this.fileNameFinal)
         },
         imgLoad (msg) { 
@@ -394,13 +425,13 @@ export default {
             console.log(msg) 
         },
 
-        // 上传图片
+        // 上傳圖片
         // uploadImg(type) {
         //     console.log('finish');
         //     let _this = this;
         //     let formData = new FormData();
         //     if (type === 'blob') {
-        //         // 获取截图的blob数据
+        //         // 獲取截圖的blob數據
         //         this.$refs.cropper.getCropBlob(async(data) => {
         //             let img = window.URL.createObjectURL(data) 
         //         _this.loading = true
@@ -416,22 +447,22 @@ export default {
         
         //         _this.randomFileName = this.createNewFileName()
         
-        //         // 给blob对象的filename属性赋值文件名
+        //         // 给blob對象的filename屬性賦值文件名
         //         formData.append('rpc', data, _this.randomFileName)
-        //         // 给参数赋值文件名
+        //         // 给参數賦值文件名
         //         formData.append('fileName', _this.randomFileName)
         //         formData.append('busType', _this.busType)
         
         //         /* this.fileName = data.file.name
         //         formData.append('fileName', this.fileName)*/
-        //         // 调用axios上传
+        //         // 調用axios上傳
         //         /* const { data: res } = await _this.$http.post('/api/file/imgUpload', formData)*/
         
         //         uploadFile(formData).then(res => {
         //             /* this.handleSuccess(res)*/
         //             if (res.code === 200) {
         //             _this.$message({
-        //                 message: '图片上传成功',
+        //                 message: '圖片上傳成功',
         //                 type: 'success'
         //             })
         //             // const data = res.data.replace('[', '').replace(']', '').split(',')
@@ -444,13 +475,13 @@ export default {
         //             // }
         //             // _this.$emit('uploadImgSuccess', imgInfo)
         
-        //             // 添加随机生成的文件名
+        //             // 添加随機生成的文件名
         //             res.fileName = _this.randomFileName
         
         //             _this.$emit('uploadImgSuccess', res)
         //             } else {
         //             _this.$message({
-        //                 message: '文件服务异常，请联系管理员！',
+        //                 message: '文件服务異常，請聯系管理員！',
         //                 type: 'error'
         //             })
         //             }
@@ -460,7 +491,7 @@ export default {
         //         })
         
         //         /*  if (flag) {
-        //             this.$message.warning('请选择图片')
+        //             this.$message.warning('請選擇圖片')
         //         }*/
         //     }
         // },
@@ -490,7 +521,7 @@ export default {
         //     // this.formData[field] = event.target.files[0];
         //     // console.log('handleFileChange',this.com_pic);
         //     let formData = new FormData();
-        //     // 输出 
+        //     // 輸出 
         //     if (type === 'blob') { 
         //         this.$refs.cropper.getCropBlob((data) => { 
         //             let img = window.URL.createObjectURL(data) 
@@ -521,7 +552,7 @@ export default {
         //                 _this.uploadImgRelaPath = res.relaPathList[0];  //非完整路径
         //                 _this.$message({　　//element-ui的消息Message消息提示组件
         //                     type: 'success',
-        //                     message: '上传成功'
+        //                     message: '上傳成功'
         //                 });
         //                 }
         //             })
