@@ -333,7 +333,7 @@ export default {
       //   {
       //     number: 3,
       //     animal_name: "馬克",
-      //     animal_vote: 200,
+      //     animal_vote: 3,
       //     animal_pic_a: "meerkat",
       //   },
       // ],
@@ -369,7 +369,7 @@ export default {
         // { animal_pic_a: "japaneseCrane", animal_name: "曉曉", vote_count: "23" },
         // { animal_pic_a: "owl", animal_name: "晴空", vote_count: "32" },
         // { animal_pic_a: "eagle", animal_name: "艾妮", vote_count: "98" },
-        // { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "100" },
+        // { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "200" },
         // { animal_pic_a: "pelican", animal_name: "小瑜", vote_count: "78" },
       ],
 
@@ -395,28 +395,11 @@ export default {
     localStorage.setItem('lastResetTime', this.lastResetTime.toString());
   },
 
-//     async vote_animal(voteItem) {
-//   try {
-//     const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
-//       animal_id: voteItem.animal_id,
-//     });
-
-//     if (response.status === 200) {
-//       console.log('投票數據已成功更新到資料庫');
-//       // 更新前端的投票數據
-//       voteItem.animal_vote++; // 更新前端的投票數據
-//     } else {
-//       console.error('更新投票數據時出錯');
-//     }
-//   } catch (error) {
-//     console.error('發生錯誤：', error);
-//   }
-// },
 
 //草原之聲
   async vote_grass(voteItem) {
     try {
-      if (this.votesToday >= 3) {
+      if (this.votesToday >=3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -447,7 +430,7 @@ export default {
 //極地秘境
   async vote_polar(voteItem) {
   try {
-    if (this.animal_vote >= 3) {
+    if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
