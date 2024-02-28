@@ -385,51 +385,33 @@ export default {
   },
   methods: {
     updateLastResetTime() {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 將時間設置為今天的凌晨
-    const midnight = new Date(today);
-    midnight.setDate(midnight.getDate() + 1); // 明天的凌晨
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1); // 明天
+  tomorrow.setHours(0, 0, 0, 0); // 設置為台灣時間午夜
 
-    // 更新 lastResetTime 為今天凌晨
-    this.lastResetTime = midnight.getTime();
-    localStorage.setItem('lastResetTime', this.lastResetTime.toString());
-  },
+  // 更新 lastResetTime 為明天凌晨（台灣時間）
+  const midnightTaiwan = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate());
+  this.lastResetTime = midnightTaiwan.getTime();
+  localStorage.setItem('lastResetTime', this.lastResetTime.toString());
 
+  // 重置票數計數器
+  this.votesToday = 0;
+  localStorage.setItem('votesToday', '0');
+},
 
-//草原之聲
-  async vote_grass(voteItem) {
-    try {
-      if (this.votesToday >=3) {
-      alert('您今天已經投了三票，請明天再來！');
-      return;
-    }
-      // 發送投票請求到後端，新增投票紀錄
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
-
-      // 更新畫面上的總票數顯示
-      const updatedAnimalVote = response.data.animal_vote;
-      const index = this.vote_grass_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
-      if (index !== -1) {
-        this.vote_grass_list[index].animal_vote = updatedAnimalVote;
-      }
-       // 增加當天投票次數
-    this.votesToday++;
-    localStorage.setItem('votesToday', this.votesToday.toString());
-      console.log(voteItem)
-
-      if (this.votesToday <= 3) {
-        this.updateLastResetTime();
-      }
-      // 提示投票成功
-      alert('投票成功！');
-    } catch (error) {
-      console.error('投票失敗：', error);
-      alert('投票失敗，請稍後再試！');
-    }
-  },
-//極地秘境
-  async vote_polar(voteItem) {
+// 草原之聲 vote_grass
+async vote_grass(voteItem) {
   try {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 今天的凌晨
+    const todayMidnight = today.getTime(); // 今天凌晨的時間戳記
+
+    if (now.getTime() >= this.lastResetTime || now.getTime() < todayMidnight) {
+      // 如果現在的時間大於等於上次重置的時間，或者現在的時間小於今天凌晨的時間，表示已經過了一天，重置投票次數
+      this.updateLastResetTime(); // 更新重置時間為明天的凌晨
+    }
+
     if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
@@ -439,20 +421,16 @@ export default {
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
 
     // 更新畫面上的總票數顯示
-    const updatedPolarVote = response.data.animal_vote;
-    const index = this.vote_polar_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+    const updatedAnimalVote = response.data.animal_vote;
+    const index = this.vote_grass_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
     if (index !== -1) {
-      this.vote_polar_list[index].animal_vote = updatedPolarVote;
+      this.vote_grass_list[index].animal_vote = updatedAnimalVote;
     }
-  // 增加當天投票次數
-  this.votesToday++;
+
+    // 增加當天投票次數
+    this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
-    // 檢查是否需要重置每日投票次數
-    if (this.votesToday <= 3) {
-        this.updateLastResetTime();
-      }
-      console.log(voteItem)
-      
+
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
@@ -460,102 +438,154 @@ export default {
     alert('投票失敗，請稍後再試！');
   }
 },
-//叢林奇蹟
+
+
+
+  
+//極地秘境vote_polar
+async vote_polar(voteItem) {
+    try {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 今天的凌晨
+      if (now.getTime() >= this.lastResetTime) {
+        // 如果現在的時間大於等於上次重置的時間，表示已經過了一天，重置投票次數
+        this.updateLastResetTime(); // 更新重置時間為明天的凌晨
+      }
+
+      if (this.votesToday >= 3) {
+        alert('您今天已經投了三票，請明天再來！');
+        return;
+      }
+
+      // 發送投票請求到後端，新增投票紀錄
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+      // 更新畫面上的總票數顯示
+      const updatedAnimalVote = response.data.animal_vote;
+      const index = this.vote_polar_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+      if (index !== -1) {
+        this.vote_polar_list[index].animal_vote = updatedAnimalVote;
+      }
+
+      // 增加當天投票次數
+      this.votesToday++;
+      localStorage.setItem('votesToday', this.votesToday.toString());
+
+      // 提示投票成功
+      alert('投票成功！');
+    } catch (error) {
+      console.error('投票失敗：', error);
+      alert('投票失敗，請稍後再試！');
+    }
+  },
+//叢林奇蹟vote_jungle
 async vote_jungle(voteItem) {
-  try {
-      if (this.votesToday >= 3) {
-      alert('您今天已經投了三票，請明天再來！');
-      return;
-    }
-
-    // 發送投票請求到後端，新增投票紀錄
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
-
-    // 更新畫面上的總票數顯示
-    const updatedJungleVote = response.data.animal_vote;
-    const index = this.vote_jungle_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
-    if (index !== -1) {
-      this.vote_jungle_list[index].animal_vote = updatedJungleVote;
-    }
-  // 增加當天投票次數
-  this.votesToday++;
-    localStorage.setItem('votesToday', this.votesToday.toString());
-    // 檢查是否需要重置每日投票次數
-    if (this.votesToday <= 3) {
-        this.updateLastResetTime();
+    try {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 今天的凌晨
+      if (now.getTime() >= this.lastResetTime) {
+        // 如果現在的時間大於等於上次重置的時間，表示已經過了一天，重置投票次數
+        this.updateLastResetTime(); // 更新重置時間為明天的凌晨
       }
-      console.log(voteItem)
-    // 提示投票成功
-    alert('投票成功！');
-  } catch (error) {
-    console.error('投票失敗：', error);
-    alert('投票失敗，請稍後再試！');
-  }
-},
-//鳥園樂章
+
+      if (this.votesToday >= 3) {
+        alert('您今天已經投了三票，請明天再來！');
+        return;
+      }
+
+      // 發送投票請求到後端，新增投票紀錄
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+      // 更新畫面上的總票數顯示
+      const updatedAnimalVote = response.data.animal_vote;
+      const index = this.vote_jungle_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+      if (index !== -1) {
+        this.vote_jungle_list[index].animal_vote = updatedAnimalVote;
+      }
+
+      // 增加當天投票次數
+      this.votesToday++;
+      localStorage.setItem('votesToday', this.votesToday.toString());
+
+      // 提示投票成功
+      alert('投票成功！');
+    } catch (error) {
+      console.error('投票失敗：', error);
+      alert('投票失敗，請稍後再試！');
+    }
+  },
+//鳥園樂章vote_birds
 async vote_birds(voteItem) {
-  try {
-      if (this.votesToday >= 3) {
-      alert('您今天已經投了三票，請明天再來！');
-      return;
-    }
-
-    // 發送投票請求到後端，新增投票紀錄
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
-
-    // 更新畫面上的總票數顯示
-    const updatedBirdsVote = response.data.animal_vote;
-    const index = this.vote_birds_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
-    if (index !== -1) {
-      this.vote_birds_list[index].animal_vote = updatedBirdsVote;
-    }
-  // 增加當天投票次數
-  this.votesToday++;
-    localStorage.setItem('votesToday', this.votesToday.toString());
-    // 檢查是否需要重置每日投票次數
-    if (this.votesToday <= 3) {
-        this.updateLastResetTime();
+    try {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 今天的凌晨
+      if (now.getTime() >= this.lastResetTime) {
+        // 如果現在的時間大於等於上次重置的時間，表示已經過了一天，重置投票次數
+        this.updateLastResetTime(); // 更新重置時間為明天的凌晨
       }
-      console.log(voteItem)
-    // 提示投票成功
-    alert('投票成功！');
-  } catch (error) {
-    console.error('投票失敗：', error);
-    alert('投票失敗，請稍後再試！');
-  }
-},
-//海洋奇觀
+
+      if (this.votesToday >= 3) {
+        alert('您今天已經投了三票，請明天再來！');
+        return;
+      }
+
+      // 發送投票請求到後端，新增投票紀錄
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+      // 更新畫面上的總票數顯示
+      const updatedAnimalVote = response.data.animal_vote;
+      const index = this.vote_birds_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+      if (index !== -1) {
+        this.vote_birds_list[index].animal_vote = updatedAnimalVote;
+      }
+
+      // 增加當天投票次數
+      this.votesToday++;
+      localStorage.setItem('votesToday', this.votesToday.toString());
+
+      // 提示投票成功
+      alert('投票成功！');
+    } catch (error) {
+      console.error('投票失敗：', error);
+      alert('投票失敗，請稍後再試！');
+    }
+  },
+//海洋奇觀vote_aqua
 async vote_aqua(voteItem) {
-  try {
-      if (this.votesToday >= 3) {
-      alert('您今天已經投了三票，請明天再來！');
-      return;
-    }
-
-    // 發送投票請求到後端，新增投票紀錄
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
-
-    // 更新畫面上的總票數顯示
-    const updatedAquarVote = response.data.animal_vote;
-    const index = this.vote_aqua_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
-    if (index !== -1) {
-      this.vote_aqua_list[index].animal_vote = updatedAquarVote;
-    }
-  // 增加當天投票次數
-  this.votesToday++;
-    localStorage.setItem('votesToday', this.votesToday.toString());
-    // 檢查是否需要重置每日投票次數
-    if (this.votesToday <= 3) {
-        this.updateLastResetTime();
+    try {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 今天的凌晨
+      if (now.getTime() >= this.lastResetTime) {
+        // 如果現在的時間大於等於上次重置的時間，表示已經過了一天，重置投票次數
+        this.updateLastResetTime(); // 更新重置時間為明天的凌晨
       }
-      console.log(voteItem)
-    // 提示投票成功
-    alert('投票成功！');
-  } catch (error) {
-    console.error('投票失敗：', error);
-    alert('投票失敗，請稍後再試！');
-  }
-},
+
+      if (this.votesToday >= 3) {
+        alert('您今天已經投了三票，請明天再來！');
+        return;
+      }
+
+      // 發送投票請求到後端，新增投票紀錄
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, { animal_id: voteItem.animal_id });
+
+      // 更新畫面上的總票數顯示
+      const updatedAnimalVote = response.data.animal_vote;
+      const index = this.vote_aqua_list.findIndex(animal => animal.animal_id === voteItem.animal_id);
+      if (index !== -1) {
+        this.vote_aqua_list[index].animal_vote = updatedAnimalVote;
+      }
+
+      // 增加當天投票次數
+      this.votesToday++;
+      localStorage.setItem('votesToday', this.votesToday.toString());
+
+      // 提示投票成功
+      alert('投票成功！');
+    } catch (error) {
+      console.error('投票失敗：', error);
+      alert('投票失敗，請稍後再試！');
+    }
+  },
 
 
     scrollToVoteList() {
