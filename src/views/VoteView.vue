@@ -313,6 +313,7 @@ export default {
       // animal_id: 'data', 
       votedCount: 0,//總票數
       votesToday: parseInt(localStorage.getItem('votesToday') || '0'),
+      lastResetTime: parseInt(localStorage.getItem('lastResetTime') || '0'),
       currentContent:"vote_grass",
       podium_list: [
       ],
@@ -332,7 +333,7 @@ export default {
       //   {
       //     number: 3,
       //     animal_name: "馬克",
-      //     animal_vote: 200,
+      //     animal_vote: 3,
       //     animal_pic_a: "meerkat",
       //   },
       // ],
@@ -368,7 +369,7 @@ export default {
         // { animal_pic_a: "japaneseCrane", animal_name: "曉曉", vote_count: "23" },
         // { animal_pic_a: "owl", animal_name: "晴空", vote_count: "32" },
         // { animal_pic_a: "eagle", animal_name: "艾妮", vote_count: "98" },
-        // { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "100" },
+        // { animal_pic_a: "toucan", animal_name: "嘟嘟", vote_count: "200" },
         // { animal_pic_a: "pelican", animal_name: "小瑜", vote_count: "78" },
       ],
 
@@ -383,30 +384,22 @@ export default {
     };
   },
   methods: {
+    updateLastResetTime() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // 將時間設置為今天的凌晨
+    const midnight = new Date(today);
+    midnight.setDate(midnight.getDate() + 1); // 明天的凌晨
 
+    // 更新 lastResetTime 為今天凌晨
+    this.lastResetTime = midnight.getTime();
+    localStorage.setItem('lastResetTime', this.lastResetTime.toString());
+  },
 
-//     async vote_animal(voteItem) {
-//   try {
-//     const response = await axios.post(`${import.meta.env.VITE_API_URL}/votescountCreate.php`, {
-//       animal_id: voteItem.animal_id,
-//     });
-
-//     if (response.status === 200) {
-//       console.log('投票數據已成功更新到資料庫');
-//       // 更新前端的投票數據
-//       voteItem.animal_vote++; // 更新前端的投票數據
-//     } else {
-//       console.error('更新投票數據時出錯');
-//     }
-//   } catch (error) {
-//     console.error('發生錯誤：', error);
-//   }
-// },
 
 //草原之聲
   async vote_grass(voteItem) {
     try {
-      if (this.votesToday >= 3) {
+      if (this.votesToday >=3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -423,6 +416,10 @@ export default {
     this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
       console.log(voteItem)
+
+      if (this.votesToday <= 3) {
+        this.updateLastResetTime();
+      }
       // 提示投票成功
       alert('投票成功！');
     } catch (error) {
@@ -433,7 +430,7 @@ export default {
 //極地秘境
   async vote_polar(voteItem) {
   try {
-    if (this.animal_vote >= 3) {
+    if (this.votesToday >= 3) {
       alert('您今天已經投了三票，請明天再來！');
       return;
     }
@@ -450,7 +447,12 @@ export default {
   // 增加當天投票次數
   this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
+    // 檢查是否需要重置每日投票次數
+    if (this.votesToday <= 3) {
+        this.updateLastResetTime();
+      }
       console.log(voteItem)
+      
     // 提示投票成功
     alert('投票成功！');
   } catch (error) {
@@ -478,6 +480,10 @@ async vote_jungle(voteItem) {
   // 增加當天投票次數
   this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
+    // 檢查是否需要重置每日投票次數
+    if (this.votesToday <= 3) {
+        this.updateLastResetTime();
+      }
       console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
@@ -506,6 +512,10 @@ async vote_birds(voteItem) {
   // 增加當天投票次數
   this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
+    // 檢查是否需要重置每日投票次數
+    if (this.votesToday <= 3) {
+        this.updateLastResetTime();
+      }
       console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
@@ -534,6 +544,10 @@ async vote_aqua(voteItem) {
   // 增加當天投票次數
   this.votesToday++;
     localStorage.setItem('votesToday', this.votesToday.toString());
+    // 檢查是否需要重置每日投票次數
+    if (this.votesToday <= 3) {
+        this.updateLastResetTime();
+      }
       console.log(voteItem)
     // 提示投票成功
     alert('投票成功！');
@@ -620,6 +634,7 @@ async vote_aqua(voteItem) {
         this.podium_list[2].class='podium3';
       })
     },
+   
 
   },
   created() {
@@ -630,6 +645,15 @@ async vote_aqua(voteItem) {
   },
 
   mounted() {
+
+    // // 檢查本地儲存中的日期是否與今天相同，如果不同，則重置投票次數為0
+    // const today = new Date().toLocaleDateString();
+    // const lastVotedDate = localStorage.getItem('lastVotedDate');
+    
+    // if (!lastVotedDate || lastVotedDate !== today) {
+    //   localStorage.setItem('votesToday', '0');
+    //   localStorage.setItem('lastVotedDate', today);
+    // }
     // this.fetchData();
     this.fetchDataByCategory('草原之聲');
   this.fetchDataByCategory('極地秘境');
