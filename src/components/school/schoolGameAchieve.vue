@@ -128,11 +128,7 @@ export default {
             });
         },
         convertToday(couponDate) {
-            if(couponDate){
-                var now = new Date(couponDate);
-            } else {
-                var now = new Date();
-            }
+            const now = couponDate ? new Date(couponDate) : new Date();
             let year = now.getFullYear();
             let month = now.getMonth() + 1;
             let day = now.getDate();
