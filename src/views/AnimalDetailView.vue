@@ -315,7 +315,7 @@ export default {
         toOtherPage(id) {
             this.sidebarClick_id = id
             //  console.log(this.sidebarClick_id)
-            this.$router.replace({
+            this.$router.push({
                 name: 'animalDetail', params: { id: this.sidebarClick_id },
             })
             // location.reload()
