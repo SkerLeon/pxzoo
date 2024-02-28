@@ -196,13 +196,13 @@ export default {
         .then((res) => {
           if (res && res.data) {
             if (res.data.code == 1 && res.data.memInfo.mem_status == 1) {
-              console.log(res);
+              // console.log(res);
               this.updateToken(res.data.session_id);
               this.updateUserData(res.data.memInfo);
               alert(res.data.memInfo.mem_name + " 歡迎來到PxZoO~");
               this.$router.push("member");
             } else if (res.data.memInfo.mem_status == 0) {
-              alert("你被ban了 好可憐");
+              alert("此帳號因違反規定已停權");
             } else {
               console.log(res);
               alert("登入失敗");

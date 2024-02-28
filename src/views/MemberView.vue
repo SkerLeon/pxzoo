@@ -183,7 +183,7 @@
               alt="commentPic"
               class="commentPic"
             />
-            <div class="commentArea">
+            <div class="commentInnerArea">
               <p class="commentTitle pcSmTitle">{{ this.profile.mem_name }}</p>
               <textarea
                 maxlength="60"
@@ -253,8 +253,8 @@ export default {
       selectTicketDetail: [],
       coupontDetail: [],
       commentDetail: [],
-      now:"",
-      bfnow:"",
+      now: "",
+      bfnow: "",
     };
   },
   components: {
@@ -312,7 +312,6 @@ export default {
             };
           });
           this.ticketDetail = formattedTicketDetail;
-          console.log(this.ticketDetail);
         })
         .catch((error) => {
           console.error("Error fetching member orders:", error);
@@ -398,15 +397,14 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
           this.userStore.updateUserData({
             ...this.userStore.userData,
             mem_pic: res.data.mem_pic,
           });
-          console.log({
-            ...this.userStore.userData,
-            mem_pic: res.data.mem_pic,
-          });
+          // console.log({
+          //   ...this.userStore.userData,
+          //   mem_pic: res.data.mem_pic,
+          // });
         })
         .catch((error) => {
           console.error("Error uploading file:", error);
@@ -458,16 +456,23 @@ export default {
       document.body.style.overflow = "auto";
     },
     openQRCode(groupIndex) {
-      let ticketsData = new Date(this.ticketDetail[groupIndex].tickets[0].ord_tidate)
-      this.now = new Date (this.getCurrentDateTime())
-      this.bfnow = new Date (this.getCurrentDateTime(1))
+      let ticketsData = new Date(
+        this.ticketDetail[groupIndex].tickets[0].ord_tidate
+      );
+      this.now = new Date(this.getCurrentDateTime());
+      this.bfnow = new Date(this.getCurrentDateTime(1));
 
-      if(ticketsData > this.bfnow){
-        if(ticketsData < this.now){
-          if (this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券") {
-            if (this.ticketDetail[groupIndex].tickets[0].ord_status === "未用票") {
+      if (ticketsData > this.bfnow) {
+        if (ticketsData < this.now) {
+          if (
+            this.ticketDetail[groupIndex].tickets[0].ord_ticktype === "數位票券"
+          ) {
+            if (
+              this.ticketDetail[groupIndex].tickets[0].ord_status === "未用票"
+            ) {
               this.showQRCode = true;
-              this.selectTicketDetail = this.ticketDetail[groupIndex].tickets[0];
+              this.selectTicketDetail =
+                this.ticketDetail[groupIndex].tickets[0];
               document.body.style.overflow = "hidden";
             } else {
               alert("該張數位票劵已使用！");
@@ -475,17 +480,16 @@ export default {
           } else {
             alert("實體票卷沒有QRcode喔！");
           }
-        } else{
-          alert("該票卷未到能使用的天數！")
+        } else {
+          alert("該票卷未到能使用的天數！");
         }
-      }else{
-        alert("該票卷已過期！")
+      } else {
+        alert("該票卷已過期！");
       }
-
     },
     getCurrentDateTime(date) {
       const now = new Date(); // 建立一個新的 Date 物件，代表當前時間
-      if(date){
+      if (date) {
         now.setDate(now.getDate() - date);
       }
 
@@ -498,8 +502,8 @@ export default {
       let minutes = 0; // 分鐘設為0
 
       // 如果月份和日期小於 10，前面加上 0，以符合格式
-      month = month < 10 ? '0' + month : month;
-      day = day < 10 ? '0' + day : day;
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
 
       // 小時和分鐘不需要檢查，因為我們已經手動設置為下午5點整
       return `${year}-${month}-${day} ${hours}:${minutes}`; // 返回格式化的日期時間字符串
