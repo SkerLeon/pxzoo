@@ -331,17 +331,17 @@ export default {
         },
     },
     watch: {
-        // sidebarClick_id: {
-        //     handler(newVal, oldVal) {
-        //         // console.log('sidebarClick_id 变化了：', newVal);
-        //         this.fetchAnimalDetail(newVal)
-        //     },
-        //     deep: true // 如果 sidebarClick_id 是对象或数组，需要使用 deep: true 来深度监测变化
-        // },
+        sidebarClick_id: {
+            handler(newVal, oldVal) {
+                // console.log('sidebarClick_id 变化了：', newVal);
+                this.fetchAnimalDetail(newVal)
+            },
+            deep: true // 如果 sidebarClick_id 是对象或数组，需要使用 deep: true 来深度监测变化
+        },
         '$route'(to, from) {
             if (to.params.id !== from.params.id) {
                 // 當路由參數 id 發生變化時才調用 fetchAnimalDetail 方法
-                this.fetchAnimalDetail(to.params.id);
+                this.sidebarClick_id = to.params.id
             }
         }
     },
