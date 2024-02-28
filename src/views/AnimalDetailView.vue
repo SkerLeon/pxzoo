@@ -21,11 +21,11 @@
                             :class="{ arrow_rotate: category.isShow }">
                     </div>
                     <!-- @click.stop阻止蔓延 -->
-                    <ul class="animaldetail_sub_menu" v-show="category.isShow">
+                    <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
                         <li v-for="child in category.animals" class="fade">
-                            <a class="pcInnerText" href="#" @click.stop="toOtherPage(child.animals_id)">{{ child.species
+                            <div class="pcInnerText select_link" href="#" @click.stop="toOtherPage(child.animals_id)">{{ child.species
                             }}{{
-    child.id }}</a>
+    child.id }}</div>
                         </li>
                     </ul>
                 </li>
@@ -70,11 +70,11 @@
                 <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                        <!-- 动态绑定大图的 src 属性 -->
+                        <!-- 動態绑定大圖的 src 属性 -->
                         <img :src="bigPic" alt="big_pic">
                     </div>
                     <div class="small_pic">
-                        <!-- 使用 v-for 循环生成小图 -->
+                        <!-- 使用 v-for 生圖 -->
                         <img v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
                             :src="getSmallPicUrl(pic)" :key="`small_${pic}`" :alt="`small_${pic}`" @click="selectPic(pic)">
                     </div>
@@ -314,7 +314,7 @@ export default {
         },
         toOtherPage(id) {
             this.sidebarClick_id = id
-            // console.log(this.sidebarClick_id)
+            //  console.log(this.sidebarClick_id)
             this.$router.replace({
                 name: 'animalDetail', params: { id: this.sidebarClick_id },
             })
