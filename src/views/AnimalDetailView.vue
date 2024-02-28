@@ -1,61 +1,56 @@
 <template>
-    <MainFixedVote/>
+    <MainFixedVote />
     <section class="forHeader animal_detail_section">
-        <div class="animal-lightBox"
-        v-show="showHint" @click.stop="closeHint">
+        <div class="animal-lightBox" v-show="showHint" @click.stop="closeHint">
             <div class="animal-hint">
-                <img class="hint-close" src="/src/assets/images/animal/icon/close.svg" alt="close"
-                @click="closeHint">
-                <p class="pcMarkText">此頁面含有動物叫聲，請點選<span><img src="../assets/images/animal/icon/Sound.svg" alt=""></span>聆聽</p>
+                <img class="hint-close" src="/src/assets/images/animal/icon/close.svg" alt="close" @click="closeHint">
+                <p class="pcMarkText">此頁面含有動物叫聲，請點選<span><img src="../assets/images/animal/icon/Sound.svg" alt=""></span>聆聽
+                </p>
             </div>
         </div>
         <!-- 動物側邊欄 pc才有 -->
         <aside class="animal_detail_menu">
-            <img 
-            class="monkey"
-            src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
+            <img class="monkey" src="../assets/images/vetor/vetor_animal_monkey.svg" alt="monkey">
             <ul class="animal_link_btn ">
-                <li class="animaldetail_filter "
-                v-for="(category, index) in animals_sidebar"
-                :key="category.id"
-                @click="toggleShow(isShow,index)">
-                <div class="main_select">
-                <img :src="getIconUrl(category.icon)" alt="category.label">
-                <p class="pcInnerText">{{ category.park }}</p>
-                <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow"
-                class="toggle_arrow"
-                :class="{ arrow_rotate: category.isShow }">
-                </div>
+                <li class="animaldetail_filter " v-for="(category, index) in animals_sidebar" :key="category.id"
+                    @click="toggleShow(isShow, index)">
+                    <div class="main_select">
+                        <img :src="getIconUrl(category.icon)" alt="category.label">
+                        <p class="pcInnerText">{{ category.park }}</p>
+                        <img src="../assets/images/animal/icon/down_arrow.svg" alt="arrow" class="toggle_arrow"
+                            :class="{ arrow_rotate: category.isShow }">
+                    </div>
                     <!-- @click.stop阻止蔓延 -->
                     <ul class="animaldetail_sub_menu" v-show="category.isShow" @click.stop>
                         <li v-for="child in category.animals" class="fade">
-                            <a class="pcInnerText" href="#" @click="toOtherPage(child.animals_id)">{{ child.species }}{{ child.id }}</a>
+                            <div class="pcInnerText select_link" href="#" @click.stop="toOtherPage(child.animals_id)">{{ child.species
+                            }}{{
+    child.id }}</div>
                         </li>
                     </ul>
                 </li>
             </ul>
         </aside>
-        <main class="animal_detail_overview"> 
+        <main class="animal_detail_overview">
 
-        <!-- 上方介紹區塊            -->
+            <!-- 上方介紹區塊            -->
             <div class="animal_detail_info">
                 <div class="animal_detail_text">
                     <div class="animal_detail_title">
                         <h2 class="animal_detail_species">{{ animalDetailData.animal_species }}</h2>
                         <!-- 聲音 -->
-                        <div class="animal_detail_sound"
-                        @click="animalSoundPlay">            
-                        <img src="../assets/images/animal/icon/Sound.svg" alt="soundIcon">
+                        <div class="animal_detail_sound" @click="animalSoundPlay">
+                            <img src="../assets/images/animal/icon/Sound.svg" alt="soundIcon">
                         </div>
                     </div>
                     <div class="animal_detail_sec-section">
                         <div class="animal_detail_name">
                             <h5 class="pcMarkText">名字</h5>
-                            <p class="pcInnerText">{{animalDetailData.animal_name}}</p>
+                            <p class="pcInnerText">{{ animalDetailData.animal_name }}</p>
                         </div>
                         <div class="animal_detail_life">
                             <h5 class="pcMarkText">平均壽命</h5>
-                            <p class="pcInnerText">{{animalDetailData.animal_lifespan}}</p>
+                            <p class="pcInnerText">{{ animalDetailData.animal_lifespan }}</p>
                         </div>
                     </div>
                     <div class="animal_detail_live">
@@ -75,17 +70,13 @@
                 <!-- 圖片區 -->
                 <div class="animal_detail_img_list">
                     <div class="big_pic">
-                    <!-- 动态绑定大图的 src 属性 -->
+                        <!-- 動態绑定大圖的 src 属性 -->
                         <img :src="bigPic" alt="big_pic">
                     </div>
                     <div class="small_pic">
-                    <!-- 使用 v-for 循环生成小图 -->
-                    <img
-                    v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
-                    :src="getSmallPicUrl(pic)" 
-                    :key="`small_${pic}`" 
-                    :alt="`small_${pic}`"
-                    @click="selectPic(pic)">
+                        <!-- 使用 v-for 生圖 -->
+                        <img v-for="pic in [animalDetailData.animal_pic_a, animalDetailData.animal_pic_b, animalDetailData.animal_pic_c]"
+                            :src="getSmallPicUrl(pic)" :key="`small_${pic}`" :alt="`small_${pic}`" @click="selectPic(pic)">
                     </div>
                 </div>
             </div>
@@ -111,20 +102,11 @@
             </div>
 
             <!-- 返回上頁 mb才有 -->
-            <button class="iconBtn pcInnerText animal_detail_btn"                 
-            @click="backtoAnimal()">
-            <p class="iconText">
-                <img
-                src="../assets/images/animal/goback-arrow.png"
-                alt=""
-                class="buttonIcon"
-                />返回上頁
-            </p>
-            <img
-                src="@/assets/images/login/icon/btnArrow.svg"
-                alt=""
-                class="arrowIcon"
-            />
+            <button class="iconBtn pcInnerText animal_detail_btn" @click="backtoAnimal()">
+                <p class="iconText">
+                    <img src="../assets/images/animal/goback-arrow.png" alt="" class="buttonIcon" />返回上頁
+                </p>
+                <img src="@/assets/images/login/icon/btnArrow.svg" alt="" class="arrowIcon" />
             </button>
         </div>
 
@@ -142,58 +124,59 @@
     </section>
 </template>
 
-<script>       
-import MainFixedVote from '@/components/MainFixedVote.vue'   
+<script>
+import MainFixedVote from '@/components/MainFixedVote.vue'
 // import animalSound from "../../public/audio/sound_lion.mp3";     
 import axios from 'axios';
 export default {
     data() {
         return {
+            // pageTitle: '',
             animalDetailData: [],//data
-            bigPic:'',
+            bigPic: '',
             smallPics: [],
-            sidebarClick_id:0,
+            sidebarClick_id: 0,
             //側邊欄
-            animals_sidebar : [
+            animals_sidebar: [
                 {
-                    park:'草原之聲',
-                    id:1,
+                    park: '草原之聲',
+                    id: 1,
                     isShow: false,
                     animals: [],//動物種類，動態渲染
-                    animals_id:[],
-                    icon:'giraffe'
+                    animals_id: [],
+                    icon: 'giraffe'
                 },
                 {
-                    park:'極地秘境',
-                    id:2,
+                    park: '極地秘境',
+                    id: 2,
                     isShow: false,
                     animals: [],
-                    animals_id:[],
-                    icon:'penguin'
+                    animals_id: [],
+                    icon: 'penguin'
                 },
                 {
-                    park:'叢林奇蹟',
-                    id:3,
+                    park: '叢林奇蹟',
+                    id: 3,
                     isShow: false,
                     animals: [],
-                    animals_id:[],
-                    icon:'monkey'
+                    animals_id: [],
+                    icon: 'monkey'
                 },
                 {
-                    park:'鳥園樂章',
-                    id:4,
+                    park: '鳥園樂章',
+                    id: 4,
                     isShow: false,
                     animals: [],
-                    animals_id:[],
-                    icon:'flamingo'
+                    animals_id: [],
+                    icon: 'flamingo'
                 },
                 {
-                    park:'海洋奇觀',
-                    id:5,
+                    park: '海洋奇觀',
+                    id: 5,
                     isShow: false,
                     animals: [],
-                    animals_id:[],
-                    icon:'fish'
+                    animals_id: [],
+                    icon: 'fish'
                 },
             ],
 
@@ -201,10 +184,10 @@ export default {
             imgnum: 1,
             //關提示
             showHint: true,
-            
+
         };
     },
-    created(){
+    created() {
         //定住畫面
         document.body.style.overflow = 'hidden';
         const closed = sessionStorage.getItem('hintClosed');
@@ -212,18 +195,18 @@ export default {
             this.showHint = false;
             document.body.style.overflow = ''
         }
-        const animalId = this.$route.params.id;
-        this.fetchAnimalDetail(animalId);
+        const animalId = this.$route.params.id
+        this.fetchAnimalDetail(animalId)
 
         // 側邊欄
-        axios.get(`${import.meta.env.VITE_API_URL}/animalShow.php?type=categories`)
-        .then(response => {
-            this.categories = response.data; // 假設返回的數據是一個數組
-        // console.log(this.categories)
-        })
-        .catch(error => {
-            console.error("Error fetching data: ", error);
-        });
+        // axios.get(`${import.meta.env.VITE_API_URL}/animalShow.php?type=categories`)
+        //     .then(response => {
+        //         this.categories = response.data; // 假設返回的數據是一個數組
+        //         // console.log(this.categories)
+        //     })
+        //     .catch(error => {
+        //         console.error("Error fetching data: ", error);
+        //     });
 
     },
     mounted() {
@@ -232,56 +215,58 @@ export default {
         // this.fetchAnimalDetail(animalId);
     },
     beforeDestroy() {
-    var sound = new Audio(this.animalSoundPath);
-    console.log('stop')
-    sound.pause();
-    sound.currentTime = 0;
+        var sound = new Audio(this.animalSoundPath);
+        // console.log('stop')
+        sound.pause();
+        sound.currentTime = 0;
     },
-    computed:{
+    computed: {
         //監控目前動物頁面找聲音
-        animalSoundPath(){
+        animalSoundPath() {
             return this.getAnimalSound(this.animalDetailData.animal_sound)
         },
         audioPlayer() {
-            return new Audio(this.animalSoundPath) 
-        }  
+            return new Audio(this.animalSoundPath)
+        }
     },
     methods: {
         fetchAnimalDetail(id) {
-        // API 請求或其他邏輯來填充 animalDetail
+            // console.log(id)
+            // API 請求或其他邏輯來填充 animalDetail
             axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?id=${id}`)
-            .then(response => {
-                // 處理獲取到的動物詳情數據
-                this.animalDetailData = response.data
-
-                this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${this.animalDetailData.animal_pic_a}`, import.meta.url).href
-            })
-            .catch(error => {
-                // 處理錯誤情況
-                console.error('獲取動物詳情時出錯:', error);
-            });
+                .then(response => {
+                    // 處理獲取到的動物詳情數據
+                    this.animalDetailData = response.data
+                    // this.pageTitle = this.animalDetailData.animal_species
+                    // document.title = this.pageTitle + ' | PxZoO'
+                    this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${this.animalDetailData.animal_pic_a}`, import.meta.url).href
+                })
+                .catch(error => {
+                    // 處理錯誤情況
+                    // console.error('獲取動物詳情時出錯:', error);
+                });
         },
         //側邊欄
-        fetchSidebarData(){
+        fetchSidebarData() {
             axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?type=speciesname`)
-            .then(response => {
-                const animalsData = response.data;
-                // 遍歷每一筆動物資料
-                animalsData.forEach(animal => {
-                // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
-                const parkIndex = this.animals_sidebar.findIndex(category => category.park === animal.category_name);
-                // 檢查是否找到對應的館別
-                if (parkIndex !== -1) {
-                    this.animals_sidebar[parkIndex].animals.push({ 
-                    species: animal.animal_species,
-                    animals_id: animal.animal_id  // 在这里为每个 child 对象添加 animals_id 属性
+                .then(response => {
+                    const animalsData = response.data;
+                    // 遍歷每一筆動物資料
+                    animalsData.forEach(animal => {
+                        // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
+                        const parkIndex = this.animals_sidebar.findIndex(category => category.park === animal.category_name);
+                        // 檢查是否找到對應的館別
+                        if (parkIndex !== -1) {
+                            this.animals_sidebar[parkIndex].animals.push({
+                                species: animal.animal_species,
+                                animals_id: animal.animal_id  // 在这里为每个 child 对象添加 animals_id 属性
+                            });
+                        }
                     });
-                }
+                })
+                .catch(error => {
+                    // console.error('Error fetching animal data:', error);
                 });
-            })
-            .catch(error => {
-                console.error('Error fetching animal data:', error);
-            });
         },
         //關閉提示
         closeHint() {
@@ -295,10 +280,14 @@ export default {
         },
         //動物icon(連資料庫)
         getAnimalIconUrl(paths) {
+            //若為連到照片就返回
+            if (!paths) return ''
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_icon/${paths}`, import.meta.url).href
         },
         //動物圖片(連資料庫)
         getSmallPicUrl(pic) {
+            // console.log(pic)
+            if (!pic) return ''
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${pic}`, import.meta.url).href
         },
         //動物圖片(大圖)，根據圖片選擇切換this.bigPic
@@ -307,33 +296,34 @@ export default {
             //console.log(this.bigPic)
         },
         //動物聲音路徑
-        getAnimalSound(paths){
+        getAnimalSound(paths) {
             return new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/audio/${paths}`, import.meta.url).href
         },
         //播放聲音
-        animalSoundPlay(){
+        animalSoundPlay() {
             this.audioPlayer.play()
         },
         // 選單收合，雖然功能有出來但不確定寫得對不對
-        toggleShow(isShow,index) {
+        toggleShow(isShow, index) {
             this.animals_sidebar[index].isShow = !this.animals_sidebar[index].isShow;
             this.animals_sidebar.forEach((item, i) => {
-            if (i !== index) {
-            item.isShow = false;
-            }
+                if (i !== index) {
+                    item.isShow = false;
+                }
 
-            });  
+            });
         },
-        toOtherPage(id){
+        toOtherPage(id) {
             this.sidebarClick_id = id
-            console.log(this.sidebarClick_id)
+            //  console.log(this.sidebarClick_id)
             this.$router.push({
-            name: 'animalDetail', params: { id: this.sidebarClick_id},})
+                name: 'animalDetail', params: { id: this.sidebarClick_id },
+            })
             // location.reload()
         },
         //回到上頁
-        backtoAnimal(){
-            this.$router.push({ name: 'animal' });
+        backtoAnimal() {
+            this.$router.go(-1);
         },
         //離開這頁時暫停音檔
         beforeRouteLeave(to, from, next) {
@@ -343,18 +333,17 @@ export default {
     },
     watch: {
         sidebarClick_id: {
-        handler(newVal, oldVal) {
-            // console.log('sidebarClick_id 变化了：', newVal);
-            this.fetchAnimalDetail(newVal)
+            handler(newVal, oldVal) {
+                // console.log('sidebarClick_id 變化了：', newVal);
+                this.fetchAnimalDetail(newVal)
+            },
+            deep: true 
         },
-        deep: true // 如果 sidebarClick_id 是对象或数组，需要使用 deep: true 来深度监测变化
-        }
     },
 
     components: {
-       MainFixedVote,
-     },
+        MainFixedVote,
+    },
 }
 </script>
 
-deep:true
