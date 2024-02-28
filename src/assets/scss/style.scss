@@ -1,21 +1,11 @@
 //變數
 @use "sass:math";
 @import "base/reset";
-@import "base/var";
 @import "base/color";
 @import "base/font";
 
-//函式
-@import "mixin/mixin";
-
 //組件
-@import "components/grid";
 @import "components/btn";
-@import "components/body";
-@import "components/rwd";
-@import "components/table";
-@import "components/card";
-@import "components/form";
 @import "components/input";
 
 //layout
@@ -26,6 +16,9 @@
 @import "layout/debug";
 @import "layout/QRcodeLightBox";
 @import "layout/CommentLightBox";
+
+//函式
+@import "mixin/mixin";
 
 //page
 @import "page/animal";
@@ -39,6 +32,3 @@
 @import "page/vote";
 @import "page/home";
 @import "page/notFound";
-
-//套件
-@import "plugin/bootstrap";
