@@ -131,7 +131,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            pageTitle: '',
+            // pageTitle: '',
             animalDetailData: [],//data
             bigPic: '',
             smallPics: [],
@@ -195,7 +195,8 @@ export default {
             this.showHint = false;
             document.body.style.overflow = ''
         }
-        this.fetchAnimalDetail(this.$route.params.id)
+        const animalId = this.$route.params.id
+        this.fetchAnimalDetail(animalId)
 
         // 側邊欄
         // axios.get(`${import.meta.env.VITE_API_URL}/animalShow.php?type=categories`)
@@ -236,8 +237,8 @@ export default {
                 .then(response => {
                     // 處理獲取到的動物詳情數據
                     this.animalDetailData = response.data
-                    this.pageTitle = this.animalDetailData.animal_species
-                    document.title = this.pageTitle + ' | PxZoO'
+                    // this.pageTitle = this.animalDetailData.animal_species
+                    // document.title = this.pageTitle + ' | PxZoO'
                     this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${this.animalDetailData.animal_pic_a}`, import.meta.url).href
                 })
                 .catch(error => {
@@ -338,12 +339,6 @@ export default {
             },
             deep: true 
         },
-        '$route'(to, from) {
-            if (to.params.id !== from.params.id) {
-                // 當路由參數 id 發生變化時才調用 fetchAnimalDetail 方法
-                this.sidebarClick_id = to.params.id
-            }
-        }
     },
 
     components: {
