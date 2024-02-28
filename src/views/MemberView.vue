@@ -118,7 +118,7 @@
               <p class="pcInnerText idColor">{{ ticket.ord_id }}</p>
               <p class="pcInnerText">{{ ticket.ord_tidate }}</p>
               <p class="pcInnerText">{{ ticket.ord_tiprice }}</p>
-              <p class="pcInnerText">{{ ticket.ord_payprice }}</p>
+              <p class="pcInnerText">{{ ticket.ord_couprice }}</p>
               <p class="pcInnerText">{{ ticket.ord_ticktype }}</p>
               <p class="pcInnerText">{{ ticket.ord_status }}</p>
             </div>
@@ -245,7 +245,7 @@ export default {
         "訂單編號:",
         "票券日期:",
         "付款金額:",
-        "總票數:",
+        "優惠金額:",
         "票券型態:",
         "處理狀態:",
       ],
@@ -300,7 +300,6 @@ export default {
           }/memberOrderInfo.php?mem_id=${memberId}`
         )
         .then((res) => {
-          // console.log(res);
           // 將從資料庫獲取的票券資料格式化成適合於渲染的格式
           if (!res.data || !Array.isArray(res.data)) {
             return;
