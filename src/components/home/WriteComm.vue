@@ -222,7 +222,7 @@ export default {
                 infoTrue: false, // true为展示真实輸出圖片寬高，false展示看到的截圖框寬高 (false) (true, false)
                 maxImgSize: 3000, // 限制圖片最大寬度和高度 (2000) (0 ~ max)
                 enlarge: 1, // 圖片根據截圖框輸出比例倍數 (1) (0 ~ max(建議不要太大不然會卡死)
-                mode: 'contain', // 圖片默认渲染方式 (contain) (contain , cover, 100px, 100% auto)
+                mode: 'cover', // 圖片默认渲染方式 (contain) (contain , cover, 100px, 100% auto)
                 // limitMinSize: '10', // 裁剪框限制最小區域 (10) (Number, Array, String)
                 fillColor: '#ffffff' // 導出時背景顏色填充 (空) (#ffffff, white)
                 
@@ -371,23 +371,23 @@ export default {
         rotateRight() {
             this.$refs.cropper.rotateRight()
         },
-        // *********預覽目前截圖結果************
+        // 預覽目前截圖結果
         preview() {
         this.$refs.cropper.getCropData((data) => {
             // console.log(data);
             this.modelSrc = data;
         });
         },
-        // *********即時預覽函數************
+        // 即時預覽函數
         realTime(data) {
             this.previews = data;
             // console.log(data);
         },
-        // *********得到截圖的 base64 數據************
+        // 得到截圖的 base64 數據
         demo() {
             this.$refs.cropper.getCropData((data) => {
-            console.log(data);
-        });
+                console.log(data);
+            });
         },
 
         // 選擇圖片

@@ -199,7 +199,12 @@ export default {
     fetchNews(){
       axios.get(`${import.meta.env.VITE_API_URL}/newsFrontShow.php`)
       .then(response => {
-        this.news = response.data; 
+        this.news = response.data.map(item=>{
+          return {
+            ...item,
+            news_status: parseInt(item.news_status)
+          }
+        }); 
         // console.log(this.news.length); 
         // 處理頁碼問題
         this.currentPage = parseInt(this.$route.params.page) || 1;

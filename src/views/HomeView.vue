@@ -615,97 +615,9 @@ export default {
       news: [],
 
       //人氣投票
-      // podium_list: [
-      //   {
-      //     name: "琳達",
-      //     // medal: "第二名獎牌",
-      //     score: 197,
-      //     animal_img: "giraffe",
-      //     NO: "2",
-      //     class: "podium2",
-      //   },
-      //   {
-      //     name: "艾迪",
-      //     // medal: "第一名獎牌",
-      //     animal_img: "elephant",
-      //     score: 205,
-      //     NO: "1",
-      //     class: "podium1",
-      //   },
-      //   {
-      //     name: "阿斯蘭",
-      //     // medal: "第三名獎牌",
-      //     animal_img: "lion",
-      //     score: 146,
-      //     NO: "3",
-      //     class: "podium3",
-      //   },
-      // ],
       podium_list: [],
 
       //留言板
-      // comment_list: [
-      //   {
-      //     class: "comm1",
-      //     img: "comm_1",
-      //     content:
-      //       "這是我第三次造訪這個動物園，每次都有不同的驚喜！孩子們特別喜歡互動區，能近距離觀察動物真是太棒了！",
-      //   },
-      //   {
-      //     class: "comm2",
-      //     img: "comm_2",
-      //     content:
-      //       "這個動物園的設施很棒，動物品種豐富多樣，但有些地方需要更多資訊牌，讓遊客更了解動物的生態習性。",
-      //   },
-      //   {
-      //     class: "comm3",
-      //     img: "comm_3",
-      //     content:
-      //       "我喜歡這個動物園的環境，很寧靜舒適。工作人員非常熱心，他們對動物的照顧真的很投入。強烈推薦！",
-      //   },
-      //   {
-      //     class: "comm4",
-      //     img: "comm_4",
-      //     content:
-      //       "看到這麼多種類的動物很值得。我特別喜歡他們的猩猩區，能夠近距離觀察猩猩的行為真是太有趣了！",
-      //   },
-      //   {
-      //     class: "comm1",
-      //     img: "comm_5",
-      //     content:
-      //       "這個動物園真的很適合家庭遊玩，有許多互動體驗讓孩子們玩得很開心。但是建議增加一些休息區域，讓遊客可以休息片刻再繼續探索。",
-      //   },
-      //   {
-      //     class: "comm2",
-      //     img: "comm_6",
-      //     content:
-      //       "動物園的環境很美，但是有些動物的展示區可能需要擴建。不過整體來說，是個不錯的地方，特別是他們的教育活動非常有意義。",
-      //   },
-      //   {
-      //     class: "comm3",
-      //     img: "comm_7",
-      //     content:
-      //       "這是我第一次來這個動物園，我完全愛上了！工作人員很親切，動物看起來都很幸福，這裡的氛圍令人感到愉悅。",
-      //   },
-      //   {
-      //     class: "comm4",
-      //     img: "comm_8",
-      //     content:
-      //       "動物園的設施和種類都很豐富，但是人流量有些大，特別是在假日。建議增加一些導覽團或者提供更多資訊，幫助遊客更好地欣賞動物。",
-      //   },
-      //   {
-      //     class: "comm1",
-      //     img: "comm_9",
-      //     content:
-      //       "這裡的設施非常乾淨整潔，動物看起來都很健康。但希望能增加一些飲料站或者小吃亭，方便遊客在觀賞動物時能夠休息補充能量。",
-      //   },
-      //   {
-      //     class: "comm2",
-      //     img: "comm_10",
-      //     content:
-      //       "我是動物愛好者，這個動物園真的讓我感到驚艷！看到這麼多種類的動物，學到了很多新知識。下次還會再來！",
-      //   },
-      // ],
       comment: [],
       showWriteComm: false,
       showReportComm: false,
@@ -767,7 +679,12 @@ export default {
     //最新消息資料
     axios.get(`${import.meta.env.VITE_API_URL}/newsFrontShow.php`)
       .then(response => {
-        this.news = response.data; // 假設返回的數據是一個數組
+        this.news = response.data.map(item=>{
+          return {
+            ...item,
+            news_status: parseInt(item.news_status)
+          }
+        }); // 假設返回的數據是一個數組
       })
       .catch(error => {
         console.error("Error fetching data: ", error);
@@ -776,11 +693,18 @@ export default {
     //留言板資料
     axios.get(`${import.meta.env.VITE_API_URL}/commentFrontShow.php`)
       .then(response => {
-        this.comment = response.data; // 假設返回的數據是一個數組
+        this.comment = response.data.map(item=>{
+          return {
+            ...item,
+            com_status: parseInt(item.com_status)
+          }
+        }); // 假設返回的數據是一個數組
       })
       .catch(error => {
         console.error("Error fetching data: ", error);
       });
+    
+      this.memData = JSON.parse(localStorage.getItem('userData')) || {};
 
     //人氣投票資料
       axios.get(`${import.meta.env.VITE_API_URL}/votescountTOP3.php`)
@@ -793,8 +717,6 @@ export default {
       .catch(error => {
         console.error("Error fetching data: ", error);
       });
-
-      this.memData = JSON.parse(localStorage.getItem('userData')) || {};
 
   },
 
@@ -1211,16 +1133,6 @@ export default {
       ).href;
       
     },
-    
-    // fetchTop3(){
-    //   axios.get(`${import.meta.env.VITE_API_URL}/votescountTOP3.php`)
-    //   .then(response=>{
-    //     this.podium_list=response.data;
-    //     this.podium_list[1].class='podium2';
-    //     this.podium_list[0].class='podium1';
-    //     this.podium_list[2].class='podium3';
-    //   })
-    // },
 
     //留言板
     getCommUrl(image) {
