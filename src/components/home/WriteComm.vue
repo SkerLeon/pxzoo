@@ -232,7 +232,7 @@ export default {
             crap: false,
             downImg: '#',
             imgFile:'',
-            uploadImgRelaPath:'', //上傳後的圖片的地址（不帶服務器域名）
+            
         };
     },
     methods: {
