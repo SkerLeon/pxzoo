@@ -23,7 +23,7 @@
         </button>
 
     </section>
-    <loginLightBox v-show="loginLightBoxSwitch" @closeLoginBox="closeLoginBox"/>
+    <loginLightBox v-show="loginLightBoxSwitch" @memIdData="getMemId" @closeLoginBox="closeLoginBox"/>
 </template>
 
 <script>
@@ -48,8 +48,24 @@ export default {
             },
             couponData:[],
             couponDataBool:false,
-            today:0
+            today:0,
+            mem_id:null,
         };
+    },
+    watch:{
+        memData:{
+            deep: true,
+            handler(value){
+                // console.log(value);
+                if(value && 'mem_id' in value){
+                // newValue 為 null 或 undefined時，即為 false
+                    this.mem_id = value.mem_id;
+                }else{
+                    this.mem_id = null;
+                }
+                // console.log('now', this.mem_id);
+            },
+        }
     },
     created() {
         axios.get(`${import.meta.env.VITE_API_URL}/couponShow.php`)
@@ -70,16 +86,11 @@ export default {
             max = Math.floor(max);
             this.random = Math.floor(Math.random() * (max - min)) + min;
         },
-        closeLoginBox(){
-            this.loginLightBoxSwitch = !this.loginLightBoxSwitch
+        closeLoginBox(bool){
+            this.loginLightBoxSwitch = bool
         },
         receiveCoupon(){
-            const userDataString  = localStorage.getItem('userData')
-
-            if (userDataString) {
-                const user = JSON.parse(userDataString);
-
-                if( user.mem_id ){
+                if( this.mem_id !== null ){
                     this.today = this.convertToday();
                     this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
                     this.couponAndMemderData.cou_id = this.random + 1
@@ -108,7 +119,6 @@ export default {
                 } else{
                     this.loginLightBoxSwitch = !this.loginLightBoxSwitch
                 }
-            }
         },
         getMemberCoupon(){
             return new Promise((resolve, reject) => {
@@ -144,6 +154,9 @@ export default {
 
             return year + '-' + month + '-' + day;
         },
+        getMemId(value){
+            this.mem_id = value;
+        },
 
     },
 };
@@ -172,7 +185,7 @@ export default {
         }
     }
     p{
-        // color: $inputHintColor;
+        color: #ffffff;
         text-align: center;
         letter-spacing: 0.3vw;
         @media (max-width:768px) {
