@@ -399,12 +399,12 @@
         </div>
 
         <div class="home_vote_podium">
-          <div class="podium_group" v-for="podium in podium_list" :class="podium.class">
-            <img class="vote_img" :src="getVoteUrl(podium.animal_img)" alt="Animal" />
-            <div class="vote_name pcSmTitle">{{ podium.name }}</div>
+          <div class="podium_group" v-for="(podium, index) in podium_list" :class="podium.class">
+            <img class="vote_img" :src="getVoteUrl(podium.animal_small_pic)" alt="Animal" />
+            <div class="vote_name pcSmTitle">{{ podium.animal_name }}</div>
             <div class="podium_box">
-              <img class="NO" :src="getNoUrl(podium.NO)" alt="NO" />
-              <div class="score pcSmTitle">{{ podium.score }}</div>
+              <img class="NO" :src="getNoUrl(index)" alt="NO" />
+              <div class="score pcSmTitle">{{ podium.animal_vote }}</div>
             </div>
           </div>
 
@@ -615,32 +615,33 @@ export default {
       news: [],
 
       //人氣投票
-      podium_list: [
-        {
-          name: "琳達",
-          // medal: "第二名獎牌",
-          score: 197,
-          animal_img: "giraffe",
-          NO: "2",
-          class: "podium2",
-        },
-        {
-          name: "艾迪",
-          // medal: "第一名獎牌",
-          animal_img: "elephant",
-          score: 205,
-          NO: "1",
-          class: "podium1",
-        },
-        {
-          name: "阿斯蘭",
-          // medal: "第三名獎牌",
-          animal_img: "lion",
-          score: 146,
-          NO: "3",
-          class: "podium3",
-        },
-      ],
+      // podium_list: [
+      //   {
+      //     name: "琳達",
+      //     // medal: "第二名獎牌",
+      //     score: 197,
+      //     animal_img: "giraffe",
+      //     NO: "2",
+      //     class: "podium2",
+      //   },
+      //   {
+      //     name: "艾迪",
+      //     // medal: "第一名獎牌",
+      //     animal_img: "elephant",
+      //     score: 205,
+      //     NO: "1",
+      //     class: "podium1",
+      //   },
+      //   {
+      //     name: "阿斯蘭",
+      //     // medal: "第三名獎牌",
+      //     animal_img: "lion",
+      //     score: 146,
+      //     NO: "3",
+      //     class: "podium3",
+      //   },
+      // ],
+      podium_list: [],
 
       //留言板
       // comment_list: [
@@ -776,6 +777,18 @@ export default {
     axios.get(`${import.meta.env.VITE_API_URL}/commentFrontShow.php`)
       .then(response => {
         this.comment = response.data; // 假設返回的數據是一個數組
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error);
+      });
+
+    //人氣投票資料
+      axios.get(`${import.meta.env.VITE_API_URL}/votescountTOP3.php`)
+      .then(response=>{
+        this.podium_list=response.data;
+        this.podium_list[1].class='podium2';
+        this.podium_list[0].class='podium1';
+        this.podium_list[2].class='podium3';
       })
       .catch(error => {
         console.error("Error fetching data: ", error);
@@ -1187,13 +1200,27 @@ export default {
     //人氣投票
     getVoteUrl(img) {
       return new URL(
-        `../assets/images/animal/small_pic/small_pic_${img}.png`,
-        import.meta.url
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/animal/small_pic/${img}`
+        // `../assets/images/animal/small_pic/small_pic_${img}.png` //方式
+        ,import.meta.url
       ).href;
     },
     getNoUrl(NO) {
-      return new URL(`../assets/images/vote/NO${NO}.svg`, import.meta.url).href;
+      return new URL(
+        `${import.meta.env.VITE_IMAGES_BASE_URL}/vote/NO${NO}.svg`,import.meta.url
+      ).href;
+      
     },
+    
+    // fetchTop3(){
+    //   axios.get(`${import.meta.env.VITE_API_URL}/votescountTOP3.php`)
+    //   .then(response=>{
+    //     this.podium_list=response.data;
+    //     this.podium_list[1].class='podium2';
+    //     this.podium_list[0].class='podium1';
+    //     this.podium_list[2].class='podium3';
+    //   })
+    // },
 
     //留言板
     getCommUrl(image) {
