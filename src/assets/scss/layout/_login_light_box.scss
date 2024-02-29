@@ -1,14 +1,17 @@
 .memLightBox_bg{
+  position: fixed;
+  top: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  position: absolute;
+  // position: absolute;
   z-index: 9999;
 }
 .memLightBox {
   position: relative;
-  margin: 100px auto;
+  margin: 200px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
