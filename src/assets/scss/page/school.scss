@@ -269,24 +269,31 @@
   left: 16vw;
   gap: 12%;
   z-index: 5;
+  perspective: 1000px;
 
   .coins {
     position: absolute;
     width: 3vw;
-  }
+   
 }
-.eat_coin .coin {
-  img {
-    width: 3vw;
-  }
 }
 .chimpanzees img {
+  opacity: 1;
   position: absolute;
-  transform: scaleX(-1);
   bottom: 0;
-  left: -5vw;
+  right: -5vw; // 修改 left 為 right
   width: 7vw;
-  z-index: 12;
+  z-index: 50;
+  animation: jump 1s ease infinite;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0) ; // 在原始位置時進行垂直翻轉
+  }
+  50% {
+    transform: translateY(-20px) ; // 在跳躍時進行垂直翻轉
+  }
 }
 .result_all {
   margin: 6% 0;
@@ -403,7 +410,6 @@
   }
 
   .chimpanzees img {
-  
     width: 8vw;
     z-index: 12;
   }
