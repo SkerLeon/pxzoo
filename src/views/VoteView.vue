@@ -5,7 +5,7 @@
   <section class="vote_top forHeader">
     <div class="banner">
       <!-- 月份看資料庫設計，如果要做到月份統計這邊要寫動態的 -->
-      <h1 class="title pcSmTitle">
+      <h1 class="title pcSmTitle" >
         <!-- 12月動物人氣投票冠軍揭曉！<br />前三名登場！ -->
         <h1>目前動物人氣<span>TOP3</span></h1>
       </h1>
@@ -45,9 +45,10 @@
   
 
   <!-- 投票規則 -->
-<section class="vote_activity">
+<section class="vote_activity" >
 
-<div class="vote_activity_wrap">
+<div class="vote_activity_wrap" data-aos="fade-up"
+     data-aos-duration="3000">
   <h1 class="pcBigTitle">探索動物奇蹟<br/>動物園之星投票大賽！</h1>
   <p class="pcInnerText">
     動物人氣投票活動開始啦！每月一次的盛事，每天都能投三票，無論您在哪個館別發現心愛的動物，都能為它投票！快來參與，讓我們一起為動物園添上美好的色彩！
@@ -299,7 +300,7 @@
       <div class="elephant1">
         <img src="@/assets/images/vetor/vetor_animal_elephant_1.svg" alt="大象" />
       </div>
-      <div class="vote_bottom">PxZoO</div>
+      <div class="vote_bottom" ref="parallax">PxZoO</div>
     </div>
   </section>
 </template>
@@ -384,6 +385,7 @@ export default {
     };
   },
   methods: {
+    
     updateLastResetTime() {
   const now = new Date();
   const tomorrow = new Date(now);
@@ -664,7 +666,10 @@ async vote_aqua(voteItem) {
         this.podium_list[2].class='podium3';
       })
     },
-   
+    handleScroll() {
+      const value = window.scrollY;
+      this.$refs.parallax.style.backgroundPositionY = value * 0.7 + 'px'; // 調整 0.7 以控制視差效果的速度
+    },
 
   },
   created() {
@@ -673,9 +678,11 @@ async vote_aqua(voteItem) {
 
     
   },
-
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   mounted() {
-
+    window.addEventListener('scroll', this.handleScroll);
     // // 檢查本地儲存中的日期是否與今天相同，如果不同，則重置投票次數為0
     // const today = new Date().toLocaleDateString();
     // const lastVotedDate = localStorage.getItem('lastVotedDate');

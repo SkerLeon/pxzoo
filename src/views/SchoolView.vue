@@ -117,7 +117,7 @@
 
 
               <div class="chimpanzees" >
-                <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees" :style="{ left: chimpanzeesLeft+ -3+ 'vw' }">
+                <img src="@/assets/images/school/chimpanzees.png" alt="chimpanzees" :style="{ left: chimpanzeesLeft+ -3+ 'vw' }">
               </div>
               <!-- <div v-for="(coin, index) in 10" :key="index"  class="coin">
                 <img src="@/assets/images/school/coin.svg" alt="coin">
