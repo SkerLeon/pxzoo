@@ -20,13 +20,13 @@
           <div class="inputIconBg">
             <img src="@/assets/images/login/lightbox/email.svg" alt="" />
           </div>
-          <input type="text" placeholder="帳號" v-model="loginAccount" />
+          <input type="text" placeholder="帳號" class="pcInnerText" v-model="loginAccount" />
         </div>
         <div class="LBInput">
           <div class="inputIconBg">
             <img src="@/assets/images/login/lightbox/lock.svg" alt="" />
           </div>
-          <input type="password" placeholder="密碼" v-model="loginau4a83" />
+          <input type="password" placeholder="密碼" class="pcInnerText" v-model="loginau4a83" />
         </div>
         <RouterLink to="/login" class="LBForget pcMarkText"
           >忘記密碼?</RouterLink
@@ -102,7 +102,7 @@ export default {
             } else if (res.data.code == 2) {
               alert("你被ban了 好可憐");
             } else {
-              console.log(res);
+              // console.log(res);
               alert("登入失敗");
             }
           }

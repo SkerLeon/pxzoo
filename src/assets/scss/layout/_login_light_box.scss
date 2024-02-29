@@ -1,12 +1,15 @@
 .memLightBox_bg{
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
   z-index: 9999;
 }
 .memLightBox {
+  overflow: hidden;
   position: relative;
   margin: 100px auto;
   display: flex;
@@ -21,9 +24,6 @@
     height: 100%;
   }
   .LBTextArea {
-    border-radius: 42px 42px 0 0;
-    background-color: $primaryColorYellow;
-    width: 100%;
     height: 20%;
     display: flex;
     justify-content: center;
@@ -45,7 +45,7 @@
   }
   .LBInputArea {
     z-index: 3;
-    padding-top: 30px;
+    padding-top: 0.5vw;
     width: 70%;
     height: 55%;
     display: flex;
@@ -57,7 +57,6 @@
     }
     .LBInput {
       width: 100%;
-      height: 35px;
       display: flex;
       justify-content: center;
       .inputIconBg {
@@ -74,10 +73,10 @@
         }
       }
       input {
+        padding: 0.5vw 0.5vw;
         border: 2px solid $mainTextColor;
         border-left: transparent;
         width: 100%;
-        padding: 3px 0 0 5px;
         &::placeholder {
           width: 100%;
           height: 100%;
@@ -89,6 +88,7 @@
       }
     }
     .LBForget {
+      margin-top: -25px;
       align-self: end;
       color: $mainTextColor;
       text-decoration: none;
@@ -102,5 +102,66 @@
     align-items: center;
     height: 25%;
     width: 80%;
+  }
+}
+@media screen and (max-width: 1190px) {
+  .memLightBox{ 
+    width: 40vw;
+    height: 42vw;
+  }
+}
+@media screen and (max-width: 920px) {
+  .memLightBox{ 
+    width: 50vw;
+    height: 52vw;
+    .LBTextArea .closeIcon{
+      right: 3vw;
+      top: 3vw;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .memLightBox.forHeader{
+    margin-top: 120px;
+  }
+  .memLightBox{ 
+    width: 60vw;
+    height: 65vw;
+    .LBTextArea{
+      .closeIcon{
+        right: 4.5vw;
+        top: 4.5vw;
+      }
+    }
+    .LBInputArea{
+      .LBInput input{
+        padding: 1vw 1.5vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 520px) {
+  .memLightBox{ 
+    width: 75vw;
+    height: 82vw;
+    .LBInputArea{
+      padding-top: 1.5vw;
+
+      .LBForget{
+        margin-top: -2vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 410px) {
+  .memLightBox{ 
+    width: 90vw;
+    height: 100vw;
+    .LBTextArea{
+      .closeIcon{
+        right: 5.5vw;
+        top: 5.5vw;
+      }
+    }
   }
 }

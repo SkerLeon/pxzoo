@@ -12,14 +12,14 @@
         :windowWidth="windowWidth" @TickCalendar="showTickCalendar" />
       <TickCalendar v-if="!windowWidth.isBoard || TickCalendar"
         :windowWidth="windowWidth" :tidateData="tidate" 
-        @newDate="updateDate" @goNextStep="showNextStep" />
+        @newDate="updateDate" @goNextStep="showNextStep"/>
     </main>
 
     <!-- 30% -->
     <main v-else-if="tickStep === 1">
-      <TickNum :windowWidth="windowWidth" :ticketsData="tickets" 
-        :ticketsQtyData="ticketsQty" :tipriceData="tiprice" 
-        @newTiprice="updateTiprice" @goNextStep="showNextStep"  @goPreviousStep="backPreviousStep" />
+      <TickNum :windowWidth="windowWidth" :ticketsData="tickets"
+        :tipriceData="tiprice" @newTiprice="updateTiprice" 
+        @goNextStep="showNextStep"  @goPreviousStep="backPreviousStep" />
     </main>
 
     <!-- 60% -->
@@ -80,7 +80,6 @@ export default {
       payprice: 0,
       tidate: new Date(),
       tickets: [],
-      ticketsQty: [],
       ord_detail_qty: 0,
       coupons: [],
       selectedCouId: null,
@@ -206,6 +205,7 @@ export default {
         if (this.mem_id === null) {
           // 如果沒有登入，則顯示登入燈箱
           this.showLogin = (this.mem_id === null);
+          // document.body.style.overflow = "hidden";
         } else {
           // 如果有登入
           this.fetchTickets();
@@ -238,9 +238,11 @@ export default {
     },
     getMemId(value) {
       this.mem_id = value;
+      this.showNextStep();
     },
     updateLoginBox(bool) {
       this.showLogin = bool;
+      document.body.style.overflow = "auto";
     },
     updateTiprice(newTiprice) {
       this.tiprice = newTiprice;
@@ -282,6 +284,14 @@ export default {
     tickStepImg() {
       return this.tickStepImgs[this.tickStep];
     },
+    // hidden(){
+    //   if(this.tickStep===0 && !TickCalendar){
+    //     document.body.style.overflow = "hidden";
+    //   }else{
+    //     console.log('auto');
+    //     document.body.style.overflow = "auto";
+    //   }
+    // },
   },
   provide(){
     return {
