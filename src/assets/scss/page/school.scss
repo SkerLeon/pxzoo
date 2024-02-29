@@ -293,7 +293,14 @@
   .result {
     width: 40vw;
     letter-spacing: 0.3vw;
-    text-align: center;
+    line-height: 3vw;
+    text-align: left;
+    color: $bgColorWhite;
+    @media (max-width:768px) {
+      letter-spacing: 0.7vw;
+      width: 85vw;
+      line-height: 8vw;
+    }
   }
   button {
     margin-top: 20px;

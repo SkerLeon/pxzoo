@@ -4,12 +4,12 @@
             <img class="game_Achieve_win" src="@/assets/images/school/win.svg" alt="win圖片">
         </div>
 
-        <p class="pcSmTitle">
+        <p class="pcSmTitle game_Achieve_text">
             太棒了！你的總得分為：{{ totalScore }}！
             <br>
-            你展現了出色的動物知識!獲得了一張PX ZOO門票優惠券！
+            你展現了出色的動物知識，獲得了一張PX ZOO門票優惠券。
             <br>
-            享受門票優惠，探索動物王國的奇妙世界快來一場奇妙的冒險，發現動物的奇蹟！<br>
+            享受門票優惠，探索動物王國的奇妙世界快來一場奇妙的冒險，發現動物的奇蹟。<br>
             感謝你的參與，期待在PX ZOO見到你！ 
         </p>
 
@@ -74,34 +74,40 @@ export default {
             this.loginLightBoxSwitch = !this.loginLightBoxSwitch
         },
         receiveCoupon(){
-            if(localStorage.getItem('userData')){
-                this.today = this.convertToday();
-                this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
-                this.couponAndMemderData.cou_id = this.random + 1
+            const userDataString  = localStorage.getItem('userData')
 
-                // 調用 getMemberCoupon 並等待它完成
-                this.getMemberCoupon().then(() => {
-                    // 現在這裡的代碼會在 getMemberCoupon 完成後執行
-                    if(this.couponDataBool === false){
-                        axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                        .then(() => {
-                            alert("該優惠卷已儲存至會員中心！")
-                            location.reload()
+            if (userDataString) {
+                const user = JSON.parse(userDataString);
 
-                        })
-                        .catch(error => {
-                            console.error('更新錯誤:', error);
-                        });
-                    } else{
-                        alert("今天已經領過優惠卷囉！")
-                    }
-                });
-            } else{
-                this.loginLightBoxSwitch = !this.loginLightBoxSwitch
+                if( user.mem_id ){
+                    this.today = this.convertToday();
+                    this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
+                    this.couponAndMemderData.cou_id = this.random + 1
+
+                    // 調用 getMemberCoupon 並等待它完成
+                    this.getMemberCoupon().then(() => {
+                        // 現在這裡的代碼會在 getMemberCoupon 完成後執行
+                        if(this.couponDataBool === false){
+                            axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                            .then(() => {
+                                alert("該優惠卷已儲存至會員中心！")
+                                location.reload()
+
+                            })
+                            .catch(error => {
+                                console.error('更新錯誤:', error);
+                            });
+                        } else{
+                            alert("今天已經領過優惠卷囉！")
+                        }
+                    });
+                } else{
+                    this.loginLightBoxSwitch = !this.loginLightBoxSwitch
+                }
             }
         },
         getMemberCoupon(){
@@ -166,7 +172,7 @@ export default {
         }
     }
     p{
-        color: #ffffff;
+        // color: $inputHintColor;
         text-align: center;
         letter-spacing: 0.3vw;
         @media (max-width:768px) {
