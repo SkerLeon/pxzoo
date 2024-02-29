@@ -237,9 +237,11 @@ export default {
                 .then(response => {
                     // 處理獲取到的動物詳情數據
                     this.animalDetailData = response.data
-                    // this.pageTitle = this.animalDetailData.animal_species
-                    // document.title = this.pageTitle + ' | PxZoO'
+                    console.log( this.animalDetailData);
+                    this.pageTitle = this.animalDetailData.animal_species
+                    document.title = this.pageTitle + ' | PxZoO'
                     this.bigPic = new URL(`${import.meta.env.VITE_IMAGES_BASE_URL}/animal/animal_pic/${this.animalDetailData.animal_pic_a}`, import.meta.url).href
+
                 })
                 .catch(error => {
                     // 處理錯誤情況
@@ -250,16 +252,24 @@ export default {
         fetchSidebarData() {
             axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?type=speciesname`)
                 .then(response => {
-                    const animalsData = response.data;
+                    const animalsData = response.data.map(item =>{
+                        return {
+                            ...item,
+                            animal_status: parseInt(item.animal_status)
+        }
+                    });
                     // 遍歷每一筆動物資料
                     animalsData.forEach(animal => {
+                        if (animal.animal_status === 0) {
+                            return
+                        }
                         // 根據動物所屬的館別，在 this.animals_sidebar 陣列中找到對應的館別索引
                         const parkIndex = this.animals_sidebar.findIndex(category => category.park === animal.category_name);
                         // 檢查是否找到對應的館別
                         if (parkIndex !== -1) {
                             this.animals_sidebar[parkIndex].animals.push({
                                 species: animal.animal_species,
-                                animals_id: animal.animal_id  // 在这里为每个 child 对象添加 animals_id 属性
+                                animals_id: animal.animal_id  // 為 child 添加 animals_id 属性
                             });
                         }
                     });
@@ -339,6 +349,12 @@ export default {
             },
             deep: true 
         },
+
+        '$route'(to,from){
+            if(to. params.id !== from.params.id ){
+                this.sidebarClick_id = to.params.id
+            }
+        }
     },
 
     components: {

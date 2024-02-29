@@ -11,7 +11,7 @@ Vue.config.devtools = true;
     <!-- 新聞列表 -->
     <main class="news_overview">
       <!-- menu button(ph) -->
-      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select" @change="selectTypeChange"
+      <select name="payway[]" placeholder="ALL" class="pcInnerText news_select" @change="setPage(1)"
         v-model="selectedCategory">
         <option value="ALL" disabled hidden>ALL</option>
         <option v-for="category in newsCategory" :value="category.value" :key="category.value">{{ category.label }}
@@ -199,7 +199,12 @@ export default {
     fetchNews(){
       axios.get(`${import.meta.env.VITE_API_URL}/newsFrontShow.php`)
       .then(response => {
-        this.news = response.data; 
+        this.news = response.data.map(item=>{
+          return {
+            ...item,
+            news_status: parseInt(item.news_status)
+          }
+        }); 
         // console.log(this.news.length); 
         // 處理頁碼問題
         this.currentPage = parseInt(this.$route.params.page) || 1;
@@ -273,7 +278,8 @@ export default {
       }
       this.currentPage = page
       window.scrollTo(0, 0);
-      if (this.currentPage === 1) {
+      if(this.selectedCategory === 'ALL'){
+        if (this.currentPage === 1) {
           this.firstPage = false;
           this.lastPage = true;
         } else if (this.currentPage === Math.ceil(this.news.length / this.perpage)) {
@@ -283,6 +289,10 @@ export default {
           this.firstPage = true;
           this.lastPage = true;
         }
+      }else{
+        this.firstPage = false;
+        this.lastPage = false;
+      }
       this.toPage(this.currentPage, this.selectedCategory)
     },
 

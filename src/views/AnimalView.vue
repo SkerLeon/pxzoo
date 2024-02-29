@@ -259,7 +259,13 @@ export default {
         fetchAnimalData() {
             axios.get(`${import.meta.env.VITE_API_URL}/animalDetailShow.php?type=animalList`)
                 .then(response => {
-                    const animalsData = response.data;
+                    const animalsData = response.data.map(item=>{
+                        return{
+                            ...item,
+                            animal_status: parseInt(item.animal_status)
+                        }
+                    });
+
                     // 清空animal_List數組，以便重新填充
                     this.animal_List = [];
                     // 遍歷每一筆動物資料
