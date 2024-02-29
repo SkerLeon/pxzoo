@@ -196,7 +196,6 @@
         width: 9vw;
         height: auto;
         border: $primaryColorYellow solid 0.3em;
-        
       }
 
       .NO {
@@ -456,7 +455,7 @@
   position: relative;
   // padding-bottom: 211px;
   color: $mainTextColor;
-  background-attachment: fixed !important; 
+background-attachment:  fixed !important;
   max-width: 1920px;
   box-sizing: border-box;
   background-color: $primaryColorGreen;
@@ -809,7 +808,6 @@
   background-color: $bgColorLightgray;
   background-repeat: no-repeat;
   background-position: bottom;
-  z-index: -1; /* 將背景置於內容下面 */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -821,7 +819,7 @@
   position: relative;
   width: 100%;
   height: auto;
- 
+
   .vote_overview_content {
     display: flex;
     flex-direction: column;
@@ -947,7 +945,6 @@
     -webkit-background-clip: text;
     word-spacing: nowrap;
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
-    
   }
 }
 
