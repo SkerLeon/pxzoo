@@ -467,7 +467,6 @@ section.aqua{
         .animal_detail_title{
             display: flex;
             align-items: center;
-            margin-bottom: 2vw;
             h2{
                 color: $primaryColorGreen;
                 padding-right: 0.8vw;
@@ -506,7 +505,7 @@ section.aqua{
             }
             .animal_detail_sec-section{
                 .animal_detail_name{
-                    padding-right: 36vw;
+                    // padding-right: 36vw;
                 }
             }
         }
