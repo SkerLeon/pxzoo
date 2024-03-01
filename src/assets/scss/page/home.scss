@@ -1669,6 +1669,7 @@
     background-color: $bgColorLightgray;
     position: relative;
     padding-top: 5vw;
+    overflow: hidden;
     @media (width <= 768px) {
       margin-top: -5vw;
       padding-top: 25vw;
@@ -1784,7 +1785,8 @@
           bottom: -10vw;
         }
         .podium_box {
-          height: 25vw;
+          // height: 25vw;
+          height: auto;
           z-index: 3;
 
           /* 新增 border 相關屬性 */
@@ -1796,8 +1798,17 @@
             rgba(255, 255, 255, 0) 85%
           );
           border-image-slice: 1;
+          animation: increaseHeight1 5s forwards;
           @media (width <= 768px) {
             height: 80vw;
+          }
+        }
+        @keyframes increaseHeight1 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 25vw;
           }
         }
       }
@@ -1810,10 +1821,20 @@
           bottom: -10vw;
         }
         .podium_box {
-          height: 20vw;
+          // height: 20vw;
+          height: auto;
           z-index: 2;
+          animation: increaseHeight2 5s forwards;
           @media (width <= 768px) {
             height: 65vw;
+          }
+        }
+        @keyframes increaseHeight2 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 20vw;
           }
         }
       }
@@ -1826,10 +1847,20 @@
           bottom: -10vw;
         }
         .podium_box {
-          height: 15vw;
+          // height: 15vw;
+          height: auto;
           z-index: 1;
+          animation: increaseHeight3 5s forwards;
           @media (width <= 768px) {
             height: 50vw;
+          }
+        }
+        @keyframes increaseHeight3 {
+          from {
+            height: 0;
+          }
+          to {
+            height: 15vw;
           }
         }
       }
