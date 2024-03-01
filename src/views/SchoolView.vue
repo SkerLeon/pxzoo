@@ -117,7 +117,7 @@
 
 
               <div class="chimpanzees" >
-                <img src="@/assets/images/vetor/vetor_animal_chimpanzees.svg" alt="chimpanzees" :style="{ left: chimpanzeesLeft+ -3+ 'vw' }">
+                <img src="@/assets/images/school/chimpanzees.png" alt="chimpanzees" :style="{ left: chimpanzeesLeft+ -3+ 'vw' }">
               </div>
               <!-- <div v-for="(coin, index) in 10" :key="index"  class="coin">
                 <img src="@/assets/images/school/coin.svg" alt="coin">
@@ -310,10 +310,6 @@ export default {
 
       ],
       showAnswer: Array(10).fill(false), //是否顯示答案跟解析
-
-
-
-
       colors: ['', '', '', '','', '', '', '','',''],
       hiddenImages: []
       
@@ -327,7 +323,7 @@ export default {
       if (this.successfulQuestionsCount >= 8) {
         this.GameAchieveSwitch = true;
       } else {
-        return '很抱歉你未能成功破關，但冒險並不僅僅是成功與否每一次的嘗試都是對知識的探索和成長失敗並不代表結束，而是迎接更多挑戰的開始「失敗只是成功的一部分，堅持不懈才是真正的勇氣。」我們鼓勵你繼續保持好奇心，學習更多關於動物的知識下一次冒險可能就是你獲得成功的時刻！加油，未來的動物知識王！';
+        return '很抱歉你未能成功破關，但冒險並不僅是成功與否，堅持不懈才是真正的勇氣。鼓勵你繼續保持好奇心，學習更多關於動物的知識，下一次冒險可能就是你獲得成功的時刻！';
       }
     }
   },
