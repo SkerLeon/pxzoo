@@ -21,18 +21,3 @@
     />
   </div>
 </template>
-
-<script>
-import { goHome } from "@/assets/js/common.js";
-
-export default {
-  data() {
-    return {};
-  },
-  methods: {
-    useGoHome() {
-      goHome(this);
-    },
-  },
-};
-</script>
