@@ -210,7 +210,7 @@ export default {
           }
         })
         .catch((error) => {
-          console.log(error);
+          alert("帳號密碼錯誤");
         });
     },
     register() {
@@ -218,6 +218,13 @@ export default {
         alert("請確認密碼");
       } else if (this.au4a83.length < 8 && this.au4a83.length < 8) {
         alert("密碼至少8個字");
+      } else if (this.acc == "") {
+        alert("請輸入帳號");
+      } else if (
+        !/^[0-9a-zA-Z]+$/.test(this.acc) ||
+        !/^[0-9a-zA-Z]+$/.test(this.au4a83)
+      ) {
+        alert("帳號和密碼只能包含數字和英文字母");
       } else {
         const bodyFormData = new FormData();
         bodyFormData.append("mem_name", this.name);
