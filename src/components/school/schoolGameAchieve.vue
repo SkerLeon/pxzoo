@@ -90,35 +90,39 @@ export default {
             this.loginLightBoxSwitch = bool
         },
         receiveCoupon(){
-                if( this.mem_id !== null ){
-                    this.today = this.convertToday();
-                    this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
-                    this.couponAndMemderData.cou_id = this.random + 1
+            const userDataString = localStorage.getItem("userData")
+            if(userDataString){
+                var user = JSON.parse(userDataString)
+            }
+            if( this.mem_id !== null || user.mem_id ){
+                this.today = this.convertToday();
+                this.couponAndMemderData.mem_id = JSON.parse(localStorage.getItem('userData')).mem_id
+                this.couponAndMemderData.cou_id = this.random + 1
 
-                    // 調用 getMemberCoupon 並等待它完成
-                    this.getMemberCoupon().then(() => {
-                        // 現在這裡的代碼會在 getMemberCoupon 完成後執行
-                        if(this.couponDataBool === false){
-                            axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            })
-                            .then(() => {
-                                alert("該優惠卷已儲存至會員中心！")
-                                location.reload()
+                // 調用 getMemberCoupon 並等待它完成
+                this.getMemberCoupon().then(() => {
+                    // 現在這裡的代碼會在 getMemberCoupon 完成後執行
+                    if(this.couponDataBool === false){
+                        axios.post(`${import.meta.env.VITE_API_URL}/couponSend.php`, this.couponAndMemderData,{
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(() => {
+                            alert("該優惠卷已儲存至會員中心！")
+                            location.reload()
 
-                            })
-                            .catch(error => {
-                                console.error('更新錯誤:', error);
-                            });
-                        } else{
-                            alert("今天已經領過優惠卷囉！")
-                        }
-                    });
-                } else{
-                    this.loginLightBoxSwitch = !this.loginLightBoxSwitch
-                }
+                        })
+                        .catch(error => {
+                            console.error('更新錯誤:', error);
+                        });
+                    } else{
+                        alert("今天已經領過優惠卷囉！")
+                    }
+                });
+            } else{
+                this.loginLightBoxSwitch = !this.loginLightBoxSwitch
+            }
         },
         getMemberCoupon(){
             return new Promise((resolve, reject) => {
