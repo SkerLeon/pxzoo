@@ -43,7 +43,12 @@ export default {
         axios.get(`${import.meta.env.VITE_API_URL}/parkMapIcon.php`)
 
         .then((response) => {
-            this.icon_animals = response.data;
+            this.icon_animals = response2.data.map(item=>{
+                return {
+                ...item,
+                animal_status: parseInt(item.animal_status)
+                }
+            });
             this.fillHiddenIndexes(); 
         })
         .catch(error => {
