@@ -3,8 +3,7 @@ PxZoO 前台
 
 ![image](https://hackmd.io/_uploads/HyMALfNpp.png)
 
-
-- [目錄](#pxzoo-前台)
+- [README 目錄](#pxzoo-前台)
   - [專案架構](#專案架構)
   - [前台介紹](#前台介紹)
   - [系統說明](#系統說明)
@@ -13,10 +12,10 @@ PxZoO 前台
   - [測試帳號密碼](#測試帳號密碼)
   - [在 Local 端的安裝＆運行步驟](#在-local-端的安裝運行步驟)
   - [聯絡作者](#聯絡作者)
-  - [參考資料](#參考資料)
+  - [其他介紹資料](#其他介紹資料)
 
 ## 專案架構
-:star: 本專案為「前後台分離」、「前後端分離」: 
+本專案為「前後台分離」、「前後端分離」: 
 
 | :file_folder: 資料夾名稱 | :memo: 說明 | :link: GitHub 連結  |
 | -------- | -------------- | ----- |
@@ -81,9 +80,9 @@ PxZoO 前台
 | - stores | pinia 檔案放置處   |
 | - views | 畫面放置處     |
 | - assets   | 靜態資源放置處    |
-| ---- images | 圖片放置處      |
-| ---- js     | 共用 .js 放置處 |
-| ---- scss   | scss 檔案放置處 |
+| -- images | 圖片放置處      |
+| -- js     | 共用 .js 放置處 |
+| -- scss   | scss 檔案放置處 |
 
 ## 測試帳號密碼
 * [專案正式上線網址](https://tibamef2e.com/chd104/g4/)
@@ -124,7 +123,8 @@ npm run dev
 <a href="https://github.com/SkerLeon/pxzoo/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SkerLeon/pxzoo" />
 </a>  
-
+  
+  
 1. [SkerLeon](https://github.com/SkerLeon): 園區介紹、知識學堂/優惠券產出、會員中心/購票紀錄的 QRCODE 產出
 2. [yhkekeke](https://github.com/yhkekeke): 立即購票
 3. [huang607](https://github.com/huang607) : 首頁、Header、Footer、Fixed
@@ -132,7 +132,7 @@ npm run dev
 5. [Ying-Jung189](https://github.com/Ying-Jung189) : 動物資訊、動物內頁、最新消息、消息內頁
 6. [wenchieh0119](https://github.com/wenchieh0119) : 人氣投票、知識學堂
 
-## 參考資料
+## 其他介紹資料
 * [專案簡報](https://docs.google.com/spreadsheets/d/1d7xajKl-_hGmBGOUZ3mqe0n8COaip61Ku1Xc3MEIni4/edit#gid=1055140317&range=E5)
 * [專案 Demo 影片](https://www.youtube.com/watch?v=wMNHY-WFYpA&ab_channel=%E7%B7%AF%E8%82%B2TibaMe%E5%B0%B1%E6%A5%AD%E9%A4%8A%E6%88%90%E7%8F%AD)
 * [專案技術文件](https://drive.google.com/drive/folders/1dhqDJZqMZtEm1SKmbbDQ95awtH3yeofr)
