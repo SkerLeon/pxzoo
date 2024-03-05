@@ -1,7 +1,10 @@
 PxZoO 前台
 ===
 
-- [PxZoO 前台](#pxzoo-前台)
+![image](https://hackmd.io/_uploads/HyMALfNpp.png)
+
+
+- [目錄](#pxzoo-前台)
   - [專案架構](#專案架構)
   - [前台介紹](#前台介紹)
   - [系統說明](#系統說明)
@@ -116,10 +119,11 @@ npm run dev
 ```
 
 ## 聯絡作者
-本專案開發者及主責頁面/功能:
+本專案開發者及主責頁面/功能:  
+
 <a href="https://github.com/SkerLeon/pxzoo/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SkerLeon/pxzoo" />
-</a>
+</a>  
 
 1. [SkerLeon](https://github.com/SkerLeon): 園區介紹、知識學堂/優惠券產出、會員中心/購票紀錄的 QRCODE 產出
 2. [yhkekeke](https://github.com/yhkekeke): 立即購票
