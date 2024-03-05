@@ -133,7 +133,7 @@ npm run dev
 6. [wenchieh0119](https://github.com/wenchieh0119) : 人氣投票、知識學堂
 
 ## 其他介紹資料
-* [專案簡報](https://docs.google.com/spreadsheets/d/1d7xajKl-_hGmBGOUZ3mqe0n8COaip61Ku1Xc3MEIni4/edit#gid=1055140317&range=E5)
+* [專案簡報](https://drive.google.com/file/d/1kjP9MviFWZCMTxuaUcBT9OXchDZdpxZf/view)
 * [專案 Demo 影片](https://www.youtube.com/watch?v=wMNHY-WFYpA&ab_channel=%E7%B7%AF%E8%82%B2TibaMe%E5%B0%B1%E6%A5%AD%E9%A4%8A%E6%88%90%E7%8F%AD)
-* [專案技術文件](https://drive.google.com/drive/folders/1dhqDJZqMZtEm1SKmbbDQ95awtH3yeofr)
+* [專案技術文件](https://drive.google.com/file/d/1EFl3E_D7THHsBP35CQ8ErgrPuUCdjhnD/view)
 * [專案 UI/UX 設計稿](https://www.figma.com/file/YCfP69MYr9OBUSBmMqePIr/%E7%B7%AF%E8%82%B2-%7C-%E5%9C%98%E9%AB%94%E5%B0%88%E9%A1%8C-6-PxZoO?type=design&node-id=515%3A9347&mode=design&t=DTzDguwhyjsUlTiD-1)
